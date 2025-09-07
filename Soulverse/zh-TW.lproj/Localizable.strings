@@ -7,6 +7,10 @@
 "inner_cosmo" = "內在宇宙";
 "insight" = "洞察";
 "canvas" = "畫布";
+"canvas_description" = "透過繪畫和素描表達您的創造力";
+"start_now" = "立即開始";
+"cancel" = "取消";
+"save" = "儲存";
 "tools" = "工具";
 "quest" = "探索";
 "account" = "Account";

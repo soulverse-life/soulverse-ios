@@ -129,4 +129,16 @@ class AppCoordinator {
         
         navigationVC.pushViewController(accountDeletionVC, animated: true)
     }
+    
+    static func openDrawingCanvas(from sourceVC: UIViewController) {
+        let drawingCanvasVC = DrawingCanvasViewController()
+        drawingCanvasVC.hidesBottomBarWhenPushed = true
+        
+        guard let navigationVC = sourceVC.navigationController else {
+            sourceVC.show(drawingCanvasVC, sender: nil)
+            return
+        }
+        
+        navigationVC.pushViewController(drawingCanvasVC, animated: true)
+    }
 }

@@ -25,17 +25,8 @@ struct ViewComponentConstants {
     static let miniBarHeight: CGFloat = 76.0
     static let navigationBarHeight: CGFloat = 56.0
     static let actionButtonHeight: CGFloat = 48.0
-    static let smallActionButtonHeight: CGFloat = 29.0
+    static let smallActionButtonHeight: CGFloat = 20.0
     
-    static let homeNormalItemWidth: CGFloat = 160.0
-    static let homeNormalItemHeight: CGFloat = 160.0
-    
-    static let homeHighlightItemWidth: CGFloat = 244.0
-    static let homeHighlightItemHeight: CGFloat = 353.0
-    
-    static let homeEmbeddedListHeight: CGFloat = 417.0
-    
-    static let homeTrackItemHeight: CGFloat = 84.0
     
     /// Image height/width for Large NavBar state
     static let ImageSizeForLargeState: CGFloat = 40
