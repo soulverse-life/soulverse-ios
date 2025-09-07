@@ -21,15 +21,15 @@ enum SoulverseTab: Int, CaseIterable {
     var viewController: UIViewController {
         switch self {
         case .innerCosmo:
-            return InnerCosmoViewController() // Inner Cosmo (was Home)
+            return InnerCosmoViewController()
         case .insight:
-            return InsightViewController() // Insight (was FeelingPlanet)
+            return InsightViewController()
         case .canvas:
-            return CanvasViewController() // Canvas stays the same
+            return CanvasViewController()
         case .tools:
-            return ToolsViewController() // Tools (was Seed)
+            return ToolsViewController()
         case .quest:
-            return QuestViewController() // Quest (was Wall)
+            return QuestViewController()
         }
     }
     
@@ -51,30 +51,30 @@ enum SoulverseTab: Int, CaseIterable {
     var tabImage: UIImage? {
         switch self {
         case .innerCosmo:
-            return UIImage(named: "tabiconHomeOutline") // Inner Cosmo (was Home)
+            return UIImage(named: "tabIconInnerCosmos")
         case .insight:
-            return UIImage(named: "tabiconPlanetFilled") // Insight (was FeelingPlanet)
+            return UIImage(named: "tabIconInsight")
         case .canvas:
-            return UIImage(named: "tabiconCanvasFilled") // Canvas stays the same
+            return UIImage(named: "tabIconCanvas")
         case .tools:
-            return UIImage(named: "tabiconSeedFilled") // Tools (was Seed)
+            return UIImage(named: "tabIconTool")
         case .quest:
-            return UIImage(named: "tabiconWallFilled") // Quest (was Wall)
+            return UIImage(named: "tabIconQuest")
         }
     }
     
     var tabSelectedImage: UIImage? {
         switch self {
         case .innerCosmo:
-            return UIImage(named: "tabiconHomeFilled")?.withRenderingMode(.alwaysOriginal) // Inner Cosmo
+            return UIImage(named: "tabIconInnerCosmos")?.withRenderingMode(.alwaysOriginal)
         case .insight:
-            return UIImage(named: "tabiconPlanetFilled")?.withRenderingMode(.alwaysOriginal) // Insight
+            return UIImage(named: "tabIconInsight")?.withRenderingMode(.alwaysOriginal)
         case .canvas:
-            return UIImage(named: "tabiconCanvasFilled")?.withRenderingMode(.alwaysOriginal) // Canvas
+            return UIImage(named: "tabIconCanvas")?.withRenderingMode(.alwaysOriginal)
         case .tools:
-            return UIImage(named: "tabiconSeedFilled")?.withRenderingMode(.alwaysOriginal) // Tools
+            return UIImage(named: "tabIconTool")?.withRenderingMode(.alwaysOriginal)
         case .quest:
-            return UIImage(named: "tabiconWallFilled")?.withRenderingMode(.alwaysOriginal) // Quest
+            return UIImage(named: "tabIconQuest")?.withRenderingMode(.alwaysOriginal)
         }
     }
 }
@@ -100,6 +100,7 @@ class SoulverseTabBarController: UITabBarController {
         appearance.shadowColor = .clear
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
+        tabBar.tintColor = .black
     }
     
     private func setupTabs() {
