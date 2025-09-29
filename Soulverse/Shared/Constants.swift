@@ -131,3 +131,22 @@ struct TimeConstant {
     static let hour = 3600.0
     static let miniute = 60.0
 }
+
+struct Layout {
+    // MARK: - Quest Progress View Layout
+    struct QuestProgress {
+        static let containerPadding: CGFloat = 20
+        static let titleTopOffset: CGFloat = 10
+        static let sectionSpacing: CGFloat = 10
+        static let bottomPadding: CGFloat = 10
+        
+        // View heights
+        static let titleHeight: CGFloat = 20
+        static let progressContainerHeight: CGFloat = 40
+        static let labelsContainerHeight: CGFloat = 20
+        
+        // Font sizes
+        static let titleFontSize: CGFloat = 16
+        static let labelFontSize: CGFloat = 10
+    }
+}

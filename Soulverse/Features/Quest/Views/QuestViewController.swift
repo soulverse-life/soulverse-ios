@@ -34,6 +34,9 @@ class QuestViewController: ViewController {
         if #available(iOS 18.0, *) {
             self.tabBarController?.setTabBarHidden(false, animated: false)
         }
+        
+        // Load data when view appears
+        presenter.fetchData()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -67,9 +70,7 @@ class QuestViewController: ViewController {
         presenter.delegate = self
     }
     @objc func pullToRefresh() {
-        if !tableView.isDragging {
-            presenter.fetchData(isUpdate: true)
-        }
+        presenter.fetchData(isUpdate: true)
     }
 }
 extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
@@ -81,7 +82,7 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
         titleLabel.text = title
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        titleLabel.textColor = .primaryWhite
+        titleLabel.textColor = .primaryBlack
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
@@ -106,7 +107,42 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
         return UITableView.automaticDimension
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = UITableViewCell()
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        
+        // Remove any existing subviews to prevent overlap
+        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
+        
+        if indexPath.section == 0 {
+            // Radar Chart Section
+            if let radarData = presenter.loadedModel.radarChartData {
+                let radarChartView = QuestRadarChartView()
+                radarChartView.configure(with: radarData)
+                
+                cell.contentView.addSubview(radarChartView)
+                radarChartView.snp.makeConstraints { make in
+                    make.edges.equalToSuperview()
+                    make.height.equalTo(400) // Fixed height for radar chart
+                }
+            }
+        } else if indexPath.section == 1 {
+            // Progress Line Section
+            let progressLineView = QuestProgressLineView()
+            
+            if let lineData = presenter.loadedModel.lineChartData {
+                progressLineView.configure(with: lineData)
+            }
+            // If no data, it will show placeholder state (just line, no dots)
+            
+            cell.contentView.addSubview(progressLineView)
+            progressLineView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+                make.height.equalTo(100)
+            }
+        }
+        
+        return cell
     }
 }
 extension QuestViewController: QuestViewPresenterDelegate {
@@ -114,10 +150,13 @@ extension QuestViewController: QuestViewPresenterDelegate {
         DispatchQueue.main.async { [weak self] in
             guard let weakSelf = self else { return }
             weakSelf.showLoading = viewModel.isLoading
-            weakSelf.tableView.refreshControl?.endRefreshing()
-            let top = weakSelf.tableView.adjustedContentInset.top
-            let y = weakSelf.tableView.refreshControl!.frame.maxY + top
-            weakSelf.tableView.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
+            
+            // End refresh control
+            if weakSelf.tableView.refreshControl?.isRefreshing == true {
+                weakSelf.tableView.refreshControl?.endRefreshing()
+            }
+            
+            // Reload table data
             weakSelf.tableView.reloadData()
         }
     }

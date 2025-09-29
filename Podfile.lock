@@ -12,6 +12,9 @@ PODS:
     - PromisesObjC (~> 2.4)
   - DateToolsSwift (5.0.0)
   - DeviceKit (5.6.0)
+  - DGCharts (5.1.0):
+    - DGCharts/Core (= 5.1.0)
+  - DGCharts/Core (5.1.0)
   - FBAEMKit (18.0.0):
     - FBSDKCoreKit_Basics (= 18.0.0)
   - FBSDKCoreKit (18.0.0):
@@ -257,6 +260,7 @@ PODS:
 DEPENDENCIES:
   - DateToolsSwift
   - DeviceKit (~> 5.2)
+  - DGCharts (~> 5.1.0)
   - FBSDKLoginKit
   - Firebase
   - Firebase/Analytics
@@ -286,6 +290,7 @@ SPEC REPOS:
     - AppCheckCore
     - DateToolsSwift
     - DeviceKit
+    - DGCharts
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
@@ -340,6 +345,7 @@ SPEC CHECKSUMS:
   AppCheckCore: cc8fd0a3a230ddd401f326489c99990b013f0c4f
   DateToolsSwift: 4207ada6ad615d8dc076323d27037c94916dbfa6
   DeviceKit: 9f2e0b68984a384f864b0f4e40a54bae43636bd8
+  DGCharts: 1c6daf585b6cfc78807af44ea690d357c410627f
   FBAEMKit: e34530df538b8eb8aeb53c35867715ba6c63ef0c
   FBSDKCoreKit: d3f479a69127acebb1c6aad91c1a33907bcf6c2f
   FBSDKCoreKit_Basics: 017b6dc2a1862024815a8229e75661e627ac1e29
@@ -388,6 +394,6 @@ SPEC CHECKSUMS:
   Toaster: c3473963c78e8cabbf6ea6f11ad0fdaae6f54987
   UICircularProgressRing: 19927375b2b21b5fa5fd9582f15ccdef9659da16
 
-PODFILE CHECKSUM: 7afb03952868b11135b1626297fdff198d6840f5
+PODFILE CHECKSUM: d05a59bc231d9885c8fc1cd5ae1534a81ebd87bc
 
 COCOAPODS: 1.16.2

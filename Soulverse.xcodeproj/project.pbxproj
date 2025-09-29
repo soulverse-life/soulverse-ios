@@ -211,6 +211,10 @@
 		7951AA032E537704006EB0EC /* ToolsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */; };
 		7951AA042E537704006EB0EC /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FD2E537704006EB0EC /* ToolsViewController.swift */; };
 		7951AA052E537704006EB0EC /* SeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FB2E537704006EB0EC /* SeedViewModel.swift */; };
+		79710ED82E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */; };
+		79710EDA2E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */; };
+		79710EDD2E6D974D007665DB /* QuestProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */; };
+		79710EDE2E6D974D007665DB /* QuestProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */; };
 		798687EE2E6C248E00EB3B38 /* InsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E92E6C248E00EB3B38 /* InsightViewModel.swift */; };
 		798687EF2E6C248E00EB3B38 /* InsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687EB2E6C248E00EB3B38 /* InsightViewController.swift */; };
 		798687F02E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E72E6C248E00EB3B38 /* InsightViewPresenter.swift */; };
@@ -401,6 +405,8 @@
 		7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenter.swift; sourceTree = "<group>"; };
 		7951A9FB2E537704006EB0EC /* SeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedViewModel.swift; sourceTree = "<group>"; };
 		7951A9FD2E537704006EB0EC /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
+		79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRadarChartView.swift; sourceTree = "<group>"; };
+		79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestProgressLineView.swift; sourceTree = "<group>"; };
 		798687E72E6C248E00EB3B38 /* InsightViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightViewPresenter.swift; sourceTree = "<group>"; };
 		798687E92E6C248E00EB3B38 /* InsightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightViewModel.swift; sourceTree = "<group>"; };
 		798687EB2E6C248E00EB3B38 /* InsightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightViewController.swift; sourceTree = "<group>"; };
@@ -1123,6 +1129,8 @@
 		798688062E6C24EE00EB3B38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */,
+				79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */,
 				798688052E6C24EE00EB3B38 /* QuestViewController.swift */,
 			);
 			path = Views;
@@ -1588,6 +1596,7 @@
 				790AD2202DF9E43200C33CD1 /* UIButton+Extensions.swift in Sources */,
 				7951AA002E537704006EB0EC /* ToolsViewPresenter.swift in Sources */,
 				798688112E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */,
+				79710EDE2E6D974D007665DB /* QuestProgressLineView.swift in Sources */,
 				7951AA012E537704006EB0EC /* ToolsViewController.swift in Sources */,
 				7951AA022E537704006EB0EC /* SeedViewModel.swift in Sources */,
 				790AD2212DF9E43200C33CD1 /* WebViewController.swift in Sources */,
@@ -1651,6 +1660,7 @@
 				790AD2572DF9E43200C33CD1 /* ForgetPasswordPresenter.swift in Sources */,
 				790AD2582DF9E43200C33CD1 /* LoginViewPresenter.swift in Sources */,
 				790AD2592DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
+				79710ED82E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
 				790AD25B2DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
 				790AD25C2DF9E43200C33CD1 /* SummitUserModel.swift in Sources */,
 				790AD25E2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */,
@@ -1698,6 +1708,7 @@
 				790AD2CE2DF9E43200C33CD1 /* UIButton+Extensions.swift in Sources */,
 				7951AA032E537704006EB0EC /* ToolsViewPresenter.swift in Sources */,
 				798688102E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */,
+				79710EDD2E6D974D007665DB /* QuestProgressLineView.swift in Sources */,
 				7951AA042E537704006EB0EC /* ToolsViewController.swift in Sources */,
 				7951AA052E537704006EB0EC /* SeedViewModel.swift in Sources */,
 				790AD2CF2DF9E43200C33CD1 /* WebViewController.swift in Sources */,
@@ -1761,6 +1772,7 @@
 				790AD3052DF9E43200C33CD1 /* ForgetPasswordPresenter.swift in Sources */,
 				790AD3062DF9E43200C33CD1 /* LoginViewPresenter.swift in Sources */,
 				790AD3072DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
+				79710EDA2E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
 				790AD3092DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
 				790AD30A2DF9E43200C33CD1 /* SummitUserModel.swift in Sources */,
 				790AD30C2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */,
@@ -2018,7 +2030,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 554URW8XRV;
+				DEVELOPMENT_TEAM = 387UQ56LV7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/DateToolsSwift\"",
@@ -2100,7 +2112,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 554URW8XRV;
+				DEVELOPMENT_TEAM = 387UQ56LV7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/DateToolsSwift\"",

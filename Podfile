@@ -23,6 +23,7 @@ abstract_target 'Base' do
   
   pod 'UICircularProgressRing'
   pod 'SwiftyBase64', '~> 1.0'
+  pod 'DGCharts', '~> 5.1.0'
   
   pod 'Firebase/RemoteConfig'
   pod 'Firebase/Analytics'
