@@ -1856,7 +1856,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Soulveerse/Soulverse.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 554URW8XRV;
 				INFOPLIST_FILE = "Soulverse Dev-Info.plist";
@@ -1882,7 +1882,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Soulveerse/Soulverse.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 554URW8XRV;
 				INFOPLIST_FILE = "Soulverse Dev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
@@ -2028,7 +2028,7 @@
 				CODE_SIGN_ENTITLEMENTS = Soulverse/Soulverse.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 387UQ56LV7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2111,7 +2111,7 @@
 				CODE_SIGN_ENTITLEMENTS = Soulverse/Soulverse.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 387UQ56LV7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -31,6 +31,14 @@ Push a dev build to Testflight
 
 Push a release build to Testflight
 
+### ios test_upload
+
+```sh
+[bundle exec] fastlane ios test_upload
+```
+
+Test upload existing IPA to TestFlight
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

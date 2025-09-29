@@ -19,63 +19,49 @@ platform :ios do
 
   desc "Push a dev build to Testflight"
   lane :development do |option|
-    increment_build_number(xcodeproj: "KonoSummit.xcodeproj", skip_info_plist: true)
-    version_num = get_version_number(xcodeproj: "KonoSummit.xcodeproj", target: ENV["SCHEME"])
-    build_num = '100' + get_build_number(xcodeproj: "KonoSummit.xcodeproj")
-    build_app(workspace: "KonoSummit.xcworkspace", scheme: ENV["SCHEME"], configuration: "Debug")
-    upload_to_testflight(skip_submission: true)
-    slack(
-        message: "[DEV] App succesfully uploaded to TestFlight",
-        success: true,
-        slack_url: "https://hooks.slack.com/services/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",
-        default_payloads: [:git_branch, :last_git_commit_message],
-        attachment_properties: {
-            fields: [
-                {
-                    title: "Server Environment",
-                    value: ENV["SERVER"]
-                },
-                {
-                    title: "Version number",
-                    value: version_num
-                },
-                {
-                    title: "Build number",
-                    value: build_num
-                }
-            ]
-        }
-     )
+    increment_build_number(xcodeproj: "Soulverse.xcodeproj", skip_info_plist: true)
+    version_num = get_version_number(xcodeproj: "Soulverse.xcodeproj", target: ENV["SCHEME"])
+    build_num = '100' + get_build_number(xcodeproj: "Soulverse.xcodeproj")
+    build_app(workspace: "Soulverse.xcworkspace", scheme: ENV["SCHEME"], configuration: "Debug")
+    api_key = app_store_connect_api_key(
+      key_id: ENV["API_KEY_ID"],
+      issuer_id: ENV["API_ISSUER_ID"],
+      key_filepath: ENV["API_KEY_FILEPATH"]
+    )
+    upload_to_testflight(
+      skip_submission: true,
+      api_key: api_key
+    )
   end
 
   desc "Push a release build to Testflight"
   lane :release do |option|
-    increment_build_number(xcodeproj: "KonoSummit.xcodeproj", skip_info_plist: true)
-    version_num = get_version_number(xcodeproj: "KonoSummit.xcodeproj", target: ENV["SCHEME"])
-    build_num = '300' + get_build_number(xcodeproj: "KonoSummit.xcodeproj")
-    build_app(workspace: "KonoSummit.xcworkspace", scheme: ENV["SCHEME"], configuration: "Release")
-    upload_to_testflight(skip_submission: true)
-    slack(
-        message: "App succesfully uploaded to TestFlight",
-        success: true,
-        slack_url: "https://hooks.slack.com/services/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",
-        default_payloads: [:git_branch, :last_git_commit_message],
-        attachment_properties: {
-            fields: [
-                {
-                    title: "Server Environment",
-                    value: ENV["SERVER"]
-                },
-                {
-                    title: "Version number",
-                    value: version_num
-                },
-                {
-                    title: "Build number",
-                    value: build_num
-                }
-            ]
-        }
-     )
+    increment_build_number(xcodeproj: "Soulverse.xcodeproj", skip_info_plist: true)
+    version_num = get_version_number(xcodeproj: "Soulverse.xcodeproj", target: ENV["SCHEME"])
+    build_num = '300' + get_build_number(xcodeproj: "Soulverse.xcodeproj")
+    build_app(workspace: "Soulverse.xcworkspace", scheme: ENV["SCHEME"], configuration: "Release")
+    api_key = app_store_connect_api_key(
+      key_id: ENV["API_KEY_ID"],
+      issuer_id: ENV["API_ISSUER_ID"],
+      key_filepath: ENV["API_KEY_FILEPATH"]
+    )
+    upload_to_testflight(
+      skip_submission: true,
+      api_key: api_key
+    )
+  end
+
+  desc "Test upload existing IPA to TestFlight"
+  lane :test_upload do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["API_KEY_ID"],
+      issuer_id: ENV["API_ISSUER_ID"],
+      key_filepath: ENV["API_KEY_FILEPATH"]
+    )
+    upload_to_testflight(
+      skip_submission: true,
+      ipa: "/Users/mingshing/Soulverse/Soulverse.ipa",
+      api_key: api_key
+    )
   end
 end
