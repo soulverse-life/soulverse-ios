@@ -7,19 +7,6 @@
 import Foundation
 import UIKit
 
-struct AuthenticationKeyConstants {
-    
-    static let email: String = "email"
-    static let password: String = "password"
-}
-
-struct UserDefaultKeys {
-    static let uuid = "uuid"
-}
-
-struct RemoteConfigKeys {
-    static let minimumSupportVersion = "minimum_version"
-}
 
 struct ViewComponentConstants {
     static let miniBarHeight: CGFloat = 76.0
@@ -44,22 +31,10 @@ struct ViewComponentConstants {
     static let NavBarHeightLargeState: CGFloat = 96.5
 }
 
-struct LocaleConstants {
-    static let defaultLanguage = "zh-TW"
-}
 
 struct HostAppContants {
     
     
-    static let latestCategoryType = "latest"
-    static let upcomingCategoryType = "upcoming"
-    static let continuePlayCategoryType = "continuePlay"
-    static let ctaCategoryType = "cta"
-    static let folderCategoryType = "category"
-    
-    static let schemaVersion: UInt64 = 5
-    
-    static let serviceName = "com.thekono.soulverse"
     
     static let privacyUrl = "https://soulverse.thekono.com/privacy"
     static let policyUrl = "https://soulverse.thekono.com/terms"
@@ -72,7 +47,6 @@ struct HostAppContants {
     
     static let recommendBookMailSubject = "為 Soulverse 推薦更多書籍"
     
-    static let anonymousUserId = "anonymousUserId"
     
     #if Dev
     static let serverUrl = "https://soulverse-dev.thekono.com/api"
@@ -112,7 +86,6 @@ struct DeviceConstants {
 
 struct Notification {
     static let UserIdentityChange = "UserIdentityChange"
-    static let RemoteConfigFetched = "RemoteConfigFetched"
 }
 
 struct InAppURLScheme {
@@ -120,11 +93,6 @@ struct InAppURLScheme {
     static let hostApp = "soulverse"
 }
 
-enum ContentType: String, Equatable {
-    
-    case category, book, article, audio, video
-    
-}
 
 struct TimeConstant {
     static let day = 86400.0
