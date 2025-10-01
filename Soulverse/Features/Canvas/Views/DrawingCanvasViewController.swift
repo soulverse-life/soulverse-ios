@@ -140,7 +140,6 @@ class DrawingCanvasViewController: UIViewController {
     
     // MARK: - Setup Methods
     private func setupNavigationBar() {
-        // Hide the native navigation bar completely
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -353,7 +352,48 @@ class DrawingCanvasViewController: UIViewController {
     
     @objc private func saveDrawing() {
         let image = renderDrawingAsImage()
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+
+        // Save image to Documents directory
+        guard let fileName = saveImageToDocuments(image: image) else {
+            showSaveErrorAlert()
+            return
+        }
+
+        // Present result view directly without animation
+        AppCoordinator.presentDrawingResult(imageFileName: fileName, from: self)
+    }
+
+    private func saveImageToDocuments(image: UIImage) -> String? {
+        guard let data = image.pngData(),
+              let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+
+        // Generate filename with format: yyyyMMdd_HHmm.png
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd_HHmm"
+        let fileName = "\(dateFormatter.string(from: Date())).png"
+
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+
+        do {
+            try data.write(to: fileURL)
+            print("Image saved to: \(fileURL.path)")
+            return fileName
+        } catch {
+            print("Error saving image: \(error)")
+            return nil
+        }
+    }
+
+    private func showSaveErrorAlert() {
+        let alert = UIAlertController(
+            title: NSLocalizedString("save_failed", comment: "Save Failed"),
+            message: NSLocalizedString("save_failed_message", comment: "Failed to save the drawing"),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: "OK"), style: .default))
+        present(alert, animated: true)
     }
 
     @available(iOS 18.0, *)
@@ -407,17 +447,13 @@ class DrawingCanvasViewController: UIViewController {
     private func renderDrawingAsImage() -> UIImage {
         let bounds = canvasView.bounds
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
-        
+
         return renderer.image { context in
-            // 先繪製背景色
-            UIColor.white.setFill()
-            context.fill(bounds)
-            
             // 繪製背景圖片
             if let backgroundImage = backgroundImageView.image {
                 backgroundImage.draw(in: bounds)
             }
-            
+
             // 繪製畫布內容
             canvasView.drawing.image(from: bounds, scale: UIScreen.main.scale).draw(in: bounds)
         }

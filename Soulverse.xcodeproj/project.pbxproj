@@ -189,6 +189,10 @@
 		790AD3422DF9E48E00C33CD1 /* SummitTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3362DF9E48E00C33CD1 /* SummitTrackerTests.swift */; };
 		790AD3472DF9E4C200C33CD1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 790AD3442DF9E4C200C33CD1 /* Info.plist */; };
 		790AD3482DF9E4C200C33CD1 /* KonoSummitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3452DF9E4C200C33CD1 /* KonoSummitUITests.swift */; };
+		7922EC502E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
+		7922EC512E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
+		7922EC532E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */; };
+		7922EC542E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */; };
 		7951A9B92E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
@@ -394,6 +398,8 @@
 		790AD33B2DF9E48E00C33CD1 /* SampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTests.swift; sourceTree = "<group>"; };
 		790AD3442DF9E4C200C33CD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		790AD3452DF9E4C200C33CD1 /* KonoSummitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonoSummitUITests.swift; sourceTree = "<group>"; };
+		7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
+		7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingResultViewController.swift; sourceTree = "<group>"; };
 		7951A9B62E532C85006EB0EC /* SoulverseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButton.swift; sourceTree = "<group>"; };
 		7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseNavigationView.swift; sourceTree = "<group>"; };
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
@@ -572,6 +578,7 @@
 				790AD16E2DF9E43200C33CD1 /* UIColor+Extensions.swift */,
 				790AD1702DF9E43200C33CD1 /* UIImage+Extensions.swift */,
 				790AD1712DF9E43200C33CD1 /* UISwitch+Extensions.swift */,
+				7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */,
 				790AD1722DF9E43200C33CD1 /* UITabBarController+Extensions.swift */,
 				790AD1732DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift */,
 				790AD1742DF9E43200C33CD1 /* UITextField+Extensions.swift */,
@@ -1177,6 +1184,7 @@
 		79B24C732DFC7B2A001220B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */,
 				7986880F2E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift */,
 				79B24C722DFC7B2A001220B6 /* CanvasViewController.swift */,
 			);
@@ -1577,6 +1585,7 @@
 				790AD2142DF9E43200C33CD1 /* LoginViewPresenterType.swift in Sources */,
 				790AD2152DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
 				7951A9CD2E5376B5006EB0EC /* HomeItemCellViewModel.swift in Sources */,
+				7922EC502E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */,
 				7951A9CE2E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */,
 				7951A9CF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */,
 				7951A9D02E5376B5006EB0EC /* HomeViewModel.swift in Sources */,
@@ -1655,6 +1664,7 @@
 				790AD2522DF9E43200C33CD1 /* TrackingServiceType.swift in Sources */,
 				790AD2532DF9E43200C33CD1 /* UITabBarController+Extensions.swift in Sources */,
 				790AD2542DF9E43200C33CD1 /* User.swift in Sources */,
+				7922EC532E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */,
 				790AD2552DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */,
 				790AD2562DF9E43200C33CD1 /* ForgetPasswordViewController.swift in Sources */,
 				790AD2572DF9E43200C33CD1 /* ForgetPasswordPresenter.swift in Sources */,
@@ -1689,6 +1699,7 @@
 				790AD2C22DF9E43200C33CD1 /* LoginViewPresenterType.swift in Sources */,
 				790AD2C32DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
 				7951A9C82E5376B5006EB0EC /* HomeItemCellViewModel.swift in Sources */,
+				7922EC512E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */,
 				7951A9C92E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */,
 				7951A9CA2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */,
 				7951A9CB2E5376B5006EB0EC /* HomeViewModel.swift in Sources */,
@@ -1767,6 +1778,7 @@
 				790AD3002DF9E43200C33CD1 /* TrackingServiceType.swift in Sources */,
 				790AD3012DF9E43200C33CD1 /* UITabBarController+Extensions.swift in Sources */,
 				790AD3022DF9E43200C33CD1 /* User.swift in Sources */,
+				7922EC542E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */,
 				790AD3032DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */,
 				790AD3042DF9E43200C33CD1 /* ForgetPasswordViewController.swift in Sources */,
 				790AD3052DF9E43200C33CD1 /* ForgetPasswordPresenter.swift in Sources */,

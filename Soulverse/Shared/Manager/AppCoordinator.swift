@@ -133,12 +133,23 @@ class AppCoordinator {
     static func openDrawingCanvas(from sourceVC: UIViewController) {
         let drawingCanvasVC = DrawingCanvasViewController()
         drawingCanvasVC.hidesBottomBarWhenPushed = true
-        
+
         guard let navigationVC = sourceVC.navigationController else {
             sourceVC.show(drawingCanvasVC, sender: nil)
             return
         }
-        
+
         navigationVC.pushViewController(drawingCanvasVC, animated: true)
+    }
+
+    static func presentDrawingResult(imageFileName: String, from sourceVC: UIViewController) {
+        let drawingResultVC = DrawingResultViewController(imageFileName: imageFileName)
+        let navigationController = UINavigationController(rootViewController: drawingResultVC)
+        navigationController.modalPresentationStyle = .fullScreen
+
+        sourceVC.present(navigationController, animated: true) {
+            // After presentation, pop the DrawingCanvasViewController from the navigation stack
+            sourceVC.navigationController?.popViewController(animated: false)
+        }
     }
 }
