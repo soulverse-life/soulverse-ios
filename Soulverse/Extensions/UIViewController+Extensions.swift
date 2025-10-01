@@ -1,10 +1,3 @@
-//
-//  UIViewController+Extensions.swift
-//  KonoSummit
-//
-//  Created by mingshing on 2022/1/4.
-//
-
 import UIKit
 extension UIViewController {
     static func getLastPresentedViewController() -> UIViewController? {

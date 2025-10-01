@@ -1,9 +1,3 @@
-//
-//  Codable+Extensions.swift
-//  KonoSummit
-//
-//  Created by mingshing on 2022/2/15.
-//
 
 struct JSONCodingKeys: CodingKey {
     var stringValue: String

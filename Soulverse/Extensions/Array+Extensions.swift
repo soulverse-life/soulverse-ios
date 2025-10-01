@@ -1,10 +1,3 @@
-//
-//  Array+Extensions.swift
-//  KonoSummit
-//
-//  Created by mingshing on 2022/1/26.
-//
-
 import Foundation
 
 extension Array {

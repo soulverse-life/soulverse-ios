@@ -1,10 +1,3 @@
-//
-//  UITapGestureRecognizer.swift
-//  KonoSummit
-//
-//  Created by mingshing on 2021/12/10.
-//
-
 import UIKit
 extension UITapGestureRecognizer {
 

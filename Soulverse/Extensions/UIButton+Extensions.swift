@@ -1,10 +1,3 @@
-//
-//  UIButton+Extensions.swift
-//  KonoSummit
-//
-//  Created by mingshing on 2022/2/7.
-//
-
 import UIKit
 
 extension UIButton {

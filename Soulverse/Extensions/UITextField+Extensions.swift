@@ -1,10 +1,3 @@
-//
-//  UITextField+Extensions.swift
-//  KonoSummit
-//
-//  Created by mingshing on 2021/12/9.
-//
-
 import UIKit
 
 extension UITextField {

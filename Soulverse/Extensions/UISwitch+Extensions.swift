@@ -1,10 +1,3 @@
-//
-//  UISwitch+Extensions.swift
-//  KonoSummit
-//
-//  Created by mingshing on 2021/9/12.
-//
-
 import UIKit
 
 extension UISwitch {

@@ -1,9 +1,3 @@
-//
-//  UIColor+Extensions.swift
-//
-//  Created by mingshing on 2021/8/29.
-//
-
 import UIKit
 
 extension UIColor {

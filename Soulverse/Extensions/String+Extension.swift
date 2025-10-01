@@ -1,10 +1,3 @@
-//
-//  String+Extension.swift
-//  KonoSummit
-//
-//  Created by mingshing on 2021/10/11.
-//
-
 import Foundation
 
 extension NSMutableAttributedString {
