@@ -17,7 +17,7 @@ enum GenderOption: String, CaseIterable {
 }
 
 protocol OnboardingGenderViewControllerDelegate: AnyObject {
-    func didSelectGender(_ gender: GenderOption)
+    func onboardingGenderViewController(_ viewController: OnboardingGenderViewController, didSelectGender gender: GenderOption)
 }
 
 class OnboardingGenderViewController: UIViewController {
@@ -257,6 +257,6 @@ class OnboardingGenderViewController: UIViewController {
 
     @objc private func continueTapped() {
         guard let selectedGender = selectedGender else { return }
-        delegate?.didSelectGender(selectedGender)
+        delegate?.onboardingGenderViewController(self, didSelectGender: selectedGender)
     }
 }

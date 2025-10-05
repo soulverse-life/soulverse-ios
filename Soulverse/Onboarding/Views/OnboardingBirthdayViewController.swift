@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol OnboardingBirthdayViewControllerDelegate: AnyObject {
-    func didSelectBirthday(_ date: Date)
+    func onboardingBirthdayViewController(_ viewController: OnboardingBirthdayViewController, didSelectBirthday date: Date)
 }
 
 class OnboardingBirthdayViewController: UIViewController {
@@ -211,7 +211,7 @@ class OnboardingBirthdayViewController: UIViewController {
         dateComponents.day = selectedDay
 
         if let date = calendar.date(from: dateComponents) {
-            delegate?.didSelectBirthday(date)
+            delegate?.onboardingBirthdayViewController(self, didSelectBirthday: date)
         }
     }
 
