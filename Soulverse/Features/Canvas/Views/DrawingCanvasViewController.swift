@@ -80,11 +80,21 @@ class DrawingCanvasViewController: UIViewController {
         return button
     }()
 
+    private lazy var toolPickerToggleButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "pencil.tip"), for: .normal)
+        button.tintColor = .label
+        button.addTarget(self, action: #selector(toggleToolPicker), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = true
+        imageView.isUserInteractionEnabled = false
         return imageView
     } ()
     
@@ -93,13 +103,18 @@ class DrawingCanvasViewController: UIViewController {
 
     // MARK: - Properties
     private var toolPicker: PKToolPicker?
-    private var customAddToolItem: Any?
+    private var isToolPickerVisible: Bool = true
     
     // MARK: - Recording Properties
     private var drawingSteps: [PKDrawing] = []
     private var isRecording = true
     private var isReplaying = false
     private var replayTimer: Timer?
+
+    // MARK: - Layout Properties
+    private var hasConfiguredInitialLayout = false
+    private var canvasContentSize: CGSize = .zero
+    private var initialZoomScale: CGFloat = 1.0
 
     // MARK: - Initializers
     convenience init(backgroundImage: UIImage?) {
@@ -121,21 +136,29 @@ class DrawingCanvasViewController: UIViewController {
         setupBackgroundImage()
         startRecording()
     }
-    
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // 確保 background image frame 已設置（但不設置 zoom）
+        if !hasConfiguredInitialLayout && canvasView.bounds.width > 0 {
+            setupInitialBackgroundFrame()
+        }
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupToolPickerPosition()
+
+        if !hasConfiguredInitialLayout {
+            configureBackgroundImageLayout()
+            hasConfiguredInitialLayout = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // 隱藏工具選擇器避免影響其他頁面
-        toolPicker?.setVisible(false, forFirstResponder: canvasView)
 
-        // 移除觀察者
-        if #available(iOS 18.0, *) {
-            toolPicker?.removeObserver(self)
-        }
+        toolPicker?.setVisible(false, forFirstResponder: canvasView)
     }
     
     // MARK: - Setup Methods
@@ -145,27 +168,29 @@ class DrawingCanvasViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
-        
+
         // Add top bar with Cancel/Save buttons
         view.addSubview(topBarView)
         topBarView.addSubview(cancelButton)
         topBarView.addSubview(saveButton)
-        
-        // Add toolbar stackview with Share/Undo/Redo buttons
+
+        // Add toolbar stackview with Share/Undo/Redo/ToolPicker buttons
         view.addSubview(toolbarStackView)
         toolbarStackView.addArrangedSubview(shareButton)
         toolbarStackView.addArrangedSubview(undoButton)
         toolbarStackView.addArrangedSubview(redoButton)
-        
-        // 創建背景圖片視圖
-        view.addSubview(backgroundImageView)
-        
+        toolbarStackView.addArrangedSubview(toolPickerToggleButton)
+
         // 創建畫布
         canvasView = PKCanvasView()
         canvasView.isRulerActive = false
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(canvasView)
-        
+
+        // 創建背景圖片視圖 - 添加為 canvasView 的子視圖以支持縮放
+        canvasView.addSubview(backgroundImageView)
+        canvasView.sendSubviewToBack(backgroundImageView)
+
         setupConstraints()
     }
     
@@ -205,69 +230,41 @@ class DrawingCanvasViewController: UIViewController {
         redoButton.snp.makeConstraints { make in
             make.width.height.equalTo(ViewComponentConstants.smallActionButtonHeight)
         }
-        
+
+        toolPickerToggleButton.snp.makeConstraints { make in
+            make.width.height.equalTo(ViewComponentConstants.smallActionButtonHeight)
+        }
+
         // Canvas view takes remaining space
         canvasView.snp.makeConstraints { make in
             make.top.equalTo(toolbarStackView.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-        
-        // 設置約束 - 居中並保持寬高比
-        backgroundImageView.snp.makeConstraints { make in
-            make.edges.equalTo(canvasView)
-        }
     }
     
     private func setupCanvas() {
-        // 設置畫布屬性
         canvasView.delegate = self
         canvasView.drawingPolicy = .anyInput
         canvasView.backgroundColor = .clear
-        
-        // 允許縮放和平移
-        canvasView.minimumZoomScale = 0.5
-        canvasView.maximumZoomScale = 3.0
-        canvasView.bouncesZoom = true
+        canvasView.bouncesZoom = false
+
+        canvasView.showsVerticalScrollIndicator = false
+        canvasView.showsHorizontalScrollIndicator = false
+
     }
     
     private func setupToolPicker() {
-        // 如果系統支援，設置自定義工具項
-        if #available(iOS 18.0, *) {
-            let items = PKToolPicker().toolItems
-            toolPicker = PKToolPicker(toolItems: items)
-        } else {
-            toolPicker = PKToolPicker()
-        }
+        toolPicker = PKToolPicker()
         toolPicker?.colorUserInterfaceStyle = .light
         toolPicker?.showsDrawingPolicyControls = false
     }
 
-    @available(iOS 18.0, *)
-    private func getCustomAddTool() -> PKToolPickerCustomItem {
-        var config = PKToolPickerCustomItem.Configuration(identifier: "com.soulverse.custom-add", name: "plus")
-
-        // Provide a custom image for the custom tool item.
-        config.imageProvider = { toolItem in
-            guard let toolImage = UIImage(named: config.name) else {
-                return UIImage()
-            }
-            return toolImage
-        }
-
-        return PKToolPickerCustomItem(configuration: config)
-    }
-    
     private func setupToolPickerPosition() {
         guard let toolPicker = toolPicker else { return }
 
         toolPicker.setVisible(true, forFirstResponder: canvasView)
         toolPicker.addObserver(canvasView)
-
-        // 如果系統支援自定義工具，添加自己為觀察者
-        if #available(iOS 18.0, *) {
-            toolPicker.addObserver(self)
-        }
 
         canvasView.becomeFirstResponder()
 
@@ -280,26 +277,91 @@ class DrawingCanvasViewController: UIViewController {
     
     
     private func adjustCanvasInsets(tabBarHeight: CGFloat) {
-        
-        canvasView.contentInset = UIEdgeInsets(
-            top: 0,
-            left: 0,
-            bottom: LaoutConstant.toolPickerHeight + 10,
-            right: 0
-        )
-        
-        canvasView.scrollIndicatorInsets = canvasView.contentInset
+        // 先更新背景圖片 frame（會設置基本的 contentInset）
+        updateBackgroundFrame()
+
+        // 然後調整底部 inset 為工具選擇器留出空間
+        let toolPickerBottomInset = LaoutConstant.toolPickerHeight + 10
+        var currentInsets = canvasView.contentInset
+        currentInsets.bottom = max(currentInsets.bottom, toolPickerBottomInset)
+
+        canvasView.contentInset = currentInsets
+        canvasView.scrollIndicatorInsets = currentInsets
     }
     
     
     private func setupBackgroundImage() {
-
         // 使用傳入的背景圖片，如果沒有則使用默認圖片
         if let image = backgroundImage {
             backgroundImageView.image = image
         } else {
             backgroundImageView.image = UIImage(named: "emotion_jar")
         }
+        // 佈局配置會在 viewDidAppear 中進行
+    }
+
+    private func setupInitialBackgroundFrame() {
+        guard let image = backgroundImageView.image else { return }
+
+        let imageSize = image.size
+        canvasContentSize = imageSize
+
+        // 只設置 canvas contentSize，不設置 backgroundImageView.frame
+        // frame 會在 configureBackgroundImageLayout() 中正確設置
+        canvasView.contentSize = imageSize
+    }
+
+    private func configureBackgroundImageLayout() {
+        guard canvasContentSize != .zero else { return }
+
+        let imageSize = canvasContentSize
+        let canvasBounds = canvasView.bounds.size
+
+        // 計算初始縮放比例，使圖片適配屏幕（scaleAspectFit）
+        let widthScale = canvasBounds.width / imageSize.width
+        let heightScale = canvasBounds.height / imageSize.height
+        initialZoomScale = min(widthScale, heightScale)
+
+        // 設置 PKCanvasView 的縮放範圍和初始縮放
+        // 最小縮放 = 初始縮放（不能比適配屏幕的尺寸更小）
+        canvasView.minimumZoomScale = initialZoomScale
+        canvasView.maximumZoomScale = initialZoomScale * 3.0
+        canvasView.zoomScale = initialZoomScale
+
+        // 設置背景圖片為縮放後的尺寸
+        updateBackgroundFrame()
+
+        #if DEBUG
+            print("Canvas setup - imageSize: \(imageSize), initialScale: \(initialZoomScale), zoomScale: \(canvasView.zoomScale)")
+        #endif
+    }
+
+    private func updateBackgroundFrame() {
+        let imageSize = canvasContentSize
+        let canvasBounds = canvasView.bounds.size
+        let currentZoom = canvasView.zoomScale
+
+        // 計算當前縮放下的圖片尺寸
+        let scaledWidth = imageSize.width * currentZoom
+        let scaledHeight = imageSize.height * currentZoom
+
+        // 背景圖片應該在內容座標空間的原點，不需要手動調整 contentOffset
+        // UIScrollView 會自動處理滾動偏移
+        backgroundImageView.frame = CGRect(x: 0, y: 0, width: scaledWidth, height: scaledHeight)
+
+        // 更新 contentSize 以匹配縮放後的尺寸
+        canvasView.contentSize = CGSize(width: scaledWidth, height: scaledHeight)
+
+        // 使用 contentInset 來居中內容（當內容小於 bounds 時）
+        let horizontalInset = max((canvasBounds.width - scaledWidth) / 2, 0)
+        let verticalInset = max((canvasBounds.height - scaledHeight) / 2, 0)
+
+        canvasView.contentInset = UIEdgeInsets(
+            top: verticalInset,
+            left: horizontalInset,
+            bottom: verticalInset,
+            right: horizontalInset
+        )
     }
     
     
@@ -322,7 +384,25 @@ class DrawingCanvasViewController: UIViewController {
     @objc private func redoAction() {
         canvasView.undoManager?.redo()
     }
-    
+
+    @objc private func toggleToolPicker() {
+        isToolPickerVisible.toggle()
+
+        if isToolPickerVisible {
+            // Show tool picker and enable drawing
+            toolPicker?.setVisible(true, forFirstResponder: canvasView)
+            canvasView.becomeFirstResponder()
+            canvasView.drawingPolicy = .anyInput
+            toolPickerToggleButton.setImage(UIImage(systemName: "pencil.tip"), for: .normal)
+        } else {
+            // Hide tool picker and enable pan mode
+            toolPicker?.setVisible(false, forFirstResponder: canvasView)
+            canvasView.resignFirstResponder()
+            canvasView.drawingPolicy = .pencilOnly
+            toolPickerToggleButton.setImage(UIImage(systemName: "hand.draw"), for: .normal)
+        }
+    }
+
     @objc private func clearCanvas() {
         let alert = UIAlertController(title: "清除畫布", message: "確定要清除所有繪畫內容嗎？", preferredStyle: .alert)
         
@@ -334,141 +414,40 @@ class DrawingCanvasViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @objc private func addBackgroundImage() {
-        let alert = UIAlertController(title: "選擇圖片", message: nil, preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "從相片選擇", style: .default) { _ in
-            self.presentImagePicker()
-        })
-        
-        alert.addAction(UIAlertAction(title: "移除背景", style: .destructive) { _ in
-            self.backgroundImageView.image = nil
-        })
-        
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel))
-        
-        present(alert, animated: true)
-    }
     
     @objc private func saveDrawing() {
         let image = renderDrawingAsImage()
 
-        // Save image to Documents directory
-        guard let fileName = saveImageToDocuments(image: image) else {
-            showSaveErrorAlert()
-            return
-        }
-
-        // Present result view directly without animation
-        AppCoordinator.presentDrawingResult(imageFileName: fileName, from: self)
+        // Present result view directly with image in memory
+        AppCoordinator.presentDrawingResult(image: image, from: self)
     }
 
-    private func saveImageToDocuments(image: UIImage) -> String? {
-        guard let data = image.pngData(),
-              let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return nil
-        }
-
-        // Generate filename with format: yyyyMMdd_HHmm.png
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyyMMdd_HHmm"
-        let fileName = "\(dateFormatter.string(from: Date())).png"
-
-        let fileURL = documentsDirectory.appendingPathComponent(fileName)
-
-        do {
-            try data.write(to: fileURL)
-            print("Image saved to: \(fileURL.path)")
-            return fileName
-        } catch {
-            print("Error saving image: \(error)")
-            return nil
-        }
-    }
-
-    private func showSaveErrorAlert() {
-        let alert = UIAlertController(
-            title: NSLocalizedString("save_failed", comment: "Save Failed"),
-            message: NSLocalizedString("save_failed_message", comment: "Failed to save the drawing"),
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: "OK"), style: .default))
-        present(alert, animated: true)
-    }
-
-    @available(iOS 18.0, *)
-    private func handleCustomAddTool() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
-        // 添加圖片選項
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Add Photo", comment: ""), style: .default) { _ in
-            self.presentImagePicker()
-        })
-
-        // 更改背景選項
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Change Background", comment: ""), style: .default) { _ in
-            self.addBackgroundImage()
-        })
-
-        // 清除畫布選項
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Clear Canvas", comment: ""), style: .destructive) { _ in
-            self.clearCanvas()
-        })
-
-        // 重播繪圖選項
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Replay Drawing", comment: ""), style: .default) { _ in
-            self.startReplay()
-        })
-
-        // 取消選項
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
-
-        // 為 iPad 設置 popover
-        if let popover = alert.popoverPresentationController {
-            popover.sourceView = canvasView
-            popover.sourceRect = CGRect(x: canvasView.bounds.midX, y: canvasView.bounds.maxY - 100, width: 0, height: 0)
-        }
-
-        present(alert, animated: true)
-    }
     
     // MARK: - Helper Methods
-    
-    private func presentImagePicker() {
-        var configuration = PHPickerConfiguration()
-        configuration.filter = .images
-        configuration.selectionLimit = 1
-        
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
-        present(picker, animated: true)
-    }
-    
     private func renderDrawingAsImage() -> UIImage {
-        let bounds = canvasView.bounds
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        // 渲染整個 canvas 內容（完整的背景圖片尺寸 + 所有繪圖）
+        // 不考慮當前縮放或可見區域
+
+        let renderSize = canvasContentSize
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = UIScreen.main.scale
+
+        let renderer = UIGraphicsImageRenderer(size: renderSize, format: format)
 
         return renderer.image { context in
-            // 繪製背景圖片
+            // 繪製背景圖片（完整尺寸）
             if let backgroundImage = backgroundImageView.image {
-                backgroundImage.draw(in: bounds)
+                backgroundImage.draw(in: CGRect(origin: .zero, size: renderSize))
             }
 
-            // 繪製畫布內容
-            canvasView.drawing.image(from: bounds, scale: UIScreen.main.scale).draw(in: bounds)
+            // 繪製畫布內容（完整尺寸）
+            // 從整個 canvas 內容區域提取繪圖
+            let drawing = canvasView.drawing
+            let drawingRect = CGRect(origin: .zero, size: renderSize)
+            let drawingImage = drawing.image(from: drawingRect, scale: UIScreen.main.scale)
+            drawingImage.draw(in: drawingRect)
         }
     }
-    
-    @objc private func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        let alert = UIAlertController(
-            title: error == nil ? "保存成功" : "保存失敗",
-            message: error?.localizedDescription,
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "確定", style: .default))
-        present(alert, animated: true)
-    }
-
 }
 
 // MARK: - Recording Methods
@@ -536,32 +515,34 @@ extension DrawingCanvasViewController: CanvasViewPresenterDelegate {
 }
 
 extension DrawingCanvasViewController: PKCanvasViewDelegate {
-    
+
     func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
         // 繪畫內容改變時的回調
-        
+
         recordDrawingStep()
     }
-    
+
     func canvasViewDidBeginUsingTool(_ canvasView: PKCanvasView) {
         // 開始使用工具時的回調
     }
-    
+
     func canvasViewDidEndUsingTool(_ canvasView: PKCanvasView) {
         // 結束使用工具時的回調
         recordDrawingStep()
     }
 }
 
-@available(iOS 18.0, *)
-extension DrawingCanvasViewController: PKToolPickerObserver {
+// MARK: - UIScrollViewDelegate
+extension DrawingCanvasViewController: UIScrollViewDelegate {
 
-    func toolPickerSelectedToolDidChange(_ toolPicker: PKToolPicker) {
-        // 檢查是否選擇了我們的自定義工具
-        if let selectedTool = toolPicker.selectedTool as? PKToolPickerCustomItem,
-           selectedTool.identifier == "com.soulverse.add-tool" {
-            handleCustomAddTool()
-        }
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        // 當 canvas 縮放時，更新背景圖片的 frame
+        updateBackgroundFrame()
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 當 canvas 滾動時，更新背景圖片的位置
+        updateBackgroundFrame()
     }
 }
 
@@ -576,6 +557,9 @@ extension DrawingCanvasViewController: PHPickerViewControllerDelegate {
             DispatchQueue.main.async {
                 if let image = object as? UIImage {
                     self?.backgroundImageView.image = image
+                    // 重新配置背景圖片佈局以適應新圖片
+                    self?.hasConfiguredInitialLayout = false
+                    self?.configureBackgroundImageLayout()
                 }
             }
         }

@@ -142,8 +142,8 @@ class AppCoordinator {
         navigationVC.pushViewController(drawingCanvasVC, animated: true)
     }
 
-    static func presentDrawingResult(imageFileName: String, from sourceVC: UIViewController) {
-        let drawingResultVC = DrawingResultViewController(imageFileName: imageFileName)
+    static func presentDrawingResult(image: UIImage, from sourceVC: UIViewController) {
+        let drawingResultVC = DrawingResultViewController(drawingImage: image)
         let navigationController = UINavigationController(rootViewController: drawingResultVC)
         navigationController.modalPresentationStyle = .fullScreen
 
