@@ -1,0 +1,5 @@
+git_url("https://github.com/YOUR_ORG/certificates")  # Replace with your certificates repo
+storage_mode("git")
+type("appstore")
+app_identifier(["com.soulverse.bigbang"])
+team_id("387UQ56LV7")
