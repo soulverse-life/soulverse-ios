@@ -49,6 +49,16 @@ jobs:
           API_KEY_FILEPATH: "fastlane/keys/AuthKey_${{ secrets.API_KEY_ID }}.p8"
         run: bundle exec fastlane ios release
 
+      - name: Upload build logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: |
+            ~/Library/Logs/gym/*.log
+            fastlane/report.xml
+          if-no-files-found: ignore
+
       - name: Clean up API Key
         if: always()
         run: rm -f fastlane/keys/AuthKey_${{ secrets.API_KEY_ID }}.p8
