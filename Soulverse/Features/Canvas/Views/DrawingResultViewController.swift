@@ -35,11 +35,11 @@ class DrawingResultViewController: UIViewController {
     }()
 
     // MARK: - Properties
-    private let imageFileName: String
+    private let drawingImage: UIImage
 
     // MARK: - Lifecycle
-    init(imageFileName: String) {
-        self.imageFileName = imageFileName
+    init(drawingImage: UIImage) {
+        self.drawingImage = drawingImage
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -90,18 +90,7 @@ class DrawingResultViewController: UIViewController {
 
     // MARK: - Helper Methods
     private func loadImage() {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            print("Failed to get documents directory")
-            return
-        }
-
-        let fileURL = documentsDirectory.appendingPathComponent(imageFileName)
-
-        if let image = UIImage(contentsOfFile: fileURL.path) {
-            drawingImageView.image = image
-        } else {
-            print("Failed to load image from: \(fileURL.path)")
-        }
+        drawingImageView.image = drawingImage
     }
 
     // MARK: - Actions
