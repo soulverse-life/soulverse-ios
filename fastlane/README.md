@@ -39,6 +39,14 @@ Push a release build to Testflight
 
 Test upload existing IPA to TestFlight
 
+### ios test_match
+
+```sh
+[bundle exec] fastlane ios test_match
+```
+
+Test Match provisioning profile download
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

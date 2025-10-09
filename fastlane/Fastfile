@@ -97,4 +97,23 @@ platform :ios do
       api_key: api_key
     )
   end
+
+  desc "Test Match provisioning profile download"
+  lane :test_match do
+    # Sync provisioning profiles
+    match(
+      type: "appstore",
+      readonly: true,
+      verbose: true
+    )
+
+    # List downloaded profiles
+    sh("ls -la ~/Library/MobileDevice/Provisioning\\ Profiles/ || echo 'No profiles directory'")
+
+    # Show profile details
+    sh("security find-identity -v -p codesigning")
+
+    UI.success("✅ Match sync completed successfully!")
+    UI.message("Check the output above to verify profiles were downloaded")
+  end
 end
