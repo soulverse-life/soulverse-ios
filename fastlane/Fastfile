@@ -19,9 +19,20 @@ platform :ios do
 
   desc "Push a dev build to Testflight"
   lane :development do |option|
-    increment_build_number(xcodeproj: "Soulverse.xcodeproj", skip_info_plist: true)
+    # Use CI build number if available, otherwise increment locally
+    if ENV["BUILD_NUMBER"]
+      build_num = ENV["BUILD_NUMBER"]
+      increment_build_number(
+        build_number: build_num,
+        xcodeproj: "Soulverse.xcodeproj",
+        skip_info_plist: true
+      )
+    else
+      increment_build_number(xcodeproj: "Soulverse.xcodeproj", skip_info_plist: true)
+      build_num = get_build_number(xcodeproj: "Soulverse.xcodeproj")
+    end
+
     version_num = get_version_number(xcodeproj: "Soulverse.xcodeproj", target: ENV["SCHEME"])
-    build_num = '100' + get_build_number(xcodeproj: "Soulverse.xcodeproj")
     build_app(
       workspace: "Soulverse.xcworkspace",
       scheme: ENV["SCHEME"],
@@ -46,9 +57,20 @@ platform :ios do
 
   desc "Push a release build to Testflight"
   lane :release do |option|
-    increment_build_number(xcodeproj: "Soulverse.xcodeproj", skip_info_plist: true)
+    # Use CI build number if available, otherwise increment locally
+    if ENV["BUILD_NUMBER"]
+      build_num = ENV["BUILD_NUMBER"]
+      increment_build_number(
+        build_number: build_num,
+        xcodeproj: "Soulverse.xcodeproj",
+        skip_info_plist: true
+      )
+    else
+      increment_build_number(xcodeproj: "Soulverse.xcodeproj", skip_info_plist: true)
+      build_num = get_build_number(xcodeproj: "Soulverse.xcodeproj")
+    end
+
     version_num = get_version_number(xcodeproj: "Soulverse.xcodeproj", target: ENV["SCHEME"])
-    build_num = '300' + get_build_number(xcodeproj: "Soulverse.xcodeproj")
 
     # Disable automatic code signing and set provisioning profile
     update_code_signing_settings(

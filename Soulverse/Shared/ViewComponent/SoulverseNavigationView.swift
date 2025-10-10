@@ -37,7 +37,7 @@ struct SoulverseNavigationItem {
             
             if let title = title {
                 button.setTitle(title, for: .normal)
-                button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+                button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
                 button.setTitleColor(.primaryBlack, for: .normal)
             }
             
@@ -79,7 +79,7 @@ class SoulverseNavigationView: UIView {
     private let navigationTitle: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.font = .projectFont(ofSize: 17, weight: .semibold)
         label.textAlignment = .center
         label.textColor = .primaryBlack
         return label

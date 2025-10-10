@@ -13,7 +13,7 @@ class ProfileCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.font = .projectFont(ofSize: 14, weight: .bold)
         label.textAlignment = .left
         label.textColor = UIColor.primaryWhite
         return label

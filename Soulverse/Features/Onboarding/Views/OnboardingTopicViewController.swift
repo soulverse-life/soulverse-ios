@@ -38,7 +38,7 @@ class OnboardingTopicViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Selecting Topics"
-        label.font = .systemFont(ofSize: 32, weight: .light)
+        label.font = .projectFont(ofSize: 32, weight: .light)
         label.textColor = .black
         label.textAlignment = .center
         return label
@@ -47,7 +47,7 @@ class OnboardingTopicViewController: UIViewController {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = "These guide your journey, shaping\nreflections, insights, and support\ntailored to your soulverse."
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .gray
         label.textAlignment = .center
         label.numberOfLines = 3
@@ -63,7 +63,7 @@ class OnboardingTopicViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Continue", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .white
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor
@@ -179,7 +179,7 @@ class OnboardingTopicViewController: UIViewController {
         button.setTitle(topic.rawValue, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.setTitleColor(.white, for: .selected)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .white
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.lightGray.cgColor

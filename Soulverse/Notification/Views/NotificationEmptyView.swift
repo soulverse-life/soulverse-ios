@@ -27,7 +27,7 @@ class NotificationEmptyView: UIView {
     private let actionTitleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.font = .projectFont(ofSize: 14, weight: .semibold)
         label.textColor = UIColor.primaryWhite
         label.textAlignment = .center
         label.text = NSLocalizedString("notification_empty_title", comment: "")
@@ -37,7 +37,7 @@ class NotificationEmptyView: UIView {
     private let actionDescriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14)
+        label.font = .projectFont(ofSize: 14)
         label.textColor = .primaryGray
         label.textAlignment = .center
         label.text = NSLocalizedString("notification_empty_browse_description", comment: "")
@@ -46,7 +46,7 @@ class NotificationEmptyView: UIView {
     
     private let actionButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.font = .projectFont(ofSize: 14, weight: .semibold)
         button.backgroundColor = .themeMainColor
         button.layer.cornerRadius = 4
         button.setTitle(NSLocalizedString("notification_empty_action_browse", comment: ""), for: .normal)

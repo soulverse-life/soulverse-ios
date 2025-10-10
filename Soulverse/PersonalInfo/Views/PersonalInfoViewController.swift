@@ -46,7 +46,7 @@ class PersonalInfoViewController: ViewController {
     
     private lazy var infoLabel: UILabel = {
         let label = UILabel(frame: CGRect.zero)
-        label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.font = .projectFont(ofSize: 12, weight: .regular)
         label.textColor = .subGray
         label.textAlignment = .center
         return label
@@ -120,7 +120,7 @@ extension PersonalInfoViewController: UITableViewDataSource, UITableViewDelegate
         
         let titleLabel = UILabel()
         titleLabel.numberOfLines = 1
-        titleLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        titleLabel.font = .projectFont(ofSize: 14, weight: .regular)
         titleLabel.textAlignment = .left
         titleLabel.textColor = UIColor.primaryGray
         titleLabel.text = presenter?.titleForSection(section)

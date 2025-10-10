@@ -20,7 +20,7 @@ class ChangePasswordTableViewCell: UITableViewCell {
     
     private lazy var inputTextField: UITextField = {
         let textField = UITextField()
-        textField.font = .systemFont(ofSize: 14.0, weight: .regular)
+        textField.font = .projectFont(ofSize: 14.0, weight: .regular)
         textField.textColor = .primaryWhite
         textField.autocapitalizationType = .none
         textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)

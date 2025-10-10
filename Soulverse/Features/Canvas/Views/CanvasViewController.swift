@@ -26,7 +26,7 @@ class CanvasViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("canvas_description", comment: "")
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.projectFont(ofSize: 16, weight: .regular)
         label.textColor = .secondaryLabel
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -37,7 +37,7 @@ class CanvasViewController: UIViewController {
     private lazy var startDrawingButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(NSLocalizedString("start_now", comment: ""), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        button.titleLabel?.font = UIFont.projectFont(ofSize: 18, weight: .medium)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 12

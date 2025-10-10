@@ -91,7 +91,7 @@ extension InnerCosmoViewController: UITableViewDataSource, UITableViewDelegate {
         
         titleLabel.lineBreakMode = .byWordWrapping
         
-        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        titleLabel.font = UIFont.projectFont(ofSize: 16, weight: .bold)
         titleLabel.textColor = .primaryWhite
         titleLabel.sizeToFit()
         

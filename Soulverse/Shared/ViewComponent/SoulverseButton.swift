@@ -19,7 +19,7 @@ class SoulverseButton: UIView {
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.numberOfLines = 1
-        titleLabel.font = .systemFont(ofSize: 14.0, weight: .semibold)
+        titleLabel.font = .projectFont(ofSize: 14.0, weight: .semibold)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
         return titleLabel

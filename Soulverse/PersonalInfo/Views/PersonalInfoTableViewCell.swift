@@ -12,7 +12,7 @@ class PersonalInfoTableViewCell: UITableViewCell {
     private let contentLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .projectFont(ofSize: 14, weight: .regular)
         label.textAlignment = .left
         return label
     }()

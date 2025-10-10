@@ -33,7 +33,7 @@ class ProfileViewController: ViewController {
             let button = UIButton()
             button.setTitle(NSLocalizedString("loginSignup", comment: ""), for: .normal)
             button.setTitleColor(.primaryBlack, for: .normal)
-            button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
+            button.titleLabel?.font = .projectFont(ofSize: 14.0, weight: .bold)
             button.backgroundColor = .themeMainColor
             button.layer.cornerRadius = 8
             return button
@@ -62,7 +62,7 @@ class ProfileViewController: ViewController {
         let actionDescriptionLabel: UILabel = {
             let label = UILabel()
             label.numberOfLines = 1
-            label.font = .systemFont(ofSize: 14, weight: .bold)
+            label.font = .projectFont(ofSize: 14, weight: .bold)
             label.textColor = .primaryWhite
             label.textAlignment = .left
             label.text = NSLocalizedString("profile_verify_description", comment: "")
@@ -72,7 +72,7 @@ class ProfileViewController: ViewController {
         let actionTitleLabel: UILabel = {
             let label = UILabel()
             label.numberOfLines = 1
-            label.font = .systemFont(ofSize: 14, weight: .regular)
+            label.font = .projectFont(ofSize: 14, weight: .regular)
             label.textColor = .primaryGray
             label.textAlignment = .left
             label.text = NSLocalizedString("profile_verify_action_title", comment: "")
@@ -83,7 +83,7 @@ class ProfileViewController: ViewController {
             let button = UIButton()
             button.setTitle(NSLocalizedString("profile_resend", comment: ""), for: .normal)
             button.setTitleColor(.themeMainColor, for: .normal)
-            button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
+            button.titleLabel?.font = .projectFont(ofSize: 14.0, weight: .bold)
             button.backgroundColor = .clear
             button.layer.cornerRadius = 8
             button.layer.borderColor = UIColor.themeMainColor.cgColor
@@ -346,7 +346,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let titleLabel = UILabel()
         titleLabel.numberOfLines = 1
-        titleLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        titleLabel.font = .projectFont(ofSize: 14, weight: .regular)
         titleLabel.textAlignment = .left
         titleLabel.textColor = UIColor.primaryGray
         titleLabel.text = presenter?.titleForSection(section)

@@ -49,7 +49,7 @@ class EmailLoginTableViewCell: UITableViewCell {
         
         button.setTitle(NSLocalizedString("login_action_forget_password", comment: ""), for: .normal)
         button.setTitleColor(UIColor.textGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
+        button.titleLabel?.font = .projectFont(ofSize: 14, weight: .regular)
         button.addTarget(self, action: #selector(didTapForgetPassword), for: .touchUpInside)
         return button
     }()
@@ -61,11 +61,11 @@ class EmailLoginTableViewCell: UITableViewCell {
         let confirmString: String = NSLocalizedString("login_policy_confirm", comment: "")
         let linkRange = (confirmString as NSString).range(of: serviceString)
         let baseStyle = Style {
-            $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+            $0.font = UIFont.projectFont(ofSize: 14, weight: .regular)
             $0.color = UIColor.primaryBlack
         }
         let hyperlinkStyle = Style {
-            $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+            $0.font = UIFont.projectFont(ofSize: 14, weight: .semibold)
             $0.color = UIColor.themeMainColor
             $0.underline = (.single, UIColor.themeMainColor)
         }
