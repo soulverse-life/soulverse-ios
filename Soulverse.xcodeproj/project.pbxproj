@@ -195,6 +195,26 @@
 		7922ECAD2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */; };
 		7922ECAF2E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */; };
 		7922ECB02E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */; };
+		7922ECC42E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECB12E993B8D0086B7CA /* OnboardingCoordinator.swift */; };
+		7922ECC52E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBF2E993B8D0086B7CA /* OnboardingNamingViewController.swift */; };
+		7922ECC62E993B8D0086B7CA /* OnboardingUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBB2E993B8D0086B7CA /* OnboardingUserData.swift */; };
+		7922ECC82E993B8D0086B7CA /* OnboardingDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECB82E993B8D0086B7CA /* OnboardingDataServiceProtocol.swift */; };
+		7922ECCA2E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECC02E993B8D0086B7CA /* OnboardingSignInViewController.swift */; };
+		7922ECCB2E993B8D0086B7CA /* OnboardingAuthenticationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECB72E993B8D0086B7CA /* OnboardingAuthenticationServiceProtocol.swift */; };
+		7922ECCC2E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECC12E993B8D0086B7CA /* OnboardingTopicViewController.swift */; };
+		7922ECCD2E993B8D0086B7CA /* OnboardingSessionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECB92E993B8D0086B7CA /* OnboardingSessionServiceProtocol.swift */; };
+		7922ECCE2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBE2E993B8D0086B7CA /* OnboardingGenderViewController.swift */; };
+		7922ECCF2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBD2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift */; };
+		7922ECD12E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECB12E993B8D0086B7CA /* OnboardingCoordinator.swift */; };
+		7922ECD22E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBF2E993B8D0086B7CA /* OnboardingNamingViewController.swift */; };
+		7922ECD32E993B8D0086B7CA /* OnboardingUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBB2E993B8D0086B7CA /* OnboardingUserData.swift */; };
+		7922ECD52E993B8D0086B7CA /* OnboardingDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECB82E993B8D0086B7CA /* OnboardingDataServiceProtocol.swift */; };
+		7922ECD72E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECC02E993B8D0086B7CA /* OnboardingSignInViewController.swift */; };
+		7922ECD82E993B8D0086B7CA /* OnboardingAuthenticationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECB72E993B8D0086B7CA /* OnboardingAuthenticationServiceProtocol.swift */; };
+		7922ECD92E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECC12E993B8D0086B7CA /* OnboardingTopicViewController.swift */; };
+		7922ECDA2E993B8D0086B7CA /* OnboardingSessionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECB92E993B8D0086B7CA /* OnboardingSessionServiceProtocol.swift */; };
+		7922ECDB2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBE2E993B8D0086B7CA /* OnboardingGenderViewController.swift */; };
+		7922ECDC2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBD2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift */; };
 		7951A9B92E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
@@ -403,6 +423,16 @@
 		7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingResultViewController.swift; sourceTree = "<group>"; };
 		7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansTC-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		7922ECB12E993B8D0086B7CA /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		7922ECB72E993B8D0086B7CA /* OnboardingAuthenticationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAuthenticationServiceProtocol.swift; sourceTree = "<group>"; };
+		7922ECB82E993B8D0086B7CA /* OnboardingDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataServiceProtocol.swift; sourceTree = "<group>"; };
+		7922ECB92E993B8D0086B7CA /* OnboardingSessionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSessionServiceProtocol.swift; sourceTree = "<group>"; };
+		7922ECBB2E993B8D0086B7CA /* OnboardingUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUserData.swift; sourceTree = "<group>"; };
+		7922ECBD2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingBirthdayViewController.swift; sourceTree = "<group>"; };
+		7922ECBE2E993B8D0086B7CA /* OnboardingGenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGenderViewController.swift; sourceTree = "<group>"; };
+		7922ECBF2E993B8D0086B7CA /* OnboardingNamingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNamingViewController.swift; sourceTree = "<group>"; };
+		7922ECC02E993B8D0086B7CA /* OnboardingSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSignInViewController.swift; sourceTree = "<group>"; };
+		7922ECC12E993B8D0086B7CA /* OnboardingTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopicViewController.swift; sourceTree = "<group>"; };
 		7951A9B62E532C85006EB0EC /* SoulverseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButton.swift; sourceTree = "<group>"; };
 		7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseNavigationView.swift; sourceTree = "<group>"; };
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
@@ -928,6 +958,7 @@
 				790AD2082DF9E43200C33CD1 /* Info.plist */,
 				790AD2062DF9E43200C33CD1 /* AppDelegate.swift */,
 				7986880E2E6C251F00EB3B38 /* Features */,
+				7922ECC32E993B8D0086B7CA /* Onboarding */,
 				790AD1922DF9E43200C33CD1 /* Login */,
 				790AD1632DF9E43200C33CD1 /* ChangePassword */,
 				790AD17F2DF9E43200C33CD1 /* ForgetPassword */,
@@ -1023,6 +1054,55 @@
 				7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		7922ECB22E993B8D0086B7CA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7922ECB12E993B8D0086B7CA /* OnboardingCoordinator.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7922ECBA2E993B8D0086B7CA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7922ECB72E993B8D0086B7CA /* OnboardingAuthenticationServiceProtocol.swift */,
+				7922ECB82E993B8D0086B7CA /* OnboardingDataServiceProtocol.swift */,
+				7922ECB92E993B8D0086B7CA /* OnboardingSessionServiceProtocol.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7922ECBC2E993B8D0086B7CA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7922ECBB2E993B8D0086B7CA /* OnboardingUserData.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7922ECC22E993B8D0086B7CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7922ECBD2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift */,
+				7922ECBE2E993B8D0086B7CA /* OnboardingGenderViewController.swift */,
+				7922ECBF2E993B8D0086B7CA /* OnboardingNamingViewController.swift */,
+				7922ECC02E993B8D0086B7CA /* OnboardingSignInViewController.swift */,
+				7922ECC12E993B8D0086B7CA /* OnboardingTopicViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7922ECC32E993B8D0086B7CA /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				7922ECB22E993B8D0086B7CA /* Presenter */,
+				7922ECBA2E993B8D0086B7CA /* Services */,
+				7922ECBC2E993B8D0086B7CA /* ViewModels */,
+				7922ECC22E993B8D0086B7CA /* Views */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		7951A9C12E5376B5006EB0EC /* Presenter */ = {
@@ -1700,6 +1780,16 @@
 				790AD2692DF9E43200C33CD1 /* SummitInputTextField.swift in Sources */,
 				790AD26A2DF9E43200C33CD1 /* LoginViewModel.swift in Sources */,
 				7922ECB02E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
+				7922ECD12E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
+				7922ECD22E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
+				7922ECD32E993B8D0086B7CA /* OnboardingUserData.swift in Sources */,
+				7922ECD52E993B8D0086B7CA /* OnboardingDataServiceProtocol.swift in Sources */,
+				7922ECD72E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */,
+				7922ECD82E993B8D0086B7CA /* OnboardingAuthenticationServiceProtocol.swift in Sources */,
+				7922ECD92E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */,
+				7922ECDA2E993B8D0086B7CA /* OnboardingSessionServiceProtocol.swift in Sources */,
+				7922ECDB2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */,
+				7922ECDC2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */,
 				790AD26B2DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1814,6 +1904,16 @@
 				790AD3172DF9E43200C33CD1 /* SummitInputTextField.swift in Sources */,
 				790AD3182DF9E43200C33CD1 /* LoginViewModel.swift in Sources */,
 				7922ECAF2E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
+				7922ECC42E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
+				7922ECC52E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
+				7922ECC62E993B8D0086B7CA /* OnboardingUserData.swift in Sources */,
+				7922ECC82E993B8D0086B7CA /* OnboardingDataServiceProtocol.swift in Sources */,
+				7922ECCA2E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */,
+				7922ECCB2E993B8D0086B7CA /* OnboardingAuthenticationServiceProtocol.swift in Sources */,
+				7922ECCC2E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */,
+				7922ECCD2E993B8D0086B7CA /* OnboardingSessionServiceProtocol.swift in Sources */,
+				7922ECCE2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */,
+				7922ECCF2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */,
 				790AD3192DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

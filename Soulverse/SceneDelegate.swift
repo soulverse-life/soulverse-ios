@@ -9,7 +9,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private var onboardingCoordinator: OnboardingCoordinator?
-    private let sessionService = MockOnboardingSessionService()
+    private let serviceFactory = OnboardingServiceFactory()
+    private lazy var sessionService = serviceFactory.makeSessionService()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -37,8 +38,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(true, animated: false)
 
-        let authService = MockOnboardingAuthenticationService(sessionService: sessionService)
-        let dataService = MockOnboardingDataService()
+        let authService = serviceFactory.makeAuthenticationService(sessionService: sessionService)
+        let dataService = serviceFactory.makeDataService()
 
         let coordinator = OnboardingCoordinator(
             navigationController: navigationController,
