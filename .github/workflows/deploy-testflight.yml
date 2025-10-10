@@ -57,6 +57,7 @@ jobs:
           API_KEY_ID: ${{ secrets.API_KEY_ID }}
           API_ISSUER_ID: ${{ secrets.API_ISSUER_ID }}
           API_KEY_FILEPATH: "fastlane/keys/AuthKey_${{ secrets.API_KEY_ID }}.p8"
+          BUILD_NUMBER: ${{ github.run_number + 1000 }}
         run: bundle exec fastlane ios release
 
       - name: Upload build logs
