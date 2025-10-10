@@ -193,6 +193,10 @@
 		7922EC512E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
 		7922EC532E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */; };
 		7922EC542E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */; };
+		7922ECAC2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */; };
+		7922ECAD2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */; };
+		7922ECAF2E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */; };
+		7922ECB02E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */; };
 		7951A9B92E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
@@ -400,6 +404,8 @@
 		790AD3452DF9E4C200C33CD1 /* KonoSummitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonoSummitUITests.swift; sourceTree = "<group>"; };
 		7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingResultViewController.swift; sourceTree = "<group>"; };
+		7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansTC-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		7951A9B62E532C85006EB0EC /* SoulverseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButton.swift; sourceTree = "<group>"; };
 		7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseNavigationView.swift; sourceTree = "<group>"; };
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
@@ -570,6 +576,7 @@
 		790AD1772DF9E43200C33CD1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */,
 				790AD1692DF9E43200C33CD1 /* Array+Extensions.swift */,
 				790AD16A2DF9E43200C33CD1 /* Codable+Extensions.swift */,
 				790AD16B2DF9E43200C33CD1 /* String+Extension.swift */,
@@ -791,6 +798,7 @@
 		790AD1DA2DF9E43200C33CD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7922ECAB2E98ABDD0086B7CA /* Fonts */,
 				790AD1B52DF9E43200C33CD1 /* APIMockResponse */,
 				790AD1D92DF9E43200C33CD1 /* Assets.xcassets */,
 			);
@@ -1011,6 +1019,14 @@
 				790AD3452DF9E4C200C33CD1 /* KonoSummitUITests.swift */,
 			);
 			path = SoulverseUITests;
+			sourceTree = "<group>";
+		};
+		7922ECAB2E98ABDD0086B7CA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		7951A9C12E5376B5006EB0EC /* Presenter */ = {
@@ -1365,6 +1381,7 @@
 			files = (
 				790AD2732DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
 				790AD2742DF9E43200C33CD1 /* Main.storyboard in Resources */,
+				7922ECAD2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */,
 				790AD27E2DF9E43200C33CD1 /* Localizable.strings in Resources */,
 				790AD2922DF9E43200C33CD1 /* Assets.xcassets in Resources */,
 				790AD2942DF9E43200C33CD1 /* LaunchScreen.storyboard in Resources */,
@@ -1377,6 +1394,7 @@
 			files = (
 				790AD29D2DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
 				790AD29E2DF9E43200C33CD1 /* Main.storyboard in Resources */,
+				7922ECAC2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */,
 				790AD2A82DF9E43200C33CD1 /* Localizable.strings in Resources */,
 				790AD2BC2DF9E43200C33CD1 /* Assets.xcassets in Resources */,
 				790AD2BE2DF9E43200C33CD1 /* LaunchScreen.storyboard in Resources */,
@@ -1686,6 +1704,7 @@
 				790AD2682DF9E43200C33CD1 /* ProfileViewModel.swift in Sources */,
 				790AD2692DF9E43200C33CD1 /* SummitInputTextField.swift in Sources */,
 				790AD26A2DF9E43200C33CD1 /* LoginViewModel.swift in Sources */,
+				7922ECB02E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
 				790AD26B2DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1800,6 +1819,7 @@
 				790AD3162DF9E43200C33CD1 /* ProfileViewModel.swift in Sources */,
 				790AD3172DF9E43200C33CD1 /* SummitInputTextField.swift in Sources */,
 				790AD3182DF9E43200C33CD1 /* LoginViewModel.swift in Sources */,
+				7922ECAF2E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
 				790AD3192DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

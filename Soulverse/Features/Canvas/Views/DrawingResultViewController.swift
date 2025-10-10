@@ -26,7 +26,7 @@ class DrawingResultViewController: UIViewController {
     private lazy var ctaButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Write journal", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        button.titleLabel?.font = UIFont.projectFont(ofSize: 17, weight: .semibold)
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 25

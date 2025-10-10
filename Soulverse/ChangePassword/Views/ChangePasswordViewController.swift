@@ -31,7 +31,7 @@ class ChangePasswordViewController: ViewController {
         let button = UIButton()
         button.setTitle(NSLocalizedString("change_password_action_button_title", comment: ""), for: .normal)
         button.setTitleColor(.primaryWhite, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
+        button.titleLabel?.font = .projectFont(ofSize: 14.0, weight: .bold)
         button.backgroundColor = .subGray
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(changePassword), for: .touchUpInside)
@@ -148,7 +148,7 @@ extension ChangePasswordViewController: UITableViewDataSource, UITableViewDelega
         
         let titleLabel = UILabel()
         titleLabel.numberOfLines = 1
-        titleLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        titleLabel.font = .projectFont(ofSize: 14, weight: .regular)
         titleLabel.textAlignment = .left
         titleLabel.textColor = UIColor.primaryGray
         titleLabel.text = presenter?.titleForSection(section)
@@ -174,7 +174,7 @@ extension ChangePasswordViewController: UITableViewDataSource, UITableViewDelega
         
         let messageLabel = UILabel()
         messageLabel.numberOfLines = 1
-        messageLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        messageLabel.font = .projectFont(ofSize: 12, weight: .regular)
         messageLabel.textAlignment = .left
         messageLabel.textColor = .errorRed
         messageLabel.text = errorMessage

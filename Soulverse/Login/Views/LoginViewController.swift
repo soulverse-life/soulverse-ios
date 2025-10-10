@@ -49,7 +49,7 @@ class LoginViewController: ViewController {
     private lazy var switchLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 14.0, weight: .regular)
+        label.font = .projectFont(ofSize: 14.0, weight: .regular)
         label.textColor = UIColor.primaryBlack
         label.text = NSLocalizedString("login_switch_or", comment: "")
         label.textAlignment = .right
@@ -60,14 +60,14 @@ class LoginViewController: ViewController {
         
         button.setTitle(NSLocalizedString("login_switch_register", comment: ""), for: .normal)
         button.setTitleColor(UIColor.themeMainColor, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.font = .projectFont(ofSize: 14, weight: .semibold)
         button.addTarget(self, action: #selector(didTapSwitch), for: .touchUpInside)
         return button
     }()
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 24.0, weight: .bold)
+        label.font = .projectFont(ofSize: 24.0, weight: .bold)
         label.textColor = UIColor.primaryBlack
         label.text = NSLocalizedString("login_title_register", comment: "")
         label.textAlignment = .left
@@ -77,7 +77,7 @@ class LoginViewController: ViewController {
     private lazy var emailTitleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 16.0, weight: .semibold)
+        label.font = .projectFont(ofSize: 16.0, weight: .semibold)
         label.textColor = UIColor.subBlack
         label.text = NSLocalizedString("login_action_email_register", comment: "")
         label.textAlignment = .left
@@ -89,7 +89,7 @@ class LoginViewController: ViewController {
         
         button.setTitle(NSLocalizedString("login_action_skip", comment: ""), for: .normal)
         button.setTitleColor(UIColor.textGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
+        button.titleLabel?.font = .projectFont(ofSize: 14, weight: .regular)
         button.addTarget(self, action: #selector(didTapSkip), for: .touchUpInside)
         return button
     }()

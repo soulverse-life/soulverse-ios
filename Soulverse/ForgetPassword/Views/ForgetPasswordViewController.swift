@@ -25,7 +25,7 @@ class ForgetPasswordViewController: ViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 24.0, weight: .bold)
+        label.font = .projectFont(ofSize: 24.0, weight: .bold)
         label.textColor = UIColor.primaryBlack
         label.text = "忘記密碼"
         label.textAlignment = .left

@@ -24,7 +24,7 @@ class QuestProgressLineView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Layout.QuestProgress.titleFontSize, weight: .semibold)
+        label.font = UIFont.projectFont(ofSize: Layout.QuestProgress.titleFontSize, weight: .semibold)
         label.textColor = .black
         label.textAlignment = .left
         return label
@@ -219,7 +219,7 @@ class QuestProgressLineView: UIView {
     private func createLabel(text: String) -> UILabel {
         let label = UILabel()
         label.text = text
-        label.font = UIFont.systemFont(ofSize: Layout.QuestProgress.labelFontSize, weight: .medium)
+        label.font = UIFont.projectFont(ofSize: Layout.QuestProgress.labelFontSize, weight: .medium)
         label.textColor = .black
         label.textAlignment = .center
         return label

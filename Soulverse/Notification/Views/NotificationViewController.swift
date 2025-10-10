@@ -38,7 +38,7 @@ class NotificationViewController: ViewController {
         let button = UIButton()
         button.setTitle(NSLocalizedString("notification_ask_permission_action_title", comment: ""), for: .normal)
         button.setTitleColor(.primaryBlack, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .bold)
+        button.titleLabel?.font = .projectFont(ofSize: 12.0, weight: .bold)
         button.backgroundColor = .themeMainColor
         button.layer.cornerRadius = 4
         button.addTarget(self, action: #selector(tapAskPermissionBtn), for: .touchUpInside)
@@ -46,7 +46,7 @@ class NotificationViewController: ViewController {
         let descriptionLabel = UILabel()
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textAlignment = .left
-        descriptionLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        descriptionLabel.font = .projectFont(ofSize: 14, weight: .regular)
         descriptionLabel.textColor = .primaryWhite
         descriptionLabel.text = NSLocalizedString("notification_ask_permission_action_description", comment: "")
         

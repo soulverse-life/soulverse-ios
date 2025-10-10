@@ -72,7 +72,7 @@ extension InsightViewController: UITableViewDataSource, UITableViewDelegate {
         titleLabel.numberOfLines = 0
         titleLabel.text = title
         titleLabel.lineBreakMode = .byWordWrapping
-        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        titleLabel.font = UIFont.projectFont(ofSize: 16, weight: .bold)
         titleLabel.textColor = .primaryWhite
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints { make in

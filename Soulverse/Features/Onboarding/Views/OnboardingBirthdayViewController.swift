@@ -27,7 +27,7 @@ class OnboardingBirthdayViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Birth Star"
-        label.font = .systemFont(ofSize: 32, weight: .light)
+        label.font = .projectFont(ofSize: 32, weight: .light)
         label.textColor = .black
         label.textAlignment = .center
         return label
@@ -36,7 +36,7 @@ class OnboardingBirthdayViewController: UIViewController {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Every soul is born at a unique\nmoment in the universe."
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .gray
         label.textAlignment = .center
         label.numberOfLines = 2
@@ -46,7 +46,7 @@ class OnboardingBirthdayViewController: UIViewController {
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
         label.text = "Enter your birthday"
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .projectFont(ofSize: 14, weight: .medium)
         label.textColor = .black
         label.textAlignment = .left
         return label
@@ -91,7 +91,7 @@ class OnboardingBirthdayViewController: UIViewController {
     private lazy var privacyLabel: UILabel = {
         let label = UILabel()
         label.text = "*This information is used solely for personalized\nexperiences and research analysis — it will not be\nmade public."
-        label.font = .systemFont(ofSize: 11, weight: .regular)
+        label.font = .projectFont(ofSize: 11, weight: .regular)
         label.textColor = .gray
         label.textAlignment = .left
         label.numberOfLines = 3
@@ -102,7 +102,7 @@ class OnboardingBirthdayViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Continue", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .white
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor

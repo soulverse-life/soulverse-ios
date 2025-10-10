@@ -64,7 +64,7 @@ class SummitInputTextField: UIView {
     private lazy var inputTitleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 12.0, weight: .regular)
+        label.font = .projectFont(ofSize: 12.0, weight: .regular)
         label.textColor = .primaryBlack
         label.textAlignment = .center
         return label
@@ -72,7 +72,7 @@ class SummitInputTextField: UIView {
     
     private lazy var inputTextField: UITextField = {
         let textField = UITextField()
-        textField.font = .systemFont(ofSize: 14.0, weight: .regular)
+        textField.font = .projectFont(ofSize: 14.0, weight: .regular)
         textField.textColor = .primaryBlack
         textField.autocapitalizationType = .none
         textField.delegate = self
@@ -85,7 +85,7 @@ class SummitInputTextField: UIView {
     
     private var errorMessageLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12.0, weight: .regular)
+        label.font = .projectFont(ofSize: 12.0, weight: .regular)
         label.numberOfLines = 1
         label.textColor = .primaryOrange
         return label

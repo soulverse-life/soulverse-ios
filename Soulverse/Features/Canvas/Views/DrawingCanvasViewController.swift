@@ -26,7 +26,7 @@ class DrawingCanvasViewController: UIViewController {
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(NSLocalizedString("cancel", comment: ""), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        button.titleLabel?.font = UIFont.projectFont(ofSize: 17, weight: .regular)
         button.setTitleColor(.label, for: .normal)
         button.addTarget(self, action: #selector(cancelDrawing), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ class DrawingCanvasViewController: UIViewController {
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        button.titleLabel?.font = UIFont.projectFont(ofSize: 17, weight: .semibold)
         button.setTitleColor(.label, for: .normal)
         button.addTarget(self, action: #selector(saveDrawing), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

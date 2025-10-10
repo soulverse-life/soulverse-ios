@@ -17,7 +17,7 @@ class QuestRadarChartView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.font = UIFont.projectFont(ofSize: 18, weight: .semibold)
         label.textColor = .primaryBlack
         label.textAlignment = .left
         label.numberOfLines = 1
@@ -49,7 +49,7 @@ class QuestRadarChartView: UIView {
         yAxis.axisMaximum = 5.0
         yAxis.drawLabelsEnabled = true
         yAxis.labelTextColor = UIColor.primaryBlack.withAlphaComponent(0.7)
-        yAxis.labelFont = UIFont.systemFont(ofSize: 10, weight: .medium)
+        yAxis.labelFont = UIFont.projectFont(ofSize: 10, weight: .medium)
         yAxis.drawAxisLineEnabled = false
         yAxis.drawGridLinesEnabled = true
         yAxis.gridColor = UIColor.black.withAlphaComponent(0.3)
@@ -57,7 +57,7 @@ class QuestRadarChartView: UIView {
         
         // X-axis configuration
         let xAxis = chartView.xAxis
-        xAxis.labelFont = UIFont.systemFont(ofSize: 12, weight: .medium)
+        xAxis.labelFont = UIFont.projectFont(ofSize: 12, weight: .medium)
         xAxis.labelTextColor = .primaryBlack
         xAxis.drawAxisLineEnabled = false
         xAxis.drawGridLinesEnabled = false

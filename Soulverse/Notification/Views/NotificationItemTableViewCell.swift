@@ -22,7 +22,7 @@ class NotificationItemTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.font = .projectFont(ofSize: 14, weight: .bold)
         label.textAlignment = .left
         label.textColor = UIColor.primaryWhite
         return label
@@ -31,7 +31,7 @@ class NotificationItemTableViewCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .projectFont(ofSize: 14, weight: .regular)
         label.textAlignment = .left
         label.textColor = UIColor.primaryGray
         return label
@@ -40,7 +40,7 @@ class NotificationItemTableViewCell: UITableViewCell {
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .projectFont(ofSize: 14, weight: .regular)
         label.textAlignment = .left
         label.textColor = UIColor.primaryGray
         return label
@@ -112,7 +112,7 @@ class NotificationItemTableViewCell: UITableViewCell {
         let newStr = str.replacingOccurrences(of: "<br>", with: "\n")
         let fontSize: CGFloat = 14.0
         let baseStyle = Style {
-            $0.font = UIFont.systemFont(ofSize: fontSize, weight: .regular)
+            $0.font = UIFont.projectFont(ofSize: fontSize, weight: .regular)
             $0.color = UIColor.primaryGray
             $0.lineSpacing = 2
         }

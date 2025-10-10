@@ -27,7 +27,7 @@ class OnboardingNamingViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Naming"
-        label.font = .systemFont(ofSize: 32, weight: .light)
+        label.font = .projectFont(ofSize: 32, weight: .light)
         label.textColor = .black
         label.textAlignment = .center
         return label
@@ -36,7 +36,7 @@ class OnboardingNamingViewController: UIViewController {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Name your world, name your friend.\nGive your planet a cosmic identity\nand your emopet a loyal name to join\nyou on this journey."
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .gray
         label.textAlignment = .center
         label.numberOfLines = 4
@@ -53,7 +53,7 @@ class OnboardingNamingViewController: UIViewController {
     private lazy var planetNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name your planet"
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .projectFont(ofSize: 14, weight: .medium)
         label.textColor = .black
         label.textAlignment = .left
         return label
@@ -62,7 +62,7 @@ class OnboardingNamingViewController: UIViewController {
     private lazy var planetNameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Vancouver"
-        textField.font = .systemFont(ofSize: 16, weight: .regular)
+        textField.font = .projectFont(ofSize: 16, weight: .regular)
         textField.borderStyle = .roundedRect
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.lightGray.cgColor
@@ -99,7 +99,7 @@ class OnboardingNamingViewController: UIViewController {
     private lazy var emoPetNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name your EmoPet"
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .projectFont(ofSize: 14, weight: .medium)
         label.textColor = .black
         label.textAlignment = .left
         return label
@@ -108,7 +108,7 @@ class OnboardingNamingViewController: UIViewController {
     private lazy var emoPetNameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Pocky"
-        textField.font = .systemFont(ofSize: 16, weight: .regular)
+        textField.font = .projectFont(ofSize: 16, weight: .regular)
         textField.borderStyle = .roundedRect
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.lightGray.cgColor
@@ -122,7 +122,7 @@ class OnboardingNamingViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Continue", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .white
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor
