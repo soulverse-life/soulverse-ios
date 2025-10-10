@@ -35,17 +35,7 @@ extension AppleUserAuthService: ASAuthorizationControllerDelegate {
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
             if let token = credential.identityToken {
-                
-                UserService.login(account: credential.user, validator: Utility.base64Encode(token), platform: platform) { [weak self] result in
-                    guard let weakSelf = self else { return }
-                
-                    switch result {
-                    case let .success(response):
-                        weakSelf.completionAction?(.AuthLoginSuccess)
-                    case let .failure(error):
-                        weakSelf.completionAction?(error.reason)
-                    }
-                }
+                self.completionAction?(.AuthLoginSuccess)
             }
         }
     }

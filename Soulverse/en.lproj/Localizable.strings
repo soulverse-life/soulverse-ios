@@ -52,7 +52,6 @@
 "login_switch_login" = "建立帳戶";
 "login_title_register" = "註冊";
 "login_title_login" = "登入";
-"login_action_facebook" = "以facebook繼續";
 "login_action_apple" = "以Apple繼續";
 "login_action_email_register" = "以 Email 註冊";
 "login_action_email_login" = "以 Email 登入";

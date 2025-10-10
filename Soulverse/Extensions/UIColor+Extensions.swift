@@ -29,8 +29,6 @@ extension UIColor {
     
     static let shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
 
-    static let facebookThemeColor = UIColor(red: 24.0/255.0, green: 119.0/255.0, blue: 242.0/255.0, alpha: 1)
-    
     // Background color
     static let appThemeColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1)
     static let backgroundBlack = UIColor(red: 4.0/255.0, green: 18.0/255.0, blue: 44.0/255.0, alpha: 1)

@@ -8,26 +8,21 @@
 import Foundation
 
 enum LoginPlatform {
-    
-    case Facebook
+
     case Apple
     case Kono(email: String, password: String)
-    
+
     var authService: AuthService {
         switch self {
-        case .Facebook:
-            return FBUserAuthService()
         case .Apple:
             return AppleUserAuthService()
         case .Kono(let email, let password):
             return KonoUserAuthService(email: email, password: password)
         }
     }
-    
+
     var name: String {
         switch self {
-        case .Facebook:
-            return "facebook"
         case .Apple:
             return "apple"
         case .Kono:

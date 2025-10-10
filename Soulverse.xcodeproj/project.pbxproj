@@ -30,7 +30,6 @@
 		790AD2272DF9E43200C33CD1 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD15E2DF9E43200C33CD1 /* ChangePasswordViewModel.swift */; };
 		790AD22A2DF9E43200C33CD1 /* NotificationEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19C2DF9E43200C33CD1 /* NotificationEmptyView.swift */; };
 		790AD22B2DF9E43200C33CD1 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1B12DF9E43200C33CD1 /* ProfilePresenter.swift */; };
-		790AD22C2DF9E43200C33CD1 /* FBUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1EE2DF9E43200C33CD1 /* FBUserAuthService.swift */; };
 		790AD22D2DF9E43200C33CD1 /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16C2DF9E43200C33CD1 /* TimeInterval+Extensions.swift */; };
 		790AD22E2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16E2DF9E43200C33CD1 /* UIColor+Extensions.swift */; };
 		790AD22F2DF9E43200C33CD1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1ED2DF9E43200C33CD1 /* AuthService.swift */; };
@@ -122,7 +121,6 @@
 		790AD2D52DF9E43200C33CD1 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD15E2DF9E43200C33CD1 /* ChangePasswordViewModel.swift */; };
 		790AD2D82DF9E43200C33CD1 /* NotificationEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19C2DF9E43200C33CD1 /* NotificationEmptyView.swift */; };
 		790AD2D92DF9E43200C33CD1 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1B12DF9E43200C33CD1 /* ProfilePresenter.swift */; };
-		790AD2DA2DF9E43200C33CD1 /* FBUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1EE2DF9E43200C33CD1 /* FBUserAuthService.swift */; };
 		790AD2DB2DF9E43200C33CD1 /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16C2DF9E43200C33CD1 /* TimeInterval+Extensions.swift */; };
 		790AD2DC2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16E2DF9E43200C33CD1 /* UIColor+Extensions.swift */; };
 		790AD2DD2DF9E43200C33CD1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1ED2DF9E43200C33CD1 /* AuthService.swift */; };
@@ -369,7 +367,6 @@
 		790AD1EA2DF9E43200C33CD1 /* UserAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIService.swift; sourceTree = "<group>"; };
 		790AD1EC2DF9E43200C33CD1 /* AppleUserAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleUserAuthService.swift; sourceTree = "<group>"; };
 		790AD1ED2DF9E43200C33CD1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		790AD1EE2DF9E43200C33CD1 /* FBUserAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUserAuthService.swift; sourceTree = "<group>"; };
 		790AD1EF2DF9E43200C33CD1 /* KonoUserAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonoUserAuthService.swift; sourceTree = "<group>"; };
 		790AD1F12DF9E43200C33CD1 /* NotificationItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationItemModel.swift; sourceTree = "<group>"; };
 		790AD1F22DF9E43200C33CD1 /* NotificationItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationItemsResponse.swift; sourceTree = "<group>"; };
@@ -859,7 +856,6 @@
 			children = (
 				790AD1EC2DF9E43200C33CD1 /* AppleUserAuthService.swift */,
 				790AD1ED2DF9E43200C33CD1 /* AuthService.swift */,
-				790AD1EE2DF9E43200C33CD1 /* FBUserAuthService.swift */,
 				790AD1EF2DF9E43200C33CD1 /* KonoUserAuthService.swift */,
 			);
 			path = Auth;
@@ -1634,7 +1630,6 @@
 				790AD2272DF9E43200C33CD1 /* ChangePasswordViewModel.swift in Sources */,
 				790AD22A2DF9E43200C33CD1 /* NotificationEmptyView.swift in Sources */,
 				790AD22B2DF9E43200C33CD1 /* ProfilePresenter.swift in Sources */,
-				790AD22C2DF9E43200C33CD1 /* FBUserAuthService.swift in Sources */,
 				790AD22D2DF9E43200C33CD1 /* TimeInterval+Extensions.swift in Sources */,
 				790AD22E2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */,
 				790AD22F2DF9E43200C33CD1 /* AuthService.swift in Sources */,
@@ -1749,7 +1744,6 @@
 				790AD2D52DF9E43200C33CD1 /* ChangePasswordViewModel.swift in Sources */,
 				790AD2D82DF9E43200C33CD1 /* NotificationEmptyView.swift in Sources */,
 				790AD2D92DF9E43200C33CD1 /* ProfilePresenter.swift in Sources */,
-				790AD2DA2DF9E43200C33CD1 /* FBUserAuthService.swift in Sources */,
 				790AD2DB2DF9E43200C33CD1 /* TimeInterval+Extensions.swift in Sources */,
 				790AD2DC2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */,
 				790AD2DD2DF9E43200C33CD1 /* AuthService.swift in Sources */,

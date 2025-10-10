@@ -14,12 +14,7 @@ protocol ThirdPartyLoginTableViewCellDelegate: AnyObject {
 
 
 class ThirdPartyLoginTableViewCell: UITableViewCell {
-        
-    private lazy var fbButton: SoulverseButton = {
-        let button = SoulverseButton(title: NSLocalizedString("login_action_facebook", comment: ""), image: UIImage(named: "facebookLogo"), delegate: self)
-        button.backgroundColor = .facebookThemeColor
-        return button
-    }()
+
     private lazy var appleButton: SoulverseButton = {
         let button = SoulverseButton(title: NSLocalizedString("login_action_apple", comment: ""), image: UIImage(named: "appleLogo"), delegate: self)
         button.backgroundColor = .black
@@ -43,15 +38,8 @@ class ThirdPartyLoginTableViewCell: UITableViewCell {
         for subView in contentView.subviews {
             subView.removeFromSuperview()
         }
-        
+
         switch actionPlatform {
-        case .Facebook:
-            contentView.addSubview(fbButton)
-            fbButton.snp.makeConstraints { make in
-                make.top.bottom.equalToSuperview().inset(5)
-                make.left.right.equalToSuperview()
-                make.height.equalTo(44)
-            }
         case .Apple:
             contentView.addSubview(appleButton)
             appleButton.snp.makeConstraints { make in

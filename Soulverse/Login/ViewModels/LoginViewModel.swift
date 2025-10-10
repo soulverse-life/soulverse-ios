@@ -8,14 +8,14 @@
 import Foundation
 
 enum LoginSectionCategory {
-    
+
     case ThirdParty
     case Email
-    
+
     var platforms: [LoginPlatform] {
         switch self {
         case .ThirdParty:
-            return [.Facebook, .Apple]
+            return [.Apple]
         case .Email:
             return [.Kono(email: "", password: "")]
         }

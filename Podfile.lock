@@ -15,14 +15,6 @@ PODS:
   - DGCharts (5.1.0):
     - DGCharts/Core (= 5.1.0)
   - DGCharts/Core (5.1.0)
-  - FBAEMKit (18.0.0):
-    - FBSDKCoreKit_Basics (= 18.0.0)
-  - FBSDKCoreKit (18.0.0):
-    - FBAEMKit (= 18.0.0)
-    - FBSDKCoreKit_Basics (= 18.0.0)
-  - FBSDKCoreKit_Basics (18.0.0)
-  - FBSDKLoginKit (18.0.0):
-    - FBSDKCoreKit (= 18.0.0)
   - Firebase (11.14.0):
     - Firebase/Core (= 11.14.0)
   - Firebase/Analytics (11.14.0):
@@ -253,7 +245,6 @@ PODS:
     - SwiftMessages/App (= 10.0.1)
   - SwiftMessages/App (10.0.1)
   - SwiftRichString (3.7.2)
-  - SwiftyBase64 (1.1.1)
   - Toaster (2.3.0)
   - UICircularProgressRing (8.0.0)
 
@@ -261,7 +252,6 @@ DEPENDENCIES:
   - DateToolsSwift
   - DeviceKit (~> 5.2)
   - DGCharts (~> 5.1.0)
-  - FBSDKLoginKit
   - Firebase
   - Firebase/Analytics
   - Firebase/Crashlytics
@@ -279,7 +269,6 @@ DEPENDENCIES:
   - SnapKit (~> 5.7.0)
   - SwiftMessages
   - SwiftRichString
-  - SwiftyBase64 (~> 1.0)
   - Toaster
   - UICircularProgressRing
 
@@ -291,10 +280,6 @@ SPEC REPOS:
     - DateToolsSwift
     - DeviceKit
     - DGCharts
-    - FBAEMKit
-    - FBSDKCoreKit
-    - FBSDKCoreKit_Basics
-    - FBSDKLoginKit
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -335,7 +320,6 @@ SPEC REPOS:
     - SnapKit
     - SwiftMessages
     - SwiftRichString
-    - SwiftyBase64
     - Toaster
     - UICircularProgressRing
 
@@ -346,10 +330,6 @@ SPEC CHECKSUMS:
   DateToolsSwift: 4207ada6ad615d8dc076323d27037c94916dbfa6
   DeviceKit: 9f2e0b68984a384f864b0f4e40a54bae43636bd8
   DGCharts: 1c6daf585b6cfc78807af44ea690d357c410627f
-  FBAEMKit: e34530df538b8eb8aeb53c35867715ba6c63ef0c
-  FBSDKCoreKit: d3f479a69127acebb1c6aad91c1a33907bcf6c2f
-  FBSDKCoreKit_Basics: 017b6dc2a1862024815a8229e75661e627ac1e29
-  FBSDKLoginKit: 5875762d1fe09ddcb05d03365d4f5dc34413843d
   Firebase: 38f818b36ca01648fa78ec7402b4ee3076086c2b
   FirebaseABTesting: 13de5629e6d92a6a6c06429a6ddd9b19362de827
   FirebaseAnalytics: d604dc875290f0213b9ead8a4692cf1e91e024d9
@@ -390,10 +370,9 @@ SPEC CHECKSUMS:
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   SwiftMessages: 759b4a0bf5c3a116a0d7e8a34b098ba83c458625
   SwiftRichString: d61b807db1f8834c26fee92b6dd3e1be2dc5af03
-  SwiftyBase64: 8de4de96a08454e742fdda614dff12d2c62ecbe9
   Toaster: c3473963c78e8cabbf6ea6f11ad0fdaae6f54987
   UICircularProgressRing: 19927375b2b21b5fa5fd9582f15ccdef9659da16
 
-PODFILE CHECKSUM: d05a59bc231d9885c8fc1cd5ae1534a81ebd87bc
+PODFILE CHECKSUM: 8e7bc993bc586b2ed6e905793418bf2d74e3c0fe
 
 COCOAPODS: 1.16.2
