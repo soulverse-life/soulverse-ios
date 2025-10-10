@@ -19,10 +19,8 @@ abstract_target 'Base' do
   pod 'SwiftMessages'
   pod 'SwiftRichString'
   pod 'GoogleSignIn'
-  pod 'FBSDKLoginKit'
   
   pod 'UICircularProgressRing'
-  pod 'SwiftyBase64', '~> 1.0'
   pod 'DGCharts', '~> 5.1.0'
   
   pod 'Firebase/RemoteConfig'

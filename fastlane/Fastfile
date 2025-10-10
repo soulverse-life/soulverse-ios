@@ -107,7 +107,7 @@ platform :ios do
     upload_to_testflight(
       skip_submission: true,
       api_key: api_key,
-      distribute_external: true,
+      distribute_external: false,
       groups: ["dev"]
     )
   end
