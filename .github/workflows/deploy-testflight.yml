@@ -50,6 +50,10 @@ jobs:
           MATCH_KEYCHAIN_PASSWORD: ""
         run: bundle exec fastlane match appstore --readonly
 
+      - name: Calculate Build Number
+        id: build_number
+        run: echo "number=$((${{ github.run_number }} + 1000))" >> $GITHUB_OUTPUT
+
       - name: Deploy to TestFlight
         env:
           SCHEME: "Soulverse"
@@ -57,7 +61,7 @@ jobs:
           API_KEY_ID: ${{ secrets.API_KEY_ID }}
           API_ISSUER_ID: ${{ secrets.API_ISSUER_ID }}
           API_KEY_FILEPATH: "fastlane/keys/AuthKey_${{ secrets.API_KEY_ID }}.p8"
-          BUILD_NUMBER: ${{ github.run_number + 1000 }}
+          BUILD_NUMBER: ${{ steps.build_number.outputs.number }}
         run: bundle exec fastlane ios release
 
       - name: Upload build logs
