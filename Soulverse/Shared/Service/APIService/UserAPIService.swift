@@ -10,15 +10,12 @@ import Moya
 let UserAPIServiceProvider = MoyaProvider<UserAPIService>()
                                                                                    
 enum UserAPIService {
-    
+
     case signup(account: String, password: String, platform: String)
     case login(account: String, validator: String, platform: String)
-    case remindPassword(account: String)
-    case sendVerifyEmail(userId: String)
     case getProfile(userId: String)
     case updateFCMToken(token: String)
-    case changePassword(userId: String, oldPassword: String, newPassword: String)
-
+    case submitOnboardingData(OnboardingUserData)
 }
 
 extension UserAPIService: TargetType {
@@ -32,22 +29,18 @@ extension UserAPIService: TargetType {
             return "users"
         case .login:
             return "users/login"
-        case .remindPassword:
-            return "users/remind_password"
-        case .sendVerifyEmail(let userId):
-            return "users/\(userId)/request_confirmations"
         case .getProfile:
             return "me"
         case .updateFCMToken:
             return "pushtokens"
-        case .changePassword(let userId, _, _):
-            return "users/\(userId)/change_password"
+        case .submitOnboardingData:
+            return "users/onboarding"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .signup, .login, .remindPassword, .sendVerifyEmail, .changePassword:
+        case .signup, .login, .submitOnboardingData:
             return .post
         case .getProfile:
             return .get
@@ -65,13 +58,30 @@ extension UserAPIService: TargetType {
         case .login(let account, let validator, let platform),
              .signup(let account, let validator, let platform):
             return .requestParameters(parameters: ["platform": platform, "account": account, "validator": validator, "service": "soulverse"], encoding: JSONEncoding.default)
-        case .remindPassword(let account):
-            return .requestParameters(parameters: ["account": account], encoding: JSONEncoding.default)
         case .updateFCMToken(let token):
             return .requestParameters(parameters: ["token": token], encoding: JSONEncoding.default)
-        case .changePassword(_ , let oldPassword, let newPassword):
-            return .requestParameters(parameters: ["old_password": oldPassword, "new_password": newPassword], encoding: JSONEncoding.default)
-        case .sendVerifyEmail(_), .getProfile(_):
+        case .submitOnboardingData(let data):
+            var parameters: [String: Any] = [:]
+
+            if let birthday = data.birthday {
+                let formatter = ISO8601DateFormatter()
+                parameters["birthday"] = formatter.string(from: birthday)
+            }
+            if let gender = data.gender {
+                parameters["gender"] = gender.rawValue
+            }
+            if let planetName = data.planetName {
+                parameters["planet_name"] = planetName
+            }
+            if let emoPetName = data.emoPetName {
+                parameters["emopet_name"] = emoPetName
+            }
+            if !data.selectedTopics.isEmpty {
+                parameters["topics"] = data.selectedTopics.map { $0.rawValue }
+            }
+
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .getProfile(_):
             return .requestPlain
         }
     }

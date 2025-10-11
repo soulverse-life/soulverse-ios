@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol OnboardingNamingViewControllerDelegate: AnyObject {
-    func didCompletNaming(planetName: String, emoPetName: String)
+    func onboardingNamingViewController(_ viewController: OnboardingNamingViewController, didCompletePlanetName planetName: String, emoPetName: String)
 }
 
 class OnboardingNamingViewController: UIViewController {
@@ -232,7 +232,7 @@ class OnboardingNamingViewController: UIViewController {
         let planetName = planetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "Vancouver"
         let emoPetName = emoPetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "Pocky"
 
-        delegate?.didCompletNaming(planetName: planetName, emoPetName: emoPetName)
+        delegate?.onboardingNamingViewController(self, didCompletePlanetName: planetName, emoPetName: emoPetName)
     }
 }
 

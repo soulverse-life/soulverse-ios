@@ -20,7 +20,7 @@ enum TopicOption: String, CaseIterable {
 }
 
 protocol OnboardingTopicViewControllerDelegate: AnyObject {
-    func didCompleteOnboarding(selectedTopics: [TopicOption])
+    func onboardingTopicViewController(_ viewController: OnboardingTopicViewController, didSelectTopics topics: [TopicOption])
 }
 
 class OnboardingTopicViewController: UIViewController {
@@ -224,6 +224,6 @@ class OnboardingTopicViewController: UIViewController {
 
     @objc private func continueTapped() {
         let selectedTopicsArray = Array(selectedTopics)
-        delegate?.didCompleteOnboarding(selectedTopics: selectedTopicsArray)
+        delegate?.onboardingTopicViewController(self, didSelectTopics: selectedTopicsArray)
     }
 }

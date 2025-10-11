@@ -19,7 +19,6 @@ class FirebaseTrackingService: TrackingServiceType {
     func setupUserDefaultProperties(_ user: UserProtocol) {
         Analytics.setUserID(user.userId)
         Analytics.setUserProperty(user.email, forName: TrackingUserProperty.email)
-        Analytics.setUserProperty(user.registerChannel, forName: TrackingUserProperty.accountType)
     }
     
     func track(_ event: TrackingEventType) {

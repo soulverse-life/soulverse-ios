@@ -71,15 +71,6 @@ class AppCoordinator {
         }
     }
     
-    static func openLoginPage(from sourceVC: UIViewController, page source: AppLocation, success: (()->())? = nil) {
-        let loginVC = LoginViewController(sourcePage: source, success: success)
-        let vc = UINavigationController(rootViewController: loginVC)
-        vc.hidesBottomBarWhenPushed = true
-        vc.modalPresentationStyle = .fullScreen
-        
-        sourceVC.showDetailViewController(vc, sender: sourceVC)
-    }
-    
     
     static func openWebBrowser(to url: String) {
         guard let targetURL = URL(string: url) else { return }
@@ -105,7 +96,7 @@ class AppCoordinator {
         composeVC.setToRecipients([HostAppContants.contactRecipient])
         composeVC.setSubject(subject)
         let noticeString = "\n\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n請保留以下資訊"
-        let defaultReportString = String(format: "%@\nUser ID: %@ \niOS version: %@ \nApp version: %@ \nDevice: %@", noticeString, (User.instance.userId ?? ""),
+        let defaultReportString = String(format: "%@\nUser ID: %@ \niOS version: %@ \nApp version: %@ \nDevice: %@", noticeString, (User.shared.userId ?? ""),
                                          (Device.current.systemVersion ?? ""),
                                          Utility.getAppVersion(),
                                          Device.current.description
@@ -115,19 +106,6 @@ class AppCoordinator {
          
         // Present the view controller modally.
         sourceVC.present(composeVC, animated: true, completion: nil)
-    }
-    static func openSurvey(from sourceVC: ViewController, for surveyType: SurveyType) {
-        let accountDeletionVC = GoogleSurveyViewController(surveyTitle: surveyType.title, surveyURL: surveyType.surveyURL)
-        accountDeletionVC.hidesBottomBarWhenPushed = true
-        
-        guard
-            let navigationVC = sourceVC.navigationController
-        else {
-            sourceVC.show(accountDeletionVC, sender: nil)
-            return
-        }
-        
-        navigationVC.pushViewController(accountDeletionVC, animated: true)
     }
     
     static func openDrawingCanvas(from sourceVC: UIViewController) {

@@ -9,9 +9,8 @@ import UIKit
 import SnapKit
 
 protocol OnboardingSignInViewControllerDelegate: AnyObject {
-    func didCompleteSignIn()
-    func didTapGoogleSignIn()
-    func didTapAppleSignIn()
+    func didTapGoogleSignIn(_ viewController: OnboardingSignInViewController)
+    func didTapAppleSignIn(_ viewController: OnboardingSignInViewController)
 }
 
 class OnboardingSignInViewController: UIViewController {
@@ -147,10 +146,10 @@ class OnboardingSignInViewController: UIViewController {
     // MARK: - Actions
 
     @objc private func googleSignInTapped() {
-        delegate?.didTapGoogleSignIn()
+        delegate?.didTapGoogleSignIn(self)
     }
 
     @objc private func appleSignInTapped() {
-        delegate?.didTapAppleSignIn()
+        delegate?.didTapAppleSignIn(self)
     }
 }
