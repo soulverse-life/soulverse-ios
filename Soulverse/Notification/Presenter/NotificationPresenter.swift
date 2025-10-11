@@ -12,7 +12,7 @@ class NotificationPresenter: NotificationPresenterType {
     
     var viewModel = NotificationViewModel()
     var delegate: NotificationPresenterDelegate?
-    var user: User
+    var user: UserProtocol
     var hasAskPermission: Bool = false {
         didSet {
             DispatchQueue.main.async {
@@ -23,7 +23,7 @@ class NotificationPresenter: NotificationPresenterType {
     var notificationCenter: UNUserNotificationCenter
     
     init(
-        user: User = User.instance,
+        user: User = User.shared,
         notificationCenter: UNUserNotificationCenter = UNUserNotificationCenter.current(),
         delegate: NotificationPresenterDelegate? = nil
     ) {

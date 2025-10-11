@@ -53,6 +53,9 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
           config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+          # Suppress warnings from Pods
+          config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
+          config.build_settings['SWIFT_SUPPRESS_WARNINGS'] = 'YES'
       end
       if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
         target.build_configurations.each do |config|

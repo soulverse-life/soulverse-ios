@@ -32,7 +32,7 @@ struct TrackingUserProperty {
     static let couponCampaign = "campaign name"
 }
 
-public protocol CoreTracker: AnyObject {
+protocol CoreTracker: AnyObject {
     
     var services: [TrackingServiceType] { get }
     func track(_ event: TrackingEventType)
@@ -40,7 +40,7 @@ public protocol CoreTracker: AnyObject {
     func setupUserProperty(_ info: [String : Any])
 }
 
-public extension CoreTracker {
+extension CoreTracker {
     
     func track(_ event: TrackingEventType) {
         services.forEach { provider in

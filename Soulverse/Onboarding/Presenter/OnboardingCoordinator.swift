@@ -16,23 +16,16 @@ final class OnboardingCoordinator {
     weak var delegate: OnboardingCoordinatorDelegate?
 
     private let navigationController: UINavigationController
-    private let authenticationService: OnboardingAuthenticationServiceProtocol
-    private let dataService: OnboardingDataServiceProtocol
-    private let sessionService: OnboardingSessionServiceProtocol
     private var userData = OnboardingUserData()
+
+    // Authentication services
+    private let appleAuthService = AppleUserAuthService()
+    private let googleAuthService = GoogleUserAuthService()
 
     // MARK: - Initialization
 
-    init(
-        navigationController: UINavigationController,
-        authenticationService: OnboardingAuthenticationServiceProtocol,
-        dataService: OnboardingDataServiceProtocol,
-        sessionService: OnboardingSessionServiceProtocol
-    ) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.authenticationService = authenticationService
-        self.dataService = dataService
-        self.sessionService = sessionService
     }
 
     // MARK: - Public Methods
@@ -76,42 +69,53 @@ final class OnboardingCoordinator {
     // MARK: - Authentication
 
     private func handleGoogleAuthentication() {
-        authenticationService.authenticateWithGoogle { [weak self] result in
+        //Todo: fill in require setting for google sign in
+        
+        return
+        googleAuthService.authenticate { [weak self] result in
             guard let self = self else { return }
 
             switch result {
-            case .success:
-                self.userData.isSignedIn = true
-                self.showBirthdayScreen()
-            case .failure(let error):
-                self.handleAuthenticationError(error)
+            case .AuthSuccess:
+                self.handleAuthenticationSuccess()
+            case .UserCancel:
+                print("[Onboarding] User cancelled Google sign-in")
+            default:
+                self.handleAuthenticationError(result)
             }
         }
     }
 
     private func handleAppleAuthentication() {
-        authenticationService.authenticateWithApple { [weak self] result in
+        appleAuthService.authenticate { [weak self] result in
             guard let self = self else { return }
 
             switch result {
-            case .success:
-                self.userData.isSignedIn = true
-                self.showBirthdayScreen()
-            case .failure(let error):
-                self.handleAuthenticationError(error)
+            case .AuthSuccess:
+                self.handleAuthenticationSuccess()
+            case .UserCancel:
+                print("[Onboarding] User cancelled Apple sign-in")
+            default:
+                self.handleAuthenticationError(result)
             }
         }
     }
 
-    private func handleAuthenticationError(_ error: AuthenticationError) {
-        print("[Onboarding] Authentication failed: \(error.localizedDescription)")
+    private func handleAuthenticationSuccess() {
+        userData.isSignedIn = true
+        User.shared.isLoggedin = true
+        showBirthdayScreen()
+    }
+
+    private func handleAuthenticationError(_ error: AuthResult) {
+        print("[Onboarding] Authentication failed: \(error.description)")
         // TODO: Show error alert to user
     }
 
     // MARK: - Data Submission
 
     private func submitOnboardingData() {
-        dataService.submitOnboardingData(userData) { [weak self] result in
+        UserService.submitOnboardingData(userData) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
@@ -123,15 +127,14 @@ final class OnboardingCoordinator {
         }
     }
 
-    private func handleDataSubmissionError(_ error: OnboardingDataError) {
-        print("[Onboarding] Data submission failed: \(error.localizedDescription)")
+    private func handleDataSubmissionError(_ error: ApiError) {
+        print("[Onboarding] Data submission failed: \(error.description)")
         // TODO: Show error alert with retry option
         // For now, still complete onboarding for testing
         handleOnboardingCompletion()
     }
 
     private func handleOnboardingCompletion() {
-        sessionService.markOnboardingAsCompleted()
         delegate?.onboardingCoordinatorDidComplete(self, userData: userData)
     }
 }
@@ -140,11 +143,11 @@ final class OnboardingCoordinator {
 
 extension OnboardingCoordinator: OnboardingSignInViewControllerDelegate {
 
-    func onboardingSignInViewControllerDidTapGoogleSignIn(_ viewController: OnboardingSignInViewController) {
+    func didTapGoogleSignIn(_ viewController: OnboardingSignInViewController) {
         handleGoogleAuthentication()
     }
 
-    func onboardingSignInViewControllerDidTapAppleSignIn(_ viewController: OnboardingSignInViewController) {
+    func didTapAppleSignIn(_ viewController: OnboardingSignInViewController) {
         handleAppleAuthentication()
     }
 }

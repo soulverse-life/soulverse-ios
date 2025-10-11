@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol TrackingServiceType {
+protocol TrackingServiceType {
     
     func track(_ event: TrackingEventType)
     func clearUserProperties()

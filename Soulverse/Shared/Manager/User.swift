@@ -10,10 +10,9 @@ enum UserInfoKeys: String {
     case email
     case fcmToken
     case hasLoggedIn
-    case hasVerified
     case hasGrantedNotification
+    case hasCompletedOnboarding
     case nickname
-    case registerChannel
     case nextAskingPermissionTime
     case notificationAskGapTime
     case userId
@@ -57,18 +56,19 @@ public enum NotificationAskGapTime: Int, Comparable {
 }
 
 
-public protocol UserProtocol {
+protocol UserProtocol {
     var userId: String? { get set }
     var email: String? { get set }
-    var registerChannel: String? { get set }
     var isLoggedin: Bool { get }
-    var isVerified: Bool { get }
     var hasGrantedNotification: Bool { get }
+    
+    func hasShownRequestPermissionAlert()
+    func showCustomizeRequestPermissionAlert() -> Bool
 }
 
-public class User: UserProtocol {
+class User: UserProtocol {
     
-    public static let instance = User()
+    public static let shared = User()
     
     // MARK: - Initializers
     private let defaults: UserDefaults
@@ -78,7 +78,7 @@ public class User: UserProtocol {
     }
     
     // MARK: - Properties
-    public var userId: String? {
+    var userId: String? {
         get {
             let value = defaults.string(forKey: UserInfoKeys.userId.rawValue)
             return value
@@ -92,7 +92,7 @@ public class User: UserProtocol {
         }
     }
     
-    public var email: String? {
+    var email: String? {
         get {
             let value = defaults.string(forKey: UserInfoKeys.email.rawValue)
             return value
@@ -103,20 +103,6 @@ public class User: UserProtocol {
                 return
             }
             defaults.set(email, forKey: UserInfoKeys.email.rawValue)
-        }
-    }
-    
-    public var registerChannel: String? {
-        get {
-            let value = defaults.string(forKey: UserInfoKeys.registerChannel.rawValue)
-            return value
-        }
-        set(newEmail) {
-            guard let email = newEmail else {
-                defaults.removeObject(forKey: UserInfoKeys.registerChannel.rawValue)
-                return
-            }
-            defaults.set(email, forKey: UserInfoKeys.registerChannel.rawValue)
         }
     }
     
@@ -148,7 +134,7 @@ public class User: UserProtocol {
         }
     }
     
-    public var isLoggedin: Bool {
+    var isLoggedin: Bool {
         get {
             let res = defaults.bool(forKey: UserInfoKeys.hasLoggedIn.rawValue)
             return res
@@ -161,16 +147,6 @@ public class User: UserProtocol {
         }
     }
     
-    public var isVerified: Bool {
-        get {
-            let res = defaults.bool(forKey: UserInfoKeys.hasVerified.rawValue)
-            return res
-        }
-        set(newValue) {
-            defaults.set(newValue, forKey: UserInfoKeys.hasVerified.rawValue)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notification.UserIdentityChange), object: nil, userInfo: nil)
-        }
-    }
     
     public var hasGrantedNotification: Bool {
         get {
@@ -181,8 +157,18 @@ public class User: UserProtocol {
             defaults.set(newValue, forKey: UserInfoKeys.hasGrantedNotification.rawValue)
         }
     }
+
+    public var hasCompletedOnboarding: Bool {
+        get {
+            let res = defaults.bool(forKey: UserInfoKeys.hasCompletedOnboarding.rawValue)
+            return res
+        }
+        set(newValue) {
+            defaults.set(newValue, forKey: UserInfoKeys.hasCompletedOnboarding.rawValue)
+        }
+    }
     
-    public var nextAskingPermissionTime: TimeInterval? {
+    var nextAskingPermissionTime: TimeInterval? {
         get {
             let value = defaults.double(forKey: UserInfoKeys.nextAskingPermissionTime.rawValue)
             return value
@@ -196,7 +182,7 @@ public class User: UserProtocol {
         }
     }
     
-    public var notificationAskGapTime: NotificationAskGapTime {
+    var notificationAskGapTime: NotificationAskGapTime {
         get {
             let res = NotificationAskGapTime(rawValue: defaults.integer(forKey: UserInfoKeys.notificationAskGapTime.rawValue)) ?? .Unknown
             return res
@@ -206,7 +192,7 @@ public class User: UserProtocol {
         }
     }
     
-    public var fcmToken: String? {
+    var fcmToken: String? {
         get {
             let value = defaults.string(forKey: UserInfoKeys.fcmToken.rawValue)
             return value
@@ -221,11 +207,23 @@ public class User: UserProtocol {
         }
     }
     
-    public func logout() {
-        SummitTracker.shared.track(AccountEvent.logOut)
+    func logout() {
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
         clearUserProperty()
     }
+
+    #if DEBUG
+    /// Debug helper to reset all user data including onboarding
+    /// Use this to test the onboarding flow again
+    public func resetAllUserData() {
+        logout()
+        // Also clear all UserDefaults keys
+        if let bundleID = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundleID)
+        }
+        print("[Debug] All user data cleared - onboarding will show on next launch")
+    }
+    #endif
     
     private func clearUserProperty() {
         // we won't clear the notification related userdefault
@@ -234,7 +232,7 @@ public class User: UserProtocol {
         isLoggedin = false
         nickName = nil
         avatarImageURL = nil
-        isVerified = false
+        hasCompletedOnboarding = false
     }
     
     private func updateFCMToken() {
@@ -258,7 +256,7 @@ public class User: UserProtocol {
 
 extension User {
     
-    public func hasShownRequestPermissionAlert() {
+    func hasShownRequestPermissionAlert() {
         
         var newGapTime: NotificationAskGapTime = .ThirtyDays
         if self.notificationAskGapTime < NotificationAskGapTime.ThirtyDays {
@@ -268,7 +266,7 @@ extension User {
         notificationAskGapTime = newGapTime
     }
     
-    public func showCustomizeRequestPermissionAlert() -> Bool {
+    func showCustomizeRequestPermissionAlert() -> Bool {
         
         if let nextAskingPermissionTime = nextAskingPermissionTime,
               nextAskingPermissionTime > Date().timeIntervalSince1970 {

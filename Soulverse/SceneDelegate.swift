@@ -9,8 +9,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private var onboardingCoordinator: OnboardingCoordinator?
-    private let serviceFactory = OnboardingServiceFactory()
-    private lazy var sessionService = serviceFactory.makeSessionService()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -25,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Root View Controller Determination
 
     private func determineRootViewController() -> UIViewController {
-        let shouldShowOnboarding = !sessionService.isUserAuthenticated || !sessionService.hasUserCompletedOnboarding
+        let user = User.shared
+        let shouldShowOnboarding = !user.isLoggedin || !user.hasCompletedOnboarding
 
         if shouldShowOnboarding {
             return createOnboardingFlow()
@@ -38,15 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(true, animated: false)
 
-        let authService = serviceFactory.makeAuthenticationService(sessionService: sessionService)
-        let dataService = serviceFactory.makeDataService()
-
-        let coordinator = OnboardingCoordinator(
-            navigationController: navigationController,
-            authenticationService: authService,
-            dataService: dataService,
-            sessionService: sessionService
-        )
+        let coordinator = OnboardingCoordinator(navigationController: navigationController)
         coordinator.delegate = self
 
         self.onboardingCoordinator = coordinator

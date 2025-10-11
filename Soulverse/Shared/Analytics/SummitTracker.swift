@@ -14,7 +14,7 @@ class SummitTracker: CoreTracker {
     var services: [TrackingServiceType]
 
     init(
-        _ user: UserProtocol = User.instance,
+        _ user: UserProtocol = User.shared,
         services: [TrackingServiceType] = [FirebaseTrackingService()]
     ) {
         self.services = services

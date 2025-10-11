@@ -17,9 +17,9 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
     private var isWaitingRemoteConfig = false
     private var dataAccessQueue = DispatchQueue.init(label: "home_data",attributes: .concurrent)
     
-    private var user: User
+    private var user: UserProtocol
     
-    init(user: User = User.instance) {
+    init(user: User = User.shared) {
         self.user = user
         
         NotificationCenter.default.addObserver(self, selector: #selector(userIdentityChange), name: NSNotification.Name(rawValue: Notification.UserIdentityChange), object: nil)

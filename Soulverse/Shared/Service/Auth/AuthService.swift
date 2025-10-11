@@ -7,48 +7,43 @@
 
 import Foundation
 
+/// Result of authentication operation
 enum AuthResult {
-    
-    case AuthLoginSuccess
-    case AuthSignupSuccess
-    case InputDataInvalid
+
+    case AuthSuccess
     case ThirdPartyServiceError(errorMsg: String? = nil)
     case ServerError
-    case BadEmail
-    case EmailNotUnique
     case NetworkError
     case UserCancel
     case UnknownError
-    
+
     var description: String {
         switch self {
-        case .AuthLoginSuccess:
-            return "success login"
-        case .AuthSignupSuccess:
-            return "success sign up"
-        case .InputDataInvalid:
-            return "input invalid"
-        case .ThirdPartyServiceError(_):
-            return "third party service error"
+        case .AuthSuccess:
+            return "authentication successful"
+        case .ThirdPartyServiceError(let msg):
+            return "third party service error: \(msg ?? "unknown")"
         case .ServerError:
-            return "our server error"
-        case .BadEmail:
-            return "bad email"
-        case .EmailNotUnique:
-            return "account existed"
+            return "server error"
         case .NetworkError:
             return "network error"
         case .UserCancel:
-            return "user cancel the process"
+            return "user cancelled authentication"
         case .UnknownError:
             return "unknown error"
         }
     }
 }
 
-
+/// Protocol for authentication services
+/// Currently supports 3rd party authentication (Google, Apple)
+///
+/// Note: For email/password authentication, create a separate
+/// EmailAuthService class that implements this protocol
 protocol AuthService {
-    
-    func signup(_ completion: ((AuthResult)->Void)?)
-    func login(_ completion: ((AuthResult)->Void)?)
+
+    /// Authenticate user with the provider
+    /// For 3rd party providers (Google, Apple), this handles both signup and login
+    /// - Parameter completion: Callback with authentication result
+    func authenticate(_ completion: ((AuthResult)->Void)?)
 }
