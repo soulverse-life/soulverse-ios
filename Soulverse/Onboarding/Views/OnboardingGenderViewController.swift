@@ -14,6 +14,21 @@ enum GenderOption: String, CaseIterable {
     case nonBinary = "Non-binary"
     case transgender = "Transgender"
     case preferNotToSay = "Prefer not to say"
+
+    var localizedTitle: String {
+        switch self {
+        case .man:
+            return NSLocalizedString("onboarding_gender_man", comment: "")
+        case .woman:
+            return NSLocalizedString("onboarding_gender_woman", comment: "")
+        case .nonBinary:
+            return NSLocalizedString("onboarding_gender_nonbinary", comment: "")
+        case .transgender:
+            return NSLocalizedString("onboarding_gender_transgender", comment: "")
+        case .preferNotToSay:
+            return NSLocalizedString("onboarding_gender_prefer_not_to_say", comment: "")
+        }
+    }
 }
 
 protocol OnboardingGenderViewControllerDelegate: AnyObject {
@@ -24,17 +39,15 @@ class OnboardingGenderViewController: UIViewController {
 
     // MARK: - UI Components
 
-    private lazy var progressView: UIProgressView = {
-        let progress = UIProgressView(progressViewStyle: .default)
-        progress.progressTintColor = .black
-        progress.trackTintColor = .lightGray
-        progress.progress = 0.6 // Step 4 of 5
-        return progress
+    private lazy var progressView: SoulverseProgressBar = {
+        let progressBar = SoulverseProgressBar(totalSteps: 5)
+        progressBar.setProgress(currentStep: 3)
+        return progressBar
     }()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Gender Resonance"
+        label.text = NSLocalizedString("onboarding_gender_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .light)
         label.textColor = .black
         label.textAlignment = .center
@@ -43,7 +56,7 @@ class OnboardingGenderViewController: UIViewController {
 
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "How should the universe\nresonate with you?"
+        label.text = NSLocalizedString("onboarding_gender_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .gray
         label.textAlignment = .center
@@ -53,48 +66,40 @@ class OnboardingGenderViewController: UIViewController {
 
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Gender identity"
+        label.text = NSLocalizedString("onboarding_gender_instruction", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .medium)
         label.textColor = .black
         label.textAlignment = .left
         return label
     }()
 
-    private lazy var genderButtonsStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 12
-        stack.distribution = .fillEqually
-        return stack
+    private lazy var genderTagsView: SoulverseTagsView = {
+        let tagsView = SoulverseTagsView.create()
+        tagsView.delegate = self
+        return tagsView
     }()
 
-    private lazy var continueButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Continue", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .white
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.black.cgColor
-        button.layer.cornerRadius = 25
-        button.addTarget(self, action: #selector(continueTapped), for: .touchUpInside)
+    private lazy var continueButton: SoulverseButton = {
+        let button = SoulverseButton(
+            title: NSLocalizedString("onboarding_continue_button", comment: ""),
+            style: .primary,
+            delegate: self
+        )
         button.isEnabled = false
-        button.alpha = 0.5
         return button
     }()
 
     // MARK: - Properties
 
     weak var delegate: OnboardingGenderViewControllerDelegate?
-    private var selectedGender: GenderOption?
-    private var genderButtons: [UIButton] = []
+    private var genderOptions: [GenderOption] = GenderOption.allCases
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupGenderButtons()
+        setupGenderOptions()
     }
 
     // MARK: - Setup
@@ -106,13 +111,12 @@ class OnboardingGenderViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
         view.addSubview(instructionLabel)
-        view.addSubview(genderButtonsStackView)
+        view.addSubview(genderTagsView)
         view.addSubview(continueButton)
 
         progressView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(4)
+            make.centerX.equalToSuperview()
         }
 
         titleLabel.snp.makeConstraints { make in
@@ -130,9 +134,10 @@ class OnboardingGenderViewController: UIViewController {
             make.top.equalTo(subtitleLabel.snp.bottom).offset(40)
         }
 
-        genderButtonsStackView.snp.makeConstraints { make in
+        genderTagsView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(40)
             make.top.equalTo(instructionLabel.snp.bottom).offset(20)
+            make.height.equalTo(200) // Approximate height for multiple rows
         }
 
         continueButton.snp.makeConstraints { make in
@@ -143,120 +148,28 @@ class OnboardingGenderViewController: UIViewController {
         }
     }
 
-    private func setupGenderButtons() {
-        // Create the first row with Man and Woman buttons
-        let firstRowStack = UIStackView()
-        firstRowStack.axis = .horizontal
-        firstRowStack.spacing = 12
-        firstRowStack.distribution = .fillEqually
-
-        let manButton = createGenderButton(for: .man)
-        let womanButton = createGenderButton(for: .woman)
-
-        // Woman is initially selected (as shown in design)
-        selectGenderButton(womanButton, for: .woman)
-
-        firstRowStack.addArrangedSubview(manButton)
-        firstRowStack.addArrangedSubview(womanButton)
-
-        // Create the second row with Non-binary and Transgender buttons
-        let secondRowStack = UIStackView()
-        secondRowStack.axis = .horizontal
-        secondRowStack.spacing = 12
-        secondRowStack.distribution = .fillEqually
-
-        let nonBinaryButton = createGenderButton(for: .nonBinary)
-        let transgenderButton = createGenderButton(for: .transgender)
-
-        secondRowStack.addArrangedSubview(nonBinaryButton)
-        secondRowStack.addArrangedSubview(transgenderButton)
-
-        // Create the third row with Prefer not to say button
-        let thirdRowStack = UIStackView()
-        thirdRowStack.axis = .horizontal
-        thirdRowStack.spacing = 12
-        thirdRowStack.distribution = .fillEqually
-
-        let preferNotToSayButton = createGenderButton(for: .preferNotToSay)
-        let spacerView = UIView() // Empty view to maintain layout
-
-        thirdRowStack.addArrangedSubview(preferNotToSayButton)
-        thirdRowStack.addArrangedSubview(spacerView)
-
-        genderButtonsStackView.addArrangedSubview(firstRowStack)
-        genderButtonsStackView.addArrangedSubview(secondRowStack)
-        genderButtonsStackView.addArrangedSubview(thirdRowStack)
-
-        // Set height constraints for the rows
-        firstRowStack.snp.makeConstraints { make in
-            make.height.equalTo(44)
-        }
-
-        secondRowStack.snp.makeConstraints { make in
-            make.height.equalTo(44)
-        }
-
-        thirdRowStack.snp.makeConstraints { make in
-            make.height.equalTo(44)
-        }
-
-        // Ensure prefer not to say button takes only half width
-        preferNotToSayButton.snp.makeConstraints { make in
-            make.width.equalTo(spacerView)
-        }
+    private func setupGenderOptions() {
+        // Convert gender options to item data
+        let items = genderOptions.map { SoulverseTagsItemData(title: $0.localizedTitle, isSelected: false) }
+        genderTagsView.setItems(items)
     }
+}
 
-    private func createGenderButton(for gender: GenderOption) -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle(gender.rawValue, for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.setTitleColor(.white, for: .selected)
-        button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .white
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        button.layer.cornerRadius = 22
+// MARK: - SoulverseTagsViewDelegate
 
-        button.addTarget(self, action: #selector(genderButtonTapped(_:)), for: .touchUpInside)
-
-        // Store the gender option as a tag or associated object
-        button.tag = GenderOption.allCases.firstIndex(of: gender) ?? 0
-
-        genderButtons.append(button)
-        return button
-    }
-
-    private func selectGenderButton(_ button: UIButton, for gender: GenderOption) {
-        // Deselect all buttons
-        genderButtons.forEach { btn in
-            btn.isSelected = false
-            btn.backgroundColor = .white
-            btn.setTitleColor(.black, for: .normal)
-            btn.layer.borderColor = UIColor.lightGray.cgColor
-        }
-
-        // Select the tapped button
-        button.isSelected = true
-        button.backgroundColor = .black
-        button.setTitleColor(.white, for: .normal)
-        button.layer.borderColor = UIColor.black.cgColor
-
-        selectedGender = gender
-
-        // Enable continue button
+extension OnboardingGenderViewController: SoulverseTagsViewDelegate {
+    func soulverseTagsView(_ view: SoulverseTagsView, didSelectItemAt index: Int) {
         continueButton.isEnabled = true
-        continueButton.alpha = 1.0
     }
+}
 
-    // MARK: - Actions
+// MARK: - SoulverseButtonDelegate
 
-    @objc private func genderButtonTapped(_ sender: UIButton) {
-        let gender = GenderOption.allCases[sender.tag]
-        selectGenderButton(sender, for: gender)
-    }
-
-    @objc private func continueTapped() {
-        guard let selectedGender = selectedGender else { return }
+extension OnboardingGenderViewController: SoulverseButtonDelegate {
+    func clickSoulverseButton(_ button: SoulverseButton) {
+        // This is the continue button
+        guard let selectedIndex = genderTagsView.getSelectedIndex() else { return }
+        let selectedGender = genderOptions[selectedIndex]
         delegate?.onboardingGenderViewController(self, didSelectGender: selectedGender)
     }
 }

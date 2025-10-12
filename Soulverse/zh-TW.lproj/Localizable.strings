@@ -254,3 +254,73 @@
 "notification_permission_alert_action_later" = "之後再說";
 "notification_permission_alert_action_ok" = "前往設定";
 
+
+// MARK: - Onboarding
+
+// Landing Screen
+"onboarding_landing_welcome_title" = "歡迎來到 Soulverse";
+"onboarding_landing_welcome_subtitle" = "透過正念情緒追蹤和創意表達，探索你的內在宇宙";
+"onboarding_landing_feature_anonymous" = "匿名分享選項";
+"onboarding_landing_feature_community" = "支持性社群";
+"onboarding_landing_feature_privacy" = "完整隱私控制";
+"onboarding_landing_terms_checkbox" = "我同意%@和%@";
+"onboarding_landing_terms_of_service" = "服務條款";
+"onboarding_landing_privacy_policy" = "隱私政策";
+"onboarding_landing_begin_button" = "開始旅程";
+
+// Sign In Screen
+"onboarding_signin_title" = "建立帳號";
+"onboarding_signin_subtitle" = "加入 Soulverse 社群";
+"onboarding_signin_google_button" = "使用 Google 登入";
+"onboarding_signin_apple_button" = "使用 Apple 登入";
+
+// Birthday Screen
+"onboarding_birthday_title" = "誕生星辰";
+"onboarding_birthday_subtitle" = "每個靈魂都誕生在\n宇宙中獨特的時刻";
+"onboarding_birthday_instruction" = "輸入你的生日";
+"onboarding_birthday_privacy_notice" = "*此資訊僅用於個人化體驗和研究分析，\n不會公開";
+"onboarding_birthday_month_january" = "一月";
+"onboarding_birthday_month_february" = "二月";
+"onboarding_birthday_month_march" = "三月";
+"onboarding_birthday_month_april" = "四月";
+"onboarding_birthday_month_may" = "五月";
+"onboarding_birthday_month_june" = "六月";
+"onboarding_birthday_month_july" = "七月";
+"onboarding_birthday_month_august" = "八月";
+"onboarding_birthday_month_september" = "九月";
+"onboarding_birthday_month_october" = "十月";
+"onboarding_birthday_month_november" = "十一月";
+"onboarding_birthday_month_december" = "十二月";
+
+// Gender Screen
+"onboarding_gender_title" = "性別共鳴";
+"onboarding_gender_subtitle" = "宇宙應該如何\n與你共鳴？";
+"onboarding_gender_instruction" = "性別認同";
+"onboarding_gender_man" = "男性";
+"onboarding_gender_woman" = "女性";
+"onboarding_gender_nonbinary" = "非二元性別";
+"onboarding_gender_transgender" = "跨性別";
+"onboarding_gender_prefer_not_to_say" = "不願透露";
+
+// Naming Screen
+"onboarding_naming_title" = "命名";
+"onboarding_naming_subtitle" = "為你的世界命名，為你的夥伴命名。\n賦予你的星球宇宙身份，\n並為你的情緒寵物取一個忠誠的名字\n與你一同踏上旅程";
+"onboarding_naming_planet_label" = "為你的星球命名";
+"onboarding_naming_planet_placeholder" = "台北";
+"onboarding_naming_emopet_label" = "為你的情緒寵物命名";
+"onboarding_naming_emopet_placeholder" = "小波奇";
+
+// Topics Screen
+"onboarding_topics_title" = "選擇主題";
+"onboarding_topics_subtitle" = "這些主題將引導你的旅程，\n塑造專屬於你靈魂宇宙的\n反思、洞見和支持";
+"onboarding_topics_physical" = "身體健康";
+"onboarding_topics_emotional" = "情緒健康";
+"onboarding_topics_social" = "社交關係";
+"onboarding_topics_intellectual" = "智識成長";
+"onboarding_topics_spiritual" = "靈性發展";
+"onboarding_topics_occupational" = "職業發展";
+"onboarding_topics_environment" = "環境";
+"onboarding_topics_financial" = "財務";
+
+// Common
+"onboarding_continue_button" = "繼續";

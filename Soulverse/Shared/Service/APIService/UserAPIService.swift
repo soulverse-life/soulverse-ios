@@ -76,8 +76,8 @@ extension UserAPIService: TargetType {
             if let emoPetName = data.emoPetName {
                 parameters["emopet_name"] = emoPetName
             }
-            if !data.selectedTopics.isEmpty {
-                parameters["topics"] = data.selectedTopics.map { $0.rawValue }
+            if let topic = data.selectedTopic {
+                parameters["topic"] = topic
             }
 
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)

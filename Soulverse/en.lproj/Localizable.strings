@@ -252,3 +252,73 @@
 "notification_permission_alert_description" = "想第一時間知道新書上架嗎?現在就開啟通知，不要錯過任何最新消息!";
 "notification_permission_alert_action_later" = "之後再說";
 "notification_permission_alert_action_ok" = "前往設定";
+
+// MARK: - Onboarding
+
+// Landing Screen
+"onboarding_landing_welcome_title" = "Welcome to Soulverse";
+"onboarding_landing_welcome_subtitle" = "Discover your inner cosmos through mindful mood tracking and creative expression";
+"onboarding_landing_feature_anonymous" = "Anonymous sharing option";
+"onboarding_landing_feature_community" = "Supportive community";
+"onboarding_landing_feature_privacy" = "Complete privacy control";
+"onboarding_landing_terms_checkbox" = "I agree to the %@ and %@";
+"onboarding_landing_terms_of_service" = "Terms of Service";
+"onboarding_landing_privacy_policy" = "Privacy";
+"onboarding_landing_begin_button" = "Begin your journey";
+
+// Sign In Screen
+"onboarding_signin_title" = "Create Account";
+"onboarding_signin_subtitle" = "Join the Soulverse community";
+"onboarding_signin_google_button" = "Sign in with Google";
+"onboarding_signin_apple_button" = "Sign in with Apple";
+
+// Birthday Screen
+"onboarding_birthday_title" = "Birth Star";
+"onboarding_birthday_subtitle" = "Every soul is born at a unique\nmoment in the universe.";
+"onboarding_birthday_instruction" = "Enter your birthday";
+"onboarding_birthday_privacy_notice" = "*This information is used solely for personalized\nexperiences and research analysis — it will not be\nmade public.";
+"onboarding_birthday_month_january" = "January";
+"onboarding_birthday_month_february" = "February";
+"onboarding_birthday_month_march" = "March";
+"onboarding_birthday_month_april" = "April";
+"onboarding_birthday_month_may" = "May";
+"onboarding_birthday_month_june" = "June";
+"onboarding_birthday_month_july" = "July";
+"onboarding_birthday_month_august" = "August";
+"onboarding_birthday_month_september" = "September";
+"onboarding_birthday_month_october" = "October";
+"onboarding_birthday_month_november" = "November";
+"onboarding_birthday_month_december" = "December";
+
+// Gender Screen
+"onboarding_gender_title" = "Gender Resonance";
+"onboarding_gender_subtitle" = "How should the universe\nresonate with you?";
+"onboarding_gender_instruction" = "Gender identity";
+"onboarding_gender_man" = "Man";
+"onboarding_gender_woman" = "Woman";
+"onboarding_gender_nonbinary" = "Non-binary";
+"onboarding_gender_transgender" = "Transgender";
+"onboarding_gender_prefer_not_to_say" = "Prefer not to say";
+
+// Naming Screen
+"onboarding_naming_title" = "Naming";
+"onboarding_naming_subtitle" = "Name your world, name your friend.\nGive your planet a cosmic identity\nand your emopet a loyal name to join\nyou on this journey.";
+"onboarding_naming_planet_label" = "Name your planet";
+"onboarding_naming_planet_placeholder" = "Vancouver";
+"onboarding_naming_emopet_label" = "Name your EmoPet";
+"onboarding_naming_emopet_placeholder" = "Pocky";
+
+// Topics Screen
+"onboarding_topics_title" = "Selecting Topics";
+"onboarding_topics_subtitle" = "These guide your journey, shaping\nreflections, insights, and support\ntailored to your soulverse.";
+"onboarding_topics_physical" = "Physical";
+"onboarding_topics_emotional" = "Emotional";
+"onboarding_topics_social" = "Social";
+"onboarding_topics_intellectual" = "Intellectual";
+"onboarding_topics_spiritual" = "Spiritual";
+"onboarding_topics_occupational" = "Occupational";
+"onboarding_topics_environment" = "Environment";
+"onboarding_topics_financial" = "Financial";
+
+// Common
+"onboarding_continue_button" = "Continue";
