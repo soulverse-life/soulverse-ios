@@ -143,7 +143,9 @@ class SoulverseTabBarController: UITabBarController {
                 selectedImage: tab.tabSelectedImage
             )
             viewController.tabBarItem.tag = tab.rawValue
-            viewController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            // Add spacing between icon and text
+            viewController.tabBarItem.imageInsets = UIEdgeInsets(top: -2, left: 0, bottom: 2, right: 0)
+            viewController.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 4)
 
             let navController = UINavigationController(rootViewController: viewController)
             navControllers.append(navController)

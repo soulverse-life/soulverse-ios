@@ -13,7 +13,7 @@ struct OnboardingUserData {
     var gender: GenderOption?
     var planetName: String?
     var emoPetName: String?
-    var selectedTopics: [TopicOption] = []
+    var selectedTopic: TopicOption?
 
     var isComplete: Bool {
         return isSignedIn &&
@@ -21,6 +21,6 @@ struct OnboardingUserData {
                gender != nil &&
                planetName != nil &&
                emoPetName != nil &&
-               !selectedTopics.isEmpty
+               selectedTopic != nil
     }
 }

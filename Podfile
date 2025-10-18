@@ -32,7 +32,8 @@ abstract_target 'Base' do
   
   pod 'Popover'
   pod 'KeychainAccess'
-  
+  pod 'AlignedCollectionViewFlowLayout'
+
   target 'Soulverse'
   target 'Soulverse Dev'
   

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.10.2)
+  - AlignedCollectionViewFlowLayout (1.1.2)
   - AppAuth (1.7.6):
     - AppAuth/Core (= 1.7.6)
     - AppAuth/ExternalUserAgent (= 1.7.6)
@@ -249,6 +250,7 @@ PODS:
   - UICircularProgressRing (8.0.0)
 
 DEPENDENCIES:
+  - AlignedCollectionViewFlowLayout
   - DateToolsSwift
   - DeviceKit (~> 5.2)
   - DGCharts (~> 5.1.0)
@@ -275,6 +277,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - AlignedCollectionViewFlowLayout
     - AppAuth
     - AppCheckCore
     - DateToolsSwift
@@ -325,6 +328,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
+  AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
   AppCheckCore: cc8fd0a3a230ddd401f326489c99990b013f0c4f
   DateToolsSwift: 4207ada6ad615d8dc076323d27037c94916dbfa6
@@ -373,6 +377,6 @@ SPEC CHECKSUMS:
   Toaster: c3473963c78e8cabbf6ea6f11ad0fdaae6f54987
   UICircularProgressRing: 19927375b2b21b5fa5fd9582f15ccdef9659da16
 
-PODFILE CHECKSUM: a19e04e6c619a20bf6940c63de643f59cf42cd05
+PODFILE CHECKSUM: 002bbc82b1086b3f012b5b587d040b2a4a2aba23
 
 COCOAPODS: 1.16.2

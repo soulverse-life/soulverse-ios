@@ -1,18 +1,18 @@
 //
-//  SummitInputTextField.swift
-//  KonoSummit
+//  SoulverseTextField.swift
+//  Soulverse
 //
 //  Created by mingshing on 2021/12/9.
 //
 
 import UIKit
 
-enum SummitInputTextFieldStatus: Equatable {
+enum SoulverseTextFieldStatus: Equatable {
     case errorWithoutMessage
     case errorWithMessage(String)
     case normal
     case highlight
-    
+
     var viewHeight: CGFloat {
         switch self {
         case .errorWithoutMessage, .normal, .highlight:
@@ -23,28 +23,28 @@ enum SummitInputTextFieldStatus: Equatable {
     }
 }
 
-enum SummitInputTextFieldType {
+enum SoulverseTextFieldType {
     case password
     case account
     case general
 }
 
-protocol SummitInputTextFieldDelegate: AnyObject {
-    
-    func editingChanged(_ textField: SummitInputTextField)
-    func textFieldDidEndEditing(_ textField: SummitInputTextField)
-    func textFieldDidBeginEditing(_ textField: SummitInputTextField)
-    func textFieldShouldReturn(_ textField: SummitInputTextField)
+protocol SoulverseTextFieldDelegate: AnyObject {
+
+    func editingChanged(_ textField: SoulverseTextField)
+    func textFieldDidEndEditing(_ textField: SoulverseTextField)
+    func textFieldDidBeginEditing(_ textField: SoulverseTextField)
+    func textFieldShouldReturn(_ textField: SoulverseTextField)
 }
 
-extension SummitInputTextFieldDelegate {
-    func editingChanged(_ textField: SummitInputTextField) {}
-    func textFieldDidEndEditing(_ textField: SummitInputTextField) {}
-    func textFieldDidBeginEditing(_ textField: SummitInputTextField) {}
-    func textFieldShouldReturn(_ textField: SummitInputTextField) {}
+extension SoulverseTextFieldDelegate {
+    func editingChanged(_ textField: SoulverseTextField) {}
+    func textFieldDidEndEditing(_ textField: SoulverseTextField) {}
+    func textFieldDidBeginEditing(_ textField: SoulverseTextField) {}
+    func textFieldShouldReturn(_ textField: SoulverseTextField) {}
 }
 
-class SummitInputTextField: UIView {
+class SoulverseTextField: UIView {
 
     private var inputBorderView: UIView = {
         let view = UIView()
@@ -65,6 +65,7 @@ class SummitInputTextField: UIView {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = .projectFont(ofSize: 12.0, weight: .regular)
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
     }()
@@ -72,6 +73,7 @@ class SummitInputTextField: UIView {
     private lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.font = .projectFont(ofSize: 14.0, weight: .regular)
+        textField.textColor = .themeTextPrimary
         textField.autocapitalizationType = .none
         textField.delegate = self
         textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
@@ -95,8 +97,8 @@ class SummitInputTextField: UIView {
         return button
     }()
     
-    weak var delegate: SummitInputTextFieldDelegate?
-    
+    weak var delegate: SoulverseTextFieldDelegate?
+
     var title: String
     var placeholder: String
     var text: String? {
@@ -104,10 +106,10 @@ class SummitInputTextField: UIView {
             inputTextField.text
         }
     }
-    var inputType: SummitInputTextFieldType
-    var status: SummitInputTextFieldStatus = .normal
-        
-    init(title: String, placeholder: String = "", type: SummitInputTextFieldType = .general, delegate: SummitInputTextFieldDelegate? = nil) {
+    var inputType: SoulverseTextFieldType
+    var status: SoulverseTextFieldStatus = .normal
+
+    init(title: String, placeholder: String = "", type: SoulverseTextFieldType = .general, delegate: SoulverseTextFieldDelegate? = nil) {
         self.inputType = type
         self.title = title
         self.placeholder = placeholder
@@ -122,17 +124,17 @@ class SummitInputTextField: UIView {
     }
     
     private func setupView() {
-
+        
         self.addSubview(inputBorderView)
         inputBorderView.addSubview(inputTextField)
-
+        
         self.addSubview(inputTitleView)
         inputTitleView.addSubview(inputTitleLabel)
         inputTitleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.equalToSuperview().inset(10)
         }
-
+        
         inputTitleLabel.text = title
         inputTitleLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
@@ -141,36 +143,25 @@ class SummitInputTextField: UIView {
         }
         self.addSubview(errorMessageLabel)
 
-
+        
         inputBorderView.snp.makeConstraints { make in
             make.top.equalTo(inputTitleView.snp.centerY)
             make.left.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
             make.height.equalTo(48)
         }
-
+        
         inputTextField.snp.makeConstraints { make in
             make.left.right.bottom.equalTo(inputBorderView)
             make.top.equalTo(inputBorderView.snp.top).offset(3)
         }
         self.sizeToFit()
         setupInputFieldLayout()
-        updateThemeColors()
         updateStatus(status: .normal)
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        updateThemeColors()
-    }
 
-    private func updateThemeColors() {
-        inputTitleLabel.textColor = .themeTextPrimary
-        inputTextField.textColor = .themeTextPrimary
-    }
-
-    
-    func updateStatus(status: SummitInputTextFieldStatus) {
+    func updateStatus(status: SoulverseTextFieldStatus) {
         if status == self.status {
             return
         }
@@ -178,8 +169,8 @@ class SummitInputTextField: UIView {
         switch status {
         case .normal:
             inputBorderView.layer.borderColor = UIColor.disableGray.cgColor
-            inputTitleLabel.textColor = .primaryBlack
-            
+            inputTitleLabel.textColor = .themeTextPrimary
+
             errorMessageLabel.isHidden = true
             errorMessageLabel.snp.removeConstraints()
             inputBorderView.snp.remakeConstraints { make in
@@ -187,11 +178,11 @@ class SummitInputTextField: UIView {
                 make.top.equalTo(self.inputTitleView.snp.centerY)
                 make.height.equalTo(48)
             }
-            
+
         case .errorWithoutMessage:
             inputBorderView.layer.borderColor = UIColor.primaryOrange.cgColor
             inputTitleLabel.textColor = .primaryOrange
-            
+
             errorMessageLabel.isHidden = true
             errorMessageLabel.snp.removeConstraints()
             inputBorderView.snp.remakeConstraints { make in
@@ -199,12 +190,12 @@ class SummitInputTextField: UIView {
                 make.top.equalTo(self.inputTitleView.snp.centerY)
                 make.height.equalTo(48)
             }
-            
-            
+
+
         case .errorWithMessage(let errorMessage):
             inputBorderView.layer.borderColor = UIColor.primaryOrange.cgColor
             inputTitleLabel.textColor = .primaryOrange
-            
+
             inputBorderView.snp.remakeConstraints { make in
                 make.left.centerX.equalToSuperview()
                 //make.bottom.equalToSuperview().offset(-13)
@@ -218,10 +209,10 @@ class SummitInputTextField: UIView {
                 make.height.equalTo(17)
             }
             errorMessageLabel.isHidden = false
-            
+
         case .highlight:
             inputBorderView.layer.borderColor = UIColor.themePrimary.cgColor
-            inputTitleLabel.textColor = .themePrimary
+            inputTitleLabel.textColor = .themeTextPrimary
 
             errorMessageLabel.isHidden = true
             errorMessageLabel.snp.removeConstraints()
@@ -230,7 +221,7 @@ class SummitInputTextField: UIView {
                 make.top.equalTo(self.inputTitleView.snp.centerY)
                 make.height.equalTo(48)
             }
-            
+
         }
         self.status = status
         //self.sizeToFit()
@@ -280,7 +271,7 @@ class SummitInputTextField: UIView {
     
 }
 
-extension SummitInputTextField: UITextFieldDelegate {
+extension SoulverseTextField: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         updateStatus(status: .highlight)

@@ -108,6 +108,13 @@ extension UniverseTheme {
     var buttonDisabledText: UIColor {
         UIColor(red: 136.0/255.0, green: 143.0/255.0, blue: 155.0/255.0, alpha: 1.0)
     }
+
+    var buttonGradientColors: [UIColor] {
+        [
+            UIColor(red: 107.0/255.0, green: 46.0/255.0, blue: 157.0/255.0, alpha: 1.0),
+            UIColor(red: 93.0/255.0, green: 219.0/255.0, blue: 207.0/255.0, alpha: 1.0)
+        ]
+    }
 }
 
 // MARK: - Navigation Bar

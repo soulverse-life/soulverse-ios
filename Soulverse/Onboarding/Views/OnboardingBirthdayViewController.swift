@@ -2,7 +2,6 @@
 //  OnboardingBirthdayViewController.swift
 //  Soulverse
 //
-//  Created by Claude on 2024.
 //
 
 import UIKit
@@ -12,32 +11,30 @@ protocol OnboardingBirthdayViewControllerDelegate: AnyObject {
     func onboardingBirthdayViewController(_ viewController: OnboardingBirthdayViewController, didSelectBirthday date: Date)
 }
 
-class OnboardingBirthdayViewController: UIViewController {
+class OnboardingBirthdayViewController: ViewController {
 
     // MARK: - UI Components
 
-    private lazy var progressView: UIProgressView = {
-        let progress = UIProgressView(progressViewStyle: .default)
-        progress.progressTintColor = .black
-        progress.trackTintColor = .lightGray
-        progress.progress = 0.4 // Step 3 of 5
-        return progress
+    private lazy var progressView: SoulverseProgressBar = {
+        let progressBar = SoulverseProgressBar(totalSteps: 5)
+        progressBar.setProgress(currentStep: 2)
+        return progressBar
     }()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Birth Star"
+        label.text = NSLocalizedString("onboarding_birthday_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .light)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
     }()
 
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Every soul is born at a unique\nmoment in the universe."
+        label.text = NSLocalizedString("onboarding_birthday_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 2
         return label
@@ -45,9 +42,9 @@ class OnboardingBirthdayViewController: UIViewController {
 
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Enter your birthday"
+        label.text = NSLocalizedString("onboarding_birthday_instruction", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .medium)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .left
         return label
     }()
@@ -56,6 +53,7 @@ class OnboardingBirthdayViewController: UIViewController {
         let picker = UIPickerView()
         picker.delegate = self
         picker.dataSource = self
+        picker.backgroundColor = .clear
         return picker
     }()
 
@@ -63,6 +61,7 @@ class OnboardingBirthdayViewController: UIViewController {
         let picker = UIPickerView()
         picker.delegate = self
         picker.dataSource = self
+        picker.backgroundColor = .clear
         return picker
     }()
 
@@ -70,6 +69,7 @@ class OnboardingBirthdayViewController: UIViewController {
         let picker = UIPickerView()
         picker.delegate = self
         picker.dataSource = self
+        picker.backgroundColor = .clear
         return picker
     }()
 
@@ -90,24 +90,20 @@ class OnboardingBirthdayViewController: UIViewController {
 
     private lazy var privacyLabel: UILabel = {
         let label = UILabel()
-        label.text = "*This information is used solely for personalized\nexperiences and research analysis — it will not be\nmade public."
+        label.text = NSLocalizedString("onboarding_birthday_privacy_notice", comment: "")
         label.font = .projectFont(ofSize: 11, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .themeTextSecondary
         label.textAlignment = .left
         label.numberOfLines = 3
         return label
     }()
 
-    private lazy var continueButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Continue", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .white
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.black.cgColor
-        button.layer.cornerRadius = 25
-        button.addTarget(self, action: #selector(continueTapped), for: .touchUpInside)
+    private lazy var continueButton: SoulverseButton = {
+        let button = SoulverseButton(
+            title: NSLocalizedString("onboarding_continue_button", comment: ""),
+            style: .primary,
+            delegate: self
+        )
         return button
     }()
 
@@ -115,10 +111,22 @@ class OnboardingBirthdayViewController: UIViewController {
 
     weak var delegate: OnboardingBirthdayViewControllerDelegate?
 
-    private let months = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ]
+    private var months: [String] {
+        return [
+            NSLocalizedString("onboarding_birthday_month_january", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_february", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_march", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_april", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_may", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_june", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_july", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_august", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_september", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_october", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_november", comment: ""),
+            NSLocalizedString("onboarding_birthday_month_december", comment: "")
+        ]
+    }
 
     private var selectedMonth = 6 // June (0-based index)
     private var selectedDay = 15
@@ -150,8 +158,7 @@ class OnboardingBirthdayViewController: UIViewController {
 
         progressView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(4)
+            make.centerX.equalToSuperview()
         }
 
         titleLabel.snp.makeConstraints { make in
@@ -172,14 +179,15 @@ class OnboardingBirthdayViewController: UIViewController {
         pickerStackView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.top.equalTo(instructionLabel.snp.bottom).offset(20)
-            make.height.equalTo(120)
+            make.height.equalTo(140)
         }
 
-        // Add the highlighted selection view
+        // Add the highlighted selection view (behind pickers)
+        view.insertSubview(selectedDateView, belowSubview: pickerStackView)
         selectedDateView.snp.makeConstraints { make in
-            make.left.right.equalTo(pickerStackView)
+            make.left.right.equalTo(pickerStackView).inset(10)
             make.centerY.equalTo(pickerStackView)
-            make.height.equalTo(40)
+            make.height.equalTo(44)
         }
 
         privacyLabel.snp.makeConstraints { make in
@@ -199,20 +207,6 @@ class OnboardingBirthdayViewController: UIViewController {
         monthPickerView.selectRow(selectedMonth, inComponent: 0, animated: false)
         dayPickerView.selectRow(selectedDay - 1, inComponent: 0, animated: false)
         yearPickerView.selectRow(currentYear - selectedYear, inComponent: 0, animated: false)
-    }
-
-    // MARK: - Actions
-
-    @objc private func continueTapped() {
-        let calendar = Calendar.current
-        var dateComponents = DateComponents()
-        dateComponents.year = selectedYear
-        dateComponents.month = selectedMonth + 1 // Convert to 1-based
-        dateComponents.day = selectedDay
-
-        if let date = calendar.date(from: dateComponents) {
-            delegate?.onboardingBirthdayViewController(self, didSelectBirthday: date)
-        }
     }
 
     // MARK: - Helper Methods
@@ -252,17 +246,36 @@ extension OnboardingBirthdayViewController: UIPickerViewDataSource, UIPickerView
         }
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label: UILabel
+        if let reuseLabel = view as? UILabel {
+            label = reuseLabel
+        } else {
+            label = UILabel()
+            label.textAlignment = .center
+            label.font = .projectFont(ofSize: 18, weight: .regular)
+        }
+
+        let text: String
         switch pickerView {
         case monthPickerView:
-            return months[row]
+            text = months[row]
         case dayPickerView:
-            return "\(row + 1)"
+            text = "\(row + 1)"
         case yearPickerView:
-            return "\(currentYear - row)"
+            text = "\(currentYear - row)"
         default:
-            return nil
+            text = ""
         }
+
+        label.text = text
+        label.textColor = .themeTextPrimary
+
+        return label
+    }
+
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 44
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -283,6 +296,22 @@ extension OnboardingBirthdayViewController: UIPickerViewDataSource, UIPickerView
             dayPickerView.reloadAllComponents() // Reload days when year changes (for leap years)
         default:
             break
+        }
+    }
+}
+
+// MARK: - SoulverseButtonDelegate
+
+extension OnboardingBirthdayViewController: SoulverseButtonDelegate {
+    func clickSoulverseButton(_ button: SoulverseButton) {
+        let calendar = Calendar.current
+        var dateComponents = DateComponents()
+        dateComponents.year = selectedYear
+        dateComponents.month = selectedMonth + 1 // Convert to 1-based
+        dateComponents.day = selectedDay
+
+        if let date = calendar.date(from: dateComponents) {
+            delegate?.onboardingBirthdayViewController(self, didSelectBirthday: date)
         }
     }
 }

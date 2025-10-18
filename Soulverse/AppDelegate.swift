@@ -10,16 +10,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var appTracker: CoreTracker?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+
         setTrackingAgent()
-        
+
         application.beginReceivingRemoteControlEvents()
-        
+
 
         UNUserNotificationCenter.current().delegate = self
-        
+
         //UIApplication.shared.registerForRemoteNotifications()
-        
+
         setDefaultToastAppearance()
         checkNotificationPermission()
         return true

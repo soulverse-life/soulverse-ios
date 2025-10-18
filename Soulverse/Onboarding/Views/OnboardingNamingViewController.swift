@@ -2,7 +2,6 @@
 //  OnboardingNamingViewController.swift
 //  Soulverse
 //
-//  Created by Claude on 2024.
 //
 
 import UIKit
@@ -12,32 +11,30 @@ protocol OnboardingNamingViewControllerDelegate: AnyObject {
     func onboardingNamingViewController(_ viewController: OnboardingNamingViewController, didCompletePlanetName planetName: String, emoPetName: String)
 }
 
-class OnboardingNamingViewController: UIViewController {
+class OnboardingNamingViewController: ViewController {
 
     // MARK: - UI Components
 
-    private lazy var progressView: UIProgressView = {
-        let progress = UIProgressView(progressViewStyle: .default)
-        progress.progressTintColor = .black
-        progress.trackTintColor = .lightGray
-        progress.progress = 0.8 // Step 5 of 5
-        return progress
+    private lazy var progressView: SoulverseProgressBar = {
+        let progressBar = SoulverseProgressBar(totalSteps: 5)
+        progressBar.setProgress(currentStep: 4)
+        return progressBar
     }()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Naming"
+        label.text = NSLocalizedString("onboarding_naming_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .light)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
     }()
 
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Name your world, name your friend.\nGive your planet a cosmic identity\nand your emopet a loyal name to join\nyou on this journey."
+        label.text = NSLocalizedString("onboarding_naming_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 4
         return label
@@ -52,16 +49,16 @@ class OnboardingNamingViewController: UIViewController {
 
     private lazy var planetNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Name your planet"
+        label.text = NSLocalizedString("onboarding_naming_planet_label", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .medium)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .left
         return label
     }()
 
     private lazy var planetNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Vancouver"
+        textField.placeholder = NSLocalizedString("onboarding_naming_planet_placeholder", comment: "")
         textField.font = .projectFont(ofSize: 16, weight: .regular)
         textField.borderStyle = .roundedRect
         textField.layer.borderWidth = 1
@@ -98,16 +95,16 @@ class OnboardingNamingViewController: UIViewController {
 
     private lazy var emoPetNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Name your EmoPet"
+        label.text = NSLocalizedString("onboarding_naming_emopet_label", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .medium)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .left
         return label
     }()
 
     private lazy var emoPetNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Pocky"
+        textField.placeholder = NSLocalizedString("onboarding_naming_emopet_placeholder", comment: "")
         textField.font = .projectFont(ofSize: 16, weight: .regular)
         textField.borderStyle = .roundedRect
         textField.layer.borderWidth = 1
@@ -118,16 +115,12 @@ class OnboardingNamingViewController: UIViewController {
         return textField
     }()
 
-    private lazy var continueButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Continue", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .white
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.black.cgColor
-        button.layer.cornerRadius = 25
-        button.addTarget(self, action: #selector(continueTapped), for: .touchUpInside)
+    private lazy var continueButton: SoulverseButton = {
+        let button = SoulverseButton(
+            title: NSLocalizedString("onboarding_continue_button", comment: ""),
+            style: .primary,
+            delegate: self
+        )
         return button
     }()
 
@@ -161,8 +154,7 @@ class OnboardingNamingViewController: UIViewController {
 
         progressView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(4)
+            make.centerX.equalToSuperview()
         }
 
         titleLabel.snp.makeConstraints { make in
@@ -227,13 +219,6 @@ class OnboardingNamingViewController: UIViewController {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
-
-    @objc private func continueTapped() {
-        let planetName = planetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "Vancouver"
-        let emoPetName = emoPetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "Pocky"
-
-        delegate?.onboardingNamingViewController(self, didCompletePlanetName: planetName, emoPetName: emoPetName)
-    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -247,5 +232,16 @@ extension OnboardingNamingViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return true
+    }
+}
+
+// MARK: - SoulverseButtonDelegate
+
+extension OnboardingNamingViewController: SoulverseButtonDelegate {
+    func clickSoulverseButton(_ button: SoulverseButton) {
+        let planetName = planetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? NSLocalizedString("onboarding_naming_planet_placeholder", comment: "")
+        let emoPetName = emoPetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? NSLocalizedString("onboarding_naming_emopet_placeholder", comment: "")
+
+        delegate?.onboardingNamingViewController(self, didCompletePlanetName: planetName, emoPetName: emoPetName)
     }
 }

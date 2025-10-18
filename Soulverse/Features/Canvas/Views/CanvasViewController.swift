@@ -34,15 +34,13 @@ class CanvasViewController: ViewController {
         return label
     }()
     
-    private lazy var startDrawingButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("start_now", comment: ""), for: .normal)
-        button.titleLabel?.font = UIFont.projectFont(ofSize: 18, weight: .medium)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 12
+    private lazy var startDrawingButton: SoulverseButton = {
+        let button = SoulverseButton(
+            title: NSLocalizedString("start_now", comment: ""),
+            style: .gradient,
+            delegate: self
+        )
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(startDrawingTapped), for: .touchUpInside)
         return button
     }()
     
@@ -98,8 +96,11 @@ class CanvasViewController: ViewController {
         }
     }
     
-    // MARK: - Actions
-    @objc private func startDrawingTapped() {
+}
+
+// MARK: - SoulverseButtonDelegate
+extension CanvasViewController: SoulverseButtonDelegate {
+    func clickSoulverseButton(_ button: SoulverseButton) {
         AppCoordinator.openDrawingCanvas(from: self)
     }
 }

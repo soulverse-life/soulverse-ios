@@ -31,10 +31,16 @@ final class OnboardingCoordinator {
     // MARK: - Public Methods
 
     func start() {
-        showSignInScreen()
+        showLandingScreen()
     }
 
     // MARK: - Navigation
+
+    private func showLandingScreen() {
+        let viewController = OnboardingLandingViewController()
+        viewController.delegate = self
+        navigationController.pushViewController(viewController, animated: true)
+    }
 
     private func showSignInScreen() {
         let viewController = OnboardingSignInViewController()
@@ -69,9 +75,11 @@ final class OnboardingCoordinator {
     // MARK: - Authentication
 
     private func handleGoogleAuthentication() {
-        //Todo: fill in require setting for google sign in
         
-        return
+        handleAuthenticationSuccess()
+    
+        /*
+        //Todo: fill in require setting for google sign in
         googleAuthService.authenticate { [weak self] result in
             guard let self = self else { return }
 
@@ -84,6 +92,7 @@ final class OnboardingCoordinator {
                 self.handleAuthenticationError(result)
             }
         }
+         */
     }
 
     private func handleAppleAuthentication() {
@@ -103,7 +112,7 @@ final class OnboardingCoordinator {
 
     private func handleAuthenticationSuccess() {
         userData.isSignedIn = true
-        User.shared.isLoggedin = true
+        //User.shared.isLoggedin = true
         showBirthdayScreen()
     }
 
@@ -136,6 +145,27 @@ final class OnboardingCoordinator {
 
     private func handleOnboardingCompletion() {
         delegate?.onboardingCoordinatorDidComplete(self, userData: userData)
+    }
+}
+
+// MARK: - OnboardingLandingViewControllerDelegate
+
+extension OnboardingCoordinator: OnboardingLandingViewControllerDelegate {
+
+    func onboardingLandingViewControllerDidAgreeToTerms(_ viewController: OnboardingLandingViewController) {
+        showSignInScreen()
+    }
+
+    func onboardingLandingViewControllerDidTapTermsOfService(_ viewController: OnboardingLandingViewController) {
+        // TODO: Open Terms of Service URL
+        // For now, you can use WebViewController or Safari
+        print("[Onboarding] User tapped Terms of Service")
+    }
+
+    func onboardingLandingViewControllerDidTapPrivacyPolicy(_ viewController: OnboardingLandingViewController) {
+        // TODO: Open Privacy Policy URL
+        // For now, you can use WebViewController or Safari
+        print("[Onboarding] User tapped Privacy Policy")
     }
 }
 
@@ -187,8 +217,8 @@ extension OnboardingCoordinator: OnboardingNamingViewControllerDelegate {
 
 extension OnboardingCoordinator: OnboardingTopicViewControllerDelegate {
 
-    func onboardingTopicViewController(_ viewController: OnboardingTopicViewController, didSelectTopics topics: [TopicOption]) {
-        userData.selectedTopics = topics
+    func onboardingTopicViewController(_ viewController: OnboardingTopicViewController, didSelectTopic topic: TopicOption) {
+        userData.selectedTopic = topic
         submitOnboardingData()
     }
 }
