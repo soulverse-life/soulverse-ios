@@ -2,7 +2,6 @@
 //  OnboardingNamingViewController.swift
 //  Soulverse
 //
-//  Created by Claude on 2024.
 //
 
 import UIKit
@@ -12,7 +11,7 @@ protocol OnboardingNamingViewControllerDelegate: AnyObject {
     func onboardingNamingViewController(_ viewController: OnboardingNamingViewController, didCompletePlanetName planetName: String, emoPetName: String)
 }
 
-class OnboardingNamingViewController: UIViewController {
+class OnboardingNamingViewController: ViewController {
 
     // MARK: - UI Components
 
@@ -26,7 +25,7 @@ class OnboardingNamingViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_naming_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .light)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
     }()
@@ -35,7 +34,7 @@ class OnboardingNamingViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_naming_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 4
         return label
@@ -52,7 +51,7 @@ class OnboardingNamingViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_naming_planet_label", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .medium)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .left
         return label
     }()
@@ -98,7 +97,7 @@ class OnboardingNamingViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_naming_emopet_label", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .medium)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .left
         return label
     }()

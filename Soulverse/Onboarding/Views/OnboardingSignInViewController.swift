@@ -2,7 +2,6 @@
 //  OnboardingSignInViewController.swift
 //  Soulverse
 //
-//  Created by Claude on 2024.
 //
 
 import UIKit
@@ -13,7 +12,7 @@ protocol OnboardingSignInViewControllerDelegate: AnyObject {
     func didTapAppleSignIn(_ viewController: OnboardingSignInViewController)
 }
 
-class OnboardingSignInViewController: UIViewController {
+class OnboardingSignInViewController: ViewController {
 
     // MARK: - UI Components
 
@@ -27,7 +26,7 @@ class OnboardingSignInViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_signin_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .light)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
     }()
@@ -36,7 +35,7 @@ class OnboardingSignInViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_signin_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .themeTextSecondary
         label.textAlignment = .center
         return label
     }()
@@ -73,8 +72,6 @@ class OnboardingSignInViewController: UIViewController {
     // MARK: - Setup
 
     private func setupUI() {
-        view.backgroundColor = .white
-
         view.addSubview(progressView)
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)

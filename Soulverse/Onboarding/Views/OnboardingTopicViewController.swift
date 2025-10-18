@@ -2,7 +2,6 @@
 //  OnboardingTopicViewController.swift
 //  Soulverse
 //
-//  Created by Claude on 2024.
 //
 
 import UIKit
@@ -44,7 +43,7 @@ protocol OnboardingTopicViewControllerDelegate: AnyObject {
     func onboardingTopicViewController(_ viewController: OnboardingTopicViewController, didSelectTopic topic: TopicOption)
 }
 
-class OnboardingTopicViewController: UIViewController {
+class OnboardingTopicViewController: ViewController {
 
     // MARK: - UI Components
 
@@ -58,7 +57,7 @@ class OnboardingTopicViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_topics_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .light)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
     }()
@@ -67,7 +66,7 @@ class OnboardingTopicViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_topics_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 3
         return label
@@ -100,6 +99,11 @@ class OnboardingTopicViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupTopicButtons()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateThemeColors()
     }
 
     // MARK: - Setup
@@ -178,14 +182,11 @@ class OnboardingTopicViewController: UIViewController {
     }
 
     private func createTopicButton(for topic: TopicOption) -> UIButton {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .custom)
         button.setTitle(topic.localizedTitle, for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.setTitleColor(.white, for: .selected)
+        button.setTitle(topic.localizedTitle, for: .selected)
         button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .white
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.cornerRadius = 30
 
         button.addTarget(self, action: #selector(topicButtonTapped(_:)), for: .touchUpInside)
@@ -196,25 +197,46 @@ class OnboardingTopicViewController: UIViewController {
         return button
     }
 
+    private func applyButtonTheme(_ button: UIButton, isSelected: Bool) {
+        if isSelected {
+            button.backgroundColor = .themeButtonPrimaryBackground
+            button.setTitleColor(.themeButtonPrimaryText, for: .normal)
+            button.setTitleColor(.themeButtonPrimaryText, for: .selected)
+            button.layer.borderColor = UIColor.themeButtonPrimaryBackground.cgColor
+        } else {
+            button.backgroundColor = .themeButtonDisabledBackground
+            button.setTitleColor(.themeButtonDisabledText, for: .normal)
+            button.setTitleColor(.themeButtonPrimaryText, for: .selected)
+            button.layer.borderColor = UIColor.themeButtonDisabledBackground.cgColor
+        }
+    }
+
     private func selectTopicButton(_ button: UIButton, for topic: TopicOption) {
         // Deselect all buttons first
         topicButtons.forEach { btn in
             btn.isSelected = false
-            btn.backgroundColor = .white
-            btn.setTitleColor(.black, for: .normal)
-            btn.layer.borderColor = UIColor.lightGray.cgColor
+            applyButtonTheme(btn, isSelected: false)
         }
 
         // Select the tapped button
         button.isSelected = true
-        button.backgroundColor = .black
-        button.setTitleColor(.white, for: .normal)
-        button.layer.borderColor = UIColor.black.cgColor
+        applyButtonTheme(button, isSelected: true)
 
         selectedTopic = topic
 
         // Enable continue button
         continueButton.isEnabled = true
+    }
+
+    private func updateThemeColors() {
+        // Update title and subtitle colors
+        titleLabel.textColor = .themeTextPrimary
+        subtitleLabel.textColor = .themeTextSecondary
+
+        // Update all topic buttons
+        topicButtons.forEach { button in
+            applyButtonTheme(button, isSelected: button.isSelected)
+        }
     }
 
     // MARK: - Actions

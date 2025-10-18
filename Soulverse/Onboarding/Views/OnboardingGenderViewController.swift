@@ -2,7 +2,6 @@
 //  OnboardingGenderViewController.swift
 //  Soulverse
 //
-//  Created by Claude on 2024.
 //
 
 import UIKit
@@ -35,7 +34,7 @@ protocol OnboardingGenderViewControllerDelegate: AnyObject {
     func onboardingGenderViewController(_ viewController: OnboardingGenderViewController, didSelectGender gender: GenderOption)
 }
 
-class OnboardingGenderViewController: UIViewController {
+class OnboardingGenderViewController: ViewController {
 
     // MARK: - UI Components
 
@@ -49,7 +48,7 @@ class OnboardingGenderViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_gender_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .light)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
     }()
@@ -58,7 +57,7 @@ class OnboardingGenderViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_gender_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 2
         return label
@@ -68,7 +67,7 @@ class OnboardingGenderViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_gender_instruction", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .medium)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .left
         return label
     }()

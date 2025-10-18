@@ -2,7 +2,6 @@
 //  OnboardingBirthdayViewController.swift
 //  Soulverse
 //
-//  Created by Claude on 2024.
 //
 
 import UIKit
@@ -12,7 +11,7 @@ protocol OnboardingBirthdayViewControllerDelegate: AnyObject {
     func onboardingBirthdayViewController(_ viewController: OnboardingBirthdayViewController, didSelectBirthday date: Date)
 }
 
-class OnboardingBirthdayViewController: UIViewController {
+class OnboardingBirthdayViewController: ViewController {
 
     // MARK: - UI Components
 
@@ -26,7 +25,7 @@ class OnboardingBirthdayViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_birthday_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .light)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
     }()
@@ -35,7 +34,7 @@ class OnboardingBirthdayViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_birthday_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 2
         return label
@@ -45,7 +44,7 @@ class OnboardingBirthdayViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_birthday_instruction", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .medium)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .left
         return label
     }()
@@ -93,7 +92,7 @@ class OnboardingBirthdayViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_birthday_privacy_notice", comment: "")
         label.font = .projectFont(ofSize: 11, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .themeTextSecondary
         label.textAlignment = .left
         label.numberOfLines = 3
         return label
@@ -270,7 +269,7 @@ extension OnboardingBirthdayViewController: UIPickerViewDataSource, UIPickerView
         }
 
         label.text = text
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
 
         return label
     }

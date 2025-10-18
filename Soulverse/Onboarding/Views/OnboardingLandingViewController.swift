@@ -2,7 +2,6 @@
 //  OnboardingLandingViewController.swift
 //  Soulverse
 //
-//  Created by Claude on 2025.
 //
 
 import UIKit
@@ -14,7 +13,7 @@ protocol OnboardingLandingViewControllerDelegate: AnyObject {
     func onboardingLandingViewControllerDidTapPrivacyPolicy(_ viewController: OnboardingLandingViewController)
 }
 
-class OnboardingLandingViewController: UIViewController {
+class OnboardingLandingViewController: ViewController {
 
     // MARK: - UI Components
 
@@ -37,7 +36,7 @@ class OnboardingLandingViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_landing_welcome_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .light)
-        label.textColor = .black
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -47,7 +46,7 @@ class OnboardingLandingViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_landing_welcome_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -66,7 +65,7 @@ class OnboardingLandingViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "square"), for: .normal)
         button.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
-        button.tintColor = .black
+        button.tintColor = .themeTextPrimary
         button.addTarget(self, action: #selector(checkboxTapped), for: .touchUpInside)
         return button
     }()
@@ -84,7 +83,7 @@ class OnboardingLandingViewController: UIViewController {
             string: fullText,
             attributes: [
                 .font: UIFont.projectFont(ofSize: 14, weight: .regular),
-                .foregroundColor: UIColor.black
+                .foregroundColor: UIColor.themeTextPrimary
             ]
         )
 
@@ -92,7 +91,7 @@ class OnboardingLandingViewController: UIViewController {
         if let termsRange = fullText.range(of: termsText) {
             let nsRange = NSRange(termsRange, in: fullText)
             attributedString.addAttributes([
-                .foregroundColor: UIColor.black,
+                .foregroundColor: UIColor.themeTextPrimary,
                 .underlineStyle: NSUnderlineStyle.single.rawValue
             ], range: nsRange)
         }
@@ -101,7 +100,7 @@ class OnboardingLandingViewController: UIViewController {
         if let privacyRange = fullText.range(of: privacyText) {
             let nsRange = NSRange(privacyRange, in: fullText)
             attributedString.addAttributes([
-                .foregroundColor: UIColor.black,
+                .foregroundColor: UIColor.themeTextPrimary,
                 .underlineStyle: NSUnderlineStyle.single.rawValue
             ], range: nsRange)
         }
@@ -140,8 +139,6 @@ class OnboardingLandingViewController: UIViewController {
     // MARK: - Setup
 
     private func setupUI() {
-        view.backgroundColor = .white
-
         view.addSubview(logoImageView)
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
@@ -213,12 +210,12 @@ class OnboardingLandingViewController: UIViewController {
         let bulletLabel = UILabel()
         bulletLabel.text = "•"
         bulletLabel.font = .projectFont(ofSize: 16, weight: .regular)
-        bulletLabel.textColor = .black
+        bulletLabel.textColor = .themeTextPrimary
 
         let textLabel = UILabel()
         textLabel.text = text
         textLabel.font = .projectFont(ofSize: 16, weight: .regular)
-        textLabel.textColor = .black
+        textLabel.textColor = .themeTextPrimary
         textLabel.numberOfLines = 0
 
         containerView.addSubview(bulletLabel)
