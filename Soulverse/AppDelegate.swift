@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //UIApplication.shared.registerForRemoteNotifications()
         
         setDefaultToastAppearance()
-        setNavigationBarAppearance()
         checkNotificationPermission()
         return true
     }
@@ -42,11 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appearance.shadowOffset = CGSize(width: 0, height: 2)
         appearance.shadowRadius = 4
         
-    }
-    
-    private func setNavigationBarAppearance() {
-        
-        UINavigationBar.appearance().tintColor = .themeMainColor
     }
     
     

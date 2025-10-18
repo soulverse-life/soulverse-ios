@@ -150,6 +150,16 @@
 		7922ECDC2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBD2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift */; };
 		7922ECE22E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */; };
 		7922ECE32E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */; };
+		794B59F32E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
+		794B59F42E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
+		794B59FA2E9EA436006CF069 /* UniverseTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F82E9EA436006CF069 /* UniverseTheme.swift */; };
+		794B59FB2E9EA436006CF069 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F52E9EA436006CF069 /* GradientView.swift */; };
+		794B59FC2E9EA436006CF069 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F72E9EA436006CF069 /* Theme.swift */; };
+		794B59FD2E9EA436006CF069 /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F62E9EA436006CF069 /* SoulTheme.swift */; };
+		794B59FE2E9EA436006CF069 /* UniverseTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F82E9EA436006CF069 /* UniverseTheme.swift */; };
+		794B59FF2E9EA436006CF069 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F52E9EA436006CF069 /* GradientView.swift */; };
+		794B5A002E9EA436006CF069 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F72E9EA436006CF069 /* Theme.swift */; };
+		794B5A012E9EA436006CF069 /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F62E9EA436006CF069 /* SoulTheme.swift */; };
 		7951A9B92E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
@@ -329,6 +339,11 @@
 		7922ECC12E993B8D0086B7CA /* OnboardingTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopicViewController.swift; sourceTree = "<group>"; };
 		7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleUserAuthService.swift; sourceTree = "<group>"; };
 		7922ECE42E9A4E010086B7CA /* SoulverseRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SoulverseRelease.entitlements; sourceTree = "<group>"; };
+		794B59F22E9EA3E1006CF069 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		794B59F52E9EA436006CF069 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		794B59F62E9EA436006CF069 /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
+		794B59F72E9EA436006CF069 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		794B59F82E9EA436006CF069 /* UniverseTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseTheme.swift; sourceTree = "<group>"; };
 		7951A9B62E532C85006EB0EC /* SoulverseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButton.swift; sourceTree = "<group>"; };
 		7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseNavigationView.swift; sourceTree = "<group>"; };
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
@@ -576,6 +591,7 @@
 		790AD1E82DF9E43200C33CD1 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				794B59F22E9EA3E1006CF069 /* ThemeManager.swift */,
 				790AD1E62DF9E43200C33CD1 /* AppCoordinator.swift */,
 				790AD1E72DF9E43200C33CD1 /* User.swift */,
 			);
@@ -651,6 +667,7 @@
 		790AD2052DF9E43200C33CD1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				794B59F92E9EA436006CF069 /* Theme */,
 				790AD1E52DF9E43200C33CD1 /* Analytics */,
 				790AD1E82DF9E43200C33CD1 /* Manager */,
 				790AD1F92DF9E43200C33CD1 /* Service */,
@@ -797,6 +814,17 @@
 				7922ECC22E993B8D0086B7CA /* Views */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		794B59F92E9EA436006CF069 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				794B59F52E9EA436006CF069 /* GradientView.swift */,
+				794B59F62E9EA436006CF069 /* SoulTheme.swift */,
+				794B59F72E9EA436006CF069 /* Theme.swift */,
+				794B59F82E9EA436006CF069 /* UniverseTheme.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		7951A9C12E5376B5006EB0EC /* Presenter */ = {
@@ -1197,13 +1225,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1306,13 +1330,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1327,13 +1347,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1348,13 +1364,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1385,6 +1397,10 @@
 				798687F32E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */,
 				790AD21D2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */,
 				790AD21F2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */,
+				794B59FE2E9EA436006CF069 /* UniverseTheme.swift in Sources */,
+				794B59FF2E9EA436006CF069 /* GradientView.swift in Sources */,
+				794B5A002E9EA436006CF069 /* Theme.swift in Sources */,
+				794B5A012E9EA436006CF069 /* SoulTheme.swift in Sources */,
 				790AD2202DF9E43200C33CD1 /* UIButton+Extensions.swift in Sources */,
 				7951AA002E537704006EB0EC /* ToolsViewPresenter.swift in Sources */,
 				798688112E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */,
@@ -1395,6 +1411,7 @@
 				790AD2232DF9E43200C33CD1 /* String+Extension.swift in Sources */,
 				790AD2242DF9E43200C33CD1 /* SceneDelegate.swift in Sources */,
 				790AD2252DF9E43200C33CD1 /* Array+Extensions.swift in Sources */,
+				794B59F32E9EA3E1006CF069 /* ThemeManager.swift in Sources */,
 				790AD2262DF9E43200C33CD1 /* TrackingEventType.swift in Sources */,
 				790AD22A2DF9E43200C33CD1 /* NotificationEmptyView.swift in Sources */,
 				790AD22D2DF9E43200C33CD1 /* TimeInterval+Extensions.swift in Sources */,
@@ -1476,6 +1493,10 @@
 				798687F02E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */,
 				790AD2CB2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */,
 				790AD2CD2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */,
+				794B59FA2E9EA436006CF069 /* UniverseTheme.swift in Sources */,
+				794B59FB2E9EA436006CF069 /* GradientView.swift in Sources */,
+				794B59FC2E9EA436006CF069 /* Theme.swift in Sources */,
+				794B59FD2E9EA436006CF069 /* SoulTheme.swift in Sources */,
 				790AD2CE2DF9E43200C33CD1 /* UIButton+Extensions.swift in Sources */,
 				7951AA032E537704006EB0EC /* ToolsViewPresenter.swift in Sources */,
 				798688102E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */,
@@ -1486,6 +1507,7 @@
 				790AD2D12DF9E43200C33CD1 /* String+Extension.swift in Sources */,
 				790AD2D22DF9E43200C33CD1 /* SceneDelegate.swift in Sources */,
 				790AD2D32DF9E43200C33CD1 /* Array+Extensions.swift in Sources */,
+				794B59F42E9EA3E1006CF069 /* ThemeManager.swift in Sources */,
 				790AD2D42DF9E43200C33CD1 /* TrackingEventType.swift in Sources */,
 				790AD2D82DF9E43200C33CD1 /* NotificationEmptyView.swift in Sources */,
 				790AD2DB2DF9E43200C33CD1 /* TimeInterval+Extensions.swift in Sources */,

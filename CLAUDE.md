@@ -2,6 +2,17 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 📚 Documentation
+
+**For comprehensive development guides, see the [Documentation](Documentation/) folder:**
+
+- **[Documentation/DEVELOPMENT_GUIDELINES.md](Documentation/DEVELOPMENT_GUIDELINES.md)** - **READ THIS FIRST**
+  - Core development principles and code style
+  - ⚠️ **Important**: Always reuse existing components before creating new ones
+- **[Documentation/THEMING_GUIDE.md](Documentation/THEMING_GUIDE.md)** - Complete theming system guide
+- **[Documentation/THEME_TESTING_EXAMPLE.swift](Documentation/THEME_TESTING_EXAMPLE.swift)** - Theme testing examples
+- **[Documentation/README.md](Documentation/README.md)** - Documentation index
+
 ## Project Overview
 
 Soulverse is an iOS application built with Swift and UIKit, following a VIPER-inspired architecture with MVP (Model-View-Presenter) patterns. The app appears to be a spiritual/wellness platform with features including:

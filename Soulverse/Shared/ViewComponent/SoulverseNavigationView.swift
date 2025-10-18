@@ -34,23 +34,23 @@ struct SoulverseNavigationItem {
         switch type {
         case .button(let title, let image, let action):
             let button = UIButton(type: .system)
-            
+
             if let title = title {
                 button.setTitle(title, for: .normal)
                 button.titleLabel?.font = .projectFont(ofSize: 16, weight: .medium)
-                button.setTitleColor(.primaryBlack, for: .normal)
+                button.setTitleColor(.themeNavigationText, for: .normal)
             }
-            
+
             if let image = image {
                 button.setImage(image, for: .normal)
-                button.tintColor = .primaryBlack
+                button.tintColor = .themeNavigationText
             }
-            
+
             // Store action in a way that can be called later
             button.addAction(UIAction { _ in action() }, for: .touchUpInside)
-            
+
             return button
-            
+
         case .customView(let view):
             return view
         }
@@ -81,7 +81,6 @@ class SoulverseNavigationView: UIView {
         label.numberOfLines = 1
         label.font = .projectFont(ofSize: 17, weight: .semibold)
         label.textAlignment = .center
-        label.textColor = .primaryBlack
         return label
     }()
     
@@ -115,18 +114,18 @@ class SoulverseNavigationView: UIView {
         // Add containers directly to main view
         addSubview(centerContainer)
         addSubview(rightContainer)
-        
+
         // Setup height constraint
         self.snp.makeConstraints { make in
             make.height.equalTo(ViewComponentConstants.navigationBarHeight)
         }
-        
+
         // Setup center container with title
         centerContainer.addSubview(navigationTitle)
         navigationTitle.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
+
         // Center container constraints
         centerContainer.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -134,13 +133,26 @@ class SoulverseNavigationView: UIView {
             make.left.greaterThanOrEqualToSuperview().inset(60) // Space for back button
             make.right.lessThanOrEqualTo(rightContainer.snp.left).offset(-8)
         }
-        
+
         // Right container constraints
         rightContainer.snp.makeConstraints { make in
             make.right.equalToSuperview()
             make.centerY.equalToSuperview()
             make.width.lessThanOrEqualTo(120) // Max width for right items
         }
+
+        // Apply theme colors
+        updateThemeColors()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // Update colors in case theme changed
+        updateThemeColors()
+    }
+
+    private func updateThemeColors() {
+        navigationTitle.textColor = .themeNavigationText
     }
     
     private func configureWithConfig() {

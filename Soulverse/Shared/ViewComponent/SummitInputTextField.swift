@@ -65,21 +65,19 @@ class SummitInputTextField: UIView {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = .projectFont(ofSize: 12.0, weight: .regular)
-        label.textColor = .primaryBlack
         label.textAlignment = .center
         return label
     }()
-    
+
     private lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.font = .projectFont(ofSize: 14.0, weight: .regular)
-        textField.textColor = .primaryBlack
         textField.autocapitalizationType = .none
         textField.delegate = self
         textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         textField.setLeftPaddingPoints(20)
         textField.setRightPaddingPoints(10)
-        
+
         return textField
     }()
     
@@ -124,17 +122,17 @@ class SummitInputTextField: UIView {
     }
     
     private func setupView() {
-        
+
         self.addSubview(inputBorderView)
         inputBorderView.addSubview(inputTextField)
-        
+
         self.addSubview(inputTitleView)
         inputTitleView.addSubview(inputTitleLabel)
         inputTitleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.equalToSuperview().inset(10)
         }
-        
+
         inputTitleLabel.text = title
         inputTitleLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
@@ -143,21 +141,32 @@ class SummitInputTextField: UIView {
         }
         self.addSubview(errorMessageLabel)
 
-        
+
         inputBorderView.snp.makeConstraints { make in
             make.top.equalTo(inputTitleView.snp.centerY)
             make.left.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
             make.height.equalTo(48)
         }
-        
+
         inputTextField.snp.makeConstraints { make in
             make.left.right.bottom.equalTo(inputBorderView)
             make.top.equalTo(inputBorderView.snp.top).offset(3)
         }
         self.sizeToFit()
         setupInputFieldLayout()
+        updateThemeColors()
         updateStatus(status: .normal)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateThemeColors()
+    }
+
+    private func updateThemeColors() {
+        inputTitleLabel.textColor = .themeTextPrimary
+        inputTextField.textColor = .themeTextPrimary
     }
 
     
@@ -211,10 +220,9 @@ class SummitInputTextField: UIView {
             errorMessageLabel.isHidden = false
             
         case .highlight:
-            inputBorderView.layer.borderColor = UIColor.themeMainColor.cgColor
-            inputTitleLabel.textColor = .themeMainColor
-            inputTitleLabel.textColor = .primaryBlack
-            
+            inputBorderView.layer.borderColor = UIColor.themePrimary.cgColor
+            inputTitleLabel.textColor = .themePrimary
+
             errorMessageLabel.isHidden = true
             errorMessageLabel.snp.removeConstraints()
             inputBorderView.snp.remakeConstraints { make in

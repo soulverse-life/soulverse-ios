@@ -17,11 +17,12 @@ class InnerCosmoViewController: ViewController {
     private lazy var tableView: UITableView = { [weak self] in
         let table = UITableView(frame: .zero, style: .grouped)
         table.backgroundColor = .clear
+        table.backgroundView = nil  // Remove default background to show gradient
         table.separatorStyle = .none
         table.delegate = self
         table.dataSource = self
         table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: ViewComponentConstants.miniBarHeight - 20.0, right: 0)
-        
+
         // initializing the refreshControl
         table.refreshControl = UIRefreshControl()
         // add target to UIRefreshControl
@@ -60,9 +61,6 @@ class InnerCosmoViewController: ViewController {
             make.top.equalTo(navigationView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
-        
-        self.extendedLayoutIncludesOpaqueBars = true
-        self.edgesForExtendedLayout = .top
     }
     
     func setupPresenter() {
@@ -129,7 +127,10 @@ extension InnerCosmoViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = UITableViewCell()
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
+        return cell
     }
     
 }
