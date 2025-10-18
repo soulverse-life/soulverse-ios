@@ -17,7 +17,13 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
         }
     }
     var loadingIndicator: NVActivityIndicatorView!
-    
+
+    /// Gradient background view - added in init for instant display
+    private lazy var gradientBackgroundView: GradientView = {
+        let view = GradientView()
+        return view
+    }()
+
     var isCurrentTabRootVC: Bool {
         if let tabBarController = self.tabBarController,
            let selectedNav = tabBarController.selectedViewController as? UINavigationController,
@@ -27,13 +33,18 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
             return false
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .appThemeColor
-        
+
+        // Setup gradient background immediately
+        view.addSubview(gradientBackgroundView)
+        gradientBackgroundView.frame = view.bounds
+        gradientBackgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.sendSubviewToBack(gradientBackgroundView)
+
         setupNavigationBar()
-        
+
         loadingIndicator = NVActivityIndicatorView(frame: CGRect.zero, color: .lightGray)
         loadingIndicator.type = .ballSpinFadeLoader
         view.addSubview(loadingIndicator)
@@ -41,7 +52,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
             make.center.equalToSuperview()
             make.size.equalTo(40)
         }
-        
+
     }
 
     func toggleLoading() {
@@ -59,7 +70,7 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
         navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navBarAppearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navBarAppearance.backgroundColor = .appThemeColor
-        
+
         navigationController?.navigationBar.backgroundColor = .appThemeColor
         navigationController?.navigationBar.barTintColor = .appThemeColor
         navigationController?.navigationBar.isTranslucent = true

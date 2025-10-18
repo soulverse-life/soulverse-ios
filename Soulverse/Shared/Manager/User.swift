@@ -16,6 +16,8 @@ enum UserInfoKeys: String {
     case nextAskingPermissionTime
     case notificationAskGapTime
     case userId
+    case selectedTheme
+    case themeMode
 }
 
 public enum NotificationAskGapTime: Int, Comparable {
@@ -61,7 +63,9 @@ protocol UserProtocol {
     var email: String? { get set }
     var isLoggedin: Bool { get }
     var hasGrantedNotification: Bool { get }
-    
+    var selectedTheme: String? { get set }
+    var themeMode: ThemeMode { get set }
+
     func hasShownRequestPermissionAlert()
     func showCustomizeRequestPermissionAlert() -> Bool
 }
@@ -206,7 +210,31 @@ class User: UserProtocol {
             updateFCMToken()
         }
     }
-    
+
+    var selectedTheme: String? {
+        get {
+            let value = defaults.string(forKey: UserInfoKeys.selectedTheme.rawValue)
+            return value
+        }
+        set(newTheme) {
+            guard let theme = newTheme else {
+                defaults.removeObject(forKey: UserInfoKeys.selectedTheme.rawValue)
+                return
+            }
+            defaults.set(theme, forKey: UserInfoKeys.selectedTheme.rawValue)
+        }
+    }
+
+    var themeMode: ThemeMode {
+        get {
+            let modeRaw = defaults.integer(forKey: UserInfoKeys.themeMode.rawValue)
+            return modeRaw == 1 ? .automatic : .manual
+        }
+        set(newMode) {
+            defaults.set(newMode == .automatic ? 1 : 0, forKey: UserInfoKeys.themeMode.rawValue)
+        }
+    }
+
     func logout() {
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
         clearUserProperty()

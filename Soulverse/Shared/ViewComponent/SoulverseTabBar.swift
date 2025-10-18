@@ -51,21 +51,6 @@ enum SoulverseTab: Int, CaseIterable {
     var tabImage: UIImage? {
         switch self {
         case .innerCosmo:
-            return UIImage(named: "tabIconInnerCosmos")
-        case .insight:
-            return UIImage(named: "tabIconInsight")
-        case .canvas:
-            return UIImage(named: "tabIconCanvas")
-        case .tools:
-            return UIImage(named: "tabIconTool")
-        case .quest:
-            return UIImage(named: "tabIconQuest")
-        }
-    }
-    
-    var tabSelectedImage: UIImage? {
-        switch self {
-        case .innerCosmo:
             return UIImage(named: "tabIconInnerCosmos")?.withRenderingMode(.alwaysOriginal)
         case .insight:
             return UIImage(named: "tabIconInsight")?.withRenderingMode(.alwaysOriginal)
@@ -77,49 +62,96 @@ enum SoulverseTab: Int, CaseIterable {
             return UIImage(named: "tabIconQuest")?.withRenderingMode(.alwaysOriginal)
         }
     }
+
+    var tabSelectedImage: UIImage? {
+        switch self {
+        case .innerCosmo:
+            return UIImage(named: "tabIconInnerCosmosSelected")?.withRenderingMode(.alwaysOriginal)
+        case .insight:
+            return UIImage(named: "tabIconInsightSelected")?.withRenderingMode(.alwaysOriginal)
+        case .canvas:
+            return UIImage(named: "tabIconCanvasSelected")?.withRenderingMode(.alwaysOriginal)
+        case .tools:
+            return UIImage(named: "tabIconToolSelected")?.withRenderingMode(.alwaysOriginal)
+        case .quest:
+            return UIImage(named: "tabIconQuestSelected")?.withRenderingMode(.alwaysOriginal)
+        }
+    }
 }
 
 class SoulverseTabBarController: UITabBarController {
-    
+
     weak var soulverseDelegate: SoulverseTabBarDelegate?
     private let redDotViewTag: Int = 1000
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAppearance()
         setupTabs()
         delegate = self
+
+        // Force layout to ensure tab bar creates its subviews
+        view.layoutIfNeeded()
+        tabBar.layoutIfNeeded()
     }
-    
-    private func setupAppearance() {
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applyTheme()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+
+    private func applyTheme() {
+        let theme = ThemeManager.shared.currentTheme
+
+        // Update appearance colors
         let appearance = UITabBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
-        appearance.shadowImage = UIImage()
-        appearance.backgroundImage = UIImage()
-        appearance.shadowColor = .clear
+        appearance.configureWithTransparentBackground()
+
+        appearance.stackedLayoutAppearance.normal.iconColor = theme.tabBarUnselectedTint
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+            .foregroundColor: theme.tabBarUnselectedTint,
+            .font: UIFont.projectFont(ofSize: 12, weight: .medium)
+        ]
+
+        appearance.stackedLayoutAppearance.selected.iconColor = theme.tabBarSelectedTint
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+            .foregroundColor: theme.tabBarSelectedTint,
+            .font: UIFont.projectFont(ofSize: 12, weight: .semibold)
+        ]
+
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
-        tabBar.tintColor = .black
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+
     
     private func setupTabs() {
         var navControllers: [UINavigationController] = []
-        
+
         for tab in SoulverseTab.allCases {
             let viewController = tab.viewController
+            // Use different images for selected and unselected states
             viewController.tabBarItem = UITabBarItem(
                 title: tab.tabTitle,
                 image: tab.tabImage,
                 selectedImage: tab.tabSelectedImage
             )
+            viewController.tabBarItem.tag = tab.rawValue
             viewController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-            
+
             let navController = UINavigationController(rootViewController: viewController)
             navControllers.append(navController)
         }
-        
+
         setViewControllers(navControllers, animated: false)
+
+        print("✅ Tab items configured with separate images for selected/unselected states")
     }
     
     // MARK: - Badge Management
@@ -137,7 +169,7 @@ extension SoulverseTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         guard let selectedIndex = viewControllers?.firstIndex(of: viewController),
               let tab = SoulverseTab(rawValue: selectedIndex) else { return }
-        
+
         soulverseDelegate?.tabBar(self, didSelectTab: tab)
     }
 }

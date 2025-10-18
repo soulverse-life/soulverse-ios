@@ -14,6 +14,7 @@ class ToolsViewController: ViewController {
     private lazy var tableView: UITableView = { [weak self] in
         let table = UITableView(frame: .zero, style: .grouped)
         table.backgroundColor = .clear
+        table.backgroundView = nil  // Remove default background to show gradient
         table.separatorStyle = .none
         table.delegate = self
         table.dataSource = self
@@ -52,8 +53,8 @@ class ToolsViewController: ViewController {
             make.left.right.bottom.equalToSuperview()
         }
         
-        self.extendedLayoutIncludesOpaqueBars = true
-        self.edgesForExtendedLayout = .top
+        // self.extendedLayoutIncludesOpaqueBars = true
+        // self.edgesForExtendedLayout = .top
     }
     func setupPresenter() {
         presenter.delegate = self
@@ -98,7 +99,10 @@ extension ToolsViewController: UITableViewDataSource, UITableViewDelegate {
         return UITableView.automaticDimension
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = UITableViewCell()
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
+        return cell
     }
 }
 extension ToolsViewController: ToolsViewPresenterDelegate {

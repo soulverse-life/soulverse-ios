@@ -23,13 +23,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Root View Controller Determination
 
     private func determineRootViewController() -> UIViewController {
+        /*
         let user = User.shared
         let shouldShowOnboarding = !user.isLoggedin || !user.hasCompletedOnboarding
 
         if shouldShowOnboarding {
             return createOnboardingFlow()
         }
-
+         */
         return MainViewController()
     }
 

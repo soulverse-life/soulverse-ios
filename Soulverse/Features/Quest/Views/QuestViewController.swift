@@ -14,6 +14,7 @@ class QuestViewController: ViewController {
     private lazy var tableView: UITableView = { [weak self] in
         let table = UITableView(frame: .zero, style: .grouped)
         table.backgroundColor = .clear
+        table.backgroundView = nil  // Remove default background to show gradient
         table.separatorStyle = .none
         table.delegate = self
         table.dataSource = self
@@ -56,7 +57,6 @@ class QuestViewController: ViewController {
         }
         
         self.extendedLayoutIncludesOpaqueBars = true
-        self.edgesForExtendedLayout = .top
     }
     func setupPresenter() {
         presenter.delegate = self
@@ -74,7 +74,7 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
         titleLabel.text = title
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.font = UIFont.projectFont(ofSize: 16, weight: .bold)
-        titleLabel.textColor = .primaryBlack
+        titleLabel.textColor = .themeTextPrimary
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
@@ -101,8 +101,9 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
         cell.selectionStyle = .none
-        
+
         // Remove any existing subviews to prevent overlap
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         

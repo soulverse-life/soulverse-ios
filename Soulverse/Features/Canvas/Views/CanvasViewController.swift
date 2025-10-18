@@ -5,7 +5,7 @@
 import UIKit
 import SnapKit
 
-class CanvasViewController: UIViewController {
+class CanvasViewController: ViewController {
     
     // MARK: - UI Elements
     private lazy var navigationView: SoulverseNavigationView = {
@@ -27,7 +27,7 @@ class CanvasViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("canvas_description", comment: "")
         label.font = UIFont.projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .secondaryLabel
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -74,8 +74,6 @@ class CanvasViewController: UIViewController {
     
     // MARK: - Setup Methods
     private func setupUI() {
-        view.backgroundColor = .systemBackground
-        
         view.addSubview(navigationView)
         view.addSubview(contentStackView)
         
