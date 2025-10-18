@@ -57,7 +57,6 @@
 		790AD2612DF9E43200C33CD1 /* SummitAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */; };
 		790AD2632DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19D2DF9E43200C33CD1 /* NotificationItemTableViewCell.swift */; };
 		790AD2662DF9E43200C33CD1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E62DF9E43200C33CD1 /* AppCoordinator.swift */; };
-		790AD2692DF9E43200C33CD1 /* SummitInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1FD2DF9E43200C33CD1 /* SummitInputTextField.swift */; };
 		790AD26B2DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1752DF9E43200C33CD1 /* UIView+Extensions.swift */; };
 		790AD2732DF9E43200C33CD1 /* NotificationResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 790AD1B42DF9E43200C33CD1 /* NotificationResponse.json */; };
 		790AD2742DF9E43200C33CD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 790AD20E2DF9E43200C33CD1 /* Main.storyboard */; };
@@ -117,7 +116,6 @@
 		790AD30F2DF9E43200C33CD1 /* SummitAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */; };
 		790AD3112DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19D2DF9E43200C33CD1 /* NotificationItemTableViewCell.swift */; };
 		790AD3142DF9E43200C33CD1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E62DF9E43200C33CD1 /* AppCoordinator.swift */; };
-		790AD3172DF9E43200C33CD1 /* SummitInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1FD2DF9E43200C33CD1 /* SummitInputTextField.swift */; };
 		790AD3192DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1752DF9E43200C33CD1 /* UIView+Extensions.swift */; };
 		790AD33D2DF9E48E00C33CD1 /* SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD33B2DF9E48E00C33CD1 /* SampleTests.swift */; };
 		790AD33E2DF9E48E00C33CD1 /* UserMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3322DF9E48E00C33CD1 /* UserMock.swift */; };
@@ -160,6 +158,16 @@
 		794B59FF2E9EA436006CF069 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F52E9EA436006CF069 /* GradientView.swift */; };
 		794B5A002E9EA436006CF069 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F72E9EA436006CF069 /* Theme.swift */; };
 		794B5A012E9EA436006CF069 /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F62E9EA436006CF069 /* SoulTheme.swift */; };
+		794B5A032EA38B45006CF069 /* SoulverseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A022EA38B45006CF069 /* SoulverseTextField.swift */; };
+		794B5A042EA38B45006CF069 /* SoulverseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A022EA38B45006CF069 /* SoulverseTextField.swift */; };
+		794B5A082EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */; };
+		794B5A092EA38B65006CF069 /* SoulverseTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */; };
+		794B5A0A2EA38B65006CF069 /* SoulverseButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A052EA38B65006CF069 /* SoulverseButtonCell.swift */; };
+		794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */; };
+		794B5A0C2EA38B65006CF069 /* SoulverseTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */; };
+		794B5A0D2EA38B65006CF069 /* SoulverseButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A052EA38B65006CF069 /* SoulverseButtonCell.swift */; };
+		794B5A0F2EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */; };
+		794B5A102EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */; };
 		7951A9B92E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
@@ -303,7 +311,6 @@
 		790AD1F62DF9E43200C33CD1 /* SummitUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitUserModel.swift; sourceTree = "<group>"; };
 		790AD1F72DF9E43200C33CD1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitAlertView.swift; sourceTree = "<group>"; };
-		790AD1FD2DF9E43200C33CD1 /* SummitInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitInputTextField.swift; sourceTree = "<group>"; };
 		790AD1FF2DF9E43200C33CD1 /* SummitSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitSeparator.swift; sourceTree = "<group>"; };
 		790AD2002DF9E43200C33CD1 /* SummitSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitSlider.swift; sourceTree = "<group>"; };
 		790AD2012DF9E43200C33CD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -344,6 +351,11 @@
 		794B59F62E9EA436006CF069 /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
 		794B59F72E9EA436006CF069 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		794B59F82E9EA436006CF069 /* UniverseTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseTheme.swift; sourceTree = "<group>"; };
+		794B5A022EA38B45006CF069 /* SoulverseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTextField.swift; sourceTree = "<group>"; };
+		794B5A052EA38B65006CF069 /* SoulverseButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButtonCell.swift; sourceTree = "<group>"; };
+		794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseProgressBar.swift; sourceTree = "<group>"; };
+		794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTagsView.swift; sourceTree = "<group>"; };
+		794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingViewController.swift; sourceTree = "<group>"; };
 		7951A9B62E532C85006EB0EC /* SoulverseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButton.swift; sourceTree = "<group>"; };
 		7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseNavigationView.swift; sourceTree = "<group>"; };
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
@@ -655,7 +667,10 @@
 				7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */,
 				7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */,
 				790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */,
-				790AD1FD2DF9E43200C33CD1 /* SummitInputTextField.swift */,
+				794B5A022EA38B45006CF069 /* SoulverseTextField.swift */,
+				794B5A052EA38B65006CF069 /* SoulverseButtonCell.swift */,
+				794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */,
+				794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */,
 				790AD1FF2DF9E43200C33CD1 /* SummitSeparator.swift */,
 				790AD2002DF9E43200C33CD1 /* SummitSlider.swift */,
 				790AD2012DF9E43200C33CD1 /* ViewController.swift */,
@@ -797,6 +812,7 @@
 		7922ECC22E993B8D0086B7CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */,
 				7922ECBD2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift */,
 				7922ECBE2E993B8D0086B7CA /* OnboardingGenderViewController.swift */,
 				7922ECBF2E993B8D0086B7CA /* OnboardingNamingViewController.swift */,
@@ -1225,9 +1241,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1330,9 +1350,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1347,9 +1371,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1364,9 +1392,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1441,6 +1473,9 @@
 				7986880D2E6C24EE00EB3B38 /* QuestViewPresenter.swift in Sources */,
 				7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */,
 				7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
+				794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
+				794B5A0C2EA38B65006CF069 /* SoulverseTagsView.swift in Sources */,
+				794B5A0D2EA38B65006CF069 /* SoulverseButtonCell.swift in Sources */,
 				790AD24E2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */,
 				790AD24F2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */,
 				790AD2502DF9E43200C33CD1 /* UISwitch+Extensions.swift in Sources */,
@@ -1455,11 +1490,11 @@
 				790AD25C2DF9E43200C33CD1 /* SummitUserModel.swift in Sources */,
 				790AD25E2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */,
 				790AD2602DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */,
+				794B5A0F2EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,
 				790AD2612DF9E43200C33CD1 /* SummitAlertView.swift in Sources */,
 				790AD2632DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD2662DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
 				7922ECE22E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
-				790AD2692DF9E43200C33CD1 /* SummitInputTextField.swift in Sources */,
 				7922ECB02E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
 				7922ECD12E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
 				7922ECD22E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
@@ -1468,6 +1503,7 @@
 				7922ECD92E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */,
 				7922ECDB2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */,
 				7922ECDC2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */,
+				794B5A042EA38B45006CF069 /* SoulverseTextField.swift in Sources */,
 				790AD26B2DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1537,6 +1573,9 @@
 				7986880A2E6C24EE00EB3B38 /* QuestViewPresenter.swift in Sources */,
 				7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */,
 				7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
+				794B5A082EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
+				794B5A092EA38B65006CF069 /* SoulverseTagsView.swift in Sources */,
+				794B5A0A2EA38B65006CF069 /* SoulverseButtonCell.swift in Sources */,
 				790AD2FC2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */,
 				790AD2FD2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */,
 				790AD2FE2DF9E43200C33CD1 /* UISwitch+Extensions.swift in Sources */,
@@ -1551,11 +1590,11 @@
 				790AD30A2DF9E43200C33CD1 /* SummitUserModel.swift in Sources */,
 				790AD30C2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */,
 				790AD30E2DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */,
+				794B5A102EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,
 				790AD30F2DF9E43200C33CD1 /* SummitAlertView.swift in Sources */,
 				790AD3112DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD3142DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
 				7922ECE32E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
-				790AD3172DF9E43200C33CD1 /* SummitInputTextField.swift in Sources */,
 				7922ECAF2E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
 				7922ECC42E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
 				7922ECC52E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
@@ -1564,6 +1603,7 @@
 				7922ECCC2E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */,
 				7922ECCE2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */,
 				7922ECCF2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */,
+				794B5A032EA38B45006CF069 /* SoulverseTextField.swift in Sources */,
 				790AD3192DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

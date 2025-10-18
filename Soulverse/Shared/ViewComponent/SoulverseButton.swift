@@ -71,6 +71,7 @@ enum SoulverseButtonStyle {
     case primary                                    // Standard button (black border, white bg)
     case thirdPartyAuth(ThirdPartyAuthConfig)      // Third-party auth button (Google, Apple, etc.)
     case outlined                                   // Outlined style with customization
+    case gradient                                   // Gradient button with shadow effect (theme-aware)
 }
 
 // MARK: - Button Delegate
@@ -110,6 +111,8 @@ class SoulverseButton: UIView {
         stackView.spacing = 8
         return stackView
     }()
+
+    private var gradientLayer: CAGradientLayer?
 
     public var titleText: String {
         didSet {
@@ -225,9 +228,49 @@ class SoulverseButton: UIView {
             layer.borderColor = UIColor.lightGray.cgColor
             layer.cornerRadius = 8
             iconImageView.isHidden = true
+
+        case .gradient:
+            // Remove existing gradient layer
+            gradientLayer?.removeFromSuperlayer()
+
+            // Create gradient layer
+            let gradient = CAGradientLayer()
+            gradient.frame = bounds
+            let theme = ThemeManager.shared.currentTheme
+            gradient.colors = theme.buttonGradientColors.map { $0.cgColor }
+            gradient.startPoint = CGPoint(x: 0.5, y: 0)
+            gradient.endPoint = CGPoint(x: 0.5, y: 1)
+            gradient.cornerRadius = 25
+
+            layer.insertSublayer(gradient, at: 0)
+            gradientLayer = gradient
+
+            // Configure appearance
+            backgroundColor = .clear
+            titleLabel.textColor = .white
+            layer.borderWidth = 0
+            layer.cornerRadius = 25
+            iconImageView.isHidden = true
+
+            // Add shadow: box-shadow: 0px 4px 20px 0px rgba(93, 219, 207, 0.4)
+            // Use the second gradient color for shadow (typically the lighter/end color)
+            if theme.buttonGradientColors.count > 1 {
+                layer.shadowColor = theme.buttonGradientColors[1].cgColor
+            } else {
+                layer.shadowColor = theme.buttonGradientColors[0].cgColor
+            }
+            layer.shadowOffset = CGSize(width: 0, height: 4)
+            layer.shadowRadius = 20
+            layer.shadowOpacity = 0.4
         }
 
         updateEnabledState()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // Update gradient frame when bounds change
+        gradientLayer?.frame = bounds
     }
 
     private func updateEnabledState() {
