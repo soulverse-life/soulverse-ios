@@ -65,21 +65,21 @@ class SoulverseTextField: UIView {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = .projectFont(ofSize: 12.0, weight: .regular)
-        label.textColor = .primaryBlack
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
     }()
-    
+
     private lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.font = .projectFont(ofSize: 14.0, weight: .regular)
-        textField.textColor = .primaryBlack
+        textField.textColor = .themeTextPrimary
         textField.autocapitalizationType = .none
         textField.delegate = self
         textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         textField.setLeftPaddingPoints(20)
         textField.setRightPaddingPoints(10)
-        
+
         return textField
     }()
     
@@ -169,8 +169,8 @@ class SoulverseTextField: UIView {
         switch status {
         case .normal:
             inputBorderView.layer.borderColor = UIColor.disableGray.cgColor
-            inputTitleLabel.textColor = .primaryBlack
-            
+            inputTitleLabel.textColor = .themeTextPrimary
+
             errorMessageLabel.isHidden = true
             errorMessageLabel.snp.removeConstraints()
             inputBorderView.snp.remakeConstraints { make in
@@ -178,11 +178,11 @@ class SoulverseTextField: UIView {
                 make.top.equalTo(self.inputTitleView.snp.centerY)
                 make.height.equalTo(48)
             }
-            
+
         case .errorWithoutMessage:
             inputBorderView.layer.borderColor = UIColor.primaryOrange.cgColor
             inputTitleLabel.textColor = .primaryOrange
-            
+
             errorMessageLabel.isHidden = true
             errorMessageLabel.snp.removeConstraints()
             inputBorderView.snp.remakeConstraints { make in
@@ -190,12 +190,12 @@ class SoulverseTextField: UIView {
                 make.top.equalTo(self.inputTitleView.snp.centerY)
                 make.height.equalTo(48)
             }
-            
-            
+
+
         case .errorWithMessage(let errorMessage):
             inputBorderView.layer.borderColor = UIColor.primaryOrange.cgColor
             inputTitleLabel.textColor = .primaryOrange
-            
+
             inputBorderView.snp.remakeConstraints { make in
                 make.left.centerX.equalToSuperview()
                 //make.bottom.equalToSuperview().offset(-13)
@@ -209,12 +209,11 @@ class SoulverseTextField: UIView {
                 make.height.equalTo(17)
             }
             errorMessageLabel.isHidden = false
-            
+
         case .highlight:
-            inputBorderView.layer.borderColor = UIColor.themeMainColor.cgColor
-            inputTitleLabel.textColor = .themeMainColor
-            inputTitleLabel.textColor = .primaryBlack
-            
+            inputBorderView.layer.borderColor = UIColor.themePrimary.cgColor
+            inputTitleLabel.textColor = .themeTextPrimary
+
             errorMessageLabel.isHidden = true
             errorMessageLabel.snp.removeConstraints()
             inputBorderView.snp.remakeConstraints { make in
@@ -222,7 +221,7 @@ class SoulverseTextField: UIView {
                 make.top.equalTo(self.inputTitleView.snp.centerY)
                 make.height.equalTo(48)
             }
-            
+
         }
         self.status = status
         //self.sizeToFit()
