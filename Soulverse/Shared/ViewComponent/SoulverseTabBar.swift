@@ -113,13 +113,13 @@ class SoulverseTabBarController: UITabBarController {
         appearance.stackedLayoutAppearance.normal.iconColor = theme.tabBarUnselectedTint
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
             .foregroundColor: theme.tabBarUnselectedTint,
-            .font: UIFont.projectFont(ofSize: 12, weight: .medium)
+            .font: UIFont.projectFont(ofSize: 12, weight: .medium, scalable: false)
         ]
 
         appearance.stackedLayoutAppearance.selected.iconColor = theme.tabBarSelectedTint
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
             .foregroundColor: theme.tabBarSelectedTint,
-            .font: UIFont.projectFont(ofSize: 12, weight: .semibold)
+            .font: UIFont.projectFont(ofSize: 12, weight: .semibold, scalable: false)
         ]
 
         tabBar.standardAppearance = appearance

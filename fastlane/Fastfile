@@ -19,20 +19,36 @@ platform :ios do
 
   desc "Push a dev build to Testflight"
   lane :development do |option|
-    # Use CI build number if available, otherwise increment locally
-    if ENV["BUILD_NUMBER"]
-      build_num = ENV["BUILD_NUMBER"]
-      increment_build_number(
-        build_number: build_num,
-        xcodeproj: "Soulverse.xcodeproj",
-        skip_info_plist: true
+    # Set up API key first
+    api_key = app_store_connect_api_key(
+      key_id: ENV["API_KEY_ID"],
+      issuer_id: ENV["API_ISSUER_ID"],
+      key_filepath: ENV["API_KEY_FILEPATH"]
+    )
+
+    version_num = get_version_number(xcodeproj: "Soulverse.xcodeproj", target: ENV["SCHEME"])
+
+    # Fetch latest build number from TestFlight for the current version
+    begin
+      latest_build = latest_testflight_build_number(
+        api_key: api_key,
+        version: version_num,
+        app_identifier: ENV["BUNDLE_IDENTIFIER"]
       )
-    else
+      build_num = latest_build + 1
+      UI.message("📦 Latest TestFlight build: #{latest_build}, using build number: #{build_num}")
+    rescue => ex
+      UI.important("⚠️  Could not fetch latest build number from TestFlight: #{ex.message}")
+      UI.important("Using fallback: incrementing local build number")
       increment_build_number(xcodeproj: "Soulverse.xcodeproj", skip_info_plist: true)
       build_num = get_build_number(xcodeproj: "Soulverse.xcodeproj")
     end
 
-    version_num = get_version_number(xcodeproj: "Soulverse.xcodeproj", target: ENV["SCHEME"])
+    increment_build_number(
+      build_number: build_num,
+      xcodeproj: "Soulverse.xcodeproj",
+      skip_info_plist: true
+    )
     build_app(
       workspace: "Soulverse.xcworkspace",
       scheme: ENV["SCHEME"],
@@ -44,11 +60,6 @@ platform :ios do
         }
       }
     )
-    api_key = app_store_connect_api_key(
-      key_id: ENV["API_KEY_ID"],
-      issuer_id: ENV["API_ISSUER_ID"],
-      key_filepath: ENV["API_KEY_FILEPATH"]
-    )
     upload_to_testflight(
       skip_submission: true,
       api_key: api_key
@@ -57,20 +68,36 @@ platform :ios do
 
   desc "Push a release build to Testflight"
   lane :release do |option|
-    # Use CI build number if available, otherwise increment locally
-    if ENV["BUILD_NUMBER"]
-      build_num = ENV["BUILD_NUMBER"]
-      increment_build_number(
-        build_number: build_num,
-        xcodeproj: "Soulverse.xcodeproj",
-        skip_info_plist: true
+    # Set up API key first
+    api_key = app_store_connect_api_key(
+      key_id: ENV["API_KEY_ID"],
+      issuer_id: ENV["API_ISSUER_ID"],
+      key_filepath: ENV["API_KEY_FILEPATH"]
+    )
+
+    version_num = get_version_number(xcodeproj: "Soulverse.xcodeproj", target: ENV["SCHEME"])
+
+    # Fetch latest build number from TestFlight for the current version
+    begin
+      latest_build = latest_testflight_build_number(
+        api_key: api_key,
+        version: version_num,
+        app_identifier: ENV["BUNDLE_IDENTIFIER"]
       )
-    else
+      build_num = latest_build + 1
+      UI.message("📦 Latest TestFlight build: #{latest_build}, using build number: #{build_num}")
+    rescue => ex
+      UI.important("⚠️  Could not fetch latest build number from TestFlight: #{ex.message}")
+      UI.important("Using fallback: incrementing local build number")
       increment_build_number(xcodeproj: "Soulverse.xcodeproj", skip_info_plist: true)
       build_num = get_build_number(xcodeproj: "Soulverse.xcodeproj")
     end
 
-    version_num = get_version_number(xcodeproj: "Soulverse.xcodeproj", target: ENV["SCHEME"])
+    increment_build_number(
+      build_number: build_num,
+      xcodeproj: "Soulverse.xcodeproj",
+      skip_info_plist: true
+    )
 
     # Disable automatic code signing and set provisioning profile
     update_code_signing_settings(
@@ -98,11 +125,6 @@ platform :ios do
           ENV["BUNDLE_IDENTIFIER"] => "match AppStore " + ENV["BUNDLE_IDENTIFIER"]
         }
       }
-    )
-    api_key = app_store_connect_api_key(
-      key_id: ENV["API_KEY_ID"],
-      issuer_id: ENV["API_ISSUER_ID"],
-      key_filepath: ENV["API_KEY_FILEPATH"]
     )
     upload_to_testflight(
       skip_submission: true,
