@@ -10,6 +10,7 @@ class DrawingCanvasViewController: UIViewController {
 
     struct LaoutConstant {
         static let toolPickerHeight: CGFloat = 100
+        static let backgroundImageInset: CGFloat = 40
     }
 
     // MARK: - Properties
@@ -94,7 +95,6 @@ class DrawingCanvasViewController: UIViewController {
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = true
-        imageView.isUserInteractionEnabled = false
         return imageView
     } ()
     
@@ -185,6 +185,7 @@ class DrawingCanvasViewController: UIViewController {
         canvasView = PKCanvasView()
         canvasView.isRulerActive = false
         canvasView.translatesAutoresizingMaskIntoConstraints = false
+        canvasView.backgroundColor = .gray
         view.addSubview(canvasView)
 
         // 創建背景圖片視圖 - 添加為 canvasView 的子視圖以支持縮放
@@ -237,8 +238,8 @@ class DrawingCanvasViewController: UIViewController {
 
         // Canvas view takes remaining space
         canvasView.snp.makeConstraints { make in
-            make.top.equalTo(toolbarStackView.snp.bottom).offset(8)
-            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(toolbarStackView.snp.bottom).offset(4)
+            make.leading.trailing.equalToSuperview().inset(8)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
@@ -340,16 +341,21 @@ class DrawingCanvasViewController: UIViewController {
         let imageSize = canvasContentSize
         let canvasBounds = canvasView.bounds.size
         let currentZoom = canvasView.zoomScale
+        let inset = LaoutConstant.backgroundImageInset
 
-        // 計算當前縮放下的圖片尺寸
+        // 計算當前縮放下的圖片尺寸（扣除 inset）
         let scaledWidth = imageSize.width * currentZoom
         let scaledHeight = imageSize.height * currentZoom
 
-        // 背景圖片應該在內容座標空間的原點，不需要手動調整 contentOffset
-        // UIScrollView 會自動處理滾動偏移
-        backgroundImageView.frame = CGRect(x: 0, y: 0, width: scaledWidth, height: scaledHeight)
+        // 背景圖片位置加上 inset 偏移
+        backgroundImageView.frame = CGRect(
+            x: inset,
+            y: inset,
+            width: scaledWidth - (inset * 2),
+            height: scaledHeight - (inset * 2)
+        )
 
-        // 更新 contentSize 以匹配縮放後的尺寸
+        // 更新 contentSize 以匹配縮放後的尺寸（包含 inset）
         canvasView.contentSize = CGSize(width: scaledWidth, height: scaledHeight)
 
         // 使用 contentInset 來居中內容（當內容小於 bounds 時）
