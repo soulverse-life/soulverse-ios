@@ -9,6 +9,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **[Documentation/DEVELOPMENT_GUIDELINES.md](Documentation/DEVELOPMENT_GUIDELINES.md)** - **READ THIS FIRST**
   - Core development principles and code style
   - ⚠️ **Important**: Always reuse existing components before creating new ones
+  - 🚨 **CRITICAL**: ALL new features MUST use theme-aware colors (`.themeTextPrimary`, `.themeTextSecondary`, etc.)
+  - ❌ **NEVER** use hardcoded colors like `.black`, `.darkGray`, `.lightGray` for UI elements
 - **[Documentation/THEMING_GUIDE.md](Documentation/THEMING_GUIDE.md)** - Complete theming system guide
 - **[Documentation/THEME_TESTING_EXAMPLE.swift](Documentation/THEME_TESTING_EXAMPLE.swift)** - Theme testing examples
 - **[Documentation/README.md](Documentation/README.md)** - Documentation index

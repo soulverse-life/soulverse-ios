@@ -50,7 +50,7 @@ enum SurveyType {
 }
 
 class AppCoordinator {
-    
+
     static func inAppRouting(_ params: [String: Any]?) {
         
         guard let params = params,
@@ -144,5 +144,32 @@ class AppCoordinator {
         }
 
         navigationVC.pushViewController(spiralVC, animated: true)
+    }
+
+    static func presentMoodCheckIn(from sourceVC: UIViewController, completion: ((Bool, MoodCheckInData?) -> Void)? = nil) {
+        let navigationController = UINavigationController()
+        navigationController.modalPresentationStyle = .fullScreen
+
+        // Create coordinator - it will manage its own lifecycle
+        let coordinator = MoodCheckInCoordinator(navigationController: navigationController)
+
+        // Set up completion handler
+        coordinator.onComplete = { [weak sourceVC] data in
+            sourceVC?.dismiss(animated: true) {
+                completion?(true, data)
+            }
+        }
+
+        coordinator.onCancel = { [weak sourceVC] in
+            sourceVC?.dismiss(animated: true) {
+                completion?(false, nil)
+            }
+        }
+
+        // Start the mood check-in flow
+        coordinator.start()
+
+        // Present the navigation controller
+        sourceVC.present(navigationController, animated: true)
     }
 }

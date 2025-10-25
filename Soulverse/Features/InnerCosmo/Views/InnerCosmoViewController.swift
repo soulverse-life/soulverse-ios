@@ -31,11 +31,23 @@ class InnerCosmoViewController: ViewController {
     }()
     
     private let presenter = InnerCosmoViewPresenter()
-    
+
+    private lazy var testMoodCheckInButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Test Mood Check-in", for: .normal)
+        button.titleLabel?.font = UIFont.projectFont(ofSize: 16, weight: .semibold)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(testMoodCheckInTapped), for: .touchUpInside)
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupPresenter()
+        setupTestButton()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,17 +76,49 @@ class InnerCosmoViewController: ViewController {
     }
     
     func setupPresenter() {
-        
+
         presenter.delegate = self
     }
-    
+
+    func setupTestButton() {
+        view.addSubview(testMoodCheckInButton)
+
+        testMoodCheckInButton.snp.makeConstraints { make in
+            make.top.equalTo(navigationView.snp.bottom).offset(16)
+            make.left.right.equalToSuperview().inset(20)
+            make.height.equalTo(50)
+        }
+
+        // Adjust tableView to account for test button
+        tableView.snp.remakeConstraints { make in
+            make.top.equalTo(testMoodCheckInButton.snp.bottom).offset(16)
+            make.left.right.bottom.equalToSuperview()
+        }
+    }
+
     @objc func pullToRefresh() {
-        
+
         if !tableView.isDragging {
             presenter.fetchData(isUpdate: true)
         }
     }
-    
+
+    @objc private func testMoodCheckInTapped() {
+        AppCoordinator.presentMoodCheckIn(from: self) { [weak self] completed, data in
+            if completed {
+                print("[InnerCosmo] Mood check-in completed!")
+                if let data = data {
+                    print("Color: \(data.colorHexString ?? "N/A")")
+                    print("Emotion: \(data.emotion?.displayName ?? "N/A")")
+                    print("Prompt Response: \(data.promptResponse ?? "N/A")")
+                }
+                // You can show a success message here using SwiftMessages
+            } else {
+                print("[InnerCosmo] Mood check-in cancelled")
+            }
+        }
+    }
+
 }
 
 extension InnerCosmoViewController: UITableViewDataSource, UITableViewDelegate {
