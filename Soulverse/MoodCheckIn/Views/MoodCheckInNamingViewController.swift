@@ -15,7 +15,7 @@ class MoodCheckInNamingViewController: ViewController {
     weak var delegate: MoodCheckInNamingViewControllerDelegate?
 
     private var selectedEmotion: EmotionType?
-    private var emotionIntensity: Float = 0.5
+    private var emotionIntensity: Double = 0.5
 
     // MARK: - UI Elements
 
@@ -258,7 +258,7 @@ class MoodCheckInNamingViewController: ViewController {
     }
 
     @objc private func intensitySliderChanged() {
-        emotionIntensity = intensitySlider.value
+        emotionIntensity = Double(intensitySlider.value)
     }
 
     private func updateIntensityLabels() {

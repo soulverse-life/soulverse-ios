@@ -17,7 +17,7 @@ struct MoodCheckInData {
     var selectedColor: UIColor?
 
     /// Color intensity selected (0.0 to 1.0, maps to 5 circles)
-    var colorIntensity: Float = 0.5
+    var colorIntensity: Double = 0.5
 
     // MARK: - Naming Step
 
@@ -25,7 +25,7 @@ struct MoodCheckInData {
     var emotion: EmotionType?
 
     /// Emotion intensity (0.0 to 1.0)
-    var emotionIntensity: Float = 0.5
+    var emotionIntensity: Double = 0.5
 
     // MARK: - Shaping Step
 

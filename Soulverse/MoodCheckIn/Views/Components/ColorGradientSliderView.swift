@@ -9,10 +9,17 @@ import UIKit
 import SnapKit
 
 protocol ColorGradientSliderViewDelegate: AnyObject {
-    func colorGradientSliderView(_ view: ColorGradientSliderView, didSelectColor color: UIColor, at position: Float)
+    func colorGradientSliderView(_ view: ColorGradientSliderView, didSelectColor color: UIColor, at position: Double)
 }
 
 class ColorGradientSliderView: UIView {
+
+    // MARK: - Layout Constants
+
+    private enum Layout {
+        static let gradientBarHeight: CGFloat = 20  // Gradient bar height
+        static let sliderHeight: CGFloat = 28        // Standard slider height (thumb is ~28pt)
+    }
 
     // MARK: - Properties
 
@@ -33,7 +40,7 @@ class ColorGradientSliderView: UIView {
             UIColor(red: 138/255, green: 129/255, blue: 207/255, alpha: 1).cgColor   // Purple
         ]
 
-        layer.cornerRadius = 15
+        layer.cornerRadius = Layout.gradientBarHeight / 2
         return layer
     }()
 
@@ -44,7 +51,11 @@ class ColorGradientSliderView: UIView {
         slider.value = 0.5
         slider.minimumTrackTintColor = .clear
         slider.maximumTrackTintColor = .clear
-        slider.thumbTintColor = .white
+
+        // Set initial thumb color to match slider position
+        let initialColor = getColorAt(position: 0.5)
+        slider.thumbTintColor = initialColor
+
         slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         return slider
     }()
@@ -63,19 +74,29 @@ class ColorGradientSliderView: UIView {
     // MARK: - Setup
 
     private func setupView() {
-        // Add gradient layer
+        // Add gradient layer (thin bar)
         layer.addSublayer(gradientLayer)
 
-        // Add slider on top
+        // Add slider on top (taller to accommodate thumb)
         addSubview(slider)
         slider.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.height.equalTo(Layout.sliderHeight)
         }
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradientLayer.frame = bounds
+
+        // Position gradient bar in the center vertically
+        let gradientY = (bounds.height - Layout.gradientBarHeight) / 2
+        gradientLayer.frame = CGRect(
+            x: 0,
+            y: gradientY,
+            width: bounds.width,
+            height: Layout.gradientBarHeight
+        )
     }
 
     // MARK: - Public Methods
@@ -86,25 +107,27 @@ class ColorGradientSliderView: UIView {
     }
 
     /// Get the current slider position (0.0 to 1.0)
-    var currentPosition: Float {
-        return slider.value
+    var currentPosition: Double {
+        return Double(slider.value)
     }
 
     /// Set the slider position programmatically
-    func setPosition(_ position: Float) {
-        slider.value = position
+    func setPosition(_ position: Double) {
+        slider.value = Float(position)
         notifyDelegate()
     }
 
     // MARK: - Private Methods
 
     @objc private func sliderValueChanged() {
+        // Update thumb color to match selected color
+        slider.thumbTintColor = selectedColor
         notifyDelegate()
     }
 
     private func notifyDelegate() {
         let color = selectedColor
-        delegate?.colorGradientSliderView(self, didSelectColor: color, at: slider.value)
+        delegate?.colorGradientSliderView(self, didSelectColor: color, at: Double(slider.value))
     }
 
     /// Calculate color at specific position on the gradient

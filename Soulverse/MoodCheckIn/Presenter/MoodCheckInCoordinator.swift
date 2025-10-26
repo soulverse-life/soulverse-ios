@@ -39,8 +39,8 @@ final class MoodCheckInCoordinator {
         let hasSeenPet = UserDefaults.standard.bool(forKey: Self.hasSeenPetKey)
 
         if hasSeenPet {
-            // Skip Pet screen and go directly to Sensing
-            showSensingScreen()
+            // Skip Pet screen and go directly to Sensing (as first screen)
+            showSensingScreen(isFirstScreen: true)
         } else {
             // Show Pet screen first
             showPetScreen()
@@ -55,8 +55,9 @@ final class MoodCheckInCoordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    private func showSensingScreen() {
+    private func showSensingScreen(isFirstScreen: Bool = false) {
         let viewController = MoodCheckInSensingViewController()
+        viewController.isFirstScreen = isFirstScreen
         viewController.delegate = self
         navigationController.pushViewController(viewController, animated: true)
     }
@@ -177,7 +178,7 @@ extension MoodCheckInCoordinator: MoodCheckInPetViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInSensingViewControllerDelegate {
 
-    func moodCheckInSensingViewController(_ viewController: MoodCheckInSensingViewController, didSelectColor color: UIColor, intensity: Float) {
+    func moodCheckInSensingViewController(_ viewController: MoodCheckInSensingViewController, didSelectColor color: UIColor, intensity: Double) {
         moodCheckInData.selectedColor = color
         moodCheckInData.colorIntensity = intensity
         showNamingScreen()
@@ -196,7 +197,7 @@ extension MoodCheckInCoordinator: MoodCheckInSensingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInNamingViewControllerDelegate {
 
-    func moodCheckInNamingViewController(_ viewController: MoodCheckInNamingViewController, didSelectEmotion emotion: EmotionType, intensity: Float) {
+    func moodCheckInNamingViewController(_ viewController: MoodCheckInNamingViewController, didSelectEmotion emotion: EmotionType, intensity: Double) {
         moodCheckInData.emotion = emotion
         moodCheckInData.emotionIntensity = intensity
         showShapingScreen()
@@ -305,13 +306,13 @@ protocol MoodCheckInPetViewControllerDelegate: AnyObject {
 }
 
 protocol MoodCheckInSensingViewControllerDelegate: AnyObject {
-    func moodCheckInSensingViewController(_ viewController: MoodCheckInSensingViewController, didSelectColor color: UIColor, intensity: Float)
+    func moodCheckInSensingViewController(_ viewController: MoodCheckInSensingViewController, didSelectColor color: UIColor, intensity: Double)
     func moodCheckInSensingViewControllerDidTapBack(_ viewController: MoodCheckInSensingViewController)
     func moodCheckInSensingViewControllerDidTapClose(_ viewController: MoodCheckInSensingViewController)
 }
 
 protocol MoodCheckInNamingViewControllerDelegate: AnyObject {
-    func moodCheckInNamingViewController(_ viewController: MoodCheckInNamingViewController, didSelectEmotion emotion: EmotionType, intensity: Float)
+    func moodCheckInNamingViewController(_ viewController: MoodCheckInNamingViewController, didSelectEmotion emotion: EmotionType, intensity: Double)
     func moodCheckInNamingViewControllerDidTapBack(_ viewController: MoodCheckInNamingViewController)
     func moodCheckInNamingViewControllerDidTapClose(_ viewController: MoodCheckInNamingViewController)
 }

@@ -14,8 +14,11 @@ class MoodCheckInSensingViewController: ViewController {
 
     weak var delegate: MoodCheckInSensingViewControllerDelegate?
 
+    /// Indicates if this is the first screen (Pet screen was skipped)
+    var isFirstScreen: Bool = false
+
     private var selectedColor: UIColor = .yellow
-    private var colorIntensity: Float = 0.5
+    private var selectedIntensity: Double = 0.5 // Default to middle intensity
 
     // MARK: - UI Elements
 
@@ -87,6 +90,7 @@ class MoodCheckInSensingViewController: ViewController {
 
     private lazy var intensityCircles: IntensityCircleSelectorView = {
         let view = IntensityCircleSelectorView()
+        view.delegate = self
         return view
     }()
 
@@ -100,7 +104,8 @@ class MoodCheckInSensingViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        updateIntensityCircles()
+        // Initialize circles with default color
+        intensityCircles.updateColor(selectedColor)
     }
 
     // MARK: - Setup
@@ -110,7 +115,6 @@ class MoodCheckInSensingViewController: ViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         view.addSubview(backButton)
-        view.addSubview(closeButton)
         view.addSubview(progressBar)
         view.addSubview(subtitleLabel)
         view.addSubview(titleLabel)
@@ -120,16 +124,23 @@ class MoodCheckInSensingViewController: ViewController {
         view.addSubview(intensityCircles)
         view.addSubview(continueButton)
 
+        // If this is NOT the first screen, show the close button
+        if !isFirstScreen {
+            view.addSubview(closeButton)
+        }
+
         backButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.left.equalToSuperview().offset(16)
             make.width.height.equalTo(44)
         }
 
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.right.equalToSuperview().offset(-16)
-            make.width.height.equalTo(44)
+        if !isFirstScreen {
+            closeButton.snp.makeConstraints { make in
+                make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+                make.right.equalToSuperview().offset(-16)
+                make.width.height.equalTo(44)
+            }
         }
 
         progressBar.snp.makeConstraints { make in
@@ -155,7 +166,7 @@ class MoodCheckInSensingViewController: ViewController {
         colorGradientSlider.snp.makeConstraints { make in
             make.top.equalTo(instructionLabel.snp.bottom).offset(24)
             make.left.right.equalToSuperview().inset(40)
-            make.height.equalTo(30)
+            make.height.equalTo(28)
         }
 
         intensityLabel.snp.makeConstraints { make in
@@ -179,25 +190,37 @@ class MoodCheckInSensingViewController: ViewController {
     // MARK: - Actions
 
     @objc private func backButtonTapped() {
-        delegate?.moodCheckInSensingViewControllerDidTapBack(self)
+        if isFirstScreen {
+            // If this is the first screen, back button acts as close button
+            delegate?.moodCheckInSensingViewControllerDidTapClose(self)
+        } else {
+            // Otherwise, normal back behavior
+            delegate?.moodCheckInSensingViewControllerDidTapBack(self)
+        }
     }
 
     @objc private func closeButtonTapped() {
         delegate?.moodCheckInSensingViewControllerDidTapClose(self)
-    }
-
-    private func updateIntensityCircles() {
-        intensityCircles.update(intensity: colorIntensity, color: selectedColor)
     }
 }
 
 // MARK: - ColorGradientSliderViewDelegate
 
 extension MoodCheckInSensingViewController: ColorGradientSliderViewDelegate {
-    func colorGradientSliderView(_ view: ColorGradientSliderView, didSelectColor color: UIColor, at position: Float) {
+    func colorGradientSliderView(_ view: ColorGradientSliderView, didSelectColor color: UIColor, at position: Double) {
+        // Update selected color and update circle colors (but not selection)
         selectedColor = color
-        colorIntensity = position
-        updateIntensityCircles()
+        intensityCircles.updateColor(color)
+    }
+}
+
+// MARK: - IntensityCircleSelectorViewDelegate
+
+extension MoodCheckInSensingViewController: IntensityCircleSelectorViewDelegate {
+    func didSelectIntensity(_ view: IntensityCircleSelectorView, intensity: Double) {
+        // Update selected intensity when user taps a circle
+        selectedIntensity = intensity
+        print("[Sensing] User selected intensity: \(intensity)")
     }
 }
 
@@ -205,6 +228,7 @@ extension MoodCheckInSensingViewController: ColorGradientSliderViewDelegate {
 
 extension MoodCheckInSensingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        delegate?.moodCheckInSensingViewController(self, didSelectColor: selectedColor, intensity: colorIntensity)
+        // Pass both the selected color and the selected intensity
+        delegate?.moodCheckInSensingViewController(self, didSelectColor: selectedColor, intensity: selectedIntensity)
     }
 }
