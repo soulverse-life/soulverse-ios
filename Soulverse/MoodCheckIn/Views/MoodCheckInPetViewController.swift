@@ -111,7 +111,7 @@ class MoodCheckInPetViewController: ViewController {
     @objc private func backButtonTapped() {
         print("[MoodCheckInPet] Back button tapped")
         print("[MoodCheckInPet] Delegate is: \(delegate != nil ? "set" : "nil")")
-        delegate?.moodCheckInPetViewControllerDidTapClose(self)
+        delegate?.didTapClose(self)
     }
 }
 
@@ -121,6 +121,6 @@ extension MoodCheckInPetViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
         print("[MoodCheckInPet] Begin button tapped")
         print("[MoodCheckInPet] Delegate is: \(delegate != nil ? "set" : "nil")")
-        delegate?.moodCheckInPetViewControllerDidTapBegin(self)
+        delegate?.didTapBegin(self)
     }
 }

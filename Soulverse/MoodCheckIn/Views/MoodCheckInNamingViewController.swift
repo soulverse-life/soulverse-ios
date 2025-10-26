@@ -250,11 +250,11 @@ class MoodCheckInNamingViewController: ViewController {
     // MARK: - Actions
 
     @objc private func backButtonTapped() {
-        delegate?.moodCheckInNamingViewControllerDidTapBack(self)
+        delegate?.didTapBack(self)
     }
 
     @objc private func closeButtonTapped() {
-        delegate?.moodCheckInNamingViewControllerDidTapClose(self)
+        delegate?.didTapClose(self)
     }
 
     @objc private func intensitySliderChanged() {
@@ -289,6 +289,6 @@ extension MoodCheckInNamingViewController: SoulverseTagsViewDelegate {
 extension MoodCheckInNamingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
         guard let emotion = selectedEmotion else { return }
-        delegate?.moodCheckInNamingViewController(self, didSelectEmotion: emotion, intensity: emotionIntensity)
+        delegate?.didSelectEmotion(self, emotion: emotion, intensity: emotionIntensity)
     }
 }

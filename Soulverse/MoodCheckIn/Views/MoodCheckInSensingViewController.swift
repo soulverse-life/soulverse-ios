@@ -192,22 +192,22 @@ class MoodCheckInSensingViewController: ViewController {
     @objc private func backButtonTapped() {
         if isFirstScreen {
             // If this is the first screen, back button acts as close button
-            delegate?.moodCheckInSensingViewControllerDidTapClose(self)
+            delegate?.didTapClose(self)
         } else {
             // Otherwise, normal back behavior
-            delegate?.moodCheckInSensingViewControllerDidTapBack(self)
+            delegate?.didTapBack(self)
         }
     }
 
     @objc private func closeButtonTapped() {
-        delegate?.moodCheckInSensingViewControllerDidTapClose(self)
+        delegate?.didTapClose(self)
     }
 }
 
 // MARK: - ColorGradientSliderViewDelegate
 
 extension MoodCheckInSensingViewController: ColorGradientSliderViewDelegate {
-    func colorGradientSliderView(_ view: ColorGradientSliderView, didSelectColor color: UIColor, at position: Double) {
+    func didSelectColor(_ view: ColorGradientSliderView, color: UIColor, position: Double) {
         // Update selected color and update circle colors (but not selection)
         selectedColor = color
         intensityCircles.updateColor(color)
@@ -229,6 +229,6 @@ extension MoodCheckInSensingViewController: IntensityCircleSelectorViewDelegate 
 extension MoodCheckInSensingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
         // Pass both the selected color and the selected intensity
-        delegate?.moodCheckInSensingViewController(self, didSelectColor: selectedColor, intensity: selectedIntensity)
+        delegate?.didSelectColor(self, color: selectedColor, intensity: selectedIntensity)
     }
 }

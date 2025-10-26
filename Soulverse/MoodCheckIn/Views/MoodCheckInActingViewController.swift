@@ -247,7 +247,7 @@ class MoodCheckInActingViewController: ViewController {
     }
 
     private func loadMoodCheckInData() {
-        guard let data = delegate?.moodCheckInActingViewControllerGetCurrentData(self) else { return }
+        guard let data = delegate?.getCurrentData(self) else { return }
         self.moodCheckInData = data
 
         // Update color row
@@ -272,11 +272,11 @@ class MoodCheckInActingViewController: ViewController {
     // MARK: - Actions
 
     @objc private func backButtonTapped() {
-        delegate?.moodCheckInActingViewControllerDidTapBack(self)
+        delegate?.didTapBack(self)
     }
 
     @objc private func closeButtonTapped() {
-        delegate?.moodCheckInActingViewControllerDidTapClose(self)
+        delegate?.didTapClose(self)
     }
 }
 
@@ -286,11 +286,11 @@ extension MoodCheckInActingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
         switch button.tag {
         case 1: // Write a journal
-            delegate?.moodCheckInActingViewControllerDidTapWriteJournal(self)
+            delegate?.didTapWriteJournal(self)
         case 2: // Make art
-            delegate?.moodCheckInActingViewControllerDidTapMakeArt(self)
+            delegate?.didTapMakeArt(self)
         case 3: // Complete check-in
-            delegate?.moodCheckInActingViewControllerDidTapCompleteCheckIn(self)
+            delegate?.didTapCompleteCheckIn(self)
         default:
             break
         }

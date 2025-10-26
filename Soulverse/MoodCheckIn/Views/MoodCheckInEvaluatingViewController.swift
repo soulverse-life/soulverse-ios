@@ -140,18 +140,18 @@ class MoodCheckInEvaluatingViewController: ViewController {
     // MARK: - Actions
 
     @objc private func backButtonTapped() {
-        delegate?.moodCheckInEvaluatingViewControllerDidTapBack(self)
+        delegate?.didTapBack(self)
     }
 
     @objc private func closeButtonTapped() {
-        delegate?.moodCheckInEvaluatingViewControllerDidTapClose(self)
+        delegate?.didTapClose(self)
     }
 }
 
 // MARK: - RadioOptionViewDelegate
 
 extension MoodCheckInEvaluatingViewController: RadioOptionViewDelegate {
-    func radioOptionView(_ view: RadioOptionView, didSelectOptionAt index: Int) {
+    func didSelectOption(_ view: RadioOptionView, at index: Int) {
         let evaluations = Array(EvaluationOption.allCases)
         selectedEvaluation = evaluations[index]
         continueButton.isEnabled = true
@@ -163,6 +163,6 @@ extension MoodCheckInEvaluatingViewController: RadioOptionViewDelegate {
 extension MoodCheckInEvaluatingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
         guard let evaluation = selectedEvaluation else { return }
-        delegate?.moodCheckInEvaluatingViewController(self, didSelectEvaluation: evaluation)
+        delegate?.didSelectEvaluation(self, evaluation: evaluation)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol RadioOptionViewDelegate: AnyObject {
-    func radioOptionView(_ view: RadioOptionView, didSelectOptionAt index: Int)
+    func didSelectOption(_ view: RadioOptionView, at index: Int)
 }
 
 class RadioOptionView: UIView {
@@ -71,7 +71,7 @@ class RadioOptionView: UIView {
 
         selectedIndex = index
         updateSelection()
-        delegate?.radioOptionView(self, didSelectOptionAt: index)
+        delegate?.didSelectOption(self, at: index)
     }
 
     // MARK: - Private Methods

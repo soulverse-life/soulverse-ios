@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol ColorGradientSliderViewDelegate: AnyObject {
-    func colorGradientSliderView(_ view: ColorGradientSliderView, didSelectColor color: UIColor, at position: Double)
+    func didSelectColor(_ view: ColorGradientSliderView, color: UIColor, position: Double)
 }
 
 class ColorGradientSliderView: UIView {
@@ -127,7 +127,7 @@ class ColorGradientSliderView: UIView {
 
     private func notifyDelegate() {
         let color = selectedColor
-        delegate?.colorGradientSliderView(self, didSelectColor: color, at: Double(slider.value))
+        delegate?.didSelectColor(self, color: color, position: Double(slider.value))
     }
 
     /// Calculate color at specific position on the gradient

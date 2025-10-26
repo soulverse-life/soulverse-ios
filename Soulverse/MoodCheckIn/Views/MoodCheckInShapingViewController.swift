@@ -227,11 +227,11 @@ class MoodCheckInShapingViewController: ViewController {
     // MARK: - Actions
 
     @objc private func backButtonTapped() {
-        delegate?.moodCheckInShapingViewControllerDidTapBack(self)
+        delegate?.didTapBack(self)
     }
 
     @objc private func closeButtonTapped() {
-        delegate?.moodCheckInShapingViewControllerDidTapClose(self)
+        delegate?.didTapClose(self)
     }
 
     private func updatePlaceholder() {
@@ -292,6 +292,6 @@ extension MoodCheckInShapingViewController: UITextViewDelegate {
 extension MoodCheckInShapingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
         guard let prompt = selectedPrompt, !promptResponse.isEmpty else { return }
-        delegate?.moodCheckInShapingViewController(self, didCompleteWithPrompt: prompt, response: promptResponse)
+        delegate?.didComplete(self, prompt: prompt, response: promptResponse)
     }
 }

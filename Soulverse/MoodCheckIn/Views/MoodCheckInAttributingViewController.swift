@@ -144,11 +144,11 @@ class MoodCheckInAttributingViewController: ViewController {
     // MARK: - Actions
 
     @objc private func backButtonTapped() {
-        delegate?.moodCheckInAttributingViewControllerDidTapBack(self)
+        delegate?.didTapBack(self)
     }
 
     @objc private func closeButtonTapped() {
-        delegate?.moodCheckInAttributingViewControllerDidTapClose(self)
+        delegate?.didTapClose(self)
     }
 }
 
@@ -167,6 +167,6 @@ extension MoodCheckInAttributingViewController: SoulverseTagsViewDelegate {
 extension MoodCheckInAttributingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
         guard let lifeArea = selectedLifeArea else { return }
-        delegate?.moodCheckInAttributingViewController(self, didSelectLifeArea: lifeArea)
+        delegate?.didSelectLifeArea(self, lifeArea: lifeArea)
     }
 }

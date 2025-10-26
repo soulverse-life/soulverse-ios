@@ -163,13 +163,13 @@ final class MoodCheckInCoordinator {
 
 extension MoodCheckInCoordinator: MoodCheckInPetViewControllerDelegate {
 
-    func moodCheckInPetViewControllerDidTapBegin(_ viewController: MoodCheckInPetViewController) {
+    func didTapBegin(_ viewController: MoodCheckInPetViewController) {
         // Mark that user has seen the Pet screen
         UserDefaults.standard.set(true, forKey: Self.hasSeenPetKey)
         showSensingScreen()
     }
 
-    func moodCheckInPetViewControllerDidTapClose(_ viewController: MoodCheckInPetViewController) {
+    func didTapClose(_ viewController: MoodCheckInPetViewController) {
         handleCancellation()
     }
 }
@@ -178,17 +178,17 @@ extension MoodCheckInCoordinator: MoodCheckInPetViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInSensingViewControllerDelegate {
 
-    func moodCheckInSensingViewController(_ viewController: MoodCheckInSensingViewController, didSelectColor color: UIColor, intensity: Double) {
+    func didSelectColor(_ viewController: MoodCheckInSensingViewController, color: UIColor, intensity: Double) {
         moodCheckInData.selectedColor = color
         moodCheckInData.colorIntensity = intensity
         showNamingScreen()
     }
 
-    func moodCheckInSensingViewControllerDidTapBack(_ viewController: MoodCheckInSensingViewController) {
+    func didTapBack(_ viewController: MoodCheckInSensingViewController) {
         navigationController.popViewController(animated: true)
     }
 
-    func moodCheckInSensingViewControllerDidTapClose(_ viewController: MoodCheckInSensingViewController) {
+    func didTapClose(_ viewController: MoodCheckInSensingViewController) {
         showExitConfirmationDialog(from: viewController)
     }
 }
@@ -197,17 +197,17 @@ extension MoodCheckInCoordinator: MoodCheckInSensingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInNamingViewControllerDelegate {
 
-    func moodCheckInNamingViewController(_ viewController: MoodCheckInNamingViewController, didSelectEmotion emotion: EmotionType, intensity: Double) {
+    func didSelectEmotion(_ viewController: MoodCheckInNamingViewController, emotion: EmotionType, intensity: Double) {
         moodCheckInData.emotion = emotion
         moodCheckInData.emotionIntensity = intensity
         showShapingScreen()
     }
 
-    func moodCheckInNamingViewControllerDidTapBack(_ viewController: MoodCheckInNamingViewController) {
+    func didTapBack(_ viewController: MoodCheckInNamingViewController) {
         navigationController.popViewController(animated: true)
     }
 
-    func moodCheckInNamingViewControllerDidTapClose(_ viewController: MoodCheckInNamingViewController) {
+    func didTapClose(_ viewController: MoodCheckInNamingViewController) {
         showExitConfirmationDialog(from: viewController)
     }
 }
@@ -216,17 +216,17 @@ extension MoodCheckInCoordinator: MoodCheckInNamingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInShapingViewControllerDelegate {
 
-    func moodCheckInShapingViewController(_ viewController: MoodCheckInShapingViewController, didCompleteWithPrompt prompt: PromptOption, response: String) {
+    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption, response: String) {
         moodCheckInData.selectedPrompt = prompt
         moodCheckInData.promptResponse = response
         showAttributingScreen()
     }
 
-    func moodCheckInShapingViewControllerDidTapBack(_ viewController: MoodCheckInShapingViewController) {
+    func didTapBack(_ viewController: MoodCheckInShapingViewController) {
         navigationController.popViewController(animated: true)
     }
 
-    func moodCheckInShapingViewControllerDidTapClose(_ viewController: MoodCheckInShapingViewController) {
+    func didTapClose(_ viewController: MoodCheckInShapingViewController) {
         showExitConfirmationDialog(from: viewController)
     }
 }
@@ -235,16 +235,16 @@ extension MoodCheckInCoordinator: MoodCheckInShapingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInAttributingViewControllerDelegate {
 
-    func moodCheckInAttributingViewController(_ viewController: MoodCheckInAttributingViewController, didSelectLifeArea lifeArea: LifeAreaOption) {
+    func didSelectLifeArea(_ viewController: MoodCheckInAttributingViewController, lifeArea: LifeAreaOption) {
         moodCheckInData.lifeArea = lifeArea
         showEvaluatingScreen()
     }
 
-    func moodCheckInAttributingViewControllerDidTapBack(_ viewController: MoodCheckInAttributingViewController) {
+    func didTapBack(_ viewController: MoodCheckInAttributingViewController) {
         navigationController.popViewController(animated: true)
     }
 
-    func moodCheckInAttributingViewControllerDidTapClose(_ viewController: MoodCheckInAttributingViewController) {
+    func didTapClose(_ viewController: MoodCheckInAttributingViewController) {
         showExitConfirmationDialog(from: viewController)
     }
 }
@@ -253,16 +253,16 @@ extension MoodCheckInCoordinator: MoodCheckInAttributingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInEvaluatingViewControllerDelegate {
 
-    func moodCheckInEvaluatingViewController(_ viewController: MoodCheckInEvaluatingViewController, didSelectEvaluation evaluation: EvaluationOption) {
+    func didSelectEvaluation(_ viewController: MoodCheckInEvaluatingViewController, evaluation: EvaluationOption) {
         moodCheckInData.evaluation = evaluation
         showActingScreen()
     }
 
-    func moodCheckInEvaluatingViewControllerDidTapBack(_ viewController: MoodCheckInEvaluatingViewController) {
+    func didTapBack(_ viewController: MoodCheckInEvaluatingViewController) {
         navigationController.popViewController(animated: true)
     }
 
-    func moodCheckInEvaluatingViewControllerDidTapClose(_ viewController: MoodCheckInEvaluatingViewController) {
+    func didTapClose(_ viewController: MoodCheckInEvaluatingViewController) {
         showExitConfirmationDialog(from: viewController)
     }
 }
@@ -271,29 +271,29 @@ extension MoodCheckInCoordinator: MoodCheckInEvaluatingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInActingViewControllerDelegate {
 
-    func moodCheckInActingViewControllerDidTapWriteJournal(_ viewController: MoodCheckInActingViewController) {
+    func didTapWriteJournal(_ viewController: MoodCheckInActingViewController) {
         submitMoodCheckInData()
     }
 
-    func moodCheckInActingViewControllerDidTapMakeArt(_ viewController: MoodCheckInActingViewController) {
+    func didTapMakeArt(_ viewController: MoodCheckInActingViewController) {
         submitMoodCheckInData()
         // Navigate to drawing canvas
         AppCoordinator.openDrawingCanvas(from: viewController)
     }
 
-    func moodCheckInActingViewControllerDidTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController) {
+    func didTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController) {
         submitMoodCheckInData()
     }
 
-    func moodCheckInActingViewControllerDidTapBack(_ viewController: MoodCheckInActingViewController) {
+    func didTapBack(_ viewController: MoodCheckInActingViewController) {
         navigationController.popViewController(animated: true)
     }
 
-    func moodCheckInActingViewControllerDidTapClose(_ viewController: MoodCheckInActingViewController) {
+    func didTapClose(_ viewController: MoodCheckInActingViewController) {
         showExitConfirmationDialog(from: viewController)
     }
 
-    func moodCheckInActingViewControllerGetCurrentData(_ viewController: MoodCheckInActingViewController) -> MoodCheckInData {
+    func getCurrentData(_ viewController: MoodCheckInActingViewController) -> MoodCheckInData {
         return moodCheckInData
     }
 }
@@ -301,45 +301,45 @@ extension MoodCheckInCoordinator: MoodCheckInActingViewControllerDelegate {
 // MARK: - Delegate Protocols (To be implemented by ViewControllers)
 
 protocol MoodCheckInPetViewControllerDelegate: AnyObject {
-    func moodCheckInPetViewControllerDidTapBegin(_ viewController: MoodCheckInPetViewController)
-    func moodCheckInPetViewControllerDidTapClose(_ viewController: MoodCheckInPetViewController)
+    func didTapBegin(_ viewController: MoodCheckInPetViewController)
+    func didTapClose(_ viewController: MoodCheckInPetViewController)
 }
 
 protocol MoodCheckInSensingViewControllerDelegate: AnyObject {
-    func moodCheckInSensingViewController(_ viewController: MoodCheckInSensingViewController, didSelectColor color: UIColor, intensity: Double)
-    func moodCheckInSensingViewControllerDidTapBack(_ viewController: MoodCheckInSensingViewController)
-    func moodCheckInSensingViewControllerDidTapClose(_ viewController: MoodCheckInSensingViewController)
+    func didSelectColor(_ viewController: MoodCheckInSensingViewController, color: UIColor, intensity: Double)
+    func didTapBack(_ viewController: MoodCheckInSensingViewController)
+    func didTapClose(_ viewController: MoodCheckInSensingViewController)
 }
 
 protocol MoodCheckInNamingViewControllerDelegate: AnyObject {
-    func moodCheckInNamingViewController(_ viewController: MoodCheckInNamingViewController, didSelectEmotion emotion: EmotionType, intensity: Double)
-    func moodCheckInNamingViewControllerDidTapBack(_ viewController: MoodCheckInNamingViewController)
-    func moodCheckInNamingViewControllerDidTapClose(_ viewController: MoodCheckInNamingViewController)
+    func didSelectEmotion(_ viewController: MoodCheckInNamingViewController, emotion: EmotionType, intensity: Double)
+    func didTapBack(_ viewController: MoodCheckInNamingViewController)
+    func didTapClose(_ viewController: MoodCheckInNamingViewController)
 }
 
 protocol MoodCheckInShapingViewControllerDelegate: AnyObject {
-    func moodCheckInShapingViewController(_ viewController: MoodCheckInShapingViewController, didCompleteWithPrompt prompt: PromptOption, response: String)
-    func moodCheckInShapingViewControllerDidTapBack(_ viewController: MoodCheckInShapingViewController)
-    func moodCheckInShapingViewControllerDidTapClose(_ viewController: MoodCheckInShapingViewController)
+    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption, response: String)
+    func didTapBack(_ viewController: MoodCheckInShapingViewController)
+    func didTapClose(_ viewController: MoodCheckInShapingViewController)
 }
 
 protocol MoodCheckInAttributingViewControllerDelegate: AnyObject {
-    func moodCheckInAttributingViewController(_ viewController: MoodCheckInAttributingViewController, didSelectLifeArea lifeArea: LifeAreaOption)
-    func moodCheckInAttributingViewControllerDidTapBack(_ viewController: MoodCheckInAttributingViewController)
-    func moodCheckInAttributingViewControllerDidTapClose(_ viewController: MoodCheckInAttributingViewController)
+    func didSelectLifeArea(_ viewController: MoodCheckInAttributingViewController, lifeArea: LifeAreaOption)
+    func didTapBack(_ viewController: MoodCheckInAttributingViewController)
+    func didTapClose(_ viewController: MoodCheckInAttributingViewController)
 }
 
 protocol MoodCheckInEvaluatingViewControllerDelegate: AnyObject {
-    func moodCheckInEvaluatingViewController(_ viewController: MoodCheckInEvaluatingViewController, didSelectEvaluation evaluation: EvaluationOption)
-    func moodCheckInEvaluatingViewControllerDidTapBack(_ viewController: MoodCheckInEvaluatingViewController)
-    func moodCheckInEvaluatingViewControllerDidTapClose(_ viewController: MoodCheckInEvaluatingViewController)
+    func didSelectEvaluation(_ viewController: MoodCheckInEvaluatingViewController, evaluation: EvaluationOption)
+    func didTapBack(_ viewController: MoodCheckInEvaluatingViewController)
+    func didTapClose(_ viewController: MoodCheckInEvaluatingViewController)
 }
 
 protocol MoodCheckInActingViewControllerDelegate: AnyObject {
-    func moodCheckInActingViewControllerDidTapWriteJournal(_ viewController: MoodCheckInActingViewController)
-    func moodCheckInActingViewControllerDidTapMakeArt(_ viewController: MoodCheckInActingViewController)
-    func moodCheckInActingViewControllerDidTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController)
-    func moodCheckInActingViewControllerDidTapBack(_ viewController: MoodCheckInActingViewController)
-    func moodCheckInActingViewControllerDidTapClose(_ viewController: MoodCheckInActingViewController)
-    func moodCheckInActingViewControllerGetCurrentData(_ viewController: MoodCheckInActingViewController) -> MoodCheckInData
+    func didTapWriteJournal(_ viewController: MoodCheckInActingViewController)
+    func didTapMakeArt(_ viewController: MoodCheckInActingViewController)
+    func didTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController)
+    func didTapBack(_ viewController: MoodCheckInActingViewController)
+    func didTapClose(_ viewController: MoodCheckInActingViewController)
+    func getCurrentData(_ viewController: MoodCheckInActingViewController) -> MoodCheckInData
 }
