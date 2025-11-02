@@ -436,8 +436,11 @@
 
 // Mood Check-In - Sensing Screen
 "mood_checkin_sensing_title" = "感知";
+"mood_checkin_sensing_subtitle" = "花點時間留意你的情緒\n展開你的情緒旅程。";
 "mood_checkin_sensing_description" = "花點時間留意你的情緒\n展開你的情緒旅程。";
+"mood_checkin_sensing_instruction" = "用一個顏色來描述你今天的感受";
 "mood_checkin_sensing_color_prompt" = "用一個顏色來描述你今天的感受";
+"mood_checkin_sensing_intensity" = "感受有多強烈？";
 "mood_checkin_sensing_intensity_prompt" = "感受有多強烈？";
 
 // Mood Check-In - Attributing Screen
@@ -451,9 +454,13 @@
 // Mood Check-In - Acting Screen
 "mood_checkin_acting_title" = "行動";
 "mood_checkin_acting_subtitle" = "將你的情緒覺察\n轉化為創意表達";
+"mood_checkin_acting_journey" = "你的情緒旅程";
 "mood_checkin_acting_journey_label" = "你的情緒旅程";
+"mood_checkin_acting_color" = "顏色";
 "mood_checkin_acting_color_label" = "顏色";
+"mood_checkin_acting_emotions" = "情緒";
 "mood_checkin_acting_emotions_label" = "情緒";
+"mood_checkin_acting_expression" = "表達";
 "mood_checkin_acting_expression_label" = "表達";
 "mood_checkin_acting_selected" = "已選擇";
 "mood_checkin_acting_na" = "無";

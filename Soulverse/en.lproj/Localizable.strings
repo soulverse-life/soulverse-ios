@@ -434,8 +434,11 @@
 
 // Mood Check-In - Sensing Screen
 "mood_checkin_sensing_title" = "Sensing";
+"mood_checkin_sensing_subtitle" = "Take a moment to notice your mood and\nbegin your emotional journey.";
 "mood_checkin_sensing_description" = "Take a moment to notice your mood and\nbegin your emotional journey.";
+"mood_checkin_sensing_instruction" = "Use a color to describe your feeling today";
 "mood_checkin_sensing_color_prompt" = "Use a color to describe your feeling today";
+"mood_checkin_sensing_intensity" = "How strong the feeling?";
 "mood_checkin_sensing_intensity_prompt" = "How strong the feeling?";
 
 // Mood Check-In - Attributing Screen
@@ -449,9 +452,13 @@
 // Mood Check-In - Acting Screen
 "mood_checkin_acting_title" = "Acting";
 "mood_checkin_acting_subtitle" = "Transform your emotional awareness into\ncreative expression";
+"mood_checkin_acting_journey" = "Your emotional journey";
 "mood_checkin_acting_journey_label" = "Your emotional journey";
+"mood_checkin_acting_color" = "Color";
 "mood_checkin_acting_color_label" = "Color";
+"mood_checkin_acting_emotions" = "Emotions";
 "mood_checkin_acting_emotions_label" = "Emotions";
+"mood_checkin_acting_expression" = "Expression";
 "mood_checkin_acting_expression_label" = "Expression";
 "mood_checkin_acting_selected" = "Selected";
 "mood_checkin_acting_na" = "N/A";

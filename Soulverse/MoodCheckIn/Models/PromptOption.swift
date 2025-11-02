@@ -37,17 +37,17 @@ enum PromptOption: String, CaseIterable {
     var placeholderText: String {
         switch self {
         case .itFeelsLike:
-            return "\"It feels like _______.\"\nThink of an image, a movement, or an atmosphere that matches your feeling."
+            return NSLocalizedString("prompt_placeholder_it_feels_like", comment: "")
         case .itRemindsMeOf:
-            return "\"It reminds me of _______.\"\nDescribe a memory, place, or experience that resonates with this emotion."
+            return NSLocalizedString("prompt_placeholder_it_reminds_me_of", comment: "")
         case .iSense:
-            return "\"I sense _______.\"\nWhat physical sensations or intuitions arise with this feeling?"
+            return NSLocalizedString("prompt_placeholder_i_sense", comment: "")
         case .theEmotionIsLike:
-            return "\"The emotion is like _______.\"\nUse a metaphor or comparison to capture the essence of your emotion."
+            return NSLocalizedString("prompt_placeholder_the_emotion_is_like", comment: "")
         case .inMyBodyIts:
-            return "\"In my body, it's _______.\"\nWhere and how does this emotion manifest physically?"
+            return NSLocalizedString("prompt_placeholder_in_my_body_its", comment: "")
         case .theTextureIs:
-            return "\"The texture is _______.\"\nIf this emotion had a texture, what would it feel like?"
+            return NSLocalizedString("prompt_placeholder_the_texture_is", comment: "")
         }
     }
 }
