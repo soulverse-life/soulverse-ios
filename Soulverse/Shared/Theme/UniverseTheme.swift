@@ -36,7 +36,12 @@ extension UniverseTheme {
 
 // MARK: - Background
 extension UniverseTheme {
+    var backgroundImageName: String? {
+        "appBackground" // Use fixed background image
+    }
+
     var backgroundGradientColors: [UIColor] {
+        // Fallback gradient if image is not available
         [
             UIColor(red: 10.0/255.0, green: 6.0/255.0, blue: 20.0/255.0, alpha: 1.0),
             UIColor(red: 26.0/255.0, green: 20.0/255.0, blue: 85.0/255.0, alpha: 1.0),

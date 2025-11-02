@@ -23,6 +23,7 @@ protocol Theme: Identifiable where ID == String {
     var backgroundGradientColors: [UIColor] { get }
     var backgroundGradientDirection: GradientDirection { get }
     var backgroundGradientLocations: [NSNumber]? { get } // Optional: specify where each color stops (0.0 to 1.0)
+    var backgroundImageName: String? { get } // Optional: background image name from Assets
 
     // Text colors
     var textPrimary: UIColor { get }

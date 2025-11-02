@@ -36,6 +36,10 @@ extension SoulTheme {
 
 // MARK: - Background
 extension SoulTheme {
+    var backgroundImageName: String? {
+        nil // Use gradient for Soul theme
+    }
+
     var backgroundGradientColors: [UIColor] {
         [
             UIColor(red: 164.0/255.0, green: 193.0/255.0, blue: 252.0/255.0, alpha: 1.0),
