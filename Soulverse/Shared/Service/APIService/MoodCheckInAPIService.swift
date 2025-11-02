@@ -48,11 +48,16 @@ extension MoodCheckInAPIService: TargetType {
             }
             parameters["color_intensity"] = data.colorIntensity
 
-            // Emotion and intensity
-            if let emotion = data.emotion {
-                parameters["emotion"] = emotion.rawValue
+            // Emotions array (max 2 emotions with their intensities)
+            if !data.emotions.isEmpty {
+                let emotionsArray = data.emotions.map { emotionData -> [String: Any] in
+                    return [
+                        "emotion": emotionData.emotion.rawValue,
+                        "intensity": emotionData.intensity
+                    ]
+                }
+                parameters["emotions"] = emotionsArray
             }
-            parameters["emotion_intensity"] = data.emotionIntensity
 
             // Prompt and response
             if let prompt = data.selectedPrompt {

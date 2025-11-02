@@ -127,6 +127,22 @@ Development and production environments controlled via build schemes:
 
 ## Development Guidelines
 
+### Localization
+- 🌍 **MANDATORY**: ALL user-facing strings MUST use `NSLocalizedString()`
+- ❌ **NEVER** hardcode UI text strings directly in code
+- Add strings to both `en.lproj/Localizable.strings` and `zh-TW.lproj/Localizable.strings`
+- Use descriptive keys with feature prefix (e.g., "mood_checkin_naming_title")
+- Test with both English and Traditional Chinese before submitting
+
+### Layout Constants
+- 📐 Use global constants from `ViewComponentConstants` for shared values
+- Only use local `Layout` enum for view-specific spacing/sizing
+- Common global constants:
+  - `navigationButtonSize`: Navigation bar buttons (44pt)
+  - `actionButtonHeight`: Primary action buttons (48pt)
+  - `navigationBarHeight`: Navigation bar height (56pt)
+  - `colorDisplaySize`: Color display circles (30pt)
+
 ### Code Style
 - Follow existing Swift conventions and naming patterns
 - Use dependency injection via protocols for testability

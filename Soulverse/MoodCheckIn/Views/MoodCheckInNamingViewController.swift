@@ -14,10 +14,26 @@ class MoodCheckInNamingViewController: ViewController {
 
     weak var delegate: MoodCheckInNamingViewControllerDelegate?
 
-    private var selectedEmotion: EmotionType?
-    private var emotionIntensity: Double = 0.5
+    private var viewState = ViewState() {
+        didSet { updateContinueButton() }
+    }
 
-    // MARK: - UI Elements
+    // MARK: - Layout Constants
+
+    private enum Layout {
+        enum Spacing {
+            static let horizontal: CGFloat = 40
+            static let sectionVertical: CGFloat = 24
+            static let titleTopOffset: CGFloat = 40
+        }
+
+        enum Size {
+            static let progressSteps: Int = 6
+            static let currentStep: Int = 2
+        }
+    }
+
+    // MARK: - UI Elements - Navigation
 
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
@@ -36,96 +52,45 @@ class MoodCheckInNamingViewController: ViewController {
     }()
 
     private lazy var progressBar: SoulverseProgressBar = {
-        let bar = SoulverseProgressBar(totalSteps: 6)
-        bar.setProgress(currentStep: 2)
+        let bar = SoulverseProgressBar(totalSteps: Layout.Size.progressSteps)
+        bar.setProgress(currentStep: Layout.Size.currentStep)
         return bar
     }()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Naming"
+        label.text = NSLocalizedString("mood_checkin_naming_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
     }()
 
-    private lazy var colorDisplayView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 15
-        view.backgroundColor = .yellow
+    // MARK: - UI Elements - Content Sections
+
+    private lazy var colorSummarySection: ColorSummaryView = {
+        let view = ColorSummaryView()
         return view
     }()
 
-    private lazy var colorLabel: UILabel = {
-        let label = UILabel()
-        label.text = "You choose yellow"
-        label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .themeTextPrimary
-        return label
-    }()
-
-    private lazy var promptLabel: UILabel = {
-        let label = UILabel()
-        label.text = "What emotion does this color bring to your mind?"
-        label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .themeTextPrimary
-        label.numberOfLines = 0
-        return label
-    }()
-
-    private lazy var emotionTagsView: SoulverseTagsView = {
-        let config = SoulverseTagsViewConfig(horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
-        let view = SoulverseTagsView(config: config)
+    private lazy var emotionSelectionSection: EmotionSelectionView = {
+        let view = EmotionSelectionView()
         view.delegate = self
         return view
     }()
 
-    private lazy var intensityTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Joy Intensity"
-        label.font = .projectFont(ofSize: 16, weight: .semibold)
-        label.textColor = .themeTextPrimary
-        return label
+    private lazy var intensityContainer: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = Layout.Spacing.sectionVertical
+        return stack
     }()
 
-    private lazy var intensitySlider: SummitSlider = {
-        let slider = SummitSlider()
-        slider.minimumValue = 0
-        slider.maximumValue = 1
-        slider.value = 0.5
-        slider.addTarget(self, action: #selector(intensitySliderChanged), for: .valueChanged)
-        return slider
-    }()
-
-    private lazy var intensityLeftLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Serenity"
-        label.font = .projectFont(ofSize: 12, weight: .regular)
-        label.textColor = .themeTextSecondary
-        return label
-    }()
-
-    private lazy var intensityCenterLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Joy"
-        label.font = .projectFont(ofSize: 12, weight: .semibold)
-        label.textColor = .themeTextPrimary
-        label.textAlignment = .center
-        return label
-    }()
-
-    private lazy var intensityRightLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Ecstasy"
-        label.font = .projectFont(ofSize: 12, weight: .regular)
-        label.textColor = .themeTextSecondary
-        label.textAlignment = .right
-        return label
-    }()
+    private var intensityViews: [EmotionType: IntensitySelectionView] = [:]
 
     private lazy var continueButton: SoulverseButton = {
-        let button = SoulverseButton(title: "Continue", style: .primary, delegate: self)
+        let buttonTitle = NSLocalizedString("mood_checkin_continue", comment: "")
+        let button = SoulverseButton(title: buttonTitle, style: .primary, delegate: self)
         button.isEnabled = false
         return button
     }()
@@ -135,7 +100,6 @@ class MoodCheckInNamingViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupEmotionTags()
     }
 
     // MARK: - Setup
@@ -144,107 +108,134 @@ class MoodCheckInNamingViewController: ViewController {
         view.backgroundColor = .white
         navigationController?.setNavigationBarHidden(true, animated: false)
 
+        setupNavigationBar()
+        setupContentSections()
+        setupContinueButton()
+        setupConstraints()
+    }
+
+    private func setupNavigationBar() {
         view.addSubview(backButton)
         view.addSubview(closeButton)
         view.addSubview(progressBar)
         view.addSubview(titleLabel)
-        view.addSubview(colorDisplayView)
-        view.addSubview(colorLabel)
-        view.addSubview(promptLabel)
-        view.addSubview(emotionTagsView)
-        view.addSubview(intensityTitleLabel)
-        view.addSubview(intensitySlider)
-        view.addSubview(intensityLeftLabel)
-        view.addSubview(intensityCenterLabel)
-        view.addSubview(intensityRightLabel)
-        view.addSubview(continueButton)
+    }
 
+    private func setupContentSections() {
+        view.addSubview(colorSummarySection)
+        view.addSubview(emotionSelectionSection)
+        view.addSubview(intensityContainer)
+    }
+
+    private func setupContinueButton() {
+        view.addSubview(continueButton)
+    }
+
+    private func setupConstraints() {
+        setupNavigationConstraints()
+        setupProgressBarConstraints()
+        setupTitleConstraints()
+        setupSectionConstraints()
+        setupContinueButtonConstraints()
+    }
+
+    private func setupNavigationConstraints() {
         backButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.left.equalToSuperview().offset(16)
-            make.width.height.equalTo(44)
+            make.width.height.equalTo(ViewComponentConstants.navigationButtonSize)
         }
 
         closeButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.right.equalToSuperview().offset(-16)
-            make.width.height.equalTo(44)
+            make.width.height.equalTo(ViewComponentConstants.navigationButtonSize)
         }
+    }
 
+    private func setupProgressBarConstraints() {
         progressBar.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalTo(backButton)
         }
+    }
 
+    private func setupTitleConstraints() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(40)
-            make.left.right.equalToSuperview().inset(40)
+            make.top.equalTo(progressBar.snp.bottom).offset(Layout.Spacing.titleTopOffset)
+            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+        }
+    }
+
+    private func setupSectionConstraints() {
+        colorSummarySection.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(Layout.Spacing.sectionVertical)
+            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
         }
 
-        colorDisplayView.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(40)
-            make.top.equalTo(titleLabel.snp.bottom).offset(24)
-            make.width.height.equalTo(30)
+        emotionSelectionSection.snp.makeConstraints { make in
+            make.top.equalTo(colorSummarySection.snp.bottom).offset(Layout.Spacing.sectionVertical)
+            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
         }
 
-        colorLabel.snp.makeConstraints { make in
-            make.left.equalTo(colorDisplayView.snp.right).offset(12)
-            make.centerY.equalTo(colorDisplayView)
+        intensityContainer.snp.makeConstraints { make in
+            make.top.equalTo(emotionSelectionSection.snp.bottom).offset(Layout.Spacing.sectionVertical)
+            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
         }
+    }
 
-        promptLabel.snp.makeConstraints { make in
-            make.top.equalTo(colorDisplayView.snp.bottom).offset(24)
-            make.left.right.equalToSuperview().inset(40)
-        }
-
-        emotionTagsView.snp.makeConstraints { make in
-            make.top.equalTo(promptLabel.snp.bottom).offset(16)
-            make.left.right.equalToSuperview().inset(40)
-            make.height.equalTo(140)
-        }
-
-        intensityTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(emotionTagsView.snp.bottom).offset(24)
-            make.left.equalToSuperview().inset(40)
-        }
-
-        intensitySlider.snp.makeConstraints { make in
-            make.top.equalTo(intensityTitleLabel.snp.bottom).offset(12)
-            make.left.right.equalToSuperview().inset(40)
-        }
-
-        intensityLeftLabel.snp.makeConstraints { make in
-            make.left.equalTo(intensitySlider)
-            make.top.equalTo(intensitySlider.snp.bottom).offset(4)
-        }
-
-        intensityCenterLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(intensitySlider)
-            make.top.equalTo(intensitySlider.snp.bottom).offset(4)
-        }
-
-        intensityRightLabel.snp.makeConstraints { make in
-            make.right.equalTo(intensitySlider)
-            make.top.equalTo(intensitySlider.snp.bottom).offset(4)
-        }
-
+    private func setupContinueButtonConstraints() {
         continueButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.greaterThanOrEqualTo(intensityContainer.snp.bottom).offset(Layout.Spacing.sectionVertical)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
     }
 
-    private func setupEmotionTags() {
-        let emotions = EmotionType.allCases.map { emotion in
-            SoulverseTagsItemData(title: emotion.displayName, isSelected: false)
-        }
-        emotionTagsView.setItems(emotions)
-    }
+    // MARK: - Public Methods
 
     func setSelectedColor(_ color: UIColor) {
-        colorDisplayView.backgroundColor = color
-        // You could also update the label text to show the color name
+        viewState.selectedColor = color
+        colorSummarySection.configure(color: color)
+    }
+
+    // MARK: - Private Methods
+
+    private func updateContinueButton() {
+        continueButton.isEnabled = viewState.canContinue
+    }
+
+    private func updateIntensityViews(for emotions: [EmotionType]) {
+        // Remove views for deselected emotions
+        for (emotion, view) in intensityViews where !emotions.contains(emotion) {
+            view.removeFromSuperview()
+            intensityViews.removeValue(forKey: emotion)
+        }
+
+        // Add views for newly selected emotions
+        for emotion in emotions where intensityViews[emotion] == nil {
+            let intensityView = IntensitySelectionView()
+            intensityView.delegate = self
+            intensityView.configure(emotion: emotion)
+
+            intensityViews[emotion] = intensityView
+        }
+
+        // Rebuild stack view in correct order
+        intensityContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        for emotion in emotions {
+            if let view = intensityViews[emotion] {
+                intensityContainer.addArrangedSubview(view)
+            }
+        }
+    }
+
+    private func shakeEmotionTags() {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.values = [-10, 10, -10, 10, -5, 5, 0]
+        animation.duration = 0.4
+        emotionSelectionSection.layer.add(animation, forKey: "shake")
     }
 
     // MARK: - Actions
@@ -256,31 +247,40 @@ class MoodCheckInNamingViewController: ViewController {
     @objc private func closeButtonTapped() {
         delegate?.didTapClose(self)
     }
+}
 
-    @objc private func intensitySliderChanged() {
-        emotionIntensity = Double(intensitySlider.value)
+// MARK: - EmotionSelectionViewDelegate
+
+extension MoodCheckInNamingViewController: EmotionSelectionViewDelegate {
+    func didUpdateEmotions(_ view: EmotionSelectionView, emotions: [EmotionType]) {
+        // Update view state with new emotions (preserve existing intensities, default 0.5 for new)
+        var newEmotionsData: [(emotion: EmotionType, intensity: Double)] = []
+
+        for emotion in emotions {
+            // Find existing intensity or use default
+            let existingIntensity = viewState.selectedEmotions.first(where: { $0.emotion == emotion })?.intensity ?? 0.5
+            newEmotionsData.append((emotion: emotion, intensity: existingIntensity))
+        }
+
+        viewState.selectedEmotions = newEmotionsData
+
+        // Update intensity views
+        updateIntensityViews(for: emotions)
     }
 
-    private func updateIntensityLabels() {
-        guard let emotion = selectedEmotion else { return }
-
-        intensityTitleLabel.text = "\(emotion.displayName) Intensity"
-
-        let labels = emotion.intensityLabels
-        intensityLeftLabel.text = labels.left
-        intensityCenterLabel.text = labels.center
-        intensityRightLabel.text = labels.right
+    func didReachMaximumSelection(_ view: EmotionSelectionView) {
+        shakeEmotionTags()
     }
 }
 
-// MARK: - SoulverseTagsViewDelegate
+// MARK: - IntensitySelectionViewDelegate
 
-extension MoodCheckInNamingViewController: SoulverseTagsViewDelegate {
-    func soulverseTagsView(_ view: SoulverseTagsView, didSelectItemAt index: Int) {
-        let emotions = Array(EmotionType.allCases)
-        selectedEmotion = emotions[index]
-        updateIntensityLabels()
-        continueButton.isEnabled = true
+extension MoodCheckInNamingViewController: IntensitySelectionViewDelegate {
+    func didChangeIntensity(_ view: IntensitySelectionView, emotion: EmotionType, intensity: Double) {
+        // Update the intensity for the specific emotion
+        if let index = viewState.selectedEmotions.firstIndex(where: { $0.emotion == emotion }) {
+            viewState.selectedEmotions[index].intensity = intensity
+        }
     }
 }
 
@@ -288,7 +288,20 @@ extension MoodCheckInNamingViewController: SoulverseTagsViewDelegate {
 
 extension MoodCheckInNamingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        guard let emotion = selectedEmotion else { return }
-        delegate?.didSelectEmotion(self, emotion: emotion, intensity: emotionIntensity)
+        guard !viewState.selectedEmotions.isEmpty else { return }
+        delegate?.didSelectEmotions(self, emotions: viewState.selectedEmotions)
+    }
+}
+
+// MARK: - ViewState
+
+private extension MoodCheckInNamingViewController {
+    struct ViewState {
+        var selectedColor: UIColor = .yellow
+        var selectedEmotions: [(emotion: EmotionType, intensity: Double)] = []
+
+        var canContinue: Bool {
+            return !selectedEmotions.isEmpty && selectedEmotions.count <= 2
+        }
     }
 }

@@ -46,7 +46,7 @@ class MoodCheckInSensingViewController: ViewController {
 
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Take a moment to notice your mood and\nbegin your emotional journey."
+        label.text = NSLocalizedString("mood_checkin_sensing_subtitle", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .regular)
         label.textColor = .themeTextSecondary
         label.textAlignment = .center
@@ -56,7 +56,7 @@ class MoodCheckInSensingViewController: ViewController {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Sensing"
+        label.text = NSLocalizedString("mood_checkin_sensing_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
@@ -65,7 +65,7 @@ class MoodCheckInSensingViewController: ViewController {
 
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Use a color to describe your feeling today"
+        label.text = NSLocalizedString("mood_checkin_sensing_instruction", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
@@ -81,7 +81,7 @@ class MoodCheckInSensingViewController: ViewController {
 
     private lazy var intensityLabel: UILabel = {
         let label = UILabel()
-        label.text = "How strong the feeling?"
+        label.text = NSLocalizedString("mood_checkin_sensing_intensity", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
@@ -220,7 +220,6 @@ extension MoodCheckInSensingViewController: IntensityCircleSelectorViewDelegate 
     func didSelectIntensity(_ view: IntensityCircleSelectorView, intensity: Double) {
         // Update selected intensity when user taps a circle
         selectedIntensity = intensity
-        print("[Sensing] User selected intensity: \(intensity)")
     }
 }
 

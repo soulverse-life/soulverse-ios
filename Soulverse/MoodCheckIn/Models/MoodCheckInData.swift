@@ -21,11 +21,8 @@ struct MoodCheckInData {
 
     // MARK: - Naming Step
 
-    /// Selected emotion type
-    var emotion: EmotionType?
-
-    /// Emotion intensity (0.0 to 1.0)
-    var emotionIntensity: Double = 0.5
+    /// Selected emotions with their intensities (max 2 emotions)
+    var emotions: [(emotion: EmotionType, intensity: Double)] = []
 
     // MARK: - Shaping Step
 
@@ -52,9 +49,9 @@ struct MoodCheckInData {
         return selectedColor != nil
     }
 
-    /// Check if Naming step is complete
+    /// Check if Naming step is complete (at least 1 emotion selected, max 2)
     var isNamingComplete: Bool {
-        return emotion != nil
+        return !emotions.isEmpty && emotions.count <= 2
     }
 
     /// Check if Shaping step is complete

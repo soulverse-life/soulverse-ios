@@ -109,7 +109,7 @@ class InnerCosmoViewController: ViewController {
                 print("[InnerCosmo] Mood check-in completed!")
                 if let data = data {
                     print("Color: \(data.colorHexString ?? "N/A")")
-                    print("Emotion: \(data.emotion?.displayName ?? "N/A")")
+                    // print("Emotion: \(data.emotion?.displayName ?? "N/A")")
                     print("Prompt Response: \(data.promptResponse ?? "N/A")")
                 }
                 // You can show a success message here using SwiftMessages

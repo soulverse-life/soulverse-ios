@@ -65,12 +65,23 @@ final class MoodCheckInCoordinator {
     private func showNamingScreen() {
         let viewController = MoodCheckInNamingViewController()
         viewController.delegate = self
+        // Pass the selected color with intensity (alpha) from previous step
+        if let selectedColor = moodCheckInData.selectedColor {
+            let colorWithAlpha = selectedColor.withAlphaComponent(moodCheckInData.colorIntensity)
+            viewController.setSelectedColor(colorWithAlpha)
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 
     private func showShapingScreen() {
         let viewController = MoodCheckInShapingViewController()
         viewController.delegate = self
+        // Pass the selected color with intensity (alpha) and emotions from previous steps
+        if let selectedColor = moodCheckInData.selectedColor {
+            let colorWithAlpha = selectedColor.withAlphaComponent(moodCheckInData.colorIntensity)
+            let emotions = moodCheckInData.emotions
+            viewController.setSelectedColorAndEmotions(color: colorWithAlpha, emotions: emotions)
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 
@@ -130,16 +141,10 @@ final class MoodCheckInCoordinator {
             guard let self = self else { return }
 
             switch result {
-            case .success(let response):
-                #if DEBUG
-                print("[MoodCheckIn] Successfully submitted data: \(response)")
-                #endif
+            case .success:
                 self.handleSubmissionSuccess()
 
-            case .failure(let error):
-                #if DEBUG
-                print("[MoodCheckIn] Submission failed: \(error.localizedDescription)")
-                #endif
+            case .failure:
                 // For now, still show success (can add error handling later)
                 self.handleSubmissionSuccess()
             }
@@ -197,9 +202,8 @@ extension MoodCheckInCoordinator: MoodCheckInSensingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInNamingViewControllerDelegate {
 
-    func didSelectEmotion(_ viewController: MoodCheckInNamingViewController, emotion: EmotionType, intensity: Double) {
-        moodCheckInData.emotion = emotion
-        moodCheckInData.emotionIntensity = intensity
+    func didSelectEmotions(_ viewController: MoodCheckInNamingViewController, emotions: [(emotion: EmotionType, intensity: Double)]) {
+        moodCheckInData.emotions = emotions
         showShapingScreen()
     }
 
@@ -312,7 +316,7 @@ protocol MoodCheckInSensingViewControllerDelegate: AnyObject {
 }
 
 protocol MoodCheckInNamingViewControllerDelegate: AnyObject {
-    func didSelectEmotion(_ viewController: MoodCheckInNamingViewController, emotion: EmotionType, intensity: Double)
+    func didSelectEmotions(_ viewController: MoodCheckInNamingViewController, emotions: [(emotion: EmotionType, intensity: Double)])
     func didTapBack(_ viewController: MoodCheckInNamingViewController)
     func didTapClose(_ viewController: MoodCheckInNamingViewController)
 }

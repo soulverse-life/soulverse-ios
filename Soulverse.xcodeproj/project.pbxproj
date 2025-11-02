@@ -254,6 +254,18 @@
 		79B6AADC2EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAD42EACCABA00A8B079 /* IntensityCircleSelectorView.swift */; };
 		79B6AADE2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AADD2EACCAEC00A8B079 /* MoodCheckInAPIService.swift */; };
 		79B6AADF2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AADD2EACCAEC00A8B079 /* MoodCheckInAPIService.swift */; };
+		79B6AAE32EB5B7AA00A8B079 /* IntensitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */; };
+		79B6AAE42EB5B7AA00A8B079 /* EmotionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */; };
+		79B6AAE52EB5B7AA00A8B079 /* ColorSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */; };
+		79B6AAE62EB5B7AA00A8B079 /* IntensitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */; };
+		79B6AAE72EB5B7AA00A8B079 /* EmotionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */; };
+		79B6AAE82EB5B7AA00A8B079 /* ColorSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */; };
+		79B6AAEA2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE92EB5C3DE00A8B079 /* EmotionCombination.swift */; };
+		79B6AAEB2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE92EB5C3DE00A8B079 /* EmotionCombination.swift */; };
+		79B6AAEE2EB75F8800A8B079 /* PromptSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */; };
+		79B6AAEF2EB75F8800A8B079 /* ColorEmotionSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAEC2EB75F8800A8B079 /* ColorEmotionSummaryView.swift */; };
+		79B6AAF02EB75F8800A8B079 /* PromptSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */; };
+		79B6AAF12EB75F8800A8B079 /* ColorEmotionSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAEC2EB75F8800A8B079 /* ColorEmotionSummaryView.swift */; };
 		79BB25162DF9E2C600ED3CBE /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = E8388395277AF9F80002C053 /* OpenCC */; };
 		79BB25172DF9E2C600ED3CBE /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = E8388397277AF9F80002C053 /* SwiftMessages */; };
 		79BB25182DF9E2C600ED3CBE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E8388399277AF9F80002C053 /* Realm */; };
@@ -439,6 +451,12 @@
 		79B6AAD42EACCABA00A8B079 /* IntensityCircleSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityCircleSelectorView.swift; sourceTree = "<group>"; };
 		79B6AAD52EACCABA00A8B079 /* RadioOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptionView.swift; sourceTree = "<group>"; };
 		79B6AADD2EACCAEC00A8B079 /* MoodCheckInAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInAPIService.swift; sourceTree = "<group>"; };
+		79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSummaryView.swift; sourceTree = "<group>"; };
+		79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionSelectionView.swift; sourceTree = "<group>"; };
+		79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensitySelectionView.swift; sourceTree = "<group>"; };
+		79B6AAE92EB5C3DE00A8B079 /* EmotionCombination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionCombination.swift; sourceTree = "<group>"; };
+		79B6AAEC2EB75F8800A8B079 /* ColorEmotionSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEmotionSummaryView.swift; sourceTree = "<group>"; };
+		79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptSelectionView.swift; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1107,6 +1125,7 @@
 		79B6AAA62EACCA5D00A8B079 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				79B6AAE92EB5C3DE00A8B079 /* EmotionCombination.swift */,
 				79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */,
 				79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */,
 				79B6AAA32EACCA5D00A8B079 /* LifeAreaOption.swift */,
@@ -1160,8 +1179,13 @@
 		79B6AAD62EACCABA00A8B079 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				79B6AAEC2EB75F8800A8B079 /* ColorEmotionSummaryView.swift */,
+				79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */,
 				79B6AAD32EACCABA00A8B079 /* ColorGradientSliderView.swift */,
+				79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */,
+				79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */,
 				79B6AAD42EACCABA00A8B079 /* IntensityCircleSelectorView.swift */,
+				79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */,
 				79B6AAD52EACCABA00A8B079 /* RadioOptionView.swift */,
 			);
 			path = Components;
@@ -1621,6 +1645,9 @@
 				790AD24E2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */,
 				790AD24F2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */,
 				790AD2502DF9E43200C33CD1 /* UISwitch+Extensions.swift in Sources */,
+				79B6AAE32EB5B7AA00A8B079 /* IntensitySelectionView.swift in Sources */,
+				79B6AAE42EB5B7AA00A8B079 /* EmotionSelectionView.swift in Sources */,
+				79B6AAE52EB5B7AA00A8B079 /* ColorSummaryView.swift in Sources */,
 				790AD2522DF9E43200C33CD1 /* TrackingServiceType.swift in Sources */,
 				790AD2532DF9E43200C33CD1 /* UITabBarController+Extensions.swift in Sources */,
 				790AD2542DF9E43200C33CD1 /* User.swift in Sources */,
@@ -1635,6 +1662,7 @@
 				794B5A0F2EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,
 				790AD2612DF9E43200C33CD1 /* SummitAlertView.swift in Sources */,
 				79B6AADE2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */,
+				79B6AAEB2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */,
 				790AD2632DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD2662DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
 				7922ECE22E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
@@ -1642,6 +1670,8 @@
 				7922ECD12E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
 				7922ECD22E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
 				7922ECD32E993B8D0086B7CA /* OnboardingUserData.swift in Sources */,
+				79B6AAF02EB75F8800A8B079 /* PromptSelectionView.swift in Sources */,
+				79B6AAF12EB75F8800A8B079 /* ColorEmotionSummaryView.swift in Sources */,
 				7922ECD72E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */,
 				79B6AAB32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */,
 				79B6AAB42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */,
@@ -1741,6 +1771,9 @@
 				790AD2FC2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */,
 				790AD2FD2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */,
 				790AD2FE2DF9E43200C33CD1 /* UISwitch+Extensions.swift in Sources */,
+				79B6AAE62EB5B7AA00A8B079 /* IntensitySelectionView.swift in Sources */,
+				79B6AAE72EB5B7AA00A8B079 /* EmotionSelectionView.swift in Sources */,
+				79B6AAE82EB5B7AA00A8B079 /* ColorSummaryView.swift in Sources */,
 				790AD3002DF9E43200C33CD1 /* TrackingServiceType.swift in Sources */,
 				790AD3012DF9E43200C33CD1 /* UITabBarController+Extensions.swift in Sources */,
 				790AD3022DF9E43200C33CD1 /* User.swift in Sources */,
@@ -1755,6 +1788,7 @@
 				794B5A102EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,
 				790AD30F2DF9E43200C33CD1 /* SummitAlertView.swift in Sources */,
 				79B6AADF2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */,
+				79B6AAEA2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */,
 				790AD3112DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD3142DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
 				7922ECE32E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
@@ -1762,6 +1796,8 @@
 				7922ECC42E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
 				7922ECC52E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
 				7922ECC62E993B8D0086B7CA /* OnboardingUserData.swift in Sources */,
+				79B6AAEE2EB75F8800A8B079 /* PromptSelectionView.swift in Sources */,
+				79B6AAEF2EB75F8800A8B079 /* ColorEmotionSummaryView.swift in Sources */,
 				7922ECCA2E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */,
 				79B6AAC32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */,
 				79B6AAC42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */,

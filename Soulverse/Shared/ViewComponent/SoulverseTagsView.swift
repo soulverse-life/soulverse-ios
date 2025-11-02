@@ -76,6 +76,12 @@ class SoulverseTagsView: UIView {
     func setItems(_ items: [SoulverseTagsItemData]) {
         self.items = items
         collectionView.reloadData()
+
+        // Invalidate intrinsic content size after reload
+        // Use async to ensure collection view has finished layout
+        DispatchQueue.main.async { [weak self] in
+            self?.invalidateIntrinsicContentSize()
+        }
     }
 
     /// Get the currently selected item index
@@ -89,25 +95,9 @@ class SoulverseTagsView: UIView {
     func selectItem(at index: Int) {
         guard index >= 0 && index < items.count else { return }
 
-        // Find previously selected index
-        let previouslySelectedIndex = items.firstIndex { $0.isSelected }
-
-        // Deselect all items
-        for i in 0..<items.count {
-            items[i].isSelected = false
-        }
-
-        // Select the specified item
-        items[index].isSelected = true
-
-        // Only reload the affected cells to prevent flickering
-        var indexPathsToReload: [IndexPath] = [IndexPath(item: index, section: 0)]
-        if let previousIndex = previouslySelectedIndex, previousIndex != index {
-            indexPathsToReload.append(IndexPath(item: previousIndex, section: 0))
-        }
-
-        collectionView.reloadItems(at: indexPathsToReload)
-
+        // Immediately notify delegate without modifying internal state
+        // The delegate is responsible for updating the state via setItems()
+        // This prevents conflicts between internal state changes and delegate-driven updates
         delegate?.soulverseTagsView(self, didSelectItemAt: index)
     }
 
@@ -115,6 +105,17 @@ class SoulverseTagsView: UIView {
     func removeAllItems() {
         items.removeAll()
         collectionView.reloadData()
+    }
+
+    // MARK: - Intrinsic Content Size
+
+    override var intrinsicContentSize: CGSize {
+        // Force layout if needed
+        collectionView.layoutIfNeeded()
+
+        // Return the content size of the collection view
+        let contentHeight = collectionView.collectionViewLayout.collectionViewContentSize.height
+        return CGSize(width: UIView.noIntrinsicMetric, height: contentHeight)
     }
 }
 

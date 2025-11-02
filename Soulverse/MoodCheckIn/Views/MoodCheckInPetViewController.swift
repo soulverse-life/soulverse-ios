@@ -27,7 +27,7 @@ class MoodCheckInPetViewController: ViewController {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "This is your EmoPet"
+        label.text = NSLocalizedString("mood_checkin_pet_title", comment: "")
         label.font = .projectFont(ofSize: 24, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
@@ -45,7 +45,7 @@ class MoodCheckInPetViewController: ViewController {
 
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Your EmoPet grows with every mood check-in, reflecting your inner world. The more you check in, the more it evolves with you."
+        label.text = NSLocalizedString("mood_checkin_pet_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
@@ -54,7 +54,7 @@ class MoodCheckInPetViewController: ViewController {
     }()
 
     private lazy var beginButton: SoulverseButton = {
-        let button = SoulverseButton(title: "Begin", style: .primary, delegate: self)
+        let button = SoulverseButton(title: NSLocalizedString("mood_checkin_pet_begin", comment: ""), style: .primary, delegate: self)
         return button
     }()
 
@@ -109,8 +109,6 @@ class MoodCheckInPetViewController: ViewController {
     // MARK: - Actions
 
     @objc private func backButtonTapped() {
-        print("[MoodCheckInPet] Back button tapped")
-        print("[MoodCheckInPet] Delegate is: \(delegate != nil ? "set" : "nil")")
         delegate?.didTapClose(self)
     }
 }
@@ -119,8 +117,6 @@ class MoodCheckInPetViewController: ViewController {
 
 extension MoodCheckInPetViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        print("[MoodCheckInPet] Begin button tapped")
-        print("[MoodCheckInPet] Delegate is: \(delegate != nil ? "set" : "nil")")
         delegate?.didTapBegin(self)
     }
 }

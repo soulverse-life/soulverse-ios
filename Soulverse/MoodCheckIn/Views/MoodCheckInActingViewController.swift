@@ -42,7 +42,7 @@ class MoodCheckInActingViewController: ViewController {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Acting"
+        label.text = NSLocalizedString("mood_checkin_acting_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
@@ -51,7 +51,7 @@ class MoodCheckInActingViewController: ViewController {
 
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Transform your emotional awareness into\ncreative expression"
+        label.text = NSLocalizedString("mood_checkin_acting_subtitle", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .regular)
         label.textColor = .themeTextSecondary
         label.textAlignment = .center
@@ -61,7 +61,7 @@ class MoodCheckInActingViewController: ViewController {
 
     private lazy var journeyLabel: UILabel = {
         let label = UILabel()
-        label.text = "Your emotional journey"
+        label.text = NSLocalizedString("mood_checkin_acting_journey", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .semibold)
         label.textColor = .themeTextPrimary
         return label
@@ -77,31 +77,31 @@ class MoodCheckInActingViewController: ViewController {
     }()
 
     private lazy var colorRow: UIView = {
-        return createSummaryRow(title: "Color", value: "Yellow", colorView: UIView())
+        return createSummaryRow(title: NSLocalizedString("mood_checkin_acting_color", comment: ""), value: NSLocalizedString("mood_checkin_acting_selected", comment: ""), colorView: UIView())
     }()
 
     private lazy var emotionsRow: UIView = {
-        return createSummaryRow(title: "Emotions", value: "Joy", colorView: nil)
+        return createSummaryRow(title: NSLocalizedString("mood_checkin_acting_emotions", comment: ""), value: "Joy", colorView: nil)
     }()
 
     private lazy var expressionRow: UIView = {
-        return createSummaryRow(title: "Expression", value: "I got promoted", colorView: nil)
+        return createSummaryRow(title: NSLocalizedString("mood_checkin_acting_expression", comment: ""), value: "I got promoted", colorView: nil)
     }()
 
     private lazy var writeJournalButton: SoulverseButton = {
-        let button = SoulverseButton(title: "Write a journal", style: .outlined, delegate: self)
+        let button = SoulverseButton(title: NSLocalizedString("mood_checkin_acting_write_journal", comment: ""), style: .outlined, delegate: self)
         button.tag = 1
         return button
     }()
 
     private lazy var makeArtButton: SoulverseButton = {
-        let button = SoulverseButton(title: "Make art", style: .outlined, delegate: self)
+        let button = SoulverseButton(title: NSLocalizedString("mood_checkin_acting_make_art", comment: ""), style: .outlined, delegate: self)
         button.tag = 2
         return button
     }()
 
     private lazy var completeButton: SoulverseButton = {
-        let button = SoulverseButton(title: "Complete check-in", style: .primary, delegate: self)
+        let button = SoulverseButton(title: NSLocalizedString("mood_checkin_acting_complete", comment: ""), style: .primary, delegate: self)
         button.tag = 3
         return button
     }()
@@ -255,17 +255,22 @@ class MoodCheckInActingViewController: ViewController {
             colorView.backgroundColor = color
         }
         if let valueLabel = colorRow.viewWithTag(100) as? UILabel {
-            valueLabel.text = data.selectedColor != nil ? "Selected" : "N/A"
+            valueLabel.text = data.selectedColor != nil ? NSLocalizedString("mood_checkin_acting_selected", comment: "") : NSLocalizedString("mood_checkin_acting_na", comment: "")
         }
 
-        // Update emotions row
+        // Update emotions row (display up to 2 emotions)
         if let valueLabel = emotionsRow.viewWithTag(100) as? UILabel {
-            valueLabel.text = data.emotion?.displayName ?? "N/A"
+            if data.emotions.isEmpty {
+                valueLabel.text = NSLocalizedString("mood_checkin_acting_na", comment: "")
+            } else {
+                let emotionNames = data.emotions.map { $0.emotion.displayName }
+                valueLabel.text = emotionNames.joined(separator: ", ")
+            }
         }
 
         // Update expression row
         if let valueLabel = expressionRow.viewWithTag(100) as? UILabel {
-            valueLabel.text = data.promptResponse ?? "N/A"
+            valueLabel.text = data.promptResponse ?? NSLocalizedString("mood_checkin_acting_na", comment: "")
         }
     }
 

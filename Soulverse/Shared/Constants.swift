@@ -13,8 +13,10 @@ struct ViewComponentConstants {
     static let navigationBarHeight: CGFloat = 56.0
     static let actionButtonHeight: CGFloat = 48.0
     static let smallActionButtonHeight: CGFloat = 20.0
-    
-    
+    static let navigationButtonSize: CGFloat = 44.0
+    static let colorDisplaySize: CGFloat = 30.0
+
+
     /// Image height/width for Large NavBar state
     static let ImageSizeForLargeState: CGFloat = 40
     /// Margin from right anchor of safe area to right anchor of Image

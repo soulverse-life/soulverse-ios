@@ -42,7 +42,7 @@ class MoodCheckInAttributingViewController: ViewController {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Attributing"
+        label.text = NSLocalizedString("mood_checkin_attributing_title", comment: "")
         label.font = .projectFont(ofSize: 32, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
@@ -51,13 +51,15 @@ class MoodCheckInAttributingViewController: ViewController {
 
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Emotions often connect to different parts of\nlife. Choose the area that feels most related to\nyour feeling right now"
+        label.text = NSLocalizedString("mood_checkin_attributing_subtitle", comment: "")
         label.font = .projectFont(ofSize: 14, weight: .regular)
         label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
+
+    private var lifeAreaItems: [SoulverseTagsItemData] = []
 
     private lazy var lifeAreaTagsView: SoulverseTagsView = {
         let config = SoulverseTagsViewConfig(horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
@@ -124,21 +126,22 @@ class MoodCheckInAttributingViewController: ViewController {
         lifeAreaTagsView.snp.makeConstraints { make in
             make.top.equalTo(subtitleLabel.snp.bottom).offset(32)
             make.left.right.equalToSuperview().inset(40)
-            make.height.equalTo(220)
+            // No height constraint - will use intrinsic content size
         }
 
         continueButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(40)
+            make.top.greaterThanOrEqualTo(lifeAreaTagsView.snp.bottom).offset(24)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
     }
 
     private func setupLifeAreaTags() {
-        let lifeAreas = LifeAreaOption.allCases.map { area in
+        lifeAreaItems = LifeAreaOption.allCases.map { area in
             SoulverseTagsItemData(title: area.displayName, isSelected: false)
         }
-        lifeAreaTagsView.setItems(lifeAreas)
+        lifeAreaTagsView.setItems(lifeAreaItems)
     }
 
     // MARK: - Actions
@@ -156,6 +159,18 @@ class MoodCheckInAttributingViewController: ViewController {
 
 extension MoodCheckInAttributingViewController: SoulverseTagsViewDelegate {
     func soulverseTagsView(_ view: SoulverseTagsView, didSelectItemAt index: Int) {
+        // Single selection: deselect all items first
+        for i in 0..<lifeAreaItems.count {
+            lifeAreaItems[i].isSelected = false
+        }
+
+        // Select the tapped item
+        lifeAreaItems[index].isSelected = true
+
+        // Update the view to show selection
+        lifeAreaTagsView.setItems(lifeAreaItems)
+
+        // Update state
         let lifeAreas = Array(LifeAreaOption.allCases)
         selectedLifeArea = lifeAreas[index]
         continueButton.isEnabled = true
