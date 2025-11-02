@@ -2056,7 +2056,7 @@
 				CODE_SIGN_ENTITLEMENTS = Soulverse/Soulverse.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 387UQ56LV7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2100,7 +2100,7 @@
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = Soulverse/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2123,7 +2123,7 @@
 				CODE_SIGN_ENTITLEMENTS = Soulverse/SoulverseRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = 387UQ56LV7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2205,7 +2205,7 @@
 					"\"${PODS_ROOT}/GoogleAppMeasurement/Frameworks\"",
 				);
 				INFOPLIST_FILE = Soulverse/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
