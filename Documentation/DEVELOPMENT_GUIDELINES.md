@@ -156,20 +156,65 @@ let button = SoulverseButton(
 )
 ```
 
-### 2. Color Usage
+### 2. Color Usage ⚠️ CRITICAL
+
+**🚨 MANDATORY: ALL new features MUST use theme-aware colors. No exceptions.**
+
+Never use hardcoded colors like `.black`, `.white`, `.gray`, `.darkGray`, `.lightGray` for any UI elements.
 
 **❌ DON'T:**
 ```swift
-// Hardcoded colors
+// Hardcoded colors - NEVER DO THIS
 label.textColor = .black
+label.textColor = .darkGray
+label.textColor = .lightGray
+button.tintColor = .black
 view.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
+layer.borderColor = UIColor.black.cgColor
 ```
 
 **✅ DO:**
 ```swift
-// Theme-aware colors
-label.textColor = .themeTextPrimary
-view.backgroundColor = .themeCardBackground
+// Theme-aware colors - ALWAYS USE THESE
+label.textColor = .themeTextPrimary        // Primary text (titles, labels)
+label.textColor = .themeTextSecondary      // Secondary text (subtitles, descriptions)
+label.textColor = .themeTextDisabled       // Disabled/placeholder text
+button.tintColor = .themeTextPrimary       // Button tints
+view.backgroundColor = .themeCardBackground // Card backgrounds
+layer.borderColor = UIColor.themeTextPrimary.cgColor // For borders/shadows
+```
+
+**Available Theme Colors:**
+- **Text**: `.themeTextPrimary`, `.themeTextSecondary`, `.themeTextDisabled`
+- **Theme**: `.themePrimary`, `.themeSecondary`
+- **Backgrounds**: `.themeCardBackground`, `.themeNavigationBackground`, `.themeTabBarBackground`
+- **Buttons**: `.themeButtonPrimaryBackground`, `.themeButtonPrimaryText`, `.themeButtonDisabledBackground`, `.themeButtonDisabledText`
+- **Navigation**: `.themeNavigationText`, `.themeNavigationBackground`
+- **Tab Bar**: `.themeTabBarSelectedTint`, `.themeTabBarUnselectedTint`
+- **Other**: `.themeSeparator`
+
+**Why This Matters:**
+- ✅ Ensures visual consistency across the entire app
+- ✅ Automatically adapts when users switch themes
+- ✅ Makes the codebase maintainable and scalable
+- ✅ Follows the established design system
+- ✅ Prevents visual bugs when themes change
+
+**Real Example:**
+```swift
+// ❌ WRONG - Feature will break with theme changes
+private lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = .black  // Hard to read on dark backgrounds!
+    return label
+}()
+
+// ✅ CORRECT - Feature adapts to any theme
+private lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = .themeTextPrimary  // Always readable!
+    return label
+}()
 ```
 
 ### 3. Font Usage

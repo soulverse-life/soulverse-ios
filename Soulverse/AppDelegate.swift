@@ -3,18 +3,18 @@
 //
 import UIKit
 import Toaster
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var appTracker: CoreTracker?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         setTrackingAgent()
 
         application.beginReceivingRemoteControlEvents()
-
 
         UNUserNotificationCenter.current().delegate = self
 
@@ -22,6 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         setDefaultToastAppearance()
         checkNotificationPermission()
+
+        // Enable IQKeyboardManager
+        IQKeyboardManager.shared.isEnabled = true
+        IQKeyboardManager.shared.resignOnTouchOutside = true
+
         return true
     }
     func setTrackingAgent() {
