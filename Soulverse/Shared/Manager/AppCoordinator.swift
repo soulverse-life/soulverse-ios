@@ -130,4 +130,19 @@ class AppCoordinator {
             sourceVC.navigationController?.popViewController(animated: false)
         }
     }
+
+    static func openSpiralBreathing(from sourceVC: UIViewController) {
+        let spiralVC = SpiralBreathingViewController()
+        spiralVC.hidesBottomBarWhenPushed = true
+
+        guard let navigationVC = sourceVC.navigationController else {
+            // If no navigation controller, present it modally with a navigation controller
+            let navController = UINavigationController(rootViewController: spiralVC)
+            navController.modalPresentationStyle = .fullScreen
+            sourceVC.present(navController, animated: true)
+            return
+        }
+
+        navigationVC.pushViewController(spiralVC, animated: true)
+    }
 }

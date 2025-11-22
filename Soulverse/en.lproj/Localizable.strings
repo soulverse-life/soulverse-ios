@@ -322,3 +322,14 @@
 
 // Common
 "onboarding_continue_button" = "Continue";
+
+// Spiral Breathing
+"spiral_navigation_title" = "Breathing Exercise";
+"spiral_idle_instruction" = "Place your finger in the center of the spiral.";
+"spiral_inhale_instruction" = "Inhale slowly and draw outward along the spiral.";
+"spiral_hold_instruction" = "Hold your breath";
+"spiral_exhale_instruction" = "Exhale gently as you trace your way back to the center.";
+"spiral_completion_message" = "Well done.";
+"spiral_alert_title" = "Congratulations";
+"spiral_alert_message" = "You have completed the breathing exercise.";
+"spiral_alert_button" = "OK";

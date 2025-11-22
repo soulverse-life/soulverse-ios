@@ -124,6 +124,12 @@
 		790AD3422DF9E48E00C33CD1 /* SummitTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3362DF9E48E00C33CD1 /* SummitTrackerTests.swift */; };
 		790AD3472DF9E4C200C33CD1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 790AD3442DF9E4C200C33CD1 /* Info.plist */; };
 		790AD3482DF9E4C200C33CD1 /* KonoSummitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3452DF9E4C200C33CD1 /* KonoSummitUITests.swift */; };
+		790D87D22ECF668700D4F61F /* SpiralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D02ECF668700D4F61F /* SpiralView.swift */; };
+		790D87D32ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87CF2ECF668700D4F61F /* SpiralBreathingViewController.swift */; };
+		790D87D42ECF668700D4F61F /* SpiralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D02ECF668700D4F61F /* SpiralView.swift */; };
+		790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87CF2ECF668700D4F61F /* SpiralBreathingViewController.swift */; };
+		790D87D72ED1729200D4F61F /* SpiralConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D62ED1729200D4F61F /* SpiralConfig.swift */; };
+		790D87D82ED1729200D4F61F /* SpiralConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D62ED1729200D4F61F /* SpiralConfig.swift */; };
 		7922EC502E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
 		7922EC512E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
 		7922EC532E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */; };
@@ -333,6 +339,9 @@
 		790AD33B2DF9E48E00C33CD1 /* SampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTests.swift; sourceTree = "<group>"; };
 		790AD3442DF9E4C200C33CD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		790AD3452DF9E4C200C33CD1 /* KonoSummitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KonoSummitUITests.swift; sourceTree = "<group>"; };
+		790D87CF2ECF668700D4F61F /* SpiralBreathingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralBreathingViewController.swift; sourceTree = "<group>"; };
+		790D87D02ECF668700D4F61F /* SpiralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralView.swift; sourceTree = "<group>"; };
+		790D87D62ED1729200D4F61F /* SpiralConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralConfig.swift; sourceTree = "<group>"; };
 		7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingResultViewController.swift; sourceTree = "<group>"; };
 		7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansTC-VariableFont_wght.ttf"; sourceTree = "<group>"; };
@@ -785,6 +794,16 @@
 			path = SoulverseUITests;
 			sourceTree = "<group>";
 		};
+		790D87D12ECF668700D4F61F /* Spiral */ = {
+			isa = PBXGroup;
+			children = (
+				790D87CF2ECF668700D4F61F /* SpiralBreathingViewController.swift */,
+				790D87D62ED1729200D4F61F /* SpiralConfig.swift */,
+				790D87D02ECF668700D4F61F /* SpiralView.swift */,
+			);
+			path = Spiral;
+			sourceTree = "<group>";
+		};
 		7922ECAB2E98ABDD0086B7CA /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,6 +1005,7 @@
 		7986880E2E6C251F00EB3B38 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				790D87D12ECF668700D4F61F /* Spiral */,
 				7951A9C72E5376B5006EB0EC /* InnerCosmo */,
 				798687ED2E6C248E00EB3B38 /* Insight */,
 				79B24C742DFC7B2A001220B6 /* Canvas */,
@@ -1458,6 +1478,7 @@
 				790AD23C2DF9E43200C33CD1 /* NotificationAPIService.swift in Sources */,
 				790AD23E2DF9E43200C33CD1 /* UserAPIService.swift in Sources */,
 				790AD23F2DF9E43200C33CD1 /* Utility.swift in Sources */,
+				790D87D82ED1729200D4F61F /* SpiralConfig.swift in Sources */,
 				790AD2412DF9E43200C33CD1 /* SummitSlider.swift in Sources */,
 				79B24C782DFC7B2A001220B6 /* CanvasViewPresenter.swift in Sources */,
 				79B24C792DFC7B2A001220B6 /* CanvasViewModel.swift in Sources */,
@@ -1473,6 +1494,8 @@
 				7986880D2E6C24EE00EB3B38 /* QuestViewPresenter.swift in Sources */,
 				7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */,
 				7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
+				790D87D22ECF668700D4F61F /* SpiralView.swift in Sources */,
+				790D87D32ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
 				794B5A0C2EA38B65006CF069 /* SoulverseTagsView.swift in Sources */,
 				794B5A0D2EA38B65006CF069 /* SoulverseButtonCell.swift in Sources */,
@@ -1558,6 +1581,7 @@
 				790AD2EA2DF9E43200C33CD1 /* NotificationAPIService.swift in Sources */,
 				790AD2EC2DF9E43200C33CD1 /* UserAPIService.swift in Sources */,
 				790AD2ED2DF9E43200C33CD1 /* Utility.swift in Sources */,
+				790D87D72ED1729200D4F61F /* SpiralConfig.swift in Sources */,
 				790AD2EF2DF9E43200C33CD1 /* SummitSlider.swift in Sources */,
 				79B24C752DFC7B2A001220B6 /* CanvasViewPresenter.swift in Sources */,
 				79B24C762DFC7B2A001220B6 /* CanvasViewModel.swift in Sources */,
@@ -1573,6 +1597,8 @@
 				7986880A2E6C24EE00EB3B38 /* QuestViewPresenter.swift in Sources */,
 				7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */,
 				7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
+				790D87D42ECF668700D4F61F /* SpiralView.swift in Sources */,
+				790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A082EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
 				794B5A092EA38B65006CF069 /* SoulverseTagsView.swift in Sources */,
 				794B5A0A2EA38B65006CF069 /* SoulverseButtonCell.swift in Sources */,
