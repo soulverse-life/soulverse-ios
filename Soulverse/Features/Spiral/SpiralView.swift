@@ -258,9 +258,10 @@ class SpiralView: UIView {
 
         // Cycle: Up -> Pause -> Down
         // Durations from config
-        let totalDuration = actionConfig.holdCycleDuration
+        let downDuration = actionConfig.holdCycleDownDuration
         let upDuration = actionConfig.holdCycleUpDuration
         let pauseDuration = actionConfig.holdCyclePauseDuration
+        let totalDuration = downDuration + upDuration + pauseDuration
         // Down duration is remaining
 
         // Key times (normalized 0..1)

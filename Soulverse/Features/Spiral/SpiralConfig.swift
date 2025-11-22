@@ -25,23 +25,25 @@ struct SpiralVisualConfig {
 /// Configuration for the interactive behavior and timing of the Spiral Breathing session.
 struct SpiralActionConfig {
     /// Total duration of the "Hold" state in seconds.
-    var holdDuration: TimeInterval = 24.0
-
-    /// Duration of one complete visual/haptic cycle during the Hold state.
-    var holdCycleDuration: TimeInterval = 6.0
+    var holdDuration: TimeInterval = 72.0
 
     /// Duration of the "Scale Up" phase within the hold cycle.
-    var holdCycleUpDuration: TimeInterval = 2.0
+    var holdCycleUpDuration: TimeInterval = 6.0
 
     /// Duration of the "Pause" phase within the hold cycle.
-    var holdCyclePauseDuration: TimeInterval = 1.0
+    var holdCyclePauseDuration: TimeInterval = 4.0
 
     /// Duration of the "Scale Down" phase within the hold cycle.
-    var holdCycleDownDuration: TimeInterval = 3.0
+    var holdCycleDownDuration: TimeInterval = 8.0
 
     /// Minimum physical distance (in points) to travel before triggering haptic feedback.
     var hapticFeedbackDistance: CGFloat = 10.0
 
     /// Time interval between haptic beats during the Hold state.
     var hapticBeatInterval: TimeInterval = 0.1
+
+    /// Total duration of one complete breathing cycle (computed property).
+    var holdCycleDuration: TimeInterval {
+        return holdCycleUpDuration + holdCyclePauseDuration + holdCycleDownDuration
+    }
 }

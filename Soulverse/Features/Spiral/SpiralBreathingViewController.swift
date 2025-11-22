@@ -41,8 +41,7 @@ class SpiralBreathingViewController: ViewController {
     // MARK: - Hold State Properties
     private var holdRemainingTime: TimeInterval = 20.0
     private var holdTimer: Timer?
-    private var textAnimTimer: Timer?
-    private var textDotCount: Int = 0
+    private var holdCycleStartTime: Date?
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -265,14 +264,12 @@ class SpiralBreathingViewController: ViewController {
         // Start haptic cycle
         startHapticCycle()
 
+        // Track cycle start time for breathing guidance
+        holdCycleStartTime = Date()
+
         // Start timers
         holdTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             self?.updateHoldState()
-        }
-
-        textAnimTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {
-            [weak self] _ in
-            self?.updateTextAnimation()
         }
     }
 
@@ -285,8 +282,7 @@ class SpiralBreathingViewController: ViewController {
 
         holdTimer?.invalidate()
         holdTimer = nil
-        textAnimTimer?.invalidate()
-        textAnimTimer = nil
+        holdCycleStartTime = nil
     }
 
     // MARK: - Haptic Cycle
@@ -333,17 +329,35 @@ class SpiralBreathingViewController: ViewController {
         let opacity = Float(max(0.0, holdRemainingTime / actionConfig.holdDuration))
         spiralView.setOpacity(opacity)
 
+        // Update breathing guidance text based on cycle phase
+        updateBreathingGuidance()
+
         if holdRemainingTime <= 0 {
             stopHolding()
             transition(to: .exhale)
         }
     }
 
-    private func updateTextAnimation() {
-        textDotCount = (textDotCount + 1) % 4
-        let dots = String(repeating: ".", count: textDotCount)
-        instructionLabel.text =
-            NSLocalizedString("spiral_hold_instruction", comment: "Hold your breath") + dots
+    private func updateBreathingGuidance() {
+        guard let startTime = holdCycleStartTime else { return }
+
+        let elapsed = Date().timeIntervalSince(startTime)
+        let cycleDuration = actionConfig.holdCycleDuration
+        let cycleProgress = elapsed.truncatingRemainder(dividingBy: cycleDuration)
+
+        let upDuration = actionConfig.holdCycleUpDuration
+        let pauseDuration = actionConfig.holdCyclePauseDuration
+
+        if cycleProgress < upDuration {
+            // Inhale phase
+            instructionLabel.text = NSLocalizedString("spiral_hold_inhale", comment: "Breathe in slowly")
+        } else if cycleProgress < upDuration + pauseDuration {
+            // Hold phase
+            instructionLabel.text = NSLocalizedString("spiral_hold_pause", comment: "Hold your breath")
+        } else {
+            // Exhale phase
+            instructionLabel.text = NSLocalizedString("spiral_hold_exhale", comment: "Breathe out slowly")
+        }
     }
 
     private func showCompletionAlert() {

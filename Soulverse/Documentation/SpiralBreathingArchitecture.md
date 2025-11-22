@@ -35,11 +35,13 @@ The Spiral Breathing feature is an interactive mindfulness exercise where users 
     - `colorDistanceOffset`: How far ahead the color leads the finger.
     - `startRadius`, `spacing`, `rotations`: Spiral geometry parameters.
 - **`SpiralActionConfig`**:
-    - `holdDuration`: Total time for the Hold state (default 24s).
-    - `holdCycleDuration`: Duration of one breath/heartbeat cycle (default 6s).
-    - `holdCycleUpDuration` / `Pause` / `Down`: Timing for the pulse animation.
+    - `holdDuration`: Total time for the Hold state (default 72s).
+    - `holdCycleUpDuration`: Duration of the inhale phase (default 6s).
+    - `holdCyclePauseDuration`: Duration of the breath-hold pause phase (default 4s).
+    - `holdCycleDownDuration`: Duration of the exhale phase (default 8s).
+    - `holdCycleDuration`: Computed total duration of one breathing cycle (18s = 6s + 4s + 8s).
     - `hapticFeedbackDistance`: Minimum physical distance to trigger haptic feedback (throttling).
-    - `hapticBeatInterval`: Time between haptic beats in the Hold state sequence.
+    - `hapticBeatInterval`: Time between haptic beats during the inhale phase sequence.
 
 ## Key Mechanisms
 
@@ -53,7 +55,12 @@ To solve the issue of uneven point density in the spiral, we calculate the cumul
 - **Implementation**:
     - `holdTimer`: Decrements `holdRemainingTime` only while touching.
     - `visualPulse`: `CAKeyframeAnimation` (Scale 1->3->3->1) synced with haptics.
-    - **Haptics**: A custom pattern (10 rapid beats) triggered every `holdCycleDuration`.
+    - **Haptics**: A custom pattern (rapid beats during inhale phase) triggered every `holdCycleDuration`.
+    - **Breathing Guidance**: Text instructions cycle through three phases synchronized with the visual pulse:
+        - **Up Phase** (6s): "Breathe in slowly" - guides user to inhale deeply
+        - **Pause Phase** (4s): "Hold your breath" - pause at full lung capacity
+        - **Down Phase** (8s): "Breathe out slowly" - guides user to exhale completely
+    - This creates an 18-second breathing cycle (4 cycles total during the 72s hold state) to help users practice deep breathing while maintaining touch contact.
 
 ## Localization
 All user-facing strings are wrapped in `NSLocalizedString` to support future translation.
