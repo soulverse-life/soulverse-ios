@@ -11,6 +11,17 @@ protocol SoulverseNavigationViewDelegate: AnyObject {
     func navigationViewDidTapBack(_ soulverseNavigationView: SoulverseNavigationView)
 }
 
+// MARK: - Default Implementation
+extension SoulverseNavigationViewDelegate where Self: UIViewController {
+    func navigationViewDidTapBack(_ soulverseNavigationView: SoulverseNavigationView) {
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: true)
+        } else {
+            dismiss(animated: true)
+        }
+    }
+}
+
 struct SoulverseNavigationItem {
     enum ItemType {
         case button(title: String?, image: UIImage?, action: () -> Void)

@@ -324,3 +324,17 @@
 
 // Common
 "onboarding_continue_button" = "繼續";
+
+// Spiral Breathing
+"spiral_navigation_title" = "呼吸練習";
+"spiral_idle_instruction" = "將手指放在螺旋中心";
+"spiral_inhale_instruction" = "慢慢呼吸，沿著螺旋向外畫";
+"spiral_hold_instruction" = "深呼吸";
+"spiral_hold_inhale" = "慢慢吸氣";
+"spiral_hold_pause" = "屏住呼吸";
+"spiral_hold_exhale" = "慢慢呼氣";
+"spiral_exhale_instruction" = "放鬆並畫回中心";
+"spiral_completion_message" = "做得好";
+"spiral_alert_title" = "恭喜";
+"spiral_alert_message" = "你已完成呼吸練習";
+"spiral_alert_button" = "確定";
