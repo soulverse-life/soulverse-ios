@@ -1,131 +1,242 @@
-//
-//  ToolsViewController.swift
-//
-
+import SnapKit
 import UIKit
 
 class ToolsViewController: ViewController {
-    
+
+    // MARK: - Layout Constants
+
+    private enum Layout {
+        static let itemHeight: CGFloat = 150
+        static let horizontalInset: CGFloat = 26
+        static let itemHorizontalSpacing: CGFloat = 12
+        static let itemVerticalSpacing: CGFloat = 16
+        static let sectionHeaderHeight: CGFloat = 40
+        static let mainHeaderHeight: CGFloat = 140
+    }
+
+    // MARK: - Properties
+
+    var presenter: ToolsViewPresenterType! = ToolsViewPresenter()
+    private var viewModel: ToolsViewModel = ToolsViewModel()
+
     private lazy var navigationView: SoulverseNavigationView = {
         let view = SoulverseNavigationView(title: NSLocalizedString("tools", comment: ""))
         return view
     }()
     
-    private lazy var tableView: UITableView = { [weak self] in
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.backgroundColor = .clear
-        table.backgroundView = nil  // Remove default background to show gradient
-        table.separatorStyle = .none
-        table.delegate = self
-        table.dataSource = self
-        table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: ViewComponentConstants.miniBarHeight - 20.0, right: 0)
-        table.refreshControl = UIRefreshControl()
-        table.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
-        return table
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = Layout.itemVerticalSpacing
+        layout.minimumInteritemSpacing = Layout.itemHorizontalSpacing
+        layout.sectionInset = UIEdgeInsets(
+            top: 0, left: Layout.horizontalInset, bottom: 20, right: Layout.horizontalInset)
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+
+        // Register Cells and Headers
+        collectionView.register(
+            ToolsCollectionViewCell.self, forCellWithReuseIdentifier: "ToolsCollectionViewCell")
+        collectionView.register(
+            ToolsHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: "ToolsHeaderView")
+        collectionView.register(
+            ToolsSectionHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: "ToolsSectionHeaderView")
+
+        return collectionView
     }()
-    private let presenter = ToolsViewPresenter()
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupPresenter()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+
+        // Re-enable swipe-to-go-back gesture when nav bar is hidden
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    func setupView() {
-        // Hide default navigation bar
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
+    
+    // MARK: - Setup
+
+    private func setupView() {
         view.addSubview(navigationView)
-        view.addSubview(tableView)
-        
+
         navigationView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalToSuperview()
         }
-        
-        tableView.snp.makeConstraints { make in
+
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
             make.top.equalTo(navigationView.snp.bottom)
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)  // Fix: Use safeAreaLayoutGuide for bottom
         }
-        
-        // self.extendedLayoutIncludesOpaqueBars = true
-        // self.edgesForExtendedLayout = .top
     }
-    func setupPresenter() {
+
+    private func setupPresenter() {
         presenter.delegate = self
-    }
-    @objc func pullToRefresh() {
-        if !tableView.isDragging {
-            presenter.fetchData(isUpdate: true)
-        }
+        presenter.fetchData()
     }
 }
-extension ToolsViewController: UITableViewDataSource, UITableViewDelegate {
-    private func getSectionHeaderView(title: String, bottomPadding: CGFloat = 10) -> UIView {
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        let headerView = UIView()
-        headerView.addSubview(titleLabel)
-        titleLabel.numberOfLines = 0
-        titleLabel.text = title
-        titleLabel.lineBreakMode = .byWordWrapping
-        titleLabel.font = UIFont.projectFont(ofSize: 16, weight: .bold)
-        titleLabel.textColor = .primaryWhite
-        titleLabel.sizeToFit()
-        titleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().inset(bottomPadding)
-        }
-        return headerView
-    }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        presenter.numberOfSectionsOnTableView()
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = .clear
-        cell.contentView.backgroundColor = .clear
-        return cell
-    }
-}
+
+// MARK: - ToolsViewPresenterDelegate
+
 extension ToolsViewController: ToolsViewPresenterDelegate {
     func didUpdate(viewModel: ToolsViewModel) {
-        DispatchQueue.main.async { [weak self] in
-            guard let weakSelf = self else { return }
-            weakSelf.showLoading = viewModel.isLoading
-            weakSelf.tableView.refreshControl?.endRefreshing()
-            let top = weakSelf.tableView.adjustedContentInset.top
-            let y = weakSelf.tableView.refreshControl!.frame.maxY + top
-            weakSelf.tableView.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
-            weakSelf.tableView.reloadData()
+        self.viewModel = viewModel
+        collectionView.reloadData()
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension ToolsViewController: UICollectionViewDataSource {
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.numberOfSections()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.numberOfItems(in: section)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        guard
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "ToolsCollectionViewCell", for: indexPath)
+                as? ToolsCollectionViewCell,
+            let item = viewModel.item(at: indexPath)
+        else {
+            return UICollectionViewCell()
+        }
+        cell.configure(with: item)
+        return cell
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
+        }
+
+        if indexPath.section == 0 {
+            guard
+                let header = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind, withReuseIdentifier: "ToolsHeaderView", for: indexPath)
+                    as? ToolsHeaderView
+            else {
+                return UICollectionReusableView()
+            }
+            let sectionTitle = viewModel.titleForSection(indexPath.section)
+            header.configure(
+                title: viewModel.healingTitle, subtitle: viewModel.healingSubtitle,
+                sectionTitle: sectionTitle)
+            return header
+        } else {
+            guard
+                let header = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind, withReuseIdentifier: "ToolsSectionHeaderView", for: indexPath)
+                    as? ToolsSectionHeaderView
+            else {
+                return UICollectionReusableView()
+            }
+            header.configure(title: viewModel.titleForSection(indexPath.section) ?? "")
+            return header
         }
     }
-    func didUpdateSection(at index: IndexSet) {
-        DispatchQueue.main.async { [weak self] in
-            guard let weakSelf = self else { return }
-            weakSelf.tableView.reloadSections(index, with: .automatic)
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Get the selected item
+        guard let item = viewModel.item(at: indexPath) else {
+            print("⚠️ [Tools] Unable to get item at indexPath: \(indexPath)")
+            return
+        }
+
+        // Debug log
+        print("🔵 [Tools] Cell tapped at section: \(indexPath.section), item: \(indexPath.item)")
+        print("🔵 [Tools] Selected: \(item.title)")
+
+        // Notify presenter (for analytics, logging, etc.)
+        presenter.didSelectTool(action: item.action)
+
+        // Handle navigation
+        handleToolAction(item.action)
+    }
+
+    private func handleToolAction(_ action: ToolAction) {
+        print("🚀 [Tools] Handling action: \(action.debugDescription)")
+
+        switch action {
+        case .emotionBundle:
+            // TODO: Navigate to Emotion Bundle
+            print("📦 [Tools] Navigating to Emotion Bundle...")
+            // AppCoordinator.openEmotionBundle(from: self)
+
+        case .selfSoothingLabyrinth:
+            print("🌀 [Tools] Navigating to Self-Soothing Labyrinth (Spiral Breathing)...")
+            AppCoordinator.openSpiralBreathing(from: self)
+
+        case .cosmicDriftBottle:
+            // TODO: Navigate to Cosmic Drift Bottle
+            print("💧 [Tools] Navigating to Cosmic Drift Bottle...")
+            // AppCoordinator.openCosmicDriftBottle(from: self)
+
+        case .dailyQuote:
+            // TODO: Navigate to Daily Quote
+            print("📖 [Tools] Navigating to Daily Quote...")
+            // AppCoordinator.openDailyQuote(from: self)
+
+        case .timeCapsule:
+            // TODO: Navigate to Time Capsule
+            print("⏰ [Tools] Navigating to Time Capsule...")
+            // AppCoordinator.openTimeCapsule(from: self)
+
+        case .comingSoon:
+            print("⏳ [Tools] Feature coming soon...")
+            // Show a toast or alert
+            // SwiftMessages.show(message: "Coming Soon!")
         }
     }
 }
-extension ToolsViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension ToolsViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(
+        _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let totalSpacing = (2 * Layout.horizontalInset) + Layout.itemHorizontalSpacing
+        let width = (collectionView.bounds.width - totalSpacing) / 2
+        return CGSize(width: width, height: Layout.itemHeight)
     }
-} 
+
+    func collectionView(
+        _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
+        if section == 0 {
+            return CGSize(width: collectionView.bounds.width, height: Layout.mainHeaderHeight)  // Adjust height as needed
+        } else {
+            return CGSize(width: collectionView.bounds.width, height: Layout.sectionHeaderHeight)
+        }
+    }
+}

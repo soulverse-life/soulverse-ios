@@ -483,3 +483,20 @@
 "prompt_placeholder_the_emotion_is_like" = "「這個情緒就像 _______。」\\n用一個比喻或對比來捕捉你情緒的本質。";
 "prompt_placeholder_in_my_body_its" = "「在我的身體裡，它是 _______。」\\n這個情緒在身體的哪裡、如何呈現？";
 "prompt_placeholder_the_texture_is" = "「這個質感是 _______。」\\n如果這個情緒有質感，會是什麼感覺？";
+
+// Tools
+"tools_healing_title" = "療癒";
+"tools_healing_subtitle" = "探索自我修復的工具";
+"tools_section_favorite" = "收藏";
+"tools_section_explore" = "探索更多工具";
+
+"tools_item_emotion_bundle_title" = "情緒急救包";
+"tools_item_emotion_bundle_description" = "主動式安全計畫";
+"tools_item_self_soothing_labyrinth_title" = "自我舒壓迷宮";
+"tools_item_self_soothing_labyrinth_description" = "互動式平靜空間";
+"tools_item_cosmic_drift_bottle_title" = "宇宙漂流瓶";
+"tools_item_cosmic_drift_bottle_description" = "匿名訊息";
+"tools_item_daily_quote_title" = "Soulverse 每日金句";
+"tools_item_daily_quote_description" = "每日靈感";
+"tools_item_time_capsule_title" = "時光膠囊";
+"tools_item_time_capsule_description" = "寫給未來自己的信";

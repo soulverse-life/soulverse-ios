@@ -1,36 +1,110 @@
-//
-//  ToolsViewPresenter.swift
-//
-
 import Foundation
 
 protocol ToolsViewPresenterDelegate: AnyObject {
     func didUpdate(viewModel: ToolsViewModel)
-    func didUpdateSection(at index: IndexSet)
 }
 
 protocol ToolsViewPresenterType: AnyObject {
     var delegate: ToolsViewPresenterDelegate? { get set }
-    func fetchData(isUpdate: Bool)
-    func numberOfSectionsOnTableView() -> Int
+    func fetchData()
+    func didSelectTool(action: ToolAction)
 }
 
 class ToolsViewPresenter: ToolsViewPresenterType {
+
     weak var delegate: ToolsViewPresenterDelegate?
-    private var loadedModel: ToolsViewModel = ToolsViewModel(isLoading: false) {
+
+    private var viewModel: ToolsViewModel = ToolsViewModel(isLoading: true) {
         didSet {
-            delegate?.didUpdate(viewModel: loadedModel)
+            delegate?.didUpdate(viewModel: viewModel)
         }
     }
-    private var isFetchingData: Bool = false
-    private var dataAccessQueue = DispatchQueue(label: "seed_data", attributes: .concurrent)
+
     init() {}
-    public func fetchData(isUpdate: Bool = false) {
-        if isFetchingData { return }
-        if !isUpdate { loadedModel.isLoading = true }
-        isFetchingData = true
+
+    func fetchData() {
+        // Simulate API call
+        viewModel = ToolsViewModel(isLoading: true, sections: [])
+
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else { return }
+
+            let models = self.generateMockData()
+            let sectionViewModels = self.mapToViewModels(models: models)
+
+            let newViewModel = ToolsViewModel(isLoading: false, sections: sectionViewModels)
+
+            DispatchQueue.main.async {
+                self.viewModel = newViewModel
+            }
+        }
     }
-    public func numberOfSectionsOnTableView() -> Int {
-        return 0
+
+    private func generateMockData() -> [ToolSection] {
+        let favoriteItems = [
+            ToolItem(
+                iconName: "sun.max",
+                title: NSLocalizedString("tools_item_emotion_bundle_title", comment: ""),
+                description: NSLocalizedString("tools_item_emotion_bundle_description", comment: ""),
+                action: .emotionBundle
+            ),
+            ToolItem(
+                iconName: "leaf",
+                title: NSLocalizedString("tools_item_self_soothing_labyrinth_title", comment: ""),
+                description: NSLocalizedString(
+                    "tools_item_self_soothing_labyrinth_description", comment: ""),
+                action: .selfSoothingLabyrinth
+            ),
+        ]
+
+        let exploreItems = [
+            ToolItem(
+                iconName: "drop",
+                title: NSLocalizedString("tools_item_cosmic_drift_bottle_title", comment: ""),
+                description: NSLocalizedString(
+                    "tools_item_cosmic_drift_bottle_description", comment: ""),
+                action: .cosmicDriftBottle
+            ),
+            ToolItem(
+                iconName: "bird",
+                title: NSLocalizedString("tools_item_daily_quote_title", comment: ""),
+                description: NSLocalizedString("tools_item_daily_quote_description", comment: ""),
+                action: .dailyQuote
+            ),
+            ToolItem(
+                iconName: "clock",
+                title: NSLocalizedString("tools_item_time_capsule_title", comment: ""),
+                description: NSLocalizedString("tools_item_time_capsule_description", comment: ""),
+                action: .timeCapsule
+            ),
+        ]
+
+        return [
+            ToolSection(
+                title: NSLocalizedString("tools_section_favorite", comment: ""),
+                items: favoriteItems),
+            ToolSection(
+                title: NSLocalizedString("tools_section_explore", comment: ""), items: exploreItems),
+        ]
     }
-} 
+
+    private func mapToViewModels(models: [ToolSection]) -> [ToolsSectionViewModel] {
+        return models.map { section in
+            let cellViewModels = section.items.map { item in
+                ToolsCellViewModel(
+                    iconName: item.iconName,
+                    title: item.title,
+                    description: item.description,
+                    action: item.action
+                )
+            }
+            return ToolsSectionViewModel(title: section.title, items: cellViewModels)
+        }
+    }
+
+    func didSelectTool(action: ToolAction) {
+        // Log the selection for debugging
+        print("🛠️ [Tools] Tool selected: \(action.debugDescription)")
+
+    }
+}
