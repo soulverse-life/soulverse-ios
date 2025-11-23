@@ -117,7 +117,4 @@ extension UIColor {
     static let backgroundBlackClear = UIColor(red: 4.0/255.0, green: 18.0/255.0, blue: 44.0/255.0, alpha: 0)
     static let subBackgroundBlack = UIColor(red: 0/255.0, green: 48.0/255.0, blue: 77.0/255.0, alpha: 1)
     static let groupAreaBackgroundBlack = UIColor(red: 1, green: 1, blue: 1, alpha: 0.05)
-
-    static let cardAnswerBackground = UIColor(red: 34.0/255.0, green: 31.0/255.0, blue: 59.0/255.0, alpha: 1)
-    static let homeHighItemInfoBackground = UIColor(red: 17.0/255.0, green: 30.0/255.0, blue: 55.0/255.0, alpha: 1)
 }

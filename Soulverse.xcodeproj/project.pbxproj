@@ -130,6 +130,20 @@
 		790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87CF2ECF668700D4F61F /* SpiralBreathingViewController.swift */; };
 		790D87D72ED1729200D4F61F /* SpiralConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D62ED1729200D4F61F /* SpiralConfig.swift */; };
 		790D87D82ED1729200D4F61F /* SpiralConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D62ED1729200D4F61F /* SpiralConfig.swift */; };
+		790D87E62ED1FCA100D4F61F /* SoulverseGlassContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E52ED1FCA100D4F61F /* SoulverseGlassContainer.swift */; };
+		790D87E72ED1FCA100D4F61F /* SoulverseGlassContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E52ED1FCA100D4F61F /* SoulverseGlassContainer.swift */; };
+		790D87EB2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E92ED2017F00D4F61F /* ToolsHeaderView.swift */; };
+		790D87EC2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E82ED2017F00D4F61F /* ToolsCollectionViewCell.swift */; };
+		790D87ED2ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87EA2ED2017F00D4F61F /* ToolsSectionHeaderView.swift */; };
+		790D87EE2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E92ED2017F00D4F61F /* ToolsHeaderView.swift */; };
+		790D87EF2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E82ED2017F00D4F61F /* ToolsCollectionViewCell.swift */; };
+		790D87F02ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87EA2ED2017F00D4F61F /* ToolsSectionHeaderView.swift */; };
+		790D87F22ED201B200D4F61F /* ToolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F12ED201B200D4F61F /* ToolsViewModel.swift */; };
+		790D87F32ED201B200D4F61F /* ToolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F12ED201B200D4F61F /* ToolsViewModel.swift */; };
+		790D87F52ED209F800D4F61F /* ToolsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F42ED209F800D4F61F /* ToolsCellViewModel.swift */; };
+		790D87F62ED209F800D4F61F /* ToolsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F42ED209F800D4F61F /* ToolsCellViewModel.swift */; };
+		790D87F92ED20A0A00D4F61F /* ToolsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F72ED20A0A00D4F61F /* ToolsModel.swift */; };
+		790D87FA2ED20A0A00D4F61F /* ToolsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F72ED20A0A00D4F61F /* ToolsModel.swift */; };
 		7922EC502E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
 		7922EC512E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
 		7922EC532E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */; };
@@ -192,10 +206,8 @@
 		7951A9D12E5376B5006EB0EC /* InnerCosmoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C52E5376B5006EB0EC /* InnerCosmoViewController.swift */; };
 		7951AA002E537704006EB0EC /* ToolsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */; };
 		7951AA012E537704006EB0EC /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FD2E537704006EB0EC /* ToolsViewController.swift */; };
-		7951AA022E537704006EB0EC /* SeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FB2E537704006EB0EC /* SeedViewModel.swift */; };
 		7951AA032E537704006EB0EC /* ToolsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */; };
 		7951AA042E537704006EB0EC /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FD2E537704006EB0EC /* ToolsViewController.swift */; };
-		7951AA052E537704006EB0EC /* SeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FB2E537704006EB0EC /* SeedViewModel.swift */; };
 		79710ED82E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */; };
 		79710EDA2E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */; };
 		79710EDD2E6D974D007665DB /* QuestProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */; };
@@ -388,6 +400,13 @@
 		790D87CF2ECF668700D4F61F /* SpiralBreathingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralBreathingViewController.swift; sourceTree = "<group>"; };
 		790D87D02ECF668700D4F61F /* SpiralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralView.swift; sourceTree = "<group>"; };
 		790D87D62ED1729200D4F61F /* SpiralConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralConfig.swift; sourceTree = "<group>"; };
+		790D87E52ED1FCA100D4F61F /* SoulverseGlassContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseGlassContainer.swift; sourceTree = "<group>"; };
+		790D87E82ED2017F00D4F61F /* ToolsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionViewCell.swift; sourceTree = "<group>"; };
+		790D87E92ED2017F00D4F61F /* ToolsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsHeaderView.swift; sourceTree = "<group>"; };
+		790D87EA2ED2017F00D4F61F /* ToolsSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsSectionHeaderView.swift; sourceTree = "<group>"; };
+		790D87F12ED201B200D4F61F /* ToolsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewModel.swift; sourceTree = "<group>"; };
+		790D87F42ED209F800D4F61F /* ToolsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCellViewModel.swift; sourceTree = "<group>"; };
+		790D87F72ED20A0A00D4F61F /* ToolsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsModel.swift; sourceTree = "<group>"; };
 		7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingResultViewController.swift; sourceTree = "<group>"; };
 		7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansTC-VariableFont_wght.ttf"; sourceTree = "<group>"; };
@@ -420,7 +439,6 @@
 		7951A9C32E5376B5006EB0EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7951A9C52E5376B5006EB0EC /* InnerCosmoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewController.swift; sourceTree = "<group>"; };
 		7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenter.swift; sourceTree = "<group>"; };
-		7951A9FB2E537704006EB0EC /* SeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedViewModel.swift; sourceTree = "<group>"; };
 		7951A9FD2E537704006EB0EC /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
 		79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRadarChartView.swift; sourceTree = "<group>"; };
 		79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestProgressLineView.swift; sourceTree = "<group>"; };
@@ -742,6 +760,7 @@
 		790AD2032DF9E43200C33CD1 /* ViewComponent */ = {
 			isa = PBXGroup;
 			children = (
+				790D87E52ED1FCA100D4F61F /* SoulverseGlassContainer.swift */,
 				7951A9B62E532C85006EB0EC /* SoulverseButton.swift */,
 				7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */,
 				7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */,
@@ -875,6 +894,14 @@
 			path = Spiral;
 			sourceTree = "<group>";
 		};
+		790D87F82ED20A0A00D4F61F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				790D87F72ED20A0A00D4F61F /* ToolsModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		7922ECAB2E98ABDD0086B7CA /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,7 +1007,8 @@
 		7951A9FC2E537704006EB0EC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				7951A9FB2E537704006EB0EC /* SeedViewModel.swift */,
+				790D87F42ED209F800D4F61F /* ToolsCellViewModel.swift */,
+				790D87F12ED201B200D4F61F /* ToolsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -988,6 +1016,9 @@
 		7951A9FE2E537704006EB0EC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				790D87E82ED2017F00D4F61F /* ToolsCollectionViewCell.swift */,
+				790D87E92ED2017F00D4F61F /* ToolsHeaderView.swift */,
+				790D87EA2ED2017F00D4F61F /* ToolsSectionHeaderView.swift */,
 				7951A9FD2E537704006EB0EC /* ToolsViewController.swift */,
 			);
 			path = Views;
@@ -996,6 +1027,7 @@
 		7951A9FF2E537704006EB0EC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				790D87F82ED20A0A00D4F61F /* Models */,
 				7951A9FA2E537704006EB0EC /* Presenter */,
 				7951A9FC2E537704006EB0EC /* ViewModels */,
 				7951A9FE2E537704006EB0EC /* Views */,
@@ -1582,6 +1614,9 @@
 				7951A9D02E5376B5006EB0EC /* HomeViewModel.swift in Sources */,
 				7951A9D12E5376B5006EB0EC /* InnerCosmoViewController.swift in Sources */,
 				790AD2162DF9E43200C33CD1 /* ErrorEvent.swift in Sources */,
+				790D87EB2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */,
+				790D87EC2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
+				790D87ED2ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
 				790AD2182DF9E43200C33CD1 /* Constants.swift in Sources */,
 				790AD21A2DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
 				79B6AAD72EACCABA00A8B079 /* RadioOptionView.swift in Sources */,
@@ -1599,9 +1634,9 @@
 				790AD2202DF9E43200C33CD1 /* UIButton+Extensions.swift in Sources */,
 				7951AA002E537704006EB0EC /* ToolsViewPresenter.swift in Sources */,
 				798688112E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */,
+				790D87F92ED20A0A00D4F61F /* ToolsModel.swift in Sources */,
 				79710EDE2E6D974D007665DB /* QuestProgressLineView.swift in Sources */,
 				7951AA012E537704006EB0EC /* ToolsViewController.swift in Sources */,
-				7951AA022E537704006EB0EC /* SeedViewModel.swift in Sources */,
 				790AD2212DF9E43200C33CD1 /* WebViewController.swift in Sources */,
 				790AD2232DF9E43200C33CD1 /* String+Extension.swift in Sources */,
 				790AD2242DF9E43200C33CD1 /* SceneDelegate.swift in Sources */,
@@ -1653,6 +1688,7 @@
 				790AD2542DF9E43200C33CD1 /* User.swift in Sources */,
 				7922EC532E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */,
 				790AD2552DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */,
+				790D87F22ED201B200D4F61F /* ToolsViewModel.swift in Sources */,
 				790AD2592DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
 				79710ED82E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
 				790AD25B2DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
@@ -1665,6 +1701,7 @@
 				79B6AAEB2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */,
 				790AD2632DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD2662DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
+				790D87E72ED1FCA100D4F61F /* SoulverseGlassContainer.swift in Sources */,
 				7922ECE22E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
 				7922ECB02E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
 				7922ECD12E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
@@ -1676,6 +1713,7 @@
 				79B6AAB32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */,
 				79B6AAB42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */,
 				79B6AAB52EACCA5D00A8B079 /* PromptOption.swift in Sources */,
+				790D87F52ED209F800D4F61F /* ToolsCellViewModel.swift in Sources */,
 				79B6AAB62EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift in Sources */,
 				79B6AAB72EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift in Sources */,
 				79B6AAB92EACCA5D00A8B079 /* MoodCheckInActingViewController.swift in Sources */,
@@ -1708,6 +1746,9 @@
 				7951A9CB2E5376B5006EB0EC /* HomeViewModel.swift in Sources */,
 				7951A9CC2E5376B5006EB0EC /* InnerCosmoViewController.swift in Sources */,
 				790AD2C42DF9E43200C33CD1 /* ErrorEvent.swift in Sources */,
+				790D87EE2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */,
+				790D87EF2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
+				790D87F02ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
 				790AD2C62DF9E43200C33CD1 /* Constants.swift in Sources */,
 				790AD2C82DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
 				79B6AADA2EACCABA00A8B079 /* RadioOptionView.swift in Sources */,
@@ -1725,9 +1766,9 @@
 				790AD2CE2DF9E43200C33CD1 /* UIButton+Extensions.swift in Sources */,
 				7951AA032E537704006EB0EC /* ToolsViewPresenter.swift in Sources */,
 				798688102E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */,
+				790D87FA2ED20A0A00D4F61F /* ToolsModel.swift in Sources */,
 				79710EDD2E6D974D007665DB /* QuestProgressLineView.swift in Sources */,
 				7951AA042E537704006EB0EC /* ToolsViewController.swift in Sources */,
-				7951AA052E537704006EB0EC /* SeedViewModel.swift in Sources */,
 				790AD2CF2DF9E43200C33CD1 /* WebViewController.swift in Sources */,
 				790AD2D12DF9E43200C33CD1 /* String+Extension.swift in Sources */,
 				790AD2D22DF9E43200C33CD1 /* SceneDelegate.swift in Sources */,
@@ -1779,6 +1820,7 @@
 				790AD3022DF9E43200C33CD1 /* User.swift in Sources */,
 				7922EC542E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */,
 				790AD3032DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */,
+				790D87F32ED201B200D4F61F /* ToolsViewModel.swift in Sources */,
 				790AD3072DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
 				79710EDA2E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
 				790AD3092DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
@@ -1791,6 +1833,7 @@
 				79B6AAEA2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */,
 				790AD3112DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD3142DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
+				790D87E62ED1FCA100D4F61F /* SoulverseGlassContainer.swift in Sources */,
 				7922ECE32E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
 				7922ECAF2E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
 				7922ECC42E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
@@ -1802,6 +1845,7 @@
 				79B6AAC32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */,
 				79B6AAC42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */,
 				79B6AAC52EACCA5D00A8B079 /* PromptOption.swift in Sources */,
+				790D87F62ED209F800D4F61F /* ToolsCellViewModel.swift in Sources */,
 				79B6AAC62EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift in Sources */,
 				79B6AAC72EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift in Sources */,
 				79B6AAC92EACCA5D00A8B079 /* MoodCheckInActingViewController.swift in Sources */,

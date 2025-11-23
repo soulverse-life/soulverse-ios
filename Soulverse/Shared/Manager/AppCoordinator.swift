@@ -77,36 +77,6 @@ class AppCoordinator {
         UIApplication.shared.open(targetURL)
     }
     
-    static func openMailService(from sourceVC: ViewController, withSubject subject: String) {
-        
-        if !MFMailComposeViewController.canSendMail() {
-            
-            let okAction = SummitAlertAction(title: NSLocalizedString("no_email_alert_action", comment: ""), style: .default, handler: nil)
-            SummitAlertView.shared.show(
-                title: NSLocalizedString("no_email_alert_title", comment: ""),
-                message: NSLocalizedString("no_email_alert_description", comment: ""),
-                actions: [okAction]
-            )
-            return
-        }
-        let composeVC = MFMailComposeViewController()
-        composeVC.mailComposeDelegate = sourceVC
-        
-        // Configure the fields of the interface.
-        composeVC.setToRecipients([HostAppContants.contactRecipient])
-        composeVC.setSubject(subject)
-        let noticeString = "\n\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n請保留以下資訊"
-        let defaultReportString = String(format: "%@\nUser ID: %@ \niOS version: %@ \nApp version: %@ \nDevice: %@", noticeString, (User.shared.userId ?? ""),
-                                         (Device.current.systemVersion ?? ""),
-                                         Utility.getAppVersion(),
-                                         Device.current.description
-        )
-        
-        composeVC.setMessageBody(defaultReportString, isHTML: false)
-         
-        // Present the view controller modally.
-        sourceVC.present(composeVC, animated: true, completion: nil)
-    }
     
     static func openDrawingCanvas(from sourceVC: UIViewController) {
         let drawingCanvasVC = DrawingCanvasViewController()

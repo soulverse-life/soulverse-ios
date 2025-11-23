@@ -480,4 +480,20 @@
 "prompt_placeholder_i_sense" = "\"I sense _______.\"\\nWhat physical sensations or intuitions arise with this feeling?";
 "prompt_placeholder_the_emotion_is_like" = "\"The emotion is like _______.\"\\nUse a metaphor or comparison to capture the essence of your emotion.";
 "prompt_placeholder_in_my_body_its" = "\"In my body, it's _______.\"\\nWhere and how does this emotion manifest physically?";
-"prompt_placeholder_the_texture_is" = "\"The texture is _______.\"\\nIf this emotion had a texture, what would it feel like?";
+
+// MARK: - Tools
+"tools_healing_title" = "Healing";
+"tools_healing_subtitle" = "Find out the tool to self recovery";
+"tools_section_favorite" = "Favorite";
+"tools_section_explore" = "Explore more tools";
+
+"tools_item_emotion_bundle_title" = "Emotion Bundle";
+"tools_item_emotion_bundle_description" = "Proactive safety plan";
+"tools_item_self_soothing_labyrinth_title" = "Self-Soothing Labyrinth";
+"tools_item_self_soothing_labyrinth_description" = "Interactive calming space";
+"tools_item_cosmic_drift_bottle_title" = "Cosmic drift bottle";
+"tools_item_cosmic_drift_bottle_description" = "Anonymous messages";
+"tools_item_daily_quote_title" = "Soulverse daily quote";
+"tools_item_daily_quote_description" = "Daily inspiration";
+"tools_item_time_capsule_title" = "Time Capsule";
+"tools_item_time_capsule_description" = "Letters to future self";
