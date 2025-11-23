@@ -9,8 +9,48 @@ on:
     types: [opened, assigned]
   pull_request_review:
     types: [submitted]
+  pull_request:
+    types: [opened, synchronize]  # Auto-review on PR creation and updates
 
 jobs:
+  # Job 1: Automatic PR Review (triggers on PR open/update)
+  auto-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write  # Need write to post review comments
+      issues: write
+      id-token: write
+      actions: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for better context
+
+      - name: Auto Review PR
+        id: claude-review
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          additional_permissions: |
+            actions: read
+          prompt: |
+            Please review this pull request:
+
+            1. **Code Quality**: Check for code style, best practices, and potential bugs
+            2. **Architecture**: Verify it follows the project's VIPER/MVP pattern
+            3. **Localization**: Ensure all user-facing strings use NSLocalizedString()
+            4. **Theming**: Verify theme-aware colors are used (not hardcoded colors)
+            5. **Testing**: Suggest test cases if not already covered
+            6. **Documentation**: Check if complex logic needs comments
+
+            Focus on the Swift/iOS specific concerns mentioned in CLAUDE.md and Documentation/DEVELOPMENT_GUIDELINES.md.
+
+            Provide constructive feedback in a friendly, educational tone.
+
+  # Job 2: Manual Claude invocation (triggers on @claude mention)
   claude:
     if: |
       (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
