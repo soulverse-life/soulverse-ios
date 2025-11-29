@@ -285,6 +285,10 @@
 		79DD63392EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */; };
 		79DD633B2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */; };
 		79DD633C2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */; };
+		79DD63402EDB2FAF008A5F8D /* canvas_prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */; };
+		79DD63412EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */; };
+		79DD63422EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */; };
+		79DD63432EDB2FAF008A5F8D /* canvas_prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
 		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
 /* End PBXBuildFile section */
@@ -478,6 +482,8 @@
 		79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptSelectionView.swift; sourceTree = "<group>"; };
 		79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroTransitionID.swift; sourceTree = "<group>"; };
 		79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroTransitionID+Tools.swift"; sourceTree = "<group>"; };
+		79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = canvas_prompts.json; sourceTree = "<group>"; };
+		79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasPromptModel.swift; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1151,6 +1157,7 @@
 		79B24C742DFC7B2A001220B6 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
+				79DD633F2EDB2FAF008A5F8D /* Models */,
 				79B24C6F2DFC7B2A001220B6 /* Presenter */,
 				79B24C712DFC7B2A001220B6 /* ViewModels */,
 				79B24C732DFC7B2A001220B6 /* Views */,
@@ -1233,6 +1240,15 @@
 				79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		79DD633F2EDB2FAF008A5F8D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */,
+				79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E8A4C87226BA41130082B4F7 = {
@@ -1397,6 +1413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79DD63402EDB2FAF008A5F8D /* canvas_prompts.json in Resources */,
 				790AD2732DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
 				790AD2742DF9E43200C33CD1 /* Main.storyboard in Resources */,
 				7922ECAD2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */,
@@ -1410,6 +1427,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79DD63432EDB2FAF008A5F8D /* canvas_prompts.json in Resources */,
 				790AD29D2DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
 				790AD29E2DF9E43200C33CD1 /* Main.storyboard in Resources */,
 				7922ECAC2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */,
@@ -1636,6 +1654,7 @@
 				79B6AAD92EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */,
 				798687F12E6C248E00EB3B38 /* InsightViewModel.swift in Sources */,
 				798687F22E6C248E00EB3B38 /* InsightViewController.swift in Sources */,
+				79DD63412EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */,
 				798687F32E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */,
 				790AD21D2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */,
 				790AD21F2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */,
@@ -1769,6 +1788,7 @@
 				79B6AADC2EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */,
 				798687EE2E6C248E00EB3B38 /* InsightViewModel.swift in Sources */,
 				798687EF2E6C248E00EB3B38 /* InsightViewController.swift in Sources */,
+				79DD63422EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */,
 				798687F02E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */,
 				790AD2CB2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */,
 				790AD2CD2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */,
