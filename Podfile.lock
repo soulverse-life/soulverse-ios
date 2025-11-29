@@ -182,6 +182,7 @@ PODS:
     - AppAuth/Core (~> 1.7)
     - GTMSessionFetcher/Core (< 4.0, >= 3.3)
   - GTMSessionFetcher/Core (3.5.0)
+  - Hero (1.6.4)
   - IQKeyboardCore (1.0.5)
   - IQKeyboardManagerSwift (8.0.1):
     - IQKeyboardManagerSwift/Appearance (= 8.0.1)
@@ -261,6 +262,7 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - GoogleSignIn
   - GoogleUtilities
+  - Hero
   - IQKeyboardManagerSwift
   - KeychainAccess
   - Kingfisher (~> 8.3.0)
@@ -303,6 +305,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - Hero
     - IQKeyboardCore
     - IQKeyboardManagerSwift
     - IQKeyboardNotification
@@ -354,6 +357,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
+  Hero: 473a0143017e1371d050fcbedb67d317925097f2
   IQKeyboardCore: 28c8bf3bcd8ba5aa1570b318cbc4da94b861711e
   IQKeyboardManagerSwift: 835fc9c6e4732398113406d84900ad2e8f141218
   IQKeyboardNotification: d7382c4466c5a5adef92c7452ebf861b36050088
@@ -377,6 +381,6 @@ SPEC CHECKSUMS:
   Toaster: c3473963c78e8cabbf6ea6f11ad0fdaae6f54987
   UICircularProgressRing: 19927375b2b21b5fa5fd9582f15ccdef9659da16
 
-PODFILE CHECKSUM: 002bbc82b1086b3f012b5b587d040b2a4a2aba23
+PODFILE CHECKSUM: 588435a7646b3ba3d77be5369de9fb4ad12af83f
 
 COCOAPODS: 1.16.2

@@ -1,3 +1,4 @@
+import Hero
 import SnapKit
 import UIKit
 
@@ -110,5 +111,13 @@ class ToolsCollectionViewCell: UICollectionViewCell {
         iconImageView.image = UIImage(systemName: viewModel.iconName)
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
+
+        // Set Hero ID for the background view to enable transition
+        // We use the action as a unique identifier part, or a specific ID for the spiral tool
+        if viewModel.action == .selfSoothingLabyrinth {
+            baseView.hero.id = "spiral_breathing_transition"
+        } else {
+            baseView.hero.id = nil
+        }
     }
 }
