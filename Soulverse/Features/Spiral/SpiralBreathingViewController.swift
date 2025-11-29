@@ -1,5 +1,6 @@
-import UIKit
+import Hero
 import SnapKit
+import UIKit
 
 class SpiralBreathingViewController: ViewController {
 
@@ -47,8 +48,10 @@ class SpiralBreathingViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tabBarController?.tabBar.isHidden = true
         holdRemainingTime = actionConfig.holdDuration
         setupUI()
+        setupHeroTransitions()
         transition(to: .idle)
     }
 
@@ -93,6 +96,12 @@ class SpiralBreathingViewController: ViewController {
             instructionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             instructionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ])
+    }
+
+    private func setupHeroTransitions() {
+        // Enable Hero for this view controller
+        hero.isEnabled = true
+
     }
 
     // MARK: - State Management
@@ -350,13 +359,16 @@ class SpiralBreathingViewController: ViewController {
 
         if cycleProgress < upDuration {
             // Inhale phase
-            instructionLabel.text = NSLocalizedString("spiral_hold_inhale", comment: "Breathe in slowly")
+            instructionLabel.text = NSLocalizedString(
+                "spiral_hold_inhale", comment: "Breathe in slowly")
         } else if cycleProgress < upDuration + pauseDuration {
             // Hold phase
-            instructionLabel.text = NSLocalizedString("spiral_hold_pause", comment: "Hold your breath")
+            instructionLabel.text = NSLocalizedString(
+                "spiral_hold_pause", comment: "Hold your breath")
         } else {
             // Exhale phase
-            instructionLabel.text = NSLocalizedString("spiral_hold_exhale", comment: "Breathe out slowly")
+            instructionLabel.text = NSLocalizedString(
+                "spiral_hold_exhale", comment: "Breathe out slowly")
         }
     }
 

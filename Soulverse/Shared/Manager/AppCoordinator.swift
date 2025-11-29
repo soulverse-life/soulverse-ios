@@ -103,7 +103,6 @@ class AppCoordinator {
 
     static func openSpiralBreathing(from sourceVC: UIViewController) {
         let spiralVC = SpiralBreathingViewController()
-        spiralVC.hidesBottomBarWhenPushed = true
 
         guard let navigationVC = sourceVC.navigationController else {
             // If no navigation controller, present it modally with a navigation controller

@@ -1,3 +1,4 @@
+import Hero
 import SnapKit
 import UIKit
 
@@ -64,6 +65,8 @@ class ToolsViewController: ViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.hero.isEnabled = true
+        tabBarController?.tabBar.isHidden = false
 
         // Re-enable swipe-to-go-back gesture when nav bar is hidden
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
@@ -111,11 +114,15 @@ extension ToolsViewController: UICollectionViewDataSource {
         return viewModel.numberOfSections()
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int)
+        -> Int
+    {
         return viewModel.numberOfItems(in: section)
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
+        -> UICollectionViewCell
+    {
         guard
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "ToolsCollectionViewCell", for: indexPath)
@@ -125,6 +132,10 @@ extension ToolsViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.configure(with: item)
+
+        // Assign Hero ID
+        cell.hero.id = HeroTransitionID.toolsCell(section: indexPath.section, item: indexPath.item)
+
         return cell
     }
 
@@ -176,42 +187,48 @@ extension ToolsViewController: UICollectionViewDataSource {
         // Notify presenter (for analytics, logging, etc.)
         presenter.didSelectTool(action: item.action)
 
-        // Handle navigation
-        handleToolAction(item.action)
+        // Handle navigation with Hero transition
+        handleToolAction(item.action, sourceIndexPath: indexPath)
     }
 
-    private func handleToolAction(_ action: ToolAction) {
+    private func handleToolAction(_ action: ToolAction, sourceIndexPath: IndexPath) {
         print("🚀 [Tools] Handling action: \(action.debugDescription)")
 
         switch action {
         case .emotionBundle:
             // TODO: Navigate to Emotion Bundle
             print("📦 [Tools] Navigating to Emotion Bundle...")
-            // AppCoordinator.openEmotionBundle(from: self)
+        // AppCoordinator.openEmotionBundle(from: self)
 
         case .selfSoothingLabyrinth:
             print("🌀 [Tools] Navigating to Self-Soothing Labyrinth (Spiral Breathing)...")
+
+            // Configure Hero transition for selected cell
+            if let cell = collectionView.cellForItem(at: sourceIndexPath) {
+                cell.hero.modifiers = [.fade, .scale(0.8)]
+            }
+
             AppCoordinator.openSpiralBreathing(from: self)
 
         case .cosmicDriftBottle:
             // TODO: Navigate to Cosmic Drift Bottle
             print("💧 [Tools] Navigating to Cosmic Drift Bottle...")
-            // AppCoordinator.openCosmicDriftBottle(from: self)
+        // AppCoordinator.openCosmicDriftBottle(from: self)
 
         case .dailyQuote:
             // TODO: Navigate to Daily Quote
             print("📖 [Tools] Navigating to Daily Quote...")
-            // AppCoordinator.openDailyQuote(from: self)
+        // AppCoordinator.openDailyQuote(from: self)
 
         case .timeCapsule:
             // TODO: Navigate to Time Capsule
             print("⏰ [Tools] Navigating to Time Capsule...")
-            // AppCoordinator.openTimeCapsule(from: self)
+        // AppCoordinator.openTimeCapsule(from: self)
 
         case .comingSoon:
             print("⏳ [Tools] Feature coming soon...")
-            // Show a toast or alert
-            // SwiftMessages.show(message: "Coming Soon!")
+        // Show a toast or alert
+        // SwiftMessages.show(message: "Coming Soon!")
         }
     }
 }

@@ -130,8 +130,6 @@
 		790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87CF2ECF668700D4F61F /* SpiralBreathingViewController.swift */; };
 		790D87D72ED1729200D4F61F /* SpiralConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D62ED1729200D4F61F /* SpiralConfig.swift */; };
 		790D87D82ED1729200D4F61F /* SpiralConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D62ED1729200D4F61F /* SpiralConfig.swift */; };
-		790D87E62ED1FCA100D4F61F /* SoulverseGlassContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E52ED1FCA100D4F61F /* SoulverseGlassContainer.swift */; };
-		790D87E72ED1FCA100D4F61F /* SoulverseGlassContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E52ED1FCA100D4F61F /* SoulverseGlassContainer.swift */; };
 		790D87EB2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E92ED2017F00D4F61F /* ToolsHeaderView.swift */; };
 		790D87EC2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E82ED2017F00D4F61F /* ToolsCollectionViewCell.swift */; };
 		790D87ED2ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87EA2ED2017F00D4F61F /* ToolsSectionHeaderView.swift */; };
@@ -283,6 +281,10 @@
 		79BB25182DF9E2C600ED3CBE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E8388399277AF9F80002C053 /* Realm */; };
 		79BB25192DF9E2C600ED3CBE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E838839B277AF9F80002C053 /* RealmSwift */; };
 		79BB251A2DF9E2C600ED3CBE /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = E838839C277AF9F80002C053 /* DeviceKit */; };
+		79DD63382EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */; };
+		79DD63392EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */; };
+		79DD633B2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */; };
+		79DD633C2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
 		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
 /* End PBXBuildFile section */
@@ -400,7 +402,6 @@
 		790D87CF2ECF668700D4F61F /* SpiralBreathingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralBreathingViewController.swift; sourceTree = "<group>"; };
 		790D87D02ECF668700D4F61F /* SpiralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralView.swift; sourceTree = "<group>"; };
 		790D87D62ED1729200D4F61F /* SpiralConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralConfig.swift; sourceTree = "<group>"; };
-		790D87E52ED1FCA100D4F61F /* SoulverseGlassContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseGlassContainer.swift; sourceTree = "<group>"; };
 		790D87E82ED2017F00D4F61F /* ToolsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionViewCell.swift; sourceTree = "<group>"; };
 		790D87E92ED2017F00D4F61F /* ToolsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsHeaderView.swift; sourceTree = "<group>"; };
 		790D87EA2ED2017F00D4F61F /* ToolsSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -475,6 +476,8 @@
 		79B6AAE92EB5C3DE00A8B079 /* EmotionCombination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionCombination.swift; sourceTree = "<group>"; };
 		79B6AAEC2EB75F8800A8B079 /* ColorEmotionSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEmotionSummaryView.swift; sourceTree = "<group>"; };
 		79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptSelectionView.swift; sourceTree = "<group>"; };
+		79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroTransitionID.swift; sourceTree = "<group>"; };
+		79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroTransitionID+Tools.swift"; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -760,7 +763,6 @@
 		790AD2032DF9E43200C33CD1 /* ViewComponent */ = {
 			isa = PBXGroup;
 			children = (
-				790D87E52ED1FCA100D4F61F /* SoulverseGlassContainer.swift */,
 				7951A9B62E532C85006EB0EC /* SoulverseButton.swift */,
 				7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */,
 				7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */,
@@ -780,6 +782,7 @@
 		790AD2052DF9E43200C33CD1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				79DD63372EDA8F7B008A5F8D /* Extensions */,
 				794B59F92E9EA436006CF069 /* Theme */,
 				790AD1E52DF9E43200C33CD1 /* Analytics */,
 				790AD1E82DF9E43200C33CD1 /* Manager */,
@@ -1113,6 +1116,7 @@
 				798687ED2E6C248E00EB3B38 /* Insight */,
 				79B24C742DFC7B2A001220B6 /* Canvas */,
 				7951A9FF2E537704006EB0EC /* Tools */,
+				79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */,
 				798688072E6C24EE00EB3B38 /* Quest */,
 			);
 			path = Features;
@@ -1221,6 +1225,14 @@
 				79B6AAD52EACCABA00A8B079 /* RadioOptionView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		79DD63372EDA8F7B008A5F8D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E8A4C87226BA41130082B4F7 = {
@@ -1671,6 +1683,7 @@
 				7986880C2E6C24EE00EB3B38 /* QuestViewModel.swift in Sources */,
 				7986880D2E6C24EE00EB3B38 /* QuestViewPresenter.swift in Sources */,
 				7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */,
+				79DD633C2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */,
 				7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
 				790D87D22ECF668700D4F61F /* SpiralView.swift in Sources */,
 				790D87D32ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
@@ -1701,7 +1714,6 @@
 				79B6AAEB2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */,
 				790AD2632DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD2662DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
-				790D87E72ED1FCA100D4F61F /* SoulverseGlassContainer.swift in Sources */,
 				7922ECE22E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
 				7922ECB02E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
 				7922ECD12E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
@@ -1728,6 +1740,7 @@
 				7922ECDB2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */,
 				7922ECDC2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */,
 				794B5A042EA38B45006CF069 /* SoulverseTextField.swift in Sources */,
+				79DD63382EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */,
 				790AD26B2DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1803,6 +1816,7 @@
 				798688092E6C24EE00EB3B38 /* QuestViewModel.swift in Sources */,
 				7986880A2E6C24EE00EB3B38 /* QuestViewPresenter.swift in Sources */,
 				7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */,
+				79DD633B2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */,
 				7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
 				790D87D42ECF668700D4F61F /* SpiralView.swift in Sources */,
 				790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
@@ -1833,7 +1847,6 @@
 				79B6AAEA2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */,
 				790AD3112DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD3142DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
-				790D87E62ED1FCA100D4F61F /* SoulverseGlassContainer.swift in Sources */,
 				7922ECE32E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
 				7922ECAF2E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
 				7922ECC42E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
@@ -1860,6 +1873,7 @@
 				7922ECCE2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */,
 				7922ECCF2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */,
 				794B5A032EA38B45006CF069 /* SoulverseTextField.swift in Sources */,
+				79DD63392EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */,
 				790AD3192DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2100,7 +2114,7 @@
 				CODE_SIGN_ENTITLEMENTS = Soulverse/Soulverse.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 387UQ56LV7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2149,7 +2163,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soulverse.bigbang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2167,7 +2181,7 @@
 				CODE_SIGN_ENTITLEMENTS = Soulverse/SoulverseRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 387UQ56LV7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2254,7 +2268,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.soulverse.bigbang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
