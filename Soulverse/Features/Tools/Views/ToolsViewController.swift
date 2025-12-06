@@ -24,12 +24,19 @@ class ToolsViewController: ViewController {
         let view = SoulverseNavigationView(title: NSLocalizedString("tools", comment: ""))
         return view
     }()
-    
+
+    private lazy var toolsHeaderView: ToolsHeaderView = {
+        let view = ToolsHeaderView()
+        return view
+    }()
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = Layout.itemVerticalSpacing
         layout.minimumInteritemSpacing = Layout.itemHorizontalSpacing
+        layout.headerReferenceSize = CGSize(
+            width: UIScreen.main.bounds.width, height: Layout.sectionHeaderHeight)
         layout.sectionInset = UIEdgeInsets(
             top: 0, left: Layout.horizontalInset, bottom: 20, right: Layout.horizontalInset)
 
@@ -42,10 +49,6 @@ class ToolsViewController: ViewController {
         // Register Cells and Headers
         collectionView.register(
             ToolsCollectionViewCell.self, forCellWithReuseIdentifier: "ToolsCollectionViewCell")
-        collectionView.register(
-            ToolsHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: "ToolsHeaderView")
         collectionView.register(
             ToolsSectionHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -72,22 +75,28 @@ class ToolsViewController: ViewController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
-    
+
     // MARK: - Setup
 
     private func setupView() {
         view.addSubview(navigationView)
+        view.addSubview(toolsHeaderView)
+        view.addSubview(collectionView)
 
         navigationView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalToSuperview()
         }
 
-        view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { make in
+        toolsHeaderView.snp.makeConstraints { make in
             make.top.equalTo(navigationView.snp.bottom)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide)  // Fix: Use safeAreaLayoutGuide for bottom
+        }
+
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(toolsHeaderView.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 
@@ -102,6 +111,10 @@ class ToolsViewController: ViewController {
 extension ToolsViewController: ToolsViewPresenterDelegate {
     func didUpdate(viewModel: ToolsViewModel) {
         self.viewModel = viewModel
+        toolsHeaderView.configure(
+            title: viewModel.healingTitle,
+            description: viewModel.healingDescription
+        )
         collectionView.reloadData()
     }
 }
@@ -123,6 +136,7 @@ extension ToolsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
         -> UICollectionViewCell
     {
+
         guard
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "ToolsCollectionViewCell", for: indexPath)
@@ -140,37 +154,23 @@ extension ToolsViewController: UICollectionViewDataSource {
     }
 
     func collectionView(
-        _ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
         at indexPath: IndexPath
     ) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader else {
             return UICollectionReusableView()
         }
 
-        if indexPath.section == 0 {
-            guard
-                let header = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind, withReuseIdentifier: "ToolsHeaderView", for: indexPath)
-                    as? ToolsHeaderView
-            else {
-                return UICollectionReusableView()
-            }
-            let sectionTitle = viewModel.titleForSection(indexPath.section)
-            header.configure(
-                title: viewModel.healingTitle, subtitle: viewModel.healingSubtitle,
-                sectionTitle: sectionTitle)
-            return header
-        } else {
-            guard
-                let header = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind, withReuseIdentifier: "ToolsSectionHeaderView", for: indexPath)
-                    as? ToolsSectionHeaderView
-            else {
-                return UICollectionReusableView()
-            }
-            header.configure(title: viewModel.titleForSection(indexPath.section) ?? "")
-            return header
+        guard
+            let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind, withReuseIdentifier: "ToolsSectionHeaderView", for: indexPath)
+                as? ToolsSectionHeaderView
+        else {
+            return UICollectionReusableView()
         }
+        header.configure(title: viewModel.titleForSection(indexPath.section) ?? "")
+        return header
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -238,22 +238,12 @@ extension ToolsViewController: UICollectionViewDataSource {
 extension ToolsViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(
-        _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         let totalSpacing = (2 * Layout.horizontalInset) + Layout.itemHorizontalSpacing
         let width = (collectionView.bounds.width - totalSpacing) / 2
         return CGSize(width: width, height: Layout.itemHeight)
-    }
-
-    func collectionView(
-        _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-        referenceSizeForHeaderInSection section: Int
-    ) -> CGSize {
-        if section == 0 {
-            return CGSize(width: collectionView.bounds.width, height: Layout.mainHeaderHeight)  // Adjust height as needed
-        } else {
-            return CGSize(width: collectionView.bounds.width, height: Layout.sectionHeaderHeight)
-        }
     }
 }

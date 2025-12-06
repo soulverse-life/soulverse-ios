@@ -1,28 +1,22 @@
 import SnapKit
 import UIKit
 
-class ToolsHeaderView: UICollectionReusableView {
+class ToolsHeaderView: UIView {
 
     // MARK: - UI Components
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 28, weight: .bold)
-        label.textColor = .white
+        label.font = .projectFont(ofSize: 18, weight: .bold)
+        label.textColor = .themeTextPrimary
         return label
     }()
 
-    private let subtitleLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .white.withAlphaComponent(0.7)
-        return label
-    }()
-
-    private let sectionTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .projectFont(ofSize: 20, weight: .semibold)
-        label.textColor = .white
+        label.textColor = .themeTextSecondary
+        label.numberOfLines = 0
         return label
     }()
 
@@ -41,8 +35,7 @@ class ToolsHeaderView: UICollectionReusableView {
 
     private func setupUI() {
         addSubview(titleLabel)
-        addSubview(subtitleLabel)
-        addSubview(sectionTitleLabel)
+        addSubview(descriptionLabel)
 
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
@@ -50,14 +43,8 @@ class ToolsHeaderView: UICollectionReusableView {
             make.trailing.equalToSuperview().offset(-26)
         }
 
-        subtitleLabel.snp.makeConstraints { make in
+        descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
-            make.leading.equalToSuperview().offset(26)
-            make.trailing.equalToSuperview().offset(-26)
-        }
-
-        sectionTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(24)
             make.leading.equalToSuperview().offset(26)
             make.trailing.equalToSuperview().offset(-26)
             make.bottom.equalToSuperview().offset(-12)
@@ -66,9 +53,8 @@ class ToolsHeaderView: UICollectionReusableView {
 
     // MARK: - Configuration
 
-    func configure(title: String, subtitle: String, sectionTitle: String? = nil) {
+    func configure(title: String, description: String) {
         titleLabel.text = title
-        subtitleLabel.text = subtitle
-        sectionTitleLabel.text = sectionTitle
+        descriptionLabel.text = description
     }
 }

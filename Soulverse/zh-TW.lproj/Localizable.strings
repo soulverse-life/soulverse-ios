@@ -7,8 +7,13 @@
 "inner_cosmo" = "內在宇宙";
 "insight" = "洞察";
 "canvas" = "畫布";
-"canvas_description" = "透過繪畫和素描表達您的創造力";
+"canvas_description" = "繪畫不在於技巧，而在於釋放，讓色彩和形狀在言語不足時發聲，並賦予需要尋找平衡的感受以形式。";
 "start_now" = "立即開始";
+"prompt" = "提示";
+"random" = "隨機";
+"start_draw" = "開始繪畫";
+"template_name" = "模板：%@";
+"no_template" = "自由繪畫";
 "cancel" = "取消";
 "save" = "儲存";
 "tools" = "工具";

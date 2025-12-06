@@ -76,9 +76,9 @@ class DrawingResultViewController: UIViewController {
         }
 
         drawingImageView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.top.equalTo(closeButton.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(drawingImageView.snp.width).multipliedBy(1.5)
+            make.bottom.lessThanOrEqualTo(ctaButton.snp.top).offset(-20)
         }
 
         ctaButton.snp.makeConstraints { make in

@@ -92,7 +92,7 @@ class DrawingCanvasViewController: UIViewController {
 
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = true
         return imageView

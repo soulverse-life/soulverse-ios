@@ -1,0 +1,844 @@
+{
+  "prompts": [
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw what happiness looks like to you.",
+      "reflectiveQuestion": "How is the \"happiness\" in your drawing similar to or different from the happiness you experience in daily life?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a joyful memory you want to keep.",
+      "reflectiveQuestion": "What meaning does this joyful memory hold for your life now?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a picture that represents the light within you.",
+      "reflectiveQuestion": "When you think of the \"light within,\" what strength or value does it remind you of?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "If happiness had a color, what would it be? Fill your page with it.",
+      "reflectiveQuestion": "Why does this color represent your happiness?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw the moment today that made you smile the most.",
+      "reflectiveQuestion": "What feelings did this moment bring you? Would you like to experience it again?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Use lines to show how joy moves through your body.",
+      "reflectiveQuestion": "As you drew these lines, did you notice parts of your body feeling lighter or more relaxed?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Turn your laughter into abstract art.",
+      "reflectiveQuestion": "When your laughter became patterns, what new feeling did it bring you?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a symbol that represents the feeling of being understood.",
+      "reflectiveQuestion": "When do you feel most understood? Does this symbol connect with that experience?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a joy you'd like to share with the world.",
+      "reflectiveQuestion": "If someone received this joy energy, what feeling would you want them to have?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Give your E.M.O Pet a joyful form through drawing.",
+      "reflectiveQuestion": "When your E.M.O Pet shows joy, which part of yourself feels awakened too?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw in your favorite place.",
+      "reflectiveQuestion": "What sense of safety or happiness does this place give you?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw outside in nature.",
+      "reflectiveQuestion": "How does creating outdoors feel different from creating indoors?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw your favorite childhood memory.",
+      "reflectiveQuestion": "How is this childhood memory connected to who you are today?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create unique drawings for the people you love most.",
+      "reflectiveQuestion": "When you think of them, what emotions come up most strongly?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw your favorite character traits.",
+      "reflectiveQuestion": "When has this trait helped you in your life?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw all of the positive things in your life.",
+      "reflectiveQuestion": "Which positive things do you feel most often in daily life?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw your inspirations.",
+      "reflectiveQuestion": "How do these inspirations move you forward?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Paint a picture of your perfect day.",
+      "reflectiveQuestion": "In your perfect day, what's one thing you could begin tomorrow?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Paint happy moments in abstract form.",
+      "reflectiveQuestion": "Which kind of happiness appears most easily in your daily life?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Design a souvenir with meaningful memories.",
+      "reflectiveQuestion": "If you gave this souvenir to your future self, what would you want it to remind you of?",
+      "emotion": "joy"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Turn your anger into a storm and draw it.",
+      "reflectiveQuestion": "In what ways does this storm look like the anger you feel inside?",
+      "emotion": "anger"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a volcano.",
+      "reflectiveQuestion": "What situation or trigger in your life does this volcano represent?",
+      "emotion": "anger"
+    },
+    {
+      "templateName": "circle",
+      "artTherapyPrompt": "Draw the boundary you want to set.",
+      "reflectiveQuestion": "What is this boundary meant to protect you from?",
+      "emotion": "anger"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw the contrast between holding back and exploding.",
+      "reflectiveQuestion": "In daily life, do you tend to hold back or explode? Why?",
+      "emotion": "anger"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create an \"emotional lightning rod\": what do you need when you're angry?",
+      "reflectiveQuestion": "What kind of emotions could this \"lightning rod\" help you release?",
+      "emotion": "anger"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a moment when you felt misunderstood.",
+      "reflectiveQuestion": null,
+      "emotion": "anger"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a character that protects your anger.",
+      "reflectiveQuestion": null,
+      "emotion": "anger"
+    },
+    {
+      "templateName": "shield",
+      "artTherapyPrompt": "Draw a shield that keeps you safe from harm.",
+      "reflectiveQuestion": null,
+      "emotion": "anger"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Dialogue exercise: draw two characters to show conflict and understanding.",
+      "reflectiveQuestion": null,
+      "emotion": "anger"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Transform your anger into a shape that can be embraced.",
+      "reflectiveQuestion": null,
+      "emotion": "anger"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a superhero.",
+      "reflectiveQuestion": null,
+      "emotion": "anger"
+    },
+    {
+      "templateName": "mask",
+      "artTherapyPrompt": "Create a confident mask that empowers you.",
+      "reflectiveQuestion": null,
+      "emotion": "anger"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Send artwork or a message away with a balloon. Let go of negative feelings or spread positivity.",
+      "reflectiveQuestion": null,
+      "emotion": "anger"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Paint the night of sadness.",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a person, place, or moment you miss.",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": "tear",
+      "artTherapyPrompt": "Paint your tears",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Make a \"goodbye card\" for a loss you've experienced.",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a space where sadness can take a rest.",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw the rainy cloud inside you.",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "If sadness were an animal, what would it be?",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw an image that says, \"I am seen.\"",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create an artwork that symbolizes being held or embraced.",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a safe space where your sorrow can be released.",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Sketch a mountain and a valley.",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": "mirror",
+      "artTherapyPrompt": "Draw your mirror reflection — what do you see?",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a portrait of your past self and current self.",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a person who has deeply influenced your life.",
+      "reflectiveQuestion": null,
+      "emotion": "sadness"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw the \"unknown\" that frightens you.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": "mask",
+      "artTherapyPrompt": "Create a \"mask of fear\": how do you protect yourself?",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Design a symbolic safe zone.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": "body",
+      "artTherapyPrompt": "Draw how anxiety shows up in your body.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Make an \"I'm ready\" certificate of courage.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Give your fear a shape — and a name.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a \"guardian of the night.\"",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw the choice you are most afraid to face.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Use dark and bright colors together to show fear and hope.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a safe harbor for yourself.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a three-step transformation map for facing fear.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a path into the unknown that you are willing to walk.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": "butterfly",
+      "artTherapyPrompt": "Butterfly dream and nightmare exercise — one wing a dream, the other a nightmare.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw monsters in place of your real fears.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Paint your safe place.",
+      "reflectiveQuestion": null,
+      "emotion": "fear"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a scene of what feels \"unbearable.\"",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a texture or pattern that symbolizes rejection.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw your conflict against a certain value.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Make a drawing that feels \"uncomfortable but true.\"",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "If you could wash away one emotion, what would it be?",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a scene of a cleansing ritual.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a \"boundary wall\" and mark the triggers on it.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Use a single color to paint what you reject.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw an image of self-purification.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw everything you want to say \"no\" to.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a translation image of disgust: where does it come from?",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw your name as large as possible.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Use meaningful objects to create a self-portrait.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw how you think others see you.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw yourself as your spirit animal or plant.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Paint a spiritual experience you had.",
+      "reflectiveQuestion": null,
+      "emotion": "disgust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw the most surprising thing from today.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create an \"unboxing feeling\" drawing.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw an unexpected change within you.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Turn \"surprise\" into a wrapped gift.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Make a map of unexpected discoveries.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Make a drawing for \"uncertainty.\"",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Depict the feeling of \"suddenness.\"",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw in a style you've never tried before.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create the beginning of an unknown journey.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw your EmoPet receiving a surprise.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a drawing of your dreams from a dream journal.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Spontaneous drawing of a fairy tale element.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Use calming colors in your painting.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Paint to music that resonates with you.",
+      "reflectiveQuestion": null,
+      "emotion": "surprise"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw \"a hand I trust\" or an embrace.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a trust contract with your inner child.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw an object or character you can rely on.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Use colors to paint the feeling of being held.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a resting place for your EmoPet.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a moment when you felt safe to be vulnerable.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create an image that symbolizes the flow of trust.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": "body",
+      "artTherapyPrompt": "Draw how your body feels when you trust yourself.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Design a \"trust badge\" or medal.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": "emotion_jar",
+      "artTherapyPrompt": "Create a container that holds your feelings.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a moment of being emotionally embraced.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a bridge to relationship safety and security.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": "mirror",
+      "artTherapyPrompt": "Draw a portrait of your future self.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Do one doodle a day to reflect emotions.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Paint your feelings directly.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": "box",
+      "artTherapyPrompt": "Forgive and create — decorate a box for forgiveness.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Map out the people in your life.",
+      "reflectiveQuestion": null,
+      "emotion": "trust"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw \"What am I waiting for?\"",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a \"postcard of mood\" from a future day.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw the change you hope to achieve.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Design your dreamed version of yourself for tomorrow.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a story scene in a \"trailer style.\"",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a seed that is hatching or growing.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Illustrate the state of waiting.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw a path you look forward to walking.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create a \"container of hope\" — what would it hold?",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Draw the feeling of \"about to happen.\"",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Design a cover for a letter from the future.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create your own emblem to symbolize who you are.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Create an object as a symbol of your strength or intention.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Make a dreamcatcher to invite good dreams.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": null,
+      "artTherapyPrompt": "Make art based on a quote or poem you like. Draw the images the words evoke, or express the colors they bring to mind.",
+      "reflectiveQuestion": null,
+      "emotion": "anticipation"
+    },
+    {
+      "templateName": "boxes",
+      "artTherapyPrompt": "Create a story across six boxes. Each section is one part of your story — beginning, middle, and end, or however your imagination flows.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "album_cover",
+      "artTherapyPrompt": "Design the cover of a music album that represents your life.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "mask_1",
+      "artTherapyPrompt": "Draw a mask that represents part of who you are right now.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "bags",
+      "artTherapyPrompt": "Draw the things you carry with you - burdens, strengthes, dreams, or hopes.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "emotion_jar",
+      "artTherapyPrompt": "Imagine a jar that holds your emotion. Fill it with colors, symbols,or shapes that match your feelings.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "mirror",
+      "artTherapyPrompt": "Draw an image that shows how you'd like others to see you.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "plate",
+      "artTherapyPrompt": "Inside the plate, draw or write the things you're carrying right now in your life.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "wish",
+      "artTherapyPrompt": "Create an image of a wish you hold. It could be realistic, symbolic, or magical.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "message_bottle",
+      "artTherapyPrompt": "Imagine sending a message out to sea in a bottle. Draw what you would place inside the bottle.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "inside_circle",
+      "artTherapyPrompt": "Start with yourself in the smallest circle in the middle. Add people in the surroudinging circles - those closest in the inner ones, and those more distant in the outer circles.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "clock",
+      "artTherapyPrompt": "Use the face of a clock to show your day. Fill each time slot with colors, drawings, or symbols that match how you felt throughout the day.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "body",
+      "artTherapyPrompt": "Draw your body and fill it with marks, colors, or images that show how you feel in your body right now.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "table",
+      "artTherapyPrompt": "Draw a table and imagine who is sitting there - people, animals, characters, or symbolic figures important to you.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "lines",
+      "artTherapyPrompt": "Begin with some random lines and shapes. Then, use your imagination to transform them into something new - a picture, a scene, or anything you discover within them.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "simple_shape_1",
+      "artTherapyPrompt": "Begin with some random lines and shapes. Then, use your imagination to transform them into something new - a picture, a scene, or anything you discover within them.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    },
+    {
+      "templateName": "simple_shape_2",
+      "artTherapyPrompt": "Begin with some random lines and shapes. Then, use your imagination to transform them into something new - a picture, a scene, or anything you discover within them.",
+      "reflectiveQuestion": null,
+      "emotion": null
+    }
+  ]
+}

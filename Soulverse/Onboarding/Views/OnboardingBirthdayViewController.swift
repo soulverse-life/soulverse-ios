@@ -145,7 +145,6 @@ class OnboardingBirthdayViewController: ViewController {
     // MARK: - Setup
 
     private func setupUI() {
-        view.backgroundColor = .white
 
         view.addSubview(progressView)
         view.addSubview(titleLabel)

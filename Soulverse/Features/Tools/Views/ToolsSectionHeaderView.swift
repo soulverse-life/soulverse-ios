@@ -7,8 +7,8 @@ class ToolsSectionHeaderView: UICollectionReusableView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 20, weight: .semibold)
-        label.textColor = .white
+        label.font = .projectFont(ofSize: 16, weight: .semibold)
+        label.textColor = .themeTextPrimary
         return label
     }()
 
@@ -31,7 +31,8 @@ class ToolsSectionHeaderView: UICollectionReusableView {
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(26)
             make.trailing.equalToSuperview().offset(-26)
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(12)
+            make.bottom.equalToSuperview().offset(-12)
         }
     }
 

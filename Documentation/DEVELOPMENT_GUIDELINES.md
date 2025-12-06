@@ -120,11 +120,21 @@ separator.backgroundColor = .themeSeparator
 **✅ Always use project fonts**
 
 ```swift
-// Use project font (Noto Sans TC)
+// Use project font (currently SF Pro, configurable in UIFont+Extensions.swift)
 label.font = .projectFont(ofSize: 16, weight: .medium)
 titleLabel.font = .projectFont(ofSize: 24, weight: .bold)
 
 // Available weights: .ultraLight, .thin, .light, .regular, .medium, .semibold, .bold, .heavy, .black
+```
+
+**Changing the project font:**
+To switch fonts app-wide, edit `FontConfiguration.current` in `Extensions/UIFont+Extensions.swift`:
+
+```swift
+// Current options:
+static let current: FontConfiguration = .sfPro        // SF Pro (system font)
+static let current: FontConfiguration = .notoSansTC   // Noto Sans TC
+static let current: FontConfiguration = .custom("YourFontName")  // Any custom font
 ```
 
 #### Other Extensions
@@ -221,14 +231,17 @@ private lazy var titleLabel: UILabel = {
 
 **❌ DON'T:**
 ```swift
-// System fonts
+// Direct system fonts or custom fonts
 label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+label.font = UIFont(name: "SomeFont", size: 16)
 ```
 
 **✅ DO:**
 ```swift
-// Project fonts
+// Project fonts (abstracts the font configuration)
 label.font = .projectFont(ofSize: 16, weight: .medium)
+
+// This allows switching fonts app-wide by changing one line in FontConfiguration
 ```
 
 ### 4. View Controller Structure

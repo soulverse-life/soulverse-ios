@@ -78,9 +78,14 @@ class AppCoordinator {
     }
     
     
-    static func openDrawingCanvas(from sourceVC: UIViewController) {
+    static func openDrawingCanvas(from sourceVC: UIViewController, prompt: CanvasPrompt? = nil) {
         let drawingCanvasVC = DrawingCanvasViewController()
         drawingCanvasVC.hidesBottomBarWhenPushed = true
+
+        // Set background image from prompt's template if available
+        if let templateImage = prompt?.templateImage {
+            drawingCanvasVC.backgroundImage = templateImage
+        }
 
         guard let navigationVC = sourceVC.navigationController else {
             sourceVC.show(drawingCanvasVC, sender: nil)

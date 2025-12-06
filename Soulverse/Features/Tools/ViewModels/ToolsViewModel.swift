@@ -7,13 +7,13 @@ struct ToolsSectionViewModel {
 
 struct ToolsViewModel {
     let healingTitle: String
-    let healingSubtitle: String
+    let healingDescription: String
     var isLoading: Bool
     let sections: [ToolsSectionViewModel]
 
     init(isLoading: Bool = false, sections: [ToolsSectionViewModel] = []) {
         self.healingTitle = NSLocalizedString("tools_healing_title", comment: "")
-        self.healingSubtitle = NSLocalizedString("tools_healing_subtitle", comment: "")
+        self.healingDescription = NSLocalizedString("tools_healing_subtitle", comment: "")
         self.isLoading = isLoading
         self.sections = sections
     }
