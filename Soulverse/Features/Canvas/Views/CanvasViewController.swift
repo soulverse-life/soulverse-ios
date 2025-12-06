@@ -25,7 +25,7 @@ class CanvasViewController: ViewController {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
-        stackView.spacing = 32
+        stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -39,7 +39,7 @@ class CanvasViewController: ViewController {
     private lazy var canvasTitleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("canvas", comment: "")
-        label.font = UIFont.projectFont(ofSize: 20, weight: .semibold)
+        label.font = UIFont.projectFont(ofSize: 18, weight: .semibold)
         label.textColor = .themeTextPrimary
         return label
     }()
@@ -57,7 +57,7 @@ class CanvasViewController: ViewController {
     private lazy var promptTitleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("prompt", comment: "")
-        label.font = UIFont.projectFont(ofSize: 20, weight: .semibold)
+        label.font = UIFont.projectFont(ofSize: 18, weight: .semibold)
         label.textColor = .themeTextPrimary
         return label
     }()
@@ -65,7 +65,7 @@ class CanvasViewController: ViewController {
     private lazy var artTherapyPromptLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .themeTextPrimary
+        label.textColor = .themeTextSecondary
         label.numberOfLines = 0
         return label
     }()
@@ -111,7 +111,7 @@ class CanvasViewController: ViewController {
     private lazy var startDrawingButton: SoulverseButton = {
         let button = SoulverseButton(
             title: NSLocalizedString("start_draw", comment: ""),
-            style: .gradient,
+            style: .primary,
             delegate: self
         )
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -233,7 +233,7 @@ class CanvasViewController: ViewController {
 
         // Start Drawing Button Constraints
         startDrawingButton.snp.makeConstraints { make in
-            make.height.equalTo(56)
+            make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
     }
 

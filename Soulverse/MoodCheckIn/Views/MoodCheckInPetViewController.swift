@@ -68,7 +68,6 @@ class MoodCheckInPetViewController: ViewController {
     // MARK: - Setup
 
     private func setupView() {
-        view.backgroundColor = .white
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         view.addSubview(backButton)

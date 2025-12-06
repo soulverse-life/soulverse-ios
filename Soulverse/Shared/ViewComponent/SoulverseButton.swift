@@ -88,6 +88,9 @@ class SoulverseButton: UIView {
 
     weak var delegate: SoulverseButtonDelegate?
 
+    private let baseView = UIView()
+    private let visualEffectView = UIVisualEffectView()
+
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.numberOfLines = 1
@@ -166,8 +169,8 @@ class SoulverseButton: UIView {
     // MARK: - Setup
 
     private func setupView() {
-        // Setup container stack view
-        addSubview(containerStackView)
+        // Setup base view to hold content
+        baseView.addSubview(containerStackView)
         containerStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(16)
         }
@@ -197,21 +200,59 @@ class SoulverseButton: UIView {
     public func applyStyle(_ style: SoulverseButtonStyle) {
         self.style = style
 
+        // Clean up previous style's views
+        baseView.removeFromSuperview()
+        visualEffectView.removeFromSuperview()
+        visualEffectView.contentView.subviews.forEach { $0.removeFromSuperview() }
+
         switch style {
         case .primary:
-            backgroundColor = .white
-            titleLabel.textColor = .black
-            layer.borderWidth = 1
-            layer.borderColor = UIColor.black.cgColor
-            layer.cornerRadius = 25
+            titleLabel.textColor = .themeTextPrimary
             iconImageView.isHidden = true
 
+            if #available(iOS 26.0, *) {
+                // iOS 26+: Use glass effect
+                let glassEffect = UIGlassEffect(style: .clear)
+                visualEffectView.effect = glassEffect
+                visualEffectView.layer.cornerRadius = 25
+                visualEffectView.clipsToBounds = true
+                visualEffectView.contentView.addSubview(baseView)
+                addSubview(visualEffectView)
+
+                visualEffectView.snp.makeConstraints { make in
+                    make.edges.equalToSuperview()
+                }
+
+                UIView.animate {
+                    self.visualEffectView.effect = glassEffect
+                    self.visualEffectView.overrideUserInterfaceStyle = .light
+                }
+            } else {
+                // Pre-iOS 26: Fallback to translucent style
+                addSubview(baseView)
+                baseView.layer.cornerRadius = 25
+                baseView.layer.borderWidth = 1
+                baseView.layer.borderColor = UIColor.themeSeparator.cgColor
+                baseView.backgroundColor = .white.withAlphaComponent(0.1)
+                baseView.clipsToBounds = true
+            }
+
+            baseView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+
         case .thirdPartyAuth(let config):
-            backgroundColor = config.backgroundColor
+            addSubview(baseView)
+            baseView.backgroundColor = config.backgroundColor
             titleLabel.textColor = config.textColor
-            layer.borderWidth = config.borderWidth
-            layer.borderColor = config.borderColor.cgColor
-            layer.cornerRadius = config.cornerRadius
+            baseView.layer.borderWidth = config.borderWidth
+            baseView.layer.borderColor = config.borderColor.cgColor
+            baseView.layer.cornerRadius = config.cornerRadius
+            baseView.clipsToBounds = true
+
+            baseView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
 
             if let icon = config.icon {
                 iconImageView.image = icon
@@ -222,14 +263,22 @@ class SoulverseButton: UIView {
             }
 
         case .outlined:
-            backgroundColor = .white
+            addSubview(baseView)
+            baseView.backgroundColor = .white
             titleLabel.textColor = .black
-            layer.borderWidth = 1
-            layer.borderColor = UIColor.lightGray.cgColor
-            layer.cornerRadius = 8
+            baseView.layer.borderWidth = 1
+            baseView.layer.borderColor = UIColor.lightGray.cgColor
+            baseView.layer.cornerRadius = 8
+            baseView.clipsToBounds = true
             iconImageView.isHidden = true
 
+            baseView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+
         case .gradient:
+            addSubview(baseView)
+
             // Remove existing gradient layer
             gradientLayer?.removeFromSuperlayer()
 
@@ -242,26 +291,31 @@ class SoulverseButton: UIView {
             gradient.endPoint = CGPoint(x: 0.5, y: 1)
             gradient.cornerRadius = 25
 
-            layer.insertSublayer(gradient, at: 0)
+            baseView.layer.insertSublayer(gradient, at: 0)
             gradientLayer = gradient
 
             // Configure appearance
-            backgroundColor = .clear
+            baseView.backgroundColor = .clear
             titleLabel.textColor = .white
-            layer.borderWidth = 0
-            layer.cornerRadius = 25
+            baseView.layer.borderWidth = 0
+            baseView.layer.cornerRadius = 25
+            baseView.clipsToBounds = false
             iconImageView.isHidden = true
+
+            baseView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
 
             // Add shadow: box-shadow: 0px 4px 20px 0px rgba(93, 219, 207, 0.4)
             // Use the second gradient color for shadow (typically the lighter/end color)
             if theme.buttonGradientColors.count > 1 {
-                layer.shadowColor = theme.buttonGradientColors[1].cgColor
+                baseView.layer.shadowColor = theme.buttonGradientColors[1].cgColor
             } else {
-                layer.shadowColor = theme.buttonGradientColors[0].cgColor
+                baseView.layer.shadowColor = theme.buttonGradientColors[0].cgColor
             }
-            layer.shadowOffset = CGSize(width: 0, height: 4)
-            layer.shadowRadius = 20
-            layer.shadowOpacity = 0.4
+            baseView.layer.shadowOffset = CGSize(width: 0, height: 4)
+            baseView.layer.shadowRadius = 20
+            baseView.layer.shadowOpacity = 0.4
         }
 
         updateEnabledState()
@@ -270,7 +324,7 @@ class SoulverseButton: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         // Update gradient frame when bounds change
-        gradientLayer?.frame = bounds
+        gradientLayer?.frame = baseView.bounds
     }
 
     private func updateEnabledState() {

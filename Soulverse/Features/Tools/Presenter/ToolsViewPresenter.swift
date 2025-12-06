@@ -82,9 +82,12 @@ class ToolsViewPresenter: ToolsViewPresenterType {
         return [
             ToolSection(
                 title: NSLocalizedString("tools_section_favorite", comment: ""),
-                items: favoriteItems),
+                items: favoriteItems
+            ),
             ToolSection(
-                title: NSLocalizedString("tools_section_explore", comment: ""), items: exploreItems),
+                title: NSLocalizedString("tools_section_explore", comment: ""),
+                items: exploreItems
+            )
         ]
     }
 

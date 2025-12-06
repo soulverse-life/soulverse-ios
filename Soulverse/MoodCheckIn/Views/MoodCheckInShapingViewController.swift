@@ -130,7 +130,6 @@ class MoodCheckInShapingViewController: ViewController {
     // MARK: - Setup
 
     private func setupView() {
-        view.backgroundColor = .white
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         setupNavigationBar()

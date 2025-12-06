@@ -80,8 +80,8 @@ class SpiralBreathingViewController: ViewController {
         // Instruction Label
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
         instructionLabel.textAlignment = .center
-        instructionLabel.textColor = .white
-        instructionLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        instructionLabel.textColor = .themeTextPrimary
+        instructionLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         instructionLabel.numberOfLines = 0
         view.addSubview(instructionLabel)
 

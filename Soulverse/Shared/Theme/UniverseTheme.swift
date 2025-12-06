@@ -14,7 +14,7 @@ struct UniverseTheme: Theme {
 // MARK: - Primary & Neutral Colors
 extension UniverseTheme {
     var primaryColor: UIColor {
-        UIColor(red: 0/255.0, green: 217.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        UIColor(red: 157.0/255.0, green: 92.0/255.0, blue: 195.0/255.0, alpha: 1.0)
     }
 
     var secondaryColor: UIColor {
@@ -65,7 +65,7 @@ extension UniverseTheme {
     }
 
     var textSecondary: UIColor {
-        UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 199.0/255.0, alpha: 1.0)
+        UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.8)
     }
 
     var textDisabled: UIColor {

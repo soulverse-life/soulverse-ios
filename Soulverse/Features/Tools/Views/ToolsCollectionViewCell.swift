@@ -21,8 +21,8 @@ class ToolsCollectionViewCell: UICollectionViewCell {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 16, weight: .semibold)
-        label.textColor = .white
+        label.font = .projectFont(ofSize: 14, weight: .semibold)
+        label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         label.setContentHuggingPriority(.required, for: .vertical)
         label.setContentCompressionResistancePriority(.required, for: .vertical)
@@ -32,7 +32,7 @@ class ToolsCollectionViewCell: UICollectionViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .projectFont(ofSize: 14, weight: .regular)
-        label.textColor = .white.withAlphaComponent(0.7)
+        label.textColor = .themeTextSecondary
         label.numberOfLines = 3  // Limit to 3 lines
         label.lineBreakMode = .byTruncatingTail
         label.setContentHuggingPriority(.required, for: .vertical)
