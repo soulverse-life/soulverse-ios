@@ -21,7 +21,30 @@ class ToolsViewController: ViewController {
     private var viewModel: ToolsViewModel = ToolsViewModel()
 
     private lazy var navigationView: SoulverseNavigationView = {
-        let view = SoulverseNavigationView(title: NSLocalizedString("tools", comment: ""))
+        let bellIcon = UIImage(systemName: "bell")
+        let personIcon = UIImage(systemName: "person")
+
+        let notificationItem = SoulverseNavigationItem.button(
+            image: bellIcon,
+            identifier: "notification"
+        ) { [weak self] in
+            self?.notificationTapped()
+        }
+
+        let profileItem = SoulverseNavigationItem.button(
+            image: personIcon,
+            identifier: "profile"
+        ) { [weak self] in
+            self?.profileTapped()
+        }
+
+        let config = SoulverseNavigationConfig(
+            title: NSLocalizedString("tools", comment: ""),
+            showBackButton: false,
+            rightItems: [notificationItem, profileItem]
+        )
+
+        let view = SoulverseNavigationView(config: config)
         return view
     }()
 
@@ -89,7 +112,7 @@ class ToolsViewController: ViewController {
         }
 
         toolsHeaderView.snp.makeConstraints { make in
-            make.top.equalTo(navigationView.snp.bottom)
+            make.top.equalTo(navigationView.snp.bottom).offset(16)
             make.left.right.equalToSuperview()
         }
 
@@ -234,7 +257,6 @@ extension ToolsViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-
 extension ToolsViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(
@@ -245,5 +267,19 @@ extension ToolsViewController: UICollectionViewDelegateFlowLayout {
         let totalSpacing = (2 * Layout.horizontalInset) + Layout.itemHorizontalSpacing
         let width = (collectionView.bounds.width - totalSpacing) / 2
         return CGSize(width: width, height: Layout.itemHeight)
+    }
+}
+
+
+// MARK: - Navigation Actions
+extension ToolsViewController {
+    private func notificationTapped() {
+        print("[Tools] Notification button tapped")
+        // TODO: Navigate to notifications screen
+    }
+    
+    private func profileTapped() {
+        print("[Tools] Profile button tapped")
+        // TODO: Navigate to profile screen
     }
 }

@@ -38,7 +38,7 @@ class ToolsHeaderView: UIView {
         addSubview(descriptionLabel)
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(8)
             make.leading.equalToSuperview().offset(26)
             make.trailing.equalToSuperview().offset(-26)
         }
