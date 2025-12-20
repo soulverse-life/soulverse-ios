@@ -84,6 +84,16 @@ extension UIColor {
         ThemeManager.shared.currentTheme.tabBarUnselectedTint
     }
 
+    /// Progress bar active color (current step) - adapts to current theme
+    static var themeProgressBarActive: UIColor {
+        ThemeManager.shared.currentTheme.progressBarActive
+    }
+
+    /// Progress bar inactive color (completed and remaining) - adapts to current theme
+    static var themeProgressBarInactive: UIColor {
+        ThemeManager.shared.currentTheme.progressBarInactive
+    }
+
     // MARK: - Legacy Theme Colors (Deprecated - use theme-aware colors above)
 
     @available(*, deprecated, message: "Use themePrimary instead")

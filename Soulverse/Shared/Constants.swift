@@ -9,33 +9,17 @@ import UIKit
 
 
 struct ViewComponentConstants {
-    static let miniBarHeight: CGFloat = 76.0
     static let navigationBarHeight: CGFloat = 32.0
     static let actionButtonHeight: CGFloat = 48.0
     static let smallActionButtonHeight: CGFloat = 20.0
     static let navigationButtonSize: CGFloat = 44.0
     static let colorDisplaySize: CGFloat = 30.0
-
-
-    /// Image height/width for Large NavBar state
-    static let ImageSizeForLargeState: CGFloat = 40
-    /// Margin from right anchor of safe area to right anchor of Image
-    static let ImageRightMargin: CGFloat = 20
-    /// Margin from bottom anchor of NavBar to bottom anchor of Image for Large NavBar state
-    static let ImageBottomMarginForLargeState: CGFloat = 12
-    /// Margin from bottom anchor of NavBar to bottom anchor of Image for Small NavBar state
-    static let ImageBottomMarginForSmallState: CGFloat = 8
-    /// Image height/width for Small NavBar state
-    static let ImageSizeForSmallState: CGFloat = 28
-    /// Height of NavBar for Small state. Usually it's just 44
-    static let NavBarHeightSmallState: CGFloat = 44
-    /// Height of NavBar for Large state. Usually it's just 96.5 but if you have a custom font for the title, please make sure to edit this value since it changes the height for Large state of NavBar
-    static let NavBarHeightLargeState: CGFloat = 96.5
+    
+    static let onboardingProgressViewWidth: CGFloat = 144.0
 }
 
 
 struct HostAppContants {
-    
     
     
     static let privacyUrl = "https://soulverse.thekono.com/privacy"

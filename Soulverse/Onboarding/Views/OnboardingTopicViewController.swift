@@ -118,6 +118,7 @@ class OnboardingTopicViewController: ViewController {
 
         progressView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.width.equalTo(ViewComponentConstants.onboardingProgressViewWidth)
             make.centerX.equalToSuperview()
         }
 

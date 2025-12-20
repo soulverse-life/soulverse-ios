@@ -14,7 +14,7 @@ struct UniverseTheme: Theme {
 // MARK: - Primary & Neutral Colors
 extension UniverseTheme {
     var primaryColor: UIColor {
-        UIColor(red: 157.0/255.0, green: 92.0/255.0, blue: 195.0/255.0, alpha: 1.0)
+        UIColor(red: 103.0/255.0, green: 18.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     }
 
     var secondaryColor: UIColor {
@@ -91,11 +91,11 @@ extension UniverseTheme {
 // MARK: - Button Colors
 extension UniverseTheme {
     var buttonPrimaryBackground: UIColor {
-        UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        UIColor(red: 103.0/255.0, green: 18.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     }
 
     var buttonPrimaryText: UIColor {
-        UIColor(red: 26.0/255.0, green: 26.0/255.0, blue: 46.0/255.0, alpha: 1.0)
+        UIColor.white
     }
 
     var buttonSecondaryBackground: UIColor {
@@ -103,22 +103,15 @@ extension UniverseTheme {
     }
 
     var buttonSecondaryText: UIColor {
-        UIColor.white
+        UIColor(red: 51.0/255.0, green: 51.0/255.0, blue: 51.0/255.0, alpha: 1.0)
     }
 
     var buttonDisabledBackground: UIColor {
-        UIColor(red: 30.0/255.0, green: 42.0/255.0, blue: 66.0/255.0, alpha: 1.0)
+        UIColor(red: 245.0/255.0, green: 245.0/255.0, blue: 245.0/255.0, alpha: 0.6)
     }
 
     var buttonDisabledText: UIColor {
         UIColor(red: 136.0/255.0, green: 143.0/255.0, blue: 155.0/255.0, alpha: 1.0)
-    }
-
-    var buttonGradientColors: [UIColor] {
-        [
-            UIColor(red: 107.0/255.0, green: 46.0/255.0, blue: 157.0/255.0, alpha: 1.0),
-            UIColor(red: 93.0/255.0, green: 219.0/255.0, blue: 207.0/255.0, alpha: 1.0)
-        ]
     }
 }
 
@@ -171,5 +164,16 @@ extension UniverseTheme {
 
     var warningColor: UIColor {
         UIColor(red: 241.0/255.0, green: 87.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+    }
+}
+
+// MARK: - Progress Bar
+extension UniverseTheme {
+    var progressBarActive: UIColor {
+        UIColor(red: 224.0/255.0, green: 151.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    }
+
+    var progressBarInactive: UIColor {
+        UIColor(red: 217.0/255.0, green: 217.0/255.0, blue: 217.0/255.0, alpha: 1.0)
     }
 }
