@@ -10,7 +10,7 @@ import UIKit
 
 struct ViewComponentConstants {
     static let miniBarHeight: CGFloat = 76.0
-    static let navigationBarHeight: CGFloat = 56.0
+    static let navigationBarHeight: CGFloat = 32.0
     static let actionButtonHeight: CGFloat = 48.0
     static let smallActionButtonHeight: CGFloat = 20.0
     static let navigationButtonSize: CGFloat = 44.0

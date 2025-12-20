@@ -2,14 +2,29 @@
 //  CanvasViewController.swift
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 class CanvasViewController: ViewController {
 
     // MARK: - UI Elements
     private lazy var navigationView: SoulverseNavigationView = {
-        let view = SoulverseNavigationView(title: NSLocalizedString("canvas", comment: ""))
+
+        let galleryIcon = UIImage(systemName: "photo")
+
+        let galleryItem = SoulverseNavigationItem.button(
+            image: galleryIcon,
+            identifier: "gallery"
+        ) { [weak self] in
+            self?.galleryTapped()
+        }
+
+        let config = SoulverseNavigationConfig(
+            title: NSLocalizedString("canvas", comment: ""),
+            rightItems: [galleryItem]
+        )
+
+        let view = SoulverseNavigationView(config: config)
         return view
     }()
 
@@ -257,7 +272,8 @@ class CanvasViewController: ViewController {
 
         // Update template info
         if let templateName = prompt.templateName, !templateName.isEmpty {
-            templateLabel.text = String(format: NSLocalizedString("template_name", comment: ""), templateName.capitalized)
+            templateLabel.text = String(
+                format: NSLocalizedString("template_name", comment: ""), templateName.capitalized)
             templateImageView.image = prompt.templateImage
             templateHeaderView.isHidden = false
             templateImageView.isHidden = false
@@ -293,5 +309,13 @@ extension CanvasViewController: CanvasViewPresenterDelegate {
         DispatchQueue.main.async { [weak self] in
             // Handle section updates if needed
         }
+    }
+}
+
+// MARK: - Navigation Actions
+extension CanvasViewController {
+    private func galleryTapped() {
+        print("[Canvas] Gallery button tapped")
+        // TODO: Navigate to notifications screen
     }
 }

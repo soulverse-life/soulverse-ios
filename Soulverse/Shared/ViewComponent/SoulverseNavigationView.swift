@@ -27,19 +27,23 @@ struct SoulverseNavigationItem {
         case button(title: String?, image: UIImage?, action: () -> Void)
         case customView(UIView)
     }
-    
+
     let type: ItemType
     let identifier: String?
-    
+
     // Convenience initializers
-    static func button(title: String? = nil, image: UIImage? = nil, identifier: String? = nil, action: @escaping () -> Void) -> SoulverseNavigationItem {
-        return SoulverseNavigationItem(type: .button(title: title, image: image, action: action), identifier: identifier)
+    static func button(
+        title: String? = nil, image: UIImage? = nil, identifier: String? = nil,
+        action: @escaping () -> Void
+    ) -> SoulverseNavigationItem {
+        return SoulverseNavigationItem(
+            type: .button(title: title, image: image, action: action), identifier: identifier)
     }
-    
+
     static func customView(_ view: UIView, identifier: String? = nil) -> SoulverseNavigationItem {
         return SoulverseNavigationItem(type: .customView(view), identifier: identifier)
     }
-    
+
     // Create the actual UIView for this item
     func createView() -> UIView {
         switch type {
@@ -72,38 +76,88 @@ struct SoulverseNavigationConfig {
     let title: String
     let showBackButton: Bool
     let rightItems: [SoulverseNavigationItem]
-    
-    init(title: String, showBackButton: Bool = false, rightItems: [SoulverseNavigationItem] = []) {
+    let rightItemIconSize: CGFloat
+
+    init(
+        title: String, showBackButton: Bool = false, rightItems: [SoulverseNavigationItem] = [],
+        rightItemIconSize: CGFloat = 20
+    ) {
         self.title = title
         self.showBackButton = showBackButton
         self.rightItems = rightItems
+        self.rightItemIconSize = rightItemIconSize
     }
 }
 
 class SoulverseNavigationView: UIView {
-    
+
+    // MARK: - Layout Constants
+    private enum Layout {
+        static let edgeInset: CGFloat = 16
+        static let itemSpacing: CGFloat = 8
+        static let backButtonSize: CGFloat = 44
+        static let rightItemButtonWidth: CGFloat = 28
+        static let maxRightItemsWidth: CGFloat = 120
+    }
+
     weak var delegate: SoulverseNavigationViewDelegate?
-    
-    private let centerContainer = UIView()
-    private let rightContainer = UIView()
-    
+
+    private let mainStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .fill
+        stack.spacing = Layout.itemSpacing
+        return stack
+    }()
+
+    private let rightItemsStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .fill
+        stack.spacing = Layout.itemSpacing
+        stack.setContentHuggingPriority(.required, for: .horizontal)
+        return stack
+    }()
+
     private let navigationTitle: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.font = .projectFont(ofSize: 17, weight: .semibold)
-        label.textAlignment = .center
+        label.font = .projectFont(ofSize: 15, weight: .semibold)
+        label.textAlignment = .left
+        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return label
     }()
-    
+
     private let backButton: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "naviconBack")
         button.setImage(image, for: .normal)
+        button.isHidden = true  // Hidden by default
+        button.accessibilityLabel = NSLocalizedString(
+            "navigation_back_button", comment: "Back button")
+        button.accessibilityIdentifier = "SoulverseNavigationView.backButton"
         return button
     }()
-    
+
+    // Spacer to provide 16px left padding when back button is hidden (8px edge + 8px spacer)
+    private let leadingSpacer: UIView = {
+        let spacer = UIView()
+        spacer.isHidden = true  // Hidden by default (shown when back button is hidden)
+        return spacer
+    }()
+
+    // Spacer to provide 16px right padding when right items are hidden (8px edge + 8px spacer)
+    private let trailingSpacer: UIView = {
+        let spacer = UIView()
+        spacer.isHidden = false  // Visible by default (hidden when right items exist)
+        return spacer
+    }()
+
     private var config: SoulverseNavigationConfig
-    
+
     init(config: SoulverseNavigationConfig) {
         self.config = config
         super.init(frame: .zero)
@@ -111,7 +165,7 @@ class SoulverseNavigationView: UIView {
         setupView()
         configureWithConfig()
     }
-    
+
     convenience init(title: String, showBackButton: Bool = false) {
         let config = SoulverseNavigationConfig(title: title, showBackButton: showBackButton)
         self.init(config: config)
@@ -120,37 +174,53 @@ class SoulverseNavigationView: UIView {
     required init?(coder: NSCoder) {
         fatalError()
     }
-    
+
     private func setupView() {
-        // Add containers directly to main view
-        addSubview(centerContainer)
-        addSubview(rightContainer)
+        // Add main stack view
+        addSubview(mainStackView)
 
         // Setup height constraint
         self.snp.makeConstraints { make in
             make.height.equalTo(ViewComponentConstants.navigationBarHeight)
         }
 
-        // Setup center container with title
-        centerContainer.addSubview(navigationTitle)
-        navigationTitle.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        // Main stack view constraints - with padding on left and right
+        mainStackView.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.right.equalToSuperview().inset(Layout.edgeInset)
+            make.centerY.equalToSuperview()
         }
 
-        // Center container constraints
-        centerContainer.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.left.greaterThanOrEqualToSuperview().inset(60) // Space for back button
-            make.right.lessThanOrEqualTo(rightContainer.snp.left).offset(-8)
+        // Add arranged subviews to stack
+        mainStackView.addArrangedSubview(backButton)
+        mainStackView.addArrangedSubview(leadingSpacer)
+        mainStackView.addArrangedSubview(navigationTitle)
+        mainStackView.addArrangedSubview(rightItemsStackView)
+        mainStackView.addArrangedSubview(trailingSpacer)
+
+        // Set custom spacing
+        mainStackView.setCustomSpacing(0, after: backButton)  // No space between back button and title
+        mainStackView.setCustomSpacing(0, after: rightItemsStackView)  // No space between right items and trailing spacer
+
+        // Set specific constraints for items
+        backButton.snp.makeConstraints { make in
+            make.size.equalTo(Layout.backButtonSize)
         }
 
-        // Right container constraints
-        rightContainer.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.width.lessThanOrEqualTo(120) // Max width for right items
+        leadingSpacer.snp.makeConstraints { make in
+            make.width.equalTo(Layout.itemSpacing)
         }
+
+        rightItemsStackView.snp.makeConstraints { make in
+            make.width.lessThanOrEqualTo(Layout.maxRightItemsWidth)
+        }
+
+        trailingSpacer.snp.makeConstraints { make in
+            make.width.equalTo(Layout.itemSpacing)  // 8px to make total 16px with edge inset
+        }
+
+        // Setup back button action
+        backButton.addTarget(self, action: #selector(didTapBack), for: .touchUpInside)
 
         // Apply theme colors
         updateThemeColors()
@@ -165,77 +235,67 @@ class SoulverseNavigationView: UIView {
     private func updateThemeColors() {
         navigationTitle.textColor = .themeNavigationText
     }
-    
+
     private func configureWithConfig() {
         navigationTitle.text = config.title
-        
-        // Configure back button if needed
-        if config.showBackButton {
-            if backButton.superview == nil {
-                addSubview(backButton)
-                backButton.snp.makeConstraints { make in
-                    make.left.equalToSuperview().inset(8)
-                    make.centerY.equalToSuperview()
-                    make.size.equalTo(44)
-                }
-                backButton.addTarget(self, action: #selector(didTapBack), for: .touchUpInside)
-            }
-            backButton.isHidden = false
-        } else {
-            backButton.isHidden = true
-        }
-        
+
+        backButton.isHidden = !config.showBackButton
+        leadingSpacer.isHidden = config.showBackButton
+
         // Configure right items
         if !config.rightItems.isEmpty {
             addRightItems(config.rightItems)
         } else {
-            rightContainer.isHidden = true
+            rightItemsStackView.isHidden = true
         }
     }
-    
+
     // MARK: - Public Methods
-    
+
     func addRightItems(_ items: [SoulverseNavigationItem]) {
-        rightContainer.subviews.forEach { $0.removeFromSuperview() }
-        
-        if items.count == 1 {
-            // Single item - align right
-            let itemView = items[0].createView()
-            rightContainer.addSubview(itemView)
+        // Remove existing items
+        rightItemsStackView.arrangedSubviews.forEach { view in
+            rightItemsStackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+
+        // Add new items to stack with fixed size
+        for item in items {
+            let itemView = item.createView()
+
+            // Check if it is a button to apply specific image padding
+            if let button = itemView as? UIButton {
+                // Calculate padding to enforce specified icon size within 32x32 button
+                // Default is 20, derived from config
+                let verticalPadding = (Layout.rightItemButtonWidth - config.rightItemIconSize) / 2
+                // Ensure padding is non-negative
+                let safeVerticalPadding = max(0, verticalPadding)
+
+                // Relax horizontal padding to 0 to allow wide icons (like 'photo') to expand
+                button.imageEdgeInsets = UIEdgeInsets(
+                    top: safeVerticalPadding, left: 0, bottom: safeVerticalPadding, right: 0)
+                button.imageView?.contentMode = .scaleAspectFit
+            }
+
+            rightItemsStackView.addArrangedSubview(itemView)
+
+            // Set fixed 32x32 size for each right item button (tap target area)
+            // Icon inside will be config.rightItemIconSize (configured effectively by the padding above)
             itemView.snp.makeConstraints { make in
-                make.right.equalToSuperview().inset(8)
-                make.centerY.equalToSuperview()
-                make.width.lessThanOrEqualToSuperview().inset(8)
-            }
-        } else {
-            // Multiple items - use horizontal stack aligned right
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.distribution = .fillEqually
-            stackView.alignment = .center
-            stackView.spacing = 8
-            
-            for item in items {
-                let itemView = item.createView()
-                stackView.addArrangedSubview(itemView)
-            }
-            
-            rightContainer.addSubview(stackView)
-            stackView.snp.makeConstraints { make in
-                make.right.equalToSuperview().inset(8)
-                make.centerY.equalToSuperview()
-                make.left.greaterThanOrEqualToSuperview().inset(8)
+                make.width.height.equalTo(Layout.rightItemButtonWidth)
             }
         }
-        
-        rightContainer.isHidden = false
+
+        // Toggle visibility: when right items exist, hide trailing spacer; when empty, show trailing spacer
+        rightItemsStackView.isHidden = items.isEmpty
+        trailingSpacer.isHidden = !items.isEmpty
     }
-    
+
     func addRightContent(_ content: UIView) {
         let item = SoulverseNavigationItem.customView(content)
         addRightItems([item])
     }
-    
+
     func updateTitle(_ title: String) {
         config = SoulverseNavigationConfig(
             title: title,
@@ -244,17 +304,15 @@ class SoulverseNavigationView: UIView {
         )
         navigationTitle.text = title
     }
-    
+
     func updateConfig(_ newConfig: SoulverseNavigationConfig) {
         config = newConfig
-        // Clear existing right content
-        rightContainer.subviews.forEach { $0.removeFromSuperview() }
-        // Reconfigure with new config
+        // Reconfigure with new config (addRightItems handles cleanup)
         configureWithConfig()
     }
-    
+
     @objc private func didTapBack() {
         delegate?.navigationViewDidTapBack(self)
     }
-    
+
 }

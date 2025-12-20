@@ -7,7 +7,30 @@ import UIKit
 class QuestViewController: ViewController {
     
     private lazy var navigationView: SoulverseNavigationView = {
-        let view = SoulverseNavigationView(title: NSLocalizedString("quest", comment: ""))
+        let bellIcon = UIImage(systemName: "bell")
+        let personIcon = UIImage(systemName: "person")
+
+        let notificationItem = SoulverseNavigationItem.button(
+            image: bellIcon,
+            identifier: "notification"
+        ) { [weak self] in
+            self?.notificationTapped()
+        }
+
+        let profileItem = SoulverseNavigationItem.button(
+            image: personIcon,
+            identifier: "profile"
+        ) { [weak self] in
+            self?.profileTapped()
+        }
+
+        let config = SoulverseNavigationConfig(
+            title: NSLocalizedString("quest", comment: ""),
+            showBackButton: false,
+            rightItems: [notificationItem, profileItem]
+        )
+
+        let view = SoulverseNavigationView(config: config)
         return view
     }()
     
@@ -52,7 +75,7 @@ class QuestViewController: ViewController {
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(navigationView.snp.bottom)
+            make.top.equalTo(navigationView.snp.bottom).offset(24)
             make.left.right.bottom.equalToSuperview()
         }
         
@@ -65,6 +88,7 @@ class QuestViewController: ViewController {
         presenter.fetchData(isUpdate: true)
     }
 }
+
 extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
     private func getSectionHeaderView(title: String, bottomPadding: CGFloat = 10) -> UIView {
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -165,3 +189,17 @@ extension QuestViewController: UIGestureRecognizerDelegate {
         return true
     }
 } 
+
+// MARK: - Navigation Actions
+extension QuestViewController {
+    
+    private func notificationTapped() {
+        print("[Quest] Notification button tapped")
+        // TODO: Navigate to notifications screen
+    }
+
+    private func profileTapped() {
+        print("[Quest] Profile button tapped")
+        // TODO: Navigate to profile screen
+    }
+}
