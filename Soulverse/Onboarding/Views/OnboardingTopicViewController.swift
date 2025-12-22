@@ -53,10 +53,18 @@ class OnboardingTopicViewController: ViewController {
         return progressBar
     }()
 
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "circle.grid.2x2.topleft.checkmark.filled")
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .themeTextPrimary
+        return imageView
+    }()
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_topics_title", comment: "")
-        label.font = .projectFont(ofSize: 32, weight: .light)
+        label.font = .projectFont(ofSize: 34, weight: .regular)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
@@ -65,7 +73,7 @@ class OnboardingTopicViewController: ViewController {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_topics_subtitle", comment: "")
-        label.font = .projectFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: 17, weight: .regular)
         label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 3
@@ -111,6 +119,7 @@ class OnboardingTopicViewController: ViewController {
     private func setupUI() {
 
         view.addSubview(progressView)
+        view.addSubview(iconImageView)
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
         view.addSubview(topicsGridView)
@@ -122,9 +131,15 @@ class OnboardingTopicViewController: ViewController {
             make.centerX.equalToSuperview()
         }
 
+        iconImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(progressView.snp.bottom).offset(50)
+            make.width.height.equalTo(60)
+        }
+
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(progressView.snp.bottom).offset(60)
+            make.top.equalTo(iconImageView.snp.bottom).offset(16)
         }
 
         subtitleLabel.snp.makeConstraints { make in

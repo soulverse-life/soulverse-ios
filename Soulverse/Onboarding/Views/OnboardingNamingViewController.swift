@@ -21,10 +21,18 @@ class OnboardingNamingViewController: ViewController {
         return progressBar
     }()
 
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "circle.hexagonpath")
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .themeTextPrimary
+        return imageView
+    }()
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_naming_title", comment: "")
-        label.font = .projectFont(ofSize: 32, weight: .light)
+        label.font = .projectFont(ofSize: 34, weight: .regular)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
@@ -33,10 +41,10 @@ class OnboardingNamingViewController: ViewController {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_naming_subtitle", comment: "")
-        label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .themeTextSecondary
+        label.font = .projectFont(ofSize: 17, weight: .regular)
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
-        label.numberOfLines = 4
+        label.numberOfLines = 0
         return label
     }()
 
@@ -142,6 +150,7 @@ class OnboardingNamingViewController: ViewController {
         view.backgroundColor = .white
 
         view.addSubview(progressView)
+        view.addSubview(iconImageView)
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
         view.addSubview(planetImageView)
@@ -158,9 +167,15 @@ class OnboardingNamingViewController: ViewController {
             make.centerX.equalToSuperview()
         }
 
+        iconImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(progressView.snp.bottom).offset(50)
+            make.width.height.equalTo(60)
+        }
+
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(progressView.snp.bottom).offset(40)
+            make.top.equalTo(iconImageView.snp.bottom).offset(16)
         }
 
         subtitleLabel.snp.makeConstraints { make in

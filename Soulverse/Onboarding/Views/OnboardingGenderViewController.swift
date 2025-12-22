@@ -44,6 +44,14 @@ class OnboardingGenderViewController: ViewController {
         return progressBar
     }()
 
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "person")
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .themeTextPrimary
+        return imageView
+    }()
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_gender_title", comment: "")
@@ -57,9 +65,9 @@ class OnboardingGenderViewController: ViewController {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_gender_subtitle", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .themeTextSecondary
+        label.textColor = .themeTextPrimary
         label.textAlignment = .center
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         return label
     }()
 
@@ -92,6 +100,7 @@ class OnboardingGenderViewController: ViewController {
 
     weak var delegate: OnboardingGenderViewControllerDelegate?
     private var genderOptions: [GenderOption] = GenderOption.allCases
+    private var selectedGenderIndex: Int?
 
     // MARK: - Lifecycle
 
@@ -106,6 +115,7 @@ class OnboardingGenderViewController: ViewController {
     private func setupUI() {
 
         view.addSubview(progressView)
+        view.addSubview(iconImageView)
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
         view.addSubview(instructionLabel)
@@ -118,9 +128,15 @@ class OnboardingGenderViewController: ViewController {
             make.centerX.equalToSuperview()
         }
 
+        iconImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(progressView.snp.bottom).offset(50)
+            make.width.height.equalTo(40)
+        }
+
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(progressView.snp.bottom).offset(60)
+            make.top.equalTo(iconImageView.snp.bottom).offset(8)
         }
 
         subtitleLabel.snp.makeConstraints { make in
@@ -158,6 +174,18 @@ class OnboardingGenderViewController: ViewController {
 
 extension OnboardingGenderViewController: SoulverseTagsViewDelegate {
     func soulverseTagsView(_ view: SoulverseTagsView, didSelectItemAt index: Int) {
+        // Update selected gender index
+        selectedGenderIndex = index
+
+        // Update items array with new selection state
+        let updatedItems = genderOptions.enumerated().map { itemIndex, option in
+            SoulverseTagsItemData(title: option.localizedTitle, isSelected: itemIndex == index)
+        }
+
+        // Update the tags view with new selection state
+        genderTagsView.setItems(updatedItems)
+
+        // Enable continue button
         continueButton.isEnabled = true
     }
 }
@@ -167,7 +195,7 @@ extension OnboardingGenderViewController: SoulverseTagsViewDelegate {
 extension OnboardingGenderViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
         // This is the continue button
-        guard let selectedIndex = genderTagsView.getSelectedIndex() else { return }
+        guard let selectedIndex = selectedGenderIndex else { return }
         let selectedGender = genderOptions[selectedIndex]
         delegate?.onboardingGenderViewController(self, didSelectGender: selectedGender)
     }
