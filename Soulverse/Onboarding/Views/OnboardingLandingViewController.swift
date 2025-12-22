@@ -15,27 +15,27 @@ protocol OnboardingLandingViewControllerDelegate: AnyObject {
 
 class OnboardingLandingViewController: ViewController {
 
+    // MARK: - Layout Constants
+
+    private enum Layout {
+        static let logoHeight: CGFloat = 182
+        static let logoWidth: CGFloat = 175
+        static let horizontalPadding: CGFloat = 40
+    }
+    
     // MARK: - UI Components
 
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "logo_soulverse")
-        // Temporary placeholder if logo doesn't exist
-        if imageView.image == nil {
-            let view = UIView()
-            view.backgroundColor = .lightGray
-            view.layer.cornerRadius = 50
-            let placeholderImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-            return placeholderImageView
-        }
+        imageView.image = UIImage(named: "launch_logo")
         return imageView
     }()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_landing_welcome_title", comment: "")
-        label.font = .projectFont(ofSize: 32, weight: .light)
+        label.font = .projectFont(ofSize: 34, weight: .light)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -45,7 +45,7 @@ class OnboardingLandingViewController: ViewController {
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_landing_welcome_subtitle", comment: "")
-        label.font = .projectFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: 17, weight: .regular)
         label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -149,45 +149,45 @@ class OnboardingLandingViewController: ViewController {
 
         logoImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(80)
-            make.size.equalTo(100)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(64)
+            make.height.equalTo(Layout.logoHeight)
+            make.width.equalTo(Layout.logoWidth)
         }
 
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(logoImageView.snp.bottom).offset(40)
-            make.left.right.equalToSuperview().inset(40)
+            make.top.equalTo(logoImageView.snp.bottom).offset(24)
+            make.left.right.equalToSuperview().inset(Layout.horizontalPadding)
         }
 
         subtitleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(16)
-            make.left.right.equalToSuperview().inset(40)
+            make.left.right.equalToSuperview().inset(Layout.horizontalPadding)
         }
 
         featuresStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(40)
-            make.left.equalToSuperview().offset(60)
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(16)
         }
 
         checkboxButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(40)
+            make.left.equalToSuperview().offset(Layout.horizontalPadding)
             make.bottom.equalTo(beginButton.snp.top).offset(-30)
             make.size.equalTo(24)
         }
 
         termsLabel.snp.makeConstraints { make in
-            make.left.equalTo(checkboxButton.snp.right).offset(8)
-            make.right.equalToSuperview().offset(-40)
+            make.left.equalTo(checkboxButton.snp.right).offset(12)
+            make.right.equalToSuperview().offset(-Layout.horizontalPadding)
             make.centerY.equalTo(checkboxButton)
         }
 
         beginButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
-            make.left.right.equalToSuperview().inset(40)
-            make.height.equalTo(50)
+            make.left.right.equalToSuperview().inset(Layout.horizontalPadding)
+            make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
     }
 
@@ -208,15 +208,15 @@ class OnboardingLandingViewController: ViewController {
         let containerView = UIView()
 
         let bulletLabel = UILabel()
-        bulletLabel.text = "•"
-        bulletLabel.font = .projectFont(ofSize: 16, weight: .regular)
+        bulletLabel.text = "⭐"
+        bulletLabel.font = .projectFont(ofSize: 13, weight: .regular)
         bulletLabel.textColor = .themeTextPrimary
 
         let textLabel = UILabel()
         textLabel.text = text
-        textLabel.font = .projectFont(ofSize: 16, weight: .regular)
+        textLabel.font = .projectFont(ofSize: 17, weight: .semibold)
         textLabel.textColor = .themeTextPrimary
-        textLabel.numberOfLines = 0
+        textLabel.numberOfLines = 1
 
         containerView.addSubview(bulletLabel)
         containerView.addSubview(textLabel)
