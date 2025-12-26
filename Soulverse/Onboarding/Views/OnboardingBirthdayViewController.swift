@@ -89,13 +89,6 @@ class OnboardingBirthdayViewController: ViewController {
         return stack
     }()
 
-    private lazy var selectedDateView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
-        view.layer.cornerRadius = 8
-        return view
-    }()
-
     private lazy var privacyLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("onboarding_birthday_privacy_notice", comment: "")
@@ -159,7 +152,6 @@ class OnboardingBirthdayViewController: ViewController {
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
         view.addSubview(instructionLabel)
-        view.addSubview(selectedDateView)
         view.addSubview(pickerStackView)
         view.addSubview(privacyLabel)
         view.addSubview(continueButton)
@@ -195,14 +187,6 @@ class OnboardingBirthdayViewController: ViewController {
             make.left.right.equalToSuperview().inset(20)
             make.top.equalTo(instructionLabel.snp.bottom).offset(20)
             make.height.equalTo(140)
-        }
-
-        // Add the highlighted selection view (behind pickers)
-        view.insertSubview(selectedDateView, belowSubview: pickerStackView)
-        selectedDateView.snp.makeConstraints { make in
-            make.left.right.equalTo(pickerStackView).inset(10)
-            make.centerY.equalTo(pickerStackView)
-            make.height.equalTo(44)
         }
 
         privacyLabel.snp.makeConstraints { make in
@@ -268,7 +252,6 @@ extension OnboardingBirthdayViewController: UIPickerViewDataSource, UIPickerView
         } else {
             label = UILabel()
             label.textAlignment = .center
-            label.font = .projectFont(ofSize: 18, weight: .regular)
         }
 
         let text: String
@@ -283,8 +266,19 @@ extension OnboardingBirthdayViewController: UIPickerViewDataSource, UIPickerView
             text = ""
         }
 
+        // Determine if this row is currently selected
+        let isSelected = pickerView.selectedRow(inComponent: 0) == row
+
+        // Apply styling based on selection state
+        if isSelected {
+            label.font = .projectFont(ofSize: 28, weight: .bold)
+            label.textColor = .themeProgressBarActive
+        } else {
+            label.font = .projectFont(ofSize: 20, weight: .regular)
+            label.textColor = .themeTextSecondary
+        }
+
         label.text = text
-        label.textColor = .themeTextPrimary
 
         return label
     }
@@ -298,6 +292,7 @@ extension OnboardingBirthdayViewController: UIPickerViewDataSource, UIPickerView
         case monthPickerView:
             selectedMonth = row
             dayPickerView.reloadAllComponents() // Reload days when month changes
+            monthPickerView.reloadAllComponents() // Refresh to update styling
             // Adjust day if it's out of range for the new month
             let maxDays = daysInMonth()
             if selectedDay > maxDays {
@@ -306,9 +301,11 @@ extension OnboardingBirthdayViewController: UIPickerViewDataSource, UIPickerView
             }
         case dayPickerView:
             selectedDay = row + 1
+            dayPickerView.reloadAllComponents() // Refresh to update styling
         case yearPickerView:
             selectedYear = currentYear - row
             dayPickerView.reloadAllComponents() // Reload days when year changes (for leap years)
+            yearPickerView.reloadAllComponents() // Refresh to update styling
         default:
             break
         }
