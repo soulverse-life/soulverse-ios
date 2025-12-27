@@ -84,6 +84,7 @@ class OnboardingNamingViewController: ViewController {
         textField.layer.cornerRadius = 20
         textField.backgroundColor = .white
         textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 
         // Add left padding
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: textField.frame.height))
@@ -118,6 +119,7 @@ class OnboardingNamingViewController: ViewController {
         textField.layer.cornerRadius = 20
         textField.backgroundColor = .white
         textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 
         // Add left padding
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: textField.frame.height))
@@ -129,10 +131,11 @@ class OnboardingNamingViewController: ViewController {
 
     private lazy var continueButton: SoulverseButton = {
         let button = SoulverseButton(
-            title: NSLocalizedString("onboarding_continue_button", comment: ""),
+            title: NSLocalizedString("onboarding_continue_button_title", comment: ""),
             style: .primary,
             delegate: self
         )
+        button.isEnabled = false
         return button
     }()
 
@@ -251,6 +254,19 @@ class OnboardingNamingViewController: ViewController {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
+
+    @objc private func textFieldDidChange() {
+        validateInput()
+    }
+
+    // MARK: - Validation
+
+    private func validateInput() {
+        let isPlanetNameValid = !(planetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true)
+        let isEmoPetNameValid = !(emoPetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true)
+
+        continueButton.isEnabled = isPlanetNameValid && isEmoPetNameValid
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -271,8 +287,13 @@ extension OnboardingNamingViewController: UITextFieldDelegate {
 
 extension OnboardingNamingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        let planetName = planetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? NSLocalizedString("onboarding_naming_planet_placeholder", comment: "")
-        let emoPetName = emoPetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? NSLocalizedString("onboarding_naming_emopet_placeholder", comment: "")
+        // Double-check validation before proceeding
+        guard let planetName = planetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !planetName.isEmpty,
+              let emoPetName = emoPetNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !emoPetName.isEmpty else {
+            return
+        }
 
         delegate?.onboardingNamingViewController(self, didCompletePlanetName: planetName, emoPetName: emoPetName)
     }
