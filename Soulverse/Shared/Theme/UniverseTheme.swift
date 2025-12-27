@@ -99,11 +99,11 @@ extension UniverseTheme {
     }
 
     var buttonSecondaryBackground: UIColor {
-        UIColor(red: 45.0/255.0, green: 27.0/255.0, blue: 105.0/255.0, alpha: 0.5)
+        UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.6)
     }
 
     var buttonSecondaryText: UIColor {
-        UIColor(red: 51.0/255.0, green: 51.0/255.0, blue: 51.0/255.0, alpha: 1.0)
+        UIColor.white
     }
 
     var buttonDisabledBackground: UIColor {

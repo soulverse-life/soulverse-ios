@@ -300,7 +300,6 @@
 // Gender Screen
 "onboarding_gender_title" = "性別共鳴";
 "onboarding_gender_subtitle" = "宇宙應該如何\n與你共鳴？";
-"onboarding_gender_instruction" = "性別認同";
 "onboarding_gender_man" = "男性";
 "onboarding_gender_woman" = "女性";
 "onboarding_gender_nonbinary" = "非二元性別";

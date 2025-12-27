@@ -68,7 +68,8 @@ class SoulverseProgressBar: UIView {
         addSubview(completedView)
         addSubview(currentView)
         addSubview(remainingView)
-        updateLayout()
+        // Don't call updateLayout() here - bounds.width is 0
+        // Wait for layoutSubviews() when we have actual dimensions
     }
 
     // MARK: - Layout
@@ -100,6 +101,11 @@ class SoulverseProgressBar: UIView {
     // MARK: - Private Methods
 
     private func updateLayout() {
+        // Guard against invalid layout calculations when view hasn't been laid out yet
+        guard bounds.width > 0 else {
+            return
+        }
+
         // Calculate how many steps for each section
         // currentStep always >= 1 (we always show current step)
         let completedSteps = currentStep - 1  // Steps before current
@@ -128,7 +134,6 @@ class SoulverseProgressBar: UIView {
         completedView.snp.remakeConstraints { make in
             make.left.equalToSuperview()
             make.top.bottom.equalToSuperview()
-            make.height.equalTo(Constants.barHeight)
             make.width.equalTo(completedWidth) // Will be 0 if completedSteps == 0
         }
 
@@ -139,7 +144,6 @@ class SoulverseProgressBar: UIView {
                 make.left.equalToSuperview()
             }
             make.top.bottom.equalToSuperview()
-            make.height.equalTo(Constants.barHeight)
             make.width.equalTo(Constants.currentStepWidth)
         }
 
@@ -150,7 +154,6 @@ class SoulverseProgressBar: UIView {
                 make.left.equalTo(currentView.snp.right)
             }
             make.top.bottom.equalToSuperview()
-            make.height.equalTo(Constants.barHeight)
             make.width.equalTo(remainingWidth)
         }
     }

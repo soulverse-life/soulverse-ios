@@ -273,7 +273,7 @@
 
 // Sign In Screen
 "onboarding_signin_title" = "Create Account";
-"onboarding_signin_subtitle" = "Join the Soulverse community";
+"onboarding_signin_subtitle" = "Start your Soulverse journey and explore your inner cosmos";
 "onboarding_signin_google_button" = "Sign in with Google";
 "onboarding_signin_apple_button" = "Sign in with Apple";
 
@@ -282,23 +282,22 @@
 "onboarding_birthday_subtitle" = "Every soul is born at a unique\nmoment in the universe.";
 "onboarding_birthday_instruction" = "Enter your birthday";
 "onboarding_birthday_privacy_notice" = "*This information is used solely for personalized\nexperiences and research analysis — it will not be\nmade public.";
-"onboarding_birthday_month_january" = "January";
-"onboarding_birthday_month_february" = "February";
-"onboarding_birthday_month_march" = "March";
-"onboarding_birthday_month_april" = "April";
+"onboarding_birthday_month_january" = "Jan";
+"onboarding_birthday_month_february" = "Feb";
+"onboarding_birthday_month_march" = "Mar";
+"onboarding_birthday_month_april" = "Apr";
 "onboarding_birthday_month_may" = "May";
-"onboarding_birthday_month_june" = "June";
-"onboarding_birthday_month_july" = "July";
-"onboarding_birthday_month_august" = "August";
-"onboarding_birthday_month_september" = "September";
-"onboarding_birthday_month_october" = "October";
-"onboarding_birthday_month_november" = "November";
-"onboarding_birthday_month_december" = "December";
+"onboarding_birthday_month_june" = "Jun";
+"onboarding_birthday_month_july" = "Jul";
+"onboarding_birthday_month_august" = "Aug";
+"onboarding_birthday_month_september" = "Sep";
+"onboarding_birthday_month_october" = "Oct";
+"onboarding_birthday_month_november" = "Nov";
+"onboarding_birthday_month_december" = "Dec";
 
 // Gender Screen
 "onboarding_gender_title" = "Gender Resonance";
 "onboarding_gender_subtitle" = "How should the universe\nresonate with you?";
-"onboarding_gender_instruction" = "Gender identity";
 "onboarding_gender_man" = "Man";
 "onboarding_gender_woman" = "Woman";
 "onboarding_gender_nonbinary" = "Non-binary";
@@ -307,7 +306,7 @@
 
 // Naming Screen
 "onboarding_naming_title" = "Naming";
-"onboarding_naming_subtitle" = "Name your world, name your friend.\nGive your planet a cosmic identity\nand your emopet a loyal name to join\nyou on this journey.";
+"onboarding_naming_subtitle" = "Give your planet a cosmic identity and your EmoPet a loyal name ";
 "onboarding_naming_planet_label" = "Name your planet";
 "onboarding_naming_planet_placeholder" = "Vancouver";
 "onboarding_naming_emopet_label" = "Name your EmoPet";
@@ -315,7 +314,7 @@
 
 // Topics Screen
 "onboarding_topics_title" = "Selecting Topics";
-"onboarding_topics_subtitle" = "These guide your journey, shaping\nreflections, insights, and support\ntailored to your soulverse.";
+"onboarding_topics_subtitle" = "These guide your journey, shaping reflections and insights tailored to your Soulverse.";
 "onboarding_topics_physical" = "Physical";
 "onboarding_topics_emotional" = "Emotional";
 "onboarding_topics_social" = "Social";

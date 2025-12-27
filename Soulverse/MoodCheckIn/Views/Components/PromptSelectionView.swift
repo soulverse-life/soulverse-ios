@@ -5,8 +5,8 @@
 //  Created by Claude on 2025.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 /// Delegate protocol for prompt selection events
 protocol PromptSelectionViewDelegate: AnyObject {
@@ -41,8 +41,10 @@ class PromptSelectionView: UIView {
     }()
 
     private lazy var promptTagsView: SoulverseTagsView = {
-        let config = SoulverseTagsViewConfig(horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
+        let config = SoulverseTagsViewConfig(
+            horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
         let view = SoulverseTagsView(config: config)
+        view.selectionMode = .single
         view.delegate = self
         return view
     }()
@@ -99,11 +101,18 @@ class PromptSelectionView: UIView {
 // MARK: - SoulverseTagsViewDelegate
 
 extension PromptSelectionView: SoulverseTagsViewDelegate {
-    func soulverseTagsView(_ view: SoulverseTagsView, didSelectItemAt index: Int) {
-        let prompts = Array(PromptOption.allCases)
-        selectedPrompt = prompts[index]
+    func soulverseTagsView(
+        _ view: SoulverseTagsView, didUpdateSelectedItems items: [SoulverseTagsItemData]
+    ) {
+        guard let selectedItem = items.first else {
+            selectedPrompt = nil
+            return
+        }
 
-        if let prompt = selectedPrompt {
+        // Find the prompt option that matches the selected item's title
+        if let prompt = PromptOption.allCases.first(where: { $0.displayName == selectedItem.title })
+        {
+            selectedPrompt = prompt
             delegate?.didSelectPrompt(self, prompt: prompt)
         }
     }

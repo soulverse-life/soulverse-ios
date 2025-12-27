@@ -186,7 +186,7 @@ class OnboardingLandingViewController: ViewController {
         beginButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
-            make.left.right.equalToSuperview().inset(Layout.horizontalPadding)
+            make.left.right.equalToSuperview().inset(ViewComponentConstants.horizontalPadding)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
     }

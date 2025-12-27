@@ -15,6 +15,15 @@ class OnboardingBirthdayViewController: ViewController {
 
     // MARK: - UI Components
 
+    private lazy var backButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "naviconBack")
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        button.accessibilityLabel = NSLocalizedString("navigation_back_button", comment: "Back button")
+        return button
+    }()
+
     private lazy var progressView: SoulverseProgressBar = {
         let progressBar = SoulverseProgressBar(totalSteps: 5)
         progressBar.setProgress(currentStep: 2)
@@ -23,7 +32,7 @@ class OnboardingBirthdayViewController: ViewController {
 
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "person")
+        imageView.image = UIImage(systemName: "star.circle")
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .themeTextPrimary
         return imageView
@@ -147,6 +156,7 @@ class OnboardingBirthdayViewController: ViewController {
 
     private func setupUI() {
 
+        view.addSubview(backButton)
         view.addSubview(progressView)
         view.addSubview(iconImageView)
         view.addSubview(titleLabel)
@@ -159,18 +169,25 @@ class OnboardingBirthdayViewController: ViewController {
         progressView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.width.equalTo(ViewComponentConstants.onboardingProgressViewWidth)
+            make.height.equalTo(4)
             make.centerX.equalToSuperview()
+        }
+
+        backButton.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(8)
+            make.centerY.equalTo(progressView.snp.centerY)
+            make.width.height.equalTo(ViewComponentConstants.navigationButtonSize)
         }
 
         iconImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(progressView.snp.bottom).offset(50)
-            make.width.height.equalTo(60)
+            make.width.height.equalTo(40)
         }
 
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(iconImageView.snp.bottom).offset(16)
+            make.top.equalTo(iconImageView.snp.bottom).offset(8)
         }
 
         subtitleLabel.snp.makeConstraints { make in
@@ -197,8 +214,8 @@ class OnboardingBirthdayViewController: ViewController {
         continueButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
-            make.left.right.equalToSuperview().inset(40)
-            make.height.equalTo(50)
+            make.left.right.equalToSuperview().inset(ViewComponentConstants.horizontalPadding)
+            make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
     }
 
@@ -206,6 +223,12 @@ class OnboardingBirthdayViewController: ViewController {
         monthPickerView.selectRow(selectedMonth, inComponent: 0, animated: false)
         dayPickerView.selectRow(selectedDay - 1, inComponent: 0, animated: false)
         yearPickerView.selectRow(currentYear - selectedYear, inComponent: 0, animated: false)
+    }
+
+    // MARK: - Actions
+
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
 
     // MARK: - Helper Methods

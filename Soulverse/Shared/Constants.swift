@@ -9,13 +9,15 @@ import UIKit
 
 
 struct ViewComponentConstants {
-    static let navigationBarHeight: CGFloat = 32.0
+    static let navigationBarHeight: CGFloat = 48.0
     static let actionButtonHeight: CGFloat = 48.0
     static let smallActionButtonHeight: CGFloat = 20.0
     static let navigationButtonSize: CGFloat = 44.0
     static let colorDisplaySize: CGFloat = 30.0
     
     static let onboardingProgressViewWidth: CGFloat = 144.0
+    
+    static let horizontalPadding: CGFloat = 26.0
 }
 
 

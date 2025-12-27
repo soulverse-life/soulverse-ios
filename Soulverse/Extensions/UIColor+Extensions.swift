@@ -44,9 +44,19 @@ extension UIColor {
         ThemeManager.shared.currentTheme.buttonPrimaryBackground
     }
 
+    /// Button secondary background - adapts to current theme
+    static var themeButtonSecondaryBackground: UIColor {
+        ThemeManager.shared.currentTheme.buttonSecondaryBackground
+    }
+    
     /// Button primary text - adapts to current theme
     static var themeButtonPrimaryText: UIColor {
         ThemeManager.shared.currentTheme.buttonPrimaryText
+    }
+    
+    /// Button secondary text - adapts to current theme
+    static var themeButtonSecondaryText: UIColor {
+        ThemeManager.shared.currentTheme.buttonSecondaryText
     }
 
     /// Button disabled background - adapts to current theme

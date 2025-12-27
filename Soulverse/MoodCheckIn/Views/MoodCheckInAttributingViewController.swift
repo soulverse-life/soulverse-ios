@@ -5,8 +5,8 @@
 //  Created by Claude on 2025.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 class MoodCheckInAttributingViewController: ViewController {
 
@@ -62,8 +62,10 @@ class MoodCheckInAttributingViewController: ViewController {
     private var lifeAreaItems: [SoulverseTagsItemData] = []
 
     private lazy var lifeAreaTagsView: SoulverseTagsView = {
-        let config = SoulverseTagsViewConfig(horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
+        let config = SoulverseTagsViewConfig(
+            horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
         let view = SoulverseTagsView(config: config)
+        view.selectionMode = .single
         view.delegate = self
         return view
     }()
@@ -156,23 +158,26 @@ class MoodCheckInAttributingViewController: ViewController {
 
 // MARK: - SoulverseTagsViewDelegate
 
+// MARK: - SoulverseTagsViewDelegate
+
 extension MoodCheckInAttributingViewController: SoulverseTagsViewDelegate {
-    func soulverseTagsView(_ view: SoulverseTagsView, didSelectItemAt index: Int) {
-        // Single selection: deselect all items first
-        for i in 0..<lifeAreaItems.count {
-            lifeAreaItems[i].isSelected = false
+    func soulverseTagsView(
+        _ view: SoulverseTagsView, didUpdateSelectedItems items: [SoulverseTagsItemData]
+    ) {
+        // We only care about the single selected item
+        guard let selectedItem = items.first else {
+            selectedLifeArea = nil
+            continueButton.isEnabled = false
+            return
         }
 
-        // Select the tapped item
-        lifeAreaItems[index].isSelected = true
-
-        // Update the view to show selection
-        lifeAreaTagsView.setItems(lifeAreaItems)
-
-        // Update state
-        let lifeAreas = Array(LifeAreaOption.allCases)
-        selectedLifeArea = lifeAreas[index]
-        continueButton.isEnabled = true
+        // Match with LifeAreaOption
+        if let lifeArea = LifeAreaOption.allCases.first(where: {
+            $0.displayName == selectedItem.title
+        }) {
+            selectedLifeArea = lifeArea
+            continueButton.isEnabled = true
+        }
     }
 }
 

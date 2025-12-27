@@ -208,7 +208,7 @@ class SoulverseButton: UIView {
             iconImageView.isHidden = true
 
             addSubview(baseView)
-            baseView.layer.cornerRadius = 25
+            baseView.layer.cornerRadius = 24
             baseView.clipsToBounds = true
 
             // Set solid background color based on enabled state
@@ -222,9 +222,9 @@ class SoulverseButton: UIView {
                 // iOS 26+: Layer glass effect on top of colored background
                 let glassEffect = UIGlassEffect(style: .clear)
                 visualEffectView.effect = glassEffect
-                visualEffectView.layer.cornerRadius = 25
                 visualEffectView.clipsToBounds = true
                 visualEffectView.isUserInteractionEnabled = false
+                visualEffectView.overrideUserInterfaceStyle = .light
                 baseView.addSubview(visualEffectView)
 
                 visualEffectView.snp.makeConstraints { make in
@@ -233,11 +233,6 @@ class SoulverseButton: UIView {
 
                 // Move content to glass effect's content view
                 visualEffectView.contentView.addSubview(containerStackView)
-
-                UIView.animate {
-                    self.visualEffectView.effect = glassEffect
-                    self.visualEffectView.overrideUserInterfaceStyle = .light
-                }
             }
 
         case .thirdPartyAuth(let config):
@@ -313,7 +308,7 @@ class SoulverseButton: UIView {
     }
 
     // MARK: - FlexLayout Compatibility
-
+/*
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         // Account for horizontal padding (16pt on each side = 32pt total)
         let availableWidth = size.width > 32 ? size.width - 32 : size.width
@@ -331,4 +326,5 @@ class SoulverseButton: UIView {
             height: max(50, contentSize.height + 32)  // Minimum 50pt height (matches button design)
         )
     }
+ */
 }

@@ -166,6 +166,8 @@
 		7922ECDC2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBD2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift */; };
 		7922ECE22E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */; };
 		7922ECE32E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */; };
+		79389F582EFFBEF60016CB7F /* TopicCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F572EFFBEF60016CB7F /* TopicCardView.swift */; };
+		79389F592EFFBEF60016CB7F /* TopicCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F572EFFBEF60016CB7F /* TopicCardView.swift */; };
 		794B59F32E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
 		794B59F42E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
 		794B59FA2E9EA436006CF069 /* UniverseTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F82E9EA436006CF069 /* UniverseTheme.swift */; };
@@ -180,10 +182,8 @@
 		794B5A042EA38B45006CF069 /* SoulverseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A022EA38B45006CF069 /* SoulverseTextField.swift */; };
 		794B5A082EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */; };
 		794B5A092EA38B65006CF069 /* SoulverseTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */; };
-		794B5A0A2EA38B65006CF069 /* SoulverseButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A052EA38B65006CF069 /* SoulverseButtonCell.swift */; };
 		794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */; };
 		794B5A0C2EA38B65006CF069 /* SoulverseTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */; };
-		794B5A0D2EA38B65006CF069 /* SoulverseButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A052EA38B65006CF069 /* SoulverseButtonCell.swift */; };
 		794B5A0F2EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */; };
 		794B5A102EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */; };
 		7951A9B92E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
@@ -281,6 +281,8 @@
 		79BB25182DF9E2C600ED3CBE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E8388399277AF9F80002C053 /* Realm */; };
 		79BB25192DF9E2C600ED3CBE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E838839B277AF9F80002C053 /* RealmSwift */; };
 		79BB251A2DF9E2C600ED3CBE /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = E838839C277AF9F80002C053 /* DeviceKit */; };
+		79D576832EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */; };
+		79D576842EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */; };
 		79DD63382EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */; };
 		79DD63392EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */; };
 		79DD633B2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */; };
@@ -425,13 +427,13 @@
 		7922ECC12E993B8D0086B7CA /* OnboardingTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopicViewController.swift; sourceTree = "<group>"; };
 		7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleUserAuthService.swift; sourceTree = "<group>"; };
 		7922ECE42E9A4E010086B7CA /* SoulverseRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SoulverseRelease.entitlements; sourceTree = "<group>"; };
+		79389F572EFFBEF60016CB7F /* TopicCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCardView.swift; sourceTree = "<group>"; };
 		794B59F22E9EA3E1006CF069 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		794B59F52E9EA436006CF069 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		794B59F62E9EA436006CF069 /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
 		794B59F72E9EA436006CF069 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		794B59F82E9EA436006CF069 /* UniverseTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseTheme.swift; sourceTree = "<group>"; };
 		794B5A022EA38B45006CF069 /* SoulverseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTextField.swift; sourceTree = "<group>"; };
-		794B5A052EA38B65006CF069 /* SoulverseButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButtonCell.swift; sourceTree = "<group>"; };
 		794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseProgressBar.swift; sourceTree = "<group>"; };
 		794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTagsView.swift; sourceTree = "<group>"; };
 		794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingViewController.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 		79B6AAE92EB5C3DE00A8B079 /* EmotionCombination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionCombination.swift; sourceTree = "<group>"; };
 		79B6AAEC2EB75F8800A8B079 /* ColorEmotionSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEmotionSummaryView.swift; sourceTree = "<group>"; };
 		79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptSelectionView.swift; sourceTree = "<group>"; };
+		79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTagCell.swift; sourceTree = "<group>"; };
 		79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroTransitionID.swift; sourceTree = "<group>"; };
 		79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroTransitionID+Tools.swift"; sourceTree = "<group>"; };
 		79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = canvas_prompts.json; sourceTree = "<group>"; };
@@ -769,12 +772,12 @@
 		790AD2032DF9E43200C33CD1 /* ViewComponent */ = {
 			isa = PBXGroup;
 			children = (
+				79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */,
 				7951A9B62E532C85006EB0EC /* SoulverseButton.swift */,
 				7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */,
 				7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */,
 				790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */,
 				794B5A022EA38B45006CF069 /* SoulverseTextField.swift */,
-				794B5A052EA38B65006CF069 /* SoulverseButtonCell.swift */,
 				794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */,
 				794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */,
 				790AD1FF2DF9E43200C33CD1 /* SummitSeparator.swift */,
@@ -938,6 +941,7 @@
 		7922ECC22E993B8D0086B7CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				79389F572EFFBEF60016CB7F /* TopicCardView.swift */,
 				794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */,
 				7922ECBD2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift */,
 				7922ECBE2E993B8D0086B7CA /* OnboardingGenderViewController.swift */,
@@ -1636,6 +1640,7 @@
 			files = (
 				790AD2122DF9E43200C33CD1 /* CoreTracker.swift in Sources */,
 				790AD2132DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */,
+				79389F582EFFBEF60016CB7F /* TopicCardView.swift in Sources */,
 				790AD2152DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
 				7951A9CD2E5376B5006EB0EC /* HomeItemCellViewModel.swift in Sources */,
 				7922EC502E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */,
@@ -1648,6 +1653,7 @@
 				790D87EC2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
 				790D87ED2ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
 				790AD2182DF9E43200C33CD1 /* Constants.swift in Sources */,
+				79D576832EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */,
 				790AD21A2DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
 				79B6AAD72EACCABA00A8B079 /* RadioOptionView.swift in Sources */,
 				79B6AAD82EACCABA00A8B079 /* ColorGradientSliderView.swift in Sources */,
@@ -1708,7 +1714,6 @@
 				790D87D32ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
 				794B5A0C2EA38B65006CF069 /* SoulverseTagsView.swift in Sources */,
-				794B5A0D2EA38B65006CF069 /* SoulverseButtonCell.swift in Sources */,
 				790AD24E2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */,
 				790AD24F2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */,
 				790AD2502DF9E43200C33CD1 /* UISwitch+Extensions.swift in Sources */,
@@ -1770,6 +1775,7 @@
 			files = (
 				790AD2C02DF9E43200C33CD1 /* CoreTracker.swift in Sources */,
 				790AD2C12DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */,
+				79389F592EFFBEF60016CB7F /* TopicCardView.swift in Sources */,
 				790AD2C32DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
 				7951A9C82E5376B5006EB0EC /* HomeItemCellViewModel.swift in Sources */,
 				7922EC512E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */,
@@ -1782,6 +1788,7 @@
 				790D87EF2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
 				790D87F02ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
 				790AD2C62DF9E43200C33CD1 /* Constants.swift in Sources */,
+				79D576842EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */,
 				790AD2C82DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
 				79B6AADA2EACCABA00A8B079 /* RadioOptionView.swift in Sources */,
 				79B6AADB2EACCABA00A8B079 /* ColorGradientSliderView.swift in Sources */,
@@ -1842,7 +1849,6 @@
 				790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A082EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
 				794B5A092EA38B65006CF069 /* SoulverseTagsView.swift in Sources */,
-				794B5A0A2EA38B65006CF069 /* SoulverseButtonCell.swift in Sources */,
 				790AD2FC2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */,
 				790AD2FD2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */,
 				790AD2FE2DF9E43200C33CD1 /* UISwitch+Extensions.swift in Sources */,
@@ -2134,7 +2140,7 @@
 				CODE_SIGN_ENTITLEMENTS = Soulverse/Soulverse.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 387UQ56LV7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2201,7 +2207,7 @@
 				CODE_SIGN_ENTITLEMENTS = Soulverse/SoulverseRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 387UQ56LV7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
