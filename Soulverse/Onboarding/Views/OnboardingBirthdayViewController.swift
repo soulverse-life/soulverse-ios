@@ -110,7 +110,7 @@ class OnboardingBirthdayViewController: ViewController {
 
     private lazy var continueButton: SoulverseButton = {
         let button = SoulverseButton(
-            title: NSLocalizedString("onboarding_continue_button", comment: ""),
+            title: NSLocalizedString("onboarding_continue_button_title", comment: ""),
             style: .primary,
             delegate: self
         )
