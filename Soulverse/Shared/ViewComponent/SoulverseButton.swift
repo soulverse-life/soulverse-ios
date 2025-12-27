@@ -94,7 +94,6 @@ class SoulverseButton: UIView {
         let titleLabel = UILabel()
         titleLabel.numberOfLines = 1
         titleLabel.font = .projectFont(ofSize: 16.0, weight: .medium)
-        titleLabel.textColor = .black
         titleLabel.textAlignment = .center
         return titleLabel
     }()
@@ -306,25 +305,4 @@ class SoulverseButton: UIView {
 
         delegate?.clickSoulverseButton(self)
     }
-
-    // MARK: - FlexLayout Compatibility
-/*
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
-        // Account for horizontal padding (16pt on each side = 32pt total)
-        let availableWidth = size.width > 32 ? size.width - 32 : size.width
-
-        // Let the internal stack view calculate its natural size
-        let contentSize = containerStackView.systemLayoutSizeFitting(
-            CGSize(width: availableWidth, height: UIView.layoutFittingCompressedSize.height),
-            withHorizontalFittingPriority: .fittingSizeLevel,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-
-        // Add horizontal padding and ensure minimum touch target height
-        return CGSize(
-            width: contentSize.width + 32,
-            height: max(50, contentSize.height + 32)  // Minimum 50pt height (matches button design)
-        )
-    }
- */
 }

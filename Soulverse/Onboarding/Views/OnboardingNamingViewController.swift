@@ -154,8 +154,6 @@ class OnboardingNamingViewController: ViewController {
     // MARK: - Setup
 
     private func setupUI() {
-        view.backgroundColor = .white
-
         view.addSubview(backButton)
         view.addSubview(progressView)
         view.addSubview(iconImageView)
