@@ -5,9 +5,9 @@
 //  Created by Claude on 2025.
 //
 
-import UIKit
-import SnapKit
 import AlignedCollectionViewFlowLayout
+import SnapKit
+import UIKit
 
 /// Configuration for SoulverseTagsView layout behavior
 struct SoulverseTagsViewConfig {
@@ -16,14 +16,33 @@ struct SoulverseTagsViewConfig {
     let itemHeight: CGFloat
 
     static let `default` = SoulverseTagsViewConfig(
-        horizontalSpacing: 12,
-        verticalSpacing: 12,
-        itemHeight: 44
+        horizontalSpacing: 8,
+        verticalSpacing: 16,
+        itemHeight: 48
     )
 }
 
-/// A reusable tag/flow layout view using UICollectionView with AlignedCollectionViewFlowLayout
-/// Useful for displaying buttons, tags, or other views in a flowing layout
+/// Selection mode for Tags View
+enum SoulverseTagsSelectionMode {
+    case single
+    case multi
+}
+
+/// Data model for items in SoulverseTagsView
+struct SoulverseTagsItemData {
+    let title: String
+    var isSelected: Bool
+    var isEnabled: Bool = true  // Added for completeness, default true
+}
+
+/// Delegate protocol for SoulverseTagsView
+protocol SoulverseTagsViewDelegate: AnyObject {
+    /// Called when the selection changes. Returns the list of currently selected items.
+    func soulverseTagsView(
+        _ view: SoulverseTagsView, didUpdateSelectedItems items: [SoulverseTagsItemData])
+}
+
+/// A reusable tag/flow layout view using UICollectionView
 class SoulverseTagsView: UIView {
 
     // MARK: - Properties
@@ -31,8 +50,11 @@ class SoulverseTagsView: UIView {
     private let config: SoulverseTagsViewConfig
     private var items: [SoulverseTagsItemData] = []
 
+    var selectionMode: SoulverseTagsSelectionMode = .single
+
     private lazy var collectionView: UICollectionView = {
-        let layout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
+        let layout = AlignedCollectionViewFlowLayout(
+            horizontalAlignment: .left, verticalAlignment: .top)
         layout.minimumInteritemSpacing = config.horizontalSpacing
         layout.minimumLineSpacing = config.verticalSpacing
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -42,7 +64,9 @@ class SoulverseTagsView: UIView {
         collectionView.isScrollEnabled = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(SoulverseButtonCell.self, forCellWithReuseIdentifier: SoulverseButtonCell.reuseIdentifier)
+        // Register the new Tag Cell
+        collectionView.register(
+            SoulverseTagCell.self, forCellWithReuseIdentifier: SoulverseTagCell.reuseIdentifier)
         return collectionView
     }()
 
@@ -78,42 +102,68 @@ class SoulverseTagsView: UIView {
         collectionView.reloadData()
 
         // Invalidate intrinsic content size after reload
-        // Use async to ensure collection view has finished layout
         DispatchQueue.main.async { [weak self] in
             self?.invalidateIntrinsicContentSize()
         }
     }
 
-    /// Get the currently selected item index
-    /// - Returns: Index of selected item, or nil if none selected
-    func getSelectedIndex() -> Int? {
-        return items.firstIndex { $0.isSelected }
+    /// Get the currently selected items
+    func getSelectedItems() -> [SoulverseTagsItemData] {
+        return items.filter { $0.isSelected }
     }
 
-    /// Manually select an item at index
-    /// - Parameter index: Index to select
-    func selectItem(at index: Int) {
+    /// Update internal selection state and notify delegate
+    private func handleSelection(at index: Int) {
         guard index >= 0 && index < items.count else { return }
 
-        // Immediately notify delegate without modifying internal state
-        // The delegate is responsible for updating the state via setItems()
-        // This prevents conflicts between internal state changes and delegate-driven updates
-        delegate?.soulverseTagsView(self, didSelectItemAt: index)
-    }
+        var changed = false
 
-    /// Remove all items from the tags view
-    func removeAllItems() {
-        items.removeAll()
-        collectionView.reloadData()
+        switch selectionMode {
+        case .single:
+            // Single Selection Loop
+            // Deselect all others, Select the target if not already selected (or enforce selection)
+            // Sticking to: Tap -> Selects this one.
+
+            // If we want to allow re-tapping to do nothing or ensure it's selected:
+            let wasSelected = items[index].isSelected
+
+            // If already selected, do nothing? Or just ensure others are off?
+            // "reverts others to unselected".
+
+            // Optimization: Just loop and set.
+            for i in 0..<items.count {
+                let shouldBeSelected = (i == index)
+                if items[i].isSelected != shouldBeSelected {
+                    items[i].isSelected = shouldBeSelected
+                    changed = true
+                }
+            }
+
+        case .multi:
+            // Multi Selection
+            // Toggle the target
+            items[index].isSelected.toggle()
+            changed = true
+        }
+
+        if changed {
+            // Update UI
+            // We can reload data or just visible cells. Reload data is safer for state consistency.
+            // Or reload specific items if we tracked them.
+            // For simplicity and "others revert", reloading data is easiest often, but animation might be lost.
+            // SoulverseTagCell doesn't seem to have complex animations needing preservation other than highlight.
+            collectionView.reloadData()
+
+            // Notify Delegate
+            let selected = items.filter { $0.isSelected }
+            delegate?.soulverseTagsView(self, didUpdateSelectedItems: selected)
+        }
     }
 
     // MARK: - Intrinsic Content Size
 
     override var intrinsicContentSize: CGSize {
-        // Force layout if needed
         collectionView.layoutIfNeeded()
-
-        // Return the content size of the collection view
         let contentHeight = collectionView.collectionViewLayout.collectionViewContentSize.height
         return CGSize(width: UIView.noIntrinsicMetric, height: contentHeight)
     }
@@ -122,33 +172,25 @@ class SoulverseTagsView: UIView {
 // MARK: - UICollectionViewDataSource
 
 extension SoulverseTagsView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int)
+        -> Int
+    {
         return items.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoulverseButtonCell.reuseIdentifier, for: indexPath) as? SoulverseButtonCell else {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
+        -> UICollectionViewCell
+    {
+        guard
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: SoulverseTagCell.reuseIdentifier, for: indexPath)
+                as? SoulverseTagCell
+        else {
             return UICollectionViewCell()
         }
 
         let itemData = items[indexPath.item]
-        let style: SoulverseButtonStyle = itemData.isSelected ? .primary : .outlined
-
-        cell.configure(title: itemData.title, style: style, delegate: self)
-
-        // Apply selection styling
-        if itemData.isSelected {
-            cell.button.backgroundColor = .black
-            cell.button.titleColor = .white
-            cell.button.layer.borderColor = UIColor.black.cgColor
-        } else {
-            cell.button.backgroundColor = .white
-            cell.button.titleColor = .black
-            cell.button.layer.borderColor = UIColor.lightGray.cgColor
-        }
-
-        cell.button.tag = indexPath.item
-
+        cell.configure(item: itemData)
         return cell
     }
 }
@@ -157,44 +199,16 @@ extension SoulverseTagsView: UICollectionViewDataSource {
 
 extension SoulverseTagsView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectItem(at: indexPath.item)
+        handleSelection(at: indexPath.item)
     }
-}
-
-// MARK: - SoulverseButtonDelegate
-
-extension SoulverseTagsView: SoulverseButtonDelegate {
-    func clickSoulverseButton(_ button: SoulverseButton) {
-        selectItem(at: button.tag)
-    }
-}
-
-// MARK: - Supporting Types
-
-/// Data model for items in SoulverseTagsView
-struct SoulverseTagsItemData {
-    let title: String
-    var isSelected: Bool
-}
-
-/// Delegate protocol for SoulverseTagsView
-protocol SoulverseTagsViewDelegate: AnyObject {
-    func soulverseTagsView(_ view: SoulverseTagsView, didSelectItemAt index: Int)
 }
 
 // MARK: - Convenience Extensions
 
 extension SoulverseTagsView {
-
-    /// Create a tags view with custom spacing
-    /// - Parameters:
-    ///   - horizontalSpacing: Spacing between items horizontally
-    ///   - verticalSpacing: Spacing between rows
-    ///   - itemHeight: Height of each item
-    /// - Returns: Configured SoulverseTagsView
     static func create(
-        horizontalSpacing: CGFloat = 12,
-        verticalSpacing: CGFloat = 12,
+        horizontalSpacing: CGFloat = 8,
+        verticalSpacing: CGFloat = 16,
         itemHeight: CGFloat = 44
     ) -> SoulverseTagsView {
         let config = SoulverseTagsViewConfig(

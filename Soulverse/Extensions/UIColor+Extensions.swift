@@ -44,9 +44,19 @@ extension UIColor {
         ThemeManager.shared.currentTheme.buttonPrimaryBackground
     }
 
+    /// Button secondary background - adapts to current theme
+    static var themeButtonSecondaryBackground: UIColor {
+        ThemeManager.shared.currentTheme.buttonSecondaryBackground
+    }
+    
     /// Button primary text - adapts to current theme
     static var themeButtonPrimaryText: UIColor {
         ThemeManager.shared.currentTheme.buttonPrimaryText
+    }
+    
+    /// Button secondary text - adapts to current theme
+    static var themeButtonSecondaryText: UIColor {
+        ThemeManager.shared.currentTheme.buttonSecondaryText
     }
 
     /// Button disabled background - adapts to current theme
@@ -82,6 +92,16 @@ extension UIColor {
     /// Tab bar unselected tint - adapts to current theme
     static var themeTabBarUnselectedTint: UIColor {
         ThemeManager.shared.currentTheme.tabBarUnselectedTint
+    }
+
+    /// Progress bar active color (current step) - adapts to current theme
+    static var themeProgressBarActive: UIColor {
+        ThemeManager.shared.currentTheme.progressBarActive
+    }
+
+    /// Progress bar inactive color (completed and remaining) - adapts to current theme
+    static var themeProgressBarInactive: UIColor {
+        ThemeManager.shared.currentTheme.progressBarInactive
     }
 
     // MARK: - Legacy Theme Colors (Deprecated - use theme-aware colors above)

@@ -42,7 +42,6 @@ protocol Theme: Identifiable where ID == String {
     var buttonSecondaryText: UIColor { get }
     var buttonDisabledBackground: UIColor { get }
     var buttonDisabledText: UIColor { get }
-    var buttonGradientColors: [UIColor] { get }
 
     // Navigation
     var navigationBarBackground: UIColor { get }
@@ -59,6 +58,10 @@ protocol Theme: Identifiable where ID == String {
     var errorColor: UIColor { get }
     var successColor: UIColor { get }
     var warningColor: UIColor { get }
+
+    // Progress Bar
+    var progressBarActive: UIColor { get }
+    var progressBarInactive: UIColor { get }
 }
 
 /// Gradient direction for background

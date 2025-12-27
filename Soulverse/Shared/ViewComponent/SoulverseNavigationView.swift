@@ -135,7 +135,7 @@ class SoulverseNavigationView: UIView {
         let button = UIButton()
         let image = UIImage(named: "naviconBack")
         button.setImage(image, for: .normal)
-        button.isHidden = true  // Hidden by default
+        button.isHidden = true
         button.accessibilityLabel = NSLocalizedString(
             "navigation_back_button", comment: "Back button")
         button.accessibilityIdentifier = "SoulverseNavigationView.backButton"

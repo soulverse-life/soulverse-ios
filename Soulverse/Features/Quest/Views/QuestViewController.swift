@@ -41,7 +41,6 @@ class QuestViewController: ViewController {
         table.separatorStyle = .none
         table.delegate = self
         table.dataSource = self
-        table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: ViewComponentConstants.miniBarHeight - 20.0, right: 0)
         table.refreshControl = UIRefreshControl()
         table.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         return table

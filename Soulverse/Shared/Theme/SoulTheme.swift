@@ -112,13 +112,6 @@ extension SoulTheme {
     var buttonDisabledText: UIColor {
         UIColor(red: 157.0/255.0, green: 157.0/255.0, blue: 157.0/255.0, alpha: 1.0)
     }
-
-    var buttonGradientColors: [UIColor] {
-        [
-            UIColor(red: 0/255.0, green: 217.0/255.0, blue: 255.0/255.0, alpha: 1.0),
-            UIColor(red: 102.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-        ]
-    }
 }
 
 // MARK: - Navigation Bar
@@ -170,5 +163,16 @@ extension SoulTheme {
 
     var warningColor: UIColor {
         UIColor(red: 241.0/255.0, green: 87.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+    }
+}
+
+// MARK: - Progress Bar
+extension SoulTheme {
+    var progressBarActive: UIColor {
+        UIColor(red: 224.0/255.0, green: 151.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    }
+
+    var progressBarInactive: UIColor {
+        UIColor(red: 217.0/255.0, green: 217.0/255.0, blue: 217.0/255.0, alpha: 1.0)
     }
 }

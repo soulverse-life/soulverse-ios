@@ -5,8 +5,8 @@
 //  Created by Claude on 2025.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 /// Delegate protocol for emotion selection events
 protocol EmotionSelectionViewDelegate: AnyObject {
@@ -44,8 +44,10 @@ class EmotionSelectionView: UIView {
     }()
 
     private lazy var emotionTagsView: SoulverseTagsView = {
-        let config = SoulverseTagsViewConfig(horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
+        let config = SoulverseTagsViewConfig(
+            horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
         let view = SoulverseTagsView(config: config)
+        view.selectionMode = .multi
         view.delegate = self
         return view
     }()
@@ -128,33 +130,31 @@ class EmotionSelectionView: UIView {
 
 // MARK: - SoulverseTagsViewDelegate
 
+// MARK: - SoulverseTagsViewDelegate
+
 extension EmotionSelectionView: SoulverseTagsViewDelegate {
-    func soulverseTagsView(_ view: SoulverseTagsView, didSelectItemAt index: Int) {
-        let emotions = Array(EmotionType.allCases)
-        let tappedEmotion = emotions[index]
+    func soulverseTagsView(
+        _ view: SoulverseTagsView, didUpdateSelectedItems items: [SoulverseTagsItemData]
+    ) {
+        let selectedCount = items.filter { $0.isSelected }.count
 
-        // Check if already selected (deselect)
-        if let existingIndex = selectedEmotions.firstIndex(of: tappedEmotion) {
-            selectedEmotions.remove(at: existingIndex)
+        if selectedCount <= maximumEmotions {
+            // Valid selection
+            // Map items back to EmotionType
+            let allEmotions = EmotionType.allCases
+            let currentSelected = items.filter { $0.isSelected }.compactMap { item in
+                allEmotions.first { $0.displayName == item.title }
+            }
 
-            // Update UI and notify delegate
-            updateTagSelectionState()
+            self.selectedEmotions = currentSelected
             delegate?.didUpdateEmotions(self, emotions: sortedSelectedEmotions())
-        }
-        // Check if can add more (max 2)
-        else if selectedEmotions.count < maximumEmotions {
-            selectedEmotions.append(tappedEmotion)
 
-            // Update UI and notify delegate
-            updateTagSelectionState()
-            delegate?.didUpdateEmotions(self, emotions: sortedSelectedEmotions())
-        }
-        // Already at maximum, prevent selection
-        else {
-            // Revert to correct selection state (SoulverseTagsView just selected the tapped item, we need to undo it)
+        } else {
+            // Exceeded maximum - Revert
+            // Restore the view's items to match the previously valid `selectedEmotions`
             updateTagSelectionState()
 
-            // Show feedback to user
+            // Notify delegate of max reach
             delegate?.didReachMaximumSelection(self)
         }
     }

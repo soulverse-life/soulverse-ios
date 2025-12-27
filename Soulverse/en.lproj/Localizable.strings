@@ -22,241 +22,6 @@
 "guest" = "Guest";
 "notification" = "Notification";
 
-"app_update_alert_title" =  "更新";
-"app_update_alert_description" = "有重大更新，請立即前往App Store更新";
-"app_update_alert_action" = "前往下載";
-
-"alert_action_ok" = "確定";
-
-"logout" = "登出";
-"loginSignup" = "登入或註冊";
-
-"playlist-title" = "單元列表";
-
-"profile_resend" = "重新發送";
-"profile_verify_description" = "信箱尚未驗證，請至信箱點擊連結進行驗證";
-"profile_verify_action_title" = "沒有收到驗證信？";
-"profile_verify_email_sent" = "驗證信已發送";
-"profile_membership" = "會員";
-"profile_info" = "個人資料";
-"profile_member_subscription" = "會員訂閱";
-"profile_purchase" = "訂閱方案";
-"profile_about" = "關於";
-"profile_others" = "其他";
-"profile_policy" = "服務條款";
-"profile_privacy" = "隱私權政策";
-"profile_faq" = "常見問題";
-"profile_contactus" = "聯絡我們";
-"profile_logout_alert_title" = "登出帳號";
-"profile_logout_alert_description" = "確定要登出嗎?";
-"profile_logout_alert_action_ok" = "登出";
-"profile_logout_alert_action_cancel" = "取消";
-
-"login_switch_or" = "或是";
-"login_switch_register" = "登入帳戶";
-"login_switch_login" = "建立帳戶";
-"login_title_register" = "註冊";
-"login_title_login" = "登入";
-"login_action_apple" = "以Apple繼續";
-"login_action_email_register" = "以 Email 註冊";
-"login_action_email_login" = "以 Email 登入";
-"login_action_forget_password" = "忘記密碼?";
-"login_action_skip" = "略過";
-"login_input_title_account" = "帳號";
-"login_input_title_password" = "密碼";
-"login_input_title_confirm_password" = "確認密碼";
-"login_input_placeholder_account" = "example@mail.com";
-"login_input_placeholder_password" = "輸入密碼";
-"login_input_placeholder_confirm_password" = "再次輸入密碼";
-"login_policy" = "會員服務條款";
-"login_policy_confirm" = "註冊即表示您已閱讀並同意 Kono 會員服務條款";
-
-"login_input_error_email_empty" = "請輸入Email";
-"login_input_error_password_empty" = "密碼不可留空";
-"login_input_error_email_format" = "請輸入合法的Email";
-"login_input_error_password_different" = "密碼不一致";
-
-
-"login_message_success_login" = "登入成功";
-"login_message_success_register" = "註冊成功";
-"login_message_error_account" = "帳號或密碼錯誤";
-"login_message_error_invalid_email" = "請使用合法的email";
-"login_message_error_duplicate_email" = "此帳號已存在，請使用別的帳號註冊";
-
-"message_error_server" = "伺服器發生錯誤";
-"message_error_content" = "內容資料錯誤";
-"message_error_network" = "網路狀態不穩，請稍後再試";
-"message_error_unknown" = "未知的錯誤";
-
-"no_email_alert_title" = "未預設 email 帳號";
-"no_email_alert_description" = "此裝置未預設email 帳號，若有任何使用問題或好書推薦，請來信至 support@thekono.com 與我們聯繫。";
-"no_email_alert_action" = "我知道了";
-
-"login_remind_password_alert_title" = "密碼提示信已送出";
-"login_remind_password_alert_message" = "請至信箱收取重設密碼提示信，依指示重設密碼。";
-"login_remind_password_alert_ok_action" = "確定";
-
-
-"track_cell_left_time" = "剩餘時間: %@ min";
-"track_cell_time_min" = "%@ 分鐘";
-"track_cell_left_time_min" = "﹒還剩 %@ 分鐘";
-"track_cell_left_time_second" = "﹒還剩 %.0f 秒";
-
-
-"audio_player_general_action_title" = "加入聽書的行列";
-"audio_player_login_action_description" = "註冊後即可開始聆聽\n";
-"audio_player_verify_action_description" = "驗證信箱即可開始聆聽\n";
-"audio_player_purchase_action_description" = "訂閱後即可解鎖全本書摘\n";
-"audio_player_login_action" = "免費註冊";
-"audio_player_verify_action" = "已驗證";
-"audio_player_purchase_action_trial" = "免費試用7天";
-"audio_player_purchase_action_free" = "查看VIP方案";
-"audio_player_verify_subaction_description" = "沒有收到驗證信？重新發送";
-"audio_player_verify_subaction" = "重新發送";
-"audio_player_wait_purchase_action_title" = "付費內容敬請期待";
-"audio_player_wait_purchase_action_description" = "Summit VIP 方案很快與大家相見!";
-
-"home_latest_section_title" = "最新上架";
-"home_continue_play_section_title" = "繼續聆聽";
-"home_continue_play_track_left_time_min" = "還剩 %@ 分鐘";
-"home_continue_play_track_left_time_second" = "還剩 %.0f 秒";
-"home_upcoming_title" = "下個月即將上架";
-"home_upcoming_subtitle" = "我們的團隊正在為你準備更多全新內容：";
-"home_upcoming_description" = "你知道你也可以決定接下來要推出哪些好書嗎？只要到新書投票區按下「+1」，喜歡的內容就能更快被製作出來。";
-"home_upcoming_polling_action" = "前往投票";
-
-"home_purchase_section_title" = "訂閱解鎖全本書摘章節";
-"home_purchase_section_description" = "首次訂閱享免費試用期，提升職場競爭力 ，可隨時取消";
-"home_purchase_section_action_title" = "查看 VIP 方案";
-
-"home_login_section_title" = "註冊後即可免費試聽";
-"home_login_section_description" = "不需信用卡，立即試聽全館英文書摘，閱讀中文翻譯";
-"home_login_section_action_title" = "註冊/ 登入 →";
-
-"vote_header_description" = "讓我們知道你的喜好！為好書 +1，讓我們帶給你更好的內容。";
-"vote_action_button_title" = "+1  投票";
-"vote_unvote_button_title" = "已投票";
-"vote_recommend_button_title" = "向我們推薦更多書籍";
-"vote_recommend_title" = "推薦書籍";
-
-"notification_ask_permission_action_title" = "開啟通知";
-"notification_ask_permission_action_description" = "開啟通知就能第一時間知道新書上架，不錯過任何消息！";
-"notification_empty_title" = "沒有通知訊息";
-"notification_empty_description" = "想第一時間知道新書上架嗎？現在就開啟通知，不要錯過任何最新消息！";
-"notification_empty_browse_description" = "我們會在新書上架時第一時間通知你！";
-"notification_empty_action_open" = "開啟通知";
-"notification_empty_action_browse" = "探索內容";
-
-"personal_info_section_account" = "帳號";
-"personal_info_section_nickname" = "暱稱";
-"personal_info_section_others" = "其他";
-"personal_info_row_change_password" = "更改密碼";
-"personal_info_row_delete_account" = "刪除帳號";
-"personal_info_support" = "版本 %@ ｜ ID %@";
-"personal_info_delete_account_alert_title" = "是否要聯繫客服刪除帳號？";
-"personal_info_delete_account_alert_description" = "請聯繫客服並提供欲刪除之帳號資訊，客服將儘速協助處理。提醒您，帳號刪除後將無法復原。";
-"personal_info_delete_account_alert_confirm" = "聯繫客服";
-"personal_info_delete_account_alert_cancel" = "取消";
-"personal_info_delete_vip_account_alert_title" = "您有尚未到期的 VIP 訂閱";
-"personal_info_delete_vip_account_alert_description" = "您尚有未到期的 VIP 訂閱，確定要刪除帳號？";
-
-"change_password_old_password" = "舊密碼";
-"change_password_old_password_placeholder" = "輸入舊密碼";
-"change_password_new_password" = "新密碼";
-"change_password_new_password_placeholder" = "輸入新密碼";
-"change_password_confirm_password_placeholder" = "確認密碼";
-"change_password_old_password_error" = "舊密碼錯誤，請重新輸入";
-"change_password_new_password_inconsistent" = "密碼不一致，請重新輸入";
-"change_password_success" = "已成功更改密碼";
-"change_password_action_button_title" = "確定";
-
-"book_intro_header_start_listen" = "開始播放";
-"book_intro_header_continue_listen" = "繼續播放";
-"book_intro_header_start_read" = "開始閱讀";
-"book_intro_header_continue_read" = "繼續閱讀";
-"book_intro_header_total_length" = "總時長";
-"book_intro_header_track_count" = "單元數";
-
-"summary_text_switch_button_english" = "切換英文";
-"summary_text_switch_button_chinese" = "切換中文";
-"summary_text_login_action_description" = "註冊後即可開始閱讀\n";
-"summary_text_verify_action_description" = "驗證信箱即可開始閱讀\n";
-"summary_text_purchase_action_description" = "訂閱後即可解鎖全本書摘\n";
-
-"subscription_promote_main_title" = "探索英文暢銷書的世界";
-"subscription_promote_main_subtitle_trial" = "免費試用 7 天 ｜ 可隨時取消不扣款";
-"subscription_promote_main_subtitle_free" = "嚴選暢銷原文新書 ｜ 靈活運用零碎時間";
-"subscription_promote_main_action_description" = "現在訂閱只要";
-"subscription_promote_price_period_month" = "/ 月";
-"subscription_promote_main_action_title" = "立即訂閱";
-"subscription_promote_sub_title" = "四個理由告訴你\n為什麼你該訂閱 Summit！";
-"subscription_promote_sub_first_reason_title" = "全球暢銷書無限聽";
-"subscription_promote_sub_first_reason" = "嚴選原文新書，零時差汲取英文新知";
-"subscription_promote_sub_second_reason_title" = "外籍教師編譯書摘";
-"subscription_promote_sub_second_reason" = "最道地的母語發音，幫你輕鬆增進英聽";
-"subscription_promote_sub_third_reason_title" = "配合你的學習步調";
-"subscription_promote_sub_third_reason" = "朗讀逐字標示，語速、中英對照自由切換";
-"subscription_promote_sub_fourth_reason_title" = "擁抱多元知識主題";
-"subscription_promote_sub_fourth_reason" = "票選你感興趣的書籍，每月都有新書上架";
-"subscription_promote_sub_action_description" = "邁向學習的第一步";
-"subscription_promote_cancel_trial" = "<b>期滿自動續訂 可隨時取消</b>\n\n首次訂閱即可獲得 7 天免費試用，試用期間可隨時取消不扣款，期滿後開始扣款並自動續訂。";
-"subscription_promote_cancel_purchase" = "<b>期滿自動續訂 可隨時取消</b>\n\n月付方案輕鬆無負擔，期滿後將自動續訂。如需取消，可隨時透過 iTunes 管理訂閱項目。";
-"subscription_promote_policy" = "服務條款";
-"subscription_promote_privacy" = "隱私權政策";
-"purchase_success" = "訂閱成功";
-"restore_purchase_success" = "恢復購買成功";
-
-"membership_section_title_info" = "訂閱資訊";
-"membership_section_title_other" = "其他";
-"membership_row_title_status" = "會員狀態";
-"membership_row_title_subscribe_new" = "免費試用7天";
-"membership_row_title_subscribe_free" = "查看VIP方案";
-"membership_row_title_plan" = "方案";
-"membership_row_title_next_billing" = "下次扣款";
-"membership_row_title_expire_time" = "到期日";
-"membership_row_title_purchase_history" = "訂閱紀錄";
-"membership_row_title_cancel" = "取消訂閱";
-"membership_row_title_restore" = "恢復購買";
-"membership_row_title_coupon_redeem" = "兌換Summit序號";
-"membership_status_vip" = "VIP 會員";
-"membership_status_free" = "免費會員";
-"membership_status_trial" = "試用期VIP會員";
-
-"coupon_redeem_placeholder" = "輸入序號";
-"coupon_redeem_confirm_action" = "開始兌換";
-"coupon_redeem_success_alert_title" = "序號兌換成功";
-"coupon_redeem_success_alert_message" = "您已成功兌換 %@";
-"coupon_redeem_error_alert_title" = "序號兌換失敗";
-
-"com.thekono.summitTest.aycr_monthly" = "月方案";
-"com.thekono.summitStaging.aycr_monthly" = "月方案";
-"com.thekono.summit.aycr_monthly" = "月方案";
-"com.thekono.summitTest.aycr_yearly" = "年方案";
-"com.thekono.summitStaging.aycr_yearly" = "年方案";
-"com.thekono.summit.aycr_yearly" = "年方案";
-"trial_offer" = "首次訂閱免費試用";
-"purchase_record_empty_title" = "目前沒有訂閱紀錄";
-"purchase_record_empty_description" = "立即訂閱 Summit，探索英文暢銷書的世界";
-"purchase_record_empty_action" = "查看VIP方案";
-
-"restore_purchase_description" = "當透過 iTunes 訂閱 Kono Summit 卻未取得 VIP 時，可以點選「恢復購買」，即可將 VIP 綁定到帳號中。\n\n如果想更換 Kono 帳號，也可以在註冊完成新帳號後，在新帳號中點選「恢復購買」來轉移 VIP。";
-
-"enable_payment_alert_title" = "請允許 App 內購買";
-"enable_payment_alert_description" = "請至設定 > 螢幕使用時間 > 內容與隱私權限制 > iTunes 與 App Store 購買，將 App 內購買改為「允許」。";
-"enable_payment_alert_action" = "我知道了";
-
-"session_expire_alert_title" = "您的登入狀態已過期";
-"session_expire_alert_description" = "您的登入狀態已過期，請重新登入後再繼續使用，造成您的不便請見諒!";
-"session_expire_alert_action" = "確定";
-
-"binding_new_transaction_alert_title" = "請登入會員";
-"binding_new_transaction_alert_description" = "您有尚未綁定的訂閱，請登入您的帳號進行用戶綁定。";
-"binding_new_transaction_alert_error_action_ok" = "確定";
-
-"notification_permission_alert_title" = "開啟通知設定";
-"notification_permission_alert_description" = "想第一時間知道新書上架嗎?現在就開啟通知，不要錯過任何最新消息!";
-"notification_permission_alert_action_later" = "之後再說";
-"notification_permission_alert_action_ok" = "前往設定";
 
 // MARK: - Onboarding
 
@@ -273,7 +38,7 @@
 
 // Sign In Screen
 "onboarding_signin_title" = "Create Account";
-"onboarding_signin_subtitle" = "Join the Soulverse community";
+"onboarding_signin_subtitle" = "Start your Soulverse journey and explore your inner cosmos";
 "onboarding_signin_google_button" = "Sign in with Google";
 "onboarding_signin_apple_button" = "Sign in with Apple";
 
@@ -282,23 +47,22 @@
 "onboarding_birthday_subtitle" = "Every soul is born at a unique\nmoment in the universe.";
 "onboarding_birthday_instruction" = "Enter your birthday";
 "onboarding_birthday_privacy_notice" = "*This information is used solely for personalized\nexperiences and research analysis — it will not be\nmade public.";
-"onboarding_birthday_month_january" = "January";
-"onboarding_birthday_month_february" = "February";
-"onboarding_birthday_month_march" = "March";
-"onboarding_birthday_month_april" = "April";
+"onboarding_birthday_month_january" = "Jan";
+"onboarding_birthday_month_february" = "Feb";
+"onboarding_birthday_month_march" = "Mar";
+"onboarding_birthday_month_april" = "Apr";
 "onboarding_birthday_month_may" = "May";
-"onboarding_birthday_month_june" = "June";
-"onboarding_birthday_month_july" = "July";
-"onboarding_birthday_month_august" = "August";
-"onboarding_birthday_month_september" = "September";
-"onboarding_birthday_month_october" = "October";
-"onboarding_birthday_month_november" = "November";
-"onboarding_birthday_month_december" = "December";
+"onboarding_birthday_month_june" = "Jun";
+"onboarding_birthday_month_july" = "Jul";
+"onboarding_birthday_month_august" = "Aug";
+"onboarding_birthday_month_september" = "Sep";
+"onboarding_birthday_month_october" = "Oct";
+"onboarding_birthday_month_november" = "Nov";
+"onboarding_birthday_month_december" = "Dec";
 
 // Gender Screen
 "onboarding_gender_title" = "Gender Resonance";
 "onboarding_gender_subtitle" = "How should the universe\nresonate with you?";
-"onboarding_gender_instruction" = "Gender identity";
 "onboarding_gender_man" = "Man";
 "onboarding_gender_woman" = "Woman";
 "onboarding_gender_nonbinary" = "Non-binary";
@@ -307,15 +71,15 @@
 
 // Naming Screen
 "onboarding_naming_title" = "Naming";
-"onboarding_naming_subtitle" = "Name your world, name your friend.\nGive your planet a cosmic identity\nand your emopet a loyal name to join\nyou on this journey.";
-"onboarding_naming_planet_label" = "Name your planet";
-"onboarding_naming_planet_placeholder" = "Vancouver";
-"onboarding_naming_emopet_label" = "Name your EmoPet";
-"onboarding_naming_emopet_placeholder" = "Pocky";
+"onboarding_naming_subtitle" = "Give your planet a cosmic identity and your E.M.O Pet a loyal name ";
+"onboarding_naming_planet_label" = "Name Your Planet";
+"onboarding_naming_planet_placeholder" = "Planet name";
+"onboarding_naming_emopet_label" = "Name your E.M.O Pet";
+"onboarding_naming_emopet_placeholder" = "E.M.O name";
 
 // Topics Screen
 "onboarding_topics_title" = "Selecting Topics";
-"onboarding_topics_subtitle" = "These guide your journey, shaping\nreflections, insights, and support\ntailored to your soulverse.";
+"onboarding_topics_subtitle" = "These guide your journey, shaping reflections and insights tailored to your Soulverse.";
 "onboarding_topics_physical" = "Physical";
 "onboarding_topics_emotional" = "Emotional";
 "onboarding_topics_social" = "Social";
@@ -326,7 +90,7 @@
 "onboarding_topics_financial" = "Financial";
 
 // Common
-"onboarding_continue_button" = "Continue";
+"onboarding_continue_button_title" = "Next";
 
 // Spiral Breathing
 "spiral_navigation_title" = "Breathing Exercise";
