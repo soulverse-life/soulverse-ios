@@ -10,10 +10,10 @@ import SnapKit
 class TopicCardView: UIView {
 
     private enum Layout {
-        static let cornerRadius: CGFloat = 24
-        static let iconSize: CGFloat = 32
+        static let cornerRadius: CGFloat = 20
+        static let iconSize: CGFloat = 28
         static let iconTopOffset: CGFloat = 12
-        static let titleTopOffset: CGFloat = 8
+        static let titleTopOffset: CGFloat = 4
         static let selectedBorderWidth: CGFloat = 3
     }
 
@@ -26,12 +26,10 @@ class TopicCardView: UIView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 15, weight: .semibold)
+        label.font = .projectFont(ofSize: 17, weight: .semibold)
         label.textColor = .white
         label.textAlignment = .center
         label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.8
         return label
     }()
 

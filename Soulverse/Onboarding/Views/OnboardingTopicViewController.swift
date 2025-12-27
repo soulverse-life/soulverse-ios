@@ -40,27 +40,27 @@ enum TopicOption: String, CaseIterable {
 
     var iconName: String {
         switch self {
-        case .physical: return "figure.run"
-        case .emotional: return "heart.circle"
-        case .social: return "person.2"
-        case .intellectual: return "brain.head.profile"
-        case .spiritual: return "sparkles"
-        case .occupational: return "briefcase"
+        case .physical: return "figure.mind.and.body"
+        case .emotional: return "face.smiling"
+        case .social: return "person.line.dotted.person.fill"
+        case .intellectual: return "light.max"
+        case .spiritual: return "water.waves"
+        case .occupational: return "suitcase"
         case .environment: return "leaf"
-        case .financial: return "dollarsign.circle"
+        case .financial: return "dollarsign"
         }
     }
 
     var cardColor: UIColor {
         switch self {
-        case .physical: return UIColor(red: 255/255, green: 82/255, blue: 82/255, alpha: 1)
-        case .emotional: return UIColor(red: 255/255, green: 183/255, blue: 77/255, alpha: 1)
-        case .social: return UIColor(red: 103/255, green: 183/255, blue: 220/255, alpha: 1)
-        case .intellectual: return UIColor(red: 118/255, green: 209/255, blue: 145/255, alpha: 1)
-        case .spiritual: return UIColor(red: 138/255, green: 129/255, blue: 207/255, alpha: 1)
-        case .occupational: return UIColor(red: 255/255, green: 235/255, blue: 59/255, alpha: 1)
-        case .environment: return UIColor(red: 102/255, green: 204/255, blue: 204/255, alpha: 1)
-        case .financial: return UIColor(red: 224/255, green: 151/255, blue: 255/255, alpha: 1)
+        case .physical: return UIColor(red: 255/255, green: 56/255, blue: 60/255, alpha: 1)
+        case .emotional: return UIColor(red: 255/255, green: 141/255, blue: 40/255, alpha: 1)
+        case .social: return UIColor(red: 0/255, green: 136/255, blue: 255/255, alpha: 1)
+        case .intellectual: return UIColor(red: 52/255, green: 199/255, blue: 89/255, alpha: 1)
+        case .spiritual: return UIColor(red: 97/255, green: 85/255, blue: 245/255, alpha: 1)
+        case .occupational: return UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)
+        case .environment: return UIColor(red: 0/255, green: 200/255, blue: 179/255, alpha: 1)
+        case .financial: return UIColor(red: 203/255, green: 48/255, blue: 224/255, alpha: 1)
         }
     }
 }
@@ -144,11 +144,6 @@ class OnboardingTopicViewController: ViewController {
         setupTopicButtons()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateThemeColors()
-    }
-
     // MARK: - Setup
 
     private func setupUI() {
@@ -193,13 +188,13 @@ class OnboardingTopicViewController: ViewController {
         topicsGridView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(60)
             make.top.equalTo(subtitleLabel.snp.bottom).offset(20)
-            make.height.equalTo(356) // 4 rows * (80 + 12) - 12
+            make.height.equalTo(344)
         }
 
         continueButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
-            make.left.right.equalToSuperview().inset(ViewComponentConstants.horizontalPadding)
+            make.width.equalTo(282)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
     }
@@ -208,8 +203,8 @@ class OnboardingTopicViewController: ViewController {
         let topics = TopicOption.allCases
         let numberOfColumns = 2
         let cardHeight: CGFloat = 80
-        let horizontalSpacing: CGFloat = 12
-        let verticalSpacing: CGFloat = 12
+        let horizontalSpacing: CGFloat = 8
+        let verticalSpacing: CGFloat = 8
 
         for (index, topic) in topics.enumerated() {
             let card = TopicCardView(topic: topic)
@@ -239,7 +234,6 @@ class OnboardingTopicViewController: ViewController {
                     make.right.equalToSuperview()
                 }
             }
-
             topicCards.append(card)
         }
     }
@@ -249,13 +243,6 @@ class OnboardingTopicViewController: ViewController {
         card.isCardSelected = true
         selectedTopic = topic
         continueButton.isEnabled = true
-    }
-
-    private func updateThemeColors() {
-        titleLabel.textColor = .themeTextPrimary
-        subtitleLabel.textColor = .themeTextSecondary
-        iconImageView.tintColor = .themeTextPrimary
-        // Topic cards use static colors, no theme updates needed
     }
 
     // MARK: - Actions
