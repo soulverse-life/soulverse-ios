@@ -24,43 +24,21 @@ struct ThirdPartyAuthConfig {
         ThirdPartyAuthConfig(
             backgroundColor: .white,
             textColor: .black,
-            borderColor: .lightGray,
+            borderColor: .gray,
             borderWidth: 1,
             icon: UIImage(named: "icon_google"),
-            cornerRadius: 25
+            cornerRadius: 24
         )
     }
 
     static func apple() -> ThirdPartyAuthConfig {
         ThirdPartyAuthConfig(
-            backgroundColor: .black,
-            textColor: .white,
-            borderColor: .black,
+            backgroundColor: .white,
+            textColor: .black,
+            borderColor: .gray,
             borderWidth: 1,
             icon: UIImage(systemName: "apple.logo"),
-            cornerRadius: 25
-        )
-    }
-
-    static func facebook() -> ThirdPartyAuthConfig {
-        ThirdPartyAuthConfig(
-            backgroundColor: UIColor(red: 24/255, green: 119/255, blue: 242/255, alpha: 1),
-            textColor: .white,
-            borderColor: .clear,
-            borderWidth: 0,
-            icon: UIImage(named: "icon_facebook"),
-            cornerRadius: 25
-        )
-    }
-
-    static func line() -> ThirdPartyAuthConfig {
-        ThirdPartyAuthConfig(
-            backgroundColor: UIColor(red: 0/255, green: 195/255, blue: 0/255, alpha: 1),
-            textColor: .white,
-            borderColor: .clear,
-            borderWidth: 0,
-            icon: UIImage(named: "icon_line"),
-            cornerRadius: 25
+            cornerRadius: 24
         )
     }
 }
@@ -168,7 +146,7 @@ class SoulverseButton: UIView {
         // Setup base view to hold content
         baseView.addSubview(containerStackView)
         containerStackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(16)
+            make.edges.equalToSuperview().inset(12)
         }
 
         // Add icon and title to stack view
@@ -217,6 +195,12 @@ class SoulverseButton: UIView {
                 make.edges.equalToSuperview()
             }
 
+            // Reset spacing and constraints for primary style
+            containerStackView.spacing = 8
+            containerStackView.snp.remakeConstraints { make in
+                make.edges.equalToSuperview().inset(12)
+            }
+
             if #available(iOS 26.0, *) {
                 // iOS 26+: Layer glass effect on top of colored background
                 let glassEffect = UIGlassEffect(style: .clear)
@@ -247,6 +231,12 @@ class SoulverseButton: UIView {
                 make.edges.equalToSuperview()
             }
 
+            // Center the content with fixed 6pt spacing between icon and title
+            containerStackView.spacing = 6
+            containerStackView.snp.remakeConstraints { make in
+                make.center.equalToSuperview()
+            }
+
             if let icon = config.icon {
                 iconImageView.image = icon
                 iconImageView.tintColor = config.textColor
@@ -267,6 +257,12 @@ class SoulverseButton: UIView {
 
             baseView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
+            }
+
+            // Reset spacing and constraints for outlined style
+            containerStackView.spacing = 8
+            containerStackView.snp.remakeConstraints { make in
+                make.edges.equalToSuperview().inset(12)
             }
         }
 
