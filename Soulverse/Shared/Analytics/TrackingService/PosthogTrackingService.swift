@@ -11,18 +11,26 @@ import PostHog
 class PosthogTrackingService: TrackingServiceType {
 
     func setupUserDefaultProperties(_ user: UserProtocol) {
-        PostHogSDK.shared.identify(user.userId, userProperties: [
-            TrackingUserProperty.email: user.email ?? ""
-        ])
+        guard let userId = user.userId else { return }
+        
+        PostHogSDK.shared.identify(
+            userId,
+            userProperties: [
+                TrackingUserProperty.email: user.email ?? ""
+            ]
+        )
     }
 
     func clearUserProperties() {
         PostHogSDK.shared.reset()
     }
 
-    func setupUserProperty(_ info: [String: Any]) {
+    func setupUserProperty(userId: String, info: [String: Any]) {
         let normalizedProperties = normalizeProperties(info)
-        PostHogSDK.shared.capture("$set", properties: ["$set": normalizedProperties])
+        PostHogSDK.shared.identify(
+            userId,
+            userProperties: normalizeProperties(info)
+        )
     }
 
     func track(_ event: TrackingEventType) {

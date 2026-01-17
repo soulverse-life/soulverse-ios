@@ -26,9 +26,9 @@ class TrackingService: CoreTracker {
 
     func updateUserAcquireInfo() {}
 
-    func setupUserProperty(_ info: [String : Any]) {
+    func setupUserProperty(userId: String, info: [String: Any]) {
         services.forEach { provider in
-            provider.setupUserProperty(info)
+            provider.setupUserProperty(userId: userId, info: info)
         }
     }
 
