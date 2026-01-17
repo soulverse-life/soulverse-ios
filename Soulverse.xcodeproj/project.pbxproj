@@ -168,6 +168,20 @@
 		7922ECE32E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */; };
 		79389F582EFFBEF60016CB7F /* TopicCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F572EFFBEF60016CB7F /* TopicCardView.swift */; };
 		79389F592EFFBEF60016CB7F /* TopicCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F572EFFBEF60016CB7F /* TopicCardView.swift */; };
+		79389F612F05760D0016CB7F /* EmotionPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */; };
+		79389F622F05760D0016CB7F /* InnerCosmoDailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5C2F05760D0016CB7F /* InnerCosmoDailyView.swift */; };
+		79389F632F05760D0016CB7F /* InnerCosmoMonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5E2F05760D0016CB7F /* InnerCosmoMonthlyView.swift */; };
+		79389F642F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */; };
+		79389F652F05760D0016CB7F /* InnerCosmoWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5F2F05760D0016CB7F /* InnerCosmoWeeklyView.swift */; };
+		79389F662F05760D0016CB7F /* CentralPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */; };
+		79389F672F05760D0016CB7F /* EmotionPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */; };
+		79389F682F05760D0016CB7F /* InnerCosmoDailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5C2F05760D0016CB7F /* InnerCosmoDailyView.swift */; };
+		79389F692F05760D0016CB7F /* InnerCosmoMonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5E2F05760D0016CB7F /* InnerCosmoMonthlyView.swift */; };
+		79389F6A2F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */; };
+		79389F6B2F05760D0016CB7F /* InnerCosmoWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5F2F05760D0016CB7F /* InnerCosmoWeeklyView.swift */; };
+		79389F6C2F05760D0016CB7F /* CentralPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */; };
+		79389F6E2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */; };
+		79389F6F2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */; };
 		794B59F32E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
 		794B59F42E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
 		794B59FA2E9EA436006CF069 /* UniverseTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F82E9EA436006CF069 /* UniverseTheme.swift */; };
@@ -192,15 +206,13 @@
 		7951A9BC2E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
-		7951A9C82E5376B5006EB0EC /* HomeItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C22E5376B5006EB0EC /* HomeItemCellViewModel.swift */; };
 		7951A9C92E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */; };
 		7951A9CA2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */; };
-		7951A9CB2E5376B5006EB0EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* HomeViewModel.swift */; };
+		7951A9CB2E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */; };
 		7951A9CC2E5376B5006EB0EC /* InnerCosmoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C52E5376B5006EB0EC /* InnerCosmoViewController.swift */; };
-		7951A9CD2E5376B5006EB0EC /* HomeItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C22E5376B5006EB0EC /* HomeItemCellViewModel.swift */; };
 		7951A9CE2E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */; };
 		7951A9CF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */; };
-		7951A9D02E5376B5006EB0EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* HomeViewModel.swift */; };
+		7951A9D02E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */; };
 		7951A9D12E5376B5006EB0EC /* InnerCosmoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C52E5376B5006EB0EC /* InnerCosmoViewController.swift */; };
 		7951AA002E537704006EB0EC /* ToolsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */; };
 		7951AA012E537704006EB0EC /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FD2E537704006EB0EC /* ToolsViewController.swift */; };
@@ -428,6 +440,13 @@
 		7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleUserAuthService.swift; sourceTree = "<group>"; };
 		7922ECE42E9A4E010086B7CA /* SoulverseRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SoulverseRelease.entitlements; sourceTree = "<group>"; };
 		79389F572EFFBEF60016CB7F /* TopicCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCardView.swift; sourceTree = "<group>"; };
+		79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralPlanetView.swift; sourceTree = "<group>"; };
+		79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionPlanetView.swift; sourceTree = "<group>"; };
+		79389F5C2F05760D0016CB7F /* InnerCosmoDailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoDailyView.swift; sourceTree = "<group>"; };
+		79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoHeaderView.swift; sourceTree = "<group>"; };
+		79389F5E2F05760D0016CB7F /* InnerCosmoMonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoMonthlyView.swift; sourceTree = "<group>"; };
+		79389F5F2F05760D0016CB7F /* InnerCosmoWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoWeeklyView.swift; sourceTree = "<group>"; };
+		79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoEmotionData.swift; sourceTree = "<group>"; };
 		794B59F22E9EA3E1006CF069 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		794B59F52E9EA436006CF069 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		794B59F62E9EA436006CF069 /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
@@ -442,8 +461,7 @@
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
 		7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenter.swift; sourceTree = "<group>"; };
 		7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterType.swift; sourceTree = "<group>"; };
-		7951A9C22E5376B5006EB0EC /* HomeItemCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemCellViewModel.swift; sourceTree = "<group>"; };
-		7951A9C32E5376B5006EB0EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewModel.swift; sourceTree = "<group>"; };
 		7951A9C52E5376B5006EB0EC /* InnerCosmoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewController.swift; sourceTree = "<group>"; };
 		7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenter.swift; sourceTree = "<group>"; };
 		7951A9FD2E537704006EB0EC /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
@@ -962,6 +980,19 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		79389F602F05760D0016CB7F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */,
+				79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */,
+				79389F5C2F05760D0016CB7F /* InnerCosmoDailyView.swift */,
+				79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */,
+				79389F5E2F05760D0016CB7F /* InnerCosmoMonthlyView.swift */,
+				79389F5F2F05760D0016CB7F /* InnerCosmoWeeklyView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		794B59F92E9EA436006CF069 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -985,8 +1016,8 @@
 		7951A9C42E5376B5006EB0EC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				7951A9C22E5376B5006EB0EC /* HomeItemCellViewModel.swift */,
-				7951A9C32E5376B5006EB0EC /* HomeViewModel.swift */,
+				79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */,
+				7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -994,6 +1025,7 @@
 		7951A9C62E5376B5006EB0EC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				79389F602F05760D0016CB7F /* Components */,
 				7951A9C52E5376B5006EB0EC /* InnerCosmoViewController.swift */,
 			);
 			path = Views;
@@ -1642,11 +1674,10 @@
 				790AD2132DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */,
 				79389F582EFFBEF60016CB7F /* TopicCardView.swift in Sources */,
 				790AD2152DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
-				7951A9CD2E5376B5006EB0EC /* HomeItemCellViewModel.swift in Sources */,
 				7922EC502E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */,
 				7951A9CE2E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */,
 				7951A9CF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */,
-				7951A9D02E5376B5006EB0EC /* HomeViewModel.swift in Sources */,
+				7951A9D02E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */,
 				7951A9D12E5376B5006EB0EC /* InnerCosmoViewController.swift in Sources */,
 				790AD2162DF9E43200C33CD1 /* ErrorEvent.swift in Sources */,
 				790D87EB2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */,
@@ -1700,6 +1731,7 @@
 				79B24C7A2DFC7B2A001220B6 /* CanvasViewController.swift in Sources */,
 				790AD2432DF9E43200C33CD1 /* UserService.swift in Sources */,
 				790AD2442DF9E43200C33CD1 /* MainViewController.swift in Sources */,
+				79389F6E2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */,
 				790AD2452DF9E43200C33CD1 /* ViewController.swift in Sources */,
 				790AD2492DF9E43200C33CD1 /* SummitTracker.swift in Sources */,
 				790AD24A2DF9E43200C33CD1 /* UITextField+Extensions.swift in Sources */,
@@ -1728,6 +1760,12 @@
 				790D87F22ED201B200D4F61F /* ToolsViewModel.swift in Sources */,
 				790AD2592DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
 				79710ED82E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
+				79389F612F05760D0016CB7F /* EmotionPlanetView.swift in Sources */,
+				79389F622F05760D0016CB7F /* InnerCosmoDailyView.swift in Sources */,
+				79389F632F05760D0016CB7F /* InnerCosmoMonthlyView.swift in Sources */,
+				79389F642F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */,
+				79389F652F05760D0016CB7F /* InnerCosmoWeeklyView.swift in Sources */,
+				79389F662F05760D0016CB7F /* CentralPlanetView.swift in Sources */,
 				790AD25B2DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
 				790AD25C2DF9E43200C33CD1 /* SummitUserModel.swift in Sources */,
 				790AD25E2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */,
@@ -1777,11 +1815,10 @@
 				790AD2C12DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */,
 				79389F592EFFBEF60016CB7F /* TopicCardView.swift in Sources */,
 				790AD2C32DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
-				7951A9C82E5376B5006EB0EC /* HomeItemCellViewModel.swift in Sources */,
 				7922EC512E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */,
 				7951A9C92E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */,
 				7951A9CA2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */,
-				7951A9CB2E5376B5006EB0EC /* HomeViewModel.swift in Sources */,
+				7951A9CB2E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */,
 				7951A9CC2E5376B5006EB0EC /* InnerCosmoViewController.swift in Sources */,
 				790AD2C42DF9E43200C33CD1 /* ErrorEvent.swift in Sources */,
 				790D87EE2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */,
@@ -1835,6 +1872,7 @@
 				79B24C772DFC7B2A001220B6 /* CanvasViewController.swift in Sources */,
 				790AD2F12DF9E43200C33CD1 /* UserService.swift in Sources */,
 				790AD2F22DF9E43200C33CD1 /* MainViewController.swift in Sources */,
+				79389F6F2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */,
 				790AD2F32DF9E43200C33CD1 /* ViewController.swift in Sources */,
 				790AD2F72DF9E43200C33CD1 /* SummitTracker.swift in Sources */,
 				790AD2F82DF9E43200C33CD1 /* UITextField+Extensions.swift in Sources */,
@@ -1863,6 +1901,12 @@
 				790D87F32ED201B200D4F61F /* ToolsViewModel.swift in Sources */,
 				790AD3072DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
 				79710EDA2E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
+				79389F672F05760D0016CB7F /* EmotionPlanetView.swift in Sources */,
+				79389F682F05760D0016CB7F /* InnerCosmoDailyView.swift in Sources */,
+				79389F692F05760D0016CB7F /* InnerCosmoMonthlyView.swift in Sources */,
+				79389F6A2F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */,
+				79389F6B2F05760D0016CB7F /* InnerCosmoWeeklyView.swift in Sources */,
+				79389F6C2F05760D0016CB7F /* CentralPlanetView.swift in Sources */,
 				790AD3092DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
 				790AD30A2DF9E43200C33CD1 /* SummitUserModel.swift in Sources */,
 				790AD30C2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */,
