@@ -126,17 +126,17 @@ class OnboardingSignInViewController: ViewController {
             make.left.right.equalToSuperview().inset(48)
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
         }
-
-        googleSignInButton.snp.makeConstraints { make in
+        
+        appleSignInButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(subtitleLabel.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(ViewComponentConstants.horizontalPadding)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
 
-        appleSignInButton.snp.makeConstraints { make in
+        googleSignInButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(googleSignInButton.snp.bottom).offset(24)
+            make.top.equalTo(appleSignInButton.snp.bottom).offset(24)
             make.left.right.equalToSuperview().inset(ViewComponentConstants.horizontalPadding)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
