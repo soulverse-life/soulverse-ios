@@ -20,6 +20,7 @@ abstract_target 'Base' do
   pod 'SwiftRichString'
   pod 'GoogleSignIn'
   pod 'Hero'
+  pod "PostHog", "~> 3.0"
   
   pod 'UICircularProgressRing'
   pod 'DGCharts', '~> 5.1.0'

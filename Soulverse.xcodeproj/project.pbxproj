@@ -28,6 +28,7 @@
 		790AD22E2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16E2DF9E43200C33CD1 /* UIColor+Extensions.swift */; };
 		790AD22F2DF9E43200C33CD1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1ED2DF9E43200C33CD1 /* AuthService.swift */; };
 		790AD2302DF9E43200C33CD1 /* FirebaseTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */; };
+		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		790AD2312DF9E43200C33CD1 /* ContentListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F52DF9E43200C33CD1 /* ContentListResponse.swift */; };
 		790AD2372DF9E43200C33CD1 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19E2DF9E43200C33CD1 /* NotificationViewController.swift */; };
 		790AD2382DF9E43200C33CD1 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1702DF9E43200C33CD1 /* UIImage+Extensions.swift */; };
@@ -40,7 +41,7 @@
 		790AD2432DF9E43200C33CD1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F72DF9E43200C33CD1 /* UserService.swift */; };
 		790AD2442DF9E43200C33CD1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1932DF9E43200C33CD1 /* MainViewController.swift */; };
 		790AD2452DF9E43200C33CD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD2012DF9E43200C33CD1 /* ViewController.swift */; };
-		790AD2492DF9E43200C33CD1 /* SummitTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E42DF9E43200C33CD1 /* SummitTracker.swift */; };
+		790AD2492DF9E43200C33CD1 /* TrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E42DF9E43200C33CD1 /* TrackingService.swift */; };
 		790AD24A2DF9E43200C33CD1 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1742DF9E43200C33CD1 /* UITextField+Extensions.swift */; };
 		790AD24E2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1DC2DF9E43200C33CD1 /* BugTrackingEvent.swift */; };
 		790AD24F2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1EC2DF9E43200C33CD1 /* AppleUserAuthService.swift */; };
@@ -87,6 +88,7 @@
 		790AD2DC2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16E2DF9E43200C33CD1 /* UIColor+Extensions.swift */; };
 		790AD2DD2DF9E43200C33CD1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1ED2DF9E43200C33CD1 /* AuthService.swift */; };
 		790AD2DE2DF9E43200C33CD1 /* FirebaseTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */; };
+		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		790AD2DF2DF9E43200C33CD1 /* ContentListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F52DF9E43200C33CD1 /* ContentListResponse.swift */; };
 		790AD2E52DF9E43200C33CD1 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19E2DF9E43200C33CD1 /* NotificationViewController.swift */; };
 		790AD2E62DF9E43200C33CD1 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1702DF9E43200C33CD1 /* UIImage+Extensions.swift */; };
@@ -99,7 +101,7 @@
 		790AD2F12DF9E43200C33CD1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F72DF9E43200C33CD1 /* UserService.swift */; };
 		790AD2F22DF9E43200C33CD1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1932DF9E43200C33CD1 /* MainViewController.swift */; };
 		790AD2F32DF9E43200C33CD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD2012DF9E43200C33CD1 /* ViewController.swift */; };
-		790AD2F72DF9E43200C33CD1 /* SummitTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E42DF9E43200C33CD1 /* SummitTracker.swift */; };
+		790AD2F72DF9E43200C33CD1 /* TrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E42DF9E43200C33CD1 /* TrackingService.swift */; };
 		790AD2F82DF9E43200C33CD1 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1742DF9E43200C33CD1 /* UITextField+Extensions.swift */; };
 		790AD2FC2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1DC2DF9E43200C33CD1 /* BugTrackingEvent.swift */; };
 		790AD2FD2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1EC2DF9E43200C33CD1 /* AppleUserAuthService.swift */; };
@@ -121,7 +123,7 @@
 		790AD33E2DF9E48E00C33CD1 /* UserMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3322DF9E48E00C33CD1 /* UserMock.swift */; };
 		790AD3402DF9E48E00C33CD1 /* TrackingEventMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3302DF9E48E00C33CD1 /* TrackingEventMock.swift */; };
 		790AD3412DF9E48E00C33CD1 /* TrackingServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3312DF9E48E00C33CD1 /* TrackingServiceMock.swift */; };
-		790AD3422DF9E48E00C33CD1 /* SummitTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3362DF9E48E00C33CD1 /* SummitTrackerTests.swift */; };
+		790AD3422DF9E48E00C33CD1 /* TrackingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3362DF9E48E00C33CD1 /* TrackingServiceTests.swift */; };
 		790AD3472DF9E4C200C33CD1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 790AD3442DF9E4C200C33CD1 /* Info.plist */; };
 		790AD3482DF9E4C200C33CD1 /* KonoSummitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3452DF9E4C200C33CD1 /* KonoSummitUITests.swift */; };
 		790D87D22ECF668700D4F61F /* SpiralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D02ECF668700D4F61F /* SpiralView.swift */; };
@@ -379,9 +381,10 @@
 		790AD1DD2DF9E43200C33CD1 /* ErrorEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEvent.swift; sourceTree = "<group>"; };
 		790AD1DE2DF9E43200C33CD1 /* TrackingEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingEventType.swift; sourceTree = "<group>"; };
 		790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTrackingService.swift; sourceTree = "<group>"; };
+		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
 		790AD1E12DF9E43200C33CD1 /* TrackingServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingServiceType.swift; sourceTree = "<group>"; };
 		790AD1E32DF9E43200C33CD1 /* CoreTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTracker.swift; sourceTree = "<group>"; };
-		790AD1E42DF9E43200C33CD1 /* SummitTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitTracker.swift; sourceTree = "<group>"; };
+		790AD1E42DF9E43200C33CD1 /* TrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingService.swift; sourceTree = "<group>"; };
 		790AD1E62DF9E43200C33CD1 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		790AD1E72DF9E43200C33CD1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		790AD1E92DF9E43200C33CD1 /* NotificationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPIService.swift; sourceTree = "<group>"; };
@@ -412,7 +415,7 @@
 		790AD3302DF9E48E00C33CD1 /* TrackingEventMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingEventMock.swift; sourceTree = "<group>"; };
 		790AD3312DF9E48E00C33CD1 /* TrackingServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingServiceMock.swift; sourceTree = "<group>"; };
 		790AD3322DF9E48E00C33CD1 /* UserMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMock.swift; sourceTree = "<group>"; };
-		790AD3362DF9E48E00C33CD1 /* SummitTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitTrackerTests.swift; sourceTree = "<group>"; };
+		790AD3362DF9E48E00C33CD1 /* TrackingServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingServiceTests.swift; sourceTree = "<group>"; };
 		790AD33A2DF9E48E00C33CD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		790AD33B2DF9E48E00C33CD1 /* SampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTests.swift; sourceTree = "<group>"; };
 		790AD3442DF9E4C200C33CD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -710,6 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */,
+				79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */,
 				790AD1E12DF9E43200C33CD1 /* TrackingServiceType.swift */,
 			);
 			path = TrackingService;
@@ -721,7 +725,7 @@
 				790AD1DF2DF9E43200C33CD1 /* Events */,
 				790AD1E22DF9E43200C33CD1 /* TrackingService */,
 				790AD1E32DF9E43200C33CD1 /* CoreTracker.swift */,
-				790AD1E42DF9E43200C33CD1 /* SummitTracker.swift */,
+				790AD1E42DF9E43200C33CD1 /* TrackingService.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -873,7 +877,7 @@
 		790AD3372DF9E48E00C33CD1 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				790AD3362DF9E48E00C33CD1 /* SummitTrackerTests.swift */,
+				790AD3362DF9E48E00C33CD1 /* TrackingServiceTests.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -1499,13 +1503,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1608,13 +1608,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1629,13 +1625,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1650,13 +1642,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1716,6 +1704,7 @@
 				790AD22E2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */,
 				790AD22F2DF9E43200C33CD1 /* AuthService.swift in Sources */,
 				790AD2302DF9E43200C33CD1 /* FirebaseTrackingService.swift in Sources */,
+				79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */,
 				790AD2312DF9E43200C33CD1 /* ContentListResponse.swift in Sources */,
 				790AD2372DF9E43200C33CD1 /* NotificationViewController.swift in Sources */,
 				790AD2382DF9E43200C33CD1 /* UIImage+Extensions.swift in Sources */,
@@ -1733,7 +1722,7 @@
 				790AD2442DF9E43200C33CD1 /* MainViewController.swift in Sources */,
 				79389F6E2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */,
 				790AD2452DF9E43200C33CD1 /* ViewController.swift in Sources */,
-				790AD2492DF9E43200C33CD1 /* SummitTracker.swift in Sources */,
+				790AD2492DF9E43200C33CD1 /* TrackingService.swift in Sources */,
 				790AD24A2DF9E43200C33CD1 /* UITextField+Extensions.swift in Sources */,
 				7951A9B92E532C85006EB0EC /* SoulverseButton.swift in Sources */,
 				7986880B2E6C24EE00EB3B38 /* QuestViewController.swift in Sources */,
@@ -1857,6 +1846,7 @@
 				790AD2DC2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */,
 				790AD2DD2DF9E43200C33CD1 /* AuthService.swift in Sources */,
 				790AD2DE2DF9E43200C33CD1 /* FirebaseTrackingService.swift in Sources */,
+				79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */,
 				790AD2DF2DF9E43200C33CD1 /* ContentListResponse.swift in Sources */,
 				790AD2E52DF9E43200C33CD1 /* NotificationViewController.swift in Sources */,
 				790AD2E62DF9E43200C33CD1 /* UIImage+Extensions.swift in Sources */,
@@ -1874,7 +1864,7 @@
 				790AD2F22DF9E43200C33CD1 /* MainViewController.swift in Sources */,
 				79389F6F2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */,
 				790AD2F32DF9E43200C33CD1 /* ViewController.swift in Sources */,
-				790AD2F72DF9E43200C33CD1 /* SummitTracker.swift in Sources */,
+				790AD2F72DF9E43200C33CD1 /* TrackingService.swift in Sources */,
 				790AD2F82DF9E43200C33CD1 /* UITextField+Extensions.swift in Sources */,
 				7951A9BC2E532C85006EB0EC /* SoulverseButton.swift in Sources */,
 				798688082E6C24EE00EB3B38 /* QuestViewController.swift in Sources */,
@@ -1956,7 +1946,7 @@
 				790AD33E2DF9E48E00C33CD1 /* UserMock.swift in Sources */,
 				790AD3402DF9E48E00C33CD1 /* TrackingEventMock.swift in Sources */,
 				790AD3412DF9E48E00C33CD1 /* TrackingServiceMock.swift in Sources */,
-				790AD3422DF9E48E00C33CD1 /* SummitTrackerTests.swift in Sources */,
+				790AD3422DF9E48E00C33CD1 /* TrackingServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

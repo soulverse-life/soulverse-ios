@@ -4,6 +4,7 @@
 import UIKit
 import Toaster
 import IQKeyboardManagerSwift
+import PostHog
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -12,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        initSDK()
         setTrackingAgent()
 
         application.beginReceivingRemoteControlEvents()
@@ -29,9 +31,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
+    
+    private func initSDK() {
+        setupPosthog()
+    }
+    
+    private func setupPosthog() {
+        let POSTHOG_API_KEY = "phc_ckwtsY0ZYVnJVzhTtANgsWfyesA2zK9AP1fyvphg9eD"
+        let POSTHOG_HOST = "https://us.i.posthog.com"
+
+        let config = PostHogConfig(apiKey: POSTHOG_API_KEY, host: POSTHOG_HOST)
+
+#if DEBUG
+        config.debug = true
+        config.sessionReplay = false
+#else
+        // Session replay only enabled in release builds
+        // check https://posthog.com/docs/session-replay/installation?tab=iOS
+        config.sessionReplay = true
+        config.sessionReplayConfig.maskAllImages = false
+        config.sessionReplayConfig.maskAllTextInputs = false
+        config.sessionReplayConfig.screenshotMode = true
+#endif
+
+        PostHogSDK.shared.setup(config)
+    }
+    
     func setTrackingAgent() {
         // TODO: Use factory to build the tracker for individual target
-        appTracker = SummitTracker.shared
+        appTracker = TrackingService.shared
     }
     
 
