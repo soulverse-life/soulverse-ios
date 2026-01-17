@@ -8,6 +8,7 @@ import UIKit
 enum UserInfoKeys: String {
     case avatarImageURL
     case email
+    case emoPetName
     case fcmToken
     case hasLoggedIn
     case hasGrantedNotification
@@ -61,6 +62,8 @@ public enum NotificationAskGapTime: Int, Comparable {
 protocol UserProtocol {
     var userId: String? { get set }
     var email: String? { get set }
+    var nickName: String? { get set }
+    var emoPetName: String? { get set }
     var isLoggedin: Bool { get }
     var hasGrantedNotification: Bool { get }
     var selectedTheme: String? { get set }
@@ -123,7 +126,21 @@ class User: UserProtocol {
             defaults.set(nickname, forKey: UserInfoKeys.nickname.rawValue)
         }
     }
-    
+
+    var emoPetName: String? {
+        get {
+            let value = defaults.string(forKey: UserInfoKeys.emoPetName.rawValue)
+            return value
+        }
+        set(newEmoPetName) {
+            guard let emoPetName = newEmoPetName else {
+                defaults.removeObject(forKey: UserInfoKeys.emoPetName.rawValue)
+                return
+            }
+            defaults.set(emoPetName, forKey: UserInfoKeys.emoPetName.rawValue)
+        }
+    }
+
     var avatarImageURL: String? {
         get {
             let value = defaults.string(forKey: UserInfoKeys.avatarImageURL.rawValue)
@@ -259,6 +276,7 @@ class User: UserProtocol {
         email = nil
         isLoggedin = false
         nickName = nil
+        emoPetName = nil
         avatarImageURL = nil
         hasCompletedOnboarding = false
     }

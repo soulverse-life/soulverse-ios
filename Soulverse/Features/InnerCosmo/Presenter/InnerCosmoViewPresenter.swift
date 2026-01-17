@@ -5,45 +5,68 @@
 import Firebase
 
 class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
-    
+
+    // MARK: - Properties
+
     weak var delegate: InnerCosmoViewPresenterDelegate?
-    private var loadedModel: HomeViewModel = HomeViewModel(isLoading: false) {
+
+    private var loadedModel: InnerCosmoViewModel {
         didSet {
             delegate?.didUpdate(viewModel: loadedModel)
         }
     }
+
     private var isFetchingData: Bool = false
-    
-    private var isWaitingRemoteConfig = false
-    private var dataAccessQueue = DispatchQueue.init(label: "home_data",attributes: .concurrent)
-    
-    private var user: UserProtocol
-    
-    init(user: User = User.shared) {
+    private var dataAccessQueue = DispatchQueue(label: "inner_cosmo_data", attributes: .concurrent)
+
+    private let user: UserProtocol
+
+    // MARK: - Initialization
+
+    init(user: UserProtocol = User.shared) {
         self.user = user
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(userIdentityChange), name: NSNotification.Name(rawValue: Notification.UserIdentityChange), object: nil)
+        self.loadedModel = InnerCosmoViewModel(isLoading: true)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(userIdentityChange),
+            name: NSNotification.Name(rawValue: Notification.UserIdentityChange),
+            object: nil
+        )
     }
-    
+
+    // MARK: - Public Methods
+
     public func fetchData(isUpdate: Bool = false) {
-        
-        if isFetchingData {
-            return
-        }
-        
-        // Fetch data, then update the view
+        guard !isFetchingData else { return }
+
+        isFetchingData = true
+
         if !isUpdate {
             loadedModel.isLoading = true
         }
-        isFetchingData = true
+
+        // TODO: Replace with actual API call
+        // Simulating data fetch completion
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.handleDataFetchCompletion()
+        }
     }
-    
-    @objc private func userIdentityChange() {}
-    
-    //MARK: - tableview delegate/ data source related
-    
-    public func numberOfSectionsOnTableView() -> Int {
-        
-        return 0
+
+    // MARK: - Private Methods
+
+    private func handleDataFetchCompletion() {
+        loadedModel = InnerCosmoViewModel(
+            isLoading: false,
+            userName: user.nickName,
+            petName: user.emoPetName,
+            emotions: EmotionPlanetData.mockData  // TODO: Replace with fetched data
+        )
+        isFetchingData = false
+    }
+
+    @objc private func userIdentityChange() {
+        // Refresh data when user identity changes
+        fetchData(isUpdate: true)
     }
 }

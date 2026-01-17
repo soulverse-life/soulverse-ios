@@ -1,13 +1,28 @@
 //
-//  HomeViewController.swift
-//  KonoSummit
+//  InnerCosmoViewController.swift
+//  Soulverse
 //
 
+import SnapKit
 import UIKit
 
 class InnerCosmoViewController: ViewController {
 
-    // MARK: View Related
+    // MARK: - Layout Constants
+
+    private enum Layout {
+        static let dailyViewTopPadding: CGFloat = 8
+        static let contentViewMinHeight: CGFloat = 320
+        static let moodCheckInButtonTopPadding: CGFloat = 24
+        static let moodCheckInButtonWidth: CGFloat = 240
+    }
+    
+    // MARK: - Properties
+
+    private let presenter = InnerCosmoViewPresenter()
+    private var currentPeriod: InnerCosmoPeriod = .daily
+
+    // MARK: - UI Components
 
     private lazy var navigationView: SoulverseNavigationView = {
         let bellIcon = UIImage(systemName: "bell")
@@ -37,191 +52,212 @@ class InnerCosmoViewController: ViewController {
         return view
     }()
 
-    private lazy var tableView: UITableView = { [weak self] in
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.backgroundColor = .clear
-        table.backgroundView = nil  // Remove default background to show gradient
-        table.separatorStyle = .none
-        table.delegate = self
-        table.dataSource = self
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .clear
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.alwaysBounceVertical = true
 
-        // initializing the refreshControl
-        table.refreshControl = UIRefreshControl()
-        // add target to UIRefreshControl
-        table.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
-        return table
+        // Add refresh control
+        scrollView.refreshControl = UIRefreshControl()
+        scrollView.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+
+        return scrollView
     }()
 
-    private let presenter = InnerCosmoViewPresenter()
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
 
-    private lazy var testMoodCheckInButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Test Mood Check-in", for: .normal)
-        button.titleLabel?.font = UIFont.projectFont(ofSize: 16, weight: .semibold)
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 8
-        button.addTarget(self, action: #selector(testMoodCheckInTapped), for: .touchUpInside)
+    private lazy var headerView: InnerCosmoHeaderView = {
+        let view = InnerCosmoHeaderView()
+        view.delegate = self
+        return view
+    }()
+
+    private lazy var periodContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+
+    private lazy var dailyView: InnerCosmoDailyView = {
+        let view = InnerCosmoDailyView()
+        return view
+    }()
+
+    private lazy var weeklyView: InnerCosmoWeeklyView = {
+        let view = InnerCosmoWeeklyView()
+        view.isHidden = true
+        return view
+    }()
+
+    private lazy var monthlyView: InnerCosmoMonthlyView = {
+        let view = InnerCosmoMonthlyView()
+        view.isHidden = true
+        return view
+    }()
+
+    private lazy var moodCheckInButton: SoulverseButton = {
+        let button = SoulverseButton(
+            title: NSLocalizedString("inner_cosmo_mood_checkin_button", comment: ""),
+            style: .primary,
+            delegate: self
+        )
         return button
     }()
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupPresenter()
-        setupTestButton()
+        presenter.fetchData()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        dailyView.startAnimations()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        dailyView.stopAnimations()
     }
 
-    func setupView() {
+    // MARK: - Setup
+
+    private func setupView() {
         // Hide default navigation bar
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         view.addSubview(navigationView)
-        view.addSubview(tableView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(headerView)
+        contentView.addSubview(periodContainerView)
+
+        periodContainerView.addSubview(dailyView)
+        periodContainerView.addSubview(weeklyView)
+        periodContainerView.addSubview(monthlyView)
+        contentView.addSubview(moodCheckInButton)
 
         navigationView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalToSuperview()
         }
 
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(navigationView.snp.bottom).offset(16)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(navigationView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
-    }
 
-    func setupPresenter() {
-
-        presenter.delegate = self
-    }
-
-    func setupTestButton() {
-        view.addSubview(testMoodCheckInButton)
-
-        testMoodCheckInButton.snp.makeConstraints { make in
-            make.top.equalTo(navigationView.snp.bottom).offset(24)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(scrollView)
         }
 
-        // Adjust tableView to account for test button
-        tableView.snp.remakeConstraints { make in
-            make.top.equalTo(testMoodCheckInButton.snp.bottom).offset(16)
-            make.left.right.bottom.equalToSuperview()
+        headerView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.right.equalToSuperview()
         }
-    }
 
-    @objc func pullToRefresh() {
-
-        if !tableView.isDragging {
-            presenter.fetchData(isUpdate: true)
+        periodContainerView.snp.makeConstraints { make in
+            make.top.equalTo(headerView.snp.bottom).offset(Layout.dailyViewTopPadding)
+            make.left.right.equalToSuperview()
+            make.height.greaterThanOrEqualTo(Layout.contentViewMinHeight)
         }
-    }
 
-    @objc private func testMoodCheckInTapped() {
-        AppCoordinator.presentMoodCheckIn(from: self) { [weak self] completed, data in
-            if completed {
-                print("[InnerCosmo] Mood check-in completed!")
-                if let data = data {
-                    print("Color: \(data.colorHexString ?? "N/A")")
-                    // print("Emotion: \(data.emotion?.displayName ?? "N/A")")
-                    print("Prompt Response: \(data.promptResponse ?? "N/A")")
-                }
-                // You can show a success message here using SwiftMessages
-            } else {
-                print("[InnerCosmo] Mood check-in cancelled")
+        moodCheckInButton.snp.makeConstraints { make in
+            make.top.equalTo(periodContainerView.snp.bottom).offset(Layout.moodCheckInButtonTopPadding)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(Layout.moodCheckInButtonWidth)
+            make.height.equalTo(ViewComponentConstants.actionButtonHeight)
+            make.bottom.equalToSuperview().offset(-ViewComponentConstants.horizontalPadding)
+        }
+
+        // All period views fill the container
+        [dailyView, weeklyView, monthlyView].forEach { (periodView: UIView) in
+            periodView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
             }
         }
     }
 
-}
+    private func setupPresenter() {
+        presenter.delegate = self
+    }
 
-extension InnerCosmoViewController: UITableViewDataSource, UITableViewDelegate {
+    private func configure(with viewModel: InnerCosmoViewModel) {
+        headerView.configure(userName: viewModel.userName)
+        dailyView.configure(petName: viewModel.petName, emotions: viewModel.emotions)
+    }
 
-    private func getSectionHeaderView(title: String, bottomPadding: CGFloat = 10) -> UIView {
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        let headerView = UIView()
+    // MARK: - Period Switching
 
-        headerView.addSubview(titleLabel)
-        titleLabel.numberOfLines = 0
-        titleLabel.text = title
+    private func switchToPeriod(_ period: InnerCosmoPeriod) {
+        currentPeriod = period
 
-        titleLabel.lineBreakMode = .byWordWrapping
+        // Hide all period views
+        dailyView.isHidden = true
+        weeklyView.isHidden = true
+        monthlyView.isHidden = true
 
-        titleLabel.font = UIFont.projectFont(ofSize: 16, weight: .bold)
-        titleLabel.textColor = .primaryWhite
-        titleLabel.sizeToFit()
-
-        titleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().inset(bottomPadding)
+        // Show the selected period view
+        switch period {
+        case .daily:
+            dailyView.isHidden = false
+            dailyView.startAnimations()
+        case .weekly:
+            weeklyView.isHidden = false
+            dailyView.stopAnimations()
+        case .monthly:
+            monthlyView.isHidden = false
+            dailyView.stopAnimations()
         }
-        return headerView
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        presenter.numberOfSectionsOnTableView()
+    // MARK: - Actions
+
+    @objc private func pullToRefresh() {
+        presenter.fetchData(isUpdate: true)
+
+        // End refreshing after a delay for better UX
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.scrollView.refreshControl?.endRefreshing()
+        }
     }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-        return nil
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-
-        return UITableView.automaticDimension
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = .clear
-        cell.contentView.backgroundColor = .clear
-        return cell
-    }
-
 }
+
+// MARK: - InnerCosmoHeaderViewDelegate
+
+extension InnerCosmoViewController: InnerCosmoHeaderViewDelegate {
+    func headerView(_ headerView: InnerCosmoHeaderView, didSelectPeriod period: InnerCosmoPeriod) {
+        switchToPeriod(period)
+    }
+}
+
+// MARK: - InnerCosmoViewPresenterDelegate
 
 extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
-    func didUpdate(viewModel: HomeViewModel) {
-
+    func didUpdate(viewModel: InnerCosmoViewModel) {
         DispatchQueue.main.async { [weak self] in
-            guard let weakSelf = self else { return }
-            weakSelf.showLoading = viewModel.isLoading
-            weakSelf.tableView.refreshControl?.endRefreshing()
-            let top = weakSelf.tableView.adjustedContentInset.top
-            let y = weakSelf.tableView.refreshControl!.frame.maxY + top
-            weakSelf.tableView.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
-            weakSelf.tableView.reloadData()
+            guard let self = self else { return }
+            self.showLoading = viewModel.isLoading
+            self.scrollView.refreshControl?.endRefreshing()
+            self.configure(with: viewModel)
         }
-
     }
 
     func didUpdateSection(at index: IndexSet) {
-
-        DispatchQueue.main.async { [weak self] in
-            guard let weakSelf = self else { return }
-            weakSelf.tableView.reloadSections(index, with: .automatic)
-        }
+        // Not used in scroll view implementation
     }
 }
+
+// MARK: - UIGestureRecognizerDelegate
 
 extension InnerCosmoViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(
@@ -233,8 +269,9 @@ extension InnerCosmoViewController: UIGestureRecognizerDelegate {
 }
 
 // MARK: - Navigation Actions
+
 extension InnerCosmoViewController {
-    
+
     private func notificationTapped() {
         print("[InnerCosmo] Notification button tapped")
         // TODO: Navigate to notifications screen
@@ -243,5 +280,20 @@ extension InnerCosmoViewController {
     private func profileTapped() {
         print("[InnerCosmo] Profile button tapped")
         // TODO: Navigate to profile screen
+    }
+}
+
+// MARK: - SoulverseButtonDelegate
+
+extension InnerCosmoViewController: SoulverseButtonDelegate {
+
+    func clickSoulverseButton(_ button: SoulverseButton) {
+        if button === moodCheckInButton {
+            AppCoordinator.presentMoodCheckIn(from: self) { [weak self] success, _ in
+                guard let self = self, success else { return }
+                // Refresh data after mood check-in completion
+                self.presenter.fetchData(isUpdate: true)
+            }
+        }
     }
 }

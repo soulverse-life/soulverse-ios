@@ -5,14 +5,11 @@
 import Foundation
 
 protocol InnerCosmoViewPresenterDelegate: AnyObject {
-    func didUpdate(viewModel: HomeViewModel)
+    func didUpdate(viewModel: InnerCosmoViewModel)
     func didUpdateSection(at index: IndexSet)
 }
 
 protocol InnerCosmoViewPresenterType {
     
     func fetchData(isUpdate: Bool)
-    
-    func numberOfSectionsOnTableView() -> Int
-    
 }
