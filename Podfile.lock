@@ -239,6 +239,7 @@ PODS:
     - NVActivityIndicatorView/Base (= 5.2.0)
   - NVActivityIndicatorView/Base (5.2.0)
   - Popover (1.3.0)
+  - PostHog (3.26.2)
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
     - PromisesObjC (= 2.4.0)
@@ -270,6 +271,7 @@ DEPENDENCIES:
   - Moya (~> 15.0)
   - NVActivityIndicatorView
   - Popover
+  - PostHog (~> 3.0)
   - SnapKit (~> 5.7.0)
   - SwiftMessages
   - SwiftRichString
@@ -321,6 +323,7 @@ SPEC REPOS:
     - nanopb
     - NVActivityIndicatorView
     - Popover
+    - PostHog
     - PromisesObjC
     - PromisesSwift
     - SnapKit
@@ -373,6 +376,7 @@ SPEC CHECKSUMS:
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   NVActivityIndicatorView: fe52a6a68664c2df8991d7d9e3d86d8d19453c53
   Popover: 10e1d9528f81d9504df984b7b3f491292bc1822d
+  PostHog: 1537fafb97b44964c170f135e120b1b953338c64
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
@@ -381,6 +385,6 @@ SPEC CHECKSUMS:
   Toaster: c3473963c78e8cabbf6ea6f11ad0fdaae6f54987
   UICircularProgressRing: 19927375b2b21b5fa5fd9582f15ccdef9659da16
 
-PODFILE CHECKSUM: 588435a7646b3ba3d77be5369de9fb4ad12af83f
+PODFILE CHECKSUM: f002db11bb54558ba57c65ad42058601411d4f4e
 
 COCOAPODS: 1.16.2

@@ -37,7 +37,7 @@ protocol CoreTracker: AnyObject {
     var services: [TrackingServiceType] { get }
     func track(_ event: TrackingEventType)
     func updateUserAcquireInfo()
-    func setupUserProperty(_ info: [String : Any])
+    func setupUserProperty(userId: String, info: [String: Any])
 }
 
 extension CoreTracker {

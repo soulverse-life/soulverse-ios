@@ -12,12 +12,12 @@ protocol TrackingServiceType {
     func track(_ event: TrackingEventType)
     func clearUserProperties()
     func setupUserDefaultProperties(_ user: UserProtocol)
-    func setupUserProperty(_ info: [String: Any])
+    func setupUserProperty(userId: String, info: [String: Any])
 
 }
 
 extension TrackingServiceType {
     func clearUserProperties() {}
     func setupUserDefaultProperties(_ user: User) {}
-    func setupUserProperty(_ info: [String: Any]) {}
+    func setupUserProperty(userId: String, info: [String: Any]) {}
 }
