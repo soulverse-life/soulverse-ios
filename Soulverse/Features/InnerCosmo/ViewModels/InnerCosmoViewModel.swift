@@ -16,6 +16,7 @@ struct InnerCosmoViewModel {
     // MARK: - User Data
 
     var userName: String?
+    var planetName: String?
     var petName: String?
 
     // MARK: - Emotion Data
@@ -27,11 +28,13 @@ struct InnerCosmoViewModel {
     init(
         isLoading: Bool = false,
         userName: String? = nil,
+        planetName: String? = nil,
         petName: String? = nil,
         emotions: [EmotionPlanetData] = []
     ) {
         self.isLoading = isLoading
         self.userName = userName
+        self.planetName = planetName
         self.petName = petName
         self.emotions = emotions
     }

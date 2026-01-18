@@ -136,7 +136,10 @@ final class MoodCheckInCoordinator {
     }
 
     private func submitMoodCheckInData() {
-        // Make API call
+        //FIXME: no need to save the checkin data in userservice
+        User.shared.todayCheckInData = moodCheckInData
+        
+        //TODO: Make API call
         MoodCheckInAPIServiceProvider.request(.submitMoodCheckIn(moodCheckInData)) { [weak self] result in
             guard let self = self else { return }
 

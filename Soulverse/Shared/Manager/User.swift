@@ -16,6 +16,7 @@ enum UserInfoKeys: String {
     case nickname
     case nextAskingPermissionTime
     case notificationAskGapTime
+    case planetName
     case userId
     case selectedTheme
     case themeMode
@@ -63,12 +64,15 @@ protocol UserProtocol {
     var userId: String? { get set }
     var email: String? { get set }
     var nickName: String? { get set }
+    var planetName: String? { get set }
     var emoPetName: String? { get set }
     var isLoggedin: Bool { get }
     var hasGrantedNotification: Bool { get }
     var selectedTheme: String? { get set }
     var themeMode: ThemeMode { get set }
 
+    var todayCheckInData: MoodCheckInData? { get set }
+    
     func hasShownRequestPermissionAlert()
     func showCustomizeRequestPermissionAlert() -> Bool
 }
@@ -124,6 +128,20 @@ class User: UserProtocol {
                 return
             }
             defaults.set(nickname, forKey: UserInfoKeys.nickname.rawValue)
+        }
+    }
+    
+    var planetName: String? {
+        get {
+            let value = defaults.string(forKey: UserInfoKeys.planetName.rawValue)
+            return value
+        }
+        set(newPlanetName) {
+            guard let planetName = newPlanetName else {
+                defaults.removeObject(forKey: UserInfoKeys.planetName.rawValue)
+                return
+            }
+            defaults.set(planetName, forKey: UserInfoKeys.planetName.rawValue)
         }
     }
 
@@ -241,6 +259,8 @@ class User: UserProtocol {
             defaults.set(theme, forKey: UserInfoKeys.selectedTheme.rawValue)
         }
     }
+    
+    var todayCheckInData: MoodCheckInData?
 
     var themeMode: ThemeMode {
         get {
