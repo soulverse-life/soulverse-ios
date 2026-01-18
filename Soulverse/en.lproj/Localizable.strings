@@ -268,7 +268,7 @@
 "tools_item_time_capsule_description" = "Letters to future self";
 
 // MARK: - Inner Cosmo
-"inner_cosmo_greeting_format" = "Hello, %@";
+"inner_cosmo_greeting_format" = "Welcome to %@";
 "inner_cosmo_period_daily" = "Daily";
 "inner_cosmo_period_weekly" = "Weekly";
 "inner_cosmo_period_monthly" = "Monthly";

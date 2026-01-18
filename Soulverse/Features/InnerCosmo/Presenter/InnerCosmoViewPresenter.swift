@@ -56,11 +56,34 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
     // MARK: - Private Methods
 
     private func handleDataFetchCompletion() {
+        
+        var emotionData: [EmotionPlanetData] = []
+        if let todayEmotion = user.todayCheckInData {
+            var emotionStr: String = ""
+            if todayEmotion.emotions.count == 1 {
+                emotionStr = todayEmotion.emotions[0].emotion.displayName
+            } else if todayEmotion.emotions.count == 2 {
+                let emotion1 = todayEmotion.emotions[0].emotion
+                let emotion2 = todayEmotion.emotions[1].emotion
+
+                if let combinedEmotion = EmotionCombination.getCombinedEmotion(from: emotion1, and: emotion2) {
+                    emotionStr = combinedEmotion.displayName
+                }
+            }
+            let todayEmotionData = EmotionPlanetData(
+                emotion: emotionStr,
+                colorHex: todayEmotion.colorHexString ?? "",
+                sizeMultiplier: 1.1
+            )
+            emotionData.append(todayEmotionData)
+        }
+        
         loadedModel = InnerCosmoViewModel(
             isLoading: false,
             userName: user.nickName,
+            planetName: user.planetName,
             petName: user.emoPetName,
-            emotions: EmotionPlanetData.mockData  // TODO: Replace with fetched data
+            emotions: emotionData  
         )
         isFetchingData = false
     }

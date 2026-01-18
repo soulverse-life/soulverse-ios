@@ -192,7 +192,7 @@ class InnerCosmoViewController: ViewController {
     }
 
     private func configure(with viewModel: InnerCosmoViewModel) {
-        headerView.configure(userName: viewModel.userName)
+        headerView.configure(userName: viewModel.planetName)
         dailyView.configure(petName: viewModel.petName, emotions: viewModel.emotions)
     }
 

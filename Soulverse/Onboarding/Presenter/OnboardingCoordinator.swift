@@ -96,6 +96,8 @@ final class OnboardingCoordinator {
     }
 
     private func handleAppleAuthentication() {
+        handleAuthenticationSuccess()
+        /*
         appleAuthService.authenticate { [weak self] result in
             guard let self = self else { return }
 
@@ -108,6 +110,7 @@ final class OnboardingCoordinator {
                 self.handleAuthenticationError(result)
             }
         }
+         */
     }
 
     private func handleAuthenticationSuccess() {
@@ -124,6 +127,14 @@ final class OnboardingCoordinator {
     // MARK: - Data Submission
 
     private func submitOnboardingData() {
+        
+        User.shared.hasCompletedOnboarding = true
+        User.shared.planetName = userData.planetName
+        User.shared.emoPetName = userData.emoPetName
+        self.handleOnboardingCompletion()
+        
+        /* TODO: Integrate the API
+        
         UserService.submitOnboardingData(userData) { [weak self] result in
             guard let self = self else { return }
 
@@ -134,6 +145,7 @@ final class OnboardingCoordinator {
                 self.handleDataSubmissionError(error)
             }
         }
+         */
     }
 
     private func handleDataSubmissionError(_ error: ApiError) {
