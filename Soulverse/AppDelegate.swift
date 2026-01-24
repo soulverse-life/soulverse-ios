@@ -4,6 +4,8 @@
 import UIKit
 import Toaster
 import IQKeyboardManagerSwift
+import IQKeyboardToolbar
+import IQKeyboardToolbarManager
 import PostHog
 
 @main
@@ -29,6 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.isEnabled = true
         IQKeyboardManager.shared.resignOnTouchOutside = true
 
+        // Enable toolbar with chevron down button
+        IQKeyboardToolbarManager.shared.isEnabled = true
+        IQKeyboardToolbarManager.shared.toolbarConfiguration.doneBarButtonConfiguration = IQBarButtonItemConfiguration(systemItem: .done)
+
         return true
     }
     
@@ -43,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config = PostHogConfig(apiKey: POSTHOG_API_KEY, host: POSTHOG_HOST)
 
 #if DEBUG
-        config.debug = true
         config.sessionReplay = false
 #else
         // Session replay only enabled in release builds

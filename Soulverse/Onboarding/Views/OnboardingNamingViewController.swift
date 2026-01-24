@@ -83,6 +83,7 @@ class OnboardingNamingViewController: ViewController {
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.cornerRadius = 20
         textField.backgroundColor = .white
+        textField.textColor = ThemeManager.shared.currentTheme.neutralDark
         textField.delegate = self
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 
