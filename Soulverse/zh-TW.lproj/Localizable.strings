@@ -109,7 +109,8 @@
 // Mood Check-In - Naming Screen
 "mood_checkin_naming_title" = "命名";
 "mood_checkin_naming_color_selected" = "你選擇了這個顏色";
-"mood_checkin_naming_emotion_prompt" = "這個顏色讓你聯想到什麼情緒？";
+"mood_checkin_naming_prompt" = "這個顏色讓你聯想到什麼情緒？";
+"mood_checkin_naming_prompt_guide" = "你可以選擇多個";
 "mood_checkin_naming_intensity_title" = "%@ 強度";
 "mood_checkin_naming_max_emotions" = "最多只能選擇兩種情緒";
 "mood_checkin_continue" = "繼續";
@@ -204,11 +205,8 @@
 // Mood Check-In - Sensing Screen
 "mood_checkin_sensing_title" = "感知";
 "mood_checkin_sensing_subtitle" = "花點時間留意你的情緒\n展開你的情緒旅程。";
-"mood_checkin_sensing_description" = "花點時間留意你的情緒\n展開你的情緒旅程。";
 "mood_checkin_sensing_instruction" = "用一個顏色來描述你今天的感受";
-"mood_checkin_sensing_color_prompt" = "用一個顏色來描述你今天的感受";
 "mood_checkin_sensing_intensity" = "感受有多強烈？";
-"mood_checkin_sensing_intensity_prompt" = "感受有多強烈？";
 
 // Mood Check-In - Attributing Screen
 "mood_checkin_attributing_title" = "歸因";
@@ -217,18 +215,19 @@
 // Mood Check-In - Evaluating Screen
 "mood_checkin_evaluating_title" = "評價";
 "mood_checkin_evaluating_subtitle" = "你對這個感受有什麼想法？";
+"mood_checkin_evaluating_option_accept" = "我接受它";
+"mood_checkin_evaluating_option_let_it_be" = "我不喜歡，但我會面對";
+"mood_checkin_evaluating_option_resist" = "我抗拒它";
+"mood_checkin_evaluating_option_dont_know" = "我不知道如何面對";
+"mood_checkin_evaluating_option_conflicted" = "我對此感到矛盾";
 
 // Mood Check-In - Acting Screen
 "mood_checkin_acting_title" = "行動";
-"mood_checkin_acting_subtitle" = "將你的情緒覺察\n轉化為創意表達";
+"mood_checkin_acting_subtitle" = "將你的感受轉化為文字、圖像，\n或有意義的時刻。\n\n    你的情緒旅程";
 "mood_checkin_acting_journey" = "你的情緒旅程";
-"mood_checkin_acting_journey_label" = "你的情緒旅程";
 "mood_checkin_acting_color" = "顏色";
-"mood_checkin_acting_color_label" = "顏色";
 "mood_checkin_acting_emotions" = "情緒";
-"mood_checkin_acting_emotions_label" = "情緒";
 "mood_checkin_acting_expression" = "表達";
-"mood_checkin_acting_expression_label" = "表達";
 "mood_checkin_acting_selected" = "已選擇";
 "mood_checkin_acting_na" = "無";
 "mood_checkin_acting_write_journal" = "寫日記";
@@ -244,12 +243,12 @@
 "prompt_option_the_texture_is" = "這個質感是";
 
 // Mood Check-In - Prompt Placeholders
-"prompt_placeholder_it_feels_like" = "「感覺就像 _______。」\\n想想一個與你的感受相符的畫面、動作或氛圍。";
-"prompt_placeholder_it_reminds_me_of" = "「讓我想起 _______。」\\n描述一段與這個情緒產生共鳴的記憶、地點或經歷。";
-"prompt_placeholder_i_sense" = "「我感受到 _______。」\\n這個感受帶來什麼樣的身體感覺或直覺？";
-"prompt_placeholder_the_emotion_is_like" = "「這個情緒就像 _______。」\\n用一個比喻或對比來捕捉你情緒的本質。";
-"prompt_placeholder_in_my_body_its" = "「在我的身體裡，它是 _______。」\\n這個情緒在身體的哪裡、如何呈現？";
-"prompt_placeholder_the_texture_is" = "「這個質感是 _______。」\\n如果這個情緒有質感，會是什麼感覺？";
+"prompt_placeholder_it_feels_like" = "「感覺就像 _______。」\n想想一個與你的感受相符的畫面、動作或氛圍。";
+"prompt_placeholder_it_reminds_me_of" = "「讓我想起 _______。」\n描述一段與這個情緒產生共鳴的記憶、地點或經歷。";
+"prompt_placeholder_i_sense" = "「我感受到 _______。」\n這個感受帶來什麼樣的身體感覺或直覺？";
+"prompt_placeholder_the_emotion_is_like" = "「這個情緒就像 _______。」\n用一個比喻或對比來捕捉你情緒的本質。";
+"prompt_placeholder_in_my_body_its" = "「在我的身體裡，它是 _______。」\n這個情緒在身體的哪裡、如何呈現？";
+"prompt_placeholder_the_texture_is" = "「這個質感是 _______。」\n如果這個情緒有質感，會是什麼感覺？";
 
 // MARK: - Tools
 "tools_healing_title" = "療癒";

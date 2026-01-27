@@ -78,7 +78,7 @@
 "onboarding_naming_emopet_placeholder" = "E.M.O name";
 
 // Topics Screen
-"onboarding_topics_title" = "Selecting Topics";
+"onboarding_topics_title" = "Select A Topic";
 "onboarding_topics_subtitle" = "These guide your journey, shaping reflections and insights tailored to your Soulverse.";
 "onboarding_topics_physical" = "Physical";
 "onboarding_topics_emotional" = "Emotional";
@@ -109,7 +109,8 @@
 // Mood Check-In - Naming Screen
 "mood_checkin_naming_title" = "Naming";
 "mood_checkin_naming_color_selected" = "You choose this color";
-"mood_checkin_naming_emotion_prompt" = "What emotion does this color bring to your mind?";
+"mood_checkin_naming_prompt" = "What does this color feel like?";
+"mood_checkin_naming_prompt_guide" = "You may choose more than one";
 "mood_checkin_naming_intensity_title" = "%@ Intensity";
 "mood_checkin_naming_max_emotions" = "You can select up to 2 emotions";
 "mood_checkin_continue" = "Continue";
@@ -204,11 +205,8 @@
 // Mood Check-In - Sensing Screen
 "mood_checkin_sensing_title" = "Sensing";
 "mood_checkin_sensing_subtitle" = "Take a moment to notice your mood and\nbegin your emotional journey.";
-"mood_checkin_sensing_description" = "Take a moment to notice your mood and\nbegin your emotional journey.";
 "mood_checkin_sensing_instruction" = "Use a color to describe your feeling today";
-"mood_checkin_sensing_color_prompt" = "Use a color to describe your feeling today";
 "mood_checkin_sensing_intensity" = "How strong the feeling?";
-"mood_checkin_sensing_intensity_prompt" = "How strong the feeling?";
 
 // Mood Check-In - Attributing Screen
 "mood_checkin_attributing_title" = "Attributing";
@@ -216,19 +214,21 @@
 
 // Mood Check-In - Evaluating Screen
 "mood_checkin_evaluating_title" = "Evaluating";
-"mood_checkin_evaluating_subtitle" = "How do you feel about this feeling?";
+"mood_checkin_evaluating_subtitle" = "How are you relating to it right now?";
+"mood_checkin_evaluating_option_accept" = "I accept it";
+"mood_checkin_evaluating_option_let_it_be" = "I don't like it, but I'll face it";
+"mood_checkin_evaluating_option_resist" = "I resist it";
+"mood_checkin_evaluating_option_dont_know" = "I don't know how to face it";
+"mood_checkin_evaluating_option_conflicted" = "I feel conflicted about it";
 
 // Mood Check-In - Acting Screen
 "mood_checkin_acting_title" = "Acting";
-"mood_checkin_acting_subtitle" = "Transform your emotional awareness into\ncreative expression";
+"mood_checkin_acting_subtitle" = "Transform what you feel into words, images, or moments of meaning.\n
+    Your emotional journey";
 "mood_checkin_acting_journey" = "Your emotional journey";
-"mood_checkin_acting_journey_label" = "Your emotional journey";
 "mood_checkin_acting_color" = "Color";
-"mood_checkin_acting_color_label" = "Color";
 "mood_checkin_acting_emotions" = "Emotions";
-"mood_checkin_acting_emotions_label" = "Emotions";
 "mood_checkin_acting_expression" = "Expression";
-"mood_checkin_acting_expression_label" = "Expression";
 "mood_checkin_acting_selected" = "Selected";
 "mood_checkin_acting_na" = "N/A";
 "mood_checkin_acting_write_journal" = "Write a journal";
@@ -244,11 +244,11 @@
 "prompt_option_the_texture_is" = "The texture is";
 
 // Mood Check-In - Prompt Placeholders
-"prompt_placeholder_it_feels_like" = "\"It feels like _______.\"\\nThink of an image, a movement, or an atmosphere that matches your feeling.";
-"prompt_placeholder_it_reminds_me_of" = "\"It reminds me of _______.\"\\nDescribe a memory, place, or experience that resonates with this emotion.";
-"prompt_placeholder_i_sense" = "\"I sense _______.\"\\nWhat physical sensations or intuitions arise with this feeling?";
-"prompt_placeholder_the_emotion_is_like" = "\"The emotion is like _______.\"\\nUse a metaphor or comparison to capture the essence of your emotion.";
-"prompt_placeholder_in_my_body_its" = "\"In my body, it's _______.\"\\nWhere and how does this emotion manifest physically?";
+"prompt_placeholder_it_feels_like" = "\"It feels like _______.\"\nThink of an image, a movement, or an atmosphere that matches your feeling.";
+"prompt_placeholder_it_reminds_me_of" = "\"It reminds me of _______.\"\nDescribe a memory, place, or experience that resonates with this emotion.";
+"prompt_placeholder_i_sense" = "\"I sense _______.\"\nWhat physical sensations or intuitions arise with this feeling?";
+"prompt_placeholder_the_emotion_is_like" = "\"The emotion is like _______.\"\nUse a metaphor or comparison to capture the essence of your emotion.";
+"prompt_placeholder_in_my_body_its" = "\"In my body, it's _______.\"\nWhere and how does this emotion manifest physically?";
 
 // MARK: - Tools
 "tools_healing_title" = "Healing";

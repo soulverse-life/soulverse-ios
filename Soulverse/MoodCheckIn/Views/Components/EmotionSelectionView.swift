@@ -36,10 +36,28 @@ class EmotionSelectionView: UIView {
 
     private lazy var promptLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("mood_checkin_naming_emotion_prompt", comment: "")
-        label.font = .projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .themeTextPrimary
         label.numberOfLines = 0
+
+        let mainText = NSLocalizedString("mood_checkin_naming_prompt", comment: "")
+        let guideText = NSLocalizedString("mood_checkin_naming_prompt_guide", comment: "")
+        let fullText = mainText + " " + guideText
+
+        let mainFont = UIFont.projectFont(ofSize: 16, weight: .regular)
+        let italicDescriptor = mainFont.fontDescriptor.withSymbolicTraits(.traitItalic) ?? mainFont.fontDescriptor
+        let italicFont = UIFont(descriptor: italicDescriptor, size: 16)
+
+        let attributedString = NSMutableAttributedString(
+            string: fullText,
+            attributes: [
+                .font: mainFont,
+                .foregroundColor: UIColor.themeTextPrimary
+            ]
+        )
+
+        let italicRange = (fullText as NSString).range(of: guideText)
+        attributedString.addAttribute(.font, value: italicFont, range: italicRange)
+
+        label.attributedText = attributedString
         return label
     }()
 
