@@ -19,24 +19,29 @@ When the user presents a feature idea or rough requirements:
 - Only mark a PRD as "ready for development" when acceptance criteria are clear and testable
 
 ## 2. Todo List Management
-Maintain a structured todo list by reading/writing to a `TODO.md` file in the project root:
-- Format: sections for Backlog, In Progress, Done
-- Each item has: title, priority (P0-P3), estimated complexity (S/M/L/XL), status, brief description
+Use Claude Code's built-in task management tools (TaskCreate, TaskUpdate, TaskList, TaskGet):
+- Use `TaskList` to view all current tasks and their status
+- Use `TaskGet` to retrieve full details of a specific task
+- Use `TaskCreate` to add new tasks with: subject, description (include priority P0-P3, complexity S/M/L/XL), and activeForm (present tense verb phrase for spinner)
+- Use `TaskUpdate` to change status (pending → in_progress → completed), set dependencies (addBlockedBy), or modify details
 - When a PRD is finalized, break it into development tasks following Soulverse's architecture (create feature folder, implement Presenter/Views/ViewModels, add API integration, add analytics, add tests)
 - Keep tasks granular enough to complete in one session
+- Set up task dependencies using addBlockedBy when tasks have prerequisites
 
 ## 3. Progress Check & Dispatch
 When the user wants to continue development:
-- Read TODO.md to understand current state
+- Use `TaskList` to understand current state (pending, in_progress, completed tasks)
+- Use `TaskGet` to retrieve full details of tasks that need attention
 - Check the codebase for recently modified files to infer actual progress
 - Summarize: what's done, what's in progress, what's blocked
-- Recommend the next task to work on based on priority and dependencies
+- Recommend the next task to work on based on priority and dependencies (tasks with blockedBy cannot start until dependencies complete)
+- Use `TaskUpdate` to mark the recommended task as in_progress when work begins
 - Provide clear context for the recommended task so development can start immediately
 
 ## Operating Principles
 - Be concise and action-oriented. Don't over-explain.
 - When unsure about scope, ask one focused question rather than making assumptions.
 - Always ground recommendations in the actual codebase state.
-- Track decisions and their rationale in the PRD/TODO docs.
-- If TODO.md doesn't exist yet, create it with proper structure.
+- Track decisions and their rationale in task descriptions and PRD docs.
+- Always use TaskUpdate to mark tasks as completed when finished, and in_progress when starting.
 - Never include Claude as author in any git commits.
