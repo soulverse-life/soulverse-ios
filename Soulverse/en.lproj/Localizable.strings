@@ -245,10 +245,12 @@
 
 // Mood Check-In - Prompt Placeholders
 "prompt_placeholder_it_feels_like" = "\"It feels like _______.\"\nThink of an image, a movement, or an atmosphere that matches your feeling.";
-"prompt_placeholder_it_reminds_me_of" = "\"It reminds me of _______.\"\nDescribe a memory, place, or experience that resonates with this emotion.";
-"prompt_placeholder_i_sense" = "\"I sense _______.\"\nWhat physical sensations or intuitions arise with this feeling?";
-"prompt_placeholder_the_emotion_is_like" = "\"The emotion is like _______.\"\nUse a metaphor or comparison to capture the essence of your emotion.";
-"prompt_placeholder_in_my_body_its" = "\"In my body, it's _______.\"\nWhere and how does this emotion manifest physically?";
+"prompt_placeholder_it_reminds_me_of" = "\"It reminds me of _______.\"\nName a memory, place, person, song, or scene this feeling brings up.";
+"prompt_placeholder_i_sense" = "\"I sense _______.\"\nWrite what you notice right now—inside or around you (breath, thoughts, energy, mood).";
+"prompt_placeholder_the_emotion_is_like" = "\"The emotion is like _______.\"\nGive the emotion a metaphor—like weather, an object, a creature, or a natural force.";
+"prompt_placeholder_in_my_body_its" = "\"In my body, it's _______.\"\nWhere do you feel it? Describe the sensation (tight, light, warm, buzzing, heavy).";
+"prompt_placeholder_the_texture_is" = "\"The texture is _______.\"\nIf this feeling had a texture, what would it be? (soft, sharp, sticky, grainy, silky)."
+
 
 // MARK: - Tools
 "tools_healing_title" = "Healing";
