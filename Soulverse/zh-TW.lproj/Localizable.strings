@@ -80,14 +80,14 @@
 // Topics Screen
 "onboarding_topics_title" = "選擇主題";
 "onboarding_topics_subtitle" = "這些主題將引導你的旅程，\n塑造專屬於你靈魂宇宙的\n反思、洞見和支持";
-"onboarding_topics_physical" = "身體健康";
-"onboarding_topics_emotional" = "情緒健康";
-"onboarding_topics_social" = "社交關係";
-"onboarding_topics_intellectual" = "智識成長";
-"onboarding_topics_spiritual" = "靈性發展";
-"onboarding_topics_occupational" = "職業發展";
-"onboarding_topics_environment" = "環境";
-"onboarding_topics_financial" = "財務";
+"topic_physical" = "身體健康";
+"topic_emotional" = "情緒健康";
+"topic_social" = "社交關係";
+"topic_intellectual" = "智識成長";
+"topic_spiritual" = "靈性發展";
+"topic_occupational" = "職業發展";
+"topic_environment" = "環境";
+"topic_financial" = "財務";
 
 // Common
 "onboarding_continue_button_title" = "繼續";

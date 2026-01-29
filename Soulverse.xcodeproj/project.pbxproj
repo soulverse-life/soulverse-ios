@@ -28,7 +28,6 @@
 		790AD22E2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16E2DF9E43200C33CD1 /* UIColor+Extensions.swift */; };
 		790AD22F2DF9E43200C33CD1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1ED2DF9E43200C33CD1 /* AuthService.swift */; };
 		790AD2302DF9E43200C33CD1 /* FirebaseTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */; };
-		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		790AD2312DF9E43200C33CD1 /* ContentListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F52DF9E43200C33CD1 /* ContentListResponse.swift */; };
 		790AD2372DF9E43200C33CD1 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19E2DF9E43200C33CD1 /* NotificationViewController.swift */; };
 		790AD2382DF9E43200C33CD1 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1702DF9E43200C33CD1 /* UIImage+Extensions.swift */; };
@@ -88,7 +87,6 @@
 		790AD2DC2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16E2DF9E43200C33CD1 /* UIColor+Extensions.swift */; };
 		790AD2DD2DF9E43200C33CD1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1ED2DF9E43200C33CD1 /* AuthService.swift */; };
 		790AD2DE2DF9E43200C33CD1 /* FirebaseTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */; };
-		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		790AD2DF2DF9E43200C33CD1 /* ContentListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F52DF9E43200C33CD1 /* ContentListResponse.swift */; };
 		790AD2E52DF9E43200C33CD1 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19E2DF9E43200C33CD1 /* NotificationViewController.swift */; };
 		790AD2E62DF9E43200C33CD1 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1702DF9E43200C33CD1 /* UIImage+Extensions.swift */; };
@@ -305,6 +303,16 @@
 		79DD63412EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */; };
 		79DD63422EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */; };
 		79DD63432EDB2FAF008A5F8D /* canvas_prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */; };
+		79EE74BC2F2BB0660082EECF /* AffirmationQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */; };
+		79EE74BD2F2BB0660082EECF /* AffirmationQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */; };
+		79EE74BF2F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */; };
+		79EE74C02F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */; };
+		79EE74C22F2BB09F0082EECF /* AffirmationQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */; };
+		79EE74C32F2BB09F0082EECF /* AffirmationQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */; };
+		79EE74C62F2BB1AB0082EECF /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C42F2BB1AB0082EECF /* Topic.swift */; };
+		79EE74C72F2BB1AB0082EECF /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C42F2BB1AB0082EECF /* Topic.swift */; };
+		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
+		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
 		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
 /* End PBXBuildFile section */
@@ -381,7 +389,6 @@
 		790AD1DD2DF9E43200C33CD1 /* ErrorEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEvent.swift; sourceTree = "<group>"; };
 		790AD1DE2DF9E43200C33CD1 /* TrackingEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingEventType.swift; sourceTree = "<group>"; };
 		790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTrackingService.swift; sourceTree = "<group>"; };
-		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
 		790AD1E12DF9E43200C33CD1 /* TrackingServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingServiceType.swift; sourceTree = "<group>"; };
 		790AD1E32DF9E43200C33CD1 /* CoreTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTracker.swift; sourceTree = "<group>"; };
 		790AD1E42DF9E43200C33CD1 /* TrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingService.swift; sourceTree = "<group>"; };
@@ -508,6 +515,11 @@
 		79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroTransitionID+Tools.swift"; sourceTree = "<group>"; };
 		79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = canvas_prompts.json; sourceTree = "<group>"; };
 		79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasPromptModel.swift; sourceTree = "<group>"; };
+		79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AffirmationQuotes.json; sourceTree = "<group>"; };
+		79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationBubbleView.swift; sourceTree = "<group>"; };
+		79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationQuote.swift; sourceTree = "<group>"; };
+		79EE74C42F2BB1AB0082EECF /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -692,6 +704,7 @@
 		790AD1DA2DF9E43200C33CD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */,
 				7922ECAB2E98ABDD0086B7CA /* Fonts */,
 				790AD1B52DF9E43200C33CD1 /* APIMockResponse */,
 				790AD1D92DF9E43200C33CD1 /* Assets.xcassets */,
@@ -813,6 +826,7 @@
 		790AD2052DF9E43200C33CD1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74C52F2BB1AB0082EECF /* Models */,
 				79DD63372EDA8F7B008A5F8D /* Extensions */,
 				794B59F92E9EA436006CF069 /* Theme */,
 				790AD1E52DF9E43200C33CD1 /* Analytics */,
@@ -987,6 +1001,7 @@
 		79389F602F05760D0016CB7F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */,
 				79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */,
 				79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */,
 				79389F5C2F05760D0016CB7F /* InnerCosmoDailyView.swift */,
@@ -1020,6 +1035,7 @@
 		7951A9C42E5376B5006EB0EC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */,
 				79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */,
 				7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */,
 			);
@@ -1291,6 +1307,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		79EE74C52F2BB1AB0082EECF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				79EE74C42F2BB1AB0082EECF /* Topic.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E8A4C87226BA41130082B4F7 = {
 			isa = PBXGroup;
 			children = (
@@ -1460,6 +1484,7 @@
 				790AD27E2DF9E43200C33CD1 /* Localizable.strings in Resources */,
 				790AD2922DF9E43200C33CD1 /* Assets.xcassets in Resources */,
 				790AD2942DF9E43200C33CD1 /* LaunchScreen.storyboard in Resources */,
+				79EE74BD2F2BB0660082EECF /* AffirmationQuotes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1474,6 +1499,7 @@
 				790AD2A82DF9E43200C33CD1 /* Localizable.strings in Resources */,
 				790AD2BC2DF9E43200C33CD1 /* Assets.xcassets in Resources */,
 				790AD2BE2DF9E43200C33CD1 /* LaunchScreen.storyboard in Resources */,
+				79EE74BC2F2BB0660082EECF /* AffirmationQuotes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1503,9 +1529,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1608,9 +1638,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1625,9 +1659,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1642,9 +1680,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1659,6 +1701,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				790AD2122DF9E43200C33CD1 /* CoreTracker.swift in Sources */,
+				79EE74C62F2BB1AB0082EECF /* Topic.swift in Sources */,
+				79EE74C32F2BB09F0082EECF /* AffirmationQuote.swift in Sources */,
 				790AD2132DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */,
 				79389F582EFFBEF60016CB7F /* TopicCardView.swift in Sources */,
 				790AD2152DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
@@ -1671,6 +1715,7 @@
 				790D87EB2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */,
 				790D87EC2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
 				790D87ED2ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
+				79EE74BF2F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */,
 				790AD2182DF9E43200C33CD1 /* Constants.swift in Sources */,
 				79D576832EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */,
 				790AD21A2DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
@@ -1801,6 +1846,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				790AD2C02DF9E43200C33CD1 /* CoreTracker.swift in Sources */,
+				79EE74C72F2BB1AB0082EECF /* Topic.swift in Sources */,
+				79EE74C22F2BB09F0082EECF /* AffirmationQuote.swift in Sources */,
 				790AD2C12DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */,
 				79389F592EFFBEF60016CB7F /* TopicCardView.swift in Sources */,
 				790AD2C32DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
@@ -1813,6 +1860,7 @@
 				790D87EE2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */,
 				790D87EF2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
 				790D87F02ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
+				79EE74C02F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */,
 				790AD2C62DF9E43200C33CD1 /* Constants.swift in Sources */,
 				79D576842EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */,
 				790AD2C82DF9E43200C33CD1 /* AppDelegate.swift in Sources */,

@@ -217,7 +217,7 @@ extension OnboardingCoordinator: OnboardingNamingViewControllerDelegate {
 
 extension OnboardingCoordinator: OnboardingTopicViewControllerDelegate {
 
-    func onboardingTopicViewController(_ viewController: OnboardingTopicViewController, didSelectTopic topic: TopicOption) {
+    func onboardingTopicViewController(_ viewController: OnboardingTopicViewController, didSelectTopic topic: Topic) {
         userData.selectedTopic = topic
         submitOnboardingData()
     }

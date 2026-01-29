@@ -7,66 +7,8 @@
 import UIKit
 import SnapKit
 
-enum TopicOption: String, CaseIterable {
-    case physical = "Physical"
-    case emotional = "Emotional"
-    case social = "Social"
-    case intellectual = "Intellectual"
-    case spiritual = "Spiritual"
-    case occupational = "Occupational"
-    case environment = "Environment"
-    case financial = "Financial"
-
-    var localizedTitle: String {
-        switch self {
-        case .physical:
-            return NSLocalizedString("onboarding_topics_physical", comment: "")
-        case .emotional:
-            return NSLocalizedString("onboarding_topics_emotional", comment: "")
-        case .social:
-            return NSLocalizedString("onboarding_topics_social", comment: "")
-        case .intellectual:
-            return NSLocalizedString("onboarding_topics_intellectual", comment: "")
-        case .spiritual:
-            return NSLocalizedString("onboarding_topics_spiritual", comment: "")
-        case .occupational:
-            return NSLocalizedString("onboarding_topics_occupational", comment: "")
-        case .environment:
-            return NSLocalizedString("onboarding_topics_environment", comment: "")
-        case .financial:
-            return NSLocalizedString("onboarding_topics_financial", comment: "")
-        }
-    }
-
-    var iconName: String {
-        switch self {
-        case .physical: return "figure.mind.and.body"
-        case .emotional: return "face.smiling"
-        case .social: return "person.line.dotted.person.fill"
-        case .intellectual: return "light.max"
-        case .spiritual: return "water.waves"
-        case .occupational: return "suitcase"
-        case .environment: return "leaf"
-        case .financial: return "dollarsign"
-        }
-    }
-
-    var cardColor: UIColor {
-        switch self {
-        case .physical: return UIColor(red: 255/255, green: 56/255, blue: 60/255, alpha: 1)
-        case .emotional: return UIColor(red: 255/255, green: 141/255, blue: 40/255, alpha: 1)
-        case .social: return UIColor(red: 0/255, green: 136/255, blue: 255/255, alpha: 1)
-        case .intellectual: return UIColor(red: 52/255, green: 199/255, blue: 89/255, alpha: 1)
-        case .spiritual: return UIColor(red: 97/255, green: 85/255, blue: 245/255, alpha: 1)
-        case .occupational: return UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)
-        case .environment: return UIColor(red: 0/255, green: 200/255, blue: 179/255, alpha: 1)
-        case .financial: return UIColor(red: 203/255, green: 48/255, blue: 224/255, alpha: 1)
-        }
-    }
-}
-
 protocol OnboardingTopicViewControllerDelegate: AnyObject {
-    func onboardingTopicViewController(_ viewController: OnboardingTopicViewController, didSelectTopic topic: TopicOption)
+    func onboardingTopicViewController(_ viewController: OnboardingTopicViewController, didSelectTopic topic: Topic)
 }
 
 class OnboardingTopicViewController: ViewController {
@@ -133,7 +75,7 @@ class OnboardingTopicViewController: ViewController {
     // MARK: - Properties
 
     weak var delegate: OnboardingTopicViewControllerDelegate?
-    private var selectedTopic: TopicOption?
+    private var selectedTopic: Topic?
     private var topicCards: [TopicCardView] = []
 
     // MARK: - Lifecycle
@@ -200,7 +142,7 @@ class OnboardingTopicViewController: ViewController {
     }
 
     private func setupTopicButtons() {
-        let topics = TopicOption.allCases
+        let topics = Topic.allCases
         let numberOfColumns = 2
         let cardHeight: CGFloat = 80
         let horizontalSpacing: CGFloat = 8
@@ -238,7 +180,7 @@ class OnboardingTopicViewController: ViewController {
         }
     }
 
-    private func selectTopicCard(_ card: TopicCardView, for topic: TopicOption) {
+    private func selectTopicCard(_ card: TopicCardView, for topic: Topic) {
         topicCards.forEach { $0.isCardSelected = false }
         card.isCardSelected = true
         selectedTopic = topic
@@ -253,7 +195,7 @@ class OnboardingTopicViewController: ViewController {
 
     @objc private func topicCardTapped(_ gesture: UITapGestureRecognizer) {
         guard let card = gesture.view as? TopicCardView else { return }
-        let topic = TopicOption.allCases[card.tag]
+        let topic = Topic.allCases[card.tag]
         selectTopicCard(card, for: topic)
     }
 }
