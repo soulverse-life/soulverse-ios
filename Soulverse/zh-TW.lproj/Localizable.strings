@@ -204,7 +204,6 @@
 
 // Mood Check-In - Sensing Screen
 "mood_checkin_sensing_title" = "感知";
-"mood_checkin_sensing_subtitle" = "花點時間留意你的情緒\n展開你的情緒旅程。";
 "mood_checkin_sensing_instruction" = "用一個顏色來描述你今天的感受";
 "mood_checkin_sensing_intensity" = "感受有多強烈？";
 

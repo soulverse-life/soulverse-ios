@@ -18,7 +18,11 @@ class MoodCheckInPetViewController: ViewController {
 
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        if #available(iOS 26.0, *) {
+            button.setImage(UIImage(named: "naviconBack"), for: .normal)
+        } else {
+            button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        }
         button.tintColor = .themeTextPrimary
         button.isUserInteractionEnabled = true
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)

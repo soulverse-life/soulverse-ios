@@ -18,42 +18,30 @@ class MoodCheckInNamingViewController: ViewController {
         didSet { updateContinueButton() }
     }
 
-    // MARK: - Layout Constants
+    // MARK: - View-specific Constants
 
-    private enum Layout {
-        enum Spacing {
-            static let horizontal: CGFloat = 40
-            static let sectionVertical: CGFloat = 24
-            static let titleTopOffset: CGFloat = 40
-        }
-
-        enum Size {
-            static let progressSteps: Int = 6
-            static let currentStep: Int = 2
-        }
-    }
+    private let currentStep: Int = 2
 
     // MARK: - UI Elements - Navigation
 
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = .themeTextPrimary
+        if #available(iOS 26.0, *) {
+            button.setImage(UIImage(named: "naviconBack")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            button.imageView?.contentMode = .center
+            button.imageView?.clipsToBounds = false
+            button.clipsToBounds = false
+        } else {
+            button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+            button.tintColor = .themeTextPrimary
+        }
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         return button
     }()
 
-    private lazy var closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .themeTextPrimary
-        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
     private lazy var progressBar: SoulverseProgressBar = {
-        let bar = SoulverseProgressBar(totalSteps: Layout.Size.progressSteps)
-        bar.setProgress(currentStep: Layout.Size.currentStep)
+        let bar = SoulverseProgressBar(totalSteps: MoodCheckInLayout.totalSteps)
+        bar.setProgress(currentStep: currentStep)
         return bar
     }()
 
@@ -82,7 +70,7 @@ class MoodCheckInNamingViewController: ViewController {
     private lazy var intensityContainer: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = Layout.Spacing.sectionVertical
+        stack.spacing = MoodCheckInLayout.sectionSpacing
         return stack
     }()
 
@@ -115,7 +103,6 @@ class MoodCheckInNamingViewController: ViewController {
 
     private func setupNavigationBar() {
         view.addSubview(backButton)
-        view.addSubview(closeButton)
         view.addSubview(progressBar)
         view.addSubview(titleLabel)
     }
@@ -140,14 +127,8 @@ class MoodCheckInNamingViewController: ViewController {
 
     private func setupNavigationConstraints() {
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.left.equalToSuperview().offset(16)
-            make.width.height.equalTo(ViewComponentConstants.navigationButtonSize)
-        }
-
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.right.equalToSuperview().offset(-16)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(MoodCheckInLayout.navigationTopOffset)
+            make.left.equalToSuperview().offset(MoodCheckInLayout.navigationLeftOffset)
             make.width.height.equalTo(ViewComponentConstants.navigationButtonSize)
         }
     }
@@ -156,38 +137,39 @@ class MoodCheckInNamingViewController: ViewController {
         progressBar.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalTo(backButton)
+            make.width.equalTo(ViewComponentConstants.onboardingProgressViewWidth)
         }
     }
 
     private func setupTitleConstraints() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(Layout.Spacing.titleTopOffset)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(progressBar.snp.bottom).offset(MoodCheckInLayout.titleTopOffset)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
     }
 
     private func setupSectionConstraints() {
         colorSummarySection.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(titleLabel.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
         emotionSelectionSection.snp.makeConstraints { make in
-            make.top.equalTo(colorSummarySection.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(colorSummarySection.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
         intensityContainer.snp.makeConstraints { make in
-            make.top.equalTo(emotionSelectionSection.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(emotionSelectionSection.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
     }
 
     private func setupContinueButtonConstraints() {
         continueButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
-            make.top.greaterThanOrEqualTo(intensityContainer.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
+            make.top.greaterThanOrEqualTo(intensityContainer.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-MoodCheckInLayout.bottomPadding)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
     }
@@ -241,10 +223,6 @@ class MoodCheckInNamingViewController: ViewController {
 
     @objc private func backButtonTapped() {
         delegate?.didTapBack(self)
-    }
-
-    @objc private func closeButtonTapped() {
-        delegate?.didTapClose(self)
     }
 }
 

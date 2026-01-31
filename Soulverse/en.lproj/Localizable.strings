@@ -204,7 +204,6 @@
 
 // Mood Check-In - Sensing Screen
 "mood_checkin_sensing_title" = "Sensing";
-"mood_checkin_sensing_subtitle" = "Take a moment to notice your mood and\nbegin your emotional journey.";
 "mood_checkin_sensing_instruction" = "Use a color to describe your feeling today";
 "mood_checkin_sensing_intensity" = "How strong the feeling?";
 

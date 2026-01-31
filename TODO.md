@@ -105,8 +105,6 @@ Add horizontal scroll view in InnerCosmos page to display pictures that the user
 
 ---
 
----
-
 ### 3. Implement text-color focus game
 **Priority**: P2
 **Complexity**: L
@@ -175,6 +173,86 @@ Add tap gesture recognizer to the emo pet image in InnerCosmos page. When tapped
 ---
 
 ## Done
+
+### 10. Add progress bar to mood check-in flow
+**Priority**: P2
+**Complexity**: S (< 4 hours)
+**Status**: Completed
+
+Add a progress bar component to the mood check-in flow to show users their progress through the steps.
+
+**Implementation Summary**:
+- All 6 regular steps have `SoulverseProgressBar(totalSteps: 6)` with correct step progression
+- PetView excluded (one-time intro screen, not a regular step)
+- Uses theme-aware colors (`.themeProgressBarActive`, `.themeProgressBarInactive`)
+- Consistent placement centered in navigation bar area
+- Fixed width constraint using `ViewComponentConstants.onboardingProgressViewWidth`
+
+**Files with Progress Bar**:
+- `MoodCheckInSensingViewController.swift` - Step 1
+- `MoodCheckInNamingViewController.swift` - Step 2
+- `MoodCheckInShapingViewController.swift` - Step 3
+- `MoodCheckInAttributingViewController.swift` - Step 4
+- `MoodCheckInEvaluatingViewController.swift` - Step 5
+- `MoodCheckInActingViewController.swift` - Step 6
+
+---
+
+### 11. Create shared MoodCheckIn layout constants
+**Priority**: P2
+**Complexity**: S
+**Status**: Completed
+
+Created `Constants+MoodCheckIn.swift` to centralize layout constants for all MoodCheckIn ViewControllers.
+
+**Implementation Summary**:
+- Created `MoodCheckInLayout` enum with shared constants
+- Migrated all 6 MoodCheckIn ViewControllers to use shared constants
+- Removed duplicate `private enum Layout` from each ViewController
+
+**Constants Defined**:
+- `totalSteps: 6`
+- `navigationTopOffset: 16`
+- `navigationLeftOffset: 16`
+- `horizontalPadding: 40`
+- `sectionSpacing: 24`
+- `titleToSubtitleSpacing: 12`
+- `titleTopOffset: 80`
+- `bottomPadding: 40`
+- `textFieldHeight: 120`
+- `colorSliderHeight: 28`
+- `intensityCirclesHeight: 60`
+
+**Files Created**:
+- `Soulverse/MoodCheckIn/Constants+MoodCheckIn.swift`
+
+**Files Modified**:
+- All 6 MoodCheckIn ViewControllers
+
+---
+
+### 12. Fix iOS 26 naviconBack button rendering
+**Priority**: P1
+**Complexity**: S
+**Status**: Completed
+
+Fixed the back button image rendering for iOS 26 Liquid Glass style in MoodCheckIn flow.
+
+**Implementation Summary**:
+- Used `.withRenderingMode(.alwaysOriginal)` to preserve original image colors
+- Set `imageView?.contentMode = .center` to display at natural size
+- Set `clipsToBounds = false` on both button and imageView to allow shadow overflow
+- Applied tintColor only for pre-iOS 26 fallback
+
+**Files Modified**:
+- `MoodCheckInSensingViewController.swift`
+- `MoodCheckInNamingViewController.swift`
+- `MoodCheckInShapingViewController.swift`
+- `MoodCheckInAttributingViewController.swift`
+- `MoodCheckInEvaluatingViewController.swift`
+- `MoodCheckInActingViewController.swift`
+
+---
 
 ### 6. Modify moodCheckInAttributing page layout
 **Priority**: P2
