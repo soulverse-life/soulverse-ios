@@ -16,6 +16,7 @@
 "no_template" = "Free Drawing";
 "cancel" = "Cancel";
 "save" = "Save";
+"next" = "Next";
 "tools" = "Tools";
 "quest" = "Quest";
 "account" = "Account";
@@ -206,6 +207,8 @@
 "mood_checkin_sensing_title" = "Sensing";
 "mood_checkin_sensing_instruction" = "Use a color to describe your feeling today";
 "mood_checkin_sensing_intensity" = "How strong the feeling?";
+"mood_checkin_intensity_weak" = "Weak";
+"mood_checkin_intensity_strong" = "Strong";
 
 // Mood Check-In - Attributing Screen
 "mood_checkin_attributing_title" = "Attributing";

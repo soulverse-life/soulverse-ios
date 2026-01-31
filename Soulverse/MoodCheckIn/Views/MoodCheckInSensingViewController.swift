@@ -19,6 +19,7 @@ class MoodCheckInSensingViewController: ViewController {
 
     private var selectedColor: UIColor = .yellow
     private var selectedIntensity: Double = 0.5 // Default to middle intensity
+    private var hasInteractedWithSlider: Bool = false
 
     // MARK: - UI Elements
 
@@ -46,7 +47,7 @@ class MoodCheckInSensingViewController: ViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("mood_checkin_sensing_title", comment: "")
-        label.font = .projectFont(ofSize: 32, weight: .semibold)
+        label.font = .projectFont(ofSize: 34, weight: .regular)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
@@ -55,7 +56,7 @@ class MoodCheckInSensingViewController: ViewController {
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("mood_checkin_sensing_instruction", comment: "")
-        label.font = .projectFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: 17, weight: .regular)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -71,7 +72,7 @@ class MoodCheckInSensingViewController: ViewController {
     private lazy var intensityLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("mood_checkin_sensing_intensity", comment: "")
-        label.font = .projectFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: 17, weight: .regular)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
@@ -83,8 +84,30 @@ class MoodCheckInSensingViewController: ViewController {
         return view
     }()
 
+    private lazy var weakLabel: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("mood_checkin_intensity_weak", comment: "")
+        label.font = .projectFont(ofSize: 15, weight: .regular)
+        label.textColor = .themeTextPrimary
+        return label
+    }()
+
+    private lazy var strongLabel: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("mood_checkin_intensity_strong", comment: "")
+        label.font = .projectFont(ofSize: 15, weight: .regular)
+        label.textColor = .themeTextPrimary
+        return label
+    }()
+
+    /// Container view for all intensity-related components (label, circles, weak/strong labels)
+    private lazy var intensitySectionView: UIView = {
+        let view = UIView()
+        return view
+    }()
+
     private lazy var continueButton: SoulverseButton = {
-        let button = SoulverseButton(title: "Continue", style: .primary, delegate: self)
+        let button = SoulverseButton(title: NSLocalizedString("next", comment: ""), style: .primary, delegate: self)
         return button
     }()
 
@@ -107,10 +130,18 @@ class MoodCheckInSensingViewController: ViewController {
         view.addSubview(titleLabel)
         view.addSubview(instructionLabel)
         view.addSubview(colorGradientSlider)
-        view.addSubview(intensityLabel)
-        view.addSubview(intensityCircles)
+        view.addSubview(intensitySectionView)
         view.addSubview(continueButton)
 
+        // Add intensity components to the section container
+        intensitySectionView.addSubview(intensityLabel)
+        intensitySectionView.addSubview(intensityCircles)
+        intensitySectionView.addSubview(weakLabel)
+        intensitySectionView.addSubview(strongLabel)
+
+        // Initially hide intensity section until user interacts with slider
+        intensitySectionView.alpha = 0
+        continueButton.isEnabled = false
 
         backButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(MoodCheckInLayout.navigationTopOffset)
@@ -140,15 +171,33 @@ class MoodCheckInSensingViewController: ViewController {
             make.height.equalTo(MoodCheckInLayout.colorSliderHeight)
         }
 
-        intensityLabel.snp.makeConstraints { make in
+        // Intensity section container constraints
+        intensitySectionView.snp.makeConstraints { make in
             make.top.equalTo(colorGradientSlider.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
             make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
+        // Layout within the intensity section container
+        intensityLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.right.equalToSuperview()
+        }
+
         intensityCircles.snp.makeConstraints { make in
             make.top.equalTo(intensityLabel.snp.bottom).offset(MoodCheckInLayout.titleToSubtitleSpacing)
-            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
+            make.centerX.equalToSuperview()
             make.height.equalTo(MoodCheckInLayout.intensityCirclesHeight)
+        }
+
+        weakLabel.snp.makeConstraints { make in
+            make.top.equalTo(intensityCircles.snp.bottom).offset(8)
+            make.left.equalTo(intensityCircles.snp.left)
+            make.bottom.equalToSuperview()
+        }
+
+        strongLabel.snp.makeConstraints { make in
+            make.top.equalTo(intensityCircles.snp.bottom).offset(8)
+            make.right.equalTo(intensityCircles.snp.right)
         }
 
         continueButton.snp.makeConstraints { make in
@@ -178,6 +227,19 @@ extension MoodCheckInSensingViewController: ColorGradientSliderViewDelegate {
         // Update selected color and update circle colors (but not selection)
         selectedColor = color
         intensityCircles.updateColor(color)
+
+        // Show intensity section on first interaction
+        if !hasInteractedWithSlider {
+            hasInteractedWithSlider = true
+            showIntensitySection()
+        }
+    }
+
+    private func showIntensitySection() {
+        UIView.animate(withDuration: 0.3) {
+            self.intensitySectionView.alpha = 1
+        }
+        self.continueButton.isEnabled = true
     }
 }
 

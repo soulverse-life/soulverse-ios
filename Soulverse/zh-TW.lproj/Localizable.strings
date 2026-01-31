@@ -16,6 +16,7 @@
 "no_template" = "自由繪畫";
 "cancel" = "取消";
 "save" = "儲存";
+"next" = "下一步";
 "tools" = "工具";
 "quest" = "探索";
 "account" = "帳號";
@@ -206,6 +207,8 @@
 "mood_checkin_sensing_title" = "感知";
 "mood_checkin_sensing_instruction" = "用一個顏色來描述你今天的感受";
 "mood_checkin_sensing_intensity" = "感受有多強烈？";
+"mood_checkin_intensity_weak" = "弱";
+"mood_checkin_intensity_strong" = "強";
 
 // Mood Check-In - Attributing Screen
 "mood_checkin_attributing_title" = "歸因";

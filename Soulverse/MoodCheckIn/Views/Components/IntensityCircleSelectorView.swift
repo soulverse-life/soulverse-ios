@@ -17,10 +17,10 @@ class IntensityCircleSelectorView: UIView {
     // MARK: - Layout Constants
 
     private enum Layout {
-        static let circleSize: CGFloat = 50
+        static let circleSize: CGFloat = 45
         static let circleRadius: CGFloat = circleSize / 2
-        static let circleSpacing: CGFloat = 12
-        static let borderWidth: CGFloat = 3
+        static let circleSpacing: CGFloat = 24
+        static let borderWidth: CGFloat = 4
         static let selectedScale: CGFloat = 1.1
 
         // Intensity alpha range
@@ -164,19 +164,19 @@ class IntensityCircleSelectorView: UIView {
             // Get the colored view (last subview)
             guard let coloredView = containerView.subviews.last else { continue }
 
-            // Set color with calculated opacity on the colored layer
-            coloredView.backgroundColor = currentColor
-            coloredView.alpha = CGFloat(alpha)
-
             if isSelected {
-                // Selected circle: add border and slightly scale up
+                // Selected circle: solid fill with light border
                 coloredView.layer.borderWidth = Layout.borderWidth
-                coloredView.layer.borderColor = UIColor.themeTextPrimary.cgColor
+                coloredView.layer.borderColor = UIColor.white.withAlphaComponent(0.8).cgColor
+                coloredView.backgroundColor = currentColor
+                coloredView.alpha = CGFloat(alpha)
                 containerView.transform = CGAffineTransform(scaleX: Layout.selectedScale, y: Layout.selectedScale)
             } else {
-                // Unselected circles: no border, normal scale
+                // Unselected circles: solid fill with opacity, no border
                 coloredView.layer.borderWidth = 0
                 coloredView.layer.borderColor = nil
+                coloredView.backgroundColor = currentColor
+                coloredView.alpha = CGFloat(alpha)
                 containerView.transform = .identity
             }
         }
