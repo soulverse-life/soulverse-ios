@@ -67,9 +67,9 @@ extension MoodCheckInAPIService: TargetType {
                 parameters["prompt_response"] = response
             }
 
-            // Life area
-            if let lifeArea = data.lifeArea {
-                parameters["life_area"] = lifeArea.rawValue
+            // Topic
+            if let topic = data.selectedTopic {
+                parameters["topic"] = topic.rawValue
             }
 
             // Evaluation

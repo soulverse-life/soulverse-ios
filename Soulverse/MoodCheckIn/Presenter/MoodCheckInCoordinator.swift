@@ -239,8 +239,8 @@ extension MoodCheckInCoordinator: MoodCheckInShapingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInAttributingViewControllerDelegate {
 
-    func didSelectLifeArea(_ viewController: MoodCheckInAttributingViewController, lifeArea: LifeAreaOption) {
-        moodCheckInData.lifeArea = lifeArea
+    func didSelectTopic(_ viewController: MoodCheckInAttributingViewController, topic: Topic) {
+        moodCheckInData.selectedTopic = topic
         showEvaluatingScreen()
     }
 
@@ -328,7 +328,7 @@ protocol MoodCheckInShapingViewControllerDelegate: AnyObject {
 }
 
 protocol MoodCheckInAttributingViewControllerDelegate: AnyObject {
-    func didSelectLifeArea(_ viewController: MoodCheckInAttributingViewController, lifeArea: LifeAreaOption)
+    func didSelectTopic(_ viewController: MoodCheckInAttributingViewController, topic: Topic)
     func didTapBack(_ viewController: MoodCheckInAttributingViewController)
     func didTapClose(_ viewController: MoodCheckInAttributingViewController)
 }

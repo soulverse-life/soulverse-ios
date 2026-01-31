@@ -57,9 +57,10 @@ class OnboardingTopicViewController: ViewController {
         return label
     }()
 
-    private lazy var topicsGridView: UIView = {
-        let view = UIView()
-        return view
+    private lazy var topicList: SoulverseTopicList = {
+        let list = SoulverseTopicList(targetSelectedCount: 1)
+        list.delegate = self
+        return list
     }()
 
     private lazy var continueButton: SoulverseButton = {
@@ -76,14 +77,12 @@ class OnboardingTopicViewController: ViewController {
 
     weak var delegate: OnboardingTopicViewControllerDelegate?
     private var selectedTopic: Topic?
-    private var topicCards: [TopicCardView] = []
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupTopicButtons()
     }
 
     // MARK: - Setup
@@ -95,7 +94,7 @@ class OnboardingTopicViewController: ViewController {
         view.addSubview(iconImageView)
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
-        view.addSubview(topicsGridView)
+        view.addSubview(topicList)
         view.addSubview(continueButton)
 
         progressView.snp.makeConstraints { make in
@@ -127,10 +126,9 @@ class OnboardingTopicViewController: ViewController {
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
         }
 
-        topicsGridView.snp.makeConstraints { make in
+        topicList.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(60)
             make.top.equalTo(subtitleLabel.snp.bottom).offset(20)
-            make.height.equalTo(344)
         }
 
         continueButton.snp.makeConstraints { make in
@@ -141,62 +139,19 @@ class OnboardingTopicViewController: ViewController {
         }
     }
 
-    private func setupTopicButtons() {
-        let topics = Topic.allCases
-        let numberOfColumns = 2
-        let cardHeight: CGFloat = 80
-        let horizontalSpacing: CGFloat = 8
-        let verticalSpacing: CGFloat = 8
-
-        for (index, topic) in topics.enumerated() {
-            let card = TopicCardView(topic: topic)
-
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(topicCardTapped(_:)))
-            card.addGestureRecognizer(tapGesture)
-            card.isUserInteractionEnabled = true
-            card.tag = index
-
-            let row = index / numberOfColumns
-            let column = index % numberOfColumns
-
-            topicsGridView.addSubview(card)
-
-            card.snp.makeConstraints { make in
-                make.top.equalToSuperview().offset(CGFloat(row) * (cardHeight + verticalSpacing))
-                make.height.equalTo(cardHeight)
-
-                // Position cards in 2-column grid
-                if column == 0 {
-                    // Left column
-                    make.left.equalToSuperview()
-                    make.right.equalTo(topicsGridView.snp.centerX).offset(-horizontalSpacing / 2)
-                } else {
-                    // Right column
-                    make.left.equalTo(topicsGridView.snp.centerX).offset(horizontalSpacing / 2)
-                    make.right.equalToSuperview()
-                }
-            }
-            topicCards.append(card)
-        }
-    }
-
-    private func selectTopicCard(_ card: TopicCardView, for topic: Topic) {
-        topicCards.forEach { $0.isCardSelected = false }
-        card.isCardSelected = true
-        selectedTopic = topic
-        continueButton.isEnabled = true
-    }
-
     // MARK: - Actions
 
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
+}
 
-    @objc private func topicCardTapped(_ gesture: UITapGestureRecognizer) {
-        guard let card = gesture.view as? TopicCardView else { return }
-        let topic = Topic.allCases[card.tag]
-        selectTopicCard(card, for: topic)
+// MARK: - SoulverseTopicListDelegate
+
+extension OnboardingTopicViewController: SoulverseTopicListDelegate {
+    func topicList(_ topicList: SoulverseTopicList, didUpdateSelection selectedTopics: [Topic]) {
+        continueButton.isEnabled = !selectedTopics.isEmpty
+        selectedTopic = selectedTopics.first
     }
 }
 

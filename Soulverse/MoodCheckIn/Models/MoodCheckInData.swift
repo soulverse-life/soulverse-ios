@@ -34,8 +34,8 @@ struct MoodCheckInData {
 
     // MARK: - Attributing Step
 
-    /// Selected life area
-    var lifeArea: LifeAreaOption?
+    /// Selected topic
+    var selectedTopic: Topic?
 
     // MARK: - Evaluating Step
 
@@ -61,7 +61,7 @@ struct MoodCheckInData {
 
     /// Check if Attributing step is complete
     var isAttributingComplete: Bool {
-        return lifeArea != nil
+        return selectedTopic != nil
     }
 
     /// Check if Evaluating step is complete
