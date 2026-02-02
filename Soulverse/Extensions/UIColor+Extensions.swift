@@ -102,6 +102,11 @@ extension UIColor {
         ThemeManager.shared.currentTheme.buttonDisabledText
     }
 
+    /// Circle unselected background - adapts to current theme
+    static var themeCircleUnselectedBackground: UIColor {
+        ThemeManager.shared.currentTheme.circleUnselectedBackground
+    }
+
     /// Navigation bar background - adapts to current theme
     static var themeNavigationBackground: UIColor {
         ThemeManager.shared.currentTheme.navigationBarBackground

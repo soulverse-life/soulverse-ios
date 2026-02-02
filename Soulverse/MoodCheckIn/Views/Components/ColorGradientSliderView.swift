@@ -17,8 +17,9 @@ class ColorGradientSliderView: UIView {
     // MARK: - Layout Constants
 
     private enum Layout {
-        static let gradientBarHeight: CGFloat = 20  // Gradient bar height
-        static let sliderHeight: CGFloat = 28        // Standard slider height (thumb is ~28pt)
+        static let gradientBarHeight: CGFloat = 30  // Gradient bar height
+        static let sliderHeight: CGFloat = 60       // Slider height to accommodate larger thumb
+        static let thumbSize: CGFloat = 50          // Circular thumb diameter
     }
 
     // MARK: - Properties
@@ -44,17 +45,17 @@ class ColorGradientSliderView: UIView {
         return layer
     }()
 
-    private lazy var slider: SummitSlider = {
-        let slider = SummitSlider()
+    private lazy var slider: UISlider = {
+        let slider = UISlider()
         slider.minimumValue = 0
         slider.maximumValue = 1
         slider.value = 0.5
         slider.minimumTrackTintColor = .clear
         slider.maximumTrackTintColor = .clear
 
-        // Set initial thumb color to match slider position
+        // Set initial thumb image with color
         let initialColor = getColorAt(position: 0.5)
-        slider.thumbTintColor = initialColor
+        updateThumbImage(color: initialColor, for: slider)
 
         slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         return slider
@@ -120,9 +121,25 @@ class ColorGradientSliderView: UIView {
     // MARK: - Private Methods
 
     @objc private func sliderValueChanged() {
-        // Update thumb color to match selected color
-        slider.thumbTintColor = selectedColor
+        // Update thumb image with new color
+        updateThumbImage(color: selectedColor, for: slider)
         notifyDelegate()
+    }
+
+    /// Creates a circular thumb image with the given color
+    private func updateThumbImage(color: UIColor, for slider: UISlider) {
+        let thumbImage = createCircularThumbImage(color: color, size: Layout.thumbSize)
+        slider.setThumbImage(thumbImage, for: .normal)
+        slider.setThumbImage(thumbImage, for: .highlighted)
+    }
+
+    private func createCircularThumbImage(color: UIColor, size: CGFloat) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: size, height: size))
+        return renderer.image { context in
+            let rect = CGRect(x: 0, y: 0, width: size, height: size)
+            color.setFill()
+            context.cgContext.fillEllipse(in: rect)
+        }
     }
 
     private func notifyDelegate() {

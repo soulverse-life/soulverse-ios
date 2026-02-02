@@ -152,7 +152,7 @@ class MoodCheckInSensingViewController: ViewController {
         progressBar.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalTo(backButton)
-            make.width.equalTo(ViewComponentConstants.onboardingProgressViewWidth)
+            make.width.equalTo(ViewComponentConstants.progressViewWidth)
         }
 
         titleLabel.snp.makeConstraints { make in

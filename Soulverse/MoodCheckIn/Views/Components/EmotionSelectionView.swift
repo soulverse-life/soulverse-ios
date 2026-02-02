@@ -28,7 +28,7 @@ class EmotionSelectionView: UIView {
     // MARK: - Layout Constants
 
     private enum Layout {
-        static let emotionTagsHeight: CGFloat = 180
+        static let emotionTagsHeight: CGFloat = 164
         static let promptToTagsSpacing: CGFloat = 16
     }
 
@@ -63,7 +63,7 @@ class EmotionSelectionView: UIView {
 
     private lazy var emotionTagsView: SoulverseTagsView = {
         let config = SoulverseTagsViewConfig(
-            horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
+            horizontalSpacing: 8, verticalSpacing: 16, itemHeight: 48)
         let view = SoulverseTagsView(config: config)
         view.selectionMode = .multi
         view.delegate = self
@@ -147,9 +147,6 @@ class EmotionSelectionView: UIView {
 }
 
 // MARK: - SoulverseTagsViewDelegate
-
-// MARK: - SoulverseTagsViewDelegate
-
 extension EmotionSelectionView: SoulverseTagsViewDelegate {
     func soulverseTagsView(
         _ view: SoulverseTagsView, didUpdateSelectedItems items: [SoulverseTagsItemData]

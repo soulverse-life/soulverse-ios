@@ -168,7 +168,7 @@ class OnboardingBirthdayViewController: ViewController {
 
         progressView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.width.equalTo(ViewComponentConstants.onboardingProgressViewWidth)
+            make.width.equalTo(ViewComponentConstants.progressViewWidth)
             make.height.equalTo(4)
             make.centerX.equalToSuperview()
         }

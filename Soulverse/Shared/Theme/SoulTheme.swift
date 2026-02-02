@@ -112,6 +112,10 @@ extension SoulTheme {
     var buttonDisabledText: UIColor {
         UIColor(red: 157.0/255.0, green: 157.0/255.0, blue: 157.0/255.0, alpha: 1.0)
     }
+
+    var circleUnselectedBackground: UIColor {
+        UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 178.0/255.0, alpha: 1.0)
+    }
 }
 
 // MARK: - Navigation Bar

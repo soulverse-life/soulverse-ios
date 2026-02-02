@@ -15,7 +15,7 @@ struct ViewComponentConstants {
     static let navigationButtonSize: CGFloat = 44.0
     static let colorDisplaySize: CGFloat = 30.0
     
-    static let onboardingProgressViewWidth: CGFloat = 144.0
+    static let progressViewWidth: CGFloat = 144.0
     
     static let horizontalPadding: CGFloat = 26.0
 }

@@ -27,7 +27,7 @@ enum MoodCheckInLayout {
     // MARK: - Content Spacing
 
     /// Horizontal padding for content (left and right insets)
-    static let horizontalPadding: CGFloat = 40
+    static let horizontalPadding: CGFloat = 26
 
     /// Default vertical spacing between sections
     static let sectionSpacing: CGFloat = 24

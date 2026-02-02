@@ -18,7 +18,7 @@ class SoulverseTagCell: UICollectionViewCell {
     private enum Layout {
         static let cornerRadius: CGFloat = 24
         static let labelHorizontalInset: CGFloat = 18
-        static let minHeight: CGFloat = 50
+        static let minHeight: CGFloat = 44
         static let animationDuration: TimeInterval = 0.1
         static let highlightedScale: CGFloat = 0.95
         static let fontSize: CGFloat = 17.0
