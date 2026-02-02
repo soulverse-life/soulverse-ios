@@ -58,14 +58,14 @@ enum Topic: String, CaseIterable {
 
     var mainColor: UIColor {
         switch self {
-        case .physical: return UIColor(red: 255/255, green: 56/255, blue: 60/255, alpha: 1)
-        case .emotional: return UIColor(red: 255/255, green: 141/255, blue: 40/255, alpha: 1)
-        case .social: return UIColor(red: 0/255, green: 136/255, blue: 255/255, alpha: 1)
-        case .intellectual: return UIColor(red: 52/255, green: 199/255, blue: 89/255, alpha: 1)
-        case .spiritual: return UIColor(red: 97/255, green: 85/255, blue: 245/255, alpha: 1)
-        case .occupational: return UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)
-        case .environment: return UIColor(red: 0/255, green: 200/255, blue: 179/255, alpha: 1)
-        case .financial: return UIColor(red: 203/255, green: 48/255, blue: 224/255, alpha: 1)
+        case .physical: return UIColor(red: 255.0/255.0, green: 56.0/255.0, blue: 60.0/255.0, alpha: 1)
+        case .emotional: return UIColor(red: 255.0/255.0, green: 141.0/255.0, blue: 40.0/255.0, alpha: 1)
+        case .social: return UIColor(red: 0.0/255.0, green: 136.0/255.0, blue: 255.0/255.0, alpha: 1)
+        case .intellectual: return UIColor(red: 52.0/255.0, green: 199.0/255.0, blue: 89.0/255.0, alpha: 1)
+        case .spiritual: return UIColor(red: 97.0/255.0, green: 85.0/255.0, blue: 245.0/255.0, alpha: 1)
+        case .occupational: return UIColor(red: 255.0/255.0, green: 204.0/255.0, blue: 0.0/255.0, alpha: 1)
+        case .environment: return UIColor(red: 0.0/255.0, green: 200.0/255.0, blue: 179.0/255.0, alpha: 1)
+        case .financial: return UIColor(red: 203.0/255.0, green: 48.0/255.0, blue: 224.0/255.0, alpha: 1)
         }
     }
 }

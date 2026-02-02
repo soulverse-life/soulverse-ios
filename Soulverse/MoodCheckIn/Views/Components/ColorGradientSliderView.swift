@@ -32,12 +32,12 @@ class ColorGradientSliderView: UIView {
 
         // Rainbow gradient colors
         layer.colors = [
-            UIColor(red: 255/255, green: 82/255, blue: 82/255, alpha: 1).cgColor,    // Red
-            UIColor(red: 255/255, green: 183/255, blue: 77/255, alpha: 1).cgColor,   // Orange
-            UIColor(red: 255/255, green: 235/255, blue: 59/255, alpha: 1).cgColor,   // Yellow
-            UIColor(red: 118/255, green: 209/255, blue: 145/255, alpha: 1).cgColor,  // Green
-            UIColor(red: 103/255, green: 183/255, blue: 220/255, alpha: 1).cgColor,  // Blue
-            UIColor(red: 138/255, green: 129/255, blue: 207/255, alpha: 1).cgColor   // Purple
+            UIColor(red: 255.0/255.0, green: 82.0/255.0, blue: 82.0/255.0, alpha: 1).cgColor,    // Red
+            UIColor(red: 255.0/255.0, green: 183.0/255.0, blue: 77.0/255.0, alpha: 1).cgColor,   // Orange
+            UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 59.0/255.0, alpha: 1).cgColor,   // Yellow
+            UIColor(red: 118.0/255.0, green: 209.0/255.0, blue: 145.0/255.0, alpha: 1).cgColor,  // Green
+            UIColor(red: 103.0/255.0, green: 183.0/255.0, blue: 220.0/255.0, alpha: 1).cgColor,  // Blue
+            UIColor(red: 138.0/255.0, green: 129.0/255.0, blue: 207.0/255.0, alpha: 1).cgColor   // Purple
         ]
 
         layer.cornerRadius = Layout.gradientBarHeight / 2
@@ -134,12 +134,12 @@ class ColorGradientSliderView: UIView {
     private func getColorAt(position: Float) -> UIColor {
         // Map position to color gradient
         let colors = [
-            UIColor(red: 255/255, green: 82/255, blue: 82/255, alpha: 1),    // Red
-            UIColor(red: 255/255, green: 183/255, blue: 77/255, alpha: 1),   // Orange
-            UIColor(red: 255/255, green: 235/255, blue: 59/255, alpha: 1),   // Yellow
-            UIColor(red: 118/255, green: 209/255, blue: 145/255, alpha: 1),  // Green
-            UIColor(red: 103/255, green: 183/255, blue: 220/255, alpha: 1),  // Blue
-            UIColor(red: 138/255, green: 129/255, blue: 207/255, alpha: 1)   // Purple
+            UIColor(red: 255.0/255.0, green: 82.0/255.0, blue: 82.0/255.0, alpha: 1),    // Red
+            UIColor(red: 255.0/255.0, green: 183.0/255.0, blue: 77.0/255.0, alpha: 1),   // Orange
+            UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 59.0/255.0, alpha: 1),   // Yellow
+            UIColor(red: 118.0/255.0, green: 209.0/255.0, blue: 145.0/255.0, alpha: 1),  // Green
+            UIColor(red: 103.0/255.0, green: 183.0/255.0, blue: 220.0/255.0, alpha: 1),  // Blue
+            UIColor(red: 138.0/255.0, green: 129.0/255.0, blue: 207.0/255.0, alpha: 1)   // Purple
         ]
 
         let clampedPosition = max(0, min(1, position))
