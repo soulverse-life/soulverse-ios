@@ -71,32 +71,19 @@ class ColorEmotionSummaryView: UIView {
 
     // MARK: - Public Methods
 
-    /// Configure the view with color and emotions
+    /// Configure the view with color and recorded emotion
     /// - Parameters:
     ///   - color: The selected color
-    ///   - emotions: Array of selected emotions with intensities (1-2 emotions)
-    func configure(color: UIColor, emotions: [(emotion: EmotionType, intensity: Double)]) {
+    ///   - emotion: The recorded emotion (already resolved from user selection)
+    func configure(color: UIColor, emotion: RecordedEmotion) {
         colorDisplayView.backgroundColor = color
-        updateEmotionLabel(emotions: emotions)
-    }
 
-    // MARK: - Private Methods
-
-    private func updateEmotionLabel(emotions: [(emotion: EmotionType, intensity: Double)]) {
-        if emotions.count == 1 {
-            // Single emotion: "Joy"
-            emotionLabel.text = emotions[0].emotion.displayName
-        } else if emotions.count == 2 {
-            // Two emotions: "Joy + Trust = Love"
-            let emotion1 = emotions[0].emotion
-            let emotion2 = emotions[1].emotion
-
-            if let combinedEmotion = EmotionCombination.getCombinedEmotion(from: emotion1, and: emotion2) {
-                emotionLabel.text = "\(emotion1.displayName) + \(emotion2.displayName) = \(combinedEmotion.displayName)"
-            } else {
-                // Fallback if no combination found
-                emotionLabel.text = "\(emotion1.displayName) + \(emotion2.displayName)"
-            }
+        // For combined emotions, show "Joy + Anger = Pride" format
+        if let (emotion1, emotion2) = emotion.sourceEmotions {
+            emotionLabel.text = "\(emotion1.displayName) + \(emotion2.displayName) = \(emotion.displayName)"
+        } else {
+            // For intensity-based emotions, just show the name
+            emotionLabel.text = emotion.displayName
         }
     }
 }

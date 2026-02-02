@@ -76,11 +76,11 @@ final class MoodCheckInCoordinator {
     private func showShapingScreen() {
         let viewController = MoodCheckInShapingViewController()
         viewController.delegate = self
-        // Pass the selected color with intensity (alpha) and emotions from previous steps
-        if let selectedColor = moodCheckInData.selectedColor {
+        // Pass the selected color with intensity (alpha) and recorded emotion from previous steps
+        if let selectedColor = moodCheckInData.selectedColor,
+           let recordedEmotion = moodCheckInData.recordedEmotion {
             let colorWithAlpha = selectedColor.withAlphaComponent(moodCheckInData.colorIntensity)
-            let emotions = moodCheckInData.emotions
-            viewController.setSelectedColorAndEmotions(color: colorWithAlpha, emotions: emotions)
+            viewController.setSelectedColorAndEmotion(color: colorWithAlpha, emotion: recordedEmotion)
         }
         navigationController.pushViewController(viewController, animated: true)
     }
@@ -202,8 +202,8 @@ extension MoodCheckInCoordinator: MoodCheckInSensingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInNamingViewControllerDelegate {
 
-    func didSelectEmotions(_ viewController: MoodCheckInNamingViewController, emotions: [(emotion: EmotionType, intensity: Double)]) {
-        moodCheckInData.emotions = emotions
+    func didSelectEmotion(_ viewController: MoodCheckInNamingViewController, emotion: RecordedEmotion) {
+        moodCheckInData.recordedEmotion = emotion
         showShapingScreen()
     }
 
@@ -316,7 +316,7 @@ protocol MoodCheckInSensingViewControllerDelegate: AnyObject {
 }
 
 protocol MoodCheckInNamingViewControllerDelegate: AnyObject {
-    func didSelectEmotions(_ viewController: MoodCheckInNamingViewController, emotions: [(emotion: EmotionType, intensity: Double)])
+    func didSelectEmotion(_ viewController: MoodCheckInNamingViewController, emotion: RecordedEmotion)
     func didTapBack(_ viewController: MoodCheckInNamingViewController)
     func didTapClose(_ viewController: MoodCheckInNamingViewController)
 }

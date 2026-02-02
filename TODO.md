@@ -306,6 +306,41 @@ Created a reusable `Topic` enum in `Shared/Models/Topic.swift` with:
 
 ---
 
+### 13. Redesign emotion data structure with uni-key approach
+**Priority**: P1
+**Complexity**: M
+**Status**: Completed
+
+Redesigned the emotion data structure in mood check-in flow to use a uni-key approach based on Plutchik's Wheel of Emotions. The key insight is that intensity is encoded IN the emotion name (e.g., Joy+low = Serenity), not stored separately.
+
+**Implementation Summary**:
+- Unified 52 emotions into single `RecordedEmotion` enum (24 intensity-based + 28 combined)
+- Changed from tuple array `[(EmotionType, intensity)]` to single `RecordedEmotion`
+- API now sends single `emotion` key (e.g., "serenity", "pride") instead of array
+- Added `sourceEmotions` property for displaying "Joy + Anger = Pride" format
+- Merged `EmotionType.intensityLabels` to use same localization keys (single source of truth)
+- Cleaned up duplicate localization keys
+
+**Files Created/Deleted**:
+- Deleted `EmotionCombination.swift` (merged into RecordedEmotion)
+
+**Files Modified**:
+- `RecordedEmotion.swift` - Added `sourceEmotions`, `isCombinedEmotion` properties
+- `MoodCheckInData.swift` - `emotions` → `recordedEmotion`
+- `MoodCheckInNamingViewController.swift` - ViewState uses `resolvedEmotion`
+- `MoodCheckInShapingViewController.swift` - Uses `RecordedEmotion`
+- `ColorEmotionSummaryView.swift` - Displays combined emotion format
+- `MoodCheckInActingViewController.swift` - Displays `recordedEmotion.displayName`
+- `MoodCheckInCoordinator.swift` - Updated delegate protocols
+- `MoodCheckInAPIService.swift` - Uni-key API format
+- `EmotionType.swift` - Merged intensity labels to use direct emotion keys
+- `en.lproj/Localizable.strings` - Added 44 new keys, removed 52 duplicates
+- `zh-TW.lproj/Localizable.strings` - Added 44 new keys, removed 52 duplicates
+
+**Note**: User must manually remove `EmotionCombination.swift` reference from Xcode project.
+
+---
+
 ## Notes
 
 **Priority Levels**:

@@ -250,13 +250,12 @@ class MoodCheckInActingViewController: ViewController {
             valueLabel.text = data.selectedColor != nil ? NSLocalizedString("mood_checkin_acting_selected", comment: "") : NSLocalizedString("mood_checkin_acting_na", comment: "")
         }
         
-        // Update emotions row (display up to 2 emotions)
+        // Update emotions row (displays the resolved emotion name)
         if let valueLabel = emotionsRow.viewWithTag(100) as? UILabel {
-            if data.emotions.isEmpty {
-                valueLabel.text = NSLocalizedString("mood_checkin_acting_na", comment: "")
+            if let emotion = data.recordedEmotion {
+                valueLabel.text = emotion.displayName
             } else {
-                let emotionNames = data.emotions.map { $0.emotion.displayName }
-                valueLabel.text = emotionNames.joined(separator: ", ")
+                valueLabel.text = NSLocalizedString("mood_checkin_acting_na", comment: "")
             }
         }
         

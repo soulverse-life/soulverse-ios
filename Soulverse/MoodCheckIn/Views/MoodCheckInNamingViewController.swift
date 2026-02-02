@@ -187,28 +187,32 @@ class MoodCheckInNamingViewController: ViewController {
         continueButton.isEnabled = viewState.canContinue
     }
 
-    private func updateIntensityViews(for emotions: [EmotionType]) {
-        // Remove views for deselected emotions
-        for (emotion, view) in intensityViews where !emotions.contains(emotion) {
-            view.removeFromSuperview()
-            intensityViews.removeValue(forKey: emotion)
-        }
-
-        // Add views for newly selected emotions
-        for emotion in emotions where intensityViews[emotion] == nil {
-            let intensityView = IntensitySelectionView()
-            intensityView.delegate = self
-            intensityView.configure(emotion: emotion)
-
-            intensityViews[emotion] = intensityView
-        }
-
-        // Rebuild stack view in correct order
+    private func updateIntensitySection() {
+        // Clear existing views
         intensityContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        for emotion in emotions {
-            if let view = intensityViews[emotion] {
-                intensityContainer.addArrangedSubview(view)
+        intensityViews.removeAll()
+
+        // Only show intensity selector for single emotion selection
+        guard viewState.shouldShowIntensity,
+              let emotion = viewState.selectedEmotions.first else {
+            // Hide intensity container with animation
+            UIView.animate(withDuration: 0.2) {
+                self.intensityContainer.alpha = 0
             }
+            return
+        }
+
+        // Create and show intensity view for the single emotion
+        let intensityView = IntensitySelectionView()
+        intensityView.delegate = self
+        intensityView.configure(emotion: emotion)
+
+        intensityViews[emotion] = intensityView
+        intensityContainer.addArrangedSubview(intensityView)
+
+        // Show intensity container with animation
+        UIView.animate(withDuration: 0.2) {
+            self.intensityContainer.alpha = 1
         }
     }
 
@@ -230,19 +234,13 @@ class MoodCheckInNamingViewController: ViewController {
 
 extension MoodCheckInNamingViewController: EmotionSelectionViewDelegate {
     func didUpdateEmotions(_ view: EmotionSelectionView, emotions: [EmotionType]) {
-        // Update view state with new emotions (preserve existing intensities, default 0.5 for new)
-        var newEmotionsData: [(emotion: EmotionType, intensity: Double)] = []
+        viewState.selectedEmotions = emotions
 
-        for emotion in emotions {
-            // Find existing intensity or use default
-            let existingIntensity = viewState.selectedEmotions.first(where: { $0.emotion == emotion })?.intensity ?? 0.5
-            newEmotionsData.append((emotion: emotion, intensity: existingIntensity))
-        }
+        // Reset intensity to default when selection changes
+        viewState.intensity = 0.5
 
-        viewState.selectedEmotions = newEmotionsData
-
-        // Update intensity views
-        updateIntensityViews(for: emotions)
+        // Update intensity section visibility
+        updateIntensitySection()
     }
 
     func didReachMaximumSelection(_ view: EmotionSelectionView) {
@@ -254,10 +252,7 @@ extension MoodCheckInNamingViewController: EmotionSelectionViewDelegate {
 
 extension MoodCheckInNamingViewController: IntensitySelectionViewDelegate {
     func didChangeIntensity(_ view: IntensitySelectionView, emotion: EmotionType, intensity: Double) {
-        // Update the intensity for the specific emotion
-        if let index = viewState.selectedEmotions.firstIndex(where: { $0.emotion == emotion }) {
-            viewState.selectedEmotions[index].intensity = intensity
-        }
+        viewState.intensity = intensity
     }
 }
 
@@ -265,8 +260,8 @@ extension MoodCheckInNamingViewController: IntensitySelectionViewDelegate {
 
 extension MoodCheckInNamingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        guard !viewState.selectedEmotions.isEmpty else { return }
-        delegate?.didSelectEmotions(self, emotions: viewState.selectedEmotions)
+        guard let recordedEmotion = viewState.resolvedEmotion else { return }
+        delegate?.didSelectEmotion(self, emotion: recordedEmotion)
     }
 }
 
@@ -275,10 +270,29 @@ extension MoodCheckInNamingViewController: SoulverseButtonDelegate {
 private extension MoodCheckInNamingViewController {
     struct ViewState {
         var selectedColor: UIColor = .yellow
-        var selectedEmotions: [(emotion: EmotionType, intensity: Double)] = []
+        var selectedEmotions: [EmotionType] = []
+        var intensity: Double = 0.5  // Only used for single emotion selection
 
         var canContinue: Bool {
-            return !selectedEmotions.isEmpty && selectedEmotions.count <= 2
+            // Must have 1-2 emotions AND the combination must be resolvable
+            return resolvedEmotion != nil
+        }
+
+        /// Whether intensity selector should be shown (only for single emotion)
+        var shouldShowIntensity: Bool {
+            return selectedEmotions.count == 1
+        }
+
+        /// Resolve the final RecordedEmotion based on current selection
+        var resolvedEmotion: RecordedEmotion? {
+            switch selectedEmotions.count {
+            case 1:
+                return RecordedEmotion.from(primary: selectedEmotions[0], intensity: intensity)
+            case 2:
+                return RecordedEmotion.from(emotion1: selectedEmotions[0], emotion2: selectedEmotions[1])
+            default:
+                return nil
+            }
         }
     }
 }

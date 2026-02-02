@@ -116,7 +116,7 @@
 "mood_checkin_naming_max_emotions" = "You can select up to 2 emotions";
 "mood_checkin_continue" = "Continue";
 
-// Mood Check-In - Emotion Types
+// Mood Check-In - Primary Emotion Types (8 primary emotions)
 "emotion_joy" = "Joy";
 "emotion_sadness" = "Sadness";
 "emotion_anger" = "Anger";
@@ -126,77 +126,71 @@
 "emotion_anticipation" = "Anticipation";
 "emotion_surprise" = "Surprise";
 
-// Mood Check-In - Emotion Intensity Labels
-"emotion_joy_low" = "Serenity";
-"emotion_joy_medium" = "Joy";
-"emotion_joy_high" = "Ecstasy";
+// Mood Check-In - Intensity-Based Emotions (used by RecordedEmotion)
+// Joy Family
+"emotion_serenity" = "Serenity";
+"emotion_ecstasy" = "Ecstasy";
+// Trust Family
+"emotion_acceptance" = "Acceptance";
+"emotion_admiration" = "Admiration";
+// Fear Family
+"emotion_apprehension" = "Apprehension";
+"emotion_terror" = "Terror";
+// Surprise Family
+"emotion_distraction" = "Distraction";
+"emotion_amazement" = "Amazement";
+// Sadness Family
+"emotion_pensiveness" = "Pensiveness";
+"emotion_grief" = "Grief";
+// Disgust Family
+"emotion_boredom" = "Boredom";
+"emotion_loathing" = "Loathing";
+// Anger Family
+"emotion_annoyance" = "Annoyance";
+"emotion_rage" = "Rage";
+// Anticipation Family
+"emotion_interest" = "Interest";
+"emotion_vigilance" = "Vigilance";
 
-"emotion_sadness_low" = "Pensiveness";
-"emotion_sadness_medium" = "Sadness";
-"emotion_sadness_high" = "Grief";
+// Mood Check-In - Combined Emotions (Primary Dyads)
+"emotion_optimism" = "Optimism";
+"emotion_love" = "Love";
+"emotion_submission" = "Submission";
+"emotion_awe" = "Awe";
+"emotion_disapproval" = "Disapproval";
+"emotion_remorse" = "Remorse";
+"emotion_contempt" = "Contempt";
+"emotion_aggressiveness" = "Aggressiveness";
 
-"emotion_anger_low" = "Annoyance";
-"emotion_anger_medium" = "Anger";
-"emotion_anger_high" = "Rage";
+// Mood Check-In - Combined Emotions (Secondary Dyads)
+"emotion_guilt" = "Guilt";
+"emotion_curiosity" = "Curiosity";
+"emotion_despair" = "Despair";
+"emotion_unbelief" = "Unbelief";
+"emotion_envy" = "Envy";
+"emotion_cynicism" = "Cynicism";
+"emotion_pride" = "Pride";
+"emotion_fatalism" = "Fatalism";
+"emotion_bittersweetness" = "Bittersweetness";
+"emotion_dominance" = "Dominance";
+"emotion_shame" = "Shame";
+"emotion_confusion" = "Confusion";
 
-"emotion_fear_low" = "Apprehension";
-"emotion_fear_medium" = "Fear";
-"emotion_fear_high" = "Terror";
-
-"emotion_trust_low" = "Acceptance";
-"emotion_trust_medium" = "Trust";
-"emotion_trust_high" = "Admiration";
-
-"emotion_disgust_low" = "Boredom";
-"emotion_disgust_medium" = "Disgust";
-"emotion_disgust_high" = "Loathing";
-
-"emotion_anticipation_low" = "Interest";
-"emotion_anticipation_medium" = "Anticipation";
-"emotion_anticipation_high" = "Vigilance";
-
-"emotion_surprise_low" = "Distraction";
-"emotion_surprise_medium" = "Surprise";
-"emotion_surprise_high" = "Amazement";
+// Mood Check-In - Combined Emotions (Tertiary Dyads)
+"emotion_morbidness" = "Morbidness";
+"emotion_sentimentality" = "Sentimentality";
+"emotion_anxiety" = "Anxiety";
+"emotion_delight" = "Delight";
+"emotion_resignation" = "Resignation";
+"emotion_horror" = "Horror";
+"emotion_outrage" = "Outrage";
+"emotion_pessimism" = "Pessimism";
 
 // Mood Check-In - Shaping Screen
 "mood_checkin_shaping_title" = "Shaping";
 "mood_checkin_shaping_subtitle" = "Emotions are subjective.\nThrough language and metaphor, you can better\nsense, understand and converse with them";
 "mood_checkin_shaping_choose_prompt" = "Choose a prompt";
 
-// Mood Check-In - Emotion Combinations (Primary Dyads)
-"emotion_combination_optimism" = "Optimism";
-"emotion_combination_love" = "Love";
-"emotion_combination_submission" = "Submission";
-"emotion_combination_awe" = "Awe";
-"emotion_combination_disapproval" = "Disapproval";
-"emotion_combination_remorse" = "Remorse";
-"emotion_combination_contempt" = "Contempt";
-"emotion_combination_aggressiveness" = "Aggressiveness";
-
-// Mood Check-In - Emotion Combinations (Secondary Dyads)
-"emotion_combination_guilt" = "Guilt";
-"emotion_combination_curiosity" = "Curiosity";
-"emotion_combination_despair" = "Despair";
-"emotion_combination_unbelief" = "Unbelief";
-"emotion_combination_envy" = "Envy";
-"emotion_combination_cynicism" = "Cynicism";
-"emotion_combination_pride" = "Pride";
-"emotion_combination_fatalism" = "Fatalism";
-"emotion_combination_bittersweetness" = "Bittersweetness";
-"emotion_combination_dominance" = "Dominance";
-"emotion_combination_shame" = "Shame";
-"emotion_combination_confusion" = "Confusion";
-
-// Mood Check-In - Emotion Combinations (Tertiary Dyads)
-"emotion_combination_morbidness" = "Morbidness";
-"emotion_combination_sentimentality" = "Sentimentality";
-"emotion_combination_anxiety" = "Anxiety";
-"emotion_combination_delight" = "Delight";
-"emotion_combination_resignation" = "Resignation";
-"emotion_combination_horror" = "Horror";
-"emotion_combination_outrage" = "Outrage";
-"emotion_combination_pessimism" = "Pessimism";
 
 // Mood Check-In - Pet Screen
 "mood_checkin_pet_title" = "This is your EmoPet";

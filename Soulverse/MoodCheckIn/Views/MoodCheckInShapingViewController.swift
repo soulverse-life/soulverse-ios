@@ -16,7 +16,7 @@ class MoodCheckInShapingViewController: ViewController {
 
     private var selectedPrompt: PromptOption?
     private var promptResponse: String = ""
-    private var selectedEmotions: [(emotion: EmotionType, intensity: Double)] = []
+    private var recordedEmotion: RecordedEmotion?
 
     // MARK: - View-specific Constants
 
@@ -222,9 +222,9 @@ class MoodCheckInShapingViewController: ViewController {
 
     // MARK: - Public Methods
 
-    func setSelectedColorAndEmotions(color: UIColor, emotions: [(emotion: EmotionType, intensity: Double)]) {
-        selectedEmotions = emotions
-        colorEmotionSection.configure(color: color, emotions: emotions)
+    func setSelectedColorAndEmotion(color: UIColor, emotion: RecordedEmotion) {
+        recordedEmotion = emotion
+        colorEmotionSection.configure(color: color, emotion: emotion)
     }
 
     // MARK: - Private Methods
