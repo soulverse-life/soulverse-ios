@@ -220,7 +220,7 @@ extension MoodCheckInCoordinator: MoodCheckInNamingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInShapingViewControllerDelegate {
 
-    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption, response: String) {
+    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption?, response: String?) {
         moodCheckInData.selectedPrompt = prompt
         moodCheckInData.promptResponse = response
         showAttributingScreen()
@@ -322,7 +322,7 @@ protocol MoodCheckInNamingViewControllerDelegate: AnyObject {
 }
 
 protocol MoodCheckInShapingViewControllerDelegate: AnyObject {
-    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption, response: String)
+    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption?, response: String?)
     func didTapBack(_ viewController: MoodCheckInShapingViewController)
     func didTapClose(_ viewController: MoodCheckInShapingViewController)
 }

@@ -120,19 +120,13 @@ class SoulverseTagsView: UIView {
 
         switch selectionMode {
         case .single:
-            // Single Selection Loop
-            // Deselect all others, Select the target if not already selected (or enforce selection)
-            // Sticking to: Tap -> Selects this one.
-
-            // If we want to allow re-tapping to do nothing or ensure it's selected:
+            // Single selection with toggle support:
+            // - If tapping already selected item → deselect it (toggle off)
+            // - If tapping unselected item → select it and deselect others
             let wasSelected = items[index].isSelected
 
-            // If already selected, do nothing? Or just ensure others are off?
-            // "reverts others to unselected".
-
-            // Optimization: Just loop and set.
             for i in 0..<items.count {
-                let shouldBeSelected = (i == index)
+                let shouldBeSelected = (i == index) && !wasSelected
                 if items[i].isSelected != shouldBeSelected {
                     items[i].isSelected = shouldBeSelected
                     changed = true

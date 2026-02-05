@@ -48,7 +48,7 @@ enum MoodCheckInLayout {
     // MARK: - Component Sizes
 
     /// Height for text input fields
-    static let textFieldHeight: CGFloat = 120
+    static let textFieldHeight: CGFloat = 80
 
     /// Height for color gradient slider
     static let colorSliderHeight: CGFloat = 28

@@ -10,7 +10,11 @@ import UIKit
 
 /// Delegate protocol for prompt selection events
 protocol PromptSelectionViewDelegate: AnyObject {
-    func didSelectPrompt(_ view: PromptSelectionView, prompt: PromptOption)
+    /// Called when a prompt is selected or deselected
+    /// - Parameters:
+    ///   - view: The PromptSelectionView
+    ///   - prompt: The selected prompt, or nil if deselected
+    func didUpdatePromptSelection(_ view: PromptSelectionView, prompt: PromptOption?)
 }
 
 /// A view that prompts the user to select a prompt option
@@ -21,12 +25,9 @@ class PromptSelectionView: UIView {
 
     weak var delegate: PromptSelectionViewDelegate?
 
-    private var selectedPrompt: PromptOption?
-
     // MARK: - Layout Constants
 
     private enum Layout {
-        static let promptTagsHeight: CGFloat = 180
         static let instructionToTagsSpacing: CGFloat = 16
     }
 
@@ -34,7 +35,7 @@ class PromptSelectionView: UIView {
 
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("mood_checkin_shaping_choose_prompt", comment: "")
+        label.text = NSLocalizedString("mood_checkin_shaping_pick_prompt", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .semibold)
         label.textColor = .themeTextPrimary
         return label
@@ -42,7 +43,7 @@ class PromptSelectionView: UIView {
 
     private lazy var promptTagsView: SoulverseTagsView = {
         let config = SoulverseTagsViewConfig(
-            horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
+            horizontalSpacing: 8, verticalSpacing: 16, itemHeight: 48)
         let view = SoulverseTagsView(config: config)
         view.selectionMode = .single
         view.delegate = self
@@ -78,7 +79,6 @@ class PromptSelectionView: UIView {
         promptTagsView.snp.makeConstraints { make in
             make.top.equalTo(instructionLabel.snp.bottom).offset(Layout.instructionToTagsSpacing)
             make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(Layout.promptTagsHeight)
         }
     }
 
@@ -87,14 +87,6 @@ class PromptSelectionView: UIView {
             SoulverseTagsItemData(title: prompt.displayName, isSelected: false)
         }
         promptTagsView.setItems(prompts)
-    }
-
-    // MARK: - Public Methods
-
-    /// Get the currently selected prompt
-    /// - Returns: The selected prompt option, or nil if none selected
-    func getSelectedPrompt() -> PromptOption? {
-        return selectedPrompt
     }
 }
 
@@ -105,15 +97,13 @@ extension PromptSelectionView: SoulverseTagsViewDelegate {
         _ view: SoulverseTagsView, didUpdateSelectedItems items: [SoulverseTagsItemData]
     ) {
         guard let selectedItem = items.first else {
-            selectedPrompt = nil
+            // No selection - prompt was deselected
+            delegate?.didUpdatePromptSelection(self, prompt: nil)
             return
         }
 
         // Find the prompt option that matches the selected item's title
-        if let prompt = PromptOption.allCases.first(where: { $0.displayName == selectedItem.title })
-        {
-            selectedPrompt = prompt
-            delegate?.didSelectPrompt(self, prompt: prompt)
-        }
+        let prompt = PromptOption.allCases.first { $0.displayName == selectedItem.title }
+        delegate?.didUpdatePromptSelection(self, prompt: prompt)
     }
 }

@@ -54,9 +54,9 @@ struct MoodCheckInData {
         return recordedEmotion != nil
     }
 
-    /// Check if Shaping step is complete
+    /// Check if Shaping step is complete (optional step - always complete)
     var isShapingComplete: Bool {
-        return selectedPrompt != nil && !(promptResponse?.isEmpty ?? true)
+        return true
     }
 
     /// Check if Attributing step is complete

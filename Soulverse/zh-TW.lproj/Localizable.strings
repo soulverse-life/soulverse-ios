@@ -188,8 +188,10 @@
 
 // Mood Check-In - Shaping Screen
 "mood_checkin_shaping_title" = "塑形";
-"mood_checkin_shaping_subtitle" = "情緒是主觀的\n透過語言和隱喻，你可以更好地\n感知、理解和對話它們";
-"mood_checkin_shaping_choose_prompt" = "選擇一個提示";
+"mood_checkin_shaping_subtitle" = "";
+"mood_checkin_shaping_feeling_prefix" = "你現在感受到";
+"mood_checkin_shaping_text_header" = "寫一句話";
+"mood_checkin_shaping_pick_prompt" = "選擇一個提示";
 
 
 // Mood Check-In - Pet Screen
@@ -270,3 +272,5 @@
 "inner_cosmo_period_monthly" = "每月";
 "inner_cosmo_emo_pet" = "情緒寵物";
 "inner_cosmo_mood_checkin_button" = "情緒紀錄";
+"inner_cosmo_mood_entries_header" = "最近的心情";
+"inner_cosmo_mood_entry_draw_cta" = "繪製";

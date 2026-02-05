@@ -42,7 +42,7 @@ class MoodCheckInEvaluatingViewController: ViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("mood_checkin_evaluating_title", comment: "")
-        label.font = .projectFont(ofSize: 32, weight: .semibold)
+        label.font = .projectFont(ofSize: 34, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label

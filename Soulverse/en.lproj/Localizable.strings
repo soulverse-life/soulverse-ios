@@ -188,8 +188,10 @@
 
 // Mood Check-In - Shaping Screen
 "mood_checkin_shaping_title" = "Shaping";
-"mood_checkin_shaping_subtitle" = "Emotions are subjective.\nThrough language and metaphor, you can better\nsense, understand and converse with them";
-"mood_checkin_shaping_choose_prompt" = "Choose a prompt";
+"mood_checkin_shaping_subtitle" = "Emotions are personal.\nLet language or metaphor give your feelings a shape.";
+"mood_checkin_shaping_feeling_prefix" = "You are feeling";
+"mood_checkin_shaping_text_header" = "Write a sentence";
+"mood_checkin_shaping_pick_prompt" = "Pick a prompt";
 
 
 // Mood Check-In - Pet Screen
@@ -272,3 +274,5 @@
 "inner_cosmo_period_monthly" = "Monthly";
 "inner_cosmo_emo_pet" = "E.M.O pet";
 "inner_cosmo_mood_checkin_button" = "Mood checkin";
+"inner_cosmo_mood_entries_header" = "Recent Moods";
+"inner_cosmo_mood_entry_draw_cta" = "Draw";

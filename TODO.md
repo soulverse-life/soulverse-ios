@@ -341,6 +341,33 @@ Redesigned the emotion data structure in mood check-in flow to use a uni-key app
 
 ---
 
+### 14. Refine emotion display in Naming → Shaping flow
+**Priority**: P2
+**Complexity**: S
+**Status**: Completed
+
+Adjusted how emotions are displayed across MoodCheckIn Naming and Shaping steps.
+
+**Requirements**:
+1. **MoodCheckInNamingViewController.swift**:
+   - Single emotion selected → Show intensity slider
+   - Two primary emotions selected → Show combined formula text: "Joy + Trust = Love"
+   - Use the `combinedEmotionLabel` that already exists
+
+2. **MoodCheckInShapingViewController.swift / ColorEmotionSummaryView**:
+   - Show only the resolved `recordedEmotion` name directly (e.g., "Love")
+   - No formula repeat since it was already shown in Naming step
+
+**Implementation Summary**:
+- Added constraints for `combinedEmotionLabel` in NamingVC
+- Updated `updateIntensitySection()` to toggle between intensity slider (1 emotion) and formula label (2 emotions)
+- `ColorEmotionSummaryView` already simplified to show only `emotion.displayName`
+
+**Files Modified**:
+- `MoodCheckInNamingViewController.swift` - Added combinedEmotionLabel constraints, updated updateIntensitySection()
+
+---
+
 ## Notes
 
 **Priority Levels**:
