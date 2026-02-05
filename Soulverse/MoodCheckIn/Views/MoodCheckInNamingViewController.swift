@@ -76,6 +76,17 @@ class MoodCheckInNamingViewController: ViewController {
 
     private var intensityViews: [EmotionType: IntensitySelectionView] = [:]
 
+    /// Label showing combined emotion formula (e.g., "Joy + Trust = Love")
+    private lazy var combinedEmotionLabel: UILabel = {
+        let label = UILabel()
+        label.font = .projectFont(ofSize: 18, weight: .medium)
+        label.textColor = .themeTextPrimary
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.alpha = 0
+        return label
+    }()
+
     private lazy var continueButton: SoulverseButton = {
         let buttonTitle = NSLocalizedString("mood_checkin_continue", comment: "")
         let button = SoulverseButton(title: buttonTitle, style: .primary, delegate: self)
@@ -111,6 +122,7 @@ class MoodCheckInNamingViewController: ViewController {
         view.addSubview(colorSummarySection)
         view.addSubview(emotionSelectionSection)
         view.addSubview(intensityContainer)
+        view.addSubview(combinedEmotionLabel)
     }
 
     private func setupContinueButton() {
@@ -163,12 +175,18 @@ class MoodCheckInNamingViewController: ViewController {
             make.top.equalTo(emotionSelectionSection.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
             make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
+
+        combinedEmotionLabel.snp.makeConstraints { make in
+            make.top.equalTo(emotionSelectionSection.snp.bottom).offset(MoodCheckInLayout.sectionSpacing * 3)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
+        }
     }
 
     private func setupContinueButtonConstraints() {
         continueButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
             make.top.greaterThanOrEqualTo(intensityContainer.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.top.greaterThanOrEqualTo(combinedEmotionLabel.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-MoodCheckInLayout.bottomPadding)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
@@ -188,31 +206,45 @@ class MoodCheckInNamingViewController: ViewController {
     }
 
     private func updateIntensitySection() {
-        // Clear existing views
+        // Clear existing intensity views
         intensityContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
         intensityViews.removeAll()
 
-        // Only show intensity selector for single emotion selection
-        guard viewState.shouldShowIntensity,
-              let emotion = viewState.selectedEmotions.first else {
-            // Hide intensity container with animation
+        let emotionCount = viewState.selectedEmotions.count
+
+        // Single emotion: show intensity selector, hide combined label
+        if emotionCount == 1, let emotion = viewState.selectedEmotions.first {
+            let intensityView = IntensitySelectionView()
+            intensityView.delegate = self
+            intensityView.configure(emotion: emotion)
+
+            intensityViews[emotion] = intensityView
+            intensityContainer.addArrangedSubview(intensityView)
+
             UIView.animate(withDuration: 0.2) {
-                self.intensityContainer.alpha = 0
+                self.intensityContainer.alpha = 1
+                self.combinedEmotionLabel.alpha = 0
             }
             return
         }
 
-        // Create and show intensity view for the single emotion
-        let intensityView = IntensitySelectionView()
-        intensityView.delegate = self
-        intensityView.configure(emotion: emotion)
+        // Two emotions: hide intensity selector, show combined emotion formula
+        if emotionCount == 2, let resolvedEmotion = viewState.resolvedEmotion,
+           let sources = resolvedEmotion.sourceEmotions {
+            let formula = "\(sources.0.displayName) + \(sources.1.displayName) = \(resolvedEmotion.displayName)"
+            combinedEmotionLabel.text = formula
 
-        intensityViews[emotion] = intensityView
-        intensityContainer.addArrangedSubview(intensityView)
+            UIView.animate(withDuration: 0.2) {
+                self.intensityContainer.alpha = 0
+                self.combinedEmotionLabel.alpha = 1
+            }
+            return
+        }
 
-        // Show intensity container with animation
+        // No selection or invalid: hide both
         UIView.animate(withDuration: 0.2) {
-            self.intensityContainer.alpha = 1
+            self.intensityContainer.alpha = 0
+            self.combinedEmotionLabel.alpha = 0
         }
     }
 
