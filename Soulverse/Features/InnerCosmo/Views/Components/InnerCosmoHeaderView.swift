@@ -46,17 +46,17 @@ class InnerCosmoHeaderView: UIView {
         control.selectedSegmentIndex = 0
 
         // Custom styling for pill appearance
-        control.backgroundColor = .themeButtonSecondaryBackground
-        control.selectedSegmentTintColor = .themeButtonPrimaryBackground
+        control.backgroundColor = .clear
+        control.selectedSegmentTintColor = .white
 
         // Text attributes
         let normalAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.themeTextSecondary,
-            .font: UIFont.projectFont(ofSize: 14, weight: .medium)
+            .foregroundColor: ThemeManager.shared.currentTheme.neutralLight,
+            .font: UIFont.projectFont(ofSize: 15, weight: .medium)
         ]
         let selectedAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.themeButtonPrimaryText,
-            .font: UIFont.projectFont(ofSize: 14, weight: .semibold)
+            .foregroundColor: ThemeManager.shared.currentTheme.neutralDark,
+            .font: UIFont.projectFont(ofSize: 15, weight: .semibold)
         ]
 
         control.setTitleTextAttributes(normalAttributes, for: .normal)

@@ -100,6 +100,13 @@ class InnerCosmoViewController: ViewController {
         return view
     }()
 
+    private lazy var moodEntriesSection: MoodEntriesSection = {
+        let view = MoodEntriesSection()
+        view.delegate = self
+        view.isHidden = true  // Hidden by default, shown when entries exist
+        return view
+    }()
+
     private lazy var moodCheckInButton: SoulverseButton = {
         let button = SoulverseButton(
             title: NSLocalizedString("inner_cosmo_mood_checkin_button", comment: ""),
@@ -143,6 +150,7 @@ class InnerCosmoViewController: ViewController {
         periodContainerView.addSubview(dailyView)
         periodContainerView.addSubview(weeklyView)
         periodContainerView.addSubview(monthlyView)
+        contentView.addSubview(moodEntriesSection)
         contentView.addSubview(moodCheckInButton)
 
         navigationView.snp.makeConstraints { make in
@@ -176,6 +184,11 @@ class InnerCosmoViewController: ViewController {
             make.centerX.equalToSuperview()
             make.width.equalTo(Layout.moodCheckInButtonWidth)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
+        }
+
+        moodEntriesSection.snp.makeConstraints { make in
+            make.top.equalTo(moodCheckInButton.snp.bottom).offset(InnerCosmoLayout.moodEntriesSectionTopPadding)
+            make.left.right.equalToSuperview()
             make.bottom.equalToSuperview().offset(-ViewComponentConstants.horizontalPadding)
         }
 
@@ -194,6 +207,13 @@ class InnerCosmoViewController: ViewController {
     private func configure(with viewModel: InnerCosmoViewModel) {
         headerView.configure(userName: viewModel.userName)
         dailyView.configure(petName: viewModel.petName, emotions: viewModel.emotions)
+
+        // Configure mood entries section
+        let hasEntries = !viewModel.moodEntries.isEmpty
+        moodEntriesSection.isHidden = !hasEntries
+        if hasEntries {
+            moodEntriesSection.configure(with: viewModel.moodEntries)
+        }
     }
 
     // MARK: - Period Switching
@@ -295,5 +315,16 @@ extension InnerCosmoViewController: SoulverseButtonDelegate {
                 self.presenter.fetchData(isUpdate: true)
             }
         }
+    }
+}
+
+// MARK: - MoodEntriesSectionDelegate
+
+extension InnerCosmoViewController: MoodEntriesSectionDelegate {
+
+    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, entry: MoodEntry) {
+        // TODO: Navigate to drawing canvas with the mood entry context
+        print("[InnerCosmo] Draw tapped for entry: \(entry.emotion.displayName)")
+        AppCoordinator.openDrawingCanvas(from: self)
     }
 }

@@ -22,7 +22,7 @@ extension UniverseTheme {
     }
 
     var neutralLight: UIColor {
-        UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 199.0/255.0, alpha: 1.0)
+        UIColor(red: 217.0/255.0, green: 217.0/255.0, blue: 217.0/255.0, alpha: 1.0)
     }
 
     var neutralMedium: UIColor {
