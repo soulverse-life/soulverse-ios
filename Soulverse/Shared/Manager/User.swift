@@ -16,6 +16,7 @@ enum UserInfoKeys: String {
     case nickname
     case nextAskingPermissionTime
     case notificationAskGapTime
+    case planetName
     case userId
     case selectedTheme
     case themeMode
@@ -64,6 +65,7 @@ protocol UserProtocol {
     var email: String? { get set }
     var nickName: String? { get set }
     var emoPetName: String? { get set }
+    var planetName: String? { get set }
     var isLoggedin: Bool { get }
     var hasGrantedNotification: Bool { get }
     var selectedTheme: String? { get set }
@@ -138,6 +140,20 @@ class User: UserProtocol {
                 return
             }
             defaults.set(emoPetName, forKey: UserInfoKeys.emoPetName.rawValue)
+        }
+    }
+
+    var planetName: String? {
+        get {
+            let value = defaults.string(forKey: UserInfoKeys.planetName.rawValue)
+            return value
+        }
+        set(newPlanetName) {
+            guard let planetName = newPlanetName else {
+                defaults.removeObject(forKey: UserInfoKeys.planetName.rawValue)
+                return
+            }
+            defaults.set(planetName, forKey: UserInfoKeys.planetName.rawValue)
         }
     }
 
@@ -277,6 +293,7 @@ class User: UserProtocol {
         isLoggedin = false
         nickName = nil
         emoPetName = nil
+        planetName = nil
         avatarImageURL = nil
         hasCompletedOnboarding = false
     }

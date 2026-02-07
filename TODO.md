@@ -134,23 +134,82 @@ Implement emotion-to-score mapping function and create a weekly mood score visua
 
 ---
 
+### 16. Refine emo pet affirmation interaction
+**Priority**: P2
+**Complexity**: M
+**Status**: Pending
+
+Make the emo pet interaction feel more human and natural. Improve implementation clarity and interaction quality.
+
+**Goals**:
+- Make the emo pet respond more like a companion, not a static quote machine
+- Improve bubble appearance and positioning
+- Refine TTS delivery (pacing, tone)
+- Expand and improve affirmation quote content for both locales
+
+**Potential Improvements**:
+- Contextual responses based on user's recent mood check-in data
+- Varied response patterns (not always the same bubble format)
+- Natural typing/appear animation for bubble text
+- Adjust TTS speech rate and voice selection for warmth
+- Update `AffirmationQuotes.json` with more empathetic, conversational quotes
+- Consider adding pet reaction animations (happy, encouraging, etc.)
+
+**Related Files**:
+- `Soulverse/Resources/AffirmationQuotes.json`
+- `Soulverse/Features/InnerCosmo/ViewModels/AffirmationQuote.swift`
+- `Soulverse/Features/InnerCosmo/Views/Components/AffirmationBubbleView.swift`
+- `Soulverse/Shared/Service/SpeechService.swift`
+- `CentralPlanetView.swift`
+- `InnerCosmoDailyView.swift`
+
+---
+
+### 15. Simplify MoodCheckInData by removing isXXXComplete properties
+**Priority**: P3
+**Complexity**: S
+**Status**: Pending
+
+Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as they are no longer needed.
+
+**Properties to remove**:
+- `isNamingComplete`
+- `isShapingComplete` (already returns `true` - step is optional)
+- `isAttributingComplete`
+- `isEvaluatingComplete`
+- `isActingComplete`
+
+**Rationale**:
+- These validation properties are not used for flow control
+- The coordinator handles navigation directly
+- Steps like Shaping are now optional, making these checks misleading
+
+**Files to modify**:
+- `Soulverse/MoodCheckIn/Models/MoodCheckInData.swift`
+
+---
+
 ## In Progress
+
+---
+
+## Done
 
 ### 2. Make emo pet image tappable in InnerCosmos
 **Priority**: P2
 **Complexity**: S
-**Status**: In Progress
+**Status**: Completed
 
-Add tap gesture recognizer to the emo pet image in InnerCosmos page. When tapped, display an affirmation quote reaction with TTS.
+Added tap gesture to emo pet image in InnerCosmos. When tapped, displays an affirmation quote in a speech bubble with TTS.
 
-**Implementation Progress**:
-- ✅ Added `CentralPlanetViewDelegate` protocol for tap events
-- ✅ Added tap gesture to `CentralPlanetView` with bounce animation
-- ✅ Created `AffirmationQuote` model loading from JSON (`AffirmationQuotes.json`)
-- ✅ Created `AffirmationBubbleView` speech bubble UI (positioned right of pet)
-- ✅ Created `SpeechService` for TTS (reusable across app)
-- ✅ Integrated TTS - bubble dismisses after speech finishes + 0.2s
-- ✅ Quotes localized in both en/zh-TW (10 quotes)
+**Implementation Summary**:
+- Added `CentralPlanetViewDelegate` protocol for tap events
+- Added tap gesture to `CentralPlanetView` with bounce animation
+- Created `AffirmationQuote` model loading from JSON (`AffirmationQuotes.json`)
+- Created `AffirmationBubbleView` speech bubble UI (positioned right of pet)
+- Created `SpeechService` for TTS (reusable across app)
+- Integrated TTS - bubble dismisses after speech finishes + 0.2s
+- Quotes localized in both en/zh-TW (10 quotes)
 
 **Files Created**:
 - `Soulverse/Resources/AffirmationQuotes.json`
@@ -162,17 +221,7 @@ Add tap gesture recognizer to the emo pet image in InnerCosmos page. When tapped
 - `CentralPlanetView.swift` - Added tap gesture + delegate
 - `InnerCosmoDailyView.swift` - Handles tap, shows bubble, integrates TTS
 
-**Remaining**:
-- Add files to Xcode project
-
-**Sub-tasks**:
-- [ ] Review implementation (test tap gesture, bubble, TTS, JSON loading, both locales)
-- [ ] Change bubble background color
-- [ ] Update affirmation quote data
-
 ---
-
-## Done
 
 ### 10. Add progress bar to mood check-in flow
 **Priority**: P2
@@ -381,3 +430,6 @@ Adjusted how emotions are displayed across MoodCheckIn Naming and Shaping steps.
 - M: Medium (4-8 hours)
 - L: Large (1-2 days)
 - XL: Extra Large (2+ days)
+
+**Completion Rules**:
+- When completing a task with complexity **L or XL**, run an Xcode build (`xcodebuild -workspace Soulverse.xcworkspace -scheme "Soulverse" -configuration Debug build`) to verify the project compiles successfully before marking it as done.
