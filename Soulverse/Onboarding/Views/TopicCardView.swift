@@ -70,7 +70,7 @@ class TopicCardView: UIView {
     }
 
     private func updateSelectionState() {
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: AnimationConstant.defaultDuration) {
             if self.isCardSelected {
                 self.layer.borderWidth = Layout.selectedBorderWidth
                 self.layer.borderColor = UIColor.white.cgColor

@@ -88,6 +88,10 @@ struct TimeConstant {
     static let miniute = 60.0
 }
 
+struct AnimationConstant {
+    static let defaultDuration: TimeInterval = 0.2
+}
+
 struct Layout {
     // MARK: - Quest Progress View Layout
     struct QuestProgress {

@@ -221,7 +221,7 @@ class MoodCheckInNamingViewController: ViewController {
             intensityViews[emotion] = intensityView
             intensityContainer.addArrangedSubview(intensityView)
 
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: AnimationConstant.defaultDuration) {
                 self.intensityContainer.alpha = 1
                 self.combinedEmotionLabel.alpha = 0
             }
@@ -234,7 +234,7 @@ class MoodCheckInNamingViewController: ViewController {
             let formula = "\(sources.0.displayName) + \(sources.1.displayName) = \(resolvedEmotion.displayName)"
             combinedEmotionLabel.text = formula
 
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: AnimationConstant.defaultDuration) {
                 self.intensityContainer.alpha = 0
                 self.combinedEmotionLabel.alpha = 1
             }
@@ -242,7 +242,7 @@ class MoodCheckInNamingViewController: ViewController {
         }
 
         // No selection or invalid: hide both
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: AnimationConstant.defaultDuration) {
             self.intensityContainer.alpha = 0
             self.combinedEmotionLabel.alpha = 0
         }

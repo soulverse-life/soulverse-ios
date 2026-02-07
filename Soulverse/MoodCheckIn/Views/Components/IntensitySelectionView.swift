@@ -211,7 +211,7 @@ class IntensitySelectionView: UIView {
             let isSelected = index == selectedIndex
             guard let circleView = container.viewWithTag(Layout.circleTag) else { continue }
 
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: AnimationConstant.defaultDuration) {
                 if isSelected {
                     circleView.backgroundColor = .themeButtonPrimaryBackground
                     self.labelViews[index].font = .projectFont(ofSize: 15, weight: .semibold)
