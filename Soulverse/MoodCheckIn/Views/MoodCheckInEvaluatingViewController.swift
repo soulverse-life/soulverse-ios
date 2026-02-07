@@ -51,7 +51,7 @@ class MoodCheckInEvaluatingViewController: ViewController {
     private lazy var promptLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("mood_checkin_evaluating_subtitle", comment: "")
-        label.font = .projectFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: 17, weight: .regular)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         label.numberOfLines = 0
