@@ -39,17 +39,17 @@ class TopicCardView: UIView {
         }
     }
 
-    init(topic: TopicOption) {
+    init(topic: Topic) {
         super.init(frame: .zero)
 
-        backgroundColor = topic.cardColor
+        backgroundColor = topic.mainColor
         layer.cornerRadius = Layout.cornerRadius
         layer.masksToBounds = true
 
         addSubview(iconImageView)
         addSubview(titleLabel)
 
-        iconImageView.image = UIImage(systemName: topic.iconName)
+        iconImageView.image = topic.iconImage
         titleLabel.text = topic.localizedTitle
 
         iconImageView.snp.makeConstraints { make in
@@ -70,7 +70,7 @@ class TopicCardView: UIView {
     }
 
     private func updateSelectionState() {
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: AnimationConstant.defaultDuration) {
             if self.isCardSelected {
                 self.layer.borderWidth = Layout.selectedBorderWidth
                 self.layer.borderColor = UIColor.white.cgColor

@@ -13,8 +13,8 @@ protocol IntensitySelectionViewDelegate: AnyObject {
     func didChangeIntensity(_ view: IntensitySelectionView, emotion: EmotionType, intensity: Double)
 }
 
-/// A view that allows users to select emotion intensity
-/// Contains a title, slider with snap-to positions, and intensity level labels
+/// A view that allows users to select emotion intensity using three tappable circles
+/// Contains a title, horizontal line with three circles, and intensity level labels
 class IntensitySelectionView: UIView {
 
     // MARK: - Properties
@@ -23,56 +23,43 @@ class IntensitySelectionView: UIView {
 
     private var currentEmotion: EmotionType?
     private var emotionIntensity: Double = 0.5
+    private var selectedIndex: Int = 1  // Default to middle (medium intensity)
 
     // MARK: - Layout Constants
 
     private enum Layout {
-        static let titleToSliderSpacing: CGFloat = 12
-        static let sliderToLabelsSpacing: CGFloat = 4
+        static let titleToCirclesSpacing: CGFloat = 16
+        static let circleToLabelSpacing: CGFloat = 8
+        static let circleSize: CGFloat = 20
+        static let lineHeight: CGFloat = 3
+        static let circlesContainerWidth: CGFloat = 320
+        static let circleTag: Int = 100
+        static let glassEffectTag: Int = 101
     }
 
     // MARK: - UI Elements
 
     private lazy var intensityTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 16, weight: .semibold)
+        label.font = .projectFont(ofSize: 17, weight: .semibold)
         label.textColor = .themeTextPrimary
+        label.textAlignment = .left
         return label
     }()
 
-    private lazy var intensitySlider: SummitSlider = {
-        let slider = SummitSlider()
-        slider.minimumValue = 0
-        slider.maximumValue = 1
-        slider.value = 0.5
-        slider.addTarget(self, action: #selector(intensitySliderChanged), for: .valueChanged)
-        slider.addTarget(self, action: #selector(intensitySliderReleased), for: .touchUpInside)
-        slider.addTarget(self, action: #selector(intensitySliderReleased), for: .touchUpOutside)
-        return slider
+    private lazy var connectionLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .themeTextPrimary
+        return view
     }()
 
-    private lazy var intensityLeftLabel: UILabel = {
-        let label = UILabel()
-        label.font = .projectFont(ofSize: 12, weight: .regular)
-        label.textColor = .themeTextSecondary
-        return label
+    private lazy var circlesContainer: UIView = {
+        let view = UIView()
+        return view
     }()
 
-    private lazy var intensityCenterLabel: UILabel = {
-        let label = UILabel()
-        label.font = .projectFont(ofSize: 12, weight: .semibold)
-        label.textColor = .themeTextPrimary
-        label.textAlignment = .center
-        return label
-    }()
-
-    private lazy var intensityRightLabel: UILabel = {
-        let label = UILabel()
-        label.font = .projectFont(ofSize: 12, weight: .regular)
-        label.textColor = .themeTextSecondary
-        label.textAlignment = .right
-        return label
-    }()
+    private var circleViews: [UIView] = []
+    private var labelViews: [UILabel] = []
 
     // MARK: - Initialization
 
@@ -89,12 +76,77 @@ class IntensitySelectionView: UIView {
 
     private func setupView() {
         addSubview(intensityTitleLabel)
-        addSubview(intensitySlider)
-        addSubview(intensityLeftLabel)
-        addSubview(intensityCenterLabel)
-        addSubview(intensityRightLabel)
+        addSubview(circlesContainer)
+        circlesContainer.addSubview(connectionLine)
+
+        // Create three circles with labels
+        for index in 0..<3 {
+            let (circleContainer, label) = createCircleWithLabel(at: index)
+            circlesContainer.addSubview(circleContainer)
+            circleViews.append(circleContainer)
+            labelViews.append(label)
+        }
 
         setupConstraints()
+        updateSelection()
+    }
+
+    private func createCircleWithLabel(at index: Int) -> (UIView, UILabel) {
+        // Container for tap gesture
+        let container = UIView()
+        container.tag = index
+        container.isUserInteractionEnabled = true
+
+        // Circle view (base layer with background color)
+        let circle = UIView()
+        circle.tag = Layout.circleTag
+        circle.layer.cornerRadius = Layout.circleSize / 2
+        circle.clipsToBounds = true
+        circle.isUserInteractionEnabled = false  // Let taps pass through to container
+        container.addSubview(circle)
+
+        // Glass effect view (overlay for iOS 26+)
+        if #available(iOS 26.0, *) {
+            let glassEffectView = UIVisualEffectView()
+            glassEffectView.tag = Layout.glassEffectTag
+            glassEffectView.clipsToBounds = true
+            glassEffectView.layer.cornerRadius = Layout.circleSize / 2
+            glassEffectView.isUserInteractionEnabled = false
+            glassEffectView.isHidden = true  // Initially hidden, shown when selected
+            circle.addSubview(glassEffectView)
+
+            glassEffectView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
+
+        // Label below the circle
+        let label = UILabel()
+        label.font = .projectFont(ofSize: 15, weight: .regular)
+        label.textColor = .themeTextPrimary
+        label.textAlignment = .center
+        label.isUserInteractionEnabled = false  // Let taps pass through to container
+        container.addSubview(label)
+
+        // Circle constraints
+        circle.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(Layout.circleSize)
+        }
+
+        // Label constraints - use left/right to give container width
+        label.snp.makeConstraints { make in
+            make.top.equalTo(circle.snp.bottom).offset(Layout.circleToLabelSpacing)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+
+        // Add tap gesture
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(circleTapped(_:)))
+        container.addGestureRecognizer(tapGesture)
+
+        return (container, label)
     }
 
     private func setupConstraints() {
@@ -102,54 +154,99 @@ class IntensitySelectionView: UIView {
             make.top.left.right.equalToSuperview()
         }
 
-        intensitySlider.snp.makeConstraints { make in
-            make.top.equalTo(intensityTitleLabel.snp.bottom).offset(Layout.titleToSliderSpacing)
-            make.left.right.equalToSuperview()
-        }
-
-        intensityLeftLabel.snp.makeConstraints { make in
-            make.left.equalTo(intensitySlider)
-            make.top.equalTo(intensitySlider.snp.bottom).offset(Layout.sliderToLabelsSpacing)
+        circlesContainer.snp.makeConstraints { make in
+            make.top.equalTo(intensityTitleLabel.snp.bottom).offset(Layout.titleToCirclesSpacing)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(Layout.circlesContainerWidth)
             make.bottom.equalToSuperview()
         }
 
-        intensityCenterLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(intensitySlider)
-            make.top.equalTo(intensitySlider.snp.bottom).offset(Layout.sliderToLabelsSpacing)
+        // Connection line - spans between left and right circles
+        connectionLine.snp.makeConstraints { make in
+            make.left.equalTo(circleViews[0].snp.centerX)
+            make.right.equalTo(circleViews[2].snp.centerX)
+            make.centerY.equalTo(circleViews[0].snp.top).offset(Layout.circleSize / 2)
+            make.height.equalTo(Layout.lineHeight)
         }
 
-        intensityRightLabel.snp.makeConstraints { make in
-            make.right.equalTo(intensitySlider)
-            make.top.equalTo(intensitySlider.snp.bottom).offset(Layout.sliderToLabelsSpacing)
+        // Position circles: left, center, right
+        circleViews[0].snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.top.equalToSuperview()
+        }
+
+        circleViews[1].snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview()
+        }
+
+        circleViews[2].snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
 
     // MARK: - Actions
 
-    @objc private func intensitySliderChanged() {
-        emotionIntensity = Double(intensitySlider.value)
+    @objc private func circleTapped(_ gesture: UITapGestureRecognizer) {
+        guard let tappedView = gesture.view else { return }
+        let index = tappedView.tag
+
+        // Update selected index
+        selectedIndex = index
+        emotionIntensity = intensityForIndex(index)
+        updateSelection()
+
+        // Notify delegate
         if let emotion = currentEmotion {
             delegate?.didChangeIntensity(self, emotion: emotion, intensity: emotionIntensity)
         }
     }
 
-    @objc private func intensitySliderReleased() {
-        // Snap to nearest discrete position: 0.0, 0.5, 1.0
-        let currentValue = intensitySlider.value
-        let snappedValue: Float
+    // MARK: - Private Methods
 
-        if currentValue < 0.25 {
-            snappedValue = 0.0
-        } else if currentValue < 0.75 {
-            snappedValue = 0.5
-        } else {
-            snappedValue = 1.0
+    private func updateSelection() {
+        for (index, container) in circleViews.enumerated() {
+            let isSelected = index == selectedIndex
+            guard let circleView = container.viewWithTag(Layout.circleTag) else { continue }
+
+            UIView.animate(withDuration: AnimationConstant.defaultDuration) {
+                if isSelected {
+                    circleView.backgroundColor = .themeButtonPrimaryBackground
+                    self.labelViews[index].font = .projectFont(ofSize: 15, weight: .semibold)
+                } else {
+                    circleView.backgroundColor = .themeCircleUnselectedBackground
+                    self.labelViews[index].font = .projectFont(ofSize: 15, weight: .regular)
+                }
+            }
+
+            // Apply glass effect on iOS 26+
+            applyGlassEffect(to: circleView, enabled: isSelected)
         }
+    }
 
-        intensitySlider.setValue(snappedValue, animated: true)
-        emotionIntensity = Double(snappedValue)
-        if let emotion = currentEmotion {
-            delegate?.didChangeIntensity(self, emotion: emotion, intensity: emotionIntensity)
+    private func applyGlassEffect(to circleView: UIView, enabled: Bool) {
+        if #available(iOS 26.0, *) {
+            guard let glassEffectView = circleView.viewWithTag(Layout.glassEffectTag) as? UIVisualEffectView else { return }
+
+            if enabled {
+                let glassEffect = UIGlassEffect(style: .clear)
+                glassEffectView.effect = glassEffect
+                glassEffectView.isHidden = false
+            } else {
+                glassEffectView.effect = nil
+                glassEffectView.isHidden = true
+            }
+        }
+    }
+
+    private func intensityForIndex(_ index: Int) -> Double {
+        switch index {
+        case 0: return 0.0
+        case 1: return 0.5
+        case 2: return 1.0
+        default: return 0.5
         }
     }
 
@@ -165,13 +262,18 @@ class IntensitySelectionView: UIView {
         intensityTitleLabel.text = String(format: titleFormat, emotion.displayName)
 
         let labels = emotion.intensityLabels
-        intensityLeftLabel.text = labels.left
-        intensityCenterLabel.text = labels.center
-        intensityRightLabel.text = labels.right
+        labelViews[0].text = labels.left
+        labelViews[1].text = labels.center
+        labelViews[2].text = labels.right
+
+        // Reset to default selection (middle)
+        selectedIndex = 1
+        emotionIntensity = 0.5
+        updateSelection()
     }
 
     /// Get the currently selected intensity value
-    /// - Returns: Intensity value between 0.0 and 1.0
+    /// - Returns: Intensity value: 0.0 (low), 0.5 (medium), or 1.0 (high)
     func getIntensity() -> Double {
         return emotionIntensity
     }

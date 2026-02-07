@@ -43,6 +43,9 @@ protocol Theme: Identifiable where ID == String {
     var buttonDisabledBackground: UIColor { get }
     var buttonDisabledText: UIColor { get }
 
+    // Circle/Indicator colors
+    var circleUnselectedBackground: UIColor { get }
+
     // Navigation
     var navigationBarBackground: UIColor { get }
     var navigationBarText: UIColor { get }

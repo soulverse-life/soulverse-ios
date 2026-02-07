@@ -16,53 +16,54 @@ class MoodCheckInShapingViewController: ViewController {
 
     private var selectedPrompt: PromptOption?
     private var promptResponse: String = ""
-    private var selectedEmotions: [(emotion: EmotionType, intensity: Double)] = []
+    private var recordedEmotion: RecordedEmotion?
 
-    // MARK: - Layout Constants
+    // MARK: - View-specific Constants
 
-    private enum Layout {
-        enum Spacing {
-            static let horizontal: CGFloat = 40
-            static let sectionVertical: CGFloat = 24
-            static let titleTopOffset: CGFloat = 24
-            static let headerToTextField: CGFloat = 8
-        }
+    private let currentStep: Int = 3
+    private let headerToTextFieldSpacing: CGFloat = 16
 
-        enum Size {
-            static let progressSteps: Int = 6
-            static let currentStep: Int = 3
-            static let textFieldHeight: CGFloat = 120
-        }
-    }
+    // MARK: - UI Elements - Scroll View
+
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.keyboardDismissMode = .interactive
+        return scrollView
+    }()
+
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
 
     // MARK: - UI Elements - Navigation
 
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = .themeTextPrimary
+        if #available(iOS 26.0, *) {
+            button.setImage(UIImage(named: "naviconBack")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            button.imageView?.contentMode = .center
+            button.imageView?.clipsToBounds = false
+            button.clipsToBounds = false
+        } else {
+            button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+            button.tintColor = .themeTextPrimary
+        }
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         return button
     }()
 
-    private lazy var closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .themeTextPrimary
-        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
     private lazy var progressBar: SoulverseProgressBar = {
-        let bar = SoulverseProgressBar(totalSteps: Layout.Size.progressSteps)
-        bar.setProgress(currentStep: Layout.Size.currentStep)
+        let bar = SoulverseProgressBar(totalSteps: MoodCheckInLayout.totalSteps)
+        bar.setProgress(currentStep: currentStep)
         return bar
     }()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("mood_checkin_shaping_title", comment: "")
-        label.font = .projectFont(ofSize: 32, weight: .semibold)
+        label.font = .projectFont(ofSize: 34, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
@@ -80,9 +81,12 @@ class MoodCheckInShapingViewController: ViewController {
 
     // MARK: - UI Elements - Content Sections
 
-    private lazy var colorEmotionSection: ColorEmotionSummaryView = {
-        let view = ColorEmotionSummaryView()
-        return view
+    private lazy var feelingLabel: UILabel = {
+        let label = UILabel()
+        label.font = .projectFont(ofSize: 17, weight: .regular)
+        label.textColor = .themeTextPrimary
+        label.textAlignment = .left
+        return label
     }()
 
     private lazy var promptSelectionSection: PromptSelectionView = {
@@ -93,10 +97,9 @@ class MoodCheckInShapingViewController: ViewController {
 
     private lazy var promptHeaderLabel: UILabel = {
         let label = UILabel()
-        label.text = ""
+        label.text = NSLocalizedString("mood_checkin_shaping_text_header", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .semibold)
         label.textColor = .themeTextPrimary
-        label.isHidden = true
         return label
     }()
 
@@ -109,14 +112,13 @@ class MoodCheckInShapingViewController: ViewController {
         textView.layer.cornerRadius = 8
         textView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
         textView.delegate = self
-        textView.isHidden = true
         return textView
     }()
 
     private lazy var continueButton: SoulverseButton = {
         let buttonTitle = NSLocalizedString("mood_checkin_continue", comment: "")
         let button = SoulverseButton(title: buttonTitle, style: .primary, delegate: self)
-        button.isEnabled = false
+        button.isEnabled = true
         return button
     }()
 
@@ -133,6 +135,7 @@ class MoodCheckInShapingViewController: ViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         setupNavigationBar()
+        setupScrollView()
         setupHeaderSection()
         setupContentSections()
         setupResponseSection()
@@ -142,24 +145,27 @@ class MoodCheckInShapingViewController: ViewController {
 
     private func setupNavigationBar() {
         view.addSubview(backButton)
-        view.addSubview(closeButton)
         view.addSubview(progressBar)
-        view.addSubview(titleLabel)
-        view.addSubview(subtitleLabel)
+    }
+
+    private func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
     }
 
     private func setupHeaderSection() {
-        // Header elements (title, subtitle) added in setupNavigationBar for layout order
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(subtitleLabel)
     }
 
     private func setupContentSections() {
-        view.addSubview(colorEmotionSection)
-        view.addSubview(promptSelectionSection)
+        contentView.addSubview(feelingLabel)
+        contentView.addSubview(promptSelectionSection)
     }
 
     private func setupResponseSection() {
-        view.addSubview(promptHeaderLabel)
-        view.addSubview(textField)
+        contentView.addSubview(promptHeaderLabel)
+        contentView.addSubview(textField)
     }
 
     private func setupContinueButton() {
@@ -168,6 +174,7 @@ class MoodCheckInShapingViewController: ViewController {
 
     private func setupConstraints() {
         setupNavigationConstraints()
+        setupScrollViewConstraints()
         setupHeaderConstraints()
         setupSectionConstraints()
         setupResponseConstraints()
@@ -176,64 +183,73 @@ class MoodCheckInShapingViewController: ViewController {
 
     private func setupNavigationConstraints() {
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.left.equalToSuperview().offset(16)
-            make.width.height.equalTo(ViewComponentConstants.navigationButtonSize)
-        }
-
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.right.equalToSuperview().offset(-16)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(MoodCheckInLayout.navigationTopOffset)
+            make.left.equalToSuperview().offset(MoodCheckInLayout.navigationLeftOffset)
             make.width.height.equalTo(ViewComponentConstants.navigationButtonSize)
         }
 
         progressBar.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalTo(backButton)
+            make.width.equalTo(ViewComponentConstants.progressViewWidth)
+        }
+    }
+
+    private func setupScrollViewConstraints() {
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(backButton.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(continueButton.snp.top)
+        }
+
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
         }
     }
 
     private func setupHeaderConstraints() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(Layout.Spacing.titleTopOffset)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalToSuperview().offset(MoodCheckInLayout.titleTopOffset)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
         subtitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(12)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(titleLabel.snp.bottom).offset(MoodCheckInLayout.titleToSubtitleSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
     }
 
     private func setupSectionConstraints() {
-        colorEmotionSection.snp.makeConstraints { make in
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+        feelingLabel.snp.makeConstraints { make in
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
         promptSelectionSection.snp.makeConstraints { make in
-            make.top.equalTo(colorEmotionSection.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(feelingLabel.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
     }
 
     private func setupResponseConstraints() {
         promptHeaderLabel.snp.makeConstraints { make in
-            make.top.equalTo(promptSelectionSection.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.left.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(promptSelectionSection.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.left.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
         textField.snp.makeConstraints { make in
-            make.top.equalTo(promptHeaderLabel.snp.bottom).offset(Layout.Spacing.headerToTextField)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
-            make.height.equalTo(Layout.Size.textFieldHeight)
+            make.top.equalTo(promptHeaderLabel.snp.bottom).offset(headerToTextFieldSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
+            make.height.equalTo(MoodCheckInLayout.textFieldHeight)
+            make.bottom.equalToSuperview().offset(-MoodCheckInLayout.sectionSpacing)
         }
     }
 
     private func setupContinueButtonConstraints() {
         continueButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-MoodCheckInLayout.bottomPadding)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
     }
@@ -241,27 +257,63 @@ class MoodCheckInShapingViewController: ViewController {
 
     // MARK: - Public Methods
 
-    func setSelectedColorAndEmotions(color: UIColor, emotions: [(emotion: EmotionType, intensity: Double)]) {
-        selectedEmotions = emotions
-        colorEmotionSection.configure(color: color, emotions: emotions)
+    func setSelectedColorAndEmotion(color: UIColor, emotion: RecordedEmotion) {
+        recordedEmotion = emotion
+        updateFeelingLabel(emotionName: emotion.displayName, color: color)
     }
 
     // MARK: - Private Methods
 
-    private func updatePlaceholder() {
-        guard let prompt = selectedPrompt else { return }
+    private func updateFeelingLabel(emotionName: String, color: UIColor) {
+        let prefix = NSLocalizedString("mood_checkin_shaping_feeling_prefix", comment: "")
+        let fullText = "\(prefix)    \(emotionName)"
 
-        promptHeaderLabel.text = prompt.displayName
-        promptHeaderLabel.isHidden = false
+        let attributedString = NSMutableAttributedString(
+            string: fullText,
+            attributes: [
+                .font: UIFont.projectFont(ofSize: 17, weight: .regular),
+                .foregroundColor: UIColor.themeTextPrimary
+            ]
+        )
+
+        // Blend color with white to create opaque color that looks like alpha on white
+        let displayColor = blendColorWithWhite(color)
+
+        let emotionRange = (fullText as NSString).range(of: emotionName)
+        if emotionRange.location != NSNotFound {
+            attributedString.addAttributes([
+                .foregroundColor: displayColor,
+                .font: UIFont.projectFont(ofSize: 20, weight: .semibold)
+            ], range: emotionRange)
+        }
+
+        feelingLabel.attributedText = attributedString
+    }
+
+    /// Blends a color with white based on its alpha component
+    /// Result looks the same as the original color rendered on white background
+    private func blendColorWithWhite(_ color: UIColor) -> UIColor {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        color.getRed(&r, green: &g, blue: &b, alpha: &a)
+
+        // Blend formula: result = color * alpha + white * (1 - alpha)
+        let blendedR = r * a + 1.0 * (1 - a)
+        let blendedG = g * a + 1.0 * (1 - a)
+        let blendedB = b * a + 1.0 * (1 - a)
+
+        return UIColor(red: blendedR, green: blendedG, blue: blendedB, alpha: 1.0)
+    }
+
+    private func updatePlaceholder() {
+        guard let prompt = selectedPrompt else {
+            // No prompt selected - clear the text field
+            textField.text = ""
+            promptResponse = ""
+            return
+        }
 
         textField.text = prompt.placeholderText
         textField.textColor = .lightGray
-        textField.isHidden = false
-    }
-
-    private func validateInput() {
-        let hasText = !promptResponse.isEmpty && promptResponse != selectedPrompt?.placeholderText
-        continueButton.isEnabled = hasText
     }
 
     // MARK: - Actions
@@ -270,18 +322,14 @@ class MoodCheckInShapingViewController: ViewController {
         delegate?.didTapBack(self)
     }
 
-    @objc private func closeButtonTapped() {
-        delegate?.didTapClose(self)
-    }
 }
 
 // MARK: - PromptSelectionViewDelegate
 
 extension MoodCheckInShapingViewController: PromptSelectionViewDelegate {
-    func didSelectPrompt(_ view: PromptSelectionView, prompt: PromptOption) {
+    func didUpdatePromptSelection(_ view: PromptSelectionView, prompt: PromptOption?) {
         selectedPrompt = prompt
         updatePlaceholder()
-        validateInput()
     }
 }
 
@@ -290,14 +338,17 @@ extension MoodCheckInShapingViewController: PromptSelectionViewDelegate {
 extension MoodCheckInShapingViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .lightGray {
-            textView.text = ""
+            if let prompt = selectedPrompt {
+                textView.text = prompt.displayName + " "
+            } else {
+                textView.text = ""
+            }
             textView.textColor = .primaryBlack
         }
     }
 
     func textViewDidChange(_ textView: UITextView) {
         promptResponse = textView.text
-        validateInput()
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -314,7 +365,8 @@ extension MoodCheckInShapingViewController: UITextViewDelegate {
 
 extension MoodCheckInShapingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        guard let prompt = selectedPrompt, !promptResponse.isEmpty else { return }
-        delegate?.didComplete(self, prompt: prompt, response: promptResponse)
+        // Prompt and response are optional - user can skip this step
+        let response: String? = promptResponse.isEmpty ? nil : promptResponse
+        delegate?.didComplete(self, prompt: selectedPrompt, response: response)
     }
 }

@@ -16,6 +16,7 @@
 "no_template" = "自由繪畫";
 "cancel" = "取消";
 "save" = "儲存";
+"next" = "下一步";
 "tools" = "工具";
 "quest" = "探索";
 "account" = "帳號";
@@ -80,14 +81,14 @@
 // Topics Screen
 "onboarding_topics_title" = "選擇主題";
 "onboarding_topics_subtitle" = "這些主題將引導你的旅程，\n塑造專屬於你靈魂宇宙的\n反思、洞見和支持";
-"onboarding_topics_physical" = "身體健康";
-"onboarding_topics_emotional" = "情緒健康";
-"onboarding_topics_social" = "社交關係";
-"onboarding_topics_intellectual" = "智識成長";
-"onboarding_topics_spiritual" = "靈性發展";
-"onboarding_topics_occupational" = "職業發展";
-"onboarding_topics_environment" = "環境";
-"onboarding_topics_financial" = "財務";
+"topic_physical" = "身體健康";
+"topic_emotional" = "情緒健康";
+"topic_social" = "社交關係";
+"topic_intellectual" = "智識成長";
+"topic_spiritual" = "靈性發展";
+"topic_occupational" = "職業發展";
+"topic_environment" = "環境";
+"topic_financial" = "財務";
 
 // Common
 "onboarding_continue_button_title" = "繼續";
@@ -109,12 +110,13 @@
 // Mood Check-In - Naming Screen
 "mood_checkin_naming_title" = "命名";
 "mood_checkin_naming_color_selected" = "你選擇了這個顏色";
-"mood_checkin_naming_emotion_prompt" = "這個顏色讓你聯想到什麼情緒？";
+"mood_checkin_naming_prompt" = "這個顏色讓你聯想到什麼情緒？";
+"mood_checkin_naming_prompt_guide" = "你可以選擇多個";
 "mood_checkin_naming_intensity_title" = "%@ 強度";
 "mood_checkin_naming_max_emotions" = "最多只能選擇兩種情緒";
 "mood_checkin_continue" = "繼續";
 
-// Mood Check-In - Emotion Types
+// Mood Check-In - Primary Emotion Types (8 primary emotions)
 "emotion_joy" = "喜悅";
 "emotion_sadness" = "悲傷";
 "emotion_anger" = "憤怒";
@@ -124,77 +126,73 @@
 "emotion_anticipation" = "期待";
 "emotion_surprise" = "驚訝";
 
-// Mood Check-In - Emotion Intensity Labels
-"emotion_joy_low" = "平靜";
-"emotion_joy_medium" = "喜悅";
-"emotion_joy_high" = "狂喜";
+// Mood Check-In - Intensity-Based Emotions (used by RecordedEmotion)
+// Joy Family
+"emotion_serenity" = "平靜";
+"emotion_ecstasy" = "狂喜";
+// Trust Family
+"emotion_acceptance" = "接納";
+"emotion_admiration" = "欽佩";
+// Fear Family
+"emotion_apprehension" = "憂慮";
+"emotion_terror" = "驚恐";
+// Surprise Family
+"emotion_distraction" = "分心";
+"emotion_amazement" = "驚奇";
+// Sadness Family
+"emotion_pensiveness" = "沉思";
+"emotion_grief" = "悲痛";
+// Disgust Family
+"emotion_boredom" = "無聊";
+"emotion_loathing" = "憎恨";
+// Anger Family
+"emotion_annoyance" = "煩躁";
+"emotion_rage" = "暴怒";
+// Anticipation Family
+"emotion_interest" = "興趣";
+"emotion_vigilance" = "警戒";
 
-"emotion_sadness_low" = "沉思";
-"emotion_sadness_medium" = "悲傷";
-"emotion_sadness_high" = "悲痛";
+// Mood Check-In - Combined Emotions (Primary Dyads)
+"emotion_optimism" = "樂觀";
+"emotion_love" = "愛";
+"emotion_submission" = "順從";
+"emotion_awe" = "敬畏";
+"emotion_disapproval" = "不認同";
+"emotion_remorse" = "懊悔";
+"emotion_contempt" = "輕蔑";
+"emotion_aggressiveness" = "侵略性";
 
-"emotion_anger_low" = "煩躁";
-"emotion_anger_medium" = "憤怒";
-"emotion_anger_high" = "暴怒";
+// Mood Check-In - Combined Emotions (Secondary Dyads)
+"emotion_guilt" = "內疚";
+"emotion_curiosity" = "好奇";
+"emotion_despair" = "絕望";
+"emotion_unbelief" = "懷疑";
+"emotion_envy" = "嫉妒";
+"emotion_cynicism" = "憤世嫉俗";
+"emotion_pride" = "驕傲";
+"emotion_fatalism" = "宿命論";
+"emotion_bittersweetness" = "苦樂參半";
+"emotion_dominance" = "支配";
+"emotion_shame" = "羞恥";
+"emotion_confusion" = "困惑";
 
-"emotion_fear_low" = "憂慮";
-"emotion_fear_medium" = "恐懼";
-"emotion_fear_high" = "驚恐";
-
-"emotion_trust_low" = "接納";
-"emotion_trust_medium" = "信任";
-"emotion_trust_high" = "欽佩";
-
-"emotion_disgust_low" = "無聊";
-"emotion_disgust_medium" = "厭惡";
-"emotion_disgust_high" = "憎恨";
-
-"emotion_anticipation_low" = "興趣";
-"emotion_anticipation_medium" = "期待";
-"emotion_anticipation_high" = "警戒";
-
-"emotion_surprise_low" = "分心";
-"emotion_surprise_medium" = "驚訝";
-"emotion_surprise_high" = "驚奇";
+// Mood Check-In - Combined Emotions (Tertiary Dyads)
+"emotion_morbidness" = "病態";
+"emotion_sentimentality" = "多愁善感";
+"emotion_anxiety" = "焦慮";
+"emotion_delight" = "欣喜";
+"emotion_resignation" = "認命";
+"emotion_horror" = "恐怖";
+"emotion_outrage" = "憤慨";
+"emotion_pessimism" = "悲觀";
 
 // Mood Check-In - Shaping Screen
 "mood_checkin_shaping_title" = "塑形";
-"mood_checkin_shaping_subtitle" = "情緒是主觀的\n透過語言和隱喻，你可以更好地\n感知、理解和對話它們";
-"mood_checkin_shaping_choose_prompt" = "選擇一個提示";
+"mood_checkin_shaping_subtitle" = "";
+"mood_checkin_shaping_feeling_prefix" = "你現在感受到";
+"mood_checkin_shaping_text_header" = "寫一句話";
+"mood_checkin_shaping_pick_prompt" = "選擇一個提示";
 
-// Mood Check-In - Emotion Combinations (Primary Dyads)
-"emotion_combination_optimism" = "樂觀";
-"emotion_combination_love" = "愛";
-"emotion_combination_submission" = "順從";
-"emotion_combination_awe" = "敬畏";
-"emotion_combination_disapproval" = "不認同";
-"emotion_combination_remorse" = "懊悔";
-"emotion_combination_contempt" = "輕蔑";
-"emotion_combination_aggressiveness" = "侵略性";
-
-// Mood Check-In - Emotion Combinations (Secondary Dyads)
-"emotion_combination_guilt" = "內疚";
-"emotion_combination_curiosity" = "好奇";
-"emotion_combination_despair" = "絕望";
-"emotion_combination_unbelief" = "懷疑";
-"emotion_combination_envy" = "嫉妒";
-"emotion_combination_cynicism" = "憤世嫉俗";
-"emotion_combination_pride" = "驕傲";
-"emotion_combination_fatalism" = "宿命論";
-"emotion_combination_bittersweetness" = "苦樂參半";
-"emotion_combination_dominance" = "支配";
-"emotion_combination_shame" = "羞恥";
-"emotion_combination_confusion" = "困惑";
-
-// Mood Check-In - Emotion Combinations (Tertiary Dyads)
-"emotion_combination_morbidness" = "病態";
-"emotion_combination_sentimentality" = "多愁善感";
-"emotion_combination_anxiety" = "焦慮";
-"emotion_combination_delight" = "欣喜";
-"emotion_combination_resignation" = "認命";
-"emotion_combination_horror" = "恐怖";
-"emotion_combination_outrage" = "憤慨";
-"emotion_combination_pessimism" = "悲觀";
 
 // Mood Check-In - Pet Screen
 "mood_checkin_pet_title" = "這是你的情緒寵物";
@@ -203,12 +201,10 @@
 
 // Mood Check-In - Sensing Screen
 "mood_checkin_sensing_title" = "感知";
-"mood_checkin_sensing_subtitle" = "花點時間留意你的情緒\n展開你的情緒旅程。";
-"mood_checkin_sensing_description" = "花點時間留意你的情緒\n展開你的情緒旅程。";
 "mood_checkin_sensing_instruction" = "用一個顏色來描述你今天的感受";
-"mood_checkin_sensing_color_prompt" = "用一個顏色來描述你今天的感受";
 "mood_checkin_sensing_intensity" = "感受有多強烈？";
-"mood_checkin_sensing_intensity_prompt" = "感受有多強烈？";
+"mood_checkin_intensity_weak" = "弱";
+"mood_checkin_intensity_strong" = "強";
 
 // Mood Check-In - Attributing Screen
 "mood_checkin_attributing_title" = "歸因";
@@ -217,22 +213,19 @@
 // Mood Check-In - Evaluating Screen
 "mood_checkin_evaluating_title" = "評價";
 "mood_checkin_evaluating_subtitle" = "你對這個感受有什麼想法？";
+"mood_checkin_evaluating_option_accept" = "我接受它";
+"mood_checkin_evaluating_option_let_it_be" = "我不喜歡，但我會面對";
+"mood_checkin_evaluating_option_resist" = "我抗拒它";
+"mood_checkin_evaluating_option_dont_know" = "我不知道如何面對";
+"mood_checkin_evaluating_option_conflicted" = "我對此感到矛盾";
 
 // Mood Check-In - Acting Screen
 "mood_checkin_acting_title" = "行動";
-"mood_checkin_acting_subtitle" = "將你的情緒覺察\n轉化為創意表達";
-"mood_checkin_acting_journey" = "你的情緒旅程";
-"mood_checkin_acting_journey_label" = "你的情緒旅程";
-"mood_checkin_acting_color" = "顏色";
-"mood_checkin_acting_color_label" = "顏色";
-"mood_checkin_acting_emotions" = "情緒";
-"mood_checkin_acting_emotions_label" = "情緒";
-"mood_checkin_acting_expression" = "表達";
-"mood_checkin_acting_expression_label" = "表達";
-"mood_checkin_acting_selected" = "已選擇";
-"mood_checkin_acting_na" = "無";
+"mood_checkin_acting_subtitle" = "將你的感受轉化為文字、圖像，\n或有意義的時刻。\n\n    你的情緒旅程";
+"mood_checkin_acting_journey" = "你今天的情緒旅程";
+"mood_checkin_acting_more_actions" = "更多操作";
+"mood_checkin_acting_draw" = "繪畫";
 "mood_checkin_acting_write_journal" = "寫日記";
-"mood_checkin_acting_make_art" = "創作藝術";
 "mood_checkin_acting_complete" = "完成記錄";
 
 // Mood Check-In - Prompt Options
@@ -244,12 +237,12 @@
 "prompt_option_the_texture_is" = "這個質感是";
 
 // Mood Check-In - Prompt Placeholders
-"prompt_placeholder_it_feels_like" = "「感覺就像 _______。」\\n想想一個與你的感受相符的畫面、動作或氛圍。";
-"prompt_placeholder_it_reminds_me_of" = "「讓我想起 _______。」\\n描述一段與這個情緒產生共鳴的記憶、地點或經歷。";
-"prompt_placeholder_i_sense" = "「我感受到 _______。」\\n這個感受帶來什麼樣的身體感覺或直覺？";
-"prompt_placeholder_the_emotion_is_like" = "「這個情緒就像 _______。」\\n用一個比喻或對比來捕捉你情緒的本質。";
-"prompt_placeholder_in_my_body_its" = "「在我的身體裡，它是 _______。」\\n這個情緒在身體的哪裡、如何呈現？";
-"prompt_placeholder_the_texture_is" = "「這個質感是 _______。」\\n如果這個情緒有質感，會是什麼感覺？";
+"prompt_placeholder_it_feels_like" = "「感覺就像 _______。」\n想想一個與你的感受相符的畫面、動作或氛圍。";
+"prompt_placeholder_it_reminds_me_of" = "「讓我想起 _______。」\n描述一段與這個情緒產生共鳴的記憶、地點或經歷。";
+"prompt_placeholder_i_sense" = "「我感受到 _______。」\n這個感受帶來什麼樣的身體感覺或直覺？";
+"prompt_placeholder_the_emotion_is_like" = "「這個情緒就像 _______。」\n用一個比喻或對比來捕捉你情緒的本質。";
+"prompt_placeholder_in_my_body_its" = "「在我的身體裡，它是 _______。」\n這個情緒在身體的哪裡、如何呈現？";
+"prompt_placeholder_the_texture_is" = "「這個質感是 _______。」\n如果這個情緒有質感，會是什麼感覺？";
 
 // MARK: - Tools
 "tools_healing_title" = "療癒";
@@ -275,3 +268,5 @@
 "inner_cosmo_period_monthly" = "每月";
 "inner_cosmo_emo_pet" = "情緒寵物";
 "inner_cosmo_mood_checkin_button" = "情緒紀錄";
+"inner_cosmo_mood_entries_header" = "最近的心情";
+"inner_cosmo_mood_entry_draw_cta" = "繪製";

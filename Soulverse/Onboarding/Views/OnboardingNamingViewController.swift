@@ -83,6 +83,7 @@ class OnboardingNamingViewController: ViewController {
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.cornerRadius = 20
         textField.backgroundColor = .white
+        textField.textColor = ThemeManager.shared.currentTheme.neutralDark
         textField.delegate = self
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 
@@ -169,7 +170,7 @@ class OnboardingNamingViewController: ViewController {
 
         progressView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.width.equalTo(ViewComponentConstants.onboardingProgressViewWidth)
+            make.width.equalTo(ViewComponentConstants.progressViewWidth)
             make.height.equalTo(4)
             make.centerX.equalToSuperview()
         }

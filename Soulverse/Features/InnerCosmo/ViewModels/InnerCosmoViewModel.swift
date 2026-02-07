@@ -17,10 +17,15 @@ struct InnerCosmoViewModel {
 
     var userName: String?
     var petName: String?
+    var planetName: String?
 
     // MARK: - Emotion Data
 
     var emotions: [EmotionPlanetData]
+
+    // MARK: - Mood Entry Cards
+
+    var moodEntries: [MoodEntry]
 
     // MARK: - Initialization
 
@@ -28,11 +33,15 @@ struct InnerCosmoViewModel {
         isLoading: Bool = false,
         userName: String? = nil,
         petName: String? = nil,
-        emotions: [EmotionPlanetData] = []
+        planetName: String? = nil,
+        emotions: [EmotionPlanetData] = [],
+        moodEntries: [MoodEntry] = []
     ) {
         self.isLoading = isLoading
         self.userName = userName
         self.petName = petName
+        self.planetName = planetName
         self.emotions = emotions
+        self.moodEntries = moodEntries
     }
 }

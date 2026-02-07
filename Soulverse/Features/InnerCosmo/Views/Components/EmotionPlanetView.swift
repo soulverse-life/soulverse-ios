@@ -90,6 +90,7 @@ class EmotionPlanetView: UIView {
 
     private func setupView() {
         backgroundColor = .clear
+        translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(planetView)
         addSubview(labelContainerView)
@@ -146,6 +147,15 @@ class EmotionPlanetView: UIView {
     private func configure(with data: EmotionPlanetData) {
         emotionLabel.text = data.emotion
 
+        // Hide label container when emotion text is empty
+        if data.emotion.isEmpty {
+            labelContainerView.isHidden = true
+            labelContainerView.snp.remakeConstraints { _ in }
+            planetView.snp.makeConstraints { make in
+                make.bottom.equalToSuperview()
+            }
+        }
+
         // Create gradient colors based on the planet color
         let baseColor = data.color
         let lighterColor = baseColor.withAlphaComponent(0.8)
@@ -189,6 +199,10 @@ class EmotionPlanetView: UIView {
 
     /// Calculate the size needed for this planet view
     func calculateSize() -> CGSize {
+        if data.emotion.isEmpty {
+            return CGSize(width: planetSize, height: planetSize)
+        }
+
         let labelIntrinsicHeight = emotionLabel.intrinsicContentSize.height
         let labelContainerHeight = labelIntrinsicHeight + (Layout.labelVerticalPadding * 2)
         let totalHeight = planetSize + Layout.labelTopPadding + labelContainerHeight

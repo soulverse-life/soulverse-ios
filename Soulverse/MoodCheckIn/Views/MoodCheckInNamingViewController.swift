@@ -18,49 +18,37 @@ class MoodCheckInNamingViewController: ViewController {
         didSet { updateContinueButton() }
     }
 
-    // MARK: - Layout Constants
+    // MARK: - View-specific Constants
 
-    private enum Layout {
-        enum Spacing {
-            static let horizontal: CGFloat = 40
-            static let sectionVertical: CGFloat = 24
-            static let titleTopOffset: CGFloat = 40
-        }
-
-        enum Size {
-            static let progressSteps: Int = 6
-            static let currentStep: Int = 2
-        }
-    }
+    private let currentStep: Int = 2
 
     // MARK: - UI Elements - Navigation
 
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = .themeTextPrimary
+        if #available(iOS 26.0, *) {
+            button.setImage(UIImage(named: "naviconBack")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            button.imageView?.contentMode = .center
+            button.imageView?.clipsToBounds = false
+            button.clipsToBounds = false
+        } else {
+            button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+            button.tintColor = .themeTextPrimary
+        }
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         return button
     }()
 
-    private lazy var closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .themeTextPrimary
-        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
     private lazy var progressBar: SoulverseProgressBar = {
-        let bar = SoulverseProgressBar(totalSteps: Layout.Size.progressSteps)
-        bar.setProgress(currentStep: Layout.Size.currentStep)
+        let bar = SoulverseProgressBar(totalSteps: MoodCheckInLayout.totalSteps)
+        bar.setProgress(currentStep: currentStep)
         return bar
     }()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("mood_checkin_naming_title", comment: "")
-        label.font = .projectFont(ofSize: 32, weight: .semibold)
+        label.font = .projectFont(ofSize: 34, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
@@ -82,11 +70,22 @@ class MoodCheckInNamingViewController: ViewController {
     private lazy var intensityContainer: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = Layout.Spacing.sectionVertical
+        stack.spacing = MoodCheckInLayout.sectionSpacing
         return stack
     }()
 
     private var intensityViews: [EmotionType: IntensitySelectionView] = [:]
+
+    /// Label showing combined emotion formula (e.g., "Joy + Trust = Love")
+    private lazy var combinedEmotionLabel: UILabel = {
+        let label = UILabel()
+        label.font = .projectFont(ofSize: 18, weight: .medium)
+        label.textColor = .themeTextPrimary
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.alpha = 0
+        return label
+    }()
 
     private lazy var continueButton: SoulverseButton = {
         let buttonTitle = NSLocalizedString("mood_checkin_continue", comment: "")
@@ -115,7 +114,6 @@ class MoodCheckInNamingViewController: ViewController {
 
     private func setupNavigationBar() {
         view.addSubview(backButton)
-        view.addSubview(closeButton)
         view.addSubview(progressBar)
         view.addSubview(titleLabel)
     }
@@ -124,6 +122,7 @@ class MoodCheckInNamingViewController: ViewController {
         view.addSubview(colorSummarySection)
         view.addSubview(emotionSelectionSection)
         view.addSubview(intensityContainer)
+        view.addSubview(combinedEmotionLabel)
     }
 
     private func setupContinueButton() {
@@ -140,14 +139,8 @@ class MoodCheckInNamingViewController: ViewController {
 
     private func setupNavigationConstraints() {
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.left.equalToSuperview().offset(16)
-            make.width.height.equalTo(ViewComponentConstants.navigationButtonSize)
-        }
-
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.right.equalToSuperview().offset(-16)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(MoodCheckInLayout.navigationTopOffset)
+            make.left.equalToSuperview().offset(MoodCheckInLayout.navigationLeftOffset)
             make.width.height.equalTo(ViewComponentConstants.navigationButtonSize)
         }
     }
@@ -156,38 +149,45 @@ class MoodCheckInNamingViewController: ViewController {
         progressBar.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalTo(backButton)
+            make.width.equalTo(ViewComponentConstants.progressViewWidth)
         }
     }
 
     private func setupTitleConstraints() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(Layout.Spacing.titleTopOffset)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(progressBar.snp.bottom).offset(MoodCheckInLayout.titleTopOffset)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
     }
 
     private func setupSectionConstraints() {
         colorSummarySection.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(titleLabel.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
         emotionSelectionSection.snp.makeConstraints { make in
-            make.top.equalTo(colorSummarySection.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(colorSummarySection.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
         intensityContainer.snp.makeConstraints { make in
-            make.top.equalTo(emotionSelectionSection.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
+            make.top.equalTo(emotionSelectionSection.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
+        }
+
+        combinedEmotionLabel.snp.makeConstraints { make in
+            make.top.equalTo(emotionSelectionSection.snp.bottom).offset(MoodCheckInLayout.sectionSpacing * 3)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
     }
 
     private func setupContinueButtonConstraints() {
         continueButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(Layout.Spacing.horizontal)
-            make.top.greaterThanOrEqualTo(intensityContainer.snp.bottom).offset(Layout.Spacing.sectionVertical)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
+            make.top.greaterThanOrEqualTo(intensityContainer.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.top.greaterThanOrEqualTo(combinedEmotionLabel.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-MoodCheckInLayout.bottomPadding)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
     }
@@ -205,28 +205,46 @@ class MoodCheckInNamingViewController: ViewController {
         continueButton.isEnabled = viewState.canContinue
     }
 
-    private func updateIntensityViews(for emotions: [EmotionType]) {
-        // Remove views for deselected emotions
-        for (emotion, view) in intensityViews where !emotions.contains(emotion) {
-            view.removeFromSuperview()
-            intensityViews.removeValue(forKey: emotion)
-        }
+    private func updateIntensitySection() {
+        // Clear existing intensity views
+        intensityContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        intensityViews.removeAll()
 
-        // Add views for newly selected emotions
-        for emotion in emotions where intensityViews[emotion] == nil {
+        let emotionCount = viewState.selectedEmotions.count
+
+        // Single emotion: show intensity selector, hide combined label
+        if emotionCount == 1, let emotion = viewState.selectedEmotions.first {
             let intensityView = IntensitySelectionView()
             intensityView.delegate = self
             intensityView.configure(emotion: emotion)
 
             intensityViews[emotion] = intensityView
+            intensityContainer.addArrangedSubview(intensityView)
+
+            UIView.animate(withDuration: AnimationConstant.defaultDuration) {
+                self.intensityContainer.alpha = 1
+                self.combinedEmotionLabel.alpha = 0
+            }
+            return
         }
 
-        // Rebuild stack view in correct order
-        intensityContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        for emotion in emotions {
-            if let view = intensityViews[emotion] {
-                intensityContainer.addArrangedSubview(view)
+        // Two emotions: hide intensity selector, show combined emotion formula
+        if emotionCount == 2, let resolvedEmotion = viewState.resolvedEmotion,
+           let sources = resolvedEmotion.sourceEmotions {
+            let formula = "\(sources.0.displayName) + \(sources.1.displayName) = \(resolvedEmotion.displayName)"
+            combinedEmotionLabel.text = formula
+
+            UIView.animate(withDuration: AnimationConstant.defaultDuration) {
+                self.intensityContainer.alpha = 0
+                self.combinedEmotionLabel.alpha = 1
             }
+            return
+        }
+
+        // No selection or invalid: hide both
+        UIView.animate(withDuration: AnimationConstant.defaultDuration) {
+            self.intensityContainer.alpha = 0
+            self.combinedEmotionLabel.alpha = 0
         }
     }
 
@@ -242,29 +260,19 @@ class MoodCheckInNamingViewController: ViewController {
     @objc private func backButtonTapped() {
         delegate?.didTapBack(self)
     }
-
-    @objc private func closeButtonTapped() {
-        delegate?.didTapClose(self)
-    }
 }
 
 // MARK: - EmotionSelectionViewDelegate
 
 extension MoodCheckInNamingViewController: EmotionSelectionViewDelegate {
     func didUpdateEmotions(_ view: EmotionSelectionView, emotions: [EmotionType]) {
-        // Update view state with new emotions (preserve existing intensities, default 0.5 for new)
-        var newEmotionsData: [(emotion: EmotionType, intensity: Double)] = []
+        viewState.selectedEmotions = emotions
 
-        for emotion in emotions {
-            // Find existing intensity or use default
-            let existingIntensity = viewState.selectedEmotions.first(where: { $0.emotion == emotion })?.intensity ?? 0.5
-            newEmotionsData.append((emotion: emotion, intensity: existingIntensity))
-        }
+        // Reset intensity to default when selection changes
+        viewState.intensity = 0.5
 
-        viewState.selectedEmotions = newEmotionsData
-
-        // Update intensity views
-        updateIntensityViews(for: emotions)
+        // Update intensity section visibility
+        updateIntensitySection()
     }
 
     func didReachMaximumSelection(_ view: EmotionSelectionView) {
@@ -276,10 +284,7 @@ extension MoodCheckInNamingViewController: EmotionSelectionViewDelegate {
 
 extension MoodCheckInNamingViewController: IntensitySelectionViewDelegate {
     func didChangeIntensity(_ view: IntensitySelectionView, emotion: EmotionType, intensity: Double) {
-        // Update the intensity for the specific emotion
-        if let index = viewState.selectedEmotions.firstIndex(where: { $0.emotion == emotion }) {
-            viewState.selectedEmotions[index].intensity = intensity
-        }
+        viewState.intensity = intensity
     }
 }
 
@@ -287,8 +292,8 @@ extension MoodCheckInNamingViewController: IntensitySelectionViewDelegate {
 
 extension MoodCheckInNamingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        guard !viewState.selectedEmotions.isEmpty else { return }
-        delegate?.didSelectEmotions(self, emotions: viewState.selectedEmotions)
+        guard let recordedEmotion = viewState.resolvedEmotion else { return }
+        delegate?.didSelectEmotion(self, emotion: recordedEmotion)
     }
 }
 
@@ -297,10 +302,29 @@ extension MoodCheckInNamingViewController: SoulverseButtonDelegate {
 private extension MoodCheckInNamingViewController {
     struct ViewState {
         var selectedColor: UIColor = .yellow
-        var selectedEmotions: [(emotion: EmotionType, intensity: Double)] = []
+        var selectedEmotions: [EmotionType] = []
+        var intensity: Double = 0.5  // Only used for single emotion selection
 
         var canContinue: Bool {
-            return !selectedEmotions.isEmpty && selectedEmotions.count <= 2
+            // Must have 1-2 emotions AND the combination must be resolvable
+            return resolvedEmotion != nil
+        }
+
+        /// Whether intensity selector should be shown (only for single emotion)
+        var shouldShowIntensity: Bool {
+            return selectedEmotions.count == 1
+        }
+
+        /// Resolve the final RecordedEmotion based on current selection
+        var resolvedEmotion: RecordedEmotion? {
+            switch selectedEmotions.count {
+            case 1:
+                return RecordedEmotion.from(primary: selectedEmotions[0], intensity: intensity)
+            case 2:
+                return RecordedEmotion.from(emotion1: selectedEmotions[0], emotion2: selectedEmotions[1])
+            default:
+                return nil
+            }
         }
     }
 }

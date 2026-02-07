@@ -22,7 +22,7 @@ extension UniverseTheme {
     }
 
     var neutralLight: UIColor {
-        UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 199.0/255.0, alpha: 1.0)
+        UIColor(red: 217.0/255.0, green: 217.0/255.0, blue: 217.0/255.0, alpha: 1.0)
     }
 
     var neutralMedium: UIColor {
@@ -112,6 +112,10 @@ extension UniverseTheme {
 
     var buttonDisabledText: UIColor {
         UIColor(red: 136.0/255.0, green: 143.0/255.0, blue: 155.0/255.0, alpha: 1.0)
+    }
+
+    var circleUnselectedBackground: UIColor {
+        UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 178.0/255.0, alpha: 1.0)
     }
 }
 

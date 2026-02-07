@@ -15,7 +15,7 @@ struct ViewComponentConstants {
     static let navigationButtonSize: CGFloat = 44.0
     static let colorDisplaySize: CGFloat = 30.0
     
-    static let onboardingProgressViewWidth: CGFloat = 144.0
+    static let progressViewWidth: CGFloat = 144.0
     
     static let horizontalPadding: CGFloat = 26.0
 }
@@ -86,6 +86,10 @@ struct TimeConstant {
     static let day = 86400.0
     static let hour = 3600.0
     static let miniute = 60.0
+}
+
+struct AnimationConstant {
+    static let defaultDuration: TimeInterval = 0.2
 }
 
 struct Layout {

@@ -8,9 +8,15 @@
 import UIKit
 import SnapKit
 
-/// A view that displays the selected color from the previous step
-/// Shows a color circle (with white background to prevent alpha mixing) and descriptive label
+/// A view that displays the selected color with an optional label
+/// Shows a color circle (with white background to prevent alpha mixing) and configurable label text
 class ColorSummaryView: UIView {
+
+    // MARK: - Layout Constants
+
+    private enum Layout {
+        static let colorLabelSpacing: CGFloat = 12
+    }
 
     // MARK: - UI Elements
 
@@ -41,11 +47,11 @@ class ColorSummaryView: UIView {
 
     private var coloredView: UIView!
 
-    private lazy var colorLabel: UILabel = {
+    private lazy var textLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("mood_checkin_naming_color_selected", comment: "")
         label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .themeTextPrimary
+        label.numberOfLines = 0
         return label
     }()
 
@@ -64,7 +70,7 @@ class ColorSummaryView: UIView {
 
     private func setupView() {
         addSubview(colorDisplayContainerView)
-        addSubview(colorLabel)
+        addSubview(textLabel)
 
         setupConstraints()
     }
@@ -75,8 +81,8 @@ class ColorSummaryView: UIView {
             make.width.height.equalTo(ViewComponentConstants.colorDisplaySize)
         }
 
-        colorLabel.snp.makeConstraints { make in
-            make.left.equalTo(colorDisplayContainerView.snp.right).offset(12)
+        textLabel.snp.makeConstraints { make in
+            make.left.equalTo(colorDisplayContainerView.snp.right).offset(Layout.colorLabelSpacing)
             make.centerY.equalTo(colorDisplayContainerView)
             make.right.lessThanOrEqualToSuperview()
         }
@@ -84,9 +90,19 @@ class ColorSummaryView: UIView {
 
     // MARK: - Public Methods
 
-    /// Configure the view with a selected color
+    /// Configure the view with a selected color (shows default "color selected" label)
     /// - Parameter color: The color to display (including alpha component)
     func configure(color: UIColor) {
         coloredView.backgroundColor = color
+        textLabel.text = NSLocalizedString("mood_checkin_naming_color_selected", comment: "")
+    }
+
+    /// Configure the view with color and recorded emotion
+    /// - Parameters:
+    ///   - color: The selected color
+    ///   - emotion: The recorded emotion (displays emotion name)
+    func configure(color: UIColor, emotion: RecordedEmotion) {
+        coloredView.backgroundColor = color
+        textLabel.text = emotion.displayName
     }
 }

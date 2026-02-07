@@ -6,6 +6,11 @@
 import SnapKit
 import UIKit
 
+/// Delegate protocol for CentralPlanetView tap events
+protocol CentralPlanetViewDelegate: AnyObject {
+    func centralPlanetViewDidTapEmoPet(_ view: CentralPlanetView)
+}
+
 /// Central planet view with E.M.O pet image and name
 class CentralPlanetView: UIView {
 
@@ -14,11 +19,18 @@ class CentralPlanetView: UIView {
     private enum Layout {
         static let outerDiameter: CGFloat = 280
         static let innerDiameter: CGFloat = 160
-        
+
         static let emoPetImageSize: CGFloat = 64
         static let emoPetLabelFontSize: CGFloat = 11
         static let emoPetNameFontSize: CGFloat = 11
+
+        static let tapScaleDown: CGFloat = 0.9
+        static let tapAnimationDuration: TimeInterval = 0.1
     }
+
+    // MARK: - Properties
+
+    weak var delegate: CentralPlanetViewDelegate?
 
     // MARK: - UI Components
 
@@ -90,6 +102,12 @@ class CentralPlanetView: UIView {
         innerPlanetView.addSubview(emoPetImageView)
         innerPlanetView.addSubview(emoPetLabel)
         innerPlanetView.addSubview(emoPetNameLabel)
+
+        // Ensure user interaction is enabled on the view hierarchy
+        isUserInteractionEnabled = true
+        outerPlanetView.isUserInteractionEnabled = true
+
+        setupTapGesture()
         
         outerPlanetView.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -115,6 +133,37 @@ class CentralPlanetView: UIView {
         emoPetNameLabel.snp.makeConstraints { make in
             make.top.equalTo(emoPetLabel.snp.bottom)
             make.centerX.equalToSuperview()
+        }
+    }
+
+    // MARK: - Tap Gesture
+
+    private func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleEmoPetTap))
+        innerPlanetView.addGestureRecognizer(tapGesture)
+        innerPlanetView.isUserInteractionEnabled = true
+    }
+
+    @objc private func handleEmoPetTap() {
+        animateTap()
+        delegate?.centralPlanetViewDidTapEmoPet(self)
+    }
+
+    private func animateTap() {
+        UIView.animate(
+            withDuration: Layout.tapAnimationDuration,
+            delay: 0,
+            options: .curveEaseIn
+        ) {
+            self.emoPetImageView.transform = CGAffineTransform(scaleX: Layout.tapScaleDown, y: Layout.tapScaleDown)
+        } completion: { _ in
+            UIView.animate(
+                withDuration: Layout.tapAnimationDuration,
+                delay: 0,
+                options: .curveEaseOut
+            ) {
+                self.emoPetImageView.transform = .identity
+            }
         }
     }
 

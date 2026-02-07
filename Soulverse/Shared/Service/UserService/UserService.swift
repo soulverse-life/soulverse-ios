@@ -183,8 +183,10 @@ class UserService {
                     let filteredResponse = try response.filterSuccessfulStatusAndRedirectCodes()
                     _ = String(decoding: filteredResponse.data, as: UTF8.self)
 
-                    // Mark onboarding as completed in User singleton
+                    // Save onboarding data to User singleton for local access
                     User.shared.hasCompletedOnboarding = true
+                    User.shared.emoPetName = data.emoPetName
+                    User.shared.planetName = data.planetName
 
                     completion(.success(()))
                 } catch _ {

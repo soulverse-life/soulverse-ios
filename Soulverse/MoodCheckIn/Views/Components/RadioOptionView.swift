@@ -13,6 +13,11 @@ protocol RadioOptionViewDelegate: AnyObject {
 }
 
 class RadioOptionView: UIView {
+    
+    // MARK: - Layout Constants
+    private enum Layout {
+        static let stackSpacing: CGFloat = 24
+    }
 
     // MARK: - Properties
 
@@ -25,9 +30,9 @@ class RadioOptionView: UIView {
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.distribution = .fill
+        stack.distribution = .equalSpacing
         stack.alignment = .fill
-        stack.spacing = 16
+        stack.spacing = Layout.stackSpacing
         return stack
     }()
 
@@ -112,29 +117,38 @@ class RadioOptionView: UIView {
 
 private class RadioOptionItemView: UIView {
 
+    // MARK: - Layout Constants
+    private enum Layout {
+        static let radioCircleSize: CGFloat = 30
+        static let radioCircleBorderWidth: CGFloat = 2
+        static let innerCircleSize: CGFloat = 18
+        static let textLabelFontSize: CGFloat = 17
+        static let textToRadioSpacing: CGFloat = 16
+    }
+
     private let text: String
     private var isSelected: Bool = false
 
     private lazy var radioCircle: UIView = {
         let view = UIView()
-        view.layer.borderWidth = 2
+        view.layer.borderWidth = Layout.radioCircleBorderWidth
         view.layer.borderColor = UIColor.themeTextPrimary.cgColor
-        view.layer.cornerRadius = 12
+        view.layer.cornerRadius = Layout.radioCircleSize / 2
         view.backgroundColor = .clear
         return view
     }()
 
     private lazy var innerCircle: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 6
-        view.backgroundColor = .themeTextPrimary
+        view.layer.cornerRadius = Layout.innerCircleSize / 2
+        view.backgroundColor = .themePrimary
         view.alpha = 0
         return view
     }()
 
     private lazy var textLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: Layout.textLabelFontSize, weight: .regular)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         return label
@@ -160,20 +174,19 @@ private class RadioOptionItemView: UIView {
         addSubview(textLabel)
 
         radioCircle.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(24)
+            make.top.bottom.left.equalToSuperview()
+            make.width.height.equalTo(Layout.radioCircleSize)
         }
 
         innerCircle.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.width.height.equalTo(12)
+            make.width.height.equalTo(Layout.innerCircleSize)
         }
 
         textLabel.snp.makeConstraints { make in
-            make.left.equalTo(radioCircle.snp.right).offset(12)
+            make.left.equalTo(radioCircle.snp.right).offset(Layout.textToRadioSpacing)
             make.right.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(8)
+            make.centerY.equalToSuperview()
         }
 
         textLabel.text = text
@@ -184,7 +197,7 @@ private class RadioOptionItemView: UIView {
     func setSelected(_ selected: Bool) {
         isSelected = selected
 
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: AnimationConstant.defaultDuration) {
             self.innerCircle.alpha = selected ? 1.0 : 0.0
         }
     }

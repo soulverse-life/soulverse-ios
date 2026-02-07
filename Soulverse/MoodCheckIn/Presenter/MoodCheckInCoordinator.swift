@@ -12,11 +12,12 @@ final class MoodCheckInCoordinator {
     // MARK: - Properties
 
     // Completion callbacks
-    var onComplete: ((MoodCheckInData) -> Void)?
+    var onComplete: ((MoodCheckInData, MoodCheckInActingAction?) -> Void)?
     var onCancel: (() -> Void)?
 
     private let navigationController: UINavigationController
     private var moodCheckInData = MoodCheckInData()
+    private var selectedAction: MoodCheckInActingAction?
 
     // UserDefaults key for tracking if user has seen Pet screen
     private static let hasSeenPetKey = "hasSeenMoodCheckInPet"
@@ -76,11 +77,11 @@ final class MoodCheckInCoordinator {
     private func showShapingScreen() {
         let viewController = MoodCheckInShapingViewController()
         viewController.delegate = self
-        // Pass the selected color with intensity (alpha) and emotions from previous steps
-        if let selectedColor = moodCheckInData.selectedColor {
+        // Pass the selected color with intensity (alpha) and recorded emotion from previous steps
+        if let selectedColor = moodCheckInData.selectedColor,
+           let recordedEmotion = moodCheckInData.recordedEmotion {
             let colorWithAlpha = selectedColor.withAlphaComponent(moodCheckInData.colorIntensity)
-            let emotions = moodCheckInData.emotions
-            viewController.setSelectedColorAndEmotions(color: colorWithAlpha, emotions: emotions)
+            viewController.setSelectedColorAndEmotion(color: colorWithAlpha, emotion: recordedEmotion)
         }
         navigationController.pushViewController(viewController, animated: true)
     }
@@ -152,12 +153,9 @@ final class MoodCheckInCoordinator {
     }
 
     private func handleSubmissionSuccess() {
-        // Show success message
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            // You can use SwiftMessages or a custom success view here
-            // For now, we'll complete the flow
-            self.onComplete?(self.moodCheckInData)
+            self.onComplete?(self.moodCheckInData, self.selectedAction)
             // Release self-reference to allow deallocation
             self.strongSelf = nil
         }
@@ -202,8 +200,8 @@ extension MoodCheckInCoordinator: MoodCheckInSensingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInNamingViewControllerDelegate {
 
-    func didSelectEmotions(_ viewController: MoodCheckInNamingViewController, emotions: [(emotion: EmotionType, intensity: Double)]) {
-        moodCheckInData.emotions = emotions
+    func didSelectEmotion(_ viewController: MoodCheckInNamingViewController, emotion: RecordedEmotion) {
+        moodCheckInData.recordedEmotion = emotion
         showShapingScreen()
     }
 
@@ -220,7 +218,7 @@ extension MoodCheckInCoordinator: MoodCheckInNamingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInShapingViewControllerDelegate {
 
-    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption, response: String) {
+    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption?, response: String?) {
         moodCheckInData.selectedPrompt = prompt
         moodCheckInData.promptResponse = response
         showAttributingScreen()
@@ -239,8 +237,8 @@ extension MoodCheckInCoordinator: MoodCheckInShapingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInAttributingViewControllerDelegate {
 
-    func didSelectLifeArea(_ viewController: MoodCheckInAttributingViewController, lifeArea: LifeAreaOption) {
-        moodCheckInData.lifeArea = lifeArea
+    func didSelectTopic(_ viewController: MoodCheckInAttributingViewController, topic: Topic) {
+        moodCheckInData.selectedTopic = topic
         showEvaluatingScreen()
     }
 
@@ -275,17 +273,8 @@ extension MoodCheckInCoordinator: MoodCheckInEvaluatingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInActingViewControllerDelegate {
 
-    func didTapWriteJournal(_ viewController: MoodCheckInActingViewController) {
-        submitMoodCheckInData()
-    }
-
-    func didTapMakeArt(_ viewController: MoodCheckInActingViewController) {
-        submitMoodCheckInData()
-        // Navigate to drawing canvas
-        AppCoordinator.openDrawingCanvas(from: viewController)
-    }
-
-    func didTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController) {
+    func didTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController, selectedAction: MoodCheckInActingAction?) {
+        self.selectedAction = selectedAction
         submitMoodCheckInData()
     }
 
@@ -316,19 +305,19 @@ protocol MoodCheckInSensingViewControllerDelegate: AnyObject {
 }
 
 protocol MoodCheckInNamingViewControllerDelegate: AnyObject {
-    func didSelectEmotions(_ viewController: MoodCheckInNamingViewController, emotions: [(emotion: EmotionType, intensity: Double)])
+    func didSelectEmotion(_ viewController: MoodCheckInNamingViewController, emotion: RecordedEmotion)
     func didTapBack(_ viewController: MoodCheckInNamingViewController)
     func didTapClose(_ viewController: MoodCheckInNamingViewController)
 }
 
 protocol MoodCheckInShapingViewControllerDelegate: AnyObject {
-    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption, response: String)
+    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption?, response: String?)
     func didTapBack(_ viewController: MoodCheckInShapingViewController)
     func didTapClose(_ viewController: MoodCheckInShapingViewController)
 }
 
 protocol MoodCheckInAttributingViewControllerDelegate: AnyObject {
-    func didSelectLifeArea(_ viewController: MoodCheckInAttributingViewController, lifeArea: LifeAreaOption)
+    func didSelectTopic(_ viewController: MoodCheckInAttributingViewController, topic: Topic)
     func didTapBack(_ viewController: MoodCheckInAttributingViewController)
     func didTapClose(_ viewController: MoodCheckInAttributingViewController)
 }
@@ -340,9 +329,7 @@ protocol MoodCheckInEvaluatingViewControllerDelegate: AnyObject {
 }
 
 protocol MoodCheckInActingViewControllerDelegate: AnyObject {
-    func didTapWriteJournal(_ viewController: MoodCheckInActingViewController)
-    func didTapMakeArt(_ viewController: MoodCheckInActingViewController)
-    func didTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController)
+    func didTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController, selectedAction: MoodCheckInActingAction?)
     func didTapBack(_ viewController: MoodCheckInActingViewController)
     func didTapClose(_ viewController: MoodCheckInActingViewController)
     func getCurrentData(_ viewController: MoodCheckInActingViewController) -> MoodCheckInData

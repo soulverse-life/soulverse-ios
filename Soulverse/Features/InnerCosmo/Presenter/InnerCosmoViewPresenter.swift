@@ -60,7 +60,9 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
             isLoading: false,
             userName: user.nickName,
             petName: user.emoPetName,
-            emotions: EmotionPlanetData.mockData  // TODO: Replace with fetched data
+            planetName: user.planetName //,
+            // emotions: EmotionPlanetData.mockData,  // TODO: Replace with fetched data
+            // moodEntries: MoodEntry.mockData  // TODO: Replace with API data
         )
         isFetchingData = false
     }

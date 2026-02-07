@@ -14,28 +14,27 @@ class MoodCheckInAttributingViewController: ViewController {
 
     weak var delegate: MoodCheckInAttributingViewControllerDelegate?
 
-    private var selectedLifeArea: LifeAreaOption?
+    private var selectedTopic: Topic?
 
     // MARK: - UI Elements
 
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = .themeTextPrimary
+        if #available(iOS 26.0, *) {
+            button.setImage(UIImage(named: "naviconBack")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            button.imageView?.contentMode = .center
+            button.imageView?.clipsToBounds = false
+            button.clipsToBounds = false
+        } else {
+            button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+            button.tintColor = .themeTextPrimary
+        }
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         return button
     }()
 
-    private lazy var closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .themeTextPrimary
-        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
     private lazy var progressBar: SoulverseProgressBar = {
-        let bar = SoulverseProgressBar(totalSteps: 6)
+        let bar = SoulverseProgressBar(totalSteps: MoodCheckInLayout.totalSteps)
         bar.setProgress(currentStep: 4)
         return bar
     }()
@@ -43,7 +42,7 @@ class MoodCheckInAttributingViewController: ViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("mood_checkin_attributing_title", comment: "")
-        label.font = .projectFont(ofSize: 32, weight: .semibold)
+        label.font = .projectFont(ofSize: 34, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
         return label
@@ -59,15 +58,10 @@ class MoodCheckInAttributingViewController: ViewController {
         return label
     }()
 
-    private var lifeAreaItems: [SoulverseTagsItemData] = []
-
-    private lazy var lifeAreaTagsView: SoulverseTagsView = {
-        let config = SoulverseTagsViewConfig(
-            horizontalSpacing: 12, verticalSpacing: 12, itemHeight: 44)
-        let view = SoulverseTagsView(config: config)
-        view.selectionMode = .single
-        view.delegate = self
-        return view
+    private lazy var topicList: SoulverseTopicList = {
+        let list = SoulverseTopicList(targetSelectedCount: 1)
+        list.delegate = self
+        return list
     }()
 
     private lazy var continueButton: SoulverseButton = {
@@ -81,7 +75,6 @@ class MoodCheckInAttributingViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupLifeAreaTags()
     }
 
     // MARK: - Setup
@@ -90,59 +83,45 @@ class MoodCheckInAttributingViewController: ViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         view.addSubview(backButton)
-        view.addSubview(closeButton)
         view.addSubview(progressBar)
         view.addSubview(titleLabel)
         view.addSubview(subtitleLabel)
-        view.addSubview(lifeAreaTagsView)
+        view.addSubview(topicList)
         view.addSubview(continueButton)
 
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.left.equalToSuperview().offset(16)
-            make.width.height.equalTo(44)
-        }
-
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.right.equalToSuperview().offset(-16)
-            make.width.height.equalTo(44)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(MoodCheckInLayout.navigationTopOffset)
+            make.left.equalToSuperview().offset(MoodCheckInLayout.navigationLeftOffset)
+            make.width.height.equalTo(ViewComponentConstants.navigationButtonSize)
         }
 
         progressBar.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalTo(backButton)
+            make.width.equalTo(ViewComponentConstants.progressViewWidth)
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(40)
-            make.left.right.equalToSuperview().inset(40)
+            make.top.equalTo(progressBar.snp.bottom).offset(MoodCheckInLayout.titleTopOffset)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
         subtitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(12)
-            make.left.right.equalToSuperview().inset(40)
+            make.top.equalTo(titleLabel.snp.bottom).offset(MoodCheckInLayout.titleToSubtitleSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
-        lifeAreaTagsView.snp.makeConstraints { make in
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(32)
-            make.left.right.equalToSuperview().inset(40)
-            // No height constraint - will use intrinsic content size
+        topicList.snp.makeConstraints { make in
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
         continueButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(40)
-            make.top.greaterThanOrEqualTo(lifeAreaTagsView.snp.bottom).offset(24)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
+            make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
+            make.top.greaterThanOrEqualTo(topicList.snp.bottom).offset(MoodCheckInLayout.sectionSpacing)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-MoodCheckInLayout.bottomPadding)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
-    }
-
-    private func setupLifeAreaTags() {
-        lifeAreaItems = LifeAreaOption.allCases.map { area in
-            SoulverseTagsItemData(title: area.displayName, isSelected: false)
-        }
-        lifeAreaTagsView.setItems(lifeAreaItems)
     }
 
     // MARK: - Actions
@@ -150,34 +129,14 @@ class MoodCheckInAttributingViewController: ViewController {
     @objc private func backButtonTapped() {
         delegate?.didTapBack(self)
     }
-
-    @objc private func closeButtonTapped() {
-        delegate?.didTapClose(self)
-    }
 }
 
-// MARK: - SoulverseTagsViewDelegate
+// MARK: - SoulverseTopicListDelegate
 
-// MARK: - SoulverseTagsViewDelegate
-
-extension MoodCheckInAttributingViewController: SoulverseTagsViewDelegate {
-    func soulverseTagsView(
-        _ view: SoulverseTagsView, didUpdateSelectedItems items: [SoulverseTagsItemData]
-    ) {
-        // We only care about the single selected item
-        guard let selectedItem = items.first else {
-            selectedLifeArea = nil
-            continueButton.isEnabled = false
-            return
-        }
-
-        // Match with LifeAreaOption
-        if let lifeArea = LifeAreaOption.allCases.first(where: {
-            $0.displayName == selectedItem.title
-        }) {
-            selectedLifeArea = lifeArea
-            continueButton.isEnabled = true
-        }
+extension MoodCheckInAttributingViewController: SoulverseTopicListDelegate {
+    func topicList(_ topicList: SoulverseTopicList, didUpdateSelection selectedTopics: [Topic]) {
+        continueButton.isEnabled = !selectedTopics.isEmpty
+        selectedTopic = selectedTopics.first
     }
 }
 
@@ -185,7 +144,7 @@ extension MoodCheckInAttributingViewController: SoulverseTagsViewDelegate {
 
 extension MoodCheckInAttributingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        guard let lifeArea = selectedLifeArea else { return }
-        delegate?.didSelectLifeArea(self, lifeArea: lifeArea)
+        guard let topic = selectedTopic else { return }
+        delegate?.didSelectTopic(self, topic: topic)
     }
 }

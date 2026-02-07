@@ -13,7 +13,7 @@ struct OnboardingUserData {
     var gender: GenderOption?
     var planetName: String?
     var emoPetName: String?
-    var selectedTopic: TopicOption?
+    var selectedTopic: Topic?
 
     var isComplete: Bool {
         return isSignedIn &&

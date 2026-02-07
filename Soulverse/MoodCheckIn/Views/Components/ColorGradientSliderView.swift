@@ -17,8 +17,9 @@ class ColorGradientSliderView: UIView {
     // MARK: - Layout Constants
 
     private enum Layout {
-        static let gradientBarHeight: CGFloat = 20  // Gradient bar height
-        static let sliderHeight: CGFloat = 28        // Standard slider height (thumb is ~28pt)
+        static let gradientBarHeight: CGFloat = 30  // Gradient bar height
+        static let sliderHeight: CGFloat = 60       // Slider height to accommodate larger thumb
+        static let thumbSize: CGFloat = 50          // Circular thumb diameter
     }
 
     // MARK: - Properties
@@ -32,29 +33,29 @@ class ColorGradientSliderView: UIView {
 
         // Rainbow gradient colors
         layer.colors = [
-            UIColor(red: 255/255, green: 82/255, blue: 82/255, alpha: 1).cgColor,    // Red
-            UIColor(red: 255/255, green: 183/255, blue: 77/255, alpha: 1).cgColor,   // Orange
-            UIColor(red: 255/255, green: 235/255, blue: 59/255, alpha: 1).cgColor,   // Yellow
-            UIColor(red: 118/255, green: 209/255, blue: 145/255, alpha: 1).cgColor,  // Green
-            UIColor(red: 103/255, green: 183/255, blue: 220/255, alpha: 1).cgColor,  // Blue
-            UIColor(red: 138/255, green: 129/255, blue: 207/255, alpha: 1).cgColor   // Purple
+            UIColor(red: 255.0/255.0, green: 82.0/255.0, blue: 82.0/255.0, alpha: 1).cgColor,    // Red
+            UIColor(red: 255.0/255.0, green: 183.0/255.0, blue: 77.0/255.0, alpha: 1).cgColor,   // Orange
+            UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 59.0/255.0, alpha: 1).cgColor,   // Yellow
+            UIColor(red: 118.0/255.0, green: 209.0/255.0, blue: 145.0/255.0, alpha: 1).cgColor,  // Green
+            UIColor(red: 103.0/255.0, green: 183.0/255.0, blue: 220.0/255.0, alpha: 1).cgColor,  // Blue
+            UIColor(red: 138.0/255.0, green: 129.0/255.0, blue: 207.0/255.0, alpha: 1).cgColor   // Purple
         ]
 
         layer.cornerRadius = Layout.gradientBarHeight / 2
         return layer
     }()
 
-    private lazy var slider: SummitSlider = {
-        let slider = SummitSlider()
+    private lazy var slider: UISlider = {
+        let slider = UISlider()
         slider.minimumValue = 0
         slider.maximumValue = 1
         slider.value = 0.5
         slider.minimumTrackTintColor = .clear
         slider.maximumTrackTintColor = .clear
 
-        // Set initial thumb color to match slider position
+        // Set initial thumb image with color
         let initialColor = getColorAt(position: 0.5)
-        slider.thumbTintColor = initialColor
+        updateThumbImage(color: initialColor, for: slider)
 
         slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         return slider
@@ -120,9 +121,25 @@ class ColorGradientSliderView: UIView {
     // MARK: - Private Methods
 
     @objc private func sliderValueChanged() {
-        // Update thumb color to match selected color
-        slider.thumbTintColor = selectedColor
+        // Update thumb image with new color
+        updateThumbImage(color: selectedColor, for: slider)
         notifyDelegate()
+    }
+
+    /// Creates a circular thumb image with the given color
+    private func updateThumbImage(color: UIColor, for slider: UISlider) {
+        let thumbImage = createCircularThumbImage(color: color, size: Layout.thumbSize)
+        slider.setThumbImage(thumbImage, for: .normal)
+        slider.setThumbImage(thumbImage, for: .highlighted)
+    }
+
+    private func createCircularThumbImage(color: UIColor, size: CGFloat) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: size, height: size))
+        return renderer.image { context in
+            let rect = CGRect(x: 0, y: 0, width: size, height: size)
+            color.setFill()
+            context.cgContext.fillEllipse(in: rect)
+        }
     }
 
     private func notifyDelegate() {
@@ -134,12 +151,12 @@ class ColorGradientSliderView: UIView {
     private func getColorAt(position: Float) -> UIColor {
         // Map position to color gradient
         let colors = [
-            UIColor(red: 255/255, green: 82/255, blue: 82/255, alpha: 1),    // Red
-            UIColor(red: 255/255, green: 183/255, blue: 77/255, alpha: 1),   // Orange
-            UIColor(red: 255/255, green: 235/255, blue: 59/255, alpha: 1),   // Yellow
-            UIColor(red: 118/255, green: 209/255, blue: 145/255, alpha: 1),  // Green
-            UIColor(red: 103/255, green: 183/255, blue: 220/255, alpha: 1),  // Blue
-            UIColor(red: 138/255, green: 129/255, blue: 207/255, alpha: 1)   // Purple
+            UIColor(red: 255.0/255.0, green: 82.0/255.0, blue: 82.0/255.0, alpha: 1),    // Red
+            UIColor(red: 255.0/255.0, green: 183.0/255.0, blue: 77.0/255.0, alpha: 1),   // Orange
+            UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 59.0/255.0, alpha: 1),   // Yellow
+            UIColor(red: 118.0/255.0, green: 209.0/255.0, blue: 145.0/255.0, alpha: 1),  // Green
+            UIColor(red: 103.0/255.0, green: 183.0/255.0, blue: 220.0/255.0, alpha: 1),  // Blue
+            UIColor(red: 138.0/255.0, green: 129.0/255.0, blue: 207.0/255.0, alpha: 1)   // Purple
         ]
 
         let clampedPosition = max(0, min(1, position))

@@ -28,7 +28,6 @@
 		790AD22E2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16E2DF9E43200C33CD1 /* UIColor+Extensions.swift */; };
 		790AD22F2DF9E43200C33CD1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1ED2DF9E43200C33CD1 /* AuthService.swift */; };
 		790AD2302DF9E43200C33CD1 /* FirebaseTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */; };
-		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		790AD2312DF9E43200C33CD1 /* ContentListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F52DF9E43200C33CD1 /* ContentListResponse.swift */; };
 		790AD2372DF9E43200C33CD1 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19E2DF9E43200C33CD1 /* NotificationViewController.swift */; };
 		790AD2382DF9E43200C33CD1 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1702DF9E43200C33CD1 /* UIImage+Extensions.swift */; };
@@ -88,7 +87,6 @@
 		790AD2DC2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16E2DF9E43200C33CD1 /* UIColor+Extensions.swift */; };
 		790AD2DD2DF9E43200C33CD1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1ED2DF9E43200C33CD1 /* AuthService.swift */; };
 		790AD2DE2DF9E43200C33CD1 /* FirebaseTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */; };
-		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		790AD2DF2DF9E43200C33CD1 /* ContentListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F52DF9E43200C33CD1 /* ContentListResponse.swift */; };
 		790AD2E52DF9E43200C33CD1 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19E2DF9E43200C33CD1 /* NotificationViewController.swift */; };
 		790AD2E62DF9E43200C33CD1 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1702DF9E43200C33CD1 /* UIImage+Extensions.swift */; };
@@ -254,7 +252,6 @@
 		79B6AABD2EACCA5D00A8B079 /* EmotionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */; };
 		79B6AABE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA72EACCA5D00A8B079 /* MoodCheckInCoordinator.swift */; };
 		79B6AABF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAE2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift */; };
-		79B6AAC02EACCA5D00A8B079 /* LifeAreaOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA32EACCA5D00A8B079 /* LifeAreaOption.swift */; };
 		79B6AAC12EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAB02EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift */; };
 		79B6AAC22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAC2EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift */; };
 		79B6AAC32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */; };
@@ -267,7 +264,6 @@
 		79B6AACD2EACCA5D00A8B079 /* EmotionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */; };
 		79B6AACE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA72EACCA5D00A8B079 /* MoodCheckInCoordinator.swift */; };
 		79B6AACF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAE2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift */; };
-		79B6AAD02EACCA5D00A8B079 /* LifeAreaOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA32EACCA5D00A8B079 /* LifeAreaOption.swift */; };
 		79B6AAD12EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAB02EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift */; };
 		79B6AAD22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAC2EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift */; };
 		79B6AAD72EACCABA00A8B079 /* RadioOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAD52EACCABA00A8B079 /* RadioOptionView.swift */; };
@@ -284,12 +280,8 @@
 		79B6AAE62EB5B7AA00A8B079 /* IntensitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */; };
 		79B6AAE72EB5B7AA00A8B079 /* EmotionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */; };
 		79B6AAE82EB5B7AA00A8B079 /* ColorSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */; };
-		79B6AAEA2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE92EB5C3DE00A8B079 /* EmotionCombination.swift */; };
-		79B6AAEB2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE92EB5C3DE00A8B079 /* EmotionCombination.swift */; };
 		79B6AAEE2EB75F8800A8B079 /* PromptSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */; };
-		79B6AAEF2EB75F8800A8B079 /* ColorEmotionSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAEC2EB75F8800A8B079 /* ColorEmotionSummaryView.swift */; };
 		79B6AAF02EB75F8800A8B079 /* PromptSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */; };
-		79B6AAF12EB75F8800A8B079 /* ColorEmotionSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAEC2EB75F8800A8B079 /* ColorEmotionSummaryView.swift */; };
 		79BB25162DF9E2C600ED3CBE /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = E8388395277AF9F80002C053 /* OpenCC */; };
 		79BB25172DF9E2C600ED3CBE /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = E8388397277AF9F80002C053 /* SwiftMessages */; };
 		79BB25182DF9E2C600ED3CBE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E8388399277AF9F80002C053 /* Realm */; };
@@ -305,6 +297,34 @@
 		79DD63412EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */; };
 		79DD63422EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */; };
 		79DD63432EDB2FAF008A5F8D /* canvas_prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */; };
+		79EE74BC2F2BB0660082EECF /* AffirmationQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */; };
+		79EE74BD2F2BB0660082EECF /* AffirmationQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */; };
+		79EE74BF2F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */; };
+		79EE74C02F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */; };
+		79EE74C22F2BB09F0082EECF /* AffirmationQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */; };
+		79EE74C32F2BB09F0082EECF /* AffirmationQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */; };
+		79EE74C62F2BB1AB0082EECF /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C42F2BB1AB0082EECF /* Topic.swift */; };
+		79EE74C72F2BB1AB0082EECF /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C42F2BB1AB0082EECF /* Topic.swift */; };
+		79EE74C92F2BB6C80082EECF /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C82F2BB6C80082EECF /* SpeechService.swift */; };
+		79EE74CA2F2BB6C80082EECF /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C82F2BB6C80082EECF /* SpeechService.swift */; };
+		79EE74CC2F2E4F220082EECF /* Constants+MoodCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CB2F2E4F220082EECF /* Constants+MoodCheckIn.swift */; };
+		79EE74CD2F2E4F220082EECF /* Constants+MoodCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CB2F2E4F220082EECF /* Constants+MoodCheckIn.swift */; };
+		79EE74CF2F308DA40082EECF /* RecordedEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CE2F308DA40082EECF /* RecordedEmotion.swift */; };
+		79EE74D02F308DA40082EECF /* RecordedEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CE2F308DA40082EECF /* RecordedEmotion.swift */; };
+		79EE74D12F2BE1000082EECF /* SoulverseTopicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D02F2BE1000082EECF /* SoulverseTopicList.swift */; };
+		79EE74D22F2BE1000082EECF /* SoulverseTopicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D02F2BE1000082EECF /* SoulverseTopicList.swift */; };
+		79EE74D22F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D12F30AE3F0082EECF /* Constants+InnerCosmo.swift */; };
+		79EE74D32F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D12F30AE3F0082EECF /* Constants+InnerCosmo.swift */; };
+		79EE74D52F30AE790082EECF /* MoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D42F30AE790082EECF /* MoodEntry.swift */; };
+		79EE74D62F30AE790082EECF /* MoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D42F30AE790082EECF /* MoodEntry.swift */; };
+		79EE74D92F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */; };
+		79EE74DA2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */; };
+		79EE74DB2F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */; };
+		79EE74DC2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */; };
+		79F138052F379BF90034D325 /* ActionTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F138042F379BF90034D325 /* ActionTagView.swift */; };
+		79F138062F379BF90034D325 /* ActionTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F138042F379BF90034D325 /* ActionTagView.swift */; };
+		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
+		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
 		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
 /* End PBXBuildFile section */
@@ -381,7 +401,6 @@
 		790AD1DD2DF9E43200C33CD1 /* ErrorEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEvent.swift; sourceTree = "<group>"; };
 		790AD1DE2DF9E43200C33CD1 /* TrackingEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingEventType.swift; sourceTree = "<group>"; };
 		790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTrackingService.swift; sourceTree = "<group>"; };
-		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
 		790AD1E12DF9E43200C33CD1 /* TrackingServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingServiceType.swift; sourceTree = "<group>"; };
 		790AD1E32DF9E43200C33CD1 /* CoreTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTracker.swift; sourceTree = "<group>"; };
 		790AD1E42DF9E43200C33CD1 /* TrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingService.swift; sourceTree = "<group>"; };
@@ -482,7 +501,6 @@
 		79B24C722DFC7B2A001220B6 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionType.swift; sourceTree = "<group>"; };
 		79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationOption.swift; sourceTree = "<group>"; };
-		79B6AAA32EACCA5D00A8B079 /* LifeAreaOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeAreaOption.swift; sourceTree = "<group>"; };
 		79B6AAA42EACCA5D00A8B079 /* MoodCheckInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInData.swift; sourceTree = "<group>"; };
 		79B6AAA52EACCA5D00A8B079 /* PromptOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptOption.swift; sourceTree = "<group>"; };
 		79B6AAA72EACCA5D00A8B079 /* MoodCheckInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInCoordinator.swift; sourceTree = "<group>"; };
@@ -500,14 +518,26 @@
 		79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSummaryView.swift; sourceTree = "<group>"; };
 		79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionSelectionView.swift; sourceTree = "<group>"; };
 		79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensitySelectionView.swift; sourceTree = "<group>"; };
-		79B6AAE92EB5C3DE00A8B079 /* EmotionCombination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionCombination.swift; sourceTree = "<group>"; };
-		79B6AAEC2EB75F8800A8B079 /* ColorEmotionSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEmotionSummaryView.swift; sourceTree = "<group>"; };
 		79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptSelectionView.swift; sourceTree = "<group>"; };
 		79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTagCell.swift; sourceTree = "<group>"; };
 		79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroTransitionID.swift; sourceTree = "<group>"; };
 		79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroTransitionID+Tools.swift"; sourceTree = "<group>"; };
 		79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = canvas_prompts.json; sourceTree = "<group>"; };
 		79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasPromptModel.swift; sourceTree = "<group>"; };
+		79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AffirmationQuotes.json; sourceTree = "<group>"; };
+		79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationBubbleView.swift; sourceTree = "<group>"; };
+		79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationQuote.swift; sourceTree = "<group>"; };
+		79EE74C42F2BB1AB0082EECF /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		79EE74C82F2BB6C80082EECF /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
+		79EE74CB2F2E4F220082EECF /* Constants+MoodCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+MoodCheckIn.swift"; sourceTree = "<group>"; };
+		79EE74CE2F308DA40082EECF /* RecordedEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedEmotion.swift; sourceTree = "<group>"; };
+		79EE74D02F2BE1000082EECF /* SoulverseTopicList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTopicList.swift; sourceTree = "<group>"; };
+		79EE74D12F30AE3F0082EECF /* Constants+InnerCosmo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+InnerCosmo.swift"; sourceTree = "<group>"; };
+		79EE74D42F30AE790082EECF /* MoodEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntry.swift; sourceTree = "<group>"; };
+		79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntriesSection.swift; sourceTree = "<group>"; };
+		79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntryCardCell.swift; sourceTree = "<group>"; };
+		79F138042F379BF90034D325 /* ActionTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTagView.swift; sourceTree = "<group>"; };
+		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -692,6 +722,7 @@
 		790AD1DA2DF9E43200C33CD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */,
 				7922ECAB2E98ABDD0086B7CA /* Fonts */,
 				790AD1B52DF9E43200C33CD1 /* APIMockResponse */,
 				790AD1D92DF9E43200C33CD1 /* Assets.xcassets */,
@@ -783,6 +814,7 @@
 		790AD1F92DF9E43200C33CD1 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74C82F2BB6C80082EECF /* SpeechService.swift */,
 				790AD1EB2DF9E43200C33CD1 /* APIService */,
 				790AD1F02DF9E43200C33CD1 /* Auth */,
 				790AD1F42DF9E43200C33CD1 /* NotificationService */,
@@ -794,6 +826,7 @@
 		790AD2032DF9E43200C33CD1 /* ViewComponent */ = {
 			isa = PBXGroup;
 			children = (
+				79F138042F379BF90034D325 /* ActionTagView.swift */,
 				79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */,
 				7951A9B62E532C85006EB0EC /* SoulverseButton.swift */,
 				7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */,
@@ -802,6 +835,7 @@
 				794B5A022EA38B45006CF069 /* SoulverseTextField.swift */,
 				794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */,
 				794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */,
+				79EE74D02F2BE1000082EECF /* SoulverseTopicList.swift */,
 				790AD1FF2DF9E43200C33CD1 /* SummitSeparator.swift */,
 				790AD2002DF9E43200C33CD1 /* SummitSlider.swift */,
 				790AD2012DF9E43200C33CD1 /* ViewController.swift */,
@@ -813,6 +847,7 @@
 		790AD2052DF9E43200C33CD1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74C52F2BB1AB0082EECF /* Models */,
 				79DD63372EDA8F7B008A5F8D /* Extensions */,
 				794B59F92E9EA436006CF069 /* Theme */,
 				790AD1E52DF9E43200C33CD1 /* Analytics */,
@@ -987,6 +1022,9 @@
 		79389F602F05760D0016CB7F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */,
+				79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */,
+				79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */,
 				79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */,
 				79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */,
 				79389F5C2F05760D0016CB7F /* InnerCosmoDailyView.swift */,
@@ -1020,6 +1058,8 @@
 		7951A9C42E5376B5006EB0EC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74D42F30AE790082EECF /* MoodEntry.swift */,
+				79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */,
 				79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */,
 				7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */,
 			);
@@ -1038,6 +1078,7 @@
 		7951A9C72E5376B5006EB0EC /* InnerCosmo */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74D12F30AE3F0082EECF /* Constants+InnerCosmo.swift */,
 				7951A9C12E5376B5006EB0EC /* Presenter */,
 				7951A9C42E5376B5006EB0EC /* ViewModels */,
 				7951A9C62E5376B5006EB0EC /* Views */,
@@ -1208,10 +1249,9 @@
 		79B6AAA62EACCA5D00A8B079 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				79B6AAE92EB5C3DE00A8B079 /* EmotionCombination.swift */,
+				79EE74CE2F308DA40082EECF /* RecordedEmotion.swift */,
 				79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */,
 				79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */,
-				79B6AAA32EACCA5D00A8B079 /* LifeAreaOption.swift */,
 				79B6AAA42EACCA5D00A8B079 /* MoodCheckInData.swift */,
 				79B6AAA52EACCA5D00A8B079 /* PromptOption.swift */,
 			);
@@ -1251,6 +1291,7 @@
 		79B6AAB22EACCA5D00A8B079 /* MoodCheckIn */ = {
 			isa = PBXGroup;
 			children = (
+				79EE74CB2F2E4F220082EECF /* Constants+MoodCheckIn.swift */,
 				79B6AAA62EACCA5D00A8B079 /* Models */,
 				79B6AAA82EACCA5D00A8B079 /* Presenter */,
 				79B6AAA92EACCA5D00A8B079 /* ViewModels */,
@@ -1262,7 +1303,6 @@
 		79B6AAD62EACCABA00A8B079 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				79B6AAEC2EB75F8800A8B079 /* ColorEmotionSummaryView.swift */,
 				79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */,
 				79B6AAD32EACCABA00A8B079 /* ColorGradientSliderView.swift */,
 				79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */,
@@ -1287,6 +1327,14 @@
 			children = (
 				79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */,
 				79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		79EE74C52F2BB1AB0082EECF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				79EE74C42F2BB1AB0082EECF /* Topic.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1460,6 +1508,7 @@
 				790AD27E2DF9E43200C33CD1 /* Localizable.strings in Resources */,
 				790AD2922DF9E43200C33CD1 /* Assets.xcassets in Resources */,
 				790AD2942DF9E43200C33CD1 /* LaunchScreen.storyboard in Resources */,
+				79EE74BD2F2BB0660082EECF /* AffirmationQuotes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1474,6 +1523,7 @@
 				790AD2A82DF9E43200C33CD1 /* Localizable.strings in Resources */,
 				790AD2BC2DF9E43200C33CD1 /* Assets.xcassets in Resources */,
 				790AD2BE2DF9E43200C33CD1 /* LaunchScreen.storyboard in Resources */,
+				79EE74BC2F2BB0660082EECF /* AffirmationQuotes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1503,9 +1553,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1608,9 +1662,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1625,9 +1683,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1642,9 +1704,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1659,6 +1725,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				790AD2122DF9E43200C33CD1 /* CoreTracker.swift in Sources */,
+				79EE74C62F2BB1AB0082EECF /* Topic.swift in Sources */,
+				79EE74C32F2BB09F0082EECF /* AffirmationQuote.swift in Sources */,
 				790AD2132DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */,
 				79389F582EFFBEF60016CB7F /* TopicCardView.swift in Sources */,
 				790AD2152DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
@@ -1671,9 +1739,12 @@
 				790D87EB2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */,
 				790D87EC2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
 				790D87ED2ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
+				79EE74D22F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */,
+				79EE74BF2F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */,
 				790AD2182DF9E43200C33CD1 /* Constants.swift in Sources */,
 				79D576832EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */,
 				790AD21A2DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
+				79EE74D02F308DA40082EECF /* RecordedEmotion.swift in Sources */,
 				79B6AAD72EACCABA00A8B079 /* RadioOptionView.swift in Sources */,
 				79B6AAD82EACCABA00A8B079 /* ColorGradientSliderView.swift in Sources */,
 				79B6AAD92EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */,
@@ -1684,6 +1755,7 @@
 				790AD21D2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */,
 				790AD21F2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */,
 				794B59FE2E9EA436006CF069 /* UniverseTheme.swift in Sources */,
+				79EE74CA2F2BB6C80082EECF /* SpeechService.swift in Sources */,
 				794B59FF2E9EA436006CF069 /* GradientView.swift in Sources */,
 				794B5A002E9EA436006CF069 /* Theme.swift in Sources */,
 				794B5A012E9EA436006CF069 /* SoulTheme.swift in Sources */,
@@ -1735,6 +1807,7 @@
 				790D87D32ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
 				794B5A0C2EA38B65006CF069 /* SoulverseTagsView.swift in Sources */,
+				79F138062F379BF90034D325 /* ActionTagView.swift in Sources */,
 				790AD24E2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */,
 				790AD24F2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */,
 				790AD2502DF9E43200C33CD1 /* UISwitch+Extensions.swift in Sources */,
@@ -1748,6 +1821,8 @@
 				790AD2552DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */,
 				790D87F22ED201B200D4F61F /* ToolsViewModel.swift in Sources */,
 				790AD2592DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
+				79EE74DB2F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */,
+				79EE74DC2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */,
 				79710ED82E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
 				79389F612F05760D0016CB7F /* EmotionPlanetView.swift in Sources */,
 				79389F622F05760D0016CB7F /* InnerCosmoDailyView.swift in Sources */,
@@ -1762,7 +1837,6 @@
 				794B5A0F2EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,
 				790AD2612DF9E43200C33CD1 /* SummitAlertView.swift in Sources */,
 				79B6AADE2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */,
-				79B6AAEB2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */,
 				790AD2632DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD2662DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
 				7922ECE22E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
@@ -1771,7 +1845,7 @@
 				7922ECD22E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
 				7922ECD32E993B8D0086B7CA /* OnboardingUserData.swift in Sources */,
 				79B6AAF02EB75F8800A8B079 /* PromptSelectionView.swift in Sources */,
-				79B6AAF12EB75F8800A8B079 /* ColorEmotionSummaryView.swift in Sources */,
+				79EE74CD2F2E4F220082EECF /* Constants+MoodCheckIn.swift in Sources */,
 				7922ECD72E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */,
 				79B6AAB32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */,
 				79B6AAB42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */,
@@ -1783,8 +1857,9 @@
 				79B6AABC2EACCA5D00A8B079 /* MoodCheckInNamingViewController.swift in Sources */,
 				79B6AABD2EACCA5D00A8B079 /* EmotionType.swift in Sources */,
 				79B6AABE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */,
+				79EE74D62F30AE790082EECF /* MoodEntry.swift in Sources */,
 				79B6AABF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */,
-				79B6AAC02EACCA5D00A8B079 /* LifeAreaOption.swift in Sources */,
+				79EE74D12F2BE1000082EECF /* SoulverseTopicList.swift in Sources */,
 				79B6AAC12EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift in Sources */,
 				79B6AAC22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */,
 				7922ECD92E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */,
@@ -1801,6 +1876,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				790AD2C02DF9E43200C33CD1 /* CoreTracker.swift in Sources */,
+				79EE74C72F2BB1AB0082EECF /* Topic.swift in Sources */,
+				79EE74C22F2BB09F0082EECF /* AffirmationQuote.swift in Sources */,
 				790AD2C12DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */,
 				79389F592EFFBEF60016CB7F /* TopicCardView.swift in Sources */,
 				790AD2C32DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
@@ -1813,9 +1890,12 @@
 				790D87EE2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */,
 				790D87EF2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
 				790D87F02ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
+				79EE74D32F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */,
+				79EE74C02F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */,
 				790AD2C62DF9E43200C33CD1 /* Constants.swift in Sources */,
 				79D576842EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */,
 				790AD2C82DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
+				79EE74CF2F308DA40082EECF /* RecordedEmotion.swift in Sources */,
 				79B6AADA2EACCABA00A8B079 /* RadioOptionView.swift in Sources */,
 				79B6AADB2EACCABA00A8B079 /* ColorGradientSliderView.swift in Sources */,
 				79B6AADC2EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */,
@@ -1826,6 +1906,7 @@
 				790AD2CB2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */,
 				790AD2CD2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */,
 				794B59FA2E9EA436006CF069 /* UniverseTheme.swift in Sources */,
+				79EE74C92F2BB6C80082EECF /* SpeechService.swift in Sources */,
 				794B59FB2E9EA436006CF069 /* GradientView.swift in Sources */,
 				794B59FC2E9EA436006CF069 /* Theme.swift in Sources */,
 				794B59FD2E9EA436006CF069 /* SoulTheme.swift in Sources */,
@@ -1877,6 +1958,7 @@
 				790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A082EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
 				794B5A092EA38B65006CF069 /* SoulverseTagsView.swift in Sources */,
+				79F138052F379BF90034D325 /* ActionTagView.swift in Sources */,
 				790AD2FC2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */,
 				790AD2FD2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */,
 				790AD2FE2DF9E43200C33CD1 /* UISwitch+Extensions.swift in Sources */,
@@ -1890,6 +1972,8 @@
 				790AD3032DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */,
 				790D87F32ED201B200D4F61F /* ToolsViewModel.swift in Sources */,
 				790AD3072DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
+				79EE74D92F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */,
+				79EE74DA2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */,
 				79710EDA2E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
 				79389F672F05760D0016CB7F /* EmotionPlanetView.swift in Sources */,
 				79389F682F05760D0016CB7F /* InnerCosmoDailyView.swift in Sources */,
@@ -1904,7 +1988,6 @@
 				794B5A102EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,
 				790AD30F2DF9E43200C33CD1 /* SummitAlertView.swift in Sources */,
 				79B6AADF2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */,
-				79B6AAEA2EB5C3DE00A8B079 /* EmotionCombination.swift in Sources */,
 				790AD3112DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD3142DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
 				7922ECE32E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
@@ -1913,7 +1996,7 @@
 				7922ECC52E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
 				7922ECC62E993B8D0086B7CA /* OnboardingUserData.swift in Sources */,
 				79B6AAEE2EB75F8800A8B079 /* PromptSelectionView.swift in Sources */,
-				79B6AAEF2EB75F8800A8B079 /* ColorEmotionSummaryView.swift in Sources */,
+				79EE74CC2F2E4F220082EECF /* Constants+MoodCheckIn.swift in Sources */,
 				7922ECCA2E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */,
 				79B6AAC32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */,
 				79B6AAC42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */,
@@ -1925,8 +2008,9 @@
 				79B6AACC2EACCA5D00A8B079 /* MoodCheckInNamingViewController.swift in Sources */,
 				79B6AACD2EACCA5D00A8B079 /* EmotionType.swift in Sources */,
 				79B6AACE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */,
+				79EE74D52F30AE790082EECF /* MoodEntry.swift in Sources */,
 				79B6AACF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */,
-				79B6AAD02EACCA5D00A8B079 /* LifeAreaOption.swift in Sources */,
+				79EE74D22F2BE1000082EECF /* SoulverseTopicList.swift in Sources */,
 				79B6AAD12EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift in Sources */,
 				79B6AAD22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */,
 				7922ECCC2E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */,

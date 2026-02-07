@@ -21,8 +21,8 @@ struct MoodCheckInData {
 
     // MARK: - Naming Step
 
-    /// Selected emotions with their intensities (max 2 emotions)
-    var emotions: [(emotion: EmotionType, intensity: Double)] = []
+    /// The final recorded emotion (resolved from user selection)
+    var recordedEmotion: RecordedEmotion?
 
     // MARK: - Shaping Step
 
@@ -34,8 +34,8 @@ struct MoodCheckInData {
 
     // MARK: - Attributing Step
 
-    /// Selected life area
-    var lifeArea: LifeAreaOption?
+    /// Selected topic
+    var selectedTopic: Topic?
 
     // MARK: - Evaluating Step
 
@@ -49,19 +49,19 @@ struct MoodCheckInData {
         return selectedColor != nil
     }
 
-    /// Check if Naming step is complete (at least 1 emotion selected, max 2)
+    /// Check if Naming step is complete (emotion has been resolved)
     var isNamingComplete: Bool {
-        return !emotions.isEmpty && emotions.count <= 2
+        return recordedEmotion != nil
     }
 
-    /// Check if Shaping step is complete
+    /// Check if Shaping step is complete (optional step - always complete)
     var isShapingComplete: Bool {
-        return selectedPrompt != nil && !(promptResponse?.isEmpty ?? true)
+        return true
     }
 
     /// Check if Attributing step is complete
     var isAttributingComplete: Bool {
-        return lifeArea != nil
+        return selectedTopic != nil
     }
 
     /// Check if Evaluating step is complete

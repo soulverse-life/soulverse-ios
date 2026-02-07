@@ -48,15 +48,9 @@ extension MoodCheckInAPIService: TargetType {
             }
             parameters["color_intensity"] = data.colorIntensity
 
-            // Emotions array (max 2 emotions with their intensities)
-            if !data.emotions.isEmpty {
-                let emotionsArray = data.emotions.map { emotionData -> [String: Any] in
-                    return [
-                        "emotion": emotionData.emotion.rawValue,
-                        "intensity": emotionData.intensity
-                    ]
-                }
-                parameters["emotions"] = emotionsArray
+            // Recorded emotion (uni-key: single identifier like "serenity", "love", etc.)
+            if let emotion = data.recordedEmotion {
+                parameters["emotion"] = emotion.uniqueKey
             }
 
             // Prompt and response
@@ -67,9 +61,9 @@ extension MoodCheckInAPIService: TargetType {
                 parameters["prompt_response"] = response
             }
 
-            // Life area
-            if let lifeArea = data.lifeArea {
-                parameters["life_area"] = lifeArea.rawValue
+            // Topic
+            if let topic = data.selectedTopic {
+                parameters["topic"] = topic.rawValue
             }
 
             // Evaluation
