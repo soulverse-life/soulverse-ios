@@ -40,6 +40,9 @@ class InnerCosmoDailyView: UIView {
 
     private var emotionPlanets: [EmotionPlanetView] = []
     private var emotionData: [EmotionPlanetData] = []
+    private var currentBubbleView: AffirmationBubbleView?
+    private var bubbleHideTimer: Timer?
+    private var hasPositionedPlanets = false
 
     // MARK: - UI Components
 
@@ -64,6 +67,8 @@ class InnerCosmoDailyView: UIView {
     private func setupView() {
         backgroundColor = .clear
         addSubview(centralPlanetView)
+
+        centralPlanetView.delegate = self
 
         centralPlanetView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -94,14 +99,20 @@ class InnerCosmoDailyView: UIView {
             emotionPlanets.append(planetView)
         }
 
-        // Position planets will be done in layoutSubviews
+        // Reset flag so planets get positioned on next layout
+        hasPositionedPlanets = false
         setNeedsLayout()
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        positionEmotionPlanets()
-        startAnimations()
+
+        // Only position planets once to avoid re-randomizing their positions
+        if !hasPositionedPlanets {
+            positionEmotionPlanets()
+            startAnimations()
+            hasPositionedPlanets = true
+        }
     }
 
     // MARK: - Positioning
@@ -133,12 +144,8 @@ class InnerCosmoDailyView: UIView {
 
             // Size the planet view
             let planetSize = planetView.calculateSize()
-            planetView.frame = CGRect(
-                x: x - planetSize.width / 2,
-                y: y - planetSize.height / 2,
-                width: planetSize.width,
-                height: planetSize.height
-            )
+            planetView.bounds = CGRect(origin: .zero, size: planetSize)
+            planetView.center = CGPoint(x: x, y: y)
         }
     }
 
@@ -156,5 +163,77 @@ class InnerCosmoDailyView: UIView {
     /// Stop all floating animations
     func stopAnimations() {
         emotionPlanets.forEach { $0.stopFloatingAnimation() }
+    }
+
+    // MARK: - Affirmation Bubble
+
+    private func showAffirmationBubble() {
+        // Remove existing bubble if any
+        hideAffirmationBubble(animated: false)
+
+        let bubbleView = AffirmationBubbleView()
+        let quote = AffirmationQuoteProvider.random()
+        bubbleView.configure(with: quote)
+
+        // Speak the quote using TTS
+        SpeechService.shared.speak(quote.text)
+
+        addSubview(bubbleView)
+
+        // Position bubble to the right of the emo pet, close to center
+        bubbleView.snp.makeConstraints { make in
+            make.left.equalTo(centralPlanetView.snp.centerX).offset(20)
+            make.centerY.equalTo(centralPlanetView.snp.centerY).offset(-10)
+        }
+
+        currentBubbleView = bubbleView
+
+        // Force layout to get correct frame before animation
+        layoutIfNeeded()
+
+        bubbleView.showAnimated()
+
+        // Listen for TTS completion to dismiss bubble
+        SpeechService.shared.delegate = self
+    }
+
+    private func hideAffirmationBubble(animated: Bool) {
+        bubbleHideTimer?.invalidate()
+        bubbleHideTimer = nil
+
+        // Stop TTS and clear delegate
+        SpeechService.shared.stop()
+        SpeechService.shared.delegate = nil
+
+        guard let bubbleView = currentBubbleView else { return }
+
+        if animated {
+            bubbleView.hideAnimated { [weak self] in
+                self?.currentBubbleView = nil
+            }
+        } else {
+            bubbleView.removeFromSuperview()
+            currentBubbleView = nil
+        }
+    }
+}
+
+// MARK: - CentralPlanetViewDelegate
+
+extension InnerCosmoDailyView: CentralPlanetViewDelegate {
+    func centralPlanetViewDidTapEmoPet(_ view: CentralPlanetView) {
+        showAffirmationBubble()
+    }
+}
+
+// MARK: - SpeechServiceDelegate
+
+extension InnerCosmoDailyView: SpeechServiceDelegate {
+    func speechServiceDidFinishSpeaking(_ service: SpeechService) {
+        // Dismiss bubble 0.2s after TTS finishes
+        bubbleHideTimer?.invalidate()
+        bubbleHideTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
+            self?.hideAffirmationBubble(animated: true)
+        }
     }
 }
