@@ -23,6 +23,20 @@ class MoodCheckInShapingViewController: ViewController {
     private let currentStep: Int = 3
     private let headerToTextFieldSpacing: CGFloat = 16
 
+    // MARK: - UI Elements - Scroll View
+
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.keyboardDismissMode = .interactive
+        return scrollView
+    }()
+
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
+
     // MARK: - UI Elements - Navigation
 
     private lazy var backButton: UIButton = {
@@ -121,6 +135,7 @@ class MoodCheckInShapingViewController: ViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         setupNavigationBar()
+        setupScrollView()
         setupHeaderSection()
         setupContentSections()
         setupResponseSection()
@@ -133,19 +148,24 @@ class MoodCheckInShapingViewController: ViewController {
         view.addSubview(progressBar)
     }
 
+    private func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+    }
+
     private func setupHeaderSection() {
-        view.addSubview(titleLabel)
-        view.addSubview(subtitleLabel)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(subtitleLabel)
     }
 
     private func setupContentSections() {
-        view.addSubview(feelingLabel)
-        view.addSubview(promptSelectionSection)
+        contentView.addSubview(feelingLabel)
+        contentView.addSubview(promptSelectionSection)
     }
 
     private func setupResponseSection() {
-        view.addSubview(promptHeaderLabel)
-        view.addSubview(textField)
+        contentView.addSubview(promptHeaderLabel)
+        contentView.addSubview(textField)
     }
 
     private func setupContinueButton() {
@@ -154,6 +174,7 @@ class MoodCheckInShapingViewController: ViewController {
 
     private func setupConstraints() {
         setupNavigationConstraints()
+        setupScrollViewConstraints()
         setupHeaderConstraints()
         setupSectionConstraints()
         setupResponseConstraints()
@@ -174,9 +195,22 @@ class MoodCheckInShapingViewController: ViewController {
         }
     }
 
+    private func setupScrollViewConstraints() {
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(backButton.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(continueButton.snp.top)
+        }
+
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+    }
+
     private func setupHeaderConstraints() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressBar.snp.bottom).offset(MoodCheckInLayout.titleTopOffset)
+            make.top.equalToSuperview().offset(MoodCheckInLayout.titleTopOffset)
             make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
@@ -208,6 +242,7 @@ class MoodCheckInShapingViewController: ViewController {
             make.top.equalTo(promptHeaderLabel.snp.bottom).offset(headerToTextFieldSpacing)
             make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
             make.height.equalTo(MoodCheckInLayout.textFieldHeight)
+            make.bottom.equalToSuperview().offset(-MoodCheckInLayout.sectionSpacing)
         }
     }
 
