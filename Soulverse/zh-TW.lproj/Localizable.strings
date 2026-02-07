@@ -222,14 +222,10 @@
 // Mood Check-In - Acting Screen
 "mood_checkin_acting_title" = "行動";
 "mood_checkin_acting_subtitle" = "將你的感受轉化為文字、圖像，\n或有意義的時刻。\n\n    你的情緒旅程";
-"mood_checkin_acting_journey" = "你的情緒旅程";
-"mood_checkin_acting_color" = "顏色";
-"mood_checkin_acting_emotions" = "情緒";
-"mood_checkin_acting_expression" = "表達";
-"mood_checkin_acting_selected" = "已選擇";
-"mood_checkin_acting_na" = "無";
+"mood_checkin_acting_journey" = "你今天的情緒旅程";
+"mood_checkin_acting_more_actions" = "更多操作";
+"mood_checkin_acting_draw" = "繪畫";
 "mood_checkin_acting_write_journal" = "寫日記";
-"mood_checkin_acting_make_art" = "創作藝術";
 "mood_checkin_acting_complete" = "完成記錄";
 
 // Mood Check-In - Prompt Options

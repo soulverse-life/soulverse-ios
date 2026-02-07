@@ -12,11 +12,12 @@ final class MoodCheckInCoordinator {
     // MARK: - Properties
 
     // Completion callbacks
-    var onComplete: ((MoodCheckInData) -> Void)?
+    var onComplete: ((MoodCheckInData, MoodCheckInActingAction?) -> Void)?
     var onCancel: (() -> Void)?
 
     private let navigationController: UINavigationController
     private var moodCheckInData = MoodCheckInData()
+    private var selectedAction: MoodCheckInActingAction?
 
     // UserDefaults key for tracking if user has seen Pet screen
     private static let hasSeenPetKey = "hasSeenMoodCheckInPet"
@@ -152,12 +153,9 @@ final class MoodCheckInCoordinator {
     }
 
     private func handleSubmissionSuccess() {
-        // Show success message
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            // You can use SwiftMessages or a custom success view here
-            // For now, we'll complete the flow
-            self.onComplete?(self.moodCheckInData)
+            self.onComplete?(self.moodCheckInData, self.selectedAction)
             // Release self-reference to allow deallocation
             self.strongSelf = nil
         }
@@ -275,17 +273,8 @@ extension MoodCheckInCoordinator: MoodCheckInEvaluatingViewControllerDelegate {
 
 extension MoodCheckInCoordinator: MoodCheckInActingViewControllerDelegate {
 
-    func didTapWriteJournal(_ viewController: MoodCheckInActingViewController) {
-        submitMoodCheckInData()
-    }
-
-    func didTapMakeArt(_ viewController: MoodCheckInActingViewController) {
-        submitMoodCheckInData()
-        // Navigate to drawing canvas
-        AppCoordinator.openDrawingCanvas(from: viewController)
-    }
-
-    func didTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController) {
+    func didTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController, selectedAction: MoodCheckInActingAction?) {
+        self.selectedAction = selectedAction
         submitMoodCheckInData()
     }
 
@@ -340,9 +329,7 @@ protocol MoodCheckInEvaluatingViewControllerDelegate: AnyObject {
 }
 
 protocol MoodCheckInActingViewControllerDelegate: AnyObject {
-    func didTapWriteJournal(_ viewController: MoodCheckInActingViewController)
-    func didTapMakeArt(_ viewController: MoodCheckInActingViewController)
-    func didTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController)
+    func didTapCompleteCheckIn(_ viewController: MoodCheckInActingViewController, selectedAction: MoodCheckInActingAction?)
     func didTapBack(_ viewController: MoodCheckInActingViewController)
     func didTapClose(_ viewController: MoodCheckInActingViewController)
     func getCurrentData(_ viewController: MoodCheckInActingViewController) -> MoodCheckInData

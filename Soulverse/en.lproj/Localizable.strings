@@ -208,7 +208,7 @@
 
 // Mood Check-In - Attributing Screen
 "mood_checkin_attributing_title" = "Attributing";
-"mood_checkin_attributing_subtitle" = "Emotions often connect to different parts of\nlife. Choose the area that feels most related to\nyour feeling right now";
+"mood_checkin_attributing_subtitle" = "Choose the life area this feeling is most about right now.";
 
 // Mood Check-In - Evaluating Screen
 "mood_checkin_evaluating_title" = "Evaluating";
@@ -221,17 +221,12 @@
 
 // Mood Check-In - Acting Screen
 "mood_checkin_acting_title" = "Acting";
-"mood_checkin_acting_subtitle" = "Transform what you feel into words, images, or moments of meaning.\n
-    Your emotional journey";
-"mood_checkin_acting_journey" = "Your emotional journey";
-"mood_checkin_acting_color" = "Color";
-"mood_checkin_acting_emotions" = "Emotions";
-"mood_checkin_acting_expression" = "Expression";
-"mood_checkin_acting_selected" = "Selected";
-"mood_checkin_acting_na" = "N/A";
-"mood_checkin_acting_write_journal" = "Write a journal";
-"mood_checkin_acting_make_art" = "Make art";
-"mood_checkin_acting_complete" = "Complete check-in";
+"mood_checkin_acting_subtitle" = "Transform what you feel into words, images, or moments of meaning.\nYour emotional journey";
+"mood_checkin_acting_journey" = "Your emotional journey today";
+"mood_checkin_acting_more_actions" = "More actions";
+"mood_checkin_acting_draw" = "Draw";
+"mood_checkin_acting_write_journal" = "Write Journal";
+"mood_checkin_acting_complete" = "Complete Checkin";
 
 // Mood Check-In - Prompt Options
 "prompt_option_it_feels_like" = "It feels like";

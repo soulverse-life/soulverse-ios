@@ -32,7 +32,8 @@ enum SoulverseTagsSelectionMode {
 struct SoulverseTagsItemData {
     let title: String
     var isSelected: Bool
-    var isEnabled: Bool = true  // Added for completeness, default true
+    var isEnabled: Bool = true
+    var tag: String?
 }
 
 /// Delegate protocol for SoulverseTagsView

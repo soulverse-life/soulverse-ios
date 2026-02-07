@@ -33,7 +33,7 @@ enum MoodCheckInLayout {
     static let sectionSpacing: CGFloat = 24
 
     /// Spacing between title and subtitle
-    static let titleToSubtitleSpacing: CGFloat = 12
+    static let titleToSubtitleSpacing: CGFloat = 8
 
     // MARK: - Title Offset
 

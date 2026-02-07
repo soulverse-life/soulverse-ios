@@ -128,9 +128,20 @@ class AppCoordinator {
         let coordinator = MoodCheckInCoordinator(navigationController: navigationController)
 
         // Set up completion handler
-        coordinator.onComplete = { [weak sourceVC] data in
+        coordinator.onComplete = { [weak sourceVC] data, selectedAction in
             sourceVC?.dismiss(animated: true) {
                 completion?(true, data)
+
+                // Handle post-dismiss action
+                guard let sourceVC = sourceVC else { return }
+                switch selectedAction {
+                case .draw:
+                    AppCoordinator.openDrawingCanvas(from: sourceVC)
+                case .writeJournal:
+                    print("TODO: Write Journal action")
+                case .none:
+                    break
+                }
             }
         }
 
