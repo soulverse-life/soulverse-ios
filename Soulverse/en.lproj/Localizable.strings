@@ -171,18 +171,14 @@
 "emotion_cynicism" = "Cynicism";
 "emotion_pride" = "Pride";
 "emotion_fatalism" = "Fatalism";
-"emotion_bittersweetness" = "Bittersweetness";
-"emotion_dominance" = "Dominance";
-"emotion_shame" = "Shame";
-"emotion_confusion" = "Confusion";
 
 // Mood Check-In - Combined Emotions (Tertiary Dyads)
 "emotion_morbidness" = "Morbidness";
 "emotion_sentimentality" = "Sentimentality";
-"emotion_anxiety" = "Anxiety";
+"emotion_shame" = "Shame";
 "emotion_delight" = "Delight";
-"emotion_resignation" = "Resignation";
-"emotion_horror" = "Horror";
+"emotion_dominance" = "Dominance";
+"emotion_anxiety" = "Anxiety";
 "emotion_outrage" = "Outrage";
 "emotion_pessimism" = "Pessimism";
 

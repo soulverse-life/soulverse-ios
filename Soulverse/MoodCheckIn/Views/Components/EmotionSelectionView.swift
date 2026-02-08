@@ -12,6 +12,7 @@ import UIKit
 protocol EmotionSelectionViewDelegate: AnyObject {
     func didUpdateEmotions(_ view: EmotionSelectionView, emotions: [EmotionType])
     func didReachMaximumSelection(_ view: EmotionSelectionView)
+    func didSelectOppositeEmotion(_ view: EmotionSelectionView)
 }
 
 /// A view that prompts the user to select an emotion
@@ -159,6 +160,15 @@ extension EmotionSelectionView: SoulverseTagsViewDelegate {
             let allEmotions = EmotionType.allCases
             let currentSelected = items.filter { $0.isSelected }.compactMap { item in
                 allEmotions.first { $0.displayName == item.title }
+            }
+
+            // Check for opposite emotions (Plutchik's wheel: 4 petals apart)
+            if currentSelected.count == 2,
+               currentSelected[0].oppositeEmotion == currentSelected[1] {
+                // Revert to the previously valid selection
+                updateTagSelectionState()
+                delegate?.didSelectOppositeEmotion(self)
+                return
             }
 
             self.selectedEmotions = currentSelected

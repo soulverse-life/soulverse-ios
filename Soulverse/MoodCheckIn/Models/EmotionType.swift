@@ -93,4 +93,18 @@ enum EmotionType: String, CaseIterable {
             )
         }
     }
+
+    /// The opposite emotion on Plutchik's wheel (4 petals apart)
+    var oppositeEmotion: EmotionType {
+        switch self {
+        case .joy: return .sadness
+        case .sadness: return .joy
+        case .trust: return .disgust
+        case .disgust: return .trust
+        case .fear: return .anger
+        case .anger: return .fear
+        case .surprise: return .anticipation
+        case .anticipation: return .surprise
+        }
+    }
 }
