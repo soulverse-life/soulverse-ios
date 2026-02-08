@@ -2,5 +2,18 @@
   "enabledPlugins": {
     "example-skills@anthropic-agent-skills": true,
     "superpowers@claude-plugins-official": true
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code 需要你的注意\" with title \"Soulverse\" sound name \"Glass\"'"
+          }
+        ]
+      }
+    ]
   }
 }
