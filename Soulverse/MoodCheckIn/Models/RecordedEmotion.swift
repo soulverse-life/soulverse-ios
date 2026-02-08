@@ -5,6 +5,10 @@
 //  Unified emotion model based on Plutchik's Wheel of Emotions.
 //  Represents all possible emotions that can be recorded from mood check-in.
 //
+//  Wheel order (clockwise): Joy → Trust → Fear → Surprise → Sadness → Disgust → Anger → Anticipation
+//  Dyad distance = number of petals apart (taking the shorter path around the wheel)
+//  Opposite emotions (4 apart) do NOT combine: Joy↔Sadness, Trust↔Disgust, Fear↔Anger, Surprise↔Anticipation
+//
 
 import Foundation
 
@@ -51,7 +55,7 @@ enum RecordedEmotion: String, CaseIterable, Codable, Hashable {
     case anticipation   // Anticipation, medium intensity
     case vigilance      // Anticipation, high intensity
 
-    // MARK: - Primary Dyads (Adjacent emotions - 1 petal apart)
+    // MARK: - Primary Dyads (Adjacent emotions - 1 petal apart, 8 combinations)
     case optimism       // Joy + Anticipation
     case love           // Joy + Trust
     case submission     // Trust + Fear
@@ -61,7 +65,7 @@ enum RecordedEmotion: String, CaseIterable, Codable, Hashable {
     case contempt       // Disgust + Anger
     case aggressiveness // Anger + Anticipation
 
-    // MARK: - Secondary Dyads (2 petals apart)
+    // MARK: - Secondary Dyads (2 petals apart, 8 combinations)
     case guilt          // Joy + Fear
     case curiosity      // Trust + Surprise
     case despair        // Fear + Sadness
@@ -70,18 +74,14 @@ enum RecordedEmotion: String, CaseIterable, Codable, Hashable {
     case cynicism       // Disgust + Anticipation
     case pride          // Anger + Joy
     case fatalism       // Anticipation + Trust
-    case bittersweetness // Joy + Sadness
-    case dominance      // Trust + Anger
-    case shame          // Fear + Disgust
-    case confusion      // Surprise + Anticipation
 
-    // MARK: - Tertiary Dyads (3 petals apart)
+    // MARK: - Tertiary Dyads (3 petals apart, 8 combinations)
     case morbidness     // Joy + Disgust
     case sentimentality // Trust + Sadness
-    case anxiety        // Fear + Anger
+    case shame          // Fear + Disgust
     case delight        // Surprise + Joy
-    case resignation    // Sadness + Trust
-    case horror         // Disgust + Fear
+    case dominance      // Anger + Trust
+    case anxiety        // Anticipation + Fear
     case outrage        // Anger + Surprise
     case pessimism      // Anticipation + Sadness
 
@@ -148,18 +148,14 @@ enum RecordedEmotion: String, CaseIterable, Codable, Hashable {
         case .cynicism: return NSLocalizedString("emotion_cynicism", comment: "")
         case .pride: return NSLocalizedString("emotion_pride", comment: "")
         case .fatalism: return NSLocalizedString("emotion_fatalism", comment: "")
-        case .bittersweetness: return NSLocalizedString("emotion_bittersweetness", comment: "")
-        case .dominance: return NSLocalizedString("emotion_dominance", comment: "")
-        case .shame: return NSLocalizedString("emotion_shame", comment: "")
-        case .confusion: return NSLocalizedString("emotion_confusion", comment: "")
 
         // Tertiary Dyads
         case .morbidness: return NSLocalizedString("emotion_morbidness", comment: "")
         case .sentimentality: return NSLocalizedString("emotion_sentimentality", comment: "")
-        case .anxiety: return NSLocalizedString("emotion_anxiety", comment: "")
+        case .shame: return NSLocalizedString("emotion_shame", comment: "")
         case .delight: return NSLocalizedString("emotion_delight", comment: "")
-        case .resignation: return NSLocalizedString("emotion_resignation", comment: "")
-        case .horror: return NSLocalizedString("emotion_horror", comment: "")
+        case .dominance: return NSLocalizedString("emotion_dominance", comment: "")
+        case .anxiety: return NSLocalizedString("emotion_anxiety", comment: "")
         case .outrage: return NSLocalizedString("emotion_outrage", comment: "")
         case .pessimism: return NSLocalizedString("emotion_pessimism", comment: "")
         }
@@ -191,20 +187,16 @@ enum RecordedEmotion: String, CaseIterable, Codable, Hashable {
         case .unbelief: return (.surprise, .disgust)
         case .envy: return (.sadness, .anger)
         case .cynicism: return (.disgust, .anticipation)
-        case .pride: return (.joy, .anger)
+        case .pride: return (.anger, .joy)
         case .fatalism: return (.anticipation, .trust)
-        case .bittersweetness: return (.joy, .sadness)
-        case .dominance: return (.trust, .anger)
-        case .shame: return (.fear, .disgust)
-        case .confusion: return (.surprise, .anticipation)
 
         // Tertiary Dyads
         case .morbidness: return (.joy, .disgust)
         case .sentimentality: return (.trust, .sadness)
-        case .anxiety: return (.fear, .anger)
+        case .shame: return (.fear, .disgust)
         case .delight: return (.surprise, .joy)
-        case .resignation: return (.sadness, .trust)
-        case .horror: return (.disgust, .fear)
+        case .dominance: return (.anger, .trust)
+        case .anxiety: return (.anticipation, .fear)
         case .outrage: return (.anger, .surprise)
         case .pessimism: return (.anticipation, .sadness)
 
@@ -275,20 +267,21 @@ extension RecordedEmotion {
     }
 
     /// Resolve two primary emotions to a combined RecordedEmotion
+    /// Opposite emotions (4 petals apart on Plutchik's wheel) cannot combine and return nil.
     /// - Parameters:
     ///   - emotion1: First primary emotion
     ///   - emotion2: Second primary emotion
     /// - Returns: The combined emotion if valid combination exists, nil otherwise
     static func from(emotion1: EmotionType, emotion2: EmotionType) -> RecordedEmotion? {
-        // Create a sorted set to handle order-independent lookup
+        // Create a set to handle order-independent lookup
         let pair = Set([emotion1, emotion2])
 
-        // If both emotions are the same, no combination
-        if emotion1 == emotion2 {
+        // Same emotion or opposite emotions cannot combine
+        if emotion1 == emotion2 || emotion1.oppositeEmotion == emotion2 {
             return nil
         }
 
-        // Primary Dyads (adjacent emotions)
+        // Primary Dyads (1 petal apart)
         if pair == [.joy, .anticipation] { return .optimism }
         if pair == [.joy, .trust] { return .love }
         if pair == [.trust, .fear] { return .submission }
@@ -307,18 +300,14 @@ extension RecordedEmotion {
         if pair == [.disgust, .anticipation] { return .cynicism }
         if pair == [.anger, .joy] { return .pride }
         if pair == [.anticipation, .trust] { return .fatalism }
-        if pair == [.joy, .sadness] { return .bittersweetness }
-        if pair == [.trust, .anger] { return .dominance }
-        if pair == [.fear, .disgust] { return .shame }
-        if pair == [.surprise, .anticipation] { return .confusion }
 
         // Tertiary Dyads (3 petals apart)
         if pair == [.joy, .disgust] { return .morbidness }
         if pair == [.trust, .sadness] { return .sentimentality }
-        if pair == [.fear, .anger] { return .anxiety }
+        if pair == [.fear, .disgust] { return .shame }
         if pair == [.surprise, .joy] { return .delight }
-        if pair == [.sadness, .trust] { return .resignation }
-        if pair == [.disgust, .fear] { return .horror }
+        if pair == [.anger, .trust] { return .dominance }
+        if pair == [.anticipation, .fear] { return .anxiety }
         if pair == [.anger, .surprise] { return .outrage }
         if pair == [.anticipation, .sadness] { return .pessimism }
 

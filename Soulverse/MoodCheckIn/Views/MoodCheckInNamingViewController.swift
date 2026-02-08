@@ -278,6 +278,10 @@ extension MoodCheckInNamingViewController: EmotionSelectionViewDelegate {
     func didReachMaximumSelection(_ view: EmotionSelectionView) {
         shakeEmotionTags()
     }
+
+    func didSelectOppositeEmotion(_ view: EmotionSelectionView) {
+        shakeEmotionTags()
+    }
 }
 
 // MARK: - IntensitySelectionViewDelegate

@@ -171,18 +171,14 @@
 "emotion_cynicism" = "憤世嫉俗";
 "emotion_pride" = "驕傲";
 "emotion_fatalism" = "宿命論";
-"emotion_bittersweetness" = "苦樂參半";
-"emotion_dominance" = "支配";
-"emotion_shame" = "羞恥";
-"emotion_confusion" = "困惑";
 
 // Mood Check-In - Combined Emotions (Tertiary Dyads)
 "emotion_morbidness" = "病態";
 "emotion_sentimentality" = "多愁善感";
-"emotion_anxiety" = "焦慮";
+"emotion_shame" = "羞恥";
 "emotion_delight" = "欣喜";
-"emotion_resignation" = "認命";
-"emotion_horror" = "恐怖";
+"emotion_dominance" = "支配";
+"emotion_anxiety" = "焦慮";
 "emotion_outrage" = "憤慨";
 "emotion_pessimism" = "悲觀";
 
