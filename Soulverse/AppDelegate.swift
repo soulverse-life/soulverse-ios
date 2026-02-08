@@ -1,12 +1,13 @@
 //
 //  AppDelegate.swift
 //
-import UIKit
-import Toaster
+import FirebaseCore
 import IQKeyboardManagerSwift
 import IQKeyboardToolbar
 import IQKeyboardToolbarManager
 import PostHog
+import Toaster
+import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,7 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func initSDK() {
+        setupFirebase()
         setupPosthog()
+    }
+    
+    private func setupFirebase() {
+        FirebaseApp.configure()
     }
     
     private func setupPosthog() {

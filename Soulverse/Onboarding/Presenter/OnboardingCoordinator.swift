@@ -75,24 +75,18 @@ final class OnboardingCoordinator {
     // MARK: - Authentication
 
     private func handleGoogleAuthentication() {
-        
-        handleAuthenticationSuccess()
-    
-        /*
-        //Todo: fill in require setting for google sign in
         googleAuthService.authenticate { [weak self] result in
             guard let self = self else { return }
 
             switch result {
-            case .AuthSuccess:
-                self.handleAuthenticationSuccess()
+            case .AuthSuccess(let isNewUser):
+                self.handleAuthenticationSuccess(isNewUser: isNewUser)
             case .UserCancel:
                 print("[Onboarding] User cancelled Google sign-in")
             default:
                 self.handleAuthenticationError(result)
             }
         }
-         */
     }
 
     private func handleAppleAuthentication() {
@@ -100,8 +94,8 @@ final class OnboardingCoordinator {
             guard let self = self else { return }
 
             switch result {
-            case .AuthSuccess:
-                self.handleAuthenticationSuccess()
+            case .AuthSuccess(let isNewUser):
+                self.handleAuthenticationSuccess(isNewUser: isNewUser)
             case .UserCancel:
                 print("[Onboarding] User cancelled Apple sign-in")
             default:
@@ -110,10 +104,26 @@ final class OnboardingCoordinator {
         }
     }
 
-    private func handleAuthenticationSuccess() {
+    private func handleAuthenticationSuccess(isNewUser: Bool) {
         userData.isSignedIn = true
-        //User.shared.isLoggedin = true
-        showBirthdayScreen()
+        if isNewUser {
+            showBirthdayScreen()
+        } else {
+            // Returning user — restore profile and skip onboarding
+            if let uid = User.shared.userId {
+                FirestoreUserService.fetchUserProfile(uid: uid) { [weak self] result in
+                    guard let self = self else { return }
+                    if case .success(let data) = result {
+                        User.shared.emoPetName = data["emoPetName"] as? String
+                        User.shared.planetName = data["planetName"] as? String
+                        User.shared.hasCompletedOnboarding = data["hasCompletedOnboarding"] as? Bool ?? true
+                    }
+                    self.delegate?.onboardingCoordinatorDidComplete(self, userData: self.userData)
+                }
+            } else {
+                delegate?.onboardingCoordinatorDidComplete(self, userData: userData)
+            }
+        }
     }
 
     private func handleAuthenticationError(_ error: AuthResult) {
@@ -124,23 +134,24 @@ final class OnboardingCoordinator {
     // MARK: - Data Submission
 
     private func submitOnboardingData() {
-        UserService.submitOnboardingData(userData) { [weak self] result in
+        guard let uid = User.shared.userId else {
+            print("[Onboarding] No user ID available for submission")
+            handleOnboardingCompletion()
+            return
+        }
+
+        FirestoreUserService.submitOnboardingData(uid: uid, data: userData) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
             case .success:
                 self.handleOnboardingCompletion()
             case .failure(let error):
-                self.handleDataSubmissionError(error)
+                print("[Onboarding] Firestore submission failed: \(error.localizedDescription)")
+                // Still complete onboarding for now — data can sync later
+                self.handleOnboardingCompletion()
             }
         }
-    }
-
-    private func handleDataSubmissionError(_ error: ApiError) {
-        print("[Onboarding] Data submission failed: \(error.description)")
-        // TODO: Show error alert with retry option
-        // For now, still complete onboarding for testing
-        handleOnboardingCompletion()
     }
 
     private func handleOnboardingCompletion() {
@@ -158,13 +169,11 @@ extension OnboardingCoordinator: OnboardingLandingViewControllerDelegate {
 
     func onboardingLandingViewControllerDidTapTermsOfService(_ viewController: OnboardingLandingViewController) {
         // TODO: Open Terms of Service URL
-        // For now, you can use WebViewController or Safari
         print("[Onboarding] User tapped Terms of Service")
     }
 
     func onboardingLandingViewControllerDidTapPrivacyPolicy(_ viewController: OnboardingLandingViewController) {
         // TODO: Open Privacy Policy URL
-        // For now, you can use WebViewController or Safari
         print("[Onboarding] User tapped Privacy Policy")
     }
 }

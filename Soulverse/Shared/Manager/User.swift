@@ -4,6 +4,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 enum UserInfoKeys: String {
     case avatarImageURL
@@ -269,6 +270,7 @@ class User: UserProtocol {
     }
 
     func logout() {
+        try? Auth.auth().signOut()
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
         clearUserProperty()
     }
@@ -299,17 +301,8 @@ class User: UserProtocol {
     }
     
     private func updateFCMToken() {
-        
-        if fcmToken != nil {
-            UserService.updateFCMToken(token: fcmToken!) { res in
-                switch res {
-                case .success(_):
-                    print("upload token successfully")
-                case .failure(let error):
-                    print(error.description)
-                }
-            }
-        }
+        guard let token = fcmToken, let uid = userId, isLoggedin else { return }
+        FirestoreUserService.updateFCMToken(uid: uid, token: token)
     }
     
 }

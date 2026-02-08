@@ -1,12 +1,11 @@
 //
 //  AppleUserAuthService.swift
-//  KonoSummit
-//
-//  Created by mingshing on 2021/12/6.
+//  Soulverse
 //
 
 import Foundation
 import AuthenticationServices
+import FirebaseAuth
 
 class AppleUserAuthService: NSObject, AuthService {
 
@@ -15,7 +14,6 @@ class AppleUserAuthService: NSObject, AuthService {
     private weak var presentingViewController: UIViewController?
 
     func authenticate(_ completion: ((AuthResult)->Void)? = nil) {
-        // Get the presenting view controller
         guard let viewController = UIApplication.shared.windows.first?.rootViewController else {
             print("[AppleAuth] Error: No root view controller found")
             completion?(.UnknownError)
@@ -38,26 +36,64 @@ class AppleUserAuthService: NSObject, AuthService {
 
 extension AppleUserAuthService: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+        if let appleCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
 
-            if let token = credential.identityToken {
-                let tokenString = String(data: token, encoding: .utf8) ?? ""
-
-                // credential.user is the unique, stable user identifier
-                let uniqueUserID = credential.user
-
-                print("[AppleAuth] Successfully authenticated")
-                print("[AppleAuth] Unique User ID: \(uniqueUserID)")
-                print("[AppleAuth] Email: \(credential.email ?? "N/A")")
-                print("[AppleAuth] Full Name: \(credential.fullName?.givenName ?? "N/A") \(credential.fullName?.familyName ?? "N/A")")
-
-                // TODO: Send to backend: uniqueUserID, tokenString, email, fullName
-                // UserService.login(account: uniqueUserID, validator: tokenString, platform: platform)
-
-                self.completionAction?(.AuthSuccess)
-            } else {
+            guard let token = appleCredential.identityToken,
+                  let tokenString = String(data: token, encoding: .utf8) else {
                 print("[AppleAuth] Error: No identity token received")
                 self.completionAction?(.UnknownError)
+                return
+            }
+
+            print("[AppleAuth] Successfully authenticated with Apple")
+
+            let firebaseCredential = OAuthProvider.appleCredential(
+                withIDToken: tokenString,
+                rawNonce: nil,
+                fullName: appleCredential.fullName
+            )
+
+            Auth.auth().signIn(with: firebaseCredential) { [weak self] authResult, error in
+                guard let self = self else { return }
+
+                if let error = error {
+                    print("[AppleAuth] Firebase sign-in error: \(error.localizedDescription)")
+                    self.completionAction?(.ThirdPartyServiceError(errorMsg: error.localizedDescription))
+                    return
+                }
+
+                guard let firebaseUser = authResult?.user else {
+                    self.completionAction?(.UnknownError)
+                    return
+                }
+
+                let uid = firebaseUser.uid
+                let email = firebaseUser.email ?? appleCredential.email ?? ""
+                let displayName = firebaseUser.displayName
+                    ?? [appleCredential.fullName?.givenName, appleCredential.fullName?.familyName]
+                        .compactMap { $0 }
+                        .joined(separator: " ")
+
+                print("[AppleAuth] Firebase UID: \(uid)")
+
+                FirestoreUserService.createOrUpdateUser(
+                    uid: uid,
+                    email: email,
+                    displayName: displayName,
+                    platform: self.platform
+                ) { result in
+                    switch result {
+                    case .success(let isNewUser):
+                        User.shared.userId = uid
+                        User.shared.email = email
+                        User.shared.nickName = displayName
+                        User.shared.isLoggedin = true
+                        self.completionAction?(.AuthSuccess(isNewUser: isNewUser))
+                    case .failure(let error):
+                        print("[AppleAuth] Firestore error: \(error.localizedDescription)")
+                        self.completionAction?(.ThirdPartyServiceError(errorMsg: error.localizedDescription))
+                    }
+                }
             }
         }
     }
@@ -65,9 +101,7 @@ extension AppleUserAuthService: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         let nsError = error as NSError
         print("[AppleAuth] Error code: \(nsError.code), domain: \(nsError.domain)")
-        print("[AppleAuth] Error description: \(error.localizedDescription)")
 
-        // Check if user cancelled
         if nsError.code == ASAuthorizationError.canceled.rawValue {
             completionAction?(.UserCancel)
         } else {
@@ -81,8 +115,6 @@ extension AppleUserAuthService: ASAuthorizationControllerPresentationContextProv
         if let window = presentingViewController?.view.window {
             return window
         }
-
-        // Fallback if view controller is nil
         return UIApplication.shared.windows.first { $0.isKeyWindow } ?? ASPresentationAnchor()
     }
 }

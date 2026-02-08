@@ -27,7 +27,15 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>konosummit</string>
+				<string>soulverse</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.889627289995-uk7i1efjcfukfit7m2l5vod56smovmk2</string>
 			</array>
 		</dict>
 	</array>

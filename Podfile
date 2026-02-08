@@ -25,6 +25,13 @@ abstract_target 'Base' do
   pod 'UICircularProgressRing'
   pod 'DGCharts', '~> 5.1.0'
   
+  # Add the Firebase pod for Google Analytics
+  pod 'FirebaseAnalytics'
+
+  # Add the pods for any other Firebase products you want to use in your app
+  # For example, to use Firebase Authentication and Cloud Firestore
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
   pod 'Firebase/RemoteConfig'
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
