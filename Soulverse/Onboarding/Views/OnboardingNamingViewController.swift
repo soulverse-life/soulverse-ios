@@ -80,10 +80,10 @@ class OnboardingNamingViewController: ViewController {
         textField.placeholder = NSLocalizedString("onboarding_naming_planet_placeholder", comment: "")
         textField.font = .projectFont(ofSize: 16, weight: .regular)
         textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderColor = UIColor.themeSeparator.cgColor
         textField.layer.cornerRadius = 20
-        textField.backgroundColor = .white
-        textField.textColor = ThemeManager.shared.currentTheme.neutralDark
+        textField.backgroundColor = .themeCardBackground
+        textField.textColor = .themeTextPrimary
         textField.delegate = self
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 
@@ -116,9 +116,10 @@ class OnboardingNamingViewController: ViewController {
         textField.placeholder = NSLocalizedString("onboarding_naming_emopet_placeholder", comment: "")
         textField.font = .projectFont(ofSize: 16, weight: .regular)
         textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderColor = UIColor.themeSeparator.cgColor
         textField.layer.cornerRadius = 20
-        textField.backgroundColor = .white
+        textField.backgroundColor = .themeCardBackground
+        textField.textColor = .themeTextPrimary
         textField.delegate = self
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 
