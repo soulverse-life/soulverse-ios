@@ -2,38 +2,34 @@
 
 ## Backlog
 
-### 9. Integrate login/signin function
-**Priority**: P0 (Critical)
+### 17. Add in-app account deletion
+**Priority**: P1
 **Complexity**: M (4-8 hours)
 **Status**: Pending
 
-Integrate login and sign-in functionality using Firebase Authentication.
+Apple requires apps with account creation to offer account deletion (App Store Review Guideline 5.1.1). Implement a full account deletion flow so users can completely remove their account and start fresh.
 
-**Scope**:
-- Apple Sign-In
-- Google Sign-In
-- ~~Facebook Sign-In~~ (not needed)
-
-**Current State**:
-- Login UI is already implemented
-- Need to wire up authentication logic
-
-**Key Requirements**:
-1. Integrate Firebase Authentication SDK
-2. Implement Apple Sign-In flow
-3. Implement Google Sign-In flow
-4. **User flow distinction**: Detect if user is first-time or returning
-   - First-time user → Route to onboarding flow
-   - Returning user → Route to main app (skip onboarding)
-5. Store/retrieve user auth state
+**Requirements**:
+1. Add "Delete Account" button in settings/profile
+2. Show confirmation dialog before deletion
+3. On confirm, delete in this order:
+   - Firestore `users/{uid}` document (and any subcollections)
+   - Firebase Auth account (`Auth.auth().currentUser?.delete()`)
+   - Clear local `UserDefaults` via `User.shared.resetAllUserData()`
+4. After deletion, route user back to onboarding landing screen
+5. User should be able to sign up again as a completely fresh new user
 
 **Technical Considerations**:
-- Use existing Firebase setup (already in project for Analytics/Crashlytics)
-- Check Firebase user creation timestamp vs last sign-in to detect new users
-- Alternatively, use a backend flag or local storage to track onboarding completion
-- Handle auth token refresh
-- Add error handling for auth failures
-- Localize error messages (en/zh-TW)
+- Firebase Auth `delete()` may require recent authentication — handle `FIRAuthErrorCodeRequiresRecentLogin` by re-authenticating first
+- Firestore deletion must happen before Auth deletion (need the uid to find the doc)
+- Consider showing a loading spinner during the multi-step deletion process
+- Localize confirmation dialog and error messages (en/zh-TW)
+
+**Files to Create/Modify**:
+- Settings/Profile view — add delete button
+- `FirestoreUserService.swift` — add `deleteUser(uid:)` method
+- `User.swift` — add `deleteAccount()` orchestrating the full flow
+- `SceneDelegate.swift` — handle routing back to onboarding after deletion
 
 ---
 
@@ -194,6 +190,39 @@ Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as t
 ---
 
 ## Done
+
+### 9. Integrate login/signin function
+**Priority**: P0 (Critical)
+**Complexity**: M (4-8 hours)
+**Status**: Completed
+
+Integrated Firebase Auth + Firestore as the sole backend for user management, replacing the defunct REST API.
+
+**Implementation Summary**:
+- Created `FirestoreUserService.swift` — Firestore CRUD for user profiles and onboarding data
+- Wired Apple/Google Sign-In through Firebase Auth credential relay
+- Added `isNewUser` flag to `AuthResult` for new vs returning user routing
+- Updated `OnboardingCoordinator` — new users go through onboarding, returning users skip to main
+- Added Firebase sign-out to `User.logout()`
+- FCM token updates now go through Firestore
+- Renamed `SummitUserModel` → `UserModel` with Firestore-aligned fields
+- Stubbed legacy `UserService` REST methods (kept compiling, no longer functional)
+- Added Google OAuth redirect URL scheme to `Info.plist`
+
+**Files Created**:
+- `Soulverse/Shared/Service/FirestoreUserService.swift`
+
+**Files Modified**:
+- `Info.plist` — URL schemes
+- `AppleUserAuthService.swift` — Firebase Auth relay
+- `GoogleUserAuthService.swift` — Firebase Auth relay
+- `AuthService.swift` — `AuthResult.AuthSuccess(isNewUser:)`
+- `OnboardingCoordinator.swift` — Routing + Firestore submission
+- `User.swift` — Firebase sign-out + Firestore FCM
+- `UserModel.swift` (renamed from `SummitUserModel.swift`)
+- `UserService.swift` — Stubbed legacy methods
+
+---
 
 ### 2. Make emo pet image tappable in InnerCosmos
 **Priority**: P2
