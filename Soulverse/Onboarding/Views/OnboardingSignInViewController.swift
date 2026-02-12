@@ -10,6 +10,9 @@ import SnapKit
 protocol OnboardingSignInViewControllerDelegate: AnyObject {
     func didTapGoogleSignIn(_ viewController: OnboardingSignInViewController)
     func didTapAppleSignIn(_ viewController: OnboardingSignInViewController)
+    #if DEBUG
+    func didTapDevSignIn(_ viewController: OnboardingSignInViewController)
+    #endif
 }
 
 class OnboardingSignInViewController: ViewController {
@@ -83,6 +86,19 @@ class OnboardingSignInViewController: ViewController {
         return button
     }()
 
+    #if DEBUG
+    private lazy var devSignInButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Dev Login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .projectFont(ofSize: 15, weight: .medium)
+        button.backgroundColor = .systemOrange
+        button.layer.cornerRadius = ViewComponentConstants.actionButtonHeight / 2
+        button.addTarget(self, action: #selector(devSignInTapped), for: .touchUpInside)
+        return button
+    }()
+    #endif
+
     // MARK: - Properties
 
     weak var delegate: OnboardingSignInViewControllerDelegate?
@@ -147,6 +163,16 @@ class OnboardingSignInViewController: ViewController {
             make.left.right.equalToSuperview().inset(ViewComponentConstants.horizontalPadding)
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
+
+        #if DEBUG
+        view.addSubview(devSignInButton)
+        devSignInButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(googleSignInButton.snp.bottom).offset(24)
+            make.left.right.equalToSuperview().inset(ViewComponentConstants.horizontalPadding)
+            make.height.equalTo(ViewComponentConstants.actionButtonHeight)
+        }
+        #endif
     }
 
     // MARK: - Actions
@@ -154,6 +180,12 @@ class OnboardingSignInViewController: ViewController {
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
+
+    #if DEBUG
+    @objc private func devSignInTapped() {
+        delegate?.didTapDevSignIn(self)
+    }
+    #endif
 }
 
 // MARK: - SoulverseButtonDelegate

@@ -334,8 +334,10 @@
 		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		89054E3902CF31DC4A50A47A /* ProfileViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
+		DA5B7EAE3A96109C935B5C2B /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
 		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
 		E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */; };
+		F7E1CA046D941D59C3CEFECC /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -385,6 +387,7 @@
 		218012824D64D4ED75251E3C /* Pods-Base-SoulverseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.release.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Soulverse/Features/Profile/ViewModels/ProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoulverseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DevAuthService.swift; sourceTree = "<group>"; };
 		790AD1692DF9E43200C33CD1 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		790AD16A2DF9E43200C33CD1 /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		790AD16B2DF9E43200C33CD1 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -812,6 +815,7 @@
 				7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */,
 				790AD1EC2DF9E43200C33CD1 /* AppleUserAuthService.swift */,
 				790AD1ED2DF9E43200C33CD1 /* AuthService.swift */,
+				6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1910,6 +1914,7 @@
 				794B5A042EA38B45006CF069 /* SoulverseTextField.swift in Sources */,
 				79DD63382EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */,
 				790AD26B2DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
+				F7E1CA046D941D59C3CEFECC /* DevAuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2067,6 +2072,7 @@
 				244A5F23289862BDB386843F /* ProfileViewPresenter.swift in Sources */,
 				E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */,
 				7621C92B3C88BB51568944AA /* ProfileInfoRow.swift in Sources */,
+				DA5B7EAE3A96109C935B5C2B /* DevAuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
