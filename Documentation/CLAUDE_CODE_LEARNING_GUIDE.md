@@ -256,7 +256,82 @@ CocoaPods 專案的痛點：每個 worktree 都要跑 `pod install`。
 
 ---
 
-## 5. 快速對照表
+## 5. `/new-feature` 工作流程（Superpowers 整合）
+
+### 核心理念：Skill 自動派遣
+
+你不需要記住什麼時候該用什麼 skill。`/new-feature` 的 SKILL.md 裡有一張 **Skill Orchestration Map**，
+Claude 會在每個 phase 自動套用對應的 skills：
+
+```
+Phase         自動套用的 Skills
+─────         ──────────────
+Brainstorm    brainstorming + multi-agent-brainstorming
+Plan          writing-plans + ios-developer + ios-hig + mobile-design
+Implement     executing-plans + ios-developer + mobile-design
+Review        requesting-code-review + verification-before-completion
+Verify        regression-checker agent
+```
+
+### 流程圖
+
+```
+/new-feature <feature 描述或 PRD>
+       │
+  Phase 1 ── 固定 worktree → sync main → 清理 merged branches → feat/<slug> branch
+       │
+  Phase 2 ── Brainstorm（互動式）
+       │     有 PRD → 讀取並找出缺口
+       │     只有想法 → Socratic 提問釐清
+       │     有 Figma → 抓設計稿 mapping 到 Soulverse 元件
+       │
+  Phase 3 ── 🛑 HARD GATE：詳細實作計畫（每個 task 2-5 分鐘）
+       │     含 VIPER 架構決策 + HIG checklist
+       │     macOS 通知 → 等你確認
+       │
+       │     你說「好」之後全部自動 ↓
+       │
+  Phase 4 ── /pm add 建立 task
+  Phase 5 ── sub-agent 實作（可平行）
+  Phase 6 ── 自動 code review（計畫合規 + 品質檢查）
+  Phase 7 ── regression-checker 驗證 build/test → macOS 通知
+  Phase 8 ── commit + push + PR + /pm done
+       │     macOS 通知「Feature 完成！」
+       ▼
+     完成！
+```
+
+### 與 `/fix-bug` 的差異
+
+| | `/fix-bug` | `/new-feature` |
+|---|---|---|
+| Branch 前綴 | `fix/<slug>` | `feat/<slug>` |
+| Phase 2 | 分析 root cause | Brainstorm 需求 |
+| Phase 3 | 修復計畫 | 完整實作計畫（含架構決策） |
+| Self-Review | 無 | 有（Phase 6） |
+| HIG Checklist | 基本 | 完整（touch target、Dynamic Type、VoiceOver） |
+| 適合 | 修 bug | 新功能、新畫面、新模組 |
+
+### Superpowers Skills 全覽
+
+| Skill | 用途 | 被哪個 workflow 使用 |
+|-------|------|---------------------|
+| `brainstorming` | Socratic 提問釐清設計 | new-feature Phase 2 |
+| `multi-agent-brainstorming` | 多角度設計 review | new-feature Phase 2（複雜功能） |
+| `writing-plans` | 產出 2-5 分鐘的細分任務 | new-feature Phase 3 |
+| `executing-plans` | 按計畫逐步實作 | new-feature Phase 5 |
+| `requesting-code-review` | 自動 code review | new-feature Phase 6 |
+| `verification-before-completion` | 確保真的修好 | new-feature Phase 6 / fix-bug Phase 5 |
+| `ios-developer` | Swift/SwiftUI/UIKit 知識 | 兩者都用 |
+| `ios-hig` | Apple HIG 合規 | new-feature Phase 3 |
+| `mobile-design` | 行動裝置設計原則 | new-feature Phase 3, 5 |
+| `systematic-debugging` | 四階段除錯 | fix-bug Phase 2 |
+| `test-driven-development` | RED-GREEN-REFACTOR | 手動觸發 |
+| `dispatching-parallel-agents` | 平行 sub-agent | new-feature Phase 5（大功能） |
+
+---
+
+## 6. 快速對照表
 
 ### Sub-agent vs Skill vs Command
 
@@ -294,4 +369,5 @@ CocoaPods 專案的痛點：每個 worktree 都要跑 `pod install`。
 - [Claude Code Hooks 文件](https://code.claude.com/docs/en/hooks)
 - [Claude Code Permissions 文件](https://code.claude.com/docs/en/permissions.md)
 - [Claude Code Common Workflows](https://code.claude.com/docs/en/common-workflows.md)
+- [Superpowers Plugin](https://github.com/obra/superpowers)
 - [Git Worktree 官方文件](https://git-scm.com/docs/git-worktree)
