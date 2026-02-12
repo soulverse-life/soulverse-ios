@@ -72,33 +72,21 @@ class ProfileViewPresenter: ProfileViewPresenterType {
 
         let uid = firebaseUser.uid
 
-        // Step 1: Delete Firestore document
-        FirestoreUserService.deleteUser(uid: uid) { [weak self] result in
+        firebaseUser.delete { [weak self] error in
             guard let self = self else { return }
 
-            switch result {
-            case .failure(let error):
+            if let error = error {
                 DispatchQueue.main.async {
                     self.loadedModel.isLoading = false
                     self.delegate?.didFailWithError(error)
                 }
+                return
+            }
 
-            case .success:
-                // Step 2: Delete Firebase Auth user
-                firebaseUser.delete { [weak self] error in
-                    guard let self = self else { return }
-
-                    DispatchQueue.main.async {
-                        if let error = error {
-                            self.loadedModel.isLoading = false
-                            self.delegate?.didFailWithError(error)
-                            return
-                        }
-
-                        // Step 3: Clear local data
-                        User.shared.logout()
-                        self.delegate?.didDeleteAccount()
-                    }
+            FirestoreUserService.deleteUser(uid: uid) { [weak self] _ in
+                DispatchQueue.main.async {
+                    User.shared.logout()
+                    self?.delegate?.didDeleteAccount()
                 }
             }
         }
