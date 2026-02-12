@@ -269,6 +269,14 @@ class User: UserProtocol {
         }
     }
 
+    func populate(from profile: UserModel) {
+        email = profile.email
+        nickName = profile.displayName
+        emoPetName = profile.emoPetName
+        planetName = profile.planetName
+        hasCompletedOnboarding = profile.hasCompletedOnboarding ?? false
+    }
+
     func logout() {
         try? Auth.auth().signOut()
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)

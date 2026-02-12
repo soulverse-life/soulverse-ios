@@ -7,14 +7,14 @@
 import UIKit
 
 enum Topic: String, CaseIterable {
-    case physical = "Physical"
-    case emotional = "Emotional"
-    case social = "Social"
-    case intellectual = "Intellectual"
-    case spiritual = "Spiritual"
-    case occupational = "Occupational"
-    case environment = "Environment"
-    case financial = "Financial"
+    case physical = "physical"
+    case emotional = "emotional"
+    case social = "social"
+    case intellectual = "intellectual"
+    case spiritual = "spiritual"
+    case occupational = "occupational"
+    case environment = "environment"
+    case financial = "financial"
 
     // MARK: - Localization
 

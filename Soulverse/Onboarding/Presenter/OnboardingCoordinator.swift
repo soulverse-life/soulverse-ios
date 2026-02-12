@@ -114,11 +114,9 @@ final class OnboardingCoordinator {
                 FirestoreUserService.fetchUserProfile(uid: uid) { [weak self] result in
                     guard let self = self else { return }
                     switch result {
-                    case .success(let data):
-                        User.shared.emoPetName = data["emoPetName"] as? String
-                        User.shared.planetName = data["planetName"] as? String
-                        let completed = data["hasCompletedOnboarding"] as? Bool ?? false
-                        User.shared.hasCompletedOnboarding = completed
+                    case .success(let profile):
+                        User.shared.populate(from: profile)
+                        let completed = profile.hasCompletedOnboarding ?? false
 
                         if completed {
                             self.delegate?.onboardingCoordinatorDidComplete(self, userData: self.userData)
