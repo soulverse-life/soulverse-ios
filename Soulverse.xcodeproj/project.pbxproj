@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C2E0E31B00B3123E9EB4873 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */; };
+		244A5F23289862BDB386843F /* ProfileViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */; };
 		27427F547F5406EEC24899AC /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
 		2C66302E39B2097233438B44 /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
 		44C3423F24CAD63B0FD3BE09 /* Pods_Base_Soulverse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */; };
+		7621C92B3C88BB51568944AA /* ProfileInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */; };
 		78F55E5288873495F0501DAF /* Pods_SoulverseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */; };
 		790AD2122DF9E43200C33CD1 /* CoreTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E32DF9E43200C33CD1 /* CoreTracker.swift */; };
 		790AD2132DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1972DF9E43200C33CD1 /* NotificationPresenterType.swift */; };
@@ -329,8 +332,10 @@
 		79F1380C2F3875E10034D325 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79F1380A2F3875E10034D325 /* GoogleService-Info.plist */; };
 		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
+		89054E3902CF31DC4A50A47A /* ProfileViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
 		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
+		E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -376,7 +381,9 @@
 /* Begin PBXFileReference section */
 		0D7EF684720D96D0B88C701D /* Pods-SoulverseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulverseTests.release.xcconfig"; path = "Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests.release.xcconfig"; sourceTree = "<group>"; };
 		186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_SoulverseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenter.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenter.swift; sourceTree = SOURCE_ROOT; };
 		218012824D64D4ED75251E3C /* Pods-Base-SoulverseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.release.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Soulverse/Features/Profile/ViewModels/ProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoulverseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		790AD1692DF9E43200C33CD1 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		790AD16A2DF9E43200C33CD1 /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
@@ -543,11 +550,14 @@
 		79F138042F379BF90034D325 /* ActionTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTagView.swift; sourceTree = "<group>"; };
 		79F1380A2F3875E10034D325 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
+		7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenterType.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenterType.swift; sourceTree = SOURCE_ROOT; };
+		91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileInfoRow.swift; path = Soulverse/Features/Profile/Views/ProfileInfoRow.swift; sourceTree = SOURCE_ROOT; };
 		9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserService.swift; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD732A67B3784224BA518E7 /* Pods-Base-Soulverse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.debug.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.debug.xcconfig"; sourceTree = "<group>"; };
+		D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Soulverse/Features/Profile/Views/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		DCDBD33BA61C721E6FB149BC /* Pods-Base-SoulverseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.debug.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0409B121CB8806C94932214 /* Pods-SoulverseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulverseTests.debug.xcconfig"; path = "Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E838841F277AF9F80002C053 /* Soulverse Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Soulverse Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -607,6 +617,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11BEB4CFBAE461585DCDFE8D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */,
+				91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		2C4840779C4456138BCEA49F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1213,6 +1232,7 @@
 				7951A9FF2E537704006EB0EC /* Tools */,
 				79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */,
 				798688072E6C24EE00EB3B38 /* Quest */,
+				A41A64F9EBA218CC228ACBB3 /* Profile */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -1345,6 +1365,33 @@
 				79EE74C42F2BB1AB0082EECF /* Topic.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A41A64F9EBA218CC228ACBB3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B54E6F390D87E6ECADF3FD48 /* ViewModels */,
+				B6119104050EE382D5B3A70B /* Presenter */,
+				11BEB4CFBAE461585DCDFE8D /* Views */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		B54E6F390D87E6ECADF3FD48 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		B6119104050EE382D5B3A70B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */,
+				188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */,
+			);
+			name = Presenter;
 			sourceTree = "<group>";
 		};
 		E8A4C87226BA41130082B4F7 = {
@@ -2015,6 +2062,11 @@
 				794B5A032EA38B45006CF069 /* SoulverseTextField.swift in Sources */,
 				79DD63392EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */,
 				790AD3192DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
+				1C2E0E31B00B3123E9EB4873 /* ProfileViewModel.swift in Sources */,
+				89054E3902CF31DC4A50A47A /* ProfileViewPresenterType.swift in Sources */,
+				244A5F23289862BDB386843F /* ProfileViewPresenter.swift in Sources */,
+				E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */,
+				7621C92B3C88BB51568944AA /* ProfileInfoRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

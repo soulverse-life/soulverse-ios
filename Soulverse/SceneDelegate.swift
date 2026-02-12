@@ -62,6 +62,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
     }
 
+    func transitionToOnboarding() {
+        guard let window = self.window else { return }
+
+        let onboardingVC = createOnboardingFlow()
+        window.rootViewController = onboardingVC
+
+        UIView.transition(
+            with: window,
+            duration: 0.3,
+            options: .transitionCrossDissolve,
+            animations: nil,
+            completion: nil
+        )
+    }
+
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
     }
 

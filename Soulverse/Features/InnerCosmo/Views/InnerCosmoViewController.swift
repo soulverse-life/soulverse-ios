@@ -298,8 +298,8 @@ extension InnerCosmoViewController {
     }
 
     private func profileTapped() {
-        print("[InnerCosmo] Profile button tapped")
-        // TODO: Navigate to profile screen
+        let profileVC = ProfileViewController()
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 }
 

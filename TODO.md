@@ -309,6 +309,30 @@ Created `Constants+MoodCheckIn.swift` to centralize layout constants for all Moo
 
 ---
 
+### 18. Fix onboarding back button size to match MoodCheckIn
+**Priority**: P1
+**Complexity**: S
+**Status**: Completed
+
+Fixed onboarding back buttons using wrong `UIButton()` (custom type) instead of `UIButton(type: .system)` with iOS 26 image handling, causing incorrect button sizing.
+
+**Implementation Summary**:
+- Changed all 5 onboarding back buttons from `UIButton()` to `UIButton(type: .system)`
+- Added iOS 26 availability check: `naviconBack` with `.alwaysOriginal` + `contentMode = .center` + `clipsToBounds = false`
+- Pre-iOS 26 fallback: `chevron.left` SF Symbol with `.themeTextPrimary` tint
+- Preserved existing `accessibilityLabel`
+
+**Files Modified**:
+- `OnboardingSignInViewController.swift`
+- `OnboardingNamingViewController.swift`
+- `OnboardingTopicViewController.swift`
+- `OnboardingGenderViewController.swift`
+- `OnboardingBirthdayViewController.swift`
+
+**PR**: #25
+
+---
+
 ### 12. Fix iOS 26 naviconBack button rendering
 **Priority**: P1
 **Complexity**: S

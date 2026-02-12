@@ -76,16 +76,14 @@ struct SoulverseNavigationConfig {
     let title: String
     let showBackButton: Bool
     let rightItems: [SoulverseNavigationItem]
-    let rightItemIconSize: CGFloat
 
     init(
-        title: String, showBackButton: Bool = false, rightItems: [SoulverseNavigationItem] = [],
-        rightItemIconSize: CGFloat = 20
+        title: String, showBackButton: Bool = false,
+        rightItems: [SoulverseNavigationItem] = []
     ) {
         self.title = title
         self.showBackButton = showBackButton
         self.rightItems = rightItems
-        self.rightItemIconSize = rightItemIconSize
     }
 }
 
@@ -131,18 +129,26 @@ class SoulverseNavigationView: UIView {
         return label
     }()
 
-    private let backButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton()
-        let image = UIImage(named: "naviconBack")
-        button.setImage(image, for: .normal)
+        if #available(iOS 26.0, *) {
+            button.setImage(UIImage(named: "naviconBack")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            button.imageView?.contentMode = .center
+            button.imageView?.clipsToBounds = false
+            button.clipsToBounds = false
+        } else {
+            button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+            button.tintColor = .themeTextPrimary
+        }
         button.isHidden = true
-        button.accessibilityLabel = NSLocalizedString(
-            "navigation_back_button", comment: "Back button")
+        button.accessibilityLabel = NSLocalizedString("navigation_back_button", comment: "Back button")
         button.accessibilityIdentifier = "SoulverseNavigationView.backButton"
+        button.addTarget(self, action: #selector(didTapBack), for: .touchUpInside)
+
         return button
+        
     }()
 
-    // Spacer to provide 16px left padding when back button is hidden (8px edge + 8px spacer)
     private let leadingSpacer: UIView = {
         let spacer = UIView()
         spacer.isHidden = true  // Hidden by default (shown when back button is hidden)
@@ -186,8 +192,7 @@ class SoulverseNavigationView: UIView {
 
         // Main stack view constraints - with padding on left and right
         mainStackView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview().inset(Layout.edgeInset)
+            make.left.right.equalToSuperview().inset(Layout.edgeInset)
             make.centerY.equalToSuperview()
         }
 
@@ -219,9 +224,6 @@ class SoulverseNavigationView: UIView {
             make.width.equalTo(Layout.itemSpacing)  // 8px to make total 16px with edge inset
         }
 
-        // Setup back button action
-        backButton.addTarget(self, action: #selector(didTapBack), for: .touchUpInside)
-
         // Apply theme colors
         updateThemeColors()
     }
@@ -237,10 +239,11 @@ class SoulverseNavigationView: UIView {
     }
 
     private func configureWithConfig() {
-        navigationTitle.text = config.title
-
         backButton.isHidden = !config.showBackButton
         leadingSpacer.isHidden = config.showBackButton
+
+        navigationTitle.text = config.title
+        navigationTitle.textAlignment = config.showBackButton ? .center : .left
 
         // Configure right items
         if !config.rightItems.isEmpty {
@@ -259,34 +262,15 @@ class SoulverseNavigationView: UIView {
             view.removeFromSuperview()
         }
 
-        // Add new items to stack with fixed size
         for item in items {
             let itemView = item.createView()
-
-            // Check if it is a button to apply specific image padding
-            if let button = itemView as? UIButton {
-                // Calculate padding to enforce specified icon size within 32x32 button
-                // Default is 20, derived from config
-                let verticalPadding = (Layout.rightItemButtonWidth - config.rightItemIconSize) / 2
-                // Ensure padding is non-negative
-                let safeVerticalPadding = max(0, verticalPadding)
-
-                // Relax horizontal padding to 0 to allow wide icons (like 'photo') to expand
-                button.imageEdgeInsets = UIEdgeInsets(
-                    top: safeVerticalPadding, left: 0, bottom: safeVerticalPadding, right: 0)
-                button.imageView?.contentMode = .scaleAspectFit
-            }
-
             rightItemsStackView.addArrangedSubview(itemView)
 
-            // Set fixed 32x32 size for each right item button (tap target area)
-            // Icon inside will be config.rightItemIconSize (configured effectively by the padding above)
             itemView.snp.makeConstraints { make in
                 make.width.height.equalTo(Layout.rightItemButtonWidth)
             }
         }
 
-        // Toggle visibility: when right items exist, hide trailing spacer; when empty, show trailing spacer
         rightItemsStackView.isHidden = items.isEmpty
         trailingSpacer.isHidden = !items.isEmpty
     }

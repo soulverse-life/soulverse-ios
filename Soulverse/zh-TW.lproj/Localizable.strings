@@ -266,3 +266,17 @@
 "inner_cosmo_mood_checkin_button" = "情緒紀錄";
 "inner_cosmo_mood_entries_header" = "最近的心情";
 "inner_cosmo_mood_entry_draw_cta" = "繪製";
+
+// MARK: - Profile
+"profile_title" = "個人檔案";
+"profile_name_label" = "名稱";
+"profile_email_label" = "電子郵件";
+"profile_auth_provider_label" = "登入方式";
+"profile_emopet_label" = "情緒寵物";
+"profile_planet_label" = "星球";
+"profile_logout_button" = "登出";
+"profile_delete_account_button" = "刪除帳號";
+"profile_logout_confirm_title" = "登出";
+"profile_logout_confirm_message" = "確定要登出嗎？";
+"profile_delete_confirm_title" = "刪除帳號";
+"profile_delete_confirm_message" = "此操作無法復原。所有資料將被永久刪除。確定要繼續嗎？";
