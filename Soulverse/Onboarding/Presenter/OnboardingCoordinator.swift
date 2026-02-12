@@ -109,19 +109,29 @@ final class OnboardingCoordinator {
         if isNewUser {
             showBirthdayScreen()
         } else {
-            // Returning user — restore profile and skip onboarding
+            // Returning user — fetch profile to check onboarding status
             if let uid = User.shared.userId {
                 FirestoreUserService.fetchUserProfile(uid: uid) { [weak self] result in
                     guard let self = self else { return }
-                    if case .success(let data) = result {
+                    switch result {
+                    case .success(let data):
                         User.shared.emoPetName = data["emoPetName"] as? String
                         User.shared.planetName = data["planetName"] as? String
-                        User.shared.hasCompletedOnboarding = data["hasCompletedOnboarding"] as? Bool ?? true
+                        let completed = data["hasCompletedOnboarding"] as? Bool ?? false
+                        User.shared.hasCompletedOnboarding = completed
+
+                        if completed {
+                            self.delegate?.onboardingCoordinatorDidComplete(self, userData: self.userData)
+                        } else {
+                            self.showBirthdayScreen()
+                        }
+                    case .failure:
+                        // Fetch failed — safer to continue onboarding
+                        self.showBirthdayScreen()
                     }
-                    self.delegate?.onboardingCoordinatorDidComplete(self, userData: self.userData)
                 }
             } else {
-                delegate?.onboardingCoordinatorDidComplete(self, userData: userData)
+                showBirthdayScreen()
             }
         }
     }
