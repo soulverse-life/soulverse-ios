@@ -20,12 +20,12 @@ Phase 1  Setup        → worktree + feat/ branch
 Phase 2  Brainstorm   → refine requirements ← brainstorming + multi-agent-brainstorming
 Phase 3  Plan         → implementation plan ← writing-plans + ios-developer + ios-hig
                         🛑 HARD GATE: wait for user approval
-Phase 4  /pm          → create persistent tasks ─┐
+Phase 4  TODO.md      → write task to TODO.md  ─┐
 Phase 5  Implement    → build the feature         │ auto-continue
                         ← executing-plans          │ after plan
                         + ios-developer            │ approval
                         + mobile-design            │
-Phase 6  Review       → self-review ← requesting-code-review + verification-before-completion
+Phase 6  Review       → self-review (MANDATORY OUTPUT) ← requesting-code-review + verification-before-completion
 Phase 7  Verify       → regression check
 Phase 8  PR + /pm     → create PR + complete tasks ─┘
 ```
@@ -37,7 +37,8 @@ Phase 8  PR + /pm     → create PR + complete tasks ─┘
 All other gates (Phase 4 through Phase 8) auto-continue after plan approval.
 The user confirmed the direction — let Claude handle the rest.
 
-`/pm` commands in Phase 4 and Phase 8 are MANDATORY (session recovery on disconnection).
+TODO.md writes in Phase 4 and Phase 8 are MANDATORY (session recovery on disconnection).
+Phase 6 self-review MUST produce visible output — do NOT skip or merge into Phase 7.
 
 ---
 
@@ -50,18 +51,18 @@ Reuse the fixed worktree to avoid repeated `pod install`:
 ### 1a. Ensure worktree exists
 
 ```bash
-if [ -d "../soulverse-fix" ]; then
+if [ -d "../soulverse-feature" ]; then
   echo "Worktree exists"
 else
-  git worktree add "../soulverse-fix" main
-  cd "../soulverse-fix" && pod install
+  git worktree add "../soulverse-feature" main
+  cd "../soulverse-feature" && pod install
 fi
 ```
 
 ### 1b. Clean up, sync, and create branch
 
 ```bash
-cd "../soulverse-fix"
+cd "../soulverse-feature"
 git status --porcelain
 ```
 
@@ -214,23 +215,34 @@ STOP and wait for explicit approval. Do not write code until approved.
 
 ---
 
-## Phase 4: Create /pm Tasks — MANDATORY
+## Phase 4: Create TODO.md Task — MANDATORY
 
-**Immediately after user approves**, create tasks for the feature.
+**Immediately after user approves**, record the task in TODO.md for session recovery.
 
-**IMPORTANT**: Do NOT use the Skill tool to invoke `/pm add` — that yields control to the
-pm skill and breaks the auto-continue flow. Instead, use the **Task tool** to spawn a
-`project-manager` sub-agent with this prompt:
+⚠️ **IMPORTANT**: Do NOT use `/pm add` — slash commands cannot be invoked from within a skill.
+Instead, use the Edit or Bash tool to directly write to TODO.md.
 
+### Steps:
+
+1. Read the current `TODO.md` to understand its format
+2. Add a new entry under "## In Progress":
+
+```bash
+# Append task to TODO.md
+cat >> TODO.md << 'TASK'
+
+### feat/<slug>: <1-line summary> [P1] [L]
+- Status: in_progress
+- Branch: feat/<slug>
+- Worktree: ../soulverse-feature/
+- Created: $(date +%Y-%m-%d)
+TASK
 ```
-Add a new task to TODO.md for: feat/<slug>: <1-line summary> [P1] [L]
-Create the task entry and confirm it was added.
-```
 
-Confirm:
-> **✅ 已建立 /pm task。開始實作...**
+3. Output this confirmation message — this line MUST appear in your response:
+> **✅ 已寫入 TODO.md task（feat/<slug>）。開始實作...**
 
-Immediately proceed to Phase 5.
+Then **immediately** proceed to Phase 5 — no need to wait for user input.
 
 ---
 
@@ -305,11 +317,15 @@ After implementation, provide a summary of all files created/modified.
 
 ---
 
-## Phase 6: Self-Review (auto-continue)
+## Phase 6: Self-Review — MANDATORY OUTPUT
 
 **Skills used: `requesting-code-review` + `verification-before-completion`**
 
-Use the **Task tool** to spawn a **`superpowers:code-reviewer`** sub-agent (`subagent_type: "superpowers:code-reviewer"`):
+⚠️ **This phase MUST produce visible output.** Do NOT skip it or merge it into Phase 7.
+
+### 6a. Spawn review sub-agent
+
+Use the **Task tool** to spawn a review sub-agent with this prompt:
 
 ```
 Review the code changes in <worktree-path> for the "<feature-name>" feature.
@@ -317,17 +333,68 @@ Review the code changes in <worktree-path> for the "<feature-name>" feature.
 Check against this plan:
 <the approved plan>
 
-Verify:
-1. Plan compliance — every task in the plan was implemented
-2. Soulverse conventions — theme colors, localization, VIPER layers, SnapKit
-3. HIG compliance — touch targets, accessibility, dark mode
-4. Code quality — no retain cycles, proper error handling, clean architecture
-5. Nothing was left half-done or with TODO markers
+## Review Checklist
 
-Report issues found. Be specific about file and line.
+### Plan Compliance
+- [ ] Every task in the plan was implemented
+- [ ] No tasks were skipped or half-done
+- [ ] No leftover TODO/FIXME markers
+
+### Soulverse Conventions
+- [ ] ALL colors use theme-aware colors (.themeTextPrimary, .themeTextSecondary, etc.)
+- [ ] NO hardcoded colors (.black, .darkGray, .lightGray)
+- [ ] ALL user-facing strings use NSLocalizedString()
+- [ ] Strings added to both en.lproj and zh-TW.lproj
+- [ ] ViewModels have NO UIKit imports
+- [ ] SnapKit used for all Auto Layout
+
+### HIG Compliance
+- [ ] Touch targets ≥ 44pt
+- [ ] Dynamic Type support
+- [ ] Dark mode tested
+- [ ] VoiceOver labels present
+
+### Code Quality
+- [ ] [weak self] in all escaping closures
+- [ ] Proper error handling with Result types
+- [ ] Clean VIPER layer separation
+- [ ] No retain cycles
+
+Report ALL issues found. Be specific: file path, line number, what's wrong, how to fix.
+If no issues found, explicitly state "No issues found."
 ```
 
-If issues are found, spawn another implementation sub-agent to fix them.
+### 6b. Show review results — MANDATORY
+
+After the sub-agent returns, you MUST output the results in this format:
+
+```
+## 🔍 Self-Review Results
+
+### Issues Found: <count>
+
+1. **[file:line]** — <issue description>
+   Fix: <how to fix>
+
+2. **[file:line]** — <issue description>
+   Fix: <how to fix>
+
+(or "✅ No issues found — all checks passed.")
+
+### Checklist Summary
+- Plan compliance: ✅/❌
+- Soulverse conventions: ✅/❌
+- HIG compliance: ✅/❌
+- Code quality: ✅/❌
+```
+
+> **📝 Self-review 完成。** <summary>
+
+### 6c. Fix issues if any
+
+If issues were found, spawn another implementation sub-agent to fix them.
+After fixes, re-run the review sub-agent (max 2 review cycles).
+Only proceed to Phase 7 when all checks pass.
 
 ---
 
@@ -410,18 +477,24 @@ EOF
 )"
 ```
 
-### 8c. Mark /pm Task Complete — MANDATORY
+### 8c. Mark TODO.md Task Complete — MANDATORY
 
-**IMPORTANT**: Do NOT use the Skill tool to invoke `/pm done` or `/pm sync` — that yields
-control to the pm skill and breaks the auto-continue flow. Instead, use the **Task tool**
-to spawn a `project-manager` sub-agent:
+⚠️ **IMPORTANT**: Do NOT use `/pm done` or `/pm sync` — slash commands cannot be invoked from within a skill.
+Instead, use the Edit tool to directly update TODO.md.
 
+1. Read `TODO.md`
+2. Find the `feat/<slug>` task entry
+3. Change its status from `in_progress` to `completed`
+4. Add completion date
+
+```bash
+# Example: use Edit tool to change the task status in TODO.md
+# Change "- Status: in_progress" to "- Status: completed"
+# Add "- Completed: $(date +%Y-%m-%d)"
 ```
-Mark the task for feat/<slug> as completed in TODO.md and sync the task list.
-```
 
-Confirm:
-> **✅ /pm task 已標記完成並同步到 TODO.md。**
+5. Output this confirmation — MUST appear in your response:
+> **✅ TODO.md task（feat/<slug>）已標記完成。**
 
 ### 8d. Report
 
@@ -439,9 +512,9 @@ Share:
 ## Session Recovery
 
 If interrupted:
-1. `TODO.md` task persists
+1. `TODO.md` task persists (written directly in Phase 4)
 2. Worktree and feat/ branch persist on disk
-3. New session → `/pm load` → see in-progress task → resume
+3. New session → read `TODO.md` or run `/pm load` → see in-progress task → resume
 
 ---
 
@@ -452,7 +525,7 @@ If any phase fails:
 2. Options: retry, adjust, or abort
 3. If aborting:
    ```bash
-   cd "../soulverse-fix"
+   cd "../soulverse-feature"
    git checkout main
    git branch -D "feat/<slug>"
    ```
