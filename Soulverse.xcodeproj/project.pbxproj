@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27427F547F5406EEC24899AC /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
+		2C66302E39B2097233438B44 /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
 		44C3423F24CAD63B0FD3BE09 /* Pods_Base_Soulverse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */; };
 		78F55E5288873495F0501DAF /* Pods_SoulverseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */; };
 		790AD2122DF9E43200C33CD1 /* CoreTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E32DF9E43200C33CD1 /* CoreTracker.swift */; };
@@ -51,7 +53,7 @@
 		790AD2552DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F12DF9E43200C33CD1 /* NotificationItemModel.swift */; };
 		790AD2592DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16A2DF9E43200C33CD1 /* Codable+Extensions.swift */; };
 		790AD25B2DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1732DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift */; };
-		790AD25C2DF9E43200C33CD1 /* SummitUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F62DF9E43200C33CD1 /* SummitUserModel.swift */; };
+		790AD25C2DF9E43200C33CD1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F62DF9E43200C33CD1 /* UserModel.swift */; };
 		790AD25E2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F22DF9E43200C33CD1 /* NotificationItemsResponse.swift */; };
 		790AD2602DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19A2DF9E43200C33CD1 /* NotificationViewModel.swift */; };
 		790AD2612DF9E43200C33CD1 /* SummitAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */; };
@@ -110,7 +112,7 @@
 		790AD3032DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F12DF9E43200C33CD1 /* NotificationItemModel.swift */; };
 		790AD3072DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16A2DF9E43200C33CD1 /* Codable+Extensions.swift */; };
 		790AD3092DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1732DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift */; };
-		790AD30A2DF9E43200C33CD1 /* SummitUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F62DF9E43200C33CD1 /* SummitUserModel.swift */; };
+		790AD30A2DF9E43200C33CD1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F62DF9E43200C33CD1 /* UserModel.swift */; };
 		790AD30C2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F22DF9E43200C33CD1 /* NotificationItemsResponse.swift */; };
 		790AD30E2DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19A2DF9E43200C33CD1 /* NotificationViewModel.swift */; };
 		790AD30F2DF9E43200C33CD1 /* SummitAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */; };
@@ -323,6 +325,8 @@
 		79EE74DC2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */; };
 		79F138052F379BF90034D325 /* ActionTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F138042F379BF90034D325 /* ActionTagView.swift */; };
 		79F138062F379BF90034D325 /* ActionTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F138042F379BF90034D325 /* ActionTagView.swift */; };
+		79F1380B2F3875E10034D325 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79F1380A2F3875E10034D325 /* GoogleService-Info.plist */; };
+		79F1380C2F3875E10034D325 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79F1380A2F3875E10034D325 /* GoogleService-Info.plist */; };
 		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
@@ -414,7 +418,7 @@
 		790AD1F22DF9E43200C33CD1 /* NotificationItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationItemsResponse.swift; sourceTree = "<group>"; };
 		790AD1F32DF9E43200C33CD1 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		790AD1F52DF9E43200C33CD1 /* ContentListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListResponse.swift; sourceTree = "<group>"; };
-		790AD1F62DF9E43200C33CD1 /* SummitUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitUserModel.swift; sourceTree = "<group>"; };
+		790AD1F62DF9E43200C33CD1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		790AD1F72DF9E43200C33CD1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitAlertView.swift; sourceTree = "<group>"; };
 		790AD1FF2DF9E43200C33CD1 /* SummitSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitSeparator.swift; sourceTree = "<group>"; };
@@ -537,7 +541,9 @@
 		79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntriesSection.swift; sourceTree = "<group>"; };
 		79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntryCardCell.swift; sourceTree = "<group>"; };
 		79F138042F379BF90034D325 /* ActionTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTagView.swift; sourceTree = "<group>"; };
+		79F1380A2F3875E10034D325 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
+		9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserService.swift; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -805,7 +811,7 @@
 			isa = PBXGroup;
 			children = (
 				790AD1F52DF9E43200C33CD1 /* ContentListResponse.swift */,
-				790AD1F62DF9E43200C33CD1 /* SummitUserModel.swift */,
+				790AD1F62DF9E43200C33CD1 /* UserModel.swift */,
 				790AD1F72DF9E43200C33CD1 /* UserService.swift */,
 			);
 			path = UserService;
@@ -815,6 +821,7 @@
 			isa = PBXGroup;
 			children = (
 				79EE74C82F2BB6C80082EECF /* SpeechService.swift */,
+				9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */,
 				790AD1EB2DF9E43200C33CD1 /* APIService */,
 				790AD1F02DF9E43200C33CD1 /* Auth */,
 				790AD1F42DF9E43200C33CD1 /* NotificationService */,
@@ -863,6 +870,7 @@
 		790AD2112DF9E43200C33CD1 /* Soulverse */ = {
 			isa = PBXGroup;
 			children = (
+				79F1380A2F3875E10034D325 /* GoogleService-Info.plist */,
 				7922ECE42E9A4E010086B7CA /* SoulverseRelease.entitlements */,
 				790AD2082DF9E43200C33CD1 /* Info.plist */,
 				790AD2062DF9E43200C33CD1 /* AppDelegate.swift */,
@@ -1503,6 +1511,7 @@
 			files = (
 				79DD63402EDB2FAF008A5F8D /* canvas_prompts.json in Resources */,
 				790AD2732DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
+				79F1380C2F3875E10034D325 /* GoogleService-Info.plist in Resources */,
 				790AD2742DF9E43200C33CD1 /* Main.storyboard in Resources */,
 				7922ECAD2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */,
 				790AD27E2DF9E43200C33CD1 /* Localizable.strings in Resources */,
@@ -1518,6 +1527,7 @@
 			files = (
 				79DD63432EDB2FAF008A5F8D /* canvas_prompts.json in Resources */,
 				790AD29D2DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
+				79F1380B2F3875E10034D325 /* GoogleService-Info.plist in Resources */,
 				790AD29E2DF9E43200C33CD1 /* Main.storyboard in Resources */,
 				7922ECAC2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */,
 				790AD2A82DF9E43200C33CD1 /* Localizable.strings in Resources */,
@@ -1553,13 +1563,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1662,13 +1668,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1683,13 +1685,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1704,13 +1702,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1791,6 +1785,7 @@
 				79B24C792DFC7B2A001220B6 /* CanvasViewModel.swift in Sources */,
 				79B24C7A2DFC7B2A001220B6 /* CanvasViewController.swift in Sources */,
 				790AD2432DF9E43200C33CD1 /* UserService.swift in Sources */,
+				2C66302E39B2097233438B44 /* FirestoreUserService.swift in Sources */,
 				790AD2442DF9E43200C33CD1 /* MainViewController.swift in Sources */,
 				79389F6E2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */,
 				790AD2452DF9E43200C33CD1 /* ViewController.swift in Sources */,
@@ -1831,7 +1826,7 @@
 				79389F652F05760D0016CB7F /* InnerCosmoWeeklyView.swift in Sources */,
 				79389F662F05760D0016CB7F /* CentralPlanetView.swift in Sources */,
 				790AD25B2DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
-				790AD25C2DF9E43200C33CD1 /* SummitUserModel.swift in Sources */,
+				790AD25C2DF9E43200C33CD1 /* UserModel.swift in Sources */,
 				790AD25E2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */,
 				790AD2602DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */,
 				794B5A0F2EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,
@@ -1942,6 +1937,7 @@
 				79B24C762DFC7B2A001220B6 /* CanvasViewModel.swift in Sources */,
 				79B24C772DFC7B2A001220B6 /* CanvasViewController.swift in Sources */,
 				790AD2F12DF9E43200C33CD1 /* UserService.swift in Sources */,
+				27427F547F5406EEC24899AC /* FirestoreUserService.swift in Sources */,
 				790AD2F22DF9E43200C33CD1 /* MainViewController.swift in Sources */,
 				79389F6F2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */,
 				790AD2F32DF9E43200C33CD1 /* ViewController.swift in Sources */,
@@ -1982,7 +1978,7 @@
 				79389F6B2F05760D0016CB7F /* InnerCosmoWeeklyView.swift in Sources */,
 				79389F6C2F05760D0016CB7F /* CentralPlanetView.swift in Sources */,
 				790AD3092DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
-				790AD30A2DF9E43200C33CD1 /* SummitUserModel.swift in Sources */,
+				790AD30A2DF9E43200C33CD1 /* UserModel.swift in Sources */,
 				790AD30C2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */,
 				790AD30E2DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */,
 				794B5A102EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,

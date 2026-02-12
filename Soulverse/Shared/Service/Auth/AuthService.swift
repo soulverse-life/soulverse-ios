@@ -10,7 +10,7 @@ import Foundation
 /// Result of authentication operation
 enum AuthResult {
 
-    case AuthSuccess
+    case AuthSuccess(isNewUser: Bool)
     case ThirdPartyServiceError(errorMsg: String? = nil)
     case ServerError
     case NetworkError
