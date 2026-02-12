@@ -21,6 +21,9 @@ final class OnboardingCoordinator {
     // Authentication services
     private let appleAuthService = AppleUserAuthService()
     private let googleAuthService = GoogleUserAuthService()
+    #if DEBUG
+    private let devAuthService = DevAuthService()
+    #endif
 
     // MARK: - Initialization
 
@@ -103,6 +106,21 @@ final class OnboardingCoordinator {
             }
         }
     }
+
+    #if DEBUG
+    private func handleDevAuthentication() {
+        devAuthService.authenticate { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .AuthSuccess(let isNewUser):
+                self.handleAuthenticationSuccess(isNewUser: isNewUser)
+            default:
+                self.handleAuthenticationError(result)
+            }
+        }
+    }
+    #endif
 
     private func handleAuthenticationSuccess(isNewUser: Bool) {
         userData.isSignedIn = true
@@ -197,6 +215,12 @@ extension OnboardingCoordinator: OnboardingSignInViewControllerDelegate {
     func didTapAppleSignIn(_ viewController: OnboardingSignInViewController) {
         handleAppleAuthentication()
     }
+
+    #if DEBUG
+    func didTapDevSignIn(_ viewController: OnboardingSignInViewController) {
+        handleDevAuthentication()
+    }
+    #endif
 }
 
 // MARK: - OnboardingBirthdayViewControllerDelegate
