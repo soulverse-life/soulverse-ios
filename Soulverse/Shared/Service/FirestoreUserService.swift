@@ -143,6 +143,21 @@ final class FirestoreUserService {
         }
     }
 
+    // MARK: - Delete User
+
+    static func deleteUser(
+        uid: String,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        db.collection(usersCollection).document(uid).delete { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+
     // MARK: - Check New User
 
     static func isNewUser(

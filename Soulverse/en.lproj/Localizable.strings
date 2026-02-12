@@ -267,3 +267,17 @@
 "inner_cosmo_mood_checkin_button" = "Mood checkin";
 "inner_cosmo_mood_entries_header" = "Recent Moods";
 "inner_cosmo_mood_entry_draw_cta" = "Draw";
+
+// MARK: - Profile
+"profile_title" = "Profile";
+"profile_name_label" = "Name";
+"profile_email_label" = "Email";
+"profile_auth_provider_label" = "Sign-in Method";
+"profile_emopet_label" = "E.M.O Pet";
+"profile_planet_label" = "Planet";
+"profile_logout_button" = "Logout";
+"profile_delete_account_button" = "Delete Account";
+"profile_logout_confirm_title" = "Logout";
+"profile_logout_confirm_message" = "Are you sure you want to logout?";
+"profile_delete_confirm_title" = "Delete Account";
+"profile_delete_confirm_message" = "This action cannot be undone. All your data will be permanently deleted. Are you sure?";

@@ -48,7 +48,6 @@ struct ThirdPartyAuthConfig {
 enum SoulverseButtonStyle {
     case primary                                    // Standard button (black border, white bg)
     case thirdPartyAuth(ThirdPartyAuthConfig)      // Third-party auth button (Google, Apple, etc.)
-    case outlined                                   // Outlined style with customization
 }
 
 // MARK: - Button Delegate
@@ -245,25 +244,6 @@ class SoulverseButton: UIView {
                 iconImageView.isHidden = true
             }
 
-        case .outlined:
-            addSubview(baseView)
-            baseView.backgroundColor = .white
-            titleLabel.textColor = .black
-            baseView.layer.borderWidth = 1
-            baseView.layer.borderColor = UIColor.lightGray.cgColor
-            baseView.layer.cornerRadius = 8
-            baseView.clipsToBounds = true
-            iconImageView.isHidden = true
-
-            baseView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-
-            // Reset spacing and constraints for outlined style
-            containerStackView.spacing = 8
-            containerStackView.snp.remakeConstraints { make in
-                make.edges.equalToSuperview().inset(12)
-            }
         }
 
         updateEnabledState()
