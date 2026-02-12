@@ -284,3 +284,11 @@
 
 // MARK: - Action Modal
 "action_modal_close" = "Close";
+
+// Insight - Weekly Mood Score
+"insight_weekly_mood_score_title" = "Weekly Mood Score";
+"insight_weekly_mood_score_description" = "Your mood has been mostly positive this week, with a notable dip mid-week. Overall trending upward.";
+"insight_sentiment_positive" = "Positive";
+"insight_sentiment_negative" = "Negative";
+"insight_sentiment_neutral" = "Neutral";
+"insight_last_7_days" = "Last 7 days";

@@ -283,3 +283,11 @@
 
 // MARK: - Action Modal
 "action_modal_close" = "關閉";
+
+// Insight - Weekly Mood Score
+"insight_weekly_mood_score_title" = "每週情緒分數";
+"insight_weekly_mood_score_description" = "這週你的情緒大多是正面的，週中有明顯的低潮。整體趨勢向上。";
+"insight_sentiment_positive" = "正面";
+"insight_sentiment_negative" = "負面";
+"insight_sentiment_neutral" = "中性";
+"insight_last_7_days" = "過去 7 天";
