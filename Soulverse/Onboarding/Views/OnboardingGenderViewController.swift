@@ -40,9 +40,16 @@ class OnboardingGenderViewController: ViewController {
     // MARK: - UI Components
 
     private lazy var backButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "naviconBack")
-        button.setImage(image, for: .normal)
+        let button = UIButton(type: .system)
+        if #available(iOS 26.0, *) {
+            button.setImage(UIImage(named: "naviconBack")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            button.imageView?.contentMode = .center
+            button.imageView?.clipsToBounds = false
+            button.clipsToBounds = false
+        } else {
+            button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+            button.tintColor = .themeTextPrimary
+        }
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         button.accessibilityLabel = NSLocalizedString("navigation_back_button", comment: "Back button")
         return button
