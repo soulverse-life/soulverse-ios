@@ -236,11 +236,33 @@ Immediately proceed to Phase 5.
 
 ## Phase 5: Implementation (auto-continue)
 
-**Skills used: `executing-plans` + `ios-developer` + `mobile-design`**
+**Skills used: `executing-plans` + `ios-developer` + (conditionally selected skills)**
 
 Follow the **executing-plans** pattern: work through the plan task by task.
 
-Use the **Task tool** to spawn implementation sub-agents. For large features,
+### 5a. Load Skills (smart selection)
+
+Before spawning implementation sub-agents, load relevant skills using the **Skill tool**.
+The loaded skill content will be included as guidance in each sub-agent's prompt.
+
+**Always load:**
+- `ios-developer` — mandatory for all Soulverse implementation work
+
+**Conditionally load based on the implementation plan:**
+
+| Condition | Skill to load |
+|-----------|---------------|
+| Feature includes UI screens, views, or layout work | `ios-hig` |
+| Feature includes UI screens, views, or layout work | `mobile-design` |
+| Feature involves Firebase, analytics, or push notifications | `firebase` |
+| Feature involves iOS 26 Liquid Glass APIs | `ios26-liquid-glass` |
+
+Analyze the approved implementation plan from Phase 3. For each condition above, check if any
+tasks or files match. Load only the skills that are relevant — don't load everything blindly.
+
+### 5b. Spawn Implementation Sub-Agents
+
+Use the **Task tool** to spawn **`general-purpose`** implementation sub-agents (`subagent_type: "general-purpose"`). For large features,
 split into logical chunks and dispatch parallel sub-agents where tasks are independent:
 
 ### For each implementation chunk, provide this context:
@@ -269,6 +291,9 @@ Implement the following tasks for the Soulverse iOS project.
 - Use SnapKit for Auto Layout
 - Follow existing code conventions in the feature module
 
+## Skill Guidance
+<paste the key guidelines from each loaded skill here — summarize, don't dump the full text>
+
 ## Tasks to Implement
 <specific tasks from the plan>
 
@@ -284,7 +309,7 @@ After implementation, provide a summary of all files created/modified.
 
 **Skills used: `requesting-code-review` + `verification-before-completion`**
 
-Use the **Task tool** to spawn a review sub-agent:
+Use the **Task tool** to spawn a **`superpowers:code-reviewer`** sub-agent (`subagent_type: "superpowers:code-reviewer"`):
 
 ```
 Review the code changes in <worktree-path> for the "<feature-name>" feature.

@@ -200,7 +200,29 @@ The plan was already approved in Phase 3a. From here through Phase 6, run automa
 
 ## Phase 4: Implementation (auto-continue)
 
-Use the **Task tool** to spawn a sub-agent for implementation. Provide full Soulverse context:
+### 4a. Load Skills (smart selection)
+
+Before spawning the implementation sub-agent, load relevant skills using the **Skill tool**.
+The loaded skill content will be included as guidance in the sub-agent's prompt.
+
+**Always load:**
+- `ios-developer` — mandatory for all Soulverse implementation work
+
+**Conditionally load based on the fix plan:**
+
+| Condition | Skill to load |
+|-----------|---------------|
+| Fix touches UI views, layout, or visual elements | `ios-hig` |
+| Fix touches UI views, layout, or visual elements | `mobile-design` |
+| Fix involves Firebase, analytics, or push notifications | `firebase` |
+| Fix involves iOS 26 Liquid Glass APIs | `ios26-liquid-glass` |
+
+Analyze the approved fix plan from Phase 3. For each condition above, check if any files
+or changes match. Load only the skills that are relevant — don't load everything blindly.
+
+### 4b. Spawn Implementation Sub-Agent
+
+Use the **Task tool** to spawn a **`general-purpose`** sub-agent (`subagent_type: "general-purpose"`) for implementation. Include the loaded skill guidance in the prompt:
 
 ```
 Implement the following bug fix in the Soulverse iOS project.
@@ -225,6 +247,9 @@ Implement the following bug fix in the Soulverse iOS project.
 - Use [weak self] in escaping closures
 - Use SnapKit for Auto Layout
 - Follow existing code conventions in the feature module
+
+## Skill Guidance
+<paste the key guidelines from each loaded skill here — summarize, don't dump the full text>
 
 ## Bug Description
 <original $ARGUMENTS>
