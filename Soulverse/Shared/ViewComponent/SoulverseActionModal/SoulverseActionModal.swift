@@ -32,7 +32,6 @@ extension SoulverseActionModalDelegate {
 final class SoulverseActionModal: UIViewController {
 
     private enum Layout {
-        static let cornerRadius: CGFloat = 24
         static let horizontalPadding: CGFloat = 26
         static let topPadding: CGFloat = 20
         static let bottomPadding: CGFloat = 24
@@ -50,7 +49,6 @@ final class SoulverseActionModal: UIViewController {
     weak var delegate: SoulverseActionModalDelegate?
 
     private let config: SoulverseActionModalConfig
-    private var interactiveDismiss: SoulverseActionModalInteractiveDismiss?
 
     // MARK: - UI Elements
 
@@ -90,8 +88,7 @@ final class SoulverseActionModal: UIViewController {
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
 
-        modalPresentationStyle = .custom
-        transitioningDelegate = self
+        modalPresentationStyle = .pageSheet
     }
 
     required init?(coder: NSCoder) {
@@ -103,7 +100,7 @@ final class SoulverseActionModal: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        interactiveDismiss = SoulverseActionModalInteractiveDismiss(viewController: self)
+        configureSheet()
     }
 
     // MARK: - Setup
@@ -142,6 +139,27 @@ final class SoulverseActionModal: UIViewController {
         }
     }
 
+    private func configureSheet() {
+        guard let sheet = sheetPresentationController else { return }
+
+        let contentDetent = UISheetPresentationController.Detent.custom(identifier: .init("content")) { [weak self] _ in
+            guard let self = self else { return nil }
+            // Force layout to calculate intrinsic height
+            self.view.layoutIfNeeded()
+            let targetSize = CGSize(width: self.view.bounds.width, height: UIView.layoutFittingCompressedSize.height)
+            return self.view.systemLayoutSizeFitting(
+                targetSize,
+                withHorizontalFittingPriority: .required,
+                verticalFittingPriority: .fittingSizeLevel
+            ).height
+        }
+
+        sheet.detents = [contentDetent]
+        sheet.prefersGrabberVisible = false
+        sheet.preferredCornerRadius = 24
+        sheet.delegate = self
+    }
+
     // MARK: - Actions
 
     @objc private func closeTapped() {
@@ -160,40 +178,11 @@ extension SoulverseActionModal: SoulverseButtonDelegate {
     }
 }
 
-// MARK: - UIViewControllerTransitioningDelegate
+// MARK: - UISheetPresentationControllerDelegate
 
-extension SoulverseActionModal: UIViewControllerTransitioningDelegate {
-
-    func presentationController(
-        forPresented presented: UIViewController,
-        presenting: UIViewController?,
-        source: UIViewController
-    ) -> UIPresentationController? {
-        SoulverseActionModalPresentationController(presentedViewController: presented, presenting: presenting)
-    }
-
-    func animationController(
-        forPresented presented: UIViewController,
-        presenting: UIViewController,
-        source: UIViewController
-    ) -> (any UIViewControllerAnimatedTransitioning)? {
-        SoulverseActionModalAnimator(isPresenting: true)
-    }
-
-    func animationController(
-        forDismissed dismissed: UIViewController
-    ) -> (any UIViewControllerAnimatedTransitioning)? {
-        SoulverseActionModalAnimator(isPresenting: false)
-    }
-
-    func interactionControllerForDismissal(
-        using animator: any UIViewControllerAnimatedTransitioning
-    ) -> (any UIViewControllerInteractiveTransitioning)? {
-        guard let interactiveDismiss = interactiveDismiss,
-              interactiveDismiss.isInteracting else {
-            return nil
-        }
-        return interactiveDismiss
+extension SoulverseActionModal: UISheetPresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        delegate?.actionModalDidDismiss(self)
     }
 }
 
