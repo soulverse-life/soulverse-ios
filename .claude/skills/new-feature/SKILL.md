@@ -216,10 +216,15 @@ STOP and wait for explicit approval. Do not write code until approved.
 
 ## Phase 4: Create /pm Tasks — MANDATORY
 
-**Immediately after user approves**, create tasks for the feature:
+**Immediately after user approves**, create tasks for the feature.
+
+**IMPORTANT**: Do NOT use the Skill tool to invoke `/pm add` — that yields control to the
+pm skill and breaks the auto-continue flow. Instead, use the **Task tool** to spawn a
+`project-manager` sub-agent with this prompt:
 
 ```
-/pm add feat/<slug>: <1-line summary> [P1] [L]
+Add a new task to TODO.md for: feat/<slug>: <1-line summary> [P1] [L]
+Create the task entry and confirm it was added.
 ```
 
 Confirm:
@@ -382,9 +387,12 @@ EOF
 
 ### 8c. Mark /pm Task Complete — MANDATORY
 
+**IMPORTANT**: Do NOT use the Skill tool to invoke `/pm done` or `/pm sync` — that yields
+control to the pm skill and breaks the auto-continue flow. Instead, use the **Task tool**
+to spawn a `project-manager` sub-agent:
+
 ```
-/pm done <task_id>
-/pm sync
+Mark the task for feat/<slug> as completed in TODO.md and sync the task list.
 ```
 
 Confirm:
