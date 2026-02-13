@@ -50,6 +50,7 @@ final class SoulverseActionModal: UIViewController {
     weak var delegate: SoulverseActionModalDelegate?
 
     private let config: SoulverseActionModalConfig
+    private var interactiveDismiss: SoulverseActionModalInteractiveDismiss?
 
     // MARK: - UI Elements
 
@@ -102,6 +103,7 @@ final class SoulverseActionModal: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        interactiveDismiss = SoulverseActionModalInteractiveDismiss(viewController: self)
     }
 
     // MARK: - Setup
@@ -182,6 +184,16 @@ extension SoulverseActionModal: UIViewControllerTransitioningDelegate {
         forDismissed dismissed: UIViewController
     ) -> (any UIViewControllerAnimatedTransitioning)? {
         SoulverseActionModalAnimator(isPresenting: false)
+    }
+
+    func interactionControllerForDismissal(
+        using animator: any UIViewControllerAnimatedTransitioning
+    ) -> (any UIViewControllerInteractiveTransitioning)? {
+        guard let interactiveDismiss = interactiveDismiss,
+              interactiveDismiss.isInteracting else {
+            return nil
+        }
+        return interactiveDismiss
     }
 }
 
