@@ -83,7 +83,8 @@ permissionMode: acceptEdits   # 自動接受編輯，不跳確認
 
 ```
 Soulverse/              ← 主 repo（main branch）
-../soulverse-fix/       ← 固定的 fix worktree（一次 pod install，重複使用）
+../soulverse-fix/       ← 固定的 fix worktree（bug fix 用）
+../soulverse-feature/   ← 固定的 feature worktree（新功能用）
 ```
 
 **流程：**
@@ -162,7 +163,7 @@ Skill 是教 Claude 執行特定任務的擴充功能，由 `SKILL.md` 定義。
        │
        │     你說「好」之後，以下全部自動執行 ↓
        │
-  Phase 3b ─ /pm add 建立持久 task（寫入 TODO.md）
+  Phase 3b ─ 直寫 TODO.md 建立持久 task（不用 /pm，用 Edit/Bash）
        │
   Phase 4 ── sub-agent 實作 fix（自動放行 Edit 權限）
        │
@@ -171,7 +172,7 @@ Skill 是教 Claude 執行特定任務的擴充功能，由 `SKILL.md` 定義。
        │    失敗 → 重新實作（最多 3 輪）
        │
   Phase 6 ── git commit + push + gh pr create
-       │     /pm done + /pm sync
+       │     Edit tool 更新 TODO.md（不用 /pm done）
        │     macOS 通知「PR 已建立」
        ▼
      完成！
@@ -194,17 +195,32 @@ Why: the user needs to review the plan before code changes...
 
 跟 Claude 說「為什麼」比只說「一定要」更有效，但兩個一起用效果最好。
 
-#### 2. `/pm` 整合實現斷線恢復
+#### 2. TODO.md 直寫實現斷線恢復
 
-```
-Phase 3b: /pm add fix/<slug>: <摘要> [P1] [M]   → 寫入 TODO.md
-Phase 6c: /pm done <task_id> + /pm sync          → 標記完成
+⚠️ **踩坑紀錄**：原本設計是在 skill 裡呼叫 `/pm add`，但實測發現 **Slash command 不能從 skill 內部呼叫**。`/pm` 依賴 `TaskCreate`、`TaskUpdate` 等內建工具，而 skill 的 `allowed-tools` 只包含 `Bash, Read, Edit, Write, Grep, Glob, Task`，且 `/pm add` 語法本身不是 tool call — Claude 看到時會靜靜跳過。
+
+**解法**：改用 Edit/Bash 直接寫入 TODO.md：
+
+```bash
+# Phase 3b: 直接寫入 TODO.md
+cat >> TODO.md << 'TASK'
+### fix/<slug>: <摘要> [P1] [M]
+- Status: in_progress
+- Branch: fix/<slug>
+- Worktree: ../soulverse-fix/
+- Created: 2026-02-12
+TASK
+
+# Phase 6c: 用 Edit tool 更新 status
+# 把 "in_progress" 改成 "completed"
 ```
 
 斷線恢復：
-1. `TODO.md` task 持久化
+1. `TODO.md` task 持久化（直接檔案操作，不依賴 slash command）
 2. Worktree 和 branch 留在磁碟上
-3. 新 session → `/pm load` → 看到進行中的 task → 繼續
+3. 新 session → 讀 `TODO.md` 或 `/pm load` → 看到進行中的 task → 繼續
+
+> **設計原則**：Skill 內只能用 `allowed-tools` 列表中的工具。需要持久化的操作，用檔案系統（Edit/Write/Bash）而不是 slash command。
 
 #### 3. macOS 通知（Hooks + osascript）
 
@@ -291,11 +307,11 @@ Verify        regression-checker agent
        │
        │     你說「好」之後全部自動 ↓
        │
-  Phase 4 ── /pm add 建立 task
+  Phase 4 ── 直寫 TODO.md 建立 task（不用 /pm）
   Phase 5 ── sub-agent 實作（可平行）
-  Phase 6 ── 自動 code review（計畫合規 + 品質檢查）
+  Phase 6 ── 自動 code review（MANDATORY OUTPUT：計畫合規 + 品質檢查）
   Phase 7 ── regression-checker 驗證 build/test → macOS 通知
-  Phase 8 ── commit + push + PR + /pm done
+  Phase 8 ── commit + push + PR + Edit 更新 TODO.md
        │     macOS 通知「Feature 完成！」
        ▼
      完成！
@@ -331,7 +347,71 @@ Verify        regression-checker agent
 
 ---
 
-## 6. 快速對照表
+## 6. Team Agent vs Sub-agent
+
+### 核心差異
+
+| | Sub-agent | Team Agent |
+|---|---|---|
+| 執行環境 | 同一個 session（Task tool） | 多個獨立 Claude Code session |
+| 溝通 | 只回報給主 agent | Lead ↔ Teammate，Teammate ↔ Teammate |
+| Context | 共用主 session 的 token 額度 | 每個 teammate 有完整 context window |
+| 任務管理 | 主 agent 手動分派 | 共享 task list，自動 claim + dependency tracking |
+| 成本 | 較低（可用 Haiku） | 較高（每個 teammate = 完整 session） |
+| 啟用 | 內建 | 實驗功能：`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` |
+
+### 什麼時候用 Team Agent？
+
+- 多個互相獨立的模組同時開發
+- Debugging 競爭假說（多個 agent 同時測不同理論）
+- 跨層協作（前端/後端/測試各自獨立進行）
+- Context window 瓶頸（單一 session 塞不下所有程式碼）
+
+### Soulverse 需要 Team Agent 嗎？
+
+**目前不需要。** 原因：
+- Bug fix 是單一焦點，嚴格順序流程
+- Feature 開發大多集中在 1-2 個 module
+- Sub-agent 已夠用（implementation + regression check）
+- iOS 專案同一個 Xcode workspace 並發修改容易衝突
+
+**未來考慮的時機**：
+- 一次建 5+ 個互相獨立的 feature module
+- 大規模跨模組重構
+- Implementation plan 超過 8 個獨立 task 且跨 3+ feature module
+
+---
+
+## 7. 踩坑紀錄與設計原則
+
+### ❌ Slash command 不能從 Skill 內呼叫
+
+**症狀**：SKILL.md 裡寫 `/pm add ...`，實際執行時被靜靜跳過。
+**原因**：Skill 執行時只能用 `allowed-tools` 裡的工具。Slash command 不是工具 — 它是 UI 層的操作。
+**解法**：用 Edit/Bash 直接操作檔案（如 TODO.md），不要依賴 slash command。
+
+### ❌ Auto-continue phase 被跳過
+
+**症狀**：Self-review phase 沒有輸出任何訊息，直接跳到下一步。
+**原因**：沒有 HARD GATE 的 phase，Claude 傾向壓縮或跳過。
+**解法**：加入 MANDATORY OUTPUT 要求 + 指定輸出格式 + 確認訊息（`> **📝 Self-review 完成。**`）。
+
+### ❌ HARD GATE 被繞過
+
+**症狀**：簡單 bug 時 Claude 自行跳過計畫確認。
+**解法**：同時使用「命令式」（STOP, Do not）和「解釋 why」（告訴 Claude 為什麼需要這個 gate）。
+
+### 設計原則總結
+
+1. **Skill 裡只能用 allowed-tools** — 不能呼叫 slash command、不能用沒列出的工具
+2. **告訴 Claude "why" 比只說 "must" 有效** — 但兩者一起用效果最好
+3. **每個 mandatory step 都要有 visible output** — 沒有輸出要求的步驟會被跳過
+4. **檔案系統 > 內建 API** — 需要持久化的操作用檔案，不依賴 session 內的工具
+5. **Fixed worktree > New worktree** — CocoaPods 專案避免重複 pod install
+
+---
+
+## 8. 快速對照表
 
 ### Sub-agent vs Skill vs Command
 
@@ -362,7 +442,7 @@ Verify        regression-checker agent
 
 ---
 
-## 延伸資源
+## 9. 延伸資源
 
 - [Claude Code Sub-agents 文件](https://code.claude.com/docs/en/sub-agents)
 - [Claude Code Skills 文件](https://code.claude.com/docs/en/skills.md)

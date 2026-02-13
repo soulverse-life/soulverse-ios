@@ -280,3 +280,11 @@
 "profile_logout_confirm_message" = "確定要登出嗎？";
 "profile_delete_confirm_title" = "刪除帳號";
 "profile_delete_confirm_message" = "此操作無法復原。所有資料將被永久刪除。確定要繼續嗎？";
+
+// Insight - Weekly Mood Score
+"insight_weekly_mood_score_title" = "每週情緒分數";
+"insight_weekly_mood_score_description" = "這週你的情緒大多是正面的，週中有明顯的低潮。整體趨勢向上。";
+"insight_sentiment_positive" = "正面";
+"insight_sentiment_negative" = "負面";
+"insight_sentiment_neutral" = "中性";
+"insight_last_7_days" = "過去 7 天";
