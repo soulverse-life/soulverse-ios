@@ -85,6 +85,10 @@ extension SoulTheme {
     var separator: UIColor {
         UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
     }
+
+    var modalBackground: UIColor {
+        UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.95)
+    }
 }
 
 // MARK: - Button Colors
