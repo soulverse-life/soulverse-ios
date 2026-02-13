@@ -30,12 +30,12 @@ The project was originally named "KonoSummit" but has been rebranded to "Soulver
 ## Build & Development Commands
 
 ### Building the Project
-```bash
-# Open workspace (required due to CocoaPods)
-open Soulverse.xcworkspace
+- Use XcodeBuildMCP tools to build and test, not raw xcodebuild commands
+- After writing code, always build to verify compilation
 
-# Build via xcodebuild
-xcodebuild -workspace Soulverse.xcworkspace -scheme "Soulverse" -configuration Debug build
+## File Management
+- When creating new Swift files, add them to the correct target group
+- Never modify .pbxproj files directly
 
 # Install dependencies
 pod install
