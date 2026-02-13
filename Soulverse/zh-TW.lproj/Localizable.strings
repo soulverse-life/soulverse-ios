@@ -283,8 +283,3 @@
 
 // MARK: - Action Modal
 "action_modal_close" = "關閉";
-
-// MARK: - Stage of Change
-"stage_of_change_title" = "改變階段";
-"stage_of_change_description" = "你的第一個焦點是「情緒」，共 8 個面向\n大約 10 分鐘，完成一份簡短的問卷來反映你目前的狀態";
-"stage_of_change_action" = "下一步";

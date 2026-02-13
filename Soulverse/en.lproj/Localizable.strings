@@ -284,8 +284,3 @@
 
 // MARK: - Action Modal
 "action_modal_close" = "Close";
-
-// MARK: - Stage of Change
-"stage_of_change_title" = "Stage of Change";
-"stage_of_change_description" = "Your first focus is Emotional of 8 dimensions\nIn about 10 minutes, take a short survey to reflect on your current state";
-"stage_of_change_action" = "Next";
