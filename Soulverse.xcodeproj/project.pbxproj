@@ -333,7 +333,9 @@
 		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		89054E3902CF31DC4A50A47A /* ProfileViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */; };
+		934C61A78A7DE4F8D0B1F1F2 /* SoulverseActionModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733E80EB6FF0834FB306C57 /* SoulverseActionModalPresentationController.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
+		AAAFA7B6090A374BB28A1A20 /* SoulverseActionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49A7BB329501778B2A86D2D /* SoulverseActionModal.swift */; };
 		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
 		E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
@@ -554,12 +556,14 @@
 		91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileInfoRow.swift; path = Soulverse/Features/Profile/Views/ProfileInfoRow.swift; sourceTree = SOURCE_ROOT; };
 		9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserService.swift; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B733E80EB6FF0834FB306C57 /* SoulverseActionModalPresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SoulverseActionModalPresentationController.swift; sourceTree = "<group>"; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD732A67B3784224BA518E7 /* Pods-Base-Soulverse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.debug.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.debug.xcconfig"; sourceTree = "<group>"; };
 		D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Soulverse/Features/Profile/Views/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		DCDBD33BA61C721E6FB149BC /* Pods-Base-SoulverseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.debug.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0409B121CB8806C94932214 /* Pods-SoulverseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulverseTests.debug.xcconfig"; path = "Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E49A7BB329501778B2A86D2D /* SoulverseActionModal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SoulverseActionModal.swift; sourceTree = "<group>"; };
 		E838841F277AF9F80002C053 /* Soulverse Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Soulverse Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E88C24282797C90100AA72E0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		E88C242A2797C91200AA72E0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -643,6 +647,16 @@
 				5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4909BA91613AA04882C9851D /* SoulverseActionModal */ = {
+			isa = PBXGroup;
+			children = (
+				E49A7BB329501778B2A86D2D /* SoulverseActionModal.swift */,
+				B733E80EB6FF0834FB306C57 /* SoulverseActionModalPresentationController.swift */,
+			);
+			name = SoulverseActionModal;
+			path = SoulverseActionModal;
 			sourceTree = "<group>";
 		};
 		5997D8267F5E2D460BF86228 /* Pods */ = {
@@ -866,6 +880,7 @@
 				790AD2002DF9E43200C33CD1 /* SummitSlider.swift */,
 				790AD2012DF9E43200C33CD1 /* ViewController.swift */,
 				790AD2022DF9E43200C33CD1 /* WebViewController.swift */,
+				4909BA91613AA04882C9851D /* SoulverseActionModal */,
 			);
 			path = ViewComponent;
 			sourceTree = "<group>";
@@ -2067,6 +2082,8 @@
 				244A5F23289862BDB386843F /* ProfileViewPresenter.swift in Sources */,
 				E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */,
 				7621C92B3C88BB51568944AA /* ProfileInfoRow.swift in Sources */,
+				AAAFA7B6090A374BB28A1A20 /* SoulverseActionModal.swift in Sources */,
+				934C61A78A7DE4F8D0B1F1F2 /* SoulverseActionModalPresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
