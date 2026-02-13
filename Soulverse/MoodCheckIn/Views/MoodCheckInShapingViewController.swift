@@ -17,6 +17,7 @@ class MoodCheckInShapingViewController: ViewController {
     private var selectedPrompt: PromptOption?
     private var promptResponse: String = ""
     private var promptResponseCache: [PromptOption: String] = [:]
+    private var isShowingPlaceholder: Bool = true
     private var recordedEmotion: RecordedEmotion?
 
     // MARK: - View-specific Constants
@@ -107,9 +108,9 @@ class MoodCheckInShapingViewController: ViewController {
     private lazy var textField: UITextView = {
         let textView = UITextView()
         textView.font = .projectFont(ofSize: 14, weight: .regular)
-        textView.textColor = .themeTextTertiary // Placeholder color initially
+        textView.textColor = ThemeManager.shared.currentTheme.neutralLight
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = UIColor.themeTextTertiary.cgColor
+        textView.layer.borderColor = ThemeManager.shared.currentTheme.neutralLight.cgColor
         textView.layer.cornerRadius = 8
         textView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
         textView.delegate = self
@@ -305,33 +306,34 @@ class MoodCheckInShapingViewController: ViewController {
         return UIColor(red: blendedR, green: blendedG, blue: blendedB, alpha: 1.0)
     }
 
-    /// Returns the current text from the text field only if it represents user-typed content
-    /// (not placeholder text). Returns nil if the text field is showing placeholder.
     private func currentUserText() -> String? {
-        if textField.textColor == .themeTextTertiary {
-            return nil
-        }
-        return textField.text
+        isShowingPlaceholder ? nil : textField.text
     }
 
-    private func updatePlaceholder() {
+    private func showPlaceholder(_ text: String) {
+        textField.text = text
+        textField.textColor = ThemeManager.shared.currentTheme.neutralLight
+        isShowingPlaceholder = true
+        promptResponse = ""
+    }
+
+    private func showUserText(_ text: String) {
+        textField.text = text
+        textField.textColor = ThemeManager.shared.currentTheme.neutralDark
+        isShowingPlaceholder = false
+        promptResponse = text
+    }
+
+    private func updateTextFieldForCurrentPrompt() {
         guard let prompt = selectedPrompt else {
-            // No prompt selected - clear the text field
-            textField.text = ""
-            textField.textColor = .themeTextTertiary
-            promptResponse = ""
+            showPlaceholder("")
             return
         }
 
-        // Check if there's a cached response for this prompt
         if let cachedText = promptResponseCache[prompt], !cachedText.isEmpty {
-            textField.text = cachedText
-            textField.textColor = .themeTextPrimary
-            promptResponse = cachedText
+            showUserText(cachedText)
         } else {
-            textField.text = prompt.placeholderText
-            textField.textColor = .themeTextTertiary
-            promptResponse = ""
+            showPlaceholder(prompt.placeholderText)
         }
     }
 
@@ -357,7 +359,7 @@ extension MoodCheckInShapingViewController: PromptSelectionViewDelegate {
         }
 
         selectedPrompt = prompt
-        updatePlaceholder()
+        updateTextFieldForCurrentPrompt()
     }
 }
 
@@ -365,17 +367,17 @@ extension MoodCheckInShapingViewController: PromptSelectionViewDelegate {
 
 extension MoodCheckInShapingViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == .themeTextTertiary {
-            // Text field is showing placeholder - check cache first
-            if let prompt = selectedPrompt, let cachedText = promptResponseCache[prompt], !cachedText.isEmpty {
-                textView.text = cachedText
-            } else if let prompt = selectedPrompt {
-                textView.text = prompt.displayName + " "
-            } else {
-                textView.text = ""
-            }
-            textView.textColor = .themeTextPrimary
+        guard isShowingPlaceholder else { return }
+
+        if let prompt = selectedPrompt, let cachedText = promptResponseCache[prompt], !cachedText.isEmpty {
+            textView.text = cachedText
+        } else if let prompt = selectedPrompt {
+            textView.text = prompt.displayName + " "
+        } else {
+            textView.text = ""
         }
+        textView.textColor = ThemeManager.shared.currentTheme.neutralDark
+        isShowingPlaceholder = false
     }
 
     func textViewDidChange(_ textView: UITextView) {
@@ -387,13 +389,9 @@ extension MoodCheckInShapingViewController: UITextViewDelegate {
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            // Remove from cache and show placeholder
-            if let prompt = selectedPrompt {
-                promptResponseCache.removeValue(forKey: prompt)
-                textView.text = prompt.placeholderText
-                textView.textColor = .themeTextTertiary
-            }
+        if textView.text.isEmpty, let prompt = selectedPrompt {
+            promptResponseCache.removeValue(forKey: prompt)
+            showPlaceholder(prompt.placeholderText)
         }
     }
 }
