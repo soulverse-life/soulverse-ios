@@ -181,12 +181,16 @@ If the user requests changes, revise and present again. Do not proceed until app
 This step is NOT optional. Execute it immediately after receiving user approval.
 Even for trivial bugs, the /pm task provides session recovery if anything breaks.
 
-Execute this command:
+**IMPORTANT**: Do NOT use the Skill tool to invoke `/pm add` here — that would yield
+control to the pm skill and break the auto-continue flow. Instead, use the **Task tool**
+to spawn a `project-manager` sub-agent with this prompt:
+
 ```
-/pm add fix/<slug>: <1-line summary of the fix> [P1] [M]
+Add a new task to TODO.md for: fix/<slug>: <1-line summary of the fix> [P1] [M]
+Create the task entry and confirm it was added.
 ```
 
-After executing, confirm to the user:
+After the sub-agent confirms, tell the user:
 > **✅ 已建立 /pm task，記錄在 TODO.md 中。開始實作...**
 
 Then **immediately** proceed to Phase 4 — no need to wait for user input.
@@ -322,14 +326,16 @@ EOF
 
 ### 6c. Mark /pm Task Complete — MANDATORY
 
-This step is NOT optional. Execute both commands in sequence:
+This step is NOT optional. Use the **Task tool** to spawn a `project-manager` sub-agent:
 
 ```
-/pm done <task_id>
-/pm sync
+Mark the task for fix/<slug> as completed in TODO.md and sync the task list.
 ```
 
-After executing, confirm to the user:
+**IMPORTANT**: Do NOT use the Skill tool to invoke `/pm done` or `/pm sync` — that would
+yield control to the pm skill and break the auto-continue flow. Use the Task tool instead.
+
+After the sub-agent confirms, tell the user:
 > **✅ /pm task 已標記完成並同步到 TODO.md。**
 
 ### 6d. Report to User
