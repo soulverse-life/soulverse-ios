@@ -72,6 +72,11 @@ extension UIColor {
         ThemeManager.shared.currentTheme.separator
     }
 
+    /// Modal background color - adapts to current theme
+    static var themeModalBackground: UIColor {
+        ThemeManager.shared.currentTheme.modalBackground
+    }
+
     /// Button primary background - adapts to current theme
     static var themeButtonPrimaryBackground: UIColor {
         ThemeManager.shared.currentTheme.buttonPrimaryBackground
