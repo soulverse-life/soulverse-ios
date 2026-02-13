@@ -130,6 +130,11 @@ class InnerCosmoViewController: ViewController {
         dailyView.startAnimations()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presentStageOfChangeModal()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         dailyView.stopAnimations()
@@ -315,6 +320,40 @@ extension InnerCosmoViewController: SoulverseButtonDelegate {
                 self.presenter.fetchData(isUpdate: true)
             }
         }
+    }
+}
+
+// MARK: - SoulverseActionModalDelegate
+
+extension InnerCosmoViewController: SoulverseActionModalDelegate {
+    func actionModalDidTapActionButton(_ modal: SoulverseActionModal) {
+        modal.dismiss(animated: true)
+        print("[InnerCosmo] Stage of Change - Next tapped")
+    }
+}
+
+// MARK: - Stage of Change Modal (Test)
+
+extension InnerCosmoViewController {
+
+    private func presentStageOfChangeModal() {
+        let contentLabel = UILabel()
+        contentLabel.numberOfLines = 0
+        contentLabel.textAlignment = .center
+        contentLabel.textColor = .themeTextSecondary
+        contentLabel.font = .projectFont(ofSize: 14, weight: .regular)
+        contentLabel.text = NSLocalizedString(
+            "stage_of_change_description",
+            comment: "Stage of change modal body text"
+        )
+
+        let config = SoulverseActionModalConfig(
+            title: NSLocalizedString("stage_of_change_title", comment: "Stage of change modal title"),
+            actionButtonTitle: NSLocalizedString("stage_of_change_action", comment: "Stage of change action button"),
+            contentView: contentLabel
+        )
+
+        presentActionModal(config: config, delegate: self)
     }
 }
 
