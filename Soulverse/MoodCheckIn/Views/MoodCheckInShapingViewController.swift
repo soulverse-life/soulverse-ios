@@ -16,6 +16,8 @@ class MoodCheckInShapingViewController: ViewController {
 
     private var selectedPrompt: PromptOption?
     private var promptResponse: String = ""
+    private var promptResponseCache: [PromptOption: String] = [:]
+    private var isShowingPlaceholder: Bool = true
     private var recordedEmotion: RecordedEmotion?
 
     // MARK: - View-specific Constants
@@ -106,9 +108,9 @@ class MoodCheckInShapingViewController: ViewController {
     private lazy var textField: UITextView = {
         let textView = UITextView()
         textView.font = .projectFont(ofSize: 14, weight: .regular)
-        textView.textColor = .lightGray // Placeholder color initially
+        textView.textColor = ThemeManager.shared.currentTheme.neutralLight
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderColor = ThemeManager.shared.currentTheme.neutralLight.cgColor
         textView.layer.cornerRadius = 8
         textView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
         textView.delegate = self
@@ -304,16 +306,35 @@ class MoodCheckInShapingViewController: ViewController {
         return UIColor(red: blendedR, green: blendedG, blue: blendedB, alpha: 1.0)
     }
 
-    private func updatePlaceholder() {
+    private func currentUserText() -> String? {
+        isShowingPlaceholder ? nil : textField.text
+    }
+
+    private func showPlaceholder(_ text: String) {
+        textField.text = text
+        textField.textColor = ThemeManager.shared.currentTheme.neutralLight
+        isShowingPlaceholder = true
+        promptResponse = ""
+    }
+
+    private func showUserText(_ text: String) {
+        textField.text = text
+        textField.textColor = ThemeManager.shared.currentTheme.neutralDark
+        isShowingPlaceholder = false
+        promptResponse = text
+    }
+
+    private func updateTextFieldForCurrentPrompt() {
         guard let prompt = selectedPrompt else {
-            // No prompt selected - clear the text field
-            textField.text = ""
-            promptResponse = ""
+            showPlaceholder("")
             return
         }
 
-        textField.text = prompt.placeholderText
-        textField.textColor = .lightGray
+        if let cachedText = promptResponseCache[prompt], !cachedText.isEmpty {
+            showUserText(cachedText)
+        } else {
+            showPlaceholder(prompt.placeholderText)
+        }
     }
 
     // MARK: - Actions
@@ -328,8 +349,17 @@ class MoodCheckInShapingViewController: ViewController {
 
 extension MoodCheckInShapingViewController: PromptSelectionViewDelegate {
     func didUpdatePromptSelection(_ view: PromptSelectionView, prompt: PromptOption?) {
+        // Save current text to cache for the old prompt before switching
+        if let oldPrompt = selectedPrompt, let userText = currentUserText() {
+            if userText.isEmpty {
+                promptResponseCache.removeValue(forKey: oldPrompt)
+            } else {
+                promptResponseCache[oldPrompt] = userText
+            }
+        }
+
         selectedPrompt = prompt
-        updatePlaceholder()
+        updateTextFieldForCurrentPrompt()
     }
 }
 
@@ -337,26 +367,31 @@ extension MoodCheckInShapingViewController: PromptSelectionViewDelegate {
 
 extension MoodCheckInShapingViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == .lightGray {
-            if let prompt = selectedPrompt {
-                textView.text = prompt.displayName + " "
-            } else {
-                textView.text = ""
-            }
-            textView.textColor = .primaryBlack
+        guard isShowingPlaceholder else { return }
+
+        if let prompt = selectedPrompt, let cachedText = promptResponseCache[prompt], !cachedText.isEmpty {
+            textView.text = cachedText
+        } else if let prompt = selectedPrompt {
+            textView.text = prompt.displayName + " "
+        } else {
+            textView.text = ""
         }
+        textView.textColor = ThemeManager.shared.currentTheme.neutralDark
+        isShowingPlaceholder = false
     }
 
     func textViewDidChange(_ textView: UITextView) {
         promptResponse = textView.text
+        // Update cache as user types
+        if let prompt = selectedPrompt {
+            promptResponseCache[prompt] = textView.text
+        }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            if let prompt = selectedPrompt {
-                textView.text = prompt.placeholderText
-                textView.textColor = .lightGray
-            }
+        if textView.text.isEmpty, let prompt = selectedPrompt {
+            promptResponseCache.removeValue(forKey: prompt)
+            showPlaceholder(prompt.placeholderText)
         }
     }
 }
@@ -365,6 +400,10 @@ extension MoodCheckInShapingViewController: UITextViewDelegate {
 
 extension MoodCheckInShapingViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
+        // Ensure promptResponse reflects the current state
+        if let prompt = selectedPrompt, let userText = currentUserText() {
+            promptResponse = userText
+        }
         // Prompt and response are optional - user can skip this step
         let response: String? = promptResponse.isEmpty ? nil : promptResponse
         delegate?.didComplete(self, prompt: selectedPrompt, response: response)
