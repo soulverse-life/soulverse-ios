@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E4B0D04D56B8906AAFFF331 /* MoodCheckInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */; };
+		1068DC503C449FA2F1E94253 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		1A2CFCCD95653982DC90244B /* SoulverseActionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90781A662B73BED5786934DE /* SoulverseActionModal.swift */; };
 		1C2E0E31B00B3123E9EB4873 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */; };
 		244A5F23289862BDB386843F /* ProfileViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */; };
 		27427F547F5406EEC24899AC /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
 		2C66302E39B2097233438B44 /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
+		2FC61BC19AEDCC653A77B45F /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
+		423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		44C3423F24CAD63B0FD3BE09 /* Pods_Base_Soulverse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */; };
+		6026E6F1B6136CA370157840 /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
 		7621C92B3C88BB51568944AA /* ProfileInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */; };
 		78F55E5288873495F0501DAF /* Pods_SoulverseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */; };
 		790AD2122DF9E43200C33CD1 /* CoreTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E32DF9E43200C33CD1 /* CoreTracker.swift */; };
@@ -234,10 +239,6 @@
 		798687F12E6C248E00EB3B38 /* InsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E92E6C248E00EB3B38 /* InsightViewModel.swift */; };
 		798687F22E6C248E00EB3B38 /* InsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687EB2E6C248E00EB3B38 /* InsightViewController.swift */; };
 		798687F32E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E72E6C248E00EB3B38 /* InsightViewPresenter.swift */; };
-		2FC61BC19AEDCC653A77B45F /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
-		B4684A5181281B705F0F08BE /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
-		AAB8686144E132BDBD175A2A /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
-		6026E6F1B6136CA370157840 /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
 		798688082E6C24EE00EB3B38 /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798688052E6C24EE00EB3B38 /* QuestViewController.swift */; };
 		798688092E6C24EE00EB3B38 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798688032E6C24EE00EB3B38 /* QuestViewModel.swift */; };
 		7986880A2E6C24EE00EB3B38 /* QuestViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798688012E6C24EE00EB3B38 /* QuestViewPresenter.swift */; };
@@ -338,7 +339,10 @@
 		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		89054E3902CF31DC4A50A47A /* ProfileViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */; };
+		9398C11F3FE373D542A298F1 /* MoodCheckInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
+		AAB8686144E132BDBD175A2A /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
+		B4684A5181281B705F0F08BE /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
 		DA5B7EAE3A96109C935B5C2B /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
 		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
 		E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */; };
@@ -386,12 +390,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreViewModel.swift; sourceTree = "<group>"; };
 		0D7EF684720D96D0B88C701D /* Pods-SoulverseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulverseTests.release.xcconfig"; path = "Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests.release.xcconfig"; sourceTree = "<group>"; };
 		186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_SoulverseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenter.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenter.swift; sourceTree = SOURCE_ROOT; };
 		218012824D64D4ED75251E3C /* Pods-Base-SoulverseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.release.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreView.swift; sourceTree = "<group>"; };
 		4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Soulverse/Features/Profile/ViewModels/ProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoulverseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DE60F310C8AB64668217ECB /* DrawingModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
 		6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DevAuthService.swift; sourceTree = "<group>"; };
 		790AD1692DF9E43200C33CD1 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		790AD16A2DF9E43200C33CD1 /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
@@ -511,8 +518,6 @@
 		798687E72E6C248E00EB3B38 /* InsightViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightViewPresenter.swift; sourceTree = "<group>"; };
 		798687E92E6C248E00EB3B38 /* InsightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightViewModel.swift; sourceTree = "<group>"; };
 		798687EB2E6C248E00EB3B38 /* InsightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightViewController.swift; sourceTree = "<group>"; };
-		014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreViewModel.swift; sourceTree = "<group>"; };
-		3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreView.swift; sourceTree = "<group>"; };
 		798688012E6C24EE00EB3B38 /* QuestViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewPresenter.swift; sourceTree = "<group>"; };
 		798688032E6C24EE00EB3B38 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
 		798688052E6C24EE00EB3B38 /* QuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewController.swift; sourceTree = "<group>"; };
@@ -563,6 +568,7 @@
 		7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenterType.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenterType.swift; sourceTree = SOURCE_ROOT; };
 		90781A662B73BED5786934DE /* SoulverseActionModal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SoulverseActionModal.swift; sourceTree = "<group>"; };
 		91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileInfoRow.swift; path = Soulverse/Features/Profile/Views/ProfileInfoRow.swift; sourceTree = SOURCE_ROOT; };
+		93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInModel.swift; sourceTree = "<group>"; };
 		9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserService.swift; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
@@ -866,6 +872,8 @@
 				790AD1F02DF9E43200C33CD1 /* Auth */,
 				790AD1F42DF9E43200C33CD1 /* NotificationService */,
 				790AD1F82DF9E43200C33CD1 /* UserService */,
+				ACEFD215F30A9C9F0BD03D4D /* MoodCheckInService */,
+				B8D88022A1114206AD99A161 /* DrawingService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1401,6 +1409,15 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
+		ACEFD215F30A9C9F0BD03D4D /* MoodCheckInService */ = {
+			isa = PBXGroup;
+			children = (
+				93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */,
+			);
+			name = MoodCheckInService;
+			path = MoodCheckInService;
+			sourceTree = "<group>";
+		};
 		B54E6F390D87E6ECADF3FD48 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1416,6 +1433,15 @@
 				188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */,
 			);
 			name = Presenter;
+			sourceTree = "<group>";
+		};
+		B8D88022A1114206AD99A161 /* DrawingService */ = {
+			isa = PBXGroup;
+			children = (
+				6DE60F310C8AB64668217ECB /* DrawingModel.swift */,
+			);
+			name = DrawingService;
+			path = DrawingService;
 			sourceTree = "<group>";
 		};
 		E8A4C87226BA41130082B4F7 = {
@@ -1937,6 +1963,8 @@
 				79DD63382EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */,
 				790AD26B2DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
 				F7E1CA046D941D59C3CEFECC /* DevAuthService.swift in Sources */,
+				0E4B0D04D56B8906AAFFF331 /* MoodCheckInModel.swift in Sources */,
+				423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2098,6 +2126,8 @@
 				7621C92B3C88BB51568944AA /* ProfileInfoRow.swift in Sources */,
 				DA5B7EAE3A96109C935B5C2B /* DevAuthService.swift in Sources */,
 				1A2CFCCD95653982DC90244B /* SoulverseActionModal.swift in Sources */,
+				9398C11F3FE373D542A298F1 /* MoodCheckInModel.swift in Sources */,
+				1068DC503C449FA2F1E94253 /* DrawingModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
