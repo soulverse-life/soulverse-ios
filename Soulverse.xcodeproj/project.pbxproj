@@ -667,7 +667,6 @@
 			children = (
 				90781A662B73BED5786934DE /* SoulverseActionModal.swift */,
 			);
-			name = SoulverseActionModal;
 			path = SoulverseActionModal;
 			sourceTree = "<group>";
 		};
@@ -1414,7 +1413,6 @@
 			children = (
 				93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */,
 			);
-			name = MoodCheckInService;
 			path = MoodCheckInService;
 			sourceTree = "<group>";
 		};
@@ -1440,7 +1438,6 @@
 			children = (
 				6DE60F310C8AB64668217ECB /* DrawingModel.swift */,
 			);
-			name = DrawingService;
 			path = DrawingService;
 			sourceTree = "<group>";
 		};
@@ -1660,9 +1657,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1765,9 +1766,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1782,9 +1787,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1799,9 +1808,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2639,7 +2652,7 @@
 			baseConfigurationReference = 218012824D64D4ED75251E3C /* Pods-Base-SoulverseUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 554URW8XRV;
+				DEVELOPMENT_TEAM = 387UQ56LV7;
 				INFOPLIST_FILE = SampleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
