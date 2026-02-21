@@ -281,3 +281,6 @@
 "profile_logout_confirm_message" = "Are you sure you want to logout?";
 "profile_delete_confirm_title" = "Delete Account";
 "profile_delete_confirm_message" = "This action cannot be undone. All your data will be permanently deleted. Are you sure?";
+
+// MARK: - Action Modal
+"action_modal_close" = "Close";

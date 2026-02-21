@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2CFCCD95653982DC90244B /* SoulverseActionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90781A662B73BED5786934DE /* SoulverseActionModal.swift */; };
 		1C2E0E31B00B3123E9EB4873 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */; };
 		244A5F23289862BDB386843F /* ProfileViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */; };
 		27427F547F5406EEC24899AC /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
@@ -554,6 +555,7 @@
 		79F1380A2F3875E10034D325 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
 		7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenterType.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenterType.swift; sourceTree = SOURCE_ROOT; };
+		90781A662B73BED5786934DE /* SoulverseActionModal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SoulverseActionModal.swift; sourceTree = "<group>"; };
 		91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileInfoRow.swift; path = Soulverse/Features/Profile/Views/ProfileInfoRow.swift; sourceTree = SOURCE_ROOT; };
 		9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserService.swift; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -646,6 +648,15 @@
 				5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33062191B5E2C3CA1320DBB4 /* SoulverseActionModal */ = {
+			isa = PBXGroup;
+			children = (
+				90781A662B73BED5786934DE /* SoulverseActionModal.swift */,
+			);
+			name = SoulverseActionModal;
+			path = SoulverseActionModal;
 			sourceTree = "<group>";
 		};
 		5997D8267F5E2D460BF86228 /* Pods */ = {
@@ -870,6 +881,7 @@
 				790AD2002DF9E43200C33CD1 /* SummitSlider.swift */,
 				790AD2012DF9E43200C33CD1 /* ViewController.swift */,
 				790AD2022DF9E43200C33CD1 /* WebViewController.swift */,
+				33062191B5E2C3CA1320DBB4 /* SoulverseActionModal */,
 			);
 			path = ViewComponent;
 			sourceTree = "<group>";
@@ -2073,6 +2085,7 @@
 				E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */,
 				7621C92B3C88BB51568944AA /* ProfileInfoRow.swift in Sources */,
 				DA5B7EAE3A96109C935B5C2B /* DevAuthService.swift in Sources */,
+				1A2CFCCD95653982DC90244B /* SoulverseActionModal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

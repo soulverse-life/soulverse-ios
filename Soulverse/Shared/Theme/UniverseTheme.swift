@@ -86,6 +86,10 @@ extension UniverseTheme {
     var separator: UIColor {
         UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.1)
     }
+
+    var modalBackground: UIColor {
+        UIColor(red: 26.0/255.0, green: 26.0/255.0, blue: 46.0/255.0, alpha: 1.0)
+    }
 }
 
 // MARK: - Button Colors

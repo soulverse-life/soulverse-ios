@@ -34,6 +34,7 @@ protocol Theme: Identifiable where ID == String {
     var cardBackground: UIColor { get }
     var cardShadow: UIColor { get }
     var separator: UIColor { get }
+    var modalBackground: UIColor { get }
 
     // Button colors
     var buttonPrimaryBackground: UIColor { get }
