@@ -17,10 +17,12 @@ You advance to the next phase ONLY after the current phase's condition is met.
 
 **HARD GATES — you MUST stop at these points:**
 - **Phase 3a**: Present plan → STOP → wait for user approval. No exceptions.
-- **Phase 3b**: Execute `/pm add` → confirm task created. No exceptions.
-- **Phase 6c**: Execute `/pm done` + `/pm sync` → confirm completed. No exceptions.
+- **Phase 3b**: Write task to TODO.md → confirm task created. No exceptions.
+- **Phase 6c**: Update TODO.md task to completed → confirm completed. No exceptions.
 
-Why these gates exist: the user needs to review the plan before code changes, and `/pm` tasks provide crash recovery if the session is interrupted by network issues or API limits. Without these steps, progress is lost on disconnection.
+Why these gates exist: the user needs to review the plan before code changes, and TODO.md tasks provide crash recovery if the session is interrupted by network issues or API limits. Without these steps, progress is lost on disconnection.
+
+⚠️ **IMPORTANT**: Do NOT use `/pm add`, `/pm done`, or `/pm sync` — slash commands cannot be invoked from within a skill. Use Edit/Bash tools to write directly to TODO.md instead.
 
 Skipping any gate is a workflow violation — even if the fix is a one-line change.
 
@@ -28,10 +30,10 @@ Skipping any gate is a workflow violation — even if the fix is a one-line chan
 Phase 1  Setup       → worktree + fix/ branch
 Phase 2  Analysis    → understand the bug (interactive — ask questions if needed)
 Phase 3a Plan        → present fix plan → 🛑 HARD GATE: wait for user approval
-Phase 3b /pm         → execute /pm add (mandatory) ─┐
-Phase 4  Implement   → delegate to sub-agent         │ auto-continue
-Phase 5  Verify      → regression-checker agent       │ after plan
-Phase 6  PR + /pm    → create PR + /pm done + sync  ─┘ approval
+Phase 3b TODO.md     → write task to TODO.md (mandatory) ─┐
+Phase 4  Implement   → delegate to sub-agent               │ auto-continue
+Phase 5  Verify      → regression-checker agent             │ after plan
+Phase 6  PR + TODO   → create PR + update TODO.md         ─┘ approval
 ```
 
 ---
@@ -176,22 +178,33 @@ If the user requests changes, revise and present again. Do not proceed until app
 
 ---
 
-## Phase 3b: Create /pm Task — 🛑 MANDATORY EXECUTION
+## Phase 3b: Write TODO.md Task — 🛑 MANDATORY EXECUTION
 
 This step is NOT optional. Execute it immediately after receiving user approval.
-Even for trivial bugs, the /pm task provides session recovery if anything breaks.
+Even for trivial bugs, the TODO.md task provides session recovery if anything breaks.
 
-**IMPORTANT**: Do NOT use the Skill tool to invoke `/pm add` here — that would yield
-control to the pm skill and break the auto-continue flow. Instead, use the **Task tool**
-to spawn a `project-manager` sub-agent with this prompt:
+⚠️ Do NOT use `/pm add` — slash commands cannot be invoked from within a skill.
+Use Edit or Bash tools to write directly to TODO.md.
 
+### Steps:
+
+1. Read the current `TODO.md` to understand its format
+2. Add a new entry under "## In Progress":
+
+```bash
+# Append task to TODO.md
+cat >> TODO.md << 'TASK'
+
+### fix/<slug>: <1-line summary of the fix> [P1] [M]
+- Status: in_progress
+- Branch: fix/<slug>
+- Worktree: ../soulverse-fix/
+- Created: $(date +%Y-%m-%d)
+TASK
 ```
-Add a new task to TODO.md for: fix/<slug>: <1-line summary of the fix> [P1] [M]
-Create the task entry and confirm it was added.
-```
 
-After the sub-agent confirms, tell the user:
-> **✅ 已建立 /pm task，記錄在 TODO.md 中。開始實作...**
+3. Output this confirmation — this line MUST appear in your response:
+> **✅ 已寫入 TODO.md task（fix/<slug>）。開始實作...**
 
 Then **immediately** proceed to Phase 4 — no need to wait for user input.
 The plan was already approved in Phase 3a. From here through Phase 6, run automatically.
@@ -349,19 +362,20 @@ EOF
 )"
 ```
 
-### 6c. Mark /pm Task Complete — MANDATORY
+### 6c. Mark TODO.md Task Complete — MANDATORY
 
-This step is NOT optional. Use the **Task tool** to spawn a `project-manager` sub-agent:
+This step is NOT optional.
 
-```
-Mark the task for fix/<slug> as completed in TODO.md and sync the task list.
-```
+⚠️ Do NOT use `/pm done` or `/pm sync` — slash commands cannot be invoked from within a skill.
+Use the Edit tool to directly update TODO.md.
 
-**IMPORTANT**: Do NOT use the Skill tool to invoke `/pm done` or `/pm sync` — that would
-yield control to the pm skill and break the auto-continue flow. Use the Task tool instead.
+1. Read `TODO.md`
+2. Find the `fix/<slug>` task entry
+3. Change its status from `in_progress` to `completed`
+4. Add completion date
 
-After the sub-agent confirms, tell the user:
-> **✅ /pm task 已標記完成並同步到 TODO.md。**
+5. Output this confirmation — MUST appear in your response:
+> **✅ TODO.md task（fix/<slug>）已標記完成。**
 
 ### 6d. Report to User
 
@@ -385,11 +399,11 @@ Share:
 
 If the session is interrupted (network, API limit, etc.):
 
-1. The `TODO.md` task persists (created in Phase 3b)
+1. The `TODO.md` task persists (written directly in Phase 3b)
 2. The worktree (`../soulverse-fix/`) and fix branch persist on disk
 3. Pods are already installed — no setup needed
 4. On a new session, the user can:
-   - Run `/pm load` to see the in-progress fix task
+   - Read `TODO.md` or run `/pm load` to see the in-progress fix task
    - `cd ../soulverse-fix && git branch` to see the fix branch
    - Resume from whatever phase was interrupted
    - Or re-run `/fix-bug <same description>` — Phase 1 will detect the branch and pick up where it left off

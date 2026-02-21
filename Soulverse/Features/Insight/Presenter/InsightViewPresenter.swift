@@ -29,6 +29,13 @@ class InsightViewPresenter: InsightViewPresenterType {
         if isFetchingData { return }
         if !isUpdate { loadedModel.isLoading = true }
         isFetchingData = true
+
+        // Load mock weekly mood score data — batch into single didSet trigger
+        var model = loadedModel
+        model.weeklyMoodScore = WeeklyMoodScoreViewModel.mockData()
+        model.isLoading = false
+        loadedModel = model
+        isFetchingData = false
     }
     public func numberOfSectionsOnTableView() -> Int {
         return 0
