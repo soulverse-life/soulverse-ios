@@ -17,7 +17,10 @@
 		2FC61BC19AEDCC653A77B45F /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
 		423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		44C3423F24CAD63B0FD3BE09 /* Pods_Base_Soulverse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */; };
+		51D44910A218DC8B8116E288 /* FirestoreDrawingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */; };
 		6026E6F1B6136CA370157840 /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
+		64AF4AE865D91E895E4BDC1C /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
+		6B9D4AE88A3ADA775F9F4B6A /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
 		7621C92B3C88BB51568944AA /* ProfileInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */; };
 		78F55E5288873495F0501DAF /* Pods_SoulverseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */; };
 		790AD2122DF9E43200C33CD1 /* CoreTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E32DF9E43200C33CD1 /* CoreTracker.swift */; };
@@ -341,8 +344,11 @@
 		89054E3902CF31DC4A50A47A /* ProfileViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */; };
 		9398C11F3FE373D542A298F1 /* MoodCheckInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
+		A55E94296F5E8A6F806B4CC6 /* FirestoreDrawingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */; };
 		AAB8686144E132BDBD175A2A /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
 		B4684A5181281B705F0F08BE /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
+		B687959D9AD055A99B195148 /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
+		C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
 		DA5B7EAE3A96109C935B5C2B /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
 		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
 		E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */; };
@@ -396,6 +402,7 @@
 		188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenter.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenter.swift; sourceTree = SOURCE_ROOT; };
 		218012824D64D4ED75251E3C /* Pods-Base-SoulverseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.release.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreView.swift; sourceTree = "<group>"; };
+		379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Soulverse/Features/Profile/ViewModels/ProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoulverseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DE60F310C8AB64668217ECB /* DrawingModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
@@ -566,6 +573,7 @@
 		79F1380A2F3875E10034D325 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
 		7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenterType.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenterType.swift; sourceTree = SOURCE_ROOT; };
+		86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreDrawingService.swift; sourceTree = "<group>"; };
 		90781A662B73BED5786934DE /* SoulverseActionModal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SoulverseActionModal.swift; sourceTree = "<group>"; };
 		91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileInfoRow.swift; path = Soulverse/Features/Profile/Views/ProfileInfoRow.swift; sourceTree = SOURCE_ROOT; };
 		93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInModel.swift; sourceTree = "<group>"; };
@@ -573,6 +581,7 @@
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreMoodCheckInService.swift; sourceTree = "<group>"; };
 		CDD732A67B3784224BA518E7 /* Pods-Base-Soulverse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.debug.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.debug.xcconfig"; sourceTree = "<group>"; };
 		D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Soulverse/Features/Profile/Views/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		DCDBD33BA61C721E6FB149BC /* Pods-Base-SoulverseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.debug.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -873,6 +882,7 @@
 				790AD1F82DF9E43200C33CD1 /* UserService */,
 				ACEFD215F30A9C9F0BD03D4D /* MoodCheckInService */,
 				B8D88022A1114206AD99A161 /* DrawingService */,
+				379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1412,6 +1422,7 @@
 			isa = PBXGroup;
 			children = (
 				93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */,
+				C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */,
 			);
 			path = MoodCheckInService;
 			sourceTree = "<group>";
@@ -1437,6 +1448,7 @@
 			isa = PBXGroup;
 			children = (
 				6DE60F310C8AB64668217ECB /* DrawingModel.swift */,
+				86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */,
 			);
 			path = DrawingService;
 			sourceTree = "<group>";
@@ -1978,6 +1990,9 @@
 				F7E1CA046D941D59C3CEFECC /* DevAuthService.swift in Sources */,
 				0E4B0D04D56B8906AAFFF331 /* MoodCheckInModel.swift in Sources */,
 				423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */,
+				C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */,
+				B687959D9AD055A99B195148 /* FirestoreMoodCheckInService.swift in Sources */,
+				A55E94296F5E8A6F806B4CC6 /* FirestoreDrawingService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2141,6 +2156,9 @@
 				1A2CFCCD95653982DC90244B /* SoulverseActionModal.swift in Sources */,
 				9398C11F3FE373D542A298F1 /* MoodCheckInModel.swift in Sources */,
 				1068DC503C449FA2F1E94253 /* DrawingModel.swift in Sources */,
+				64AF4AE865D91E895E4BDC1C /* FirebaseStorageService.swift in Sources */,
+				6B9D4AE88A3ADA775F9F4B6A /* FirestoreMoodCheckInService.swift in Sources */,
+				51D44910A218DC8B8116E288 /* FirestoreDrawingService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
