@@ -54,10 +54,17 @@ final class SoulverseActionModal: UIViewController {
 
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
-        let image = UIImage(systemName: "xmark")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: Layout.closeButtonIconSize, weight: .medium))
-        button.setImage(image, for: .normal)
-        button.tintColor = .themeTextPrimary
+        if #available(iOS 26.0, *) {
+            button.setImage(UIImage(named: "naviconBack")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            button.imageView?.contentMode = .center
+            button.imageView?.clipsToBounds = false
+            button.clipsToBounds = false
+        } else {
+            let image = UIImage(systemName: "xmark")?
+                .withConfiguration(UIImage.SymbolConfiguration(pointSize: Layout.closeButtonIconSize, weight: .medium))
+            button.setImage(image, for: .normal)
+            button.tintColor = .themeTextPrimary
+        }
         button.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
         button.accessibilityLabel = NSLocalizedString(
             "action_modal_close",
