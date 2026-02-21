@@ -42,6 +42,11 @@ struct MoodCheckInData {
     /// Selected evaluation option
     var evaluation: EvaluationOption?
 
+    // MARK: - Journal (optional)
+
+    /// Free-form journal text, replaces the old prompt response
+    var journal: String?
+
     // MARK: - Validation
 
     /// Check if Sensing step is complete

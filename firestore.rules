@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+
+      match /mood_checkins/{checkinId} {
+        allow read, delete: if request.auth.uid == uid;
+        allow create: if request.auth.uid == uid
+                      && request.resource.data.keys().hasAll([
+                           'colorHex', 'colorIntensity', 'emotion',
+                           'topic', 'evaluation', 'createdAt'
+                         ]);
+        allow update: if request.auth.uid == uid;
+      }
+
+      match /drawings/{drawingId} {
+        allow read, delete: if request.auth.uid == uid;
+        allow create: if request.auth.uid == uid
+                      && request.resource.data.keys().hasAll([
+                           'imageURL', 'recordingURL', 'isFromCheckIn', 'createdAt'
+                         ]);
+        allow update: if request.auth.uid == uid;
+      }
+    }
+  }
+}

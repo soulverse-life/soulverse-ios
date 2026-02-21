@@ -1,0 +1,14 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /users/{uid}/drawings/{drawingId}/{fileName} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if request.auth != null && request.auth.uid == uid
+                   && request.resource.size < 10 * 1024 * 1024
+                   && (fileName.matches('image\\.png')
+                       || fileName.matches('recording\\.pkd')
+                       || fileName.matches('thumbnail\\.png'));
+      allow delete: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
