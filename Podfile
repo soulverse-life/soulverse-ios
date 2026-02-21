@@ -36,6 +36,7 @@ abstract_target 'Base' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Messaging'
+  pod 'FirebaseStorage'
   pod 'GoogleUtilities'
   
   
