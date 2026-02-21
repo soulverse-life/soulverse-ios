@@ -28,7 +28,7 @@ final class FirebaseStorageService {
     // MARK: - Upload Drawing Image
 
     /// Uploads a rendered drawing image (PNG) to Firebase Storage.
-    /// Path: users/{uid}/drawings/{drawingId}/image.png
+    /// Path: `users/{uid}/drawings/{drawingId}/image.png`
     static func uploadDrawingImage(
         uid: String,
         drawingId: String,
@@ -40,10 +40,10 @@ final class FirebaseStorageService {
             return
         }
 
-        let path = "users/\(uid)/drawings/\(drawingId)/image.png"
-        let ref = storage.reference().child(path)
+        let file = StorageFile.image
+        let ref = storage.reference().child(file.path(uid: uid, drawingId: drawingId))
         let metadata = StorageMetadata()
-        metadata.contentType = "image/png"
+        metadata.contentType = file.contentType
 
         ref.putData(imageData, metadata: metadata) { _, error in
             if let error = error {
@@ -65,17 +65,17 @@ final class FirebaseStorageService {
     // MARK: - Upload Drawing Recording
 
     /// Uploads PKDrawing binary data to Firebase Storage.
-    /// Path: users/{uid}/drawings/{drawingId}/recording.pkd
+    /// Path: `users/{uid}/drawings/{drawingId}/recording.pkd`
     static func uploadDrawingRecording(
         uid: String,
         drawingId: String,
         recordingData: Data,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
-        let path = "users/\(uid)/drawings/\(drawingId)/recording.pkd"
-        let ref = storage.reference().child(path)
+        let file = StorageFile.recording
+        let ref = storage.reference().child(file.path(uid: uid, drawingId: drawingId))
         let metadata = StorageMetadata()
-        metadata.contentType = "application/octet-stream"
+        metadata.contentType = file.contentType
 
         ref.putData(recordingData, metadata: metadata) { _, error in
             if let error = error {
@@ -103,14 +103,12 @@ final class FirebaseStorageService {
         drawingId: String,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
-        let basePath = "users/\(uid)/drawings/\(drawingId)"
-        let fileNames = ["image.png", "recording.pkd", "thumbnail.png"]
         let group = DispatchGroup()
         var firstError: Error?
 
-        for fileName in fileNames {
+        for file in StorageFile.allCases {
             group.enter()
-            let ref = storage.reference().child("\(basePath)/\(fileName)")
+            let ref = storage.reference().child(file.path(uid: uid, drawingId: drawingId))
             ref.delete { error in
                 // Ignore "object not found" errors (file may not exist)
                 if let error = error as NSError?,

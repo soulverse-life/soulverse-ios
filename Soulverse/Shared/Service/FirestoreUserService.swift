@@ -9,7 +9,6 @@ import FirebaseFirestore
 final class FirestoreUserService {
 
     private static let db = Firestore.firestore()
-    private static let usersCollection = "users"
 
     private typealias Field = UserModel.CodingKeys
 
@@ -33,7 +32,7 @@ final class FirestoreUserService {
         platform: String,
         completion: @escaping (Result<Bool, Error>) -> Void
     ) {
-        let docRef = db.collection(usersCollection).document(uid)
+        let docRef = db.collection(FirestoreCollection.users).document(uid)
 
         docRef.getDocument { snapshot, error in
             if let error = error {
@@ -104,7 +103,7 @@ final class FirestoreUserService {
             fields[Field.selectedTopic.rawValue] = topic.rawValue
         }
 
-        db.collection(usersCollection).document(uid).updateData(fields) { error in
+        db.collection(FirestoreCollection.users).document(uid).updateData(fields) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -122,7 +121,7 @@ final class FirestoreUserService {
         uid: String,
         completion: @escaping (Result<UserModel, Error>) -> Void
     ) {
-        db.collection(usersCollection).document(uid).getDocument { snapshot, error in
+        db.collection(FirestoreCollection.users).document(uid).getDocument { snapshot, error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -145,7 +144,7 @@ final class FirestoreUserService {
     // MARK: - Update FCM Token
 
     static func updateFCMToken(uid: String, token: String) {
-        db.collection(usersCollection).document(uid).updateData([
+        db.collection(FirestoreCollection.users).document(uid).updateData([
             Field.fcmToken.rawValue: token,
             Field.updatedAt.rawValue: FieldValue.serverTimestamp()
         ]) { error in
@@ -163,7 +162,7 @@ final class FirestoreUserService {
         uid: String,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
-        db.collection(usersCollection).document(uid).delete { error in
+        db.collection(FirestoreCollection.users).document(uid).delete { error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -178,7 +177,7 @@ final class FirestoreUserService {
         uid: String,
         completion: @escaping (Result<Bool, Error>) -> Void
     ) {
-        db.collection(usersCollection).document(uid).getDocument { snapshot, error in
+        db.collection(FirestoreCollection.users).document(uid).getDocument { snapshot, error in
             if let error = error {
                 completion(.failure(error))
                 return

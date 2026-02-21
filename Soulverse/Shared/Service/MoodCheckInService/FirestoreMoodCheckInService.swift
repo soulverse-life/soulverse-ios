@@ -28,7 +28,9 @@ final class FirestoreMoodCheckInService {
 
     /// Returns the mood_checkins subcollection reference for a user.
     private static func checkInsCollection(uid: String) -> CollectionReference {
-        return db.collection("users").document(uid).collection("mood_checkins")
+        return db.collection(FirestoreCollection.users)
+            .document(uid)
+            .collection(FirestoreCollection.moodCheckIns)
     }
 
     // MARK: - Submit Mood Check-In

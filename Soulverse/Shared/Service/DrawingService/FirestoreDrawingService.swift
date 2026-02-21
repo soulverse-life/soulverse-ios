@@ -26,7 +26,9 @@ final class FirestoreDrawingService {
 
     /// Returns the drawings subcollection reference for a user.
     private static func drawingsCollection(uid: String) -> CollectionReference {
-        return db.collection("users").document(uid).collection("drawings")
+        return db.collection(FirestoreCollection.users)
+            .document(uid)
+            .collection(FirestoreCollection.drawings)
     }
 
     // MARK: - Submit Drawing
