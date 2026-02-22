@@ -2,55 +2,6 @@
 
 ## Backlog
 
-### 17. Add in-app account deletion
-**Priority**: P1
-**Complexity**: M (4-8 hours)
-**Status**: Pending
-
-Apple requires apps with account creation to offer account deletion (App Store Review Guideline 5.1.1). Implement a full account deletion flow so users can completely remove their account and start fresh.
-
-**Requirements**:
-1. Add "Delete Account" button in settings/profile
-2. Show confirmation dialog before deletion
-3. On confirm, delete in this order:
-   - Firestore `users/{uid}` document (and any subcollections)
-   - Firebase Auth account (`Auth.auth().currentUser?.delete()`)
-   - Clear local `UserDefaults` via `User.shared.resetAllUserData()`
-4. After deletion, route user back to onboarding landing screen
-5. User should be able to sign up again as a completely fresh new user
-
-**Technical Considerations**:
-- Firebase Auth `delete()` may require recent authentication — handle `FIRAuthErrorCodeRequiresRecentLogin` by re-authenticating first
-- Firestore deletion must happen before Auth deletion (need the uid to find the doc)
-- Consider showing a loading spinner during the multi-step deletion process
-- Localize confirmation dialog and error messages (en/zh-TW)
-
-**Files to Create/Modify**:
-- Settings/Profile view — add delete button
-- `FirestoreUserService.swift` — add `deleteUser(uid:)` method
-- `User.swift` — add `deleteAccount()` orchestrating the full flow
-- `SceneDelegate.swift` — handle routing back to onboarding after deletion
-
----
-
-### 4. Implement half-screen modal for state-of-change questionnaire
-**Priority**: P1
-**Complexity**: M
-**Status**: Pending
-
-Create a half-screen modal view that prompts users to complete a state-of-change questionnaire.
-
-**Technical Considerations**:
-- Implement custom UIPresentationController for half-screen modal
-- Design questionnaire flow (multi-step or single page?)
-- Determine trigger conditions for showing modal
-- Add analytics tracking for questionnaire start/completion
-- Ensure proper keyboard handling with IQKeyboardManager
-- Use theme-aware styling
-- Localize all questionnaire content
-
----
-
 ### 8. Redesign QuestRadarChartView with colored axis dots & center progress dot
 **Priority**: P1
 **Complexity**: M
@@ -81,26 +32,6 @@ Redesign the radar chart to show uniquely colored dots on each of the 8 axes and
 
 ---
 
----
-
-### 5. Implement horizontal scroll view for user-created pictures
-**Priority**: P2
-**Complexity**: M
-**Status**: Pending
-
-Add horizontal scroll view in InnerCosmos page to display pictures that the user has previously created.
-
-**Technical Considerations**:
-- Design horizontal UIScrollView/UICollectionView layout
-- Implement image loading with Kingfisher for performance
-- Add empty state for users with no pictures
-- Consider pagination if user has many pictures
-- Add tap interaction to view full-size image
-- Ensure proper memory management for image caching
-- Use SnapKit for layout constraints
-
----
-
 ### 3. Implement text-color focus game
 **Priority**: P2
 **Complexity**: L
@@ -115,9 +46,8 @@ A new cognitive focus game tool. Awaiting detailed PRD for requirements and spec
 **Priority**: P1
 **Complexity**: XL
 **Status**: Pending
-**Blocked by**: PRD to be provided
 
-Implement emotion-to-score mapping function and create a weekly mood score visualization view. Awaiting detailed PRD for scoring algorithm and visualization requirements.
+Implement emotion-to-score mapping function and create a weekly mood score visualization view.
 
 **Technical Considerations**:
 - Design emotion-score mapping algorithm
@@ -158,6 +88,22 @@ Make the emo pet interaction feel more human and natural. Improve implementation
 - `Soulverse/Shared/Service/SpeechService.swift`
 - `CentralPlanetView.swift`
 - `InnerCosmoDailyView.swift`
+
+---
+
+### 19. Remove the random feature in Canvas
+**Priority**: P2
+**Complexity**: S
+**Status**: Pending
+
+Remove the "random" feature from the Canvas section of the app. This feature is no longer needed and should be cleaned up.
+
+**Tasks**:
+- Identify all random-feature-related code in Canvas
+- Remove UI elements (buttons, views) related to random feature
+- Remove associated logic/models
+- Ensure no orphaned references or dead code remain
+- Verify Canvas still builds and functions correctly after removal
 
 ---
 
@@ -440,6 +386,49 @@ Redesigned the emotion data structure in mood check-in flow to use a uni-key app
 - `zh-TW.lproj/Localizable.strings` - Added 44 new keys, removed 52 duplicates
 
 **Note**: User must manually remove `EmotionCombination.swift` reference from Xcode project.
+
+---
+
+### 17. Add in-app account deletion
+**Priority**: P1
+**Complexity**: M (4-8 hours)
+**Status**: Completed
+
+Apple requires apps with account creation to offer account deletion (App Store Review Guideline 5.1.1). Implemented full account deletion flow.
+
+**Requirements**:
+1. Add "Delete Account" button in settings/profile
+2. Show confirmation dialog before deletion
+3. On confirm, delete in this order:
+   - Firestore `users/{uid}` document (and any subcollections)
+   - Firebase Auth account (`Auth.auth().currentUser?.delete()`)
+   - Clear local `UserDefaults` via `User.shared.resetAllUserData()`
+4. After deletion, route user back to onboarding landing screen
+5. User should be able to sign up again as a completely fresh new user
+
+**Files to Create/Modify**:
+- Settings/Profile view — add delete button
+- `FirestoreUserService.swift` — add `deleteUser(uid:)` method
+- `User.swift` — add `deleteAccount()` orchestrating the full flow
+- `SceneDelegate.swift` — handle routing back to onboarding after deletion
+
+---
+
+### 4. Implement half-screen modal for state-of-change questionnaire
+**Priority**: P1
+**Complexity**: M
+**Status**: Completed
+
+Created half-screen modal view using `SoulverseActionModal` for state-of-change questionnaire.
+
+---
+
+### 5. Implement horizontal scroll view for user-created pictures
+**Priority**: P2
+**Complexity**: M
+**Status**: Completed
+
+Added horizontal scroll view in InnerCosmos page to display pictures that the user has previously created.
 
 ---
 
