@@ -21,7 +21,6 @@ protocol DrawingCanvasPresenterType: AnyObject {
         image: UIImage,
         recordingData: Data,
         checkinId: String?,
-        isFromCheckIn: Bool,
         promptUsed: String?
     )
 }
@@ -38,30 +37,17 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
         image: UIImage,
         recordingData: Data,
         checkinId: String?,
-        isFromCheckIn: Bool,
         promptUsed: String?
     ) {
         guard !isSaving else { return }
-        guard let uid = User.shared.userId else {
-            delegate?.didFailSavingDrawing(
-                error: NSError(domain: "DrawingCanvasPresenter",
-                               code: -1,
-                               userInfo: [NSLocalizedDescriptionKey:
-                                   NSLocalizedString("drawing_save_not_logged_in",
-                                                     comment: "Error when user is not logged in")])
-            )
-            return
-        }
 
         isSaving = true
         delegate?.didStartSavingDrawing()
 
         FirestoreDrawingService.submitDrawing(
-            uid: uid,
             image: image,
             recordingData: recordingData,
             checkinId: checkinId,
-            isFromCheckIn: isFromCheckIn,
             promptUsed: promptUsed
         ) { [weak self] result in
             DispatchQueue.main.async {

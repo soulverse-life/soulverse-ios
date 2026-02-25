@@ -454,13 +454,11 @@ class DrawingCanvasViewController: UIViewController {
     @objc private func saveDrawing() {
         let image = renderDrawingAsImage()
         let recordingData = canvasView.drawing.dataRepresentation()
-        let isFromCheckIn = checkinId != nil
 
         presenter.submitDrawing(
             image: image,
             recordingData: recordingData,
             checkinId: checkinId,
-            isFromCheckIn: isFromCheckIn,
             promptUsed: promptUsed
         )
     }

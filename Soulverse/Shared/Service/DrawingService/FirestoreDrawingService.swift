@@ -15,11 +15,15 @@ final class FirestoreDrawingService {
 
     enum ServiceError: LocalizedError {
         case documentNotFound
+        case notLoggedIn
 
         var errorDescription: String? {
             switch self {
             case .documentNotFound:
                 return "Drawing document not found"
+            case .notLoggedIn:
+                return NSLocalizedString("drawing_save_not_logged_in",
+                                         comment: "Error when user is not logged in")
             }
         }
     }
@@ -36,14 +40,19 @@ final class FirestoreDrawingService {
     /// Uploads image + recording to Storage, then creates Firestore document.
     /// Returns the auto-generated drawing document ID on success.
     static func submitDrawing(
-        uid: String,
         image: UIImage,
         recordingData: Data,
         checkinId: String?,
-        isFromCheckIn: Bool,
         promptUsed: String?,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
+        guard let uid = User.shared.userId else {
+            completion(.failure(ServiceError.notLoggedIn))
+            return
+        }
+
+        let isFromCheckIn = checkinId != nil
+
         // Generate document ID first so Storage paths use the same ID
         let docRef = drawingsCollection(uid: uid).document()
         let drawingId = docRef.documentID
