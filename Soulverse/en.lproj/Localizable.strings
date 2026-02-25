@@ -292,3 +292,7 @@
 "insight_sentiment_negative" = "Negative";
 "insight_sentiment_neutral" = "Neutral";
 "insight_last_7_days" = "Last 7 days";
+
+// Drawing Save
+"drawing_save_error_title" = "Save Failed";
+"drawing_save_not_logged_in" = "Please log in to save your drawing.";

@@ -78,9 +78,11 @@ class AppCoordinator {
     }
     
     
-    static func openDrawingCanvas(from sourceVC: UIViewController, prompt: CanvasPrompt? = nil) {
+    static func openDrawingCanvas(from sourceVC: UIViewController, prompt: CanvasPrompt? = nil, checkinId: String? = nil) {
         let drawingCanvasVC = DrawingCanvasViewController()
         drawingCanvasVC.hidesBottomBarWhenPushed = true
+        drawingCanvasVC.checkinId = checkinId
+        drawingCanvasVC.promptUsed = prompt?.artTherapyPrompt
 
         // Set background image from prompt's template if available
         if let templateImage = prompt?.templateImage {
@@ -128,7 +130,9 @@ class AppCoordinator {
         let coordinator = MoodCheckInCoordinator(navigationController: navigationController)
 
         // Set up completion handler
-        coordinator.onComplete = { [weak sourceVC] data, selectedAction in
+        coordinator.onComplete = { [weak sourceVC, weak coordinator] data, selectedAction in
+            let checkinId = coordinator?.lastSubmittedCheckinId
+
             sourceVC?.dismiss(animated: true) {
                 completion?(true, data)
 
@@ -136,7 +140,7 @@ class AppCoordinator {
                 guard let sourceVC = sourceVC else { return }
                 switch selectedAction {
                 case .draw:
-                    AppCoordinator.openDrawingCanvas(from: sourceVC)
+                    AppCoordinator.openDrawingCanvas(from: sourceVC, checkinId: checkinId)
                 case .writeJournal:
                     print("TODO: Write Journal action")
                 case .none:

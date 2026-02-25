@@ -15,7 +15,14 @@ class DrawingCanvasViewController: UIViewController {
 
     // MARK: - Properties
     var backgroundImage: UIImage?
-    
+    var checkinId: String?
+    var promptUsed: String?
+    private lazy var presenter: DrawingCanvasPresenterType = {
+        let presenter = DrawingCanvasPresenter()
+        presenter.delegate = self
+        return presenter
+    }()
+
     // MARK: - UI Elements
     private lazy var topBarView: UIView = {
         let view = UIView()
@@ -90,6 +97,22 @@ class DrawingCanvasViewController: UIViewController {
         return button
     }()
 
+    private lazy var loadingOverlay: UIView = {
+        let overlay = UIView()
+        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        overlay.isHidden = true
+
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.color = .white
+        spinner.startAnimating()
+        overlay.addSubview(spinner)
+
+        spinner.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        return overlay
+    }()
+
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -117,14 +140,16 @@ class DrawingCanvasViewController: UIViewController {
     private var initialZoomScale: CGFloat = 1.0
 
     // MARK: - Initializers
-    convenience init(backgroundImage: UIImage?) {
+    convenience init(backgroundImage: UIImage?, checkinId: String? = nil, promptUsed: String? = nil) {
         self.init()
         self.backgroundImage = backgroundImage
+        self.checkinId = checkinId
+        self.promptUsed = promptUsed
     }
 
     // MARK: - Factory Methods
-    static func createWithBackground(_ image: UIImage?) -> DrawingCanvasViewController {
-        return DrawingCanvasViewController(backgroundImage: image)
+    static func createWithBackground(_ image: UIImage?, checkinId: String? = nil, promptUsed: String? = nil) -> DrawingCanvasViewController {
+        return DrawingCanvasViewController(backgroundImage: image, checkinId: checkinId, promptUsed: promptUsed)
     }
 
     override func viewDidLoad() {
@@ -187,6 +212,7 @@ class DrawingCanvasViewController: UIViewController {
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         canvasView.backgroundColor = .gray
         view.addSubview(canvasView)
+        view.addSubview(loadingOverlay)
 
         // 創建背景圖片視圖 - 添加為 canvasView 的子視圖以支持縮放
         canvasView.addSubview(backgroundImageView)
@@ -241,6 +267,10 @@ class DrawingCanvasViewController: UIViewController {
             make.top.equalTo(toolbarStackView.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(8)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+
+        loadingOverlay.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
@@ -423,9 +453,16 @@ class DrawingCanvasViewController: UIViewController {
     
     @objc private func saveDrawing() {
         let image = renderDrawingAsImage()
+        let recordingData = canvasView.drawing.dataRepresentation()
+        let isFromCheckIn = checkinId != nil
 
-        // Present result view directly with image in memory
-        AppCoordinator.presentDrawingResult(image: image, from: self)
+        presenter.submitDrawing(
+            image: image,
+            recordingData: recordingData,
+            checkinId: checkinId,
+            isFromCheckIn: isFromCheckIn,
+            promptUsed: promptUsed
+        )
     }
 
     
@@ -569,5 +606,36 @@ extension DrawingCanvasViewController: PHPickerViewControllerDelegate {
                 }
             }
         }
+    }
+}
+
+// MARK: - DrawingCanvasPresenterDelegate
+extension DrawingCanvasViewController: DrawingCanvasPresenterDelegate {
+
+    func didStartSavingDrawing() {
+        loadingOverlay.isHidden = false
+        saveButton.isEnabled = false
+    }
+
+    func didFinishSavingDrawing(image: UIImage) {
+        loadingOverlay.isHidden = true
+        saveButton.isEnabled = true
+        AppCoordinator.presentDrawingResult(image: image, from: self)
+    }
+
+    func didFailSavingDrawing(error: Error) {
+        loadingOverlay.isHidden = true
+        saveButton.isEnabled = true
+
+        let alert = UIAlertController(
+            title: NSLocalizedString("drawing_save_error_title", comment: "Save error title"),
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(
+            title: NSLocalizedString("ok", comment: "OK"),
+            style: .default
+        ))
+        present(alert, animated: true)
     }
 }
