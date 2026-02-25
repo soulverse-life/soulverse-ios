@@ -97,6 +97,18 @@ class AppCoordinator {
         navigationVC.pushViewController(drawingCanvasVC, animated: true)
     }
 
+    static func openDrawingGallery(from sourceVC: UIViewController) {
+        let galleryVC = DrawingGalleryViewController()
+        galleryVC.hidesBottomBarWhenPushed = true
+
+        guard let navigationVC = sourceVC.navigationController else {
+            sourceVC.show(galleryVC, sender: nil)
+            return
+        }
+
+        navigationVC.pushViewController(galleryVC, animated: true)
+    }
+
     static func presentDrawingResult(image: UIImage, from sourceVC: UIViewController) {
         let drawingResultVC = DrawingResultViewController(drawingImage: image)
         let navigationController = UINavigationController(rootViewController: drawingResultVC)
