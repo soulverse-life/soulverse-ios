@@ -105,15 +105,6 @@ class CanvasViewController: ViewController {
         return label
     }()
 
-    private lazy var randomButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("random", comment: ""), for: .normal)
-        button.titleLabel?.font = UIFont.projectFont(ofSize: 14, weight: .medium)
-        button.setTitleColor(.themePrimary, for: .normal)
-        button.addTarget(self, action: #selector(randomButtonTapped), for: .touchUpInside)
-        return button
-    }()
-
     private lazy var templateImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -186,7 +177,6 @@ class CanvasViewController: ViewController {
         contentStackView.addArrangedSubview(templateImageView)
 
         templateHeaderView.addSubview(templateLabel)
-        templateHeaderView.addSubview(randomButton)
 
         // Start Drawing Button
         contentStackView.addArrangedSubview(startDrawingButton)
@@ -237,10 +227,6 @@ class CanvasViewController: ViewController {
             make.left.centerY.equalToSuperview()
         }
 
-        randomButton.snp.makeConstraints { make in
-            make.right.centerY.equalToSuperview()
-        }
-
         // Template Image Constraints
         templateImageView.snp.makeConstraints { make in
             make.height.equalTo(300)
@@ -282,10 +268,6 @@ class CanvasViewController: ViewController {
             templateHeaderView.isHidden = true
             templateImageView.isHidden = true
         }
-    }
-
-    @objc private func randomButtonTapped() {
-        presenter.loadRandomPrompt()
     }
 
 }

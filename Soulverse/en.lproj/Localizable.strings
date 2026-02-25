@@ -10,7 +10,6 @@
 "canvas_description" = "Drawing isn't about skill. It's about release, letting colors and shapes speak when words fall short, and giving form to feelings that need to find balance.";
 "start_now" = "Start Now";
 "prompt" = "Prompt";
-"random" = "Random";
 "start_draw" = "Start Draw";
 "template_name" = "Template: %@";
 "no_template" = "Free Drawing";
