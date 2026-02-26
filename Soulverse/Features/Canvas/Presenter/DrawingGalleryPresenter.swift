@@ -26,6 +26,13 @@ final class DrawingGalleryPresenter: DrawingGalleryPresenterType {
 
     private static let fetchDaysRange: Int = 90
 
+    private static let dayDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
+    }()
+
     private var isFetching = false
 
     func fetchDrawings() {
@@ -55,9 +62,12 @@ final class DrawingGalleryPresenter: DrawingGalleryPresenterType {
                     self.delegate?.didUpdate(
                         viewModel: DrawingGalleryViewModel(isLoading: false, sections: sections)
                     )
-                case .failure:
+                case .failure(let error):
                     self.delegate?.didUpdate(
-                        viewModel: DrawingGalleryViewModel(isLoading: false)
+                        viewModel: DrawingGalleryViewModel(
+                            isLoading: false,
+                            errorMessage: error.localizedDescription
+                        )
                     )
                 }
             }
@@ -68,9 +78,6 @@ final class DrawingGalleryPresenter: DrawingGalleryPresenterType {
 
     private func groupByDay(_ drawings: [DrawingModel]) -> [DrawingGallerySectionViewModel] {
         let calendar = Calendar.current
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .none
 
         let grouped = Dictionary(grouping: drawings) { drawing -> Date in
             guard let createdAt = drawing.createdAt else { return Date.distantPast }
@@ -82,7 +89,7 @@ final class DrawingGalleryPresenter: DrawingGalleryPresenterType {
             .map { dayDate in
                 let title = dayDate == Date.distantPast
                     ? NSLocalizedString("gallery_unknown_date", comment: "Unknown date")
-                    : dateFormatter.string(from: dayDate)
+                    : Self.dayDateFormatter.string(from: dayDate)
                 let dayDrawings = grouped[dayDate] ?? []
                 return DrawingGallerySectionViewModel(title: title, drawings: dayDrawings)
             }

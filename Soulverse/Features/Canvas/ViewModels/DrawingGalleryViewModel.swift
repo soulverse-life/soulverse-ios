@@ -13,10 +13,12 @@ struct DrawingGallerySectionViewModel {
 struct DrawingGalleryViewModel {
     var isLoading: Bool
     let sections: [DrawingGallerySectionViewModel]
+    let errorMessage: String?
 
-    init(isLoading: Bool = false, sections: [DrawingGallerySectionViewModel] = []) {
+    init(isLoading: Bool = false, sections: [DrawingGallerySectionViewModel] = [], errorMessage: String? = nil) {
         self.isLoading = isLoading
         self.sections = sections
+        self.errorMessage = errorMessage
     }
 
     // MARK: - Helper Methods

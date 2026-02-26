@@ -151,8 +151,9 @@ final class MoodCheckInCoordinator {
                 self.lastSubmittedCheckinId = checkinId
                 self.handleSubmissionSuccess()
 
-            case .failure:
-                // For now, still show success (can add error handling later)
+            case .failure(let error):
+                debugPrint("[MoodCheckIn] Firestore submission failed: \(error.localizedDescription)")
+                // Still complete the flow so user isn't stuck; data may sync on retry
                 self.handleSubmissionSuccess()
             }
         }

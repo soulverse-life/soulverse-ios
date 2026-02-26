@@ -501,14 +501,18 @@ extension DrawingCanvasViewController {
         drawingSteps.append(PKDrawing())
     }
     
+    private static let maxDrawingSteps = 200
+
     private func recordDrawingStep() {
         guard isRecording && !isReplaying else { return }
-        
-        // 深度複製當前繪畫狀態
+
         let currentDrawing = canvasView.drawing
         drawingSteps.append(currentDrawing)
-        
-        print("記錄步驟: \(drawingSteps.count)")
+
+        // Drop oldest steps to cap memory usage
+        if drawingSteps.count > Self.maxDrawingSteps {
+            drawingSteps.removeFirst(drawingSteps.count - Self.maxDrawingSteps)
+        }
     }
     
     @objc private func startReplay() {

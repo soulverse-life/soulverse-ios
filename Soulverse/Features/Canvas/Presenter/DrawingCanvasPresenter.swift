@@ -40,11 +40,18 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
         promptUsed: String?
     ) {
         guard !isSaving else { return }
+        guard let uid = User.shared.userId else {
+            delegate?.didFailSavingDrawing(
+                error: FirestoreDrawingService.ServiceError.notLoggedIn
+            )
+            return
+        }
 
         isSaving = true
         delegate?.didStartSavingDrawing()
 
         FirestoreDrawingService.submitDrawing(
+            uid: uid,
             image: image,
             recordingData: recordingData,
             checkinId: checkinId,
