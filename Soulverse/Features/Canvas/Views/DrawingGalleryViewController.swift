@@ -6,7 +6,7 @@
 import UIKit
 import SnapKit
 
-final class DrawingGalleryViewController: UIViewController {
+final class DrawingGalleryViewController: ViewController {
 
     // MARK: - Layout Constants
 
@@ -105,7 +105,6 @@ final class DrawingGalleryViewController: UIViewController {
     // MARK: - Setup
 
     private func setupUI() {
-        view.backgroundColor = .systemBackground
         view.addSubview(navigationView)
         view.addSubview(collectionView)
         view.addSubview(loadingView)
@@ -163,10 +162,6 @@ extension DrawingGalleryViewController: DrawingGalleryPresenterDelegate {
     }
 }
 
-// MARK: - SoulverseNavigationViewDelegate
-
-extension DrawingGalleryViewController: SoulverseNavigationViewDelegate {}
-
 // MARK: - UICollectionViewDataSource
 
 extension DrawingGalleryViewController: UICollectionViewDataSource {
@@ -223,5 +218,11 @@ extension DrawingGalleryViewController: UICollectionViewDelegateFlowLayout {
         let availableWidth = collectionView.bounds.width - totalHorizontalInset - Layout.itemHorizontalSpacing
         let itemWidth = floor(availableWidth / 2)
         return CGSize(width: itemWidth, height: itemWidth)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let drawing = viewModel.drawing(at: indexPath) else { return }
+        let replayVC = DrawingReplayModalViewController(drawing: drawing)
+        present(replayVC, animated: true)
     }
 }

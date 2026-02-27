@@ -299,3 +299,4 @@
 "gallery" = "畫廊";
 "gallery_empty" = "還沒有畫作，開始創作吧！";
 "gallery_unknown_date" = "未知日期";
+"drawing_replay_error" = "無法載入畫作";
