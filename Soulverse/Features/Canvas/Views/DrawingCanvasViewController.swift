@@ -17,6 +17,7 @@ class DrawingCanvasViewController: UIViewController {
     var backgroundImage: UIImage?
     var checkinId: String?
     var promptUsed: String?
+    var templateName: String?
     private lazy var presenter: DrawingCanvasPresenterType = {
         let presenter = DrawingCanvasPresenter()
         presenter.delegate = self
@@ -459,7 +460,8 @@ class DrawingCanvasViewController: UIViewController {
             image: image,
             recordingData: recordingData,
             checkinId: checkinId,
-            promptUsed: promptUsed
+            promptUsed: promptUsed,
+            templateName: templateName
         )
     }
 

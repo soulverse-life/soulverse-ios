@@ -46,6 +46,7 @@ final class FirestoreDrawingService {
         recordingData: Data,
         checkinId: String?,
         promptUsed: String?,
+        templateName: String?,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
         let isFromCheckIn = checkinId != nil
@@ -112,6 +113,9 @@ final class FirestoreDrawingService {
             }
             if let promptUsed = promptUsed {
                 fields[Field.promptUsed.rawValue] = promptUsed
+            }
+            if let templateName = templateName {
+                fields[Field.templateName.rawValue] = templateName
             }
 
             docRef.setData(fields) { error in

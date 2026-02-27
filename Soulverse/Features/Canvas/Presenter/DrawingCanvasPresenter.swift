@@ -21,7 +21,8 @@ protocol DrawingCanvasPresenterType: AnyObject {
         image: UIImage,
         recordingData: Data,
         checkinId: String?,
-        promptUsed: String?
+        promptUsed: String?,
+        templateName: String?
     )
 }
 
@@ -42,7 +43,8 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
         image: UIImage,
         recordingData: Data,
         checkinId: String?,
-        promptUsed: String?
+        promptUsed: String?,
+        templateName: String?
     ) {
         guard !isSaving else { return }
         guard let uid = user.userId else {
@@ -60,7 +62,8 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
             image: image,
             recordingData: recordingData,
             checkinId: checkinId,
-            promptUsed: promptUsed
+            promptUsed: promptUsed,
+            templateName: templateName
         ) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }

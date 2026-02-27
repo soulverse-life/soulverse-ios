@@ -47,6 +47,13 @@ final class DrawingReplayModalViewController: UIViewController {
         return view
     }()
 
+    private lazy var templateImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+
     private lazy var canvasView: PKCanvasView = {
         let canvas = PKCanvasView()
         canvas.isUserInteractionEnabled = false
@@ -81,6 +88,12 @@ final class DrawingReplayModalViewController: UIViewController {
         self.presenter.delegate = self
         modalPresentationStyle = .overCurrentContext
         modalTransitionStyle = .crossDissolve
+
+        if let name = drawing.templateName, let image = UIImage(named: name) {
+            templateImageView.image = image
+            canvasView.backgroundColor = .clear
+            canvasView.isOpaque = false
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -109,6 +122,7 @@ final class DrawingReplayModalViewController: UIViewController {
         view.backgroundColor = .clear
         view.addSubview(dimmingView)
         view.addSubview(cardView)
+        cardView.addSubview(templateImageView)
         cardView.addSubview(canvasView)
         cardView.addSubview(loadingView)
         cardView.addSubview(closeButton)
@@ -123,6 +137,10 @@ final class DrawingReplayModalViewController: UIViewController {
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(Layout.cardWidthRatio)
             make.height.equalTo(cardView.snp.width)
+        }
+
+        templateImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
 
         canvasView.snp.makeConstraints { make in
