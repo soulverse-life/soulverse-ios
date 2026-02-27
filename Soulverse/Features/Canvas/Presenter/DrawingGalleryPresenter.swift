@@ -24,6 +24,8 @@ final class DrawingGalleryPresenter: DrawingGalleryPresenterType {
 
     weak var delegate: DrawingGalleryPresenterDelegate?
 
+    private let user: UserProtocol
+
     private static let fetchDaysRange: Int = 90
 
     private static let dayDateFormatter: DateFormatter = {
@@ -35,9 +37,13 @@ final class DrawingGalleryPresenter: DrawingGalleryPresenterType {
 
     private var isFetching = false
 
+    init(user: UserProtocol = User.shared) {
+        self.user = user
+    }
+
     func fetchDrawings() {
         guard !isFetching else { return }
-        guard let uid = User.shared.userId else {
+        guard let uid = user.userId else {
             delegate?.didUpdate(viewModel: DrawingGalleryViewModel())
             return
         }

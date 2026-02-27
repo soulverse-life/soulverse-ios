@@ -31,7 +31,12 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
 
     weak var delegate: DrawingCanvasPresenterDelegate?
 
+    private let user: UserProtocol
     private var isSaving = false
+
+    init(user: UserProtocol = User.shared) {
+        self.user = user
+    }
 
     func submitDrawing(
         image: UIImage,
@@ -40,7 +45,7 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
         promptUsed: String?
     ) {
         guard !isSaving else { return }
-        guard let uid = User.shared.userId else {
+        guard let uid = user.userId else {
             delegate?.didFailSavingDrawing(
                 error: FirestoreDrawingService.ServiceError.notLoggedIn
             )
