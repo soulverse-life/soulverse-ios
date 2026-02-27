@@ -88,12 +88,6 @@ final class DrawingReplayModalViewController: UIViewController {
         self.presenter.delegate = self
         modalPresentationStyle = .overCurrentContext
         modalTransitionStyle = .crossDissolve
-
-        if let name = drawing.templateName, let image = UIImage(named: name) {
-            templateImageView.image = image
-            canvasView.backgroundColor = .clear
-            canvasView.isOpaque = false
-        }
     }
 
     required init?(coder: NSCoder) {
@@ -106,6 +100,7 @@ final class DrawingReplayModalViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
+        configureTemplateBackground()
         presenter.loadRecording(from: drawing.recordingURL)
     }
 
@@ -155,6 +150,14 @@ final class DrawingReplayModalViewController: UIViewController {
             make.top.equalToSuperview().offset(Layout.closeButtonInset)
             make.trailing.equalToSuperview().offset(-Layout.closeButtonInset)
             make.size.equalTo(Layout.closeButtonSize)
+        }
+    }
+
+    private func configureTemplateBackground() {
+        if let name = drawing.templateName, let image = UIImage(named: name) {
+            templateImageView.image = image
+            canvasView.backgroundColor = .clear
+            canvasView.isOpaque = false
         }
     }
 
