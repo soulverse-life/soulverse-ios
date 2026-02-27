@@ -297,7 +297,6 @@ extension CanvasViewController: CanvasViewPresenterDelegate {
 // MARK: - Navigation Actions
 extension CanvasViewController {
     private func galleryTapped() {
-        print("[Canvas] Gallery button tapped")
-        // TODO: Navigate to notifications screen
+        AppCoordinator.openDrawingGallery(from: self)
     }
 }

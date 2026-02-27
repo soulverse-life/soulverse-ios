@@ -290,3 +290,12 @@
 "insight_sentiment_negative" = "負面";
 "insight_sentiment_neutral" = "中性";
 "insight_last_7_days" = "過去 7 天";
+
+// Drawing Save
+"drawing_save_error_title" = "儲存失敗";
+"drawing_save_not_logged_in" = "請先登入以儲存你的畫作。";
+
+// Drawing Gallery
+"gallery" = "畫廊";
+"gallery_empty" = "還沒有畫作，開始創作吧！";
+"gallery_unknown_date" = "未知日期";

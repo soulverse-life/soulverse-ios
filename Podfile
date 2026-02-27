@@ -36,6 +36,7 @@ abstract_target 'Base' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Messaging'
+  pod 'FirebaseStorage'
   pod 'GoogleUtilities'
   
   
@@ -73,6 +74,25 @@ post_install do |installer|
         end
       end
 
+  end
+
+  # Fix: Propagate framework search paths from main target to test target
+  # Newer Xcode requires explicit search paths for transitive module dependencies
+  app_target_xcconfig = installer.aggregate_targets.find { |t| t.label == 'Pods-Base-Soulverse' }
+  test_target_xcconfig = installer.aggregate_targets.find { |t| t.label == 'Pods-SoulverseTests' }
+  if app_target_xcconfig && test_target_xcconfig
+    test_target_xcconfig.xcconfigs.each do |config_name, config|
+      app_config = app_target_xcconfig.xcconfigs[config_name]
+      if app_config
+        app_framework_paths = app_config.attributes['FRAMEWORK_SEARCH_PATHS'] || ''
+        test_framework_paths = config.attributes['FRAMEWORK_SEARCH_PATHS'] || ''
+        # Merge unique paths
+        all_paths = (app_framework_paths.split(' ') + test_framework_paths.split(' ')).uniq.join(' ')
+        config.attributes['FRAMEWORK_SEARCH_PATHS'] = all_paths
+      end
+      xcconfig_path = test_target_xcconfig.xcconfig_path(config_name)
+      config.save_as(xcconfig_path)
+    end
   end
 end
 

@@ -18,6 +18,7 @@ final class MoodCheckInCoordinator {
     private let navigationController: UINavigationController
     private var moodCheckInData = MoodCheckInData()
     private var selectedAction: MoodCheckInActingAction?
+    private(set) var lastSubmittedCheckinId: String?
 
     // UserDefaults key for tracking if user has seen Pet screen
     private static let hasSeenPetKey = "hasSeenMoodCheckInPet"
@@ -137,16 +138,22 @@ final class MoodCheckInCoordinator {
     }
 
     private func submitMoodCheckInData() {
-        // Make API call
-        MoodCheckInAPIServiceProvider.request(.submitMoodCheckIn(moodCheckInData)) { [weak self] result in
+        guard let uid = User.shared.userId else {
+            handleSubmissionSuccess()
+            return
+        }
+
+        FirestoreMoodCheckInService.submitMoodCheckIn(uid: uid, data: moodCheckInData) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
-            case .success:
+            case .success(let checkinId):
+                self.lastSubmittedCheckinId = checkinId
                 self.handleSubmissionSuccess()
 
-            case .failure:
-                // For now, still show success (can add error handling later)
+            case .failure(let error):
+                debugPrint("[MoodCheckIn] Firestore submission failed: \(error.localizedDescription)")
+                // Still complete the flow so user isn't stuck; data may sync on retry
                 self.handleSubmissionSuccess()
             }
         }
