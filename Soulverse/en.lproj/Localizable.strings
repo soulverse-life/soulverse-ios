@@ -256,6 +256,8 @@
 "tools_item_daily_quote_description" = "Daily inspiration";
 "tools_item_time_capsule_title" = "Time Capsule";
 "tools_item_time_capsule_description" = "Letters to future self";
+"tools_locked_not_subscribed" = "Subscribe to unlock this tool";
+"tools_locked_not_implemented" = "Coming soon";
 
 // MARK: - Inner Cosmo
 "inner_cosmo_greeting_format" = "Hello, %@";

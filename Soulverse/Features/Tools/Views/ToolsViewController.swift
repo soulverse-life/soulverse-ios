@@ -1,5 +1,6 @@
 import Hero
 import SnapKit
+import Toaster
 import UIKit
 
 class ToolsViewController: ViewController {
@@ -195,6 +196,20 @@ extension ToolsViewController: UICollectionViewDataSource {
         header.configure(title: viewModel.titleForSection(indexPath.section) ?? "")
         return header
     }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension ToolsViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let totalSpacing = (2 * Layout.horizontalInset) + Layout.itemHorizontalSpacing
+        let width = (collectionView.bounds.width - totalSpacing) / 2
+        return CGSize(width: width, height: Layout.itemHeight)
+    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Get the selected item
@@ -207,11 +222,29 @@ extension ToolsViewController: UICollectionViewDataSource {
         print("🔵 [Tools] Cell tapped at section: \(indexPath.section), item: \(indexPath.item)")
         print("🔵 [Tools] Selected: \(item.title)")
 
+        // Check lock state before handling tool action
+        if let reason = item.lockState.lockReason {
+            handleLockedTool(reason: reason, title: item.title)
+            return
+        }
+
         // Notify presenter (for analytics, logging, etc.)
         presenter.didSelectTool(action: item.action)
 
         // Handle navigation with Hero transition
         handleToolAction(item.action, sourceIndexPath: indexPath)
+    }
+
+    private func handleLockedTool(reason: LockReason, title: String) {
+        switch reason {
+        case .notSubscribed:
+            let message = NSLocalizedString("tools_locked_not_subscribed", comment: "")
+            print("🔒 [Tools] \(title): \(message)")
+            // TODO: Present subscription prompt
+        case .notImplemented:
+            let message = NSLocalizedString("tools_locked_not_implemented", comment: "")
+            Toast(text: message).show()
+        }
     }
 
     private func handleToolAction(_ action: ToolAction, sourceIndexPath: IndexPath) {
@@ -247,26 +280,7 @@ extension ToolsViewController: UICollectionViewDataSource {
             // TODO: Navigate to Time Capsule
             print("⏰ [Tools] Navigating to Time Capsule...")
         // AppCoordinator.openTimeCapsule(from: self)
-
-        case .comingSoon:
-            print("⏳ [Tools] Feature coming soon...")
-        // Show a toast or alert
-        // SwiftMessages.show(message: "Coming Soon!")
         }
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension ToolsViewController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        let totalSpacing = (2 * Layout.horizontalInset) + Layout.itemHorizontalSpacing
-        let width = (collectionView.bounds.width - totalSpacing) / 2
-        return CGSize(width: width, height: Layout.itemHeight)
     }
 }
 

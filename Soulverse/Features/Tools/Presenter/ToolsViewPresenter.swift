@@ -46,14 +46,16 @@ class ToolsViewPresenter: ToolsViewPresenterType {
                 iconName: "sun.max",
                 title: NSLocalizedString("tools_item_emotion_bundle_title", comment: ""),
                 description: NSLocalizedString("tools_item_emotion_bundle_description", comment: ""),
-                action: .emotionBundle
+                action: .emotionBundle,
+                lockState: .unlocked
             ),
             ToolItem(
                 iconName: "leaf",
                 title: NSLocalizedString("tools_item_self_soothing_labyrinth_title", comment: ""),
                 description: NSLocalizedString(
                     "tools_item_self_soothing_labyrinth_description", comment: ""),
-                action: .selfSoothingLabyrinth
+                action: .selfSoothingLabyrinth,
+                lockState: .unlocked
             ),
         ]
 
@@ -63,19 +65,22 @@ class ToolsViewPresenter: ToolsViewPresenterType {
                 title: NSLocalizedString("tools_item_cosmic_drift_bottle_title", comment: ""),
                 description: NSLocalizedString(
                     "tools_item_cosmic_drift_bottle_description", comment: ""),
-                action: .cosmicDriftBottle
+                action: .cosmicDriftBottle,
+                lockState: .locked(.notImplemented)
             ),
             ToolItem(
                 iconName: "bird",
                 title: NSLocalizedString("tools_item_daily_quote_title", comment: ""),
                 description: NSLocalizedString("tools_item_daily_quote_description", comment: ""),
-                action: .dailyQuote
+                action: .dailyQuote,
+                lockState: .locked(.notImplemented)
             ),
             ToolItem(
                 iconName: "clock",
                 title: NSLocalizedString("tools_item_time_capsule_title", comment: ""),
                 description: NSLocalizedString("tools_item_time_capsule_description", comment: ""),
-                action: .timeCapsule
+                action: .timeCapsule,
+                lockState: .locked(.notImplemented)
             ),
         ]
 
@@ -98,7 +103,8 @@ class ToolsViewPresenter: ToolsViewPresenterType {
                     iconName: item.iconName,
                     title: item.title,
                     description: item.description,
-                    action: item.action
+                    action: item.action,
+                    lockState: item.lockState
                 )
             }
             return ToolsSectionViewModel(title: section.title, items: cellViewModels)
