@@ -102,17 +102,15 @@ class DrawingCanvasViewController: UIViewController {
         let overlay = UIView()
         overlay.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         overlay.isHidden = true
+        overlay.addSubview(loadingView)
 
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.color = .white
-        spinner.startAnimating()
-        overlay.addSubview(spinner)
-
-        spinner.snp.makeConstraints { make in
+        loadingView.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
         return overlay
     }()
+
+    private let loadingView = LoadingView()
 
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -611,16 +609,19 @@ extension DrawingCanvasViewController: DrawingCanvasPresenterDelegate {
 
     func didStartSavingDrawing() {
         loadingOverlay.isHidden = false
+        loadingView.startAnimating()
         saveButton.isEnabled = false
     }
 
     func didFinishSavingDrawing(image: UIImage) {
+        loadingView.stopAnimating()
         loadingOverlay.isHidden = true
         saveButton.isEnabled = true
         AppCoordinator.presentDrawingResult(image: image, from: self)
     }
 
     func didFailSavingDrawing(error: Error) {
+        loadingView.stopAnimating()
         loadingOverlay.isHidden = true
         saveButton.isEnabled = true
 
