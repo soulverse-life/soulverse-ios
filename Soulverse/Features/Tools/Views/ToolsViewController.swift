@@ -223,10 +223,12 @@ extension ToolsViewController: UICollectionViewDataSource {
     private func handleLockedTool(reason: LockReason, title: String) {
         switch reason {
         case .notSubscribed:
-            print("🔒 [Tools] \(title) requires subscription")
+            let message = NSLocalizedString("tools_locked_not_subscribed", comment: "")
+            print("🔒 [Tools] \(title): \(message)")
             // TODO: Present subscription prompt
         case .notImplemented:
-            print("🔒 [Tools] \(title) is not yet available")
+            let message = NSLocalizedString("tools_locked_not_implemented", comment: "")
+            print("🔒 [Tools] \(title): \(message)")
             // TODO: Show "coming soon" toast via SwiftMessages
         }
     }

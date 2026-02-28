@@ -68,6 +68,7 @@ class ToolsCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "lock.fill")
         imageView.contentMode = .scaleAspectFit
+        // White is intentional: lock icon sits on dark blur overlay regardless of theme
         imageView.tintColor = .white
         return imageView
     }()
@@ -81,6 +82,11 @@ class ToolsCollectionViewCell: UICollectionViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        lockOverlayView.isHidden = true
     }
 
     // MARK: - Setup
