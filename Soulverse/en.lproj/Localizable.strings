@@ -303,3 +303,6 @@
 "gallery_empty" = "No drawings yet. Start creating!";
 "gallery_unknown_date" = "Unknown Date";
 "drawing_replay_error" = "Unable to load drawing";
+
+// Common
+"ok" = "OK";

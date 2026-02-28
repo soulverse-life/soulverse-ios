@@ -28,29 +28,36 @@ final class DrawingReplayPresenterTests: XCTestCase {
         super.tearDown()
     }
 
-    // MARK: - loadRecording with Invalid URL
+    // MARK: - loadRecording: Invalid URL
 
     func test_DrawingReplayPresenter_loadRecordingEmptyString_callsDidFailLoading() {
         presenter.loadRecording(from: "")
 
         XCTAssertNotNil(delegateMock.failError)
+        XCTAssertEqual(delegateMock.failCount, 1)
     }
 
-    // MARK: - ReplayError Descriptions
+    func test_DrawingReplayPresenter_loadRecordingEmptyString_doesNotCallDidStartLoading() {
+        presenter.loadRecording(from: "")
 
-    func test_DrawingReplayPresenter_replayErrorInvalidURL_errorDescriptionIsNonNil() {
-        let error = DrawingReplayPresenter.ReplayError.invalidURL
-        XCTAssertNotNil(error.errorDescription)
+        XCTAssertFalse(delegateMock.didStartLoadingCalled)
     }
 
-    func test_DrawingReplayPresenter_replayErrorNoData_errorDescriptionIsNonNil() {
-        let error = DrawingReplayPresenter.ReplayError.noData
-        XCTAssertNotNil(error.errorDescription)
+    func test_DrawingReplayPresenter_loadRecordingInvalidURL_errorIsInvalidURL() {
+        presenter.loadRecording(from: "")
+
+        let replayError = delegateMock.failError as? DrawingReplayPresenter.ReplayError
+        XCTAssertEqual(replayError, .invalidURL)
     }
 
-    func test_DrawingReplayPresenter_replayErrorNoStrokes_errorDescriptionIsNonNil() {
-        let error = DrawingReplayPresenter.ReplayError.noStrokes
-        XCTAssertNotNil(error.errorDescription)
+    // MARK: - loadRecording: Valid URL
+
+    func test_DrawingReplayPresenter_loadRecordingValidURL_callsDidStartLoading() {
+        // A syntactically valid URL triggers didStartLoading synchronously
+        presenter.loadRecording(from: "https://example.com/recording.data")
+
+        XCTAssertTrue(delegateMock.didStartLoadingCalled)
+        XCTAssertEqual(delegateMock.didStartLoadingCount, 1)
     }
 
     // MARK: - stopReplay
@@ -58,5 +65,43 @@ final class DrawingReplayPresenterTests: XCTestCase {
     func test_DrawingReplayPresenter_stopReplayOnFreshPresenter_doesNotCrash() {
         presenter.stopReplay()
         // No crash means success
+    }
+
+    // MARK: - ReplayError Descriptions
+
+    func test_DrawingReplayPresenter_replayErrorInvalidURL_hasDescription() {
+        let error = DrawingReplayPresenter.ReplayError.invalidURL
+        XCTAssertNotNil(error.errorDescription)
+    }
+
+    func test_DrawingReplayPresenter_replayErrorNoData_hasDescription() {
+        let error = DrawingReplayPresenter.ReplayError.noData
+        XCTAssertNotNil(error.errorDescription)
+    }
+
+    func test_DrawingReplayPresenter_replayErrorNoStrokes_hasDescription() {
+        let error = DrawingReplayPresenter.ReplayError.noStrokes
+        XCTAssertNotNil(error.errorDescription)
+    }
+
+    func test_DrawingReplayPresenter_replayErrors_haveDistinctDescriptions() {
+        let descriptions = [
+            DrawingReplayPresenter.ReplayError.invalidURL.errorDescription,
+            DrawingReplayPresenter.ReplayError.noData.errorDescription,
+            DrawingReplayPresenter.ReplayError.noStrokes.errorDescription
+        ]
+        let uniqueDescriptions = Set(descriptions.compactMap { $0 })
+        XCTAssertEqual(uniqueDescriptions.count, 3, "Each error should have a unique description")
+    }
+
+    // MARK: - Delegate is Weak
+
+    func test_DrawingReplayPresenter_delegate_isWeakAndDoesNotRetain() {
+        var mock: DrawingReplayPresenterDelegateMock? = DrawingReplayPresenterDelegateMock()
+        presenter.delegate = mock
+        XCTAssertNotNil(presenter.delegate)
+
+        mock = nil
+        XCTAssertNil(presenter.delegate)
     }
 }

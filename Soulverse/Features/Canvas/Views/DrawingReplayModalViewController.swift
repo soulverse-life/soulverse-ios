@@ -27,6 +27,8 @@ final class DrawingReplayModalViewController: UIViewController {
     private var allStrokes: [PKStroke] = []
     private var drawingBounds: CGRect = .zero
     private var replayTransform: CGAffineTransform = .identity
+    private var isLoadingComplete: Bool = false
+    private var hasStartedReplay: Bool = false
 
     // MARK: - UI Components
 
@@ -111,6 +113,11 @@ final class DrawingReplayModalViewController: UIViewController {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        startReplayIfReady()
+    }
+
     // MARK: - Setup
 
     private func setupUI() {
@@ -154,11 +161,28 @@ final class DrawingReplayModalViewController: UIViewController {
     }
 
     private func configureTemplateBackground() {
-        if let name = drawing.templateName, let image = UIImage(named: name) {
-            templateImageView.image = image
-            canvasView.backgroundColor = .clear
-            canvasView.isOpaque = false
+        guard let name = drawing.templateName else { return }
+        guard let image = UIImage(named: name) else {
+            #if DEBUG
+            print("[DrawingReplay] Template image not found in asset catalog: \"\(name)\"")
+            #endif
+            return
         }
+        templateImageView.image = image
+        canvasView.backgroundColor = .clear
+        canvasView.isOpaque = false
+    }
+
+    // MARK: - Replay Start
+
+    private func startReplayIfReady() {
+        guard isLoadingComplete, !hasStartedReplay else { return }
+        let canvasSize = canvasView.bounds.size
+        guard canvasSize.width > 0, canvasSize.height > 0 else { return }
+
+        hasStartedReplay = true
+        replayTransform = calculateTransform(drawingBounds: drawingBounds, canvasSize: canvasSize)
+        presenter.startReplay(strokes: allStrokes, transform: replayTransform)
     }
 
     // MARK: - Transform Calculation
@@ -210,12 +234,9 @@ extension DrawingReplayModalViewController: DrawingReplayPresenterDelegate {
         loadingView.stopAnimating()
         allStrokes = strokes
         drawingBounds = bounds
+        isLoadingComplete = true
 
-        view.layoutIfNeeded()
-        let canvasSize = canvasView.bounds.size
-        replayTransform = calculateTransform(drawingBounds: bounds, canvasSize: canvasSize)
-
-        presenter.startReplay(strokes: strokes, transform: replayTransform)
+        startReplayIfReady()
     }
 
     func didFailLoading(error: Error) {
