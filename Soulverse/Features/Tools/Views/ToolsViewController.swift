@@ -196,6 +196,20 @@ extension ToolsViewController: UICollectionViewDataSource {
         header.configure(title: viewModel.titleForSection(indexPath.section) ?? "")
         return header
     }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension ToolsViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let totalSpacing = (2 * Layout.horizontalInset) + Layout.itemHorizontalSpacing
+        let width = (collectionView.bounds.width - totalSpacing) / 2
+        return CGSize(width: width, height: Layout.itemHeight)
+    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Get the selected item
@@ -267,20 +281,6 @@ extension ToolsViewController: UICollectionViewDataSource {
             print("⏰ [Tools] Navigating to Time Capsule...")
         // AppCoordinator.openTimeCapsule(from: self)
         }
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension ToolsViewController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        let totalSpacing = (2 * Layout.horizontalInset) + Layout.itemHorizontalSpacing
-        let width = (collectionView.bounds.width - totalSpacing) / 2
-        return CGSize(width: width, height: Layout.itemHeight)
     }
 }
 
