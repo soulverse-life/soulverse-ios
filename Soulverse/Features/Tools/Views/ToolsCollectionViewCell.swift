@@ -14,7 +14,7 @@ class ToolsCollectionViewCell: UICollectionViewCell {
         static let labelHorizontalInset: CGFloat = 16
         static let descriptionTopOffset: CGFloat = 4
         static let lockIconSize: CGFloat = 28
-        static let lockOverlayAlpha: CGFloat = 0.55
+        static let lockOverlayAlpha: CGFloat = 0.40
         static let borderWidth: CGFloat = 1
         static let fallbackBackgroundAlpha: CGFloat = 0.1
     }
