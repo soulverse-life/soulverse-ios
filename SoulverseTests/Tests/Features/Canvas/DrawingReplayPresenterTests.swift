@@ -32,27 +32,27 @@ final class DrawingReplayPresenterTests: XCTestCase {
 
     // MARK: - loadRecording: Invalid URL
 
-    func test_loadRecording_emptyString_callsDidFailLoading() {
+    func test_DrawingReplayPresenter_loadRecordingEmptyString_callsDidFailLoading() {
         presenter.loadRecording(from: "")
 
         XCTAssertNotNil(delegateMock.failError)
         XCTAssertEqual(delegateMock.failCount, 1)
     }
 
-    func test_loadRecording_emptyString_doesNotCallDidStartLoading() {
+    func test_DrawingReplayPresenter_loadRecordingEmptyString_doesNotCallDidStartLoading() {
         presenter.loadRecording(from: "")
 
         XCTAssertFalse(delegateMock.didStartLoadingCalled)
     }
 
-    func test_loadRecording_invalidURL_errorIsInvalidURL() {
+    func test_DrawingReplayPresenter_loadRecordingInvalidURL_errorIsInvalidURL() {
         presenter.loadRecording(from: "")
 
         let replayError = delegateMock.failError as? DrawingReplayPresenter.ReplayError
         XCTAssertEqual(replayError, .invalidURL)
     }
 
-    func test_loadRecording_validURL_callsDidStartLoading() {
+    func test_DrawingReplayPresenter_loadRecordingValidURL_callsDidStartLoading() {
         // A syntactically valid URL triggers didStartLoading synchronously
         presenter.loadRecording(from: "https://example.com/recording.data")
 
@@ -62,7 +62,7 @@ final class DrawingReplayPresenterTests: XCTestCase {
 
     // MARK: - startReplay: Basic Behavior
 
-    func test_startReplay_withStrokes_callsDidReplayStroke() {
+    func test_DrawingReplayPresenter_startReplayWithStrokes_callsDidReplayStroke() {
         let strokes = makeStrokes(count: 3)
         let exp = expectation(description: "at least one stroke replayed")
         delegateMock.replayStrokeExpectation = exp
@@ -73,7 +73,7 @@ final class DrawingReplayPresenterTests: XCTestCase {
         XCTAssertGreaterThan(delegateMock.replayStrokeCount, 0)
     }
 
-    func test_startReplay_withStrokes_callsDidFinishReplay() {
+    func test_DrawingReplayPresenter_startReplayWithStrokes_callsDidFinishReplay() {
         let strokes = makeStrokes(count: 3)
         let exp = expectation(description: "replay finishes")
         delegateMock.finishReplayExpectation = exp
@@ -84,7 +84,7 @@ final class DrawingReplayPresenterTests: XCTestCase {
         XCTAssertTrue(delegateMock.didFinishReplayCalled)
     }
 
-    func test_startReplay_replayStrokeCount_equalsInputStrokeCount() {
+    func test_DrawingReplayPresenter_startReplayStrokeCount_equalsInputStrokeCount() {
         let strokeCount = 5
         let strokes = makeStrokes(count: strokeCount)
         let exp = expectation(description: "replay finishes")
@@ -96,7 +96,7 @@ final class DrawingReplayPresenterTests: XCTestCase {
         XCTAssertEqual(delegateMock.replayStrokeCount, strokeCount)
     }
 
-    func test_startReplay_strokesAreAddedIncrementally() {
+    func test_DrawingReplayPresenter_startReplay_strokesAreAddedIncrementally() {
         let strokeCount = 4
         let strokes = makeStrokes(count: strokeCount)
         let exp = expectation(description: "replay finishes")
@@ -118,7 +118,7 @@ final class DrawingReplayPresenterTests: XCTestCase {
 
     // MARK: - startReplay: Transform
 
-    func test_startReplay_withTransform_appliesTransformToDrawing() {
+    func test_DrawingReplayPresenter_startReplayWithTransform_appliesTransformToDrawing() {
         // Use enough strokes so timer interval is short (max(0.05, 3.0/60) = 0.05s)
         let strokeCount = 60
         let strokes = makeStrokes(count: strokeCount)
@@ -152,7 +152,7 @@ final class DrawingReplayPresenterTests: XCTestCase {
 
     // MARK: - startReplay: Called Twice (Restart)
 
-    func test_startReplay_calledTwice_resetsReplay() {
+    func test_DrawingReplayPresenter_startReplayCalledTwice_resetsReplay() {
         let strokes = makeStrokes(count: 3)
         let exp = expectation(description: "second replay finishes")
         delegateMock.finishReplayExpectation = exp
@@ -170,7 +170,7 @@ final class DrawingReplayPresenterTests: XCTestCase {
 
     // MARK: - stopReplay
 
-    func test_stopReplay_duringActiveReplay_stopsCallbacks() {
+    func test_DrawingReplayPresenter_stopReplayDuringActiveReplay_stopsCallbacks() {
         let strokes = makeStrokes(count: 20)
         let exp = expectation(description: "at least one stroke replayed")
         delegateMock.replayStrokeExpectation = exp
@@ -192,12 +192,12 @@ final class DrawingReplayPresenterTests: XCTestCase {
         XCTAssertFalse(delegateMock.didFinishReplayCalled)
     }
 
-    func test_stopReplay_onFreshPresenter_doesNotCrash() {
+    func test_DrawingReplayPresenter_stopReplayOnFreshPresenter_doesNotCrash() {
         presenter.stopReplay()
         // No crash means success
     }
 
-    func test_stopReplay_calledMultipleTimes_doesNotCrash() {
+    func test_DrawingReplayPresenter_stopReplayCalledMultipleTimes_doesNotCrash() {
         let strokes = makeStrokes(count: 3)
         presenter.startReplay(strokes: strokes, transform: .identity)
 
@@ -209,22 +209,22 @@ final class DrawingReplayPresenterTests: XCTestCase {
 
     // MARK: - ReplayError Descriptions
 
-    func test_replayError_invalidURL_hasDescription() {
+    func test_DrawingReplayPresenter_replayErrorInvalidURL_hasDescription() {
         let error = DrawingReplayPresenter.ReplayError.invalidURL
         XCTAssertNotNil(error.errorDescription)
     }
 
-    func test_replayError_noData_hasDescription() {
+    func test_DrawingReplayPresenter_replayErrorNoData_hasDescription() {
         let error = DrawingReplayPresenter.ReplayError.noData
         XCTAssertNotNil(error.errorDescription)
     }
 
-    func test_replayError_noStrokes_hasDescription() {
+    func test_DrawingReplayPresenter_replayErrorNoStrokes_hasDescription() {
         let error = DrawingReplayPresenter.ReplayError.noStrokes
         XCTAssertNotNil(error.errorDescription)
     }
 
-    func test_replayErrors_haveDistinctDescriptions() {
+    func test_DrawingReplayPresenter_replayErrors_haveDistinctDescriptions() {
         let descriptions = [
             DrawingReplayPresenter.ReplayError.invalidURL.errorDescription,
             DrawingReplayPresenter.ReplayError.noData.errorDescription,
@@ -236,7 +236,7 @@ final class DrawingReplayPresenterTests: XCTestCase {
 
     // MARK: - Delegate is Weak
 
-    func test_delegate_isWeak_doesNotRetainDelegate() {
+    func test_DrawingReplayPresenter_delegate_isWeakAndDoesNotRetain() {
         var mock: DrawingReplayPresenterDelegateMock? = DrawingReplayPresenterDelegateMock()
         presenter.delegate = mock
         XCTAssertNotNil(presenter.delegate)
