@@ -7,11 +7,15 @@ import Foundation
 import FirebaseFirestore
 import UIKit
 
-final class FirestoreDrawingService {
+final class FirestoreDrawingService: DrawingServiceProtocol {
 
-    private static let db = Firestore.firestore()
+    static let shared = FirestoreDrawingService()
+
+    private let db = Firestore.firestore()
 
     private typealias Field = DrawingModel.CodingKeys
+
+    private init() {}
 
     enum ServiceError: LocalizedError {
         case documentNotFound
@@ -29,7 +33,7 @@ final class FirestoreDrawingService {
     }
 
     /// Returns the drawings subcollection reference for a user.
-    private static func drawingsCollection(uid: String) -> CollectionReference {
+    private func drawingsCollection(uid: String) -> CollectionReference {
         return db.collection(FirestoreCollection.users)
             .document(uid)
             .collection(FirestoreCollection.drawings)
@@ -40,12 +44,13 @@ final class FirestoreDrawingService {
     /// Uploads image + recording to Storage in parallel, then creates Firestore document.
     /// Cleans up orphaned Storage files on partial failure.
     /// Returns the auto-generated drawing document ID on success.
-    static func submitDrawing(
+    func submitDrawing(
         uid: String,
         image: UIImage,
         recordingData: Data,
         checkinId: String?,
         promptUsed: String?,
+        templateName: String?,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
         let isFromCheckIn = checkinId != nil
@@ -113,6 +118,9 @@ final class FirestoreDrawingService {
             if let promptUsed = promptUsed {
                 fields[Field.promptUsed.rawValue] = promptUsed
             }
+            if let templateName = templateName {
+                fields[Field.templateName.rawValue] = templateName
+            }
 
             docRef.setData(fields) { error in
                 if let error = error {
@@ -129,7 +137,7 @@ final class FirestoreDrawingService {
     // MARK: - Fetch Drawings by Date Range
 
     /// Fetches drawings within a date range, ordered by createdAt descending.
-    static func fetchDrawings(
+    func fetchDrawings(
         uid: String,
         from startDate: Date,
         to endDate: Date? = nil,
@@ -165,7 +173,7 @@ final class FirestoreDrawingService {
     // MARK: - Fetch Drawings by Check-In ID
 
     /// Fetches all drawings linked to a specific check-in.
-    static func fetchDrawings(
+    func fetchDrawings(
         uid: String,
         checkinId: String,
         completion: @escaping (Result<[DrawingModel], Error>) -> Void
@@ -194,7 +202,7 @@ final class FirestoreDrawingService {
     // MARK: - Delete Drawing
 
     /// Deletes a drawing document and its associated Storage files.
-    static func deleteDrawing(
+    func deleteDrawing(
         uid: String,
         drawingId: String,
         completion: @escaping (Result<Void, Error>) -> Void

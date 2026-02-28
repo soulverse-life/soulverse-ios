@@ -21,7 +21,8 @@ protocol DrawingCanvasPresenterType: AnyObject {
         image: UIImage,
         recordingData: Data,
         checkinId: String?,
-        promptUsed: String?
+        promptUsed: String?,
+        templateName: String?
     )
 }
 
@@ -32,17 +33,21 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
     weak var delegate: DrawingCanvasPresenterDelegate?
 
     private let user: UserProtocol
+    private let drawingService: DrawingServiceProtocol
     private var isSaving = false
 
-    init(user: UserProtocol = User.shared) {
+    init(user: UserProtocol = User.shared,
+         drawingService: DrawingServiceProtocol = FirestoreDrawingService.shared) {
         self.user = user
+        self.drawingService = drawingService
     }
 
     func submitDrawing(
         image: UIImage,
         recordingData: Data,
         checkinId: String?,
-        promptUsed: String?
+        promptUsed: String?,
+        templateName: String?
     ) {
         guard !isSaving else { return }
         guard let uid = user.userId else {
@@ -55,12 +60,13 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
         isSaving = true
         delegate?.didStartSavingDrawing()
 
-        FirestoreDrawingService.submitDrawing(
+        drawingService.submitDrawing(
             uid: uid,
             image: image,
             recordingData: recordingData,
             checkinId: checkinId,
-            promptUsed: promptUsed
+            promptUsed: promptUsed,
+            templateName: templateName
         ) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }

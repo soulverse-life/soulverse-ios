@@ -34,14 +34,24 @@ struct MoodEntryCard {
 /// 5. Multiple check-ins per day produce multiple cards
 final class MoodEntriesDataAssembler {
 
+    private let moodCheckInService: MoodCheckInServiceProtocol
+    private let drawingService: DrawingServiceProtocol
+
+    init(moodCheckInService: MoodCheckInServiceProtocol = FirestoreMoodCheckInService.shared,
+         drawingService: DrawingServiceProtocol = FirestoreDrawingService.shared) {
+        self.moodCheckInService = moodCheckInService
+        self.drawingService = drawingService
+    }
+
     /// Fetches the latest X check-ins and associated drawings, then assembles cards.
-    static func fetchAndAssemble(
+    func fetchAndAssemble(
         uid: String,
         checkInLimit: Int,
         completion: @escaping (Result<[MoodEntryCard], Error>) -> Void
     ) {
         // Step 1: Fetch latest X check-ins
-        FirestoreMoodCheckInService.fetchLatestCheckIns(uid: uid, limit: checkInLimit) { checkInResult in
+        moodCheckInService.fetchLatestCheckIns(uid: uid, limit: checkInLimit) { [weak self] checkInResult in
+            guard let self = self else { return }
             switch checkInResult {
             case .failure(let error):
                 completion(.failure(error))
@@ -50,7 +60,7 @@ final class MoodEntriesDataAssembler {
             case .success(let checkIns):
                 guard !checkIns.isEmpty else {
                     // No check-ins — fetch recent drawings as orphan cards
-                    fetchOrphanDrawings(uid: uid, completion: completion)
+                    self.fetchOrphanDrawings(uid: uid, completion: completion)
                     return
                 }
 
@@ -64,7 +74,7 @@ final class MoodEntriesDataAssembler {
                 let startOfDay = calendar.startOfDay(for: oldestDate)
 
                 // Step 3: Fetch all drawings in date range
-                FirestoreDrawingService.fetchDrawings(uid: uid, from: startOfDay) { drawingResult in
+                self.drawingService.fetchDrawings(uid: uid, from: startOfDay, to: nil) { drawingResult in
                     switch drawingResult {
                     case .failure(let error):
                         completion(.failure(error))
@@ -72,7 +82,7 @@ final class MoodEntriesDataAssembler {
 
                     case .success(let drawings):
                         // Step 4: Assemble cards
-                        let cards = assembleCards(checkIns: checkIns, drawings: drawings)
+                        let cards = Self.assembleCards(checkIns: checkIns, drawings: drawings)
                         completion(.success(cards))
                     }
                 }
@@ -163,13 +173,13 @@ final class MoodEntriesDataAssembler {
     // MARK: - Private
 
     /// Fetches recent drawings when there are no check-ins (all become orphan cards).
-    private static func fetchOrphanDrawings(
+    private func fetchOrphanDrawings(
         uid: String,
         completion: @escaping (Result<[MoodEntryCard], Error>) -> Void
     ) {
         let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
 
-        FirestoreDrawingService.fetchDrawings(uid: uid, from: sevenDaysAgo) { result in
+        drawingService.fetchDrawings(uid: uid, from: sevenDaysAgo, to: nil) { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))

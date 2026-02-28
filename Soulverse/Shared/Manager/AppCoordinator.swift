@@ -83,6 +83,7 @@ class AppCoordinator {
         drawingCanvasVC.hidesBottomBarWhenPushed = true
         drawingCanvasVC.checkinId = checkinId
         drawingCanvasVC.promptUsed = prompt?.artTherapyPrompt
+        drawingCanvasVC.templateName = prompt?.templateName
 
         // Set background image from prompt's template if available
         if let templateImage = prompt?.templateImage {

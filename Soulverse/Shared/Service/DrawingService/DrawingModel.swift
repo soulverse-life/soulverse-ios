@@ -20,6 +20,7 @@ struct DrawingModel: Codable {
 
     // Metadata
     var promptUsed: String?
+    var templateName: String?
 
     // Timezone
     let timezoneOffsetMinutes: Int
@@ -36,6 +37,7 @@ struct DrawingModel: Codable {
         case recordingURL
         case thumbnailURL
         case promptUsed
+        case templateName
         case timezoneOffsetMinutes
         case createdAt
         case updatedAt
