@@ -207,11 +207,28 @@ extension ToolsViewController: UICollectionViewDataSource {
         print("🔵 [Tools] Cell tapped at section: \(indexPath.section), item: \(indexPath.item)")
         print("🔵 [Tools] Selected: \(item.title)")
 
+        // Check lock state before handling tool action
+        if let reason = item.lockState.lockReason {
+            handleLockedTool(reason: reason, title: item.title)
+            return
+        }
+
         // Notify presenter (for analytics, logging, etc.)
         presenter.didSelectTool(action: item.action)
 
         // Handle navigation with Hero transition
         handleToolAction(item.action, sourceIndexPath: indexPath)
+    }
+
+    private func handleLockedTool(reason: LockReason, title: String) {
+        switch reason {
+        case .notSubscribed:
+            print("🔒 [Tools] \(title) requires subscription")
+            // TODO: Present subscription prompt
+        case .notImplemented:
+            print("🔒 [Tools] \(title) is not yet available")
+            // TODO: Show "coming soon" toast via SwiftMessages
+        }
     }
 
     private func handleToolAction(_ action: ToolAction, sourceIndexPath: IndexPath) {
