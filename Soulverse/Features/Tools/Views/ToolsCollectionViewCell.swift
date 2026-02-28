@@ -3,6 +3,21 @@ import SnapKit
 import UIKit
 
 class ToolsCollectionViewCell: UICollectionViewCell {
+
+    // MARK: - Layout Constants
+
+    private enum Layout {
+        static let cornerRadius: CGFloat = 20
+        static let iconTopLeadingInset: CGFloat = 20
+        static let iconSize: CGFloat = 24
+        static let titleTopOffset: CGFloat = 12
+        static let labelHorizontalInset: CGFloat = 16
+        static let descriptionTopOffset: CGFloat = 4
+        static let lockIconSize: CGFloat = 28
+        static let borderWidth: CGFloat = 1
+        static let fallbackBackgroundAlpha: CGFloat = 0.1
+    }
+
     // MARK: - UI Components
 
     private let baseView: UIView = {
@@ -40,6 +55,23 @@ class ToolsCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
+    private let lockOverlayView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+        let view = UIVisualEffectView(effect: blurEffect)
+        view.isHidden = true
+        view.layer.cornerRadius = Layout.cornerRadius
+        view.clipsToBounds = true
+        return view
+    }()
+
+    private let lockIconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "lock.fill")
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .white
+        return imageView
+    }()
+
     // MARK: - Initialization
 
     override init(frame: CGRect) {
@@ -60,25 +92,25 @@ class ToolsCollectionViewCell: UICollectionViewCell {
         baseView.addSubview(descriptionLabel)
         
         iconImageView.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(20)
-            make.size.equalTo(24)
+            make.top.leading.equalToSuperview().offset(Layout.iconTopLeadingInset)
+            make.size.equalTo(Layout.iconSize)
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(iconImageView.snp.bottom).offset(12)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(iconImageView.snp.bottom).offset(Layout.titleTopOffset)
+            make.leading.trailing.equalToSuperview().inset(Layout.labelHorizontalInset)
         }
 
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(titleLabel.snp.bottom).offset(Layout.descriptionTopOffset)
+            make.leading.trailing.equalToSuperview().inset(Layout.labelHorizontalInset)
         }
         
         
         if #available(iOS 26.0, *) {
             let glassEffect = UIGlassEffect(style: .clear)
             visualEffectView.effect = glassEffect
-            visualEffectView.layer.cornerRadius = 20
+            visualEffectView.layer.cornerRadius = Layout.cornerRadius
             visualEffectView.clipsToBounds = true
             visualEffectView.contentView.addSubview(baseView)
             contentView.addSubview(visualEffectView)
@@ -93,14 +125,32 @@ class ToolsCollectionViewCell: UICollectionViewCell {
             }
         } else {
             contentView.addSubview(baseView)
-            baseView.layer.cornerRadius = 20
-            baseView.layer.borderWidth = 1
+            baseView.layer.cornerRadius = Layout.cornerRadius
+            baseView.layer.borderWidth = Layout.borderWidth
             baseView.layer.borderColor = UIColor.themeSeparator.cgColor
-            baseView.backgroundColor = .white.withAlphaComponent(0.1)
+            baseView.backgroundColor = .white.withAlphaComponent(Layout.fallbackBackgroundAlpha)
             baseView.clipsToBounds = true
         }
         baseView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+
+        // Add lock overlay on top of content
+        if #available(iOS 26.0, *) {
+            visualEffectView.contentView.addSubview(lockOverlayView)
+        } else {
+            baseView.addSubview(lockOverlayView)
+        }
+
+        lockOverlayView.contentView.addSubview(lockIconImageView)
+
+        lockOverlayView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        lockIconImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(Layout.lockIconSize)
         }
     }
 
@@ -119,5 +169,8 @@ class ToolsCollectionViewCell: UICollectionViewCell {
         } else {
             baseView.hero.id = nil
         }
+
+        // Configure lock state
+        lockOverlayView.isHidden = !viewModel.lockState.isLocked
     }
 }
