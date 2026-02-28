@@ -7,7 +7,6 @@ enum ToolAction {
     case cosmicDriftBottle
     case dailyQuote
     case timeCapsule
-    case comingSoon  // For tools not yet implemented
 
     /// Debug description for logging
     var debugDescription: String {
@@ -22,8 +21,6 @@ enum ToolAction {
             return "Daily Quote"
         case .timeCapsule:
             return "Time Capsule"
-        case .comingSoon:
-            return "Coming Soon"
         }
     }
 }

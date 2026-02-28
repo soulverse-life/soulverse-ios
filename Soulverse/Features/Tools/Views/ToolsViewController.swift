@@ -1,5 +1,6 @@
 import Hero
 import SnapKit
+import Toaster
 import UIKit
 
 class ToolsViewController: ViewController {
@@ -228,8 +229,7 @@ extension ToolsViewController: UICollectionViewDataSource {
             // TODO: Present subscription prompt
         case .notImplemented:
             let message = NSLocalizedString("tools_locked_not_implemented", comment: "")
-            print("🔒 [Tools] \(title): \(message)")
-            // TODO: Show "coming soon" toast via SwiftMessages
+            Toast(text: message).show()
         }
     }
 
@@ -266,11 +266,6 @@ extension ToolsViewController: UICollectionViewDataSource {
             // TODO: Navigate to Time Capsule
             print("⏰ [Tools] Navigating to Time Capsule...")
         // AppCoordinator.openTimeCapsule(from: self)
-
-        case .comingSoon:
-            print("⏳ [Tools] Feature coming soon...")
-        // Show a toast or alert
-        // SwiftMessages.show(message: "Coming Soon!")
         }
     }
 }
