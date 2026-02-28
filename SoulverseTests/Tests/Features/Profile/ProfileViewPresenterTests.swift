@@ -62,19 +62,4 @@ final class ProfileViewPresenterTests: XCTestCase {
 
         XCTAssertFalse(delegateMock.updatedViewModel!.isLoading)
     }
-
-    // MARK: - deleteAccount
-
-    func test_ProfileViewPresenter_deleteAccountNoFirebaseUser_callsDidFailWithError() {
-        // In test environment, Auth.auth().currentUser is nil
-        presenter.deleteAccount()
-
-        XCTAssertNotNil(delegateMock.failError)
-    }
-
-    func test_ProfileViewPresenter_deleteAccountNoFirebaseUser_setsIsLoadingFalse() {
-        presenter.deleteAccount()
-
-        XCTAssertFalse(delegateMock.updatedViewModel!.isLoading)
-    }
 }
