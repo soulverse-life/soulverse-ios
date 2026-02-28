@@ -8,7 +8,7 @@ import PhotosUI
 
 class DrawingCanvasViewController: UIViewController {
 
-    struct LaoutConstant {
+    struct LayoutConstant {
         static let toolPickerHeight: CGFloat = 100
         static let backgroundImageInset: CGFloat = 40
     }
