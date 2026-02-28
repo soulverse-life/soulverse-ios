@@ -5,4 +5,5 @@ struct ToolsCellViewModel {
     let title: String
     let description: String
     let action: ToolAction
+    let lockState: ToolLockState
 }
