@@ -120,6 +120,7 @@ class ToolsCollectionViewCell: UICollectionViewCell {
             visualEffectView.layer.cornerRadius = Layout.cornerRadius
             visualEffectView.clipsToBounds = true
             visualEffectView.contentView.addSubview(baseView)
+            visualEffectView.contentView.addSubview(lockOverlayView)
             contentView.addSubview(visualEffectView)
 
             visualEffectView.snp.makeConstraints { make in
@@ -137,16 +138,10 @@ class ToolsCollectionViewCell: UICollectionViewCell {
             baseView.layer.borderColor = UIColor.themeSeparator.cgColor
             baseView.backgroundColor = .white.withAlphaComponent(Layout.fallbackBackgroundAlpha)
             baseView.clipsToBounds = true
+            baseView.addSubview(lockOverlayView)
         }
         baseView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-
-        // Add lock overlay on top of content
-        if #available(iOS 26.0, *) {
-            visualEffectView.contentView.addSubview(lockOverlayView)
-        } else {
-            baseView.addSubview(lockOverlayView)
         }
 
         lockOverlayView.addSubview(lockIconImageView)
