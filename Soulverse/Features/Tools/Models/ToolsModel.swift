@@ -28,11 +28,34 @@ enum ToolAction {
     }
 }
 
+/// Reason why a tool is locked
+enum LockReason {
+    case notSubscribed
+    case notImplemented
+}
+
+/// Lock state for a tool cell
+enum ToolLockState {
+    case unlocked
+    case locked(LockReason)
+
+    var isLocked: Bool {
+        if case .locked = self { return true }
+        return false
+    }
+
+    var lockReason: LockReason? {
+        if case .locked(let reason) = self { return reason }
+        return nil
+    }
+}
+
 struct ToolItem {
     let iconName: String
     let title: String
     let description: String
     let action: ToolAction
+    let lockState: ToolLockState
 }
 
 struct ToolSection {
