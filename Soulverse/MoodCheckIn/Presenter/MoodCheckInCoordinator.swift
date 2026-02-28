@@ -143,7 +143,7 @@ final class MoodCheckInCoordinator {
             return
         }
 
-        FirestoreMoodCheckInService.submitMoodCheckIn(uid: uid, data: moodCheckInData) { [weak self] result in
+        FirestoreMoodCheckInService.shared.submitMoodCheckIn(uid: uid, data: moodCheckInData) { [weak self] result in
             guard let self = self else { return }
 
             switch result {

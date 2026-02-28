@@ -25,6 +25,7 @@ final class DrawingGalleryPresenter: DrawingGalleryPresenterType {
     weak var delegate: DrawingGalleryPresenterDelegate?
 
     private let user: UserProtocol
+    private let drawingService: DrawingServiceProtocol
 
     private static let fetchDaysRange: Int = 90
 
@@ -37,8 +38,10 @@ final class DrawingGalleryPresenter: DrawingGalleryPresenterType {
 
     private var isFetching = false
 
-    init(user: UserProtocol = User.shared) {
+    init(user: UserProtocol = User.shared,
+         drawingService: DrawingServiceProtocol = FirestoreDrawingService.shared) {
         self.user = user
+        self.drawingService = drawingService
     }
 
     func fetchDrawings() {
@@ -57,7 +60,7 @@ final class DrawingGalleryPresenter: DrawingGalleryPresenterType {
             to: Date()
         ) ?? Date()
 
-        FirestoreDrawingService.fetchDrawings(uid: uid, from: startDate) { [weak self] result in
+        drawingService.fetchDrawings(uid: uid, from: startDate, to: nil) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.isFetching = false

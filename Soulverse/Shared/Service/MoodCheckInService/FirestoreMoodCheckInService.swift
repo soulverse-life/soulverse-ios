@@ -6,11 +6,15 @@
 import Foundation
 import FirebaseFirestore
 
-final class FirestoreMoodCheckInService {
+final class FirestoreMoodCheckInService: MoodCheckInServiceProtocol {
 
-    private static let db = Firestore.firestore()
+    static let shared = FirestoreMoodCheckInService()
+
+    private let db = Firestore.firestore()
 
     private typealias Field = MoodCheckInModel.CodingKeys
+
+    private init() {}
 
     enum ServiceError: LocalizedError {
         case userNotLoggedIn
@@ -27,7 +31,7 @@ final class FirestoreMoodCheckInService {
     }
 
     /// Returns the mood_checkins subcollection reference for a user.
-    private static func checkInsCollection(uid: String) -> CollectionReference {
+    private func checkInsCollection(uid: String) -> CollectionReference {
         return db.collection(FirestoreCollection.users)
             .document(uid)
             .collection(FirestoreCollection.moodCheckIns)
@@ -37,7 +41,7 @@ final class FirestoreMoodCheckInService {
 
     /// Creates a new mood check-in document in Firestore.
     /// Returns the auto-generated document ID on success.
-    static func submitMoodCheckIn(
+    func submitMoodCheckIn(
         uid: String,
         data: MoodCheckInData,
         completion: @escaping (Result<String, Error>) -> Void
@@ -73,7 +77,7 @@ final class FirestoreMoodCheckInService {
     // MARK: - Fetch Latest Check-Ins
 
     /// Fetches the latest N mood check-ins for a user, ordered by createdAt descending.
-    static func fetchLatestCheckIns(
+    func fetchLatestCheckIns(
         uid: String,
         limit: Int,
         completion: @escaping (Result<[MoodCheckInModel], Error>) -> Void
@@ -102,7 +106,7 @@ final class FirestoreMoodCheckInService {
     // MARK: - Fetch Check-Ins by Date Range
 
     /// Fetches mood check-ins within a date range, ordered by createdAt ascending.
-    static func fetchCheckIns(
+    func fetchCheckIns(
         uid: String,
         from startDate: Date,
         to endDate: Date,
@@ -133,7 +137,7 @@ final class FirestoreMoodCheckInService {
     // MARK: - Delete Check-In
 
     /// Deletes a mood check-in document.
-    static func deleteCheckIn(
+    func deleteCheckIn(
         uid: String,
         checkinId: String,
         completion: @escaping (Result<Void, Error>) -> Void

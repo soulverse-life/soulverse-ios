@@ -33,10 +33,13 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
     weak var delegate: DrawingCanvasPresenterDelegate?
 
     private let user: UserProtocol
+    private let drawingService: DrawingServiceProtocol
     private var isSaving = false
 
-    init(user: UserProtocol = User.shared) {
+    init(user: UserProtocol = User.shared,
+         drawingService: DrawingServiceProtocol = FirestoreDrawingService.shared) {
         self.user = user
+        self.drawingService = drawingService
     }
 
     func submitDrawing(
@@ -57,7 +60,7 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
         isSaving = true
         delegate?.didStartSavingDrawing()
 
-        FirestoreDrawingService.submitDrawing(
+        drawingService.submitDrawing(
             uid: uid,
             image: image,
             recordingData: recordingData,

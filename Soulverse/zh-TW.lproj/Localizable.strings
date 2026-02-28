@@ -255,6 +255,8 @@
 "tools_item_daily_quote_description" = "每日靈感";
 "tools_item_time_capsule_title" = "時光膠囊";
 "tools_item_time_capsule_description" = "寫給未來自己的信";
+"tools_locked_not_subscribed" = "訂閱以解鎖此工具";
+"tools_locked_not_implemented" = "即將推出";
 
 // MARK: - Inner Cosmo
 "inner_cosmo_greeting_format" = "你好，%@";

@@ -133,6 +133,26 @@ Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as t
 
 ## In Progress
 
+### 20. Add locked state for Tools
+**Priority**: P1
+**Complexity**: S
+**Status**: Completed
+**Branch**: feat/tool-locked-state
+**Worktree**: ../soulverse-feature/
+**Created**: 2026-02-28
+**Completed**: 2026-02-28
+**PR**: #39
+
+Add a locked state to tool cells with blur overlay + centered lock icon. Lock state is driven by `ToolLockState` enum with `LockReason` (.notSubscribed, .notImplemented). Tapping locked cells triggers reason-specific behavior instead of the tool action.
+
+**Files to Modify**:
+- `Soulverse/Features/Tools/Models/ToolsModel.swift` — Add `ToolLockState`, `LockReason` enums
+- `Soulverse/Features/Tools/ViewModels/ToolsCellViewModel.swift` — Add `lockState` property
+- `Soulverse/Features/Tools/Views/ToolsCollectionViewCell.swift` — Add blur overlay + lock icon
+- `Soulverse/Features/Tools/Presenter/ToolsViewPresenter.swift` — Set lock states on mock data
+- `Soulverse/Features/Tools/Views/ToolsViewController.swift` — Route locked taps
+- `Localizable.strings` (en + zh-TW) — Lock-related strings
+
 ---
 
 ## Done
