@@ -133,6 +133,20 @@ Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as t
 
 ## In Progress
 
+### 21. Replace LoadingView spinner with Lottie bounce animation
+**Priority**: P1
+**Complexity**: S
+**Status**: Completed
+**Branch**: feat/lottie-loading-view
+**Worktree**: ../soulverse-feature/
+**Created**: 2026-02-28
+**Completed**: 2026-02-28
+**PR**: #41
+
+Swap the UIActivityIndicatorView inside LoadingView.swift with a LottieAnimationView using stage1_bounce_lottie.json. Same public API, zero caller changes.
+
+---
+
 ### 20. Add locked state for Tools
 **Priority**: P1
 **Complexity**: S

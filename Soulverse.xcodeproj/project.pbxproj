@@ -221,8 +221,8 @@
 		79389F6C2F05760D0016CB7F /* CentralPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */; };
 		79389F6E2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */; };
 		79389F6F2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */; };
-		7947DF3A2F52B931005ABA49 /* stage1_bounce_lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 7947DF392F52B931005ABA49 /* stage1_bounce_lottie.json */; };
-		7947DF3B2F52B931005ABA49 /* stage1_bounce_lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 7947DF392F52B931005ABA49 /* stage1_bounce_lottie.json */; };
+		7947DF402F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */; };
+		7947DF412F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */; };
 		794B59F32E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
 		794B59F42E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
 		794B59FA2E9EA436006CF069 /* UniverseTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F82E9EA436006CF069 /* UniverseTheme.swift */; };
@@ -582,7 +582,7 @@
 		79389F5E2F05760D0016CB7F /* InnerCosmoMonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoMonthlyView.swift; sourceTree = "<group>"; };
 		79389F5F2F05760D0016CB7F /* InnerCosmoWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoWeeklyView.swift; sourceTree = "<group>"; };
 		79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoEmotionData.swift; sourceTree = "<group>"; };
-		7947DF392F52B931005ABA49 /* stage1_bounce_lottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1_bounce_lottie.json; sourceTree = "<group>"; };
+		7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1_bounce_lottie.json; sourceTree = "<group>"; };
 		794B59F22E9EA3E1006CF069 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		794B59F52E9EA436006CF069 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		794B59F62E9EA436006CF069 /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
@@ -1380,7 +1380,7 @@
 		7947DF382F52B8CB005ABA49 /* animation */ = {
 			isa = PBXGroup;
 			children = (
-				7947DF392F52B931005ABA49 /* stage1_bounce_lottie.json */,
+				7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */,
 			);
 			path = animation;
 			sourceTree = "<group>";
@@ -2052,10 +2052,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				79DD63402EDB2FAF008A5F8D /* canvas_prompts.json in Resources */,
+				7947DF402F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */,
 				790AD2732DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
 				79F1380C2F3875E10034D325 /* GoogleService-Info.plist in Resources */,
 				790AD2742DF9E43200C33CD1 /* Main.storyboard in Resources */,
-				7947DF3B2F52B931005ABA49 /* stage1_bounce_lottie.json in Resources */,
 				7922ECAD2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */,
 				790AD27E2DF9E43200C33CD1 /* Localizable.strings in Resources */,
 				790AD2922DF9E43200C33CD1 /* Assets.xcassets in Resources */,
@@ -2069,10 +2069,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				79DD63432EDB2FAF008A5F8D /* canvas_prompts.json in Resources */,
+				7947DF412F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */,
 				790AD29D2DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
 				79F1380B2F3875E10034D325 /* GoogleService-Info.plist in Resources */,
 				790AD29E2DF9E43200C33CD1 /* Main.storyboard in Resources */,
-				7947DF3A2F52B931005ABA49 /* stage1_bounce_lottie.json in Resources */,
 				7922ECAC2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */,
 				790AD2A82DF9E43200C33CD1 /* Localizable.strings in Resources */,
 				790AD2BC2DF9E43200C33CD1 /* Assets.xcassets in Resources */,
