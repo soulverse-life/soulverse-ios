@@ -14,6 +14,7 @@ class ToolsCollectionViewCell: UICollectionViewCell {
         static let labelHorizontalInset: CGFloat = 16
         static let descriptionTopOffset: CGFloat = 4
         static let lockIconSize: CGFloat = 28
+        static let lockOverlayAlpha: CGFloat = 0.55
         static let borderWidth: CGFloat = 1
         static let fallbackBackgroundAlpha: CGFloat = 0.1
     }
@@ -55,9 +56,9 @@ class ToolsCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    private let lockOverlayView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
-        let view = UIVisualEffectView(effect: blurEffect)
+    private let lockOverlayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(Layout.lockOverlayAlpha)
         view.isHidden = true
         view.layer.cornerRadius = Layout.cornerRadius
         view.clipsToBounds = true
@@ -148,7 +149,7 @@ class ToolsCollectionViewCell: UICollectionViewCell {
             baseView.addSubview(lockOverlayView)
         }
 
-        lockOverlayView.contentView.addSubview(lockIconImageView)
+        lockOverlayView.addSubview(lockIconImageView)
 
         lockOverlayView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
