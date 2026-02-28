@@ -99,7 +99,8 @@ private extension ToolsViewModelTests {
                     iconName: "icon_\(sectionIndex)_\(itemIndex)",
                     title: "Tool \(sectionIndex)-\(itemIndex)",
                     description: "Description",
-                    action: .comingSoon
+                    action: .dailyQuote,
+                    lockState: .unlocked
                 )
             }
             return ToolsSectionViewModel(title: "Section \(sectionIndex)", items: items)

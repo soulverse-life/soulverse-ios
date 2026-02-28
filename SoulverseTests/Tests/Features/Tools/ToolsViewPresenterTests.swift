@@ -71,8 +71,8 @@ final class ToolsViewPresenterTests: XCTestCase {
 
     // MARK: - didSelectTool
 
-    func test_ToolsViewPresenter_didSelectToolComingSoon_doesNotCrash() {
-        presenter.didSelectTool(action: .comingSoon)
+    func test_ToolsViewPresenter_didSelectToolDailyQuote_doesNotCrash() {
+        presenter.didSelectTool(action: .dailyQuote)
         // No crash means success
     }
 
