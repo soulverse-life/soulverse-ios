@@ -5,35 +5,31 @@
 
 import UIKit
 import SnapKit
+import Lottie
 
-/// A reusable loading indicator view.
-/// Currently uses UIActivityIndicatorView internally, designed to be
-/// easily swapped for a custom animation (e.g., Lottie) later.
+/// A reusable loading indicator view using Lottie animation.
 final class LoadingView: UIView {
 
     // MARK: - Layout Constants
 
     private enum Layout {
-        static let indicatorSize: CGFloat = 40
+        static let animationSize: CGFloat = 150
     }
 
     // MARK: - UI Components
 
-    private let activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.hidesWhenStopped = true
-        return indicator
+    private let animationView: LottieAnimationView = {
+        let view = LottieAnimationView(name: "stage1_bounce_lottie")
+        view.contentMode = .scaleAspectFit
+        view.loopMode = .loop
+        view.backgroundBehavior = .pauseAndRestore
+        return view
     }()
 
     // MARK: - Properties
 
-    var color: UIColor? {
-        get { activityIndicator.color }
-        set { activityIndicator.color = newValue }
-    }
-
     var isAnimating: Bool {
-        activityIndicator.isAnimating
+        animationView.isAnimationPlaying
     }
 
     // MARK: - Initialization
@@ -50,9 +46,10 @@ final class LoadingView: UIView {
     // MARK: - Setup
 
     private func setupUI() {
-        addSubview(activityIndicator)
-        activityIndicator.snp.makeConstraints { make in
+        addSubview(animationView)
+        animationView.snp.makeConstraints { make in
             make.center.equalToSuperview()
+            make.size.equalTo(Layout.animationSize)
         }
     }
 
@@ -60,11 +57,11 @@ final class LoadingView: UIView {
 
     func startAnimating() {
         isHidden = false
-        activityIndicator.startAnimating()
+        animationView.play()
     }
 
     func stopAnimating() {
-        activityIndicator.stopAnimating()
+        animationView.stop()
         isHidden = true
     }
 }
