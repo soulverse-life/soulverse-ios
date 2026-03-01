@@ -221,6 +221,8 @@
 		79389F6C2F05760D0016CB7F /* CentralPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */; };
 		79389F6E2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */; };
 		79389F6F2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */; };
+		7947DF402F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */; };
+		7947DF412F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */; };
 		794B59F32E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
 		794B59F42E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
 		794B59FA2E9EA436006CF069 /* UniverseTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F82E9EA436006CF069 /* UniverseTheme.swift */; };
@@ -580,6 +582,7 @@
 		79389F5E2F05760D0016CB7F /* InnerCosmoMonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoMonthlyView.swift; sourceTree = "<group>"; };
 		79389F5F2F05760D0016CB7F /* InnerCosmoWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoWeeklyView.swift; sourceTree = "<group>"; };
 		79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoEmotionData.swift; sourceTree = "<group>"; };
+		7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1_bounce_lottie.json; sourceTree = "<group>"; };
 		794B59F22E9EA3E1006CF069 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		794B59F52E9EA436006CF069 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		794B59F62E9EA436006CF069 /* SoulTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulTheme.swift; sourceTree = "<group>"; };
@@ -754,7 +757,6 @@
 				D61CED62103A1FDB1695E641 /* Tools */,
 				8B885CAC90F0C57D72ADB2AA /* Quest */,
 			);
-			name = Features;
 			path = Features;
 			sourceTree = "<group>";
 		};
@@ -763,7 +765,6 @@
 			children = (
 				6975331B3B4B8D90409C867C /* InnerCosmoViewPresenterDelegateMock.swift */,
 			);
-			name = InnerCosmo;
 			path = InnerCosmo;
 			sourceTree = "<group>";
 		};
@@ -781,7 +782,6 @@
 			children = (
 				55E82F16483EBA0D0699E631 /* TestHelpers.swift */,
 			);
-			name = Helpers;
 			path = Helpers;
 			sourceTree = "<group>";
 		};
@@ -791,7 +791,6 @@
 				5DB9147A86FBF42436C1031E /* InnerCosmoPeriodTests.swift */,
 				33D5E26D95352B5C69AD10D7 /* MoodEntryTests.swift */,
 			);
-			name = InnerCosmo;
 			path = InnerCosmo;
 			sourceTree = "<group>";
 		};
@@ -803,7 +802,6 @@
 				5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */,
 				A30DBF3AA04EC4F8C683EA7F /* DrawingReplayPresenterDelegateMock.swift */,
 			);
-			name = Canvas;
 			path = Canvas;
 			sourceTree = "<group>";
 		};
@@ -812,7 +810,6 @@
 			children = (
 				29EE6A0FC75D3CD9A79A387B /* Models */,
 			);
-			name = MoodCheckIn;
 			path = MoodCheckIn;
 			sourceTree = "<group>";
 		};
@@ -825,7 +822,6 @@
 				708C8013D747ADE7A99E4D9F /* PromptOptionTests.swift */,
 				184F89A9D358017D65133095 /* EvaluationOptionTests.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -853,7 +849,6 @@
 			children = (
 				747376777B5866EF992CA14C /* InsightViewPresenterTests.swift */,
 			);
-			name = Insight;
 			path = Insight;
 			sourceTree = "<group>";
 		};
@@ -871,7 +866,6 @@
 				5A95C383DB61DE6370611AFF /* CanvasPromptTests.swift */,
 				8AE6A1610F27FD47B57135DD /* DrawingGalleryViewModelTests.swift */,
 			);
-			name = Canvas;
 			path = Canvas;
 			sourceTree = "<group>";
 		};
@@ -881,7 +875,6 @@
 				545EED434F6369FD9BF5FB8A /* MoodCheckInServiceTests.swift */,
 				BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */,
 			);
-			name = MoodCheckInService;
 			path = MoodCheckInService;
 			sourceTree = "<group>";
 		};
@@ -891,7 +884,6 @@
 				2CD6A03F5EE59C7A4854CAF0 /* DrawingServiceProtocol.swift */,
 				A8C59E22D0E948D8EE0F606C /* MoodCheckInServiceProtocol.swift */,
 			);
-			name = Protocols;
 			path = Protocols;
 			sourceTree = "<group>";
 		};
@@ -901,7 +893,6 @@
 				C7F022BFD84C7AB6E0A5520B /* DrawingServiceMock.swift */,
 				E9A4342554B5B0F59BAA4F80 /* MoodCheckInServiceMock.swift */,
 			);
-			name = Service;
 			path = Service;
 			sourceTree = "<group>";
 		};
@@ -910,7 +901,6 @@
 			children = (
 				5E56565E1067F09318717526 /* TopicTests.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -923,7 +913,6 @@
 				758DD67D89CB0A4551DA5BF9 /* InnerCosmo */,
 				B06D90248ED786EB06B47567 /* Profile */,
 			);
-			name = Features;
 			path = Features;
 			sourceTree = "<group>";
 		};
@@ -933,7 +922,6 @@
 				2F968EB81037659FA48E9E96 /* DrawingServiceTests.swift */,
 				41A570739EAD0EFF9A3C23B2 /* MoodCheckInService */,
 			);
-			name = Service;
 			path = Service;
 			sourceTree = "<group>";
 		};
@@ -961,7 +949,6 @@
 				11A574F922E4F95788E99F30 /* InnerCosmo */,
 				B5F3F836B7814001637BA669 /* Profile */,
 			);
-			name = Features;
 			path = Features;
 			sourceTree = "<group>";
 		};
@@ -970,7 +957,6 @@
 			children = (
 				9A44C2E1B8167E15D1A17DB8 /* InnerCosmoViewPresenterTests.swift */,
 			);
-			name = InnerCosmo;
 			path = InnerCosmo;
 			sourceTree = "<group>";
 		};
@@ -1061,6 +1047,7 @@
 		790AD1DA2DF9E43200C33CD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7947DF382F52B8CB005ABA49 /* animation */,
 				79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */,
 				7922ECAB2E98ABDD0086B7CA /* Fonts */,
 				790AD1B52DF9E43200C33CD1 /* APIMockResponse */,
@@ -1390,6 +1377,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		7947DF382F52B8CB005ABA49 /* animation */ = {
+			isa = PBXGroup;
+			children = (
+				7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */,
+			);
+			path = animation;
+			sourceTree = "<group>";
+		};
 		794B59F92E9EA436006CF069 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -1709,7 +1704,6 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = Quest;
 			path = Quest;
 			sourceTree = "<group>";
 		};
@@ -1718,7 +1712,6 @@
 			children = (
 				12D323DAF3E30DD98A2DDE6F /* InsightViewPresenterDelegateMock.swift */,
 			);
-			name = Insight;
 			path = Insight;
 			sourceTree = "<group>";
 		};
@@ -1736,7 +1729,6 @@
 				CB9C0D20CDC0B8EA375AD097 /* Shared */,
 				6D2D6446E9CF576A7A33BA6A /* Features */,
 			);
-			name = Mocks;
 			path = Mocks;
 			sourceTree = "<group>";
 		};
@@ -1756,7 +1748,6 @@
 				4B4022CB186C33E5BAB012EE /* Features */,
 				BAD88F726A5E9E1C0F5E5E7C /* Shared */,
 			);
-			name = Tests;
 			path = Tests;
 			sourceTree = "<group>";
 		};
@@ -1775,7 +1766,6 @@
 			children = (
 				11FDA00077B2E5E075CB1131 /* ProfileViewPresenterTests.swift */,
 			);
-			name = Profile;
 			path = Profile;
 			sourceTree = "<group>";
 		};
@@ -1784,7 +1774,6 @@
 			children = (
 				BEAB351D7409FEACE9BE53BE /* WeeklyMoodScoreViewModelTests.swift */,
 			);
-			name = Insight;
 			path = Insight;
 			sourceTree = "<group>";
 		};
@@ -1793,7 +1782,6 @@
 			children = (
 				E171DE35597BA70C8B122CD8 /* ToolsViewPresenterTests.swift */,
 			);
-			name = Tools;
 			path = Tools;
 			sourceTree = "<group>";
 		};
@@ -1810,7 +1798,6 @@
 			children = (
 				B13356FF749A1E34851D44C3 /* ProfileViewPresenterDelegateMock.swift */,
 			);
-			name = Profile;
 			path = Profile;
 			sourceTree = "<group>";
 		};
@@ -1837,7 +1824,6 @@
 			children = (
 				51C350327527415314F387D4 /* Service */,
 			);
-			name = Shared;
 			path = Shared;
 			sourceTree = "<group>";
 		};
@@ -1846,7 +1832,6 @@
 			children = (
 				426B13831347D38F0A5902CB /* Service */,
 			);
-			name = Shared;
 			path = Shared;
 			sourceTree = "<group>";
 		};
@@ -1856,7 +1841,6 @@
 				9E7D4BF95B848EC74DB80D90 /* Mocks */,
 				ABF216993E65F7CD43C300DE /* Tests */,
 			);
-			name = SoulverseTests;
 			path = SoulverseTests;
 			sourceTree = "<group>";
 		};
@@ -1865,7 +1849,6 @@
 			children = (
 				A8FA67C204F2A591ECD30F1F /* ToolsViewModelTests.swift */,
 			);
-			name = Tools;
 			path = Tools;
 			sourceTree = "<group>";
 		};
@@ -1877,7 +1860,6 @@
 				CDD04250F40AD48441C462A5 /* DrawingCanvasPresenterTests.swift */,
 				C1409E46492A9298B17FDE1D /* DrawingGalleryPresenterTests.swift */,
 			);
-			name = Canvas;
 			path = Canvas;
 			sourceTree = "<group>";
 		};
@@ -1886,7 +1868,6 @@
 			children = (
 				60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */,
 			);
-			name = Onboarding;
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
@@ -1928,7 +1909,6 @@
 			children = (
 				5A7A89532F54342452F4E920 /* ToolsViewPresenterDelegateMock.swift */,
 			);
-			name = Tools;
 			path = Tools;
 			sourceTree = "<group>";
 		};
@@ -2072,6 +2052,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79DD63402EDB2FAF008A5F8D /* canvas_prompts.json in Resources */,
+				7947DF402F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */,
 				790AD2732DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
 				79F1380C2F3875E10034D325 /* GoogleService-Info.plist in Resources */,
 				790AD2742DF9E43200C33CD1 /* Main.storyboard in Resources */,
@@ -2088,6 +2069,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79DD63432EDB2FAF008A5F8D /* canvas_prompts.json in Resources */,
+				7947DF412F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */,
 				790AD29D2DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
 				79F1380B2F3875E10034D325 /* GoogleService-Info.plist in Resources */,
 				790AD29E2DF9E43200C33CD1 /* Main.storyboard in Resources */,
