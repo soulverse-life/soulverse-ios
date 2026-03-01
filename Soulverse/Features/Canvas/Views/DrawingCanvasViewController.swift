@@ -311,7 +311,7 @@ class DrawingCanvasViewController: UIViewController {
         updateBackgroundFrame()
 
         // 然後調整底部 inset 為工具選擇器留出空間
-        let toolPickerBottomInset = LaoutConstant.toolPickerHeight + 10
+        let toolPickerBottomInset = LayoutConstant.toolPickerHeight + 10
         var currentInsets = canvasView.contentInset
         currentInsets.bottom = max(currentInsets.bottom, toolPickerBottomInset)
 
@@ -370,7 +370,7 @@ class DrawingCanvasViewController: UIViewController {
         let imageSize = canvasContentSize
         let canvasBounds = canvasView.bounds.size
         let currentZoom = canvasView.zoomScale
-        let inset = LaoutConstant.backgroundImageInset
+        let inset = LayoutConstant.backgroundImageInset
 
         // 計算當前縮放下的圖片尺寸（扣除 inset）
         let scaledWidth = imageSize.width * currentZoom
