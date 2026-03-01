@@ -285,7 +285,6 @@
 		79B24C7A2DFC7B2A001220B6 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B24C722DFC7B2A001220B6 /* CanvasViewController.swift */; };
 		79B6AAB32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */; };
 		79B6AAB42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA42EACCA5D00A8B079 /* MoodCheckInData.swift */; };
-		79B6AAB52EACCA5D00A8B079 /* PromptOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA52EACCA5D00A8B079 /* PromptOption.swift */; };
 		79B6AAB62EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAB2EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift */; };
 		79B6AAB72EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAF2EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift */; };
 		79B6AAB92EACCA5D00A8B079 /* MoodCheckInActingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAA2EACCA5D00A8B079 /* MoodCheckInActingViewController.swift */; };
@@ -293,11 +292,9 @@
 		79B6AABD2EACCA5D00A8B079 /* EmotionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */; };
 		79B6AABE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA72EACCA5D00A8B079 /* MoodCheckInCoordinator.swift */; };
 		79B6AABF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAE2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift */; };
-		79B6AAC12EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAB02EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift */; };
 		79B6AAC22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAC2EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift */; };
 		79B6AAC32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */; };
 		79B6AAC42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA42EACCA5D00A8B079 /* MoodCheckInData.swift */; };
-		79B6AAC52EACCA5D00A8B079 /* PromptOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA52EACCA5D00A8B079 /* PromptOption.swift */; };
 		79B6AAC62EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAB2EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift */; };
 		79B6AAC72EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAF2EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift */; };
 		79B6AAC92EACCA5D00A8B079 /* MoodCheckInActingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAA2EACCA5D00A8B079 /* MoodCheckInActingViewController.swift */; };
@@ -305,7 +302,6 @@
 		79B6AACD2EACCA5D00A8B079 /* EmotionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */; };
 		79B6AACE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA72EACCA5D00A8B079 /* MoodCheckInCoordinator.swift */; };
 		79B6AACF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAE2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift */; };
-		79B6AAD12EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAB02EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift */; };
 		79B6AAD22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAC2EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift */; };
 		79B6AAD72EACCABA00A8B079 /* RadioOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAD52EACCABA00A8B079 /* RadioOptionView.swift */; };
 		79B6AAD82EACCABA00A8B079 /* ColorGradientSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAD32EACCABA00A8B079 /* ColorGradientSliderView.swift */; };
@@ -321,8 +317,6 @@
 		79B6AAE62EB5B7AA00A8B079 /* IntensitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */; };
 		79B6AAE72EB5B7AA00A8B079 /* EmotionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */; };
 		79B6AAE82EB5B7AA00A8B079 /* ColorSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */; };
-		79B6AAEE2EB75F8800A8B079 /* PromptSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */; };
-		79B6AAF02EB75F8800A8B079 /* PromptSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */; };
 		79BB25162DF9E2C600ED3CBE /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = E8388395277AF9F80002C053 /* OpenCC */; };
 		79BB25172DF9E2C600ED3CBE /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = E8388397277AF9F80002C053 /* SwiftMessages */; };
 		79BB25182DF9E2C600ED3CBE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E8388399277AF9F80002C053 /* Realm */; };
@@ -389,7 +383,6 @@
 		B4E8CAB694343C5B86954CE7 /* FirestoreSchemaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E4D78EAA08D9BD40D689C /* FirestoreSchemaTests.swift */; };
 		B687959D9AD055A99B195148 /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
 		C0DFE64282D5F1868C0544F4 /* CanvasPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A95C383DB61DE6370611AFF /* CanvasPromptTests.swift */; };
-		C4B5F554D1BAD20B49269826 /* PromptOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708C8013D747ADE7A99E4D9F /* PromptOptionTests.swift */; };
 		C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
 		CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */; };
 		D45ECEE25B2D86CBF6C11B49 /* MoodEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5E26D95352B5C69AD10D7 /* MoodEntryTests.swift */; };
@@ -485,7 +478,6 @@
 		6A1E4D78EAA08D9BD40D689C /* FirestoreSchemaTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreSchemaTests.swift; sourceTree = "<group>"; };
 		6DE60F310C8AB64668217ECB /* DrawingModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
 		6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DevAuthService.swift; sourceTree = "<group>"; };
-		708C8013D747ADE7A99E4D9F /* PromptOptionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PromptOptionTests.swift; sourceTree = "<group>"; };
 		747376777B5866EF992CA14C /* InsightViewPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InsightViewPresenterTests.swift; sourceTree = "<group>"; };
 		790AD1692DF9E43200C33CD1 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		790AD16A2DF9E43200C33CD1 /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
@@ -616,7 +608,6 @@
 		79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionType.swift; sourceTree = "<group>"; };
 		79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationOption.swift; sourceTree = "<group>"; };
 		79B6AAA42EACCA5D00A8B079 /* MoodCheckInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInData.swift; sourceTree = "<group>"; };
-		79B6AAA52EACCA5D00A8B079 /* PromptOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptOption.swift; sourceTree = "<group>"; };
 		79B6AAA72EACCA5D00A8B079 /* MoodCheckInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInCoordinator.swift; sourceTree = "<group>"; };
 		79B6AAAA2EACCA5D00A8B079 /* MoodCheckInActingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInActingViewController.swift; sourceTree = "<group>"; };
 		79B6AAAB2EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInAttributingViewController.swift; sourceTree = "<group>"; };
@@ -624,7 +615,6 @@
 		79B6AAAD2EACCA5D00A8B079 /* MoodCheckInNamingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInNamingViewController.swift; sourceTree = "<group>"; };
 		79B6AAAE2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInPetViewController.swift; sourceTree = "<group>"; };
 		79B6AAAF2EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInSensingViewController.swift; sourceTree = "<group>"; };
-		79B6AAB02EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckInShapingViewController.swift; sourceTree = "<group>"; };
 		79B6AAD32EACCABA00A8B079 /* ColorGradientSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGradientSliderView.swift; sourceTree = "<group>"; };
 		79B6AAD42EACCABA00A8B079 /* IntensityCircleSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityCircleSelectorView.swift; sourceTree = "<group>"; };
 		79B6AAD52EACCABA00A8B079 /* RadioOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptionView.swift; sourceTree = "<group>"; };
@@ -632,7 +622,6 @@
 		79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSummaryView.swift; sourceTree = "<group>"; };
 		79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionSelectionView.swift; sourceTree = "<group>"; };
 		79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensitySelectionView.swift; sourceTree = "<group>"; };
-		79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptSelectionView.swift; sourceTree = "<group>"; };
 		79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTagCell.swift; sourceTree = "<group>"; };
 		79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroTransitionID.swift; sourceTree = "<group>"; };
 		79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroTransitionID+Tools.swift"; sourceTree = "<group>"; };
@@ -819,7 +808,6 @@
 				ABA97A0D5537477FC8E3374B /* RecordedEmotionTests.swift */,
 				B7278578F137612349A77E22 /* EmotionTypeTests.swift */,
 				A06A840760ABEE725B08771D /* MoodCheckInDataTests.swift */,
-				708C8013D747ADE7A99E4D9F /* PromptOptionTests.swift */,
 				184F89A9D358017D65133095 /* EvaluationOptionTests.swift */,
 			);
 			path = Models;
@@ -1614,7 +1602,6 @@
 				79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */,
 				79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */,
 				79B6AAA42EACCA5D00A8B079 /* MoodCheckInData.swift */,
-				79B6AAA52EACCA5D00A8B079 /* PromptOption.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1644,7 +1631,6 @@
 				79B6AAAD2EACCA5D00A8B079 /* MoodCheckInNamingViewController.swift */,
 				79B6AAAE2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift */,
 				79B6AAAF2EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift */,
-				79B6AAB02EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1669,7 +1655,6 @@
 				79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */,
 				79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */,
 				79B6AAD42EACCABA00A8B079 /* IntensityCircleSelectorView.swift */,
-				79B6AAED2EB75F8800A8B079 /* PromptSelectionView.swift */,
 				79B6AAD52EACCABA00A8B079 /* RadioOptionView.swift */,
 			);
 			path = Components;
@@ -2401,12 +2386,10 @@
 				7922ECD12E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
 				7922ECD22E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
 				7922ECD32E993B8D0086B7CA /* OnboardingUserData.swift in Sources */,
-				79B6AAF02EB75F8800A8B079 /* PromptSelectionView.swift in Sources */,
 				79EE74CD2F2E4F220082EECF /* Constants+MoodCheckIn.swift in Sources */,
 				7922ECD72E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */,
 				79B6AAB32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */,
 				79B6AAB42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */,
-				79B6AAB52EACCA5D00A8B079 /* PromptOption.swift in Sources */,
 				790D87F52ED209F800D4F61F /* ToolsCellViewModel.swift in Sources */,
 				79B6AAB62EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift in Sources */,
 				79B6AAB72EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift in Sources */,
@@ -2417,7 +2400,6 @@
 				79EE74D62F30AE790082EECF /* MoodEntry.swift in Sources */,
 				79B6AABF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */,
 				79EE74D12F2BE1000082EECF /* SoulverseTopicList.swift in Sources */,
-				79B6AAC12EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift in Sources */,
 				79B6AAC22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */,
 				7922ECD92E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */,
 				7922ECDB2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */,
@@ -2563,12 +2545,10 @@
 				7922ECC42E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
 				7922ECC52E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
 				7922ECC62E993B8D0086B7CA /* OnboardingUserData.swift in Sources */,
-				79B6AAEE2EB75F8800A8B079 /* PromptSelectionView.swift in Sources */,
 				79EE74CC2F2E4F220082EECF /* Constants+MoodCheckIn.swift in Sources */,
 				7922ECCA2E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */,
 				79B6AAC32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */,
 				79B6AAC42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */,
-				79B6AAC52EACCA5D00A8B079 /* PromptOption.swift in Sources */,
 				790D87F62ED209F800D4F61F /* ToolsCellViewModel.swift in Sources */,
 				79B6AAC62EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift in Sources */,
 				79B6AAC72EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift in Sources */,
@@ -2579,7 +2559,6 @@
 				79EE74D52F30AE790082EECF /* MoodEntry.swift in Sources */,
 				79B6AACF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */,
 				79EE74D22F2BE1000082EECF /* SoulverseTopicList.swift in Sources */,
-				79B6AAD12EACCA5D00A8B079 /* MoodCheckInShapingViewController.swift in Sources */,
 				79B6AAD22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */,
 				7922ECCC2E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */,
 				7922ECCE2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */,
@@ -2630,7 +2609,6 @@
 				537A9C9DB8B5757CF367B783 /* RecordedEmotionTests.swift in Sources */,
 				385D2519CEFF7A5BED4D0255 /* EmotionTypeTests.swift in Sources */,
 				6009E3A97AD857D0070766C9 /* MoodCheckInDataTests.swift in Sources */,
-				C4B5F554D1BAD20B49269826 /* PromptOptionTests.swift in Sources */,
 				A848471F529A30BB4065C1A9 /* EvaluationOptionTests.swift in Sources */,
 				F2E2FC2A93FA9CEABE0AAC5F /* TopicTests.swift in Sources */,
 				CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */,

@@ -53,14 +53,6 @@ extension MoodCheckInAPIService: TargetType {
                 parameters["emotion"] = emotion.uniqueKey
             }
 
-            // Prompt and response
-            if let prompt = data.selectedPrompt {
-                parameters["selected_prompt"] = prompt.rawValue
-            }
-            if let response = data.promptResponse {
-                parameters["prompt_response"] = response
-            }
-
             // Topic
             if let topic = data.selectedTopic {
                 parameters["topic"] = topic.rawValue
