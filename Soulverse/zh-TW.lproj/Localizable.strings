@@ -181,14 +181,6 @@
 "emotion_outrage" = "憤慨";
 "emotion_pessimism" = "悲觀";
 
-// Mood Check-In - Shaping Screen
-"mood_checkin_shaping_title" = "塑形";
-"mood_checkin_shaping_subtitle" = "";
-"mood_checkin_shaping_feeling_prefix" = "你現在感受到";
-"mood_checkin_shaping_text_header" = "寫一句話";
-"mood_checkin_shaping_pick_prompt" = "選擇一個提示";
-
-
 // Mood Check-In - Pet Screen
 "mood_checkin_pet_title" = "這是你的情緒寵物";
 "mood_checkin_pet_subtitle" = "你的情緒寵物會隨著每次情緒記錄一起成長，反映你的內心世界。你記錄得越多，它就會跟著你一起演化。";
@@ -222,22 +214,6 @@
 "mood_checkin_acting_draw" = "繪畫";
 "mood_checkin_acting_write_journal" = "寫日記";
 "mood_checkin_acting_complete" = "完成記錄";
-
-// Mood Check-In - Prompt Options
-"prompt_option_it_feels_like" = "感覺就像";
-"prompt_option_it_reminds_me_of" = "讓我想起";
-"prompt_option_i_sense" = "我感受到";
-"prompt_option_the_emotion_is_like" = "這個情緒就像";
-"prompt_option_in_my_body_its" = "在我的身體裡，它是";
-"prompt_option_the_texture_is" = "這個質感是";
-
-// Mood Check-In - Prompt Placeholders
-"prompt_placeholder_it_feels_like" = "「感覺就像 _______。」\n想想一個與你的感受相符的畫面、動作或氛圍。";
-"prompt_placeholder_it_reminds_me_of" = "「讓我想起 _______。」\n描述一段與這個情緒產生共鳴的記憶、地點或經歷。";
-"prompt_placeholder_i_sense" = "「我感受到 _______。」\n這個感受帶來什麼樣的身體感覺或直覺？";
-"prompt_placeholder_the_emotion_is_like" = "「這個情緒就像 _______。」\n用一個比喻或對比來捕捉你情緒的本質。";
-"prompt_placeholder_in_my_body_its" = "「在我的身體裡，它是 _______。」\n這個情緒在身體的哪裡、如何呈現？";
-"prompt_placeholder_the_texture_is" = "「這個質感是 _______。」\n如果這個情緒有質感，會是什麼感覺？";
 
 // MARK: - Tools
 "tools_healing_title" = "療癒";

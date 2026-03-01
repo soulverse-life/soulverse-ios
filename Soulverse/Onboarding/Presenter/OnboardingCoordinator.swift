@@ -69,12 +69,6 @@ final class OnboardingCoordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    private func showTopicSelectionScreen() {
-        let viewController = OnboardingTopicViewController()
-        viewController.delegate = self
-        navigationController.pushViewController(viewController, animated: true)
-    }
-
     // MARK: - Authentication
 
     private func handleGoogleAuthentication() {
@@ -250,16 +244,6 @@ extension OnboardingCoordinator: OnboardingNamingViewControllerDelegate {
     func onboardingNamingViewController(_ viewController: OnboardingNamingViewController, didCompletePlanetName planetName: String, emoPetName: String) {
         userData.planetName = planetName
         userData.emoPetName = emoPetName
-        showTopicSelectionScreen()
-    }
-}
-
-// MARK: - OnboardingTopicViewControllerDelegate
-
-extension OnboardingCoordinator: OnboardingTopicViewControllerDelegate {
-
-    func onboardingTopicViewController(_ viewController: OnboardingTopicViewController, didSelectTopic topic: Topic) {
-        userData.selectedTopic = topic
         submitOnboardingData()
     }
 }

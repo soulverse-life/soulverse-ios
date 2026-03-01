@@ -35,7 +35,7 @@ class MoodCheckInAttributingViewController: ViewController {
 
     private lazy var progressBar: SoulverseProgressBar = {
         let bar = SoulverseProgressBar(totalSteps: MoodCheckInLayout.totalSteps)
-        bar.setProgress(currentStep: 4)
+        bar.setProgress(currentStep: 3)
         return bar
     }()
 
