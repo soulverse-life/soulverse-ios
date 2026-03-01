@@ -24,14 +24,6 @@ struct MoodCheckInData {
     /// The final recorded emotion (resolved from user selection)
     var recordedEmotion: RecordedEmotion?
 
-    // MARK: - Shaping Step
-
-    /// Selected prompt option
-    var selectedPrompt: PromptOption?
-
-    /// User's text response to the prompt
-    var promptResponse: String?
-
     // MARK: - Attributing Step
 
     /// Selected topic
@@ -59,11 +51,6 @@ struct MoodCheckInData {
         return recordedEmotion != nil
     }
 
-    /// Check if Shaping step is complete (optional step - always complete)
-    var isShapingComplete: Bool {
-        return true
-    }
-
     /// Check if Attributing step is complete
     var isAttributingComplete: Bool {
         return selectedTopic != nil
@@ -78,7 +65,6 @@ struct MoodCheckInData {
     var isComplete: Bool {
         return isSensingComplete &&
                isNamingComplete &&
-               isShapingComplete &&
                isAttributingComplete &&
                isEvaluatingComplete
     }

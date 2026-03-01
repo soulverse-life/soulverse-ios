@@ -59,10 +59,10 @@ final class OnboardingUserDataTests: XCTestCase {
         XCTAssertFalse(data.isComplete)
     }
 
-    func test_OnboardingUserData_isComplete_falseWhenMissingSelectedTopic() {
+    func test_OnboardingUserData_isComplete_trueWhenMissingSelectedTopic() {
         var data = makeCompleteData()
         data.selectedTopic = nil
-        XCTAssertFalse(data.isComplete)
+        XCTAssertTrue(data.isComplete)
     }
 }
 

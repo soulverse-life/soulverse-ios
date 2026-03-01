@@ -75,18 +75,6 @@ final class MoodCheckInCoordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    private func showShapingScreen() {
-        let viewController = MoodCheckInShapingViewController()
-        viewController.delegate = self
-        // Pass the selected color with intensity (alpha) and recorded emotion from previous steps
-        if let selectedColor = moodCheckInData.selectedColor,
-           let recordedEmotion = moodCheckInData.recordedEmotion {
-            let colorWithAlpha = selectedColor.withAlphaComponent(moodCheckInData.colorIntensity)
-            viewController.setSelectedColorAndEmotion(color: colorWithAlpha, emotion: recordedEmotion)
-        }
-        navigationController.pushViewController(viewController, animated: true)
-    }
-
     private func showAttributingScreen() {
         let viewController = MoodCheckInAttributingViewController()
         viewController.delegate = self
@@ -209,7 +197,7 @@ extension MoodCheckInCoordinator: MoodCheckInNamingViewControllerDelegate {
 
     func didSelectEmotion(_ viewController: MoodCheckInNamingViewController, emotion: RecordedEmotion) {
         moodCheckInData.recordedEmotion = emotion
-        showShapingScreen()
+        showAttributingScreen()
     }
 
     func didTapBack(_ viewController: MoodCheckInNamingViewController) {
@@ -217,25 +205,6 @@ extension MoodCheckInCoordinator: MoodCheckInNamingViewControllerDelegate {
     }
 
     func didTapClose(_ viewController: MoodCheckInNamingViewController) {
-        showExitConfirmationDialog(from: viewController)
-    }
-}
-
-// MARK: - MoodCheckInShapingViewControllerDelegate
-
-extension MoodCheckInCoordinator: MoodCheckInShapingViewControllerDelegate {
-
-    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption?, response: String?) {
-        moodCheckInData.selectedPrompt = prompt
-        moodCheckInData.promptResponse = response
-        showAttributingScreen()
-    }
-
-    func didTapBack(_ viewController: MoodCheckInShapingViewController) {
-        navigationController.popViewController(animated: true)
-    }
-
-    func didTapClose(_ viewController: MoodCheckInShapingViewController) {
         showExitConfirmationDialog(from: viewController)
     }
 }
@@ -315,12 +284,6 @@ protocol MoodCheckInNamingViewControllerDelegate: AnyObject {
     func didSelectEmotion(_ viewController: MoodCheckInNamingViewController, emotion: RecordedEmotion)
     func didTapBack(_ viewController: MoodCheckInNamingViewController)
     func didTapClose(_ viewController: MoodCheckInNamingViewController)
-}
-
-protocol MoodCheckInShapingViewControllerDelegate: AnyObject {
-    func didComplete(_ viewController: MoodCheckInShapingViewController, prompt: PromptOption?, response: String?)
-    func didTapBack(_ viewController: MoodCheckInShapingViewController)
-    func didTapClose(_ viewController: MoodCheckInShapingViewController)
 }
 
 protocol MoodCheckInAttributingViewControllerDelegate: AnyObject {

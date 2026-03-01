@@ -41,13 +41,6 @@ final class MoodCheckInDataTests: XCTestCase {
         XCTAssertTrue(data.isNamingComplete)
     }
 
-    // MARK: - isShapingComplete
-
-    func test_MoodCheckInData_isShapingComplete_alwaysTrue() {
-        let data = MoodCheckInData()
-        XCTAssertTrue(data.isShapingComplete)
-    }
-
     // MARK: - isAttributingComplete
 
     func test_MoodCheckInData_isAttributingComplete_falseWhenNoTopic() {

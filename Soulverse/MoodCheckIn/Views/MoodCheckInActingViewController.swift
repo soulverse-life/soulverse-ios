@@ -74,7 +74,7 @@ class MoodCheckInActingViewController: ViewController {
 
     private lazy var progressBar: SoulverseProgressBar = {
         let bar = SoulverseProgressBar(totalSteps: MoodCheckInLayout.totalSteps)
-        bar.setProgress(currentStep: 6)
+        bar.setProgress(currentStep: 5)
         return bar
     }()
 
@@ -127,15 +127,6 @@ class MoodCheckInActingViewController: ViewController {
         return view
     }()
 
-    private lazy var responseLabel: UILabel = {
-        let label = UILabel()
-        label.font = .projectFont(ofSize: 17, weight: .regular)
-        label.textColor = .themeTextPrimary
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        return label
-    }()
-
     private lazy var moreActionsLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("mood_checkin_acting_more_actions", comment: "")
@@ -177,7 +168,6 @@ class MoodCheckInActingViewController: ViewController {
         view.addSubview(subtitleLabel)
         view.addSubview(journeyLabel)
         view.addSubview(emotionRowContainer)
-        view.addSubview(responseLabel)
         view.addSubview(moreActionsLabel)
         view.addSubview(actionTagsStackView)
         view.addSubview(completeButton)
@@ -215,13 +205,8 @@ class MoodCheckInActingViewController: ViewController {
             make.height.equalTo(Layout.emotionRowHeight)
         }
 
-        responseLabel.snp.makeConstraints { make in
-            make.top.equalTo(emotionRowContainer.snp.bottom).offset(Layout.sectionIntraSpacing)
-            make.left.right.equalToSuperview().inset(Layout.actionViewSectionHorizontalPadding)
-        }
-
         moreActionsLabel.snp.makeConstraints { make in
-            make.top.equalTo(responseLabel.snp.bottom).offset(Layout.actionViewSectionSpacing)
+            make.top.equalTo(emotionRowContainer.snp.bottom).offset(Layout.actionViewSectionSpacing)
             make.left.right.equalToSuperview().inset(MoodCheckInLayout.horizontalPadding)
         }
 
@@ -293,7 +278,6 @@ class MoodCheckInActingViewController: ViewController {
             }
         }
 
-        responseLabel.text = data.promptResponse
     }
 
     // MARK: - Selection

@@ -181,14 +181,6 @@
 "emotion_outrage" = "Outrage";
 "emotion_pessimism" = "Pessimism";
 
-// Mood Check-In - Shaping Screen
-"mood_checkin_shaping_title" = "Shaping";
-"mood_checkin_shaping_subtitle" = "Emotions are personal.\nLet language or metaphor give your feelings a shape.";
-"mood_checkin_shaping_feeling_prefix" = "You are feeling";
-"mood_checkin_shaping_text_header" = "Write a sentence";
-"mood_checkin_shaping_pick_prompt" = "Pick a prompt";
-
-
 // Mood Check-In - Pet Screen
 "mood_checkin_pet_title" = "This is your EmoPet";
 "mood_checkin_pet_subtitle" = "Your EmoPet grows with every mood check-in, reflecting your inner world. The more you check in, the more it evolves with you.";
@@ -222,23 +214,6 @@
 "mood_checkin_acting_draw" = "Draw";
 "mood_checkin_acting_write_journal" = "Write Journal";
 "mood_checkin_acting_complete" = "Complete Checkin";
-
-// Mood Check-In - Prompt Options
-"prompt_option_it_feels_like" = "It feels like";
-"prompt_option_it_reminds_me_of" = "It reminds me of";
-"prompt_option_i_sense" = "I sense";
-"prompt_option_the_emotion_is_like" = "The emotion is like";
-"prompt_option_in_my_body_its" = "In my body, it's";
-"prompt_option_the_texture_is" = "The texture is";
-
-// Mood Check-In - Prompt Placeholders
-"prompt_placeholder_it_feels_like" = "\"It feels like _______.\"\nThink of an image, a movement, or an atmosphere that matches your feeling.";
-"prompt_placeholder_it_reminds_me_of" = "\"It reminds me of _______.\"\nName a memory, place, person, song, or scene this feeling brings up.";
-"prompt_placeholder_i_sense" = "\"I sense _______.\"\nWrite what you notice right now—inside or around you (breath, thoughts, energy, mood).";
-"prompt_placeholder_the_emotion_is_like" = "\"The emotion is like _______.\"\nGive the emotion a metaphor—like weather, an object, a creature, or a natural force.";
-"prompt_placeholder_in_my_body_its" = "\"In my body, it's _______.\"\nWhere do you feel it? Describe the sensation (tight, light, warm, buzzing, heavy).";
-"prompt_placeholder_the_texture_is" = "\"The texture is _______.\"\nIf this feeling had a texture, what would it be? (soft, sharp, sticky, grainy, silky).";
-
 
 // MARK: - Tools
 "tools_healing_title" = "Healing";

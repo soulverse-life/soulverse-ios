@@ -20,7 +20,6 @@ struct OnboardingUserData {
                birthday != nil &&
                gender != nil &&
                planetName != nil &&
-               emoPetName != nil &&
-               selectedTopic != nil
+               emoPetName != nil
     }
 }

@@ -13,7 +13,7 @@ enum MoodCheckInLayout {
     // MARK: - Progress
 
     /// Total number of steps in the mood check-in flow (excluding Pet intro)
-    static let totalSteps: Int = 6
+    static let totalSteps: Int = 5
 
     // MARK: - Navigation
 

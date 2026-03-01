@@ -32,7 +32,7 @@ class OnboardingBirthdayViewController: ViewController {
     }()
 
     private lazy var progressView: SoulverseProgressBar = {
-        let progressBar = SoulverseProgressBar(totalSteps: 5)
+        let progressBar = SoulverseProgressBar(totalSteps: 4)
         progressBar.setProgress(currentStep: 2)
         return progressBar
     }()
