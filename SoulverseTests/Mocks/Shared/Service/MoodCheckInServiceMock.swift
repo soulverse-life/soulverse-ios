@@ -15,6 +15,7 @@ final class MoodCheckInServiceMock: MoodCheckInServiceProtocol {
 
     var submitResult: Result<String, Error> = .success("mock-checkin-id")
     var fetchLatestResult: Result<[MoodCheckInModel], Error> = .success([])
+    var fetchLatestBeforeResult: Result<[MoodCheckInModel], Error> = .success([])
     var fetchByDateResult: Result<[MoodCheckInModel], Error> = .success([])
     var deleteResult: Result<Void, Error> = .success(())
 
@@ -22,6 +23,7 @@ final class MoodCheckInServiceMock: MoodCheckInServiceProtocol {
 
     var submitCallCount = 0
     var fetchLatestCallCount = 0
+    var fetchLatestBeforeCallCount = 0
     var fetchByDateCallCount = 0
     var deleteCallCount = 0
 
@@ -50,6 +52,18 @@ final class MoodCheckInServiceMock: MoodCheckInServiceProtocol {
         fetchLatestCallCount += 1
         lastFetchUID = uid
         let result = fetchLatestResult
+        callbackQueue.async { completion(result) }
+    }
+
+    func fetchLatestCheckIns(
+        uid: String,
+        limit: Int,
+        before cursor: Date,
+        completion: @escaping (Result<[MoodCheckInModel], Error>) -> Void
+    ) {
+        fetchLatestBeforeCallCount += 1
+        lastFetchUID = uid
+        let result = fetchLatestBeforeResult
         callbackQueue.async { completion(result) }
     }
 

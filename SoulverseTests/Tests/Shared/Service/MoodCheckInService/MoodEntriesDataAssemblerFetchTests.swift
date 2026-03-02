@@ -10,6 +10,7 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
 
     // MARK: - Properties
 
+    private var userMock: UserMock!
     private var moodCheckInServiceMock: MoodCheckInServiceMock!
     private var drawingServiceMock: DrawingServiceMock!
 
@@ -17,19 +18,21 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        userMock = UserMock()
         moodCheckInServiceMock = MoodCheckInServiceMock()
         drawingServiceMock = DrawingServiceMock()
     }
 
     override func tearDown() {
+        userMock = nil
         moodCheckInServiceMock = nil
         drawingServiceMock = nil
         super.tearDown()
     }
 
-    // MARK: - fetchAndAssemble with empty check-ins
+    // MARK: - fetchInitial with empty check-ins
 
-    func test_MoodEntriesDataAssembler_fetchAndAssembleEmptyCheckIns_fetchesOrphanDrawings() {
+    func test_MoodEntriesDataAssembler_fetchInitialEmptyCheckIns_fetchesOrphanDrawings() {
         moodCheckInServiceMock.fetchLatestResult = .success([])
         drawingServiceMock.fetchByDateResult = .success([])
 
@@ -37,7 +40,7 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
         let exp = expectation(description: "completion called")
 
         var receivedCards: [MoodEntryCard]?
-        assembler.fetchAndAssemble(uid: "user1", checkInLimit: 10) { result in
+        assembler.fetchInitial(limit: 10) { result in
             if case .success(let cards) = result {
                 receivedCards = cards
             }
@@ -52,7 +55,7 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
         XCTAssertEqual(drawingServiceMock.fetchByDateCallCount, 1)
     }
 
-    func test_MoodEntriesDataAssembler_fetchAndAssembleEmptyCheckInsWithDrawings_returnsOrphanCards() {
+    func test_MoodEntriesDataAssembler_fetchInitialEmptyCheckInsWithDrawings_returnsOrphanCards() {
         moodCheckInServiceMock.fetchLatestResult = .success([])
         let drawing = makeDrawing(id: "d1", checkinId: nil, createdAt: Date())
         drawingServiceMock.fetchByDateResult = .success([drawing])
@@ -61,7 +64,7 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
         let exp = expectation(description: "completion called")
 
         var receivedCards: [MoodEntryCard]?
-        assembler.fetchAndAssemble(uid: "user1", checkInLimit: 10) { result in
+        assembler.fetchInitial(limit: 10) { result in
             if case .success(let cards) = result {
                 receivedCards = cards
             }
@@ -74,9 +77,9 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
         XCTAssertTrue(receivedCards?.first?.isOrphan == true)
     }
 
-    // MARK: - fetchAndAssemble with check-ins
+    // MARK: - fetchInitial with check-ins
 
-    func test_MoodEntriesDataAssembler_fetchAndAssembleWithCheckIns_assemblesCardsCorrectly() {
+    func test_MoodEntriesDataAssembler_fetchInitialWithCheckIns_assemblesCardsCorrectly() {
         let checkIn = makeCheckIn(id: "c1", createdAt: date(2026, 2, 20, 10, 0))
         moodCheckInServiceMock.fetchLatestResult = .success([checkIn])
 
@@ -87,7 +90,7 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
         let exp = expectation(description: "completion called")
 
         var receivedCards: [MoodEntryCard]?
-        assembler.fetchAndAssemble(uid: "user1", checkInLimit: 10) { result in
+        assembler.fetchInitial(limit: 10) { result in
             if case .success(let cards) = result {
                 receivedCards = cards
             }
@@ -102,16 +105,16 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
         XCTAssertEqual(receivedCards?.first?.drawings.first?.id, "d1")
     }
 
-    // MARK: - fetchAndAssemble with moodCheckIn service error
+    // MARK: - fetchInitial with moodCheckIn service error
 
-    func test_MoodEntriesDataAssembler_fetchAndAssembleMoodCheckInError_propagatesError() {
+    func test_MoodEntriesDataAssembler_fetchInitialMoodCheckInError_propagatesError() {
         moodCheckInServiceMock.fetchLatestResult = .failure(TestError.checkInFetchFailed)
 
         let assembler = makeAssembler()
         let exp = expectation(description: "completion called")
 
         var receivedError: Error?
-        assembler.fetchAndAssemble(uid: "user1", checkInLimit: 10) { result in
+        assembler.fetchInitial(limit: 10) { result in
             if case .failure(let error) = result {
                 receivedError = error
             }
@@ -126,9 +129,9 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
         XCTAssertEqual(drawingServiceMock.fetchByDateCallCount, 0)
     }
 
-    // MARK: - fetchAndAssemble with drawing service error
+    // MARK: - fetchInitial with drawing service error
 
-    func test_MoodEntriesDataAssembler_fetchAndAssembleDrawingError_propagatesError() {
+    func test_MoodEntriesDataAssembler_fetchInitialDrawingError_propagatesError() {
         let checkIn = makeCheckIn(id: "c1", createdAt: date(2026, 2, 20, 10, 0))
         moodCheckInServiceMock.fetchLatestResult = .success([checkIn])
         drawingServiceMock.fetchByDateResult = .failure(TestError.drawingFetchFailed)
@@ -137,7 +140,7 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
         let exp = expectation(description: "completion called")
 
         var receivedError: Error?
-        assembler.fetchAndAssemble(uid: "user1", checkInLimit: 10) { result in
+        assembler.fetchInitial(limit: 10) { result in
             if case .failure(let error) = result {
                 receivedError = error
             }
@@ -162,6 +165,7 @@ private extension MoodEntriesDataAssemblerFetchTests {
 
     func makeAssembler() -> MoodEntriesDataAssembler {
         return MoodEntriesDataAssembler(
+            user: userMock,
             moodCheckInService: moodCheckInServiceMock,
             drawingService: drawingServiceMock
         )

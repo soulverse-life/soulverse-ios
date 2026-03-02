@@ -14,7 +14,7 @@ struct MoodEntry {
     let id: String
     let emotion: RecordedEmotion
     let date: Date
-    let promptResponse: String
+    let journal: String
     let colorHex: String
     let colorIntensity: Double
     let artworkURLs: [String]
@@ -44,7 +44,7 @@ extension MoodEntry {
             id: "1",
             emotion: .joy,
             date: Date().addingTimeInterval(-86400), // 1 day ago
-            promptResponse: "The joy is in the journey, not the destination",
+            journal: "The joy is in the journey, not the destination",
             colorHex: "#FFD700",
             colorIntensity: 0.8,
             artworkURLs: [],
@@ -54,7 +54,7 @@ extension MoodEntry {
             id: "2",
             emotion: .fear,
             date: Date().addingTimeInterval(-172800), // 2 days ago
-            promptResponse: "It feels like standing at the edge of a cliff, looking down",
+            journal: "It feels like standing at the edge of a cliff, looking down",
             colorHex: "#4A4A8A",
             colorIntensity: 0.6,
             artworkURLs: [],
@@ -64,7 +64,7 @@ extension MoodEntry {
             id: "3",
             emotion: .serenity,
             date: Date().addingTimeInterval(-259200), // 3 days ago
-            promptResponse: "A gentle wave washing over warm sand",
+            journal: "A gentle wave washing over warm sand",
             colorHex: "#87CEEB",
             colorIntensity: 0.5,
             artworkURLs: ["https://example.com/artwork1.png"],
@@ -74,7 +74,7 @@ extension MoodEntry {
             id: "4",
             emotion: .love,
             date: Date().addingTimeInterval(-345600), // 4 days ago
-            promptResponse: "Warmth spreading from my heart to my fingertips",
+            journal: "Warmth spreading from my heart to my fingertips",
             colorHex: "#FF6B6B",
             colorIntensity: 0.9,
             artworkURLs: [],
@@ -84,7 +84,7 @@ extension MoodEntry {
             id: "5",
             emotion: .anticipation,
             date: Date().addingTimeInterval(-432000), // 5 days ago
-            promptResponse: "Like the moment before opening a gift",
+            journal: "Like the moment before opening a gift",
             colorHex: "#FFA500",
             colorIntensity: 0.7,
             artworkURLs: ["https://example.com/artwork2.png"],

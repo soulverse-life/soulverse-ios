@@ -280,6 +280,13 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
     func didUpdateSection(at index: IndexSet) {
         // Not used in scroll view implementation
     }
+
+    func didAppendMoodEntries(_ entries: [MoodEntry]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.moodEntriesSection.appendEntries(entries)
+        }
+    }
 }
 
 // MARK: - UIGestureRecognizerDelegate
@@ -331,5 +338,9 @@ extension InnerCosmoViewController: MoodEntriesSectionDelegate {
         // TODO: Navigate to drawing canvas with the mood entry context
         print("[InnerCosmo] Draw tapped for entry: \(entry.emotion.displayName)")
         AppCoordinator.openDrawingCanvas(from: self)
+    }
+
+    func moodEntriesSectionDidRequestMore(_ section: MoodEntriesSection) {
+        presenter.loadMoreMoodEntries()
     }
 }
