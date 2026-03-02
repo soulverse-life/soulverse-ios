@@ -14,6 +14,7 @@ final class LoadingView: UIView {
 
     private enum Layout {
         static let animationSize: CGFloat = 150
+        static let dimmingAlpha: CGFloat = 0.4
     }
 
     // MARK: - UI Components
@@ -46,6 +47,8 @@ final class LoadingView: UIView {
     // MARK: - Setup
 
     private func setupUI() {
+        backgroundColor = UIColor.black.withAlphaComponent(Layout.dimmingAlpha)
+
         addSubview(animationView)
         animationView.snp.makeConstraints { make in
             make.center.equalToSuperview()

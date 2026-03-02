@@ -133,6 +133,48 @@ Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as t
 
 ## In Progress
 
+### 22. fix/tab-bar-hidden-after-drawing: Tab bar not displayed after returning from drawing to InnerCosmoView [P1] [S]
+- Status: in_progress
+- Branch: fix/tab-bar-hidden-after-drawing
+- Worktree: ../soulverse-fix/
+- Created: 2026-03-02
+
+---
+
+### 23. Unify loading system with LoadingView extension on UIViewController
+**Priority**: P1
+**Complexity**: M
+**Status**: Completed
+**Branch**: refactor/loading-overlay-extension
+**Created**: 2026-03-02
+**Completed**: 2026-03-02
+**PR**: #44
+
+Replaced dual loading system (NVActivityIndicatorView in ViewController base class + per-VC manual LoadingView overlays) with a single `showLoadingView(below:)` / `hideLoadingView()` extension on UIViewController.
+
+**Key Changes**:
+- `LoadingView` now includes built-in dimmed background (black @ 0.4 alpha)
+- Added `showLoadingView(below:)` / `hideLoadingView()` via associated objects on UIViewController
+- Overlay covers all content views; `below:` parameter keeps specified nav view above overlay via `bringSubviewToFront`
+- Removed `showLoading`, `loadingIndicator`, `toggleLoading()`, and `NVActivityIndicatorView` import from ViewController base class
+- Migrated all 8 view controllers to the unified API
+
+**Files Modified**:
+- `LoadingView.swift` — added dimmed background
+- `UIViewController+Extensions.swift` — added showLoadingView/hideLoadingView extension
+- `ViewController.swift` — removed legacy loading system
+- `DrawingCanvasViewController.swift` — removed manual overlay, uses extension
+- `DrawingGalleryViewController.swift` — removed manual loadingView, uses extension
+- `DrawingReplayModalViewController.swift` — updated to fill card with dimmed LoadingView
+- `InnerCosmoViewController.swift` — migrated from showLoading to showLoadingView
+- `InsightViewController.swift` — migrated from showLoading to showLoadingView
+- `ProfileViewController.swift` — migrated from showLoading to showLoadingView
+- `QuestViewController.swift` — migrated from showLoading to showLoadingView
+- `NotificationViewController.swift` — migrated from showLoading to showLoadingView
+- `WebViewController.swift` — migrated from showLoading to showLoadingView
+
+---
+
 ### 21. Replace LoadingView spinner with Lottie bounce animation
 **Priority**: P1
 **Complexity**: S
