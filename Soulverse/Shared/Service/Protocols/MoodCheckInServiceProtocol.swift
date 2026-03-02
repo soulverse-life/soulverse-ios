@@ -18,6 +18,13 @@ protocol MoodCheckInServiceProtocol {
         completion: @escaping (Result<[MoodCheckInModel], Error>) -> Void
     )
 
+    func fetchLatestCheckIns(
+        uid: String,
+        limit: Int,
+        before cursor: Date,
+        completion: @escaping (Result<[MoodCheckInModel], Error>) -> Void
+    )
+
     func fetchCheckIns(
         uid: String,
         from startDate: Date,

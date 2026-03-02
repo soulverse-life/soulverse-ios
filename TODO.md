@@ -133,6 +133,16 @@ Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as t
 
 ## In Progress
 
+### 22. Fetch Firestore MoodEntry data for InnerCosmoView with pagination [P1] [L]
+- Status: in_progress
+- Branch: feat/firestore-mood-entries
+- Worktree: ../soulverse-feature/
+- Created: 2026-03-02
+
+Wire MoodEntriesDataAssembler into InnerCosmoViewPresenter to fetch real mood check-in data from Firestore. Add cursor-based pagination (fetchInitial/fetchMore) for infinite scroll in the horizontal mood entries collection view. Rename promptResponse → journal. Internalize uid in assembler. Add protocol for testability.
+
+---
+
 ### 21. Replace LoadingView spinner with Lottie bounce animation
 **Priority**: P1
 **Complexity**: S

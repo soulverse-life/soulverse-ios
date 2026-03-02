@@ -63,7 +63,7 @@ private extension MoodEntryTests {
             id: "test-id",
             emotion: .joy,
             date: date,
-            promptResponse: "Test response",
+            journal: "Test response",
             colorHex: "#FFD700",
             colorIntensity: 0.8,
             artworkURL: artworkURL,
