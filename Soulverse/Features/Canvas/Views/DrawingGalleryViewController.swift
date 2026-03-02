@@ -147,8 +147,11 @@ final class DrawingGalleryViewController: ViewController {
 
 extension DrawingGalleryViewController: DrawingGalleryPresenterDelegate {
     func didUpdate(viewModel: DrawingGalleryViewModel) {
-        self.viewModel = viewModel
-        updateUI()
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.viewModel = viewModel
+            self.updateUI()
+        }
     }
 }
 
