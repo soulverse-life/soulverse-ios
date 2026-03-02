@@ -88,7 +88,11 @@ extension InsightViewController: InsightViewPresenterDelegate {
     func didUpdate(viewModel: InsightViewModel) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            self.showLoading = viewModel.isLoading
+            if viewModel.isLoading {
+                self.showLoadingView(below: self.navigationView)
+            } else {
+                self.hideLoadingView()
+            }
             if let weeklyMoodScore = viewModel.weeklyMoodScore {
                 self.weeklyMoodScoreView.configure(with: weeklyMoodScore)
             }

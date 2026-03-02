@@ -61,11 +61,6 @@ final class DrawingGalleryViewController: ViewController {
         return collectionView
     }()
 
-    private lazy var loadingView: LoadingView = {
-        let view = LoadingView()
-        return view
-    }()
-
     private lazy var emptyLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("gallery_empty", comment: "")
@@ -107,7 +102,6 @@ final class DrawingGalleryViewController: ViewController {
     private func setupUI() {
         view.addSubview(navigationView)
         view.addSubview(collectionView)
-        view.addSubview(loadingView)
         view.addSubview(emptyLabel)
     }
 
@@ -123,10 +117,6 @@ final class DrawingGalleryViewController: ViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
 
-        loadingView.snp.makeConstraints { make in
-            make.center.equalTo(collectionView)
-        }
-
         emptyLabel.snp.makeConstraints { make in
             make.center.equalTo(collectionView)
             make.left.right.equalToSuperview().inset(Layout.horizontalInset)
@@ -137,15 +127,15 @@ final class DrawingGalleryViewController: ViewController {
 
     private func updateUI() {
         if viewModel.isLoading {
-            loadingView.startAnimating()
+            showLoadingView(below: navigationView)
             collectionView.isHidden = true
             emptyLabel.isHidden = true
         } else if viewModel.isEmpty {
-            loadingView.stopAnimating()
+            hideLoadingView()
             collectionView.isHidden = true
             emptyLabel.isHidden = false
         } else {
-            loadingView.stopAnimating()
+            hideLoadingView()
             collectionView.isHidden = false
             emptyLabel.isHidden = true
             collectionView.reloadData()

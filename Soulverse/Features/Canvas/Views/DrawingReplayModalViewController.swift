@@ -67,6 +67,7 @@ final class DrawingReplayModalViewController: UIViewController {
 
     private lazy var loadingView: LoadingView = {
         let view = LoadingView()
+        view.isHidden = true
         return view
     }()
 
@@ -150,7 +151,7 @@ final class DrawingReplayModalViewController: UIViewController {
         }
 
         loadingView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.edges.equalToSuperview()
         }
 
         closeButton.snp.makeConstraints { make in

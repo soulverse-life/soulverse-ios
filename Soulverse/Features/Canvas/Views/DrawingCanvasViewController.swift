@@ -98,20 +98,6 @@ class DrawingCanvasViewController: UIViewController {
         return button
     }()
 
-    private lazy var loadingOverlay: UIView = {
-        let overlay = UIView()
-        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        overlay.isHidden = true
-        overlay.addSubview(loadingView)
-
-        loadingView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        return overlay
-    }()
-
-    private let loadingView = LoadingView()
-
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -211,7 +197,6 @@ class DrawingCanvasViewController: UIViewController {
         canvasView.translatesAutoresizingMaskIntoConstraints = false
         canvasView.backgroundColor = .gray
         view.addSubview(canvasView)
-        view.addSubview(loadingOverlay)
 
         // 創建背景圖片視圖 - 添加為 canvasView 的子視圖以支持縮放
         canvasView.addSubview(backgroundImageView)
@@ -268,9 +253,6 @@ class DrawingCanvasViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
 
-        loadingOverlay.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
     }
     
     private func setupCanvas() {
@@ -608,21 +590,18 @@ extension DrawingCanvasViewController: PHPickerViewControllerDelegate {
 extension DrawingCanvasViewController: DrawingCanvasPresenterDelegate {
 
     func didStartSavingDrawing() {
-        loadingOverlay.isHidden = false
-        loadingView.startAnimating()
+        showLoadingView(below: topBarView)
         saveButton.isEnabled = false
     }
 
     func didFinishSavingDrawing(image: UIImage) {
-        loadingView.stopAnimating()
-        loadingOverlay.isHidden = true
+        hideLoadingView()
         saveButton.isEnabled = true
         AppCoordinator.presentDrawingResult(image: image, from: self)
     }
 
     func didFailSavingDrawing(error: Error) {
-        loadingView.stopAnimating()
-        loadingOverlay.isHidden = true
+        hideLoadingView()
         saveButton.isEnabled = true
 
         let alert = UIAlertController(
