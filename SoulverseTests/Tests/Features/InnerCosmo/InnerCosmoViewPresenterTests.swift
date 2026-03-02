@@ -13,14 +13,16 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
     private var presenter: InnerCosmoViewPresenter!
     private var delegateMock: InnerCosmoViewPresenterDelegateMock!
     private var userMock: UserMock!
+    private var assemblerMock: MoodEntriesDataAssemblerMock!
 
     // MARK: - Lifecycle
 
     override func setUp() {
         super.setUp()
         userMock = UserMock()
+        assemblerMock = MoodEntriesDataAssemblerMock()
         delegateMock = InnerCosmoViewPresenterDelegateMock()
-        presenter = InnerCosmoViewPresenter(user: userMock)
+        presenter = InnerCosmoViewPresenter(user: userMock, assembler: assemblerMock)
         presenter.delegate = delegateMock
     }
 
@@ -28,26 +30,62 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         presenter = nil
         delegateMock = nil
         userMock = nil
+        assemblerMock = nil
         super.tearDown()
     }
 
-    // MARK: - fetchData Async Delivery
+    // MARK: - fetchData Tests
 
-    func test_InnerCosmoViewPresenter_fetchData_deliversUserData() {
-        let exp = expectation(description: "delegate receives final update")
+    func test_fetchData_withCheckIns_populatesMoodEntries() {
+        let card = makeCheckInCard(id: "c1", emotion: "joy", journal: "Happy day")
+        assemblerMock.fetchInitialResult = .success([card])
+
+        let exp = expectation(description: "delegate receives update")
         delegateMock.expectation = exp
 
-        // Presenter has hardcoded 0.5s asyncAfter delay
         presenter.fetchData()
 
         wait(for: [exp], timeout: 1.0)
 
-        XCTAssertNotNil(delegateMock.updatedViewModel)
+        XCTAssertEqual(assemblerMock.fetchInitialCallCount, 1)
+        XCTAssertEqual(delegateMock.updatedViewModel?.moodEntries.count, 1)
+        XCTAssertEqual(delegateMock.updatedViewModel?.moodEntries.first?.emotion, .joy)
+        XCTAssertEqual(delegateMock.updatedViewModel?.moodEntries.first?.journal, "Happy day")
         XCTAssertFalse(delegateMock.updatedViewModel?.isLoading == true)
     }
 
-    func test_InnerCosmoViewPresenter_fetchData_userNameMatchesMock() {
-        let exp = expectation(description: "delegate receives final update")
+    func test_fetchData_empty_deliversEmptyEntries() {
+        assemblerMock.fetchInitialResult = .success([])
+
+        let exp = expectation(description: "delegate receives update")
+        delegateMock.expectation = exp
+
+        presenter.fetchData()
+
+        wait(for: [exp], timeout: 1.0)
+
+        XCTAssertEqual(delegateMock.updatedViewModel?.moodEntries.count, 0)
+        XCTAssertFalse(delegateMock.updatedViewModel?.isLoading == true)
+    }
+
+    func test_fetchData_error_deliversEmptyEntriesGracefully() {
+        assemblerMock.fetchInitialResult = .failure(TestError.fetchFailed)
+
+        let exp = expectation(description: "delegate receives update")
+        delegateMock.expectation = exp
+
+        presenter.fetchData()
+
+        wait(for: [exp], timeout: 1.0)
+
+        XCTAssertEqual(delegateMock.updatedViewModel?.moodEntries.count, 0)
+        XCTAssertFalse(delegateMock.updatedViewModel?.isLoading == true)
+    }
+
+    func test_fetchData_deliversUserData() {
+        assemblerMock.fetchInitialResult = .success([])
+
+        let exp = expectation(description: "delegate receives update")
         delegateMock.expectation = exp
 
         presenter.fetchData()
@@ -55,39 +93,80 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
 
         XCTAssertEqual(delegateMock.updatedViewModel?.userName, userMock.nickName)
-    }
-
-    func test_InnerCosmoViewPresenter_fetchData_petNameMatchesMock() {
-        let exp = expectation(description: "delegate receives final update")
-        delegateMock.expectation = exp
-
-        presenter.fetchData()
-
-        wait(for: [exp], timeout: 1.0)
-
         XCTAssertEqual(delegateMock.updatedViewModel?.petName, userMock.emoPetName)
+        XCTAssertEqual(delegateMock.updatedViewModel?.planetName, userMock.planetName)
     }
 
-    // MARK: - Init With Custom UserMock
+    // MARK: - loadMoreMoodEntries Tests
 
-    func test_InnerCosmoViewPresenter_initWithCustomUser_deliversCustomValues() {
-        let customUser = UserMock()
-        customUser.nickName = "CustomName"
-        customUser.emoPetName = "CosmoPet"
-        customUser.planetName = "Neptune"
+    func test_loadMoreMoodEntries_appendsEntries() {
+        // First, do initial load
+        let initialCard = makeCheckInCard(id: "c1", emotion: "joy", journal: "Day 1")
+        assemblerMock.fetchInitialResult = .success([initialCard])
+        assemblerMock.hasMore = true
 
-        let customPresenter = InnerCosmoViewPresenter(user: customUser)
-        let customDelegate = InnerCosmoViewPresenterDelegateMock()
-        let exp = expectation(description: "delegate receives final update")
-        customDelegate.expectation = exp
-        customPresenter.delegate = customDelegate
+        let exp1 = expectation(description: "initial load")
+        delegateMock.expectation = exp1
+        presenter.fetchData()
+        wait(for: [exp1], timeout: 1.0)
 
-        customPresenter.fetchData()
+        // Now load more
+        let moreCard = makeCheckInCard(id: "c2", emotion: "trust", journal: "Day 2")
+        assemblerMock.fetchMoreResult = .success([moreCard])
 
-        wait(for: [exp], timeout: 1.0)
+        let exp2 = expectation(description: "load more append")
+        delegateMock.appendExpectation = exp2
+        presenter.loadMoreMoodEntries()
+        wait(for: [exp2], timeout: 1.0)
 
-        XCTAssertEqual(customDelegate.updatedViewModel?.userName, "CustomName")
-        XCTAssertEqual(customDelegate.updatedViewModel?.petName, "CosmoPet")
-        XCTAssertEqual(customDelegate.updatedViewModel?.planetName, "Neptune")
+        XCTAssertEqual(assemblerMock.fetchMoreCallCount, 1)
+        XCTAssertEqual(delegateMock.appendedEntries?.count, 1)
+        XCTAssertEqual(delegateMock.appendedEntries?.first?.emotion, .trust)
+    }
+
+    func test_loadMoreMoodEntries_whenHasMoreFalse_doesNotFetch() {
+        // Initial load
+        let initialCard = makeCheckInCard(id: "c1", emotion: "joy", journal: "Day 1")
+        assemblerMock.fetchInitialResult = .success([initialCard])
+        assemblerMock.hasMore = false
+
+        let exp1 = expectation(description: "initial load")
+        delegateMock.expectation = exp1
+        presenter.fetchData()
+        wait(for: [exp1], timeout: 1.0)
+
+        // Try to load more — should be guarded by hasMore == false
+        presenter.loadMoreMoodEntries()
+
+        XCTAssertEqual(assemblerMock.fetchMoreCallCount, 0)
+    }
+}
+
+// MARK: - Helpers
+
+private extension InnerCosmoViewPresenterTests {
+
+    enum TestError: Error {
+        case fetchFailed
+    }
+
+    func makeCheckInCard(id: String, emotion: String, journal: String?) -> MoodEntryCard {
+        let checkIn = MoodCheckInModel(
+            id: id,
+            colorHex: "#FFD700",
+            colorIntensity: 0.8,
+            emotion: emotion,
+            topic: "emotional",
+            evaluation: "positive",
+            journal: journal,
+            timezoneOffsetMinutes: 480,
+            createdAt: Date(),
+            updatedAt: Date()
+        )
+        return MoodEntryCard(
+            checkIn: checkIn,
+            drawings: [],
+            date: Date()
+        )
     }
 }

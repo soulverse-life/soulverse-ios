@@ -192,7 +192,7 @@ class MoodEntryCardCell: UICollectionViewCell {
 
         emotionLabel.text = entry.emotion.displayName
         dateLabel.text = entry.formattedDate
-        quoteLabel.text = entry.promptResponse
+        quoteLabel.text = entry.journal
 
         if entry.hasArtwork, let urlString = entry.artworkURL, let url = URL(string: urlString) {
             // Has artwork - show image, hide blur and CTA
