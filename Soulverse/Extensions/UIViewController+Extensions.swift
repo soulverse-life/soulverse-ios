@@ -36,10 +36,9 @@ extension UIViewController {
         guard loadingView == nil else { return }
 
         let overlay = LoadingView()
+        view.addSubview(overlay)
         if let belowSubview = belowSubview {
-            view.insertSubview(overlay, belowSubview: belowSubview)
-        } else {
-            view.addSubview(overlay)
+            view.bringSubviewToFront(belowSubview)
         }
         overlay.snp.makeConstraints { make in
             make.edges.equalToSuperview()
