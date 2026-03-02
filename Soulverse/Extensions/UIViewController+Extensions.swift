@@ -19,37 +19,23 @@ extension UIViewController {
 
     // MARK: - Loading View
 
-    private enum AssociatedKeys {
-        nonisolated(unsafe) static var loadingOverlay: UInt8 = 0
-    }
-
-    private var loadingView: LoadingView? {
-        get {
-            objc_getAssociatedObject(self, &AssociatedKeys.loadingOverlay) as? LoadingView
-        }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.loadingOverlay, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-
     func showLoadingView(below belowSubview: UIView? = nil) {
-        guard loadingView == nil else { return }
+        guard !view.subviews.contains(where: { $0 is LoadingView }) else { return }
 
-        let overlay = LoadingView()
-        view.addSubview(overlay)
+        let loadingView = LoadingView()
+        view.addSubview(loadingView)
         if let belowSubview = belowSubview {
             view.bringSubviewToFront(belowSubview)
         }
-        overlay.snp.makeConstraints { make in
+        loadingView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        loadingView = overlay
-        overlay.startAnimating()
+        loadingView.startAnimating()
     }
 
     func hideLoadingView() {
-        loadingView?.stopAnimating()
-        loadingView?.removeFromSuperview()
-        loadingView = nil
+        guard let loadingView = view.subviews.first(where: { $0 is LoadingView }) as? LoadingView else { return }
+        loadingView.stopAnimating()
+        loadingView.removeFromSuperview()
     }
 }
