@@ -52,7 +52,7 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
         }
 
         guard let uid = user.userId else {
-            handleDataFetchCompletion(moodEntries: [], hasError: true)
+            handleDataFetchCompletion(moodEntries: [], error: .userNotAuthenticated)
             return
         }
 
@@ -62,10 +62,10 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let entries):
-                    self.handleDataFetchCompletion(moodEntries: entries, hasError: false)
+                    self.handleDataFetchCompletion(moodEntries: entries, error: nil)
 
-                case .failure:
-                    self.handleDataFetchCompletion(moodEntries: [], hasError: true)
+                case .failure(let error):
+                    self.handleDataFetchCompletion(moodEntries: [], error: .fetchFailed(error))
                 }
             }
         }
@@ -73,14 +73,14 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
 
     // MARK: - Private Methods
 
-    private func handleDataFetchCompletion(moodEntries: [MoodEntry], hasError: Bool) {
+    private func handleDataFetchCompletion(moodEntries: [MoodEntry], error: MoodEntriesLoadError?) {
         loadedModel = InnerCosmoViewModel(
             isLoading: false,
             userName: user.nickName,
             petName: user.emoPetName,
             planetName: user.planetName,
             moodEntries: moodEntries,
-            moodEntriesLoadError: hasError
+            moodEntriesError: error
         )
         isFetchingData = false
     }

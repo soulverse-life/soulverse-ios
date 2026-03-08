@@ -192,7 +192,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         XCTAssertTrue(entries.first?.hasArtwork == true)
     }
 
-    func test_InnerCosmoViewPresenter_fetchData_setsErrorOnServiceFailure() {
+    func test_InnerCosmoViewPresenter_fetchData_fetchFailedErrorOnServiceFailure() {
         moodCheckInServiceMock.fetchLatestResult = .failure(NSError(domain: "test", code: 1))
 
         let exp = expectation(description: "delegate receives final update")
@@ -204,7 +204,10 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
 
         let viewModel = delegateMock.updatedViewModel
         XCTAssertTrue(viewModel?.moodEntries.isEmpty == true)
-        XCTAssertTrue(viewModel?.moodEntriesLoadError == true)
+        guard case .fetchFailed = viewModel?.moodEntriesError else {
+            XCTFail("Expected .fetchFailed error")
+            return
+        }
     }
 
     func test_InnerCosmoViewPresenter_fetchData_noErrorOnSuccess() {
@@ -232,11 +235,11 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         wait(for: [exp], timeout: 2.0)
 
         let viewModel = delegateMock.updatedViewModel
-        XCTAssertFalse(viewModel?.moodEntriesLoadError == true)
+        XCTAssertNil(viewModel?.moodEntriesError)
         XCTAssertEqual(viewModel?.moodEntries.count, 1)
     }
 
-    func test_InnerCosmoViewPresenter_fetchData_setsErrorWhenNoUserId() {
+    func test_InnerCosmoViewPresenter_fetchData_userNotAuthenticatedErrorWhenNoUserId() {
         userMock.userId = nil
 
         let assembler = MoodEntriesDataAssembler(
@@ -255,6 +258,9 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
 
         let viewModel = noIdDelegate.updatedViewModel
         XCTAssertTrue(viewModel?.moodEntries.isEmpty == true)
-        XCTAssertTrue(viewModel?.moodEntriesLoadError == true)
+        guard case .userNotAuthenticated = viewModel?.moodEntriesError else {
+            XCTFail("Expected .userNotAuthenticated error")
+            return
+        }
     }
 }
