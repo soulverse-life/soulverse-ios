@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum MoodEntriesLoadError: Error {
+    case userNotAuthenticated
+    case fetchFailed(Error)
+}
+
 struct InnerCosmoViewModel {
 
     // MARK: - State
@@ -26,6 +31,7 @@ struct InnerCosmoViewModel {
     // MARK: - Mood Entry Cards
 
     var moodEntries: [MoodEntry]
+    var moodEntriesError: MoodEntriesLoadError?
 
     // MARK: - Initialization
 
@@ -35,7 +41,8 @@ struct InnerCosmoViewModel {
         petName: String? = nil,
         planetName: String? = nil,
         emotions: [EmotionPlanetData] = [],
-        moodEntries: [MoodEntry] = []
+        moodEntries: [MoodEntry] = [],
+        moodEntriesError: MoodEntriesLoadError? = nil
     ) {
         self.isLoading = isLoading
         self.userName = userName
@@ -43,5 +50,6 @@ struct InnerCosmoViewModel {
         self.planetName = planetName
         self.emotions = emotions
         self.moodEntries = moodEntries
+        self.moodEntriesError = moodEntriesError
     }
 }

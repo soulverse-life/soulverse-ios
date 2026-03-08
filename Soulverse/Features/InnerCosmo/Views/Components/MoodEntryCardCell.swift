@@ -60,20 +60,36 @@ class MoodEntryCardCell: UICollectionViewCell {
         return view
     }()
 
-    private let artworkImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
+    private lazy var artworkImageViews: [UIImageView] = {
+        (0..<4).map { _ in
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.layer.cornerRadius = InnerCosmoLayout.moodEntryImageCornerRadius
+            imageView.isHidden = true
+            return imageView
+        }
+    }()
+
+    private let emptyDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("inner_cosmo_mood_entry_empty_description", comment: "")
+        label.font = .projectFont(ofSize: 14, weight: .regular)
+        label.textColor = .themeTextSecondary
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.isHidden = true
+        return label
     }()
 
     private lazy var drawCTAButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(NSLocalizedString("inner_cosmo_mood_entry_draw_cta", comment: ""), for: .normal)
         button.titleLabel?.font = .projectFont(ofSize: 14, weight: .semibold)
-        button.setTitleColor(.themeTextPrimary, for: .normal)
-        button.backgroundColor = .themeButtonSecondaryBackground
-        button.layer.cornerRadius = 16
+        button.setTitleColor(.themeButtonPrimaryText, for: .normal)
+        button.backgroundColor = .themeButtonPrimaryBackground
+        button.layer.cornerRadius = InnerCosmoLayout.moodEntryDrawCTACornerRadius
+        button.isHidden = true
         button.addTarget(self, action: #selector(drawButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -91,8 +107,13 @@ class MoodEntryCardCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        artworkImageView.image = nil
-        artworkImageView.kf.cancelDownloadTask()
+        for imageView in artworkImageViews {
+            imageView.kf.cancelDownloadTask()
+            imageView.image = nil
+            imageView.isHidden = true
+        }
+        emptyDescriptionLabel.isHidden = true
+        drawCTAButton.isHidden = true
         currentEntry = nil
     }
 
@@ -146,7 +167,10 @@ class MoodEntryCardCell: UICollectionViewCell {
         baseView.addSubview(quoteLabel)
         baseView.addSubview(artworkContainerView)
 
-        artworkContainerView.addSubview(artworkImageView)
+        for imageView in artworkImageViews {
+            artworkContainerView.addSubview(imageView)
+        }
+        artworkContainerView.addSubview(emptyDescriptionLabel)
         artworkContainerView.addSubview(drawCTAButton)
     }
 
@@ -173,16 +197,6 @@ class MoodEntryCardCell: UICollectionViewCell {
             make.leading.trailing.equalToSuperview().inset(padding)
             make.bottom.equalToSuperview().offset(-padding)
         }
-
-        artworkImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-
-        drawCTAButton.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalTo(80)
-            make.height.equalTo(32)
-        }
     }
 
     // MARK: - Configuration
@@ -194,16 +208,112 @@ class MoodEntryCardCell: UICollectionViewCell {
         dateLabel.text = entry.formattedDate
         quoteLabel.text = entry.promptResponse
 
-        if entry.hasArtwork, let urlString = entry.artworkURL, let url = URL(string: urlString) {
-            // Has artwork - show image, hide blur and CTA
-            artworkImageView.kf.setImage(with: url)
-            artworkImageView.backgroundColor = .clear
-            drawCTAButton.isHidden = true
+        let urls = Array(entry.artworkURLs.prefix(4))
+
+        if urls.isEmpty {
+            layoutEmptyState(color: entry.color)
         } else {
-            // No artwork - show placeholder with blur and CTA
-            artworkImageView.image = nil
-            artworkImageView.backgroundColor = entry.color.withAlphaComponent(0.3)
-            drawCTAButton.isHidden = false
+            emptyDescriptionLabel.isHidden = true
+            drawCTAButton.isHidden = true
+            artworkContainerView.backgroundColor = .clear
+
+            for (index, urlString) in urls.enumerated() {
+                let imageView = artworkImageViews[index]
+                imageView.isHidden = false
+                if let url = URL(string: urlString) {
+                    imageView.kf.setImage(with: url)
+                }
+            }
+
+            layoutArtworkGrid(count: urls.count)
+        }
+    }
+
+    // MARK: - Layout Methods
+
+    private func layoutEmptyState(color: UIColor) {
+        // Hide all image views
+        for imageView in artworkImageViews {
+            imageView.isHidden = true
+        }
+
+        artworkContainerView.backgroundColor = color.withAlphaComponent(0.3)
+
+        emptyDescriptionLabel.isHidden = false
+        drawCTAButton.isHidden = false
+
+        emptyDescriptionLabel.snp.remakeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(12)
+            make.centerY.equalToSuperview().offset(-20)
+        }
+
+        drawCTAButton.snp.remakeConstraints { make in
+            make.top.equalTo(emptyDescriptionLabel.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview().inset(12)
+            make.height.equalTo(InnerCosmoLayout.moodEntryDrawCTAHeight)
+        }
+    }
+
+    private func layoutArtworkGrid(count: Int) {
+        let gap = InnerCosmoLayout.moodEntryImageGridGap
+        let halfGap = gap / 2
+
+        switch count {
+        case 1:
+            artworkImageViews[0].snp.remakeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+
+        case 2:
+            artworkImageViews[0].snp.remakeConstraints { make in
+                make.top.bottom.leading.equalToSuperview()
+                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-halfGap)
+            }
+            artworkImageViews[1].snp.remakeConstraints { make in
+                make.top.bottom.trailing.equalToSuperview()
+                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfGap)
+            }
+
+        case 3:
+            artworkImageViews[0].snp.remakeConstraints { make in
+                make.top.bottom.leading.equalToSuperview()
+                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-halfGap)
+            }
+            artworkImageViews[1].snp.remakeConstraints { make in
+                make.top.trailing.equalToSuperview()
+                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfGap)
+                make.bottom.equalTo(artworkContainerView.snp.centerY).offset(-halfGap)
+            }
+            artworkImageViews[2].snp.remakeConstraints { make in
+                make.bottom.trailing.equalToSuperview()
+                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfGap)
+                make.top.equalTo(artworkContainerView.snp.centerY).offset(halfGap)
+            }
+
+        case 4:
+            artworkImageViews[0].snp.remakeConstraints { make in
+                make.top.leading.equalToSuperview()
+                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-halfGap)
+                make.bottom.equalTo(artworkContainerView.snp.centerY).offset(-halfGap)
+            }
+            artworkImageViews[1].snp.remakeConstraints { make in
+                make.top.trailing.equalToSuperview()
+                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfGap)
+                make.bottom.equalTo(artworkContainerView.snp.centerY).offset(-halfGap)
+            }
+            artworkImageViews[2].snp.remakeConstraints { make in
+                make.bottom.leading.equalToSuperview()
+                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-halfGap)
+                make.top.equalTo(artworkContainerView.snp.centerY).offset(halfGap)
+            }
+            artworkImageViews[3].snp.remakeConstraints { make in
+                make.bottom.trailing.equalToSuperview()
+                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfGap)
+                make.top.equalTo(artworkContainerView.snp.centerY).offset(halfGap)
+            }
+
+        default:
+            break
         }
     }
 

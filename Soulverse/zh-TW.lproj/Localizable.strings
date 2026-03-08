@@ -243,6 +243,7 @@
 "inner_cosmo_mood_checkin_button" = "情緒紀錄";
 "inner_cosmo_mood_entries_header" = "最近的心情";
 "inner_cosmo_mood_entry_draw_cta" = "繪製";
+"inner_cosmo_mood_entry_empty_description" = "新增一幅畫來捕捉這個時刻。";
 
 // MARK: - Profile
 "profile_title" = "個人檔案";

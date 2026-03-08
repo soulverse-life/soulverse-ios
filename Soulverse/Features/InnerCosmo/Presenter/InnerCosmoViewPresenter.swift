@@ -20,11 +20,16 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
     private var dataAccessQueue = DispatchQueue(label: "inner_cosmo_data", attributes: .concurrent)
 
     private let user: UserProtocol
+    private let assembler: MoodEntriesDataAssembler
+
+    private static let checkInLimit = 10
 
     // MARK: - Initialization
 
-    init(user: UserProtocol = User.shared) {
+    init(user: UserProtocol = User.shared,
+         assembler: MoodEntriesDataAssembler = MoodEntriesDataAssembler()) {
         self.user = user
+        self.assembler = assembler
         self.loadedModel = InnerCosmoViewModel(isLoading: true)
 
         NotificationCenter.default.addObserver(
@@ -46,23 +51,36 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
             loadedModel.isLoading = true
         }
 
-        // TODO: Replace with actual API call
-        // Simulating data fetch completion
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.handleDataFetchCompletion()
+        guard let uid = user.userId else {
+            handleDataFetchCompletion(moodEntries: [], error: .userNotAuthenticated)
+            return
+        }
+
+        assembler.fetchMoodEntries(uid: uid, checkInLimit: Self.checkInLimit) { [weak self] result in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let entries):
+                    self.handleDataFetchCompletion(moodEntries: entries, error: nil)
+
+                case .failure(let error):
+                    self.handleDataFetchCompletion(moodEntries: [], error: .fetchFailed(error))
+                }
+            }
         }
     }
 
     // MARK: - Private Methods
 
-    private func handleDataFetchCompletion() {
+    private func handleDataFetchCompletion(moodEntries: [MoodEntry], error: MoodEntriesLoadError?) {
         loadedModel = InnerCosmoViewModel(
             isLoading: false,
             userName: user.nickName,
             petName: user.emoPetName,
-            planetName: user.planetName //,
-            // emotions: EmotionPlanetData.mockData,  // TODO: Replace with fetched data
-            // moodEntries: MoodEntry.mockData  // TODO: Replace with API data
+            planetName: user.planetName,
+            moodEntries: moodEntries,
+            moodEntriesError: error
         )
         isFetchingData = false
     }
