@@ -9,10 +9,15 @@ import XCTest
 final class InnerCosmoViewPresenterDelegateMock: InnerCosmoViewPresenterDelegate {
     var updatedViewModel: InnerCosmoViewModel?
     var updatedSectionIndex: IndexSet?
+    var appendedEntries: [MoodEntry]?
     var updateCount = 0
+    var appendCount = 0
 
     /// Set before triggering the async action; fulfilled on the final (non-loading) update.
     var expectation: XCTestExpectation?
+
+    /// Separate expectation for append events.
+    var appendExpectation: XCTestExpectation?
 
     func didUpdate(viewModel: InnerCosmoViewModel) {
         updatedViewModel = viewModel
@@ -24,5 +29,11 @@ final class InnerCosmoViewPresenterDelegateMock: InnerCosmoViewPresenterDelegate
 
     func didUpdateSection(at index: IndexSet) {
         updatedSectionIndex = index
+    }
+
+    func didAppendMoodEntries(_ entries: [MoodEntry]) {
+        appendedEntries = entries
+        appendCount += 1
+        appendExpectation?.fulfill()
     }
 }

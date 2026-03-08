@@ -237,11 +237,6 @@ class InnerCosmoViewController: ViewController {
 
     @objc private func pullToRefresh() {
         presenter.fetchData(isUpdate: true)
-
-        // End refreshing after a delay for better UX
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.scrollView.refreshControl?.endRefreshing()
-        }
     }
 }
 
@@ -271,6 +266,13 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
 
     func didUpdateSection(at index: IndexSet) {
         // Not used in scroll view implementation
+    }
+
+    func didAppendMoodEntries(_ entries: [MoodEntry]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.moodEntriesSection.appendEntries(entries)
+        }
     }
 }
 
@@ -318,5 +320,9 @@ extension InnerCosmoViewController: MoodEntriesSectionDelegate {
         // TODO: Navigate to drawing canvas with the mood entry context
         print("[InnerCosmo] Draw tapped for entry: \(entry.emotion.displayName)")
         AppCoordinator.openDrawingCanvas(from: self)
+    }
+
+    func moodEntriesSectionDidRequestMore(_ section: MoodEntriesSection) {
+        presenter.loadMoreMoodEntries()
     }
 }

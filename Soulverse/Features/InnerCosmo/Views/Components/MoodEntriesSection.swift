@@ -10,6 +10,7 @@ import UIKit
 
 protocol MoodEntriesSectionDelegate: AnyObject {
     func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, entry: MoodEntry)
+    func moodEntriesSectionDidRequestMore(_ section: MoodEntriesSection)
 }
 
 class MoodEntriesSection: UIView {
@@ -19,16 +20,9 @@ class MoodEntriesSection: UIView {
     weak var delegate: MoodEntriesSectionDelegate?
 
     private var entries: [MoodEntry] = []
+    private var isRequestingMore = false
 
     // MARK: - UI Components
-
-    private let headerLabel: UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("inner_cosmo_mood_entries_header", comment: "")
-        label.font = .projectFont(ofSize: 18, weight: .semibold)
-        label.textColor = .themeTextPrimary
-        return label
-    }()
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -68,17 +62,10 @@ class MoodEntriesSection: UIView {
     // MARK: - Setup
 
     private func setupUI() {
-        addSubview(headerLabel)
         addSubview(collectionView)
 
-        headerLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(InnerCosmoLayout.horizontalPadding)
-            make.height.equalTo(InnerCosmoLayout.moodEntriesHeaderHeight)
-        }
-
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(headerLabel.snp.bottom)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(InnerCosmoLayout.moodEntryCardHeight)
             make.bottom.equalToSuperview()
@@ -88,8 +75,21 @@ class MoodEntriesSection: UIView {
     // MARK: - Public Methods
 
     func configure(with entries: [MoodEntry]) {
+        isRequestingMore = false
         self.entries = entries
         collectionView.reloadData()
+    }
+
+    func appendEntries(_ newEntries: [MoodEntry]) {
+        guard !newEntries.isEmpty else {
+            isRequestingMore = false
+            return
+        }
+        let startIndex = entries.count
+        entries.append(contentsOf: newEntries)
+        let indexPaths = (startIndex..<entries.count).map { IndexPath(item: $0, section: 0) }
+        collectionView.insertItems(at: indexPaths)
+        isRequestingMore = false
     }
 }
 
@@ -122,6 +122,14 @@ extension MoodEntriesSection: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // No action for now - future: navigate to detail view
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let threshold = 3
+        if entries.count > threshold, indexPath.item >= entries.count - threshold, !isRequestingMore {
+            isRequestingMore = true
+            delegate?.moodEntriesSectionDidRequestMore(self)
+        }
     }
 }
 

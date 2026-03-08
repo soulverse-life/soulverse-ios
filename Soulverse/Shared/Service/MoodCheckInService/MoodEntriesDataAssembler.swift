@@ -24,6 +24,18 @@ struct MoodEntryCard {
     }
 }
 
+/// Protocol for fetching assembled mood entry cards with pagination.
+protocol MoodEntriesDataAssemblerProtocol {
+    /// Whether there are more pages to fetch.
+    var hasMore: Bool { get }
+
+    /// Fetches the initial page of mood entry cards. Resets any existing pagination state.
+    func fetchInitial(limit: Int, completion: @escaping (Result<[MoodEntryCard], Error>) -> Void)
+
+    /// Fetches the next page of mood entry cards using the internal cursor.
+    func fetchMore(completion: @escaping (Result<[MoodEntryCard], Error>) -> Void)
+}
+
 /// Assembles MoodEntryCards from check-ins and drawings.
 ///
 /// Card assembly rules:
@@ -32,56 +44,109 @@ struct MoodEntryCard {
 /// 3. Standalone drawings between check-ins attach to the preceding check-in's card
 /// 4. Drawings on days with no check-in become orphan cards (grouped by day)
 /// 5. Multiple check-ins per day produce multiple cards
-final class MoodEntriesDataAssembler {
+final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
 
+    private let user: UserProtocol
     private let moodCheckInService: MoodCheckInServiceProtocol
     private let drawingService: DrawingServiceProtocol
 
-    init(moodCheckInService: MoodCheckInServiceProtocol = FirestoreMoodCheckInService.shared,
+    /// Tracks the oldest check-in's createdAt from last fetch.
+    private var cursor: Date?
+
+    /// True if last fetch returned count == pageSize.
+    private(set) var hasMore: Bool = false
+
+    /// Stores the limit from fetchInitial.
+    private var pageSize: Int = 10
+
+    init(user: UserProtocol = User.shared,
+         moodCheckInService: MoodCheckInServiceProtocol = FirestoreMoodCheckInService.shared,
          drawingService: DrawingServiceProtocol = FirestoreDrawingService.shared) {
+        self.user = user
         self.moodCheckInService = moodCheckInService
         self.drawingService = drawingService
     }
 
-    /// Fetches the latest X check-ins and associated drawings, then assembles cards.
-    func fetchAndAssemble(
-        uid: String,
-        checkInLimit: Int,
-        completion: @escaping (Result<[MoodEntryCard], Error>) -> Void
-    ) {
-        // Step 1: Fetch latest X check-ins
-        moodCheckInService.fetchLatestCheckIns(uid: uid, limit: checkInLimit) { [weak self] checkInResult in
+    func fetchInitial(limit: Int, completion: @escaping (Result<[MoodEntryCard], Error>) -> Void) {
+        // Reset pagination state
+        cursor = nil
+        hasMore = false
+        pageSize = limit
+
+        guard let uid = user.userId else {
+            completion(.success([]))
+            return
+        }
+
+        moodCheckInService.fetchLatestCheckIns(uid: uid, limit: limit) { [weak self] checkInResult in
             guard let self = self else { return }
             switch checkInResult {
             case .failure(let error):
                 completion(.failure(error))
-                return
 
             case .success(let checkIns):
+                self.hasMore = checkIns.count >= limit
+
                 guard !checkIns.isEmpty else {
-                    // No check-ins — fetch recent drawings as orphan cards
                     self.fetchOrphanDrawings(uid: uid, completion: completion)
                     return
                 }
 
-                // Step 2: Derive date range from oldest check-in
                 guard let oldestDate = checkIns.last?.createdAt else {
                     completion(.success([]))
                     return
                 }
+                self.cursor = oldestDate
 
-                let calendar = Calendar.current
-                let startOfDay = calendar.startOfDay(for: oldestDate)
+                let startOfDay = Calendar.current.startOfDay(for: oldestDate)
 
-                // Step 3: Fetch all drawings in date range
                 self.drawingService.fetchDrawings(uid: uid, from: startOfDay, to: nil) { drawingResult in
                     switch drawingResult {
                     case .failure(let error):
                         completion(.failure(error))
-                        return
-
                     case .success(let drawings):
-                        // Step 4: Assemble cards
+                        let cards = Self.assembleCards(checkIns: checkIns, drawings: drawings)
+                        completion(.success(cards))
+                    }
+                }
+            }
+        }
+    }
+
+    func fetchMore(completion: @escaping (Result<[MoodEntryCard], Error>) -> Void) {
+        guard hasMore, let cursor = cursor, let uid = user.userId else {
+            completion(.success([]))
+            return
+        }
+
+        moodCheckInService.fetchLatestCheckIns(uid: uid, limit: pageSize, before: cursor) { [weak self] checkInResult in
+            guard let self = self else { return }
+            switch checkInResult {
+            case .failure(let error):
+                completion(.failure(error))
+
+            case .success(let checkIns):
+                self.hasMore = checkIns.count >= self.pageSize
+
+                guard !checkIns.isEmpty else {
+                    completion(.success([]))
+                    return
+                }
+
+                guard let oldestDate = checkIns.last?.createdAt else {
+                    completion(.success([]))
+                    return
+                }
+                self.cursor = oldestDate
+
+                let startOfDay = Calendar.current.startOfDay(for: oldestDate)
+
+                // Fetch drawings from start of oldest new check-in's day to the previous cursor
+                self.drawingService.fetchDrawings(uid: uid, from: startOfDay, to: cursor) { drawingResult in
+                    switch drawingResult {
+                    case .failure(let error):
+                        completion(.failure(error))
+                    case .success(let drawings):
                         let cards = Self.assembleCards(checkIns: checkIns, drawings: drawings)
                         completion(.success(cards))
                     }
@@ -172,26 +237,6 @@ final class MoodEntriesDataAssembler {
 
     // MARK: - MoodEntry Conversion
 
-    /// Fetches and assembles mood entries ready for UI display.
-    /// Converts raw check-in + drawing data into `MoodEntry` view models,
-    /// filtering out orphan cards (drawings without a check-in).
-    func fetchMoodEntries(
-        uid: String,
-        checkInLimit: Int,
-        completion: @escaping (Result<[MoodEntry], Error>) -> Void
-    ) {
-        fetchAndAssemble(uid: uid, checkInLimit: checkInLimit) { result in
-            switch result {
-            case .success(let cards):
-                let entries = Self.convertToMoodEntries(cards)
-                completion(.success(entries))
-
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-
     /// Converts assembled cards into MoodEntry view models.
     /// Orphan cards (no check-in) are filtered out since MoodEntry requires an emotion.
     static func convertToMoodEntries(_ cards: [MoodEntryCard]) -> [MoodEntry] {
@@ -205,7 +250,7 @@ final class MoodEntriesDataAssembler {
                 id: checkIn.id ?? UUID().uuidString,
                 emotion: emotion,
                 date: card.date,
-                promptResponse: checkIn.evaluation,
+                journal: checkIn.journal ?? "",
                 colorHex: checkIn.colorHex,
                 colorIntensity: checkIn.colorIntensity,
                 artworkURLs: Array(card.drawings.prefix(4).map { $0.imageURL }),

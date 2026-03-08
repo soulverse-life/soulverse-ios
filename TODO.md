@@ -215,6 +215,37 @@ Add a locked state to tool cells with blur overlay + centered lock icon. Lock st
 
 ## Done
 
+### 22. Fetch Firestore MoodEntry data for InnerCosmoView with pagination
+**Priority**: P1
+**Complexity**: L
+**Status**: Completed
+**Branch**: feat/firestore-mood-entries
+**Created**: 2026-03-02
+**Completed**: 2026-03-08
+**PR**: #46
+
+Wire MoodEntriesDataAssembler into InnerCosmoViewPresenter to fetch real mood check-in data from Firestore. Add cursor-based pagination (fetchInitial/fetchMore) for infinite scroll in the horizontal mood entries collection view. Rename promptResponse → journal. Internalize uid in assembler. Add protocol for testability.
+
+**Files Created**:
+- `SoulverseTests/Mocks/Shared/Service/MoodEntriesDataAssemblerMock.swift`
+
+**Files Modified**:
+- `MoodEntry.swift` — Renamed promptResponse → journal, static DateFormatter
+- `MoodEntriesDataAssembler.swift` — Extracted protocol, added pagination, internalized uid
+- `InnerCosmoViewPresenter.swift` — Wired assembler, added loadMore, convertToMoodEntries
+- `InnerCosmoViewPresenterType.swift` — Added loadMoreMoodEntries, didAppendMoodEntries delegate
+- `InnerCosmoViewController.swift` — Wired pagination delegate methods
+- `MoodEntriesSection.swift` — Added scroll-near-end detection, appendEntries
+- `MoodEntryCardCell.swift` — Updated promptResponse → journal
+- `MoodCheckInServiceProtocol.swift` — Added cursor-based fetch method
+- `FirestoreMoodCheckInService.swift` — Implemented cursor-based pagination
+- `MoodCheckInServiceMock.swift` — Added mock for paginated fetch
+- `InnerCosmoViewPresenterDelegateMock.swift` — Added didAppendMoodEntries
+- `InnerCosmoViewPresenterTests.swift` — Rewired with assembler mock, 7 tests
+- `MoodEntriesDataAssemblerFetchTests.swift` — Updated for new API
+
+---
+
 ### 9. Integrate login/signin function
 **Priority**: P0 (Critical)
 **Complexity**: M (4-8 hours)

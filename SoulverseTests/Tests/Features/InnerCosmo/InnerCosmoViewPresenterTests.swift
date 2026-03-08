@@ -136,7 +136,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries.first?.emotion, .joy)
         XCTAssertEqual(entries.first?.colorHex, "#FFD700")
-        XCTAssertEqual(entries.first?.promptResponse, "Feeling great today")
+        XCTAssertEqual(entries.first?.journal, "Feeling great today")
         XCTAssertEqual(entries.first?.artworkURLs, [])
     }
 
@@ -192,7 +192,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         XCTAssertTrue(entries.first?.hasArtwork == true)
     }
 
-    func test_InnerCosmoViewPresenter_fetchData_fetchFailedErrorOnServiceFailure() {
+    func test_InnerCosmoViewPresenter_fetchData_deliversEmptyEntriesOnServiceFailure() {
         moodCheckInServiceMock.fetchLatestResult = .failure(NSError(domain: "test", code: 1))
 
         let exp = expectation(description: "delegate receives final update")
@@ -204,10 +204,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
 
         let viewModel = delegateMock.updatedViewModel
         XCTAssertTrue(viewModel?.moodEntries.isEmpty == true)
-        guard case .fetchFailed = viewModel?.moodEntriesError else {
-            XCTFail("Expected .fetchFailed error")
-            return
-        }
+        XCTAssertFalse(viewModel?.isLoading == true)
     }
 
     func test_InnerCosmoViewPresenter_fetchData_noErrorOnSuccess() {
@@ -235,11 +232,10 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         wait(for: [exp], timeout: 2.0)
 
         let viewModel = delegateMock.updatedViewModel
-        XCTAssertNil(viewModel?.moodEntriesError)
         XCTAssertEqual(viewModel?.moodEntries.count, 1)
     }
 
-    func test_InnerCosmoViewPresenter_fetchData_userNotAuthenticatedErrorWhenNoUserId() {
+    func test_InnerCosmoViewPresenter_fetchData_deliversEmptyEntriesWhenNoUserId() {
         userMock.userId = nil
 
         let assembler = MoodEntriesDataAssembler(
@@ -258,9 +254,6 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
 
         let viewModel = noIdDelegate.updatedViewModel
         XCTAssertTrue(viewModel?.moodEntries.isEmpty == true)
-        guard case .userNotAuthenticated = viewModel?.moodEntriesError else {
-            XCTFail("Expected .userNotAuthenticated error")
-            return
-        }
+        XCTAssertFalse(viewModel?.isLoading == true)
     }
 }
