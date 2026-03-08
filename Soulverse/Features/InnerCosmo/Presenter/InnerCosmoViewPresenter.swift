@@ -56,13 +56,12 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
             return
         }
 
-        assembler.fetchAndAssemble(uid: uid, checkInLimit: Self.checkInLimit) { [weak self] result in
+        assembler.fetchMoodEntries(uid: uid, checkInLimit: Self.checkInLimit) { [weak self] result in
             guard let self = self else { return }
 
             DispatchQueue.main.async {
                 switch result {
-                case .success(let cards):
-                    let entries = self.convertToMoodEntries(cards)
+                case .success(let entries):
                     self.handleDataFetchCompletion(moodEntries: entries, hasError: false)
 
                 case .failure:
@@ -84,26 +83,6 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
             moodEntriesLoadError: hasError
         )
         isFetchingData = false
-    }
-
-    private func convertToMoodEntries(_ cards: [MoodEntryCard]) -> [MoodEntry] {
-        cards.compactMap { card in
-            guard let checkIn = card.checkIn else { return nil }
-
-            let emotion = RecordedEmotion(rawValue: checkIn.emotion) ?? .joy
-            let topic = Topic(rawValue: checkIn.topic)
-
-            return MoodEntry(
-                id: checkIn.id ?? UUID().uuidString,
-                emotion: emotion,
-                date: card.date,
-                promptResponse: checkIn.evaluation,
-                colorHex: checkIn.colorHex,
-                colorIntensity: checkIn.colorIntensity,
-                artworkURLs: card.drawings.prefix(4).map { $0.imageURL },
-                topic: topic
-            )
-        }
     }
 
     @objc private func userIdentityChange() {
