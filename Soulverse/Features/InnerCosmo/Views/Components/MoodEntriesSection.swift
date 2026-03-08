@@ -24,14 +24,6 @@ class MoodEntriesSection: UIView {
 
     // MARK: - UI Components
 
-    private let headerLabel: UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("inner_cosmo_mood_entries_header", comment: "")
-        label.font = .projectFont(ofSize: 18, weight: .semibold)
-        label.textColor = .themeTextPrimary
-        return label
-    }()
-
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -70,17 +62,10 @@ class MoodEntriesSection: UIView {
     // MARK: - Setup
 
     private func setupUI() {
-        addSubview(headerLabel)
         addSubview(collectionView)
 
-        headerLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(InnerCosmoLayout.horizontalPadding)
-            make.height.equalTo(InnerCosmoLayout.moodEntriesHeaderHeight)
-        }
-
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(headerLabel.snp.bottom)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(InnerCosmoLayout.moodEntryCardHeight)
             make.bottom.equalToSuperview()

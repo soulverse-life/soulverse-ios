@@ -241,7 +241,6 @@
 "inner_cosmo_period_monthly" = "Monthly";
 "inner_cosmo_emo_pet" = "E.M.O pet";
 "inner_cosmo_mood_checkin_button" = "Mood checkin";
-"inner_cosmo_mood_entries_header" = "Recent Moods";
 "inner_cosmo_mood_entry_draw_cta" = "Draw";
 "inner_cosmo_mood_entry_empty_description" = "Add a drawing to capture this moment.";
 

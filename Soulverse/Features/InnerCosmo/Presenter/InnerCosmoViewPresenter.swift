@@ -10,24 +10,27 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
 
     weak var delegate: InnerCosmoViewPresenterDelegate?
 
+    private var suppressDidSet = false
+
     private var loadedModel: InnerCosmoViewModel {
         didSet {
+            guard !suppressDidSet else { return }
             delegate?.didUpdate(viewModel: loadedModel)
         }
     }
 
     private var isFetchingData: Bool = false
-    private var dataAccessQueue = DispatchQueue(label: "inner_cosmo_data", attributes: .concurrent)
+    private var isFetchingMore: Bool = false
 
     private let user: UserProtocol
-    private let assembler: MoodEntriesDataAssembler
+    private let assembler: MoodEntriesDataAssemblerProtocol
 
     private static let checkInLimit = 10
 
     // MARK: - Initialization
 
     init(user: UserProtocol = User.shared,
-         assembler: MoodEntriesDataAssembler = MoodEntriesDataAssembler()) {
+         assembler: MoodEntriesDataAssemblerProtocol = MoodEntriesDataAssembler()) {
         self.user = user
         self.assembler = assembler
         self.loadedModel = InnerCosmoViewModel(isLoading: true)
@@ -51,39 +54,61 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
             loadedModel.isLoading = true
         }
 
-        guard let uid = user.userId else {
-            handleDataFetchCompletion(moodEntries: [], error: .userNotAuthenticated)
-            return
-        }
-
-        assembler.fetchMoodEntries(uid: uid, checkInLimit: Self.checkInLimit) { [weak self] result in
-            guard let self = self else { return }
-
+        assembler.fetchInitial(limit: Self.checkInLimit) { [weak self] result in
             DispatchQueue.main.async {
-                switch result {
-                case .success(let entries):
-                    self.handleDataFetchCompletion(moodEntries: entries, error: nil)
+                guard let self = self else { return }
+                self.isFetchingData = false
 
-                case .failure(let error):
-                    self.handleDataFetchCompletion(moodEntries: [], error: .fetchFailed(error))
+                switch result {
+                case .success(let cards):
+                    let entries = MoodEntriesDataAssembler.convertToMoodEntries(cards)
+                    self.loadedModel = InnerCosmoViewModel(
+                        isLoading: false,
+                        userName: self.user.nickName,
+                        petName: self.user.emoPetName,
+                        planetName: self.user.planetName,
+                        moodEntries: entries
+                    )
+
+                case .failure:
+                    self.loadedModel = InnerCosmoViewModel(
+                        isLoading: false,
+                        userName: self.user.nickName,
+                        petName: self.user.emoPetName,
+                        planetName: self.user.planetName
+                    )
+                }
+            }
+        }
+    }
+
+    public func loadMoreMoodEntries() {
+        guard !isFetchingMore, assembler.hasMore else { return }
+
+        isFetchingMore = true
+
+        assembler.fetchMore { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.isFetchingMore = false
+
+                switch result {
+                case .success(let cards):
+                    guard !cards.isEmpty else { return }
+                    let newEntries = MoodEntriesDataAssembler.convertToMoodEntries(cards)
+                    self.suppressDidSet = true
+                    self.loadedModel.moodEntries.append(contentsOf: newEntries)
+                    self.suppressDidSet = false
+                    self.delegate?.didAppendMoodEntries(newEntries)
+
+                case .failure:
+                    break
                 }
             }
         }
     }
 
     // MARK: - Private Methods
-
-    private func handleDataFetchCompletion(moodEntries: [MoodEntry], error: MoodEntriesLoadError?) {
-        loadedModel = InnerCosmoViewModel(
-            isLoading: false,
-            userName: user.nickName,
-            petName: user.emoPetName,
-            planetName: user.planetName,
-            moodEntries: moodEntries,
-            moodEntriesError: error
-        )
-        isFetchingData = false
-    }
 
     @objc private func userIdentityChange() {
         // Refresh data when user identity changes

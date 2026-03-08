@@ -23,6 +23,7 @@ class MoodEntryCardCell: UICollectionViewCell {
 
     private let baseView: UIView = {
         let view = UIView()
+        view.backgroundColor = .black.withAlphaComponent(0.5)
         return view
     }()
 
@@ -30,14 +31,14 @@ class MoodEntryCardCell: UICollectionViewCell {
 
     private let emotionLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 18, weight: .bold)
+        label.font = .projectFont(ofSize: 22, weight: .bold)
         label.textColor = .themeTextPrimary
         return label
     }()
 
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 14, weight: .regular)
+        label.font = .projectFont(ofSize: 12, weight: .regular)
         label.textColor = .themeTextSecondary
         label.textAlignment = .right
         return label
@@ -45,9 +46,9 @@ class MoodEntryCardCell: UICollectionViewCell {
 
     private let quoteLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 14, weight: .regular)
+        label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .themeTextPrimary
-        label.numberOfLines = 3
+        label.numberOfLines = 2
         label.lineBreakMode = .byTruncatingTail
         return label
     }()
@@ -66,6 +67,10 @@ class MoodEntryCardCell: UICollectionViewCell {
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
             imageView.layer.cornerRadius = InnerCosmoLayout.moodEntryImageCornerRadius
+            imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+            imageView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+            imageView.setContentHuggingPriority(.defaultLow, for: .vertical)
+            imageView.setContentHuggingPriority(.defaultLow, for: .horizontal)
             imageView.isHidden = true
             return imageView
         }
@@ -74,7 +79,7 @@ class MoodEntryCardCell: UICollectionViewCell {
     private let emptyDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("inner_cosmo_mood_entry_empty_description", comment: "")
-        label.font = .projectFont(ofSize: 14, weight: .regular)
+        label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .themeTextSecondary
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -85,7 +90,7 @@ class MoodEntryCardCell: UICollectionViewCell {
     private lazy var drawCTAButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(NSLocalizedString("inner_cosmo_mood_entry_draw_cta", comment: ""), for: .normal)
-        button.titleLabel?.font = .projectFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.font = .projectFont(ofSize: 17, weight: .medium)
         button.setTitleColor(.themeButtonPrimaryText, for: .normal)
         button.backgroundColor = .themeButtonPrimaryBackground
         button.layer.cornerRadius = InnerCosmoLayout.moodEntryDrawCTACornerRadius
@@ -120,7 +125,6 @@ class MoodEntryCardCell: UICollectionViewCell {
     // MARK: - Setup
 
     private func setupUI() {
-        // Ensure transparent backgrounds for glass effect to work
         backgroundColor = .clear
         contentView.backgroundColor = .clear
 
@@ -189,11 +193,12 @@ class MoodEntryCardCell: UICollectionViewCell {
 
         quoteLabel.snp.makeConstraints { make in
             make.top.equalTo(emotionLabel.snp.bottom).offset(8)
+            make.height.equalTo(InnerCosmoLayout.moodEntryQuoteLabelHeight)
             make.leading.trailing.equalToSuperview().inset(padding)
         }
 
         artworkContainerView.snp.makeConstraints { make in
-            make.top.equalTo(quoteLabel.snp.bottom).offset(12)
+            make.top.equalTo(quoteLabel.snp.bottom).offset(padding)
             make.leading.trailing.equalToSuperview().inset(padding)
             make.bottom.equalToSuperview().offset(-padding)
         }
@@ -220,6 +225,7 @@ class MoodEntryCardCell: UICollectionViewCell {
             for (index, urlString) in urls.enumerated() {
                 let imageView = artworkImageViews[index]
                 imageView.isHidden = false
+                imageView.backgroundColor = .white
                 if let url = URL(string: urlString) {
                     imageView.kf.setImage(with: url)
                 }
@@ -237,8 +243,6 @@ class MoodEntryCardCell: UICollectionViewCell {
             imageView.isHidden = true
         }
 
-        artworkContainerView.backgroundColor = color.withAlphaComponent(0.3)
-
         emptyDescriptionLabel.isHidden = false
         drawCTAButton.isHidden = false
 
@@ -255,61 +259,82 @@ class MoodEntryCardCell: UICollectionViewCell {
     }
 
     private func layoutArtworkGrid(count: Int) {
-        let gap = InnerCosmoLayout.moodEntryImageGridGap
-        let halfGap = gap / 2
+        let ratio = InnerCosmoLayout.moodEntryImageAspectRatio
+        let largeGap = InnerCosmoLayout.moodEntryImageGridGap
+        let smallGap = InnerCosmoLayout.moodEntryImageGridGap / 2
 
         switch count {
         case 1:
+            // Single image centered with fixed aspect ratio
             artworkImageViews[0].snp.remakeConstraints { make in
-                make.edges.equalToSuperview()
+                make.center.equalToSuperview()
+                make.width.equalTo(artworkImageViews[0].snp.height).multipliedBy(ratio)
+                make.height.equalToSuperview()
             }
 
         case 2:
+            // Two images side by side, 16pt horizontal gap, centered
             artworkImageViews[0].snp.remakeConstraints { make in
-                make.top.bottom.leading.equalToSuperview()
-                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-halfGap)
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview()
+                make.width.equalTo(artworkImageViews[0].snp.height).multipliedBy(ratio)
+                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-largeGap / 2)
             }
             artworkImageViews[1].snp.remakeConstraints { make in
-                make.top.bottom.trailing.equalToSuperview()
-                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfGap)
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview()
+                make.width.equalTo(artworkImageViews[1].snp.height).multipliedBy(ratio)
+                make.leading.equalTo(artworkContainerView.snp.centerX).offset(largeGap / 2)
             }
 
         case 3:
+            // Large image [0] on left, two small images [1][2] stacked on right
+            // 16pt horizontal gap, 8pt vertical gap
             artworkImageViews[0].snp.remakeConstraints { make in
-                make.top.bottom.leading.equalToSuperview()
-                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-halfGap)
+                make.centerY.equalToSuperview()
+                make.height.equalToSuperview()
+                make.width.equalTo(artworkImageViews[0].snp.height).multipliedBy(ratio)
+                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-largeGap / 2)
             }
             artworkImageViews[1].snp.remakeConstraints { make in
-                make.top.trailing.equalToSuperview()
-                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfGap)
-                make.bottom.equalTo(artworkContainerView.snp.centerY).offset(-halfGap)
+                make.leading.equalTo(artworkContainerView.snp.centerX).offset(largeGap / 2)
+                make.top.equalToSuperview()
+                make.bottom.equalTo(artworkContainerView.snp.centerY).offset(-smallGap / 2)
+                make.width.equalTo(artworkImageViews[1].snp.height).multipliedBy(ratio)
             }
             artworkImageViews[2].snp.remakeConstraints { make in
-                make.bottom.trailing.equalToSuperview()
-                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfGap)
-                make.top.equalTo(artworkContainerView.snp.centerY).offset(halfGap)
+                make.leading.equalTo(artworkContainerView.snp.centerX).offset(largeGap / 2)
+                make.top.equalTo(artworkContainerView.snp.centerY).offset(smallGap / 2)
+                make.bottom.equalToSuperview()
+                make.width.equalTo(artworkImageViews[2].snp.height).multipliedBy(ratio)
             }
 
         case 4:
+            // 2x2 grid, 8pt spacing both ways, centered
+            let halfSmall = smallGap / 2
             artworkImageViews[0].snp.remakeConstraints { make in
-                make.top.leading.equalToSuperview()
-                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-halfGap)
-                make.bottom.equalTo(artworkContainerView.snp.centerY).offset(-halfGap)
+                make.top.equalToSuperview()
+                make.bottom.equalTo(artworkContainerView.snp.centerY).offset(-halfSmall)
+                make.width.equalTo(artworkImageViews[0].snp.height).multipliedBy(ratio)
+                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-halfSmall)
             }
             artworkImageViews[1].snp.remakeConstraints { make in
-                make.top.trailing.equalToSuperview()
-                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfGap)
-                make.bottom.equalTo(artworkContainerView.snp.centerY).offset(-halfGap)
+                make.top.equalToSuperview()
+                make.bottom.equalTo(artworkContainerView.snp.centerY).offset(-halfSmall)
+                make.width.equalTo(artworkImageViews[1].snp.height).multipliedBy(ratio)
+                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfSmall)
             }
             artworkImageViews[2].snp.remakeConstraints { make in
-                make.bottom.leading.equalToSuperview()
-                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-halfGap)
-                make.top.equalTo(artworkContainerView.snp.centerY).offset(halfGap)
+                make.top.equalTo(artworkContainerView.snp.centerY).offset(halfSmall)
+                make.bottom.equalToSuperview()
+                make.width.equalTo(artworkImageViews[2].snp.height).multipliedBy(ratio)
+                make.trailing.equalTo(artworkContainerView.snp.centerX).offset(-halfSmall)
             }
             artworkImageViews[3].snp.remakeConstraints { make in
-                make.bottom.trailing.equalToSuperview()
-                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfGap)
-                make.top.equalTo(artworkContainerView.snp.centerY).offset(halfGap)
+                make.top.equalTo(artworkContainerView.snp.centerY).offset(halfSmall)
+                make.bottom.equalToSuperview()
+                make.width.equalTo(artworkImageViews[3].snp.height).multipliedBy(ratio)
+                make.leading.equalTo(artworkContainerView.snp.centerX).offset(halfSmall)
             }
 
         default:

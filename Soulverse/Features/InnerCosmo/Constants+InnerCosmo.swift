@@ -11,23 +11,24 @@ enum InnerCosmoLayout {
 
     // MARK: - Mood Entries Section
 
-    static let moodEntriesSectionTopPadding: CGFloat = 24
-    static let moodEntriesHeaderHeight: CGFloat = 40
-    static let moodEntriesCollectionHeight: CGFloat = 270
+    static let moodEntriesSectionTopPadding: CGFloat = 40
+    static let moodEntriesCollectionHeight: CGFloat = 313
 
     // MARK: - Mood Entry Card
 
-    static let moodEntryCardWidth: CGFloat = 200
-    static let moodEntryCardHeight: CGFloat = 260
-    static let moodEntryCardCornerRadius: CGFloat = 20
-    static let moodEntryCardSpacing: CGFloat = 12
+    static let moodEntryCardWidth: CGFloat = 262
+    static let moodEntryCardHeight: CGFloat = 313
+    static let moodEntryCardCornerRadius: CGFloat = 16
+    static let moodEntryCardSpacing: CGFloat = 16
     static let moodEntryCardPadding: CGFloat = 16
-    static let moodEntryImageCornerRadius: CGFloat = 12
+    static let moodEntryQuoteLabelHeight: CGFloat = 42
+    static let moodEntryImageCornerRadius: CGFloat = 5
     static let moodEntryImageHeight: CGFloat = 140
 
-    static let moodEntryImageGridGap: CGFloat = 4
-    static let moodEntryDrawCTAHeight: CGFloat = 36
-    static let moodEntryDrawCTACornerRadius: CGFloat = 18
+    static let moodEntryImageGridGap: CGFloat = 16
+    static let moodEntryImageAspectRatio: CGFloat = 100.0 / 180.0
+    static let moodEntryDrawCTAHeight: CGFloat = 50
+    static let moodEntryDrawCTACornerRadius: CGFloat = 25
 
     // MARK: - Shared
 

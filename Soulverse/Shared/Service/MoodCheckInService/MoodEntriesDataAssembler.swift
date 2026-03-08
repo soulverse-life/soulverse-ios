@@ -237,26 +237,6 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
 
     // MARK: - MoodEntry Conversion
 
-    /// Fetches and assembles mood entries ready for UI display.
-    /// Converts raw check-in + drawing data into `MoodEntry` view models,
-    /// filtering out orphan cards (drawings without a check-in).
-    func fetchMoodEntries(
-        uid: String,
-        checkInLimit: Int,
-        completion: @escaping (Result<[MoodEntry], Error>) -> Void
-    ) {
-        fetchAndAssemble(uid: uid, checkInLimit: checkInLimit) { result in
-            switch result {
-            case .success(let cards):
-                let entries = Self.convertToMoodEntries(cards)
-                completion(.success(entries))
-
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-
     /// Converts assembled cards into MoodEntry view models.
     /// Orphan cards (no check-in) are filtered out since MoodEntry requires an emotion.
     static func convertToMoodEntries(_ cards: [MoodEntryCard]) -> [MoodEntry] {
@@ -270,7 +250,7 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
                 id: checkIn.id ?? UUID().uuidString,
                 emotion: emotion,
                 date: card.date,
-                promptResponse: checkIn.evaluation,
+                journal: checkIn.journal ?? "",
                 colorHex: checkIn.colorHex,
                 colorIntensity: checkIn.colorIntensity,
                 artworkURLs: Array(card.drawings.prefix(4).map { $0.imageURL }),
