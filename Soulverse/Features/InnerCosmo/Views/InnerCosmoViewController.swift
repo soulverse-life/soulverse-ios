@@ -25,15 +25,7 @@ class InnerCosmoViewController: ViewController {
     // MARK: - UI Components
 
     private lazy var navigationView: SoulverseNavigationView = {
-        let bellIcon = UIImage(systemName: "bell")
         let personIcon = UIImage(systemName: "person")
-
-        let notificationItem = SoulverseNavigationItem.button(
-            image: bellIcon,
-            identifier: "notification"
-        ) { [weak self] in
-            self?.notificationTapped()
-        }
 
         let profileItem = SoulverseNavigationItem.button(
             image: personIcon,
@@ -45,7 +37,7 @@ class InnerCosmoViewController: ViewController {
         let config = SoulverseNavigationConfig(
             title: NSLocalizedString("inner_cosmo", comment: ""),
             showBackButton: false,
-            rightItems: [notificationItem, profileItem]
+            rightItems: [profileItem]
         )
 
         let view = SoulverseNavigationView(config: config)
@@ -296,11 +288,6 @@ extension InnerCosmoViewController: UIGestureRecognizerDelegate {
 // MARK: - Navigation Actions
 
 extension InnerCosmoViewController {
-
-    private func notificationTapped() {
-        print("[InnerCosmo] Notification button tapped")
-        // TODO: Navigate to notifications screen
-    }
 
     private func profileTapped() {
         let profileVC = ProfileViewController()
