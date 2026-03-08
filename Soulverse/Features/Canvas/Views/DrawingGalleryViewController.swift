@@ -214,8 +214,11 @@ extension DrawingGalleryViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // TODO: determine how the CTA for the drawing, replay modal view may only good for testing, not user friendly
+        /*
         guard let drawing = viewModel.drawing(at: indexPath) else { return }
         let replayVC = DrawingReplayModalViewController(drawing: drawing)
         present(replayVC, animated: true)
+        */
     }
 }

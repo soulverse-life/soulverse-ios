@@ -134,10 +134,12 @@ Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as t
 ## In Progress
 
 ### 22. fix/tab-bar-hidden-after-drawing: Tab bar not displayed after returning from drawing to InnerCosmoView [P1] [S]
-- Status: in_progress
+- Status: completed
 - Branch: fix/tab-bar-hidden-after-drawing
 - Worktree: ../soulverse-fix/
 - Created: 2026-03-02
+- Completed: 2026-03-03
+- PR: #45
 
 ---
 
