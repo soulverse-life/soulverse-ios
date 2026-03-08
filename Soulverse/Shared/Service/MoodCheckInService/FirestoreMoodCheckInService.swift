@@ -104,6 +104,9 @@ final class FirestoreMoodCheckInService: MoodCheckInServiceProtocol {
     }
 
     /// Fetches the latest N mood check-ins before a given cursor date, ordered by createdAt descending.
+    /// Note: Uses `isLessThan` on `createdAt` for cursor pagination. If two check-ins share the
+    /// exact same server timestamp, the one at the cursor boundary could be skipped. In practice
+    /// this is extremely unlikely since Firestore server timestamps have nanosecond precision.
     func fetchLatestCheckIns(
         uid: String,
         limit: Int,

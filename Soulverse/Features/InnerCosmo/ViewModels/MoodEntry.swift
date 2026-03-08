@@ -22,10 +22,14 @@ struct MoodEntry {
 
     // MARK: - Computed Properties
 
+    private static let dateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "MMM d"
+        return f
+    }()
+
     var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d"
-        return formatter.string(from: date)
+        MoodEntry.dateFormatter.string(from: date)
     }
 
     var color: UIColor {

@@ -245,11 +245,6 @@ class InnerCosmoViewController: ViewController {
 
     @objc private func pullToRefresh() {
         presenter.fetchData(isUpdate: true)
-
-        // End refreshing after a delay for better UX
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.scrollView.refreshControl?.endRefreshing()
-        }
     }
 }
 
