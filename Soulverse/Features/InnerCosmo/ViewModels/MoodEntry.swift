@@ -17,7 +17,7 @@ struct MoodEntry {
     let promptResponse: String
     let colorHex: String
     let colorIntensity: Double
-    let artworkURL: String?
+    let artworkURLs: [String]
     let topic: Topic?
 
     // MARK: - Computed Properties
@@ -32,10 +32,7 @@ struct MoodEntry {
         UIColor(hex: colorHex) ?? .themeTextSecondary
     }
 
-    var hasArtwork: Bool {
-        guard let url = artworkURL else { return false }
-        return !url.isEmpty
-    }
+    var hasArtwork: Bool { !artworkURLs.isEmpty }
 }
 
 // MARK: - Mock Data
@@ -50,7 +47,7 @@ extension MoodEntry {
             promptResponse: "The joy is in the journey, not the destination",
             colorHex: "#FFD700",
             colorIntensity: 0.8,
-            artworkURL: nil,
+            artworkURLs: [],
             topic: .emotional
         ),
         MoodEntry(
@@ -60,7 +57,7 @@ extension MoodEntry {
             promptResponse: "It feels like standing at the edge of a cliff, looking down",
             colorHex: "#4A4A8A",
             colorIntensity: 0.6,
-            artworkURL: nil,
+            artworkURLs: [],
             topic: .spiritual
         ),
         MoodEntry(
@@ -70,7 +67,7 @@ extension MoodEntry {
             promptResponse: "A gentle wave washing over warm sand",
             colorHex: "#87CEEB",
             colorIntensity: 0.5,
-            artworkURL: "https://example.com/artwork1.png",
+            artworkURLs: ["https://example.com/artwork1.png"],
             topic: .physical
         ),
         MoodEntry(
@@ -80,7 +77,7 @@ extension MoodEntry {
             promptResponse: "Warmth spreading from my heart to my fingertips",
             colorHex: "#FF6B6B",
             colorIntensity: 0.9,
-            artworkURL: nil,
+            artworkURLs: [],
             topic: .social
         ),
         MoodEntry(
@@ -90,7 +87,7 @@ extension MoodEntry {
             promptResponse: "Like the moment before opening a gift",
             colorHex: "#FFA500",
             colorIntensity: 0.7,
-            artworkURL: "https://example.com/artwork2.png",
+            artworkURLs: ["https://example.com/artwork2.png"],
             topic: .occupational
         )
     ]

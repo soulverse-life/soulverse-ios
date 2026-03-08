@@ -25,6 +25,10 @@ enum InnerCosmoLayout {
     static let moodEntryImageCornerRadius: CGFloat = 12
     static let moodEntryImageHeight: CGFloat = 140
 
+    static let moodEntryImageGridGap: CGFloat = 4
+    static let moodEntryDrawCTAHeight: CGFloat = 36
+    static let moodEntryDrawCTACornerRadius: CGFloat = 18
+
     // MARK: - Shared
 
     static let horizontalPadding: CGFloat = 26

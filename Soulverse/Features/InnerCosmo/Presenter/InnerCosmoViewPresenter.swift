@@ -20,11 +20,16 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
     private var dataAccessQueue = DispatchQueue(label: "inner_cosmo_data", attributes: .concurrent)
 
     private let user: UserProtocol
+    private let assembler: MoodEntriesDataAssembler
+
+    private static let checkInLimit = 10
 
     // MARK: - Initialization
 
-    init(user: UserProtocol = User.shared) {
+    init(user: UserProtocol = User.shared,
+         assembler: MoodEntriesDataAssembler = MoodEntriesDataAssembler()) {
         self.user = user
+        self.assembler = assembler
         self.loadedModel = InnerCosmoViewModel(isLoading: true)
 
         NotificationCenter.default.addObserver(
@@ -46,25 +51,59 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
             loadedModel.isLoading = true
         }
 
-        // TODO: Replace with actual API call
-        // Simulating data fetch completion
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.handleDataFetchCompletion()
+        guard let uid = user.userId else {
+            handleDataFetchCompletion(moodEntries: [], hasError: true)
+            return
+        }
+
+        assembler.fetchAndAssemble(uid: uid, checkInLimit: Self.checkInLimit) { [weak self] result in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let cards):
+                    let entries = self.convertToMoodEntries(cards)
+                    self.handleDataFetchCompletion(moodEntries: entries, hasError: false)
+
+                case .failure:
+                    self.handleDataFetchCompletion(moodEntries: [], hasError: true)
+                }
+            }
         }
     }
 
     // MARK: - Private Methods
 
-    private func handleDataFetchCompletion() {
+    private func handleDataFetchCompletion(moodEntries: [MoodEntry], hasError: Bool) {
         loadedModel = InnerCosmoViewModel(
             isLoading: false,
             userName: user.nickName,
             petName: user.emoPetName,
-            planetName: user.planetName //,
-            // emotions: EmotionPlanetData.mockData,  // TODO: Replace with fetched data
-            // moodEntries: MoodEntry.mockData  // TODO: Replace with API data
+            planetName: user.planetName,
+            moodEntries: moodEntries,
+            moodEntriesLoadError: hasError
         )
         isFetchingData = false
+    }
+
+    private func convertToMoodEntries(_ cards: [MoodEntryCard]) -> [MoodEntry] {
+        cards.compactMap { card in
+            guard let checkIn = card.checkIn else { return nil }
+
+            let emotion = RecordedEmotion(rawValue: checkIn.emotion) ?? .joy
+            let topic = Topic(rawValue: checkIn.topic)
+
+            return MoodEntry(
+                id: checkIn.id ?? UUID().uuidString,
+                emotion: emotion,
+                date: card.date,
+                promptResponse: checkIn.evaluation,
+                colorHex: checkIn.colorHex,
+                colorIntensity: checkIn.colorIntensity,
+                artworkURLs: card.drawings.prefix(4).map { $0.imageURL },
+                topic: topic
+            )
+        }
     }
 
     @objc private func userIdentityChange() {

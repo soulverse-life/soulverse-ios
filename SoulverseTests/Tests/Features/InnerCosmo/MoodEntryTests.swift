@@ -10,19 +10,22 @@ final class MoodEntryTests: XCTestCase {
 
     // MARK: - hasArtwork
 
-    func test_MoodEntry_hasArtwork_trueWhenURLPresent() {
-        let entry = makeMoodEntry(artworkURL: "https://example.com/art.png")
+    func test_MoodEntry_hasArtwork_trueWhenURLsPresent() {
+        let entry = makeMoodEntry(artworkURLs: ["https://example.com/art.png"])
         XCTAssertTrue(entry.hasArtwork)
     }
 
-    func test_MoodEntry_hasArtwork_falseWhenURLNil() {
-        let entry = makeMoodEntry(artworkURL: nil)
+    func test_MoodEntry_hasArtwork_falseWhenURLsEmpty() {
+        let entry = makeMoodEntry(artworkURLs: [])
         XCTAssertFalse(entry.hasArtwork)
     }
 
-    func test_MoodEntry_hasArtwork_falseWhenURLEmpty() {
-        let entry = makeMoodEntry(artworkURL: "")
-        XCTAssertFalse(entry.hasArtwork)
+    func test_MoodEntry_hasArtwork_trueWithMultipleURLs() {
+        let entry = makeMoodEntry(artworkURLs: [
+            "https://example.com/art1.png",
+            "https://example.com/art2.png"
+        ])
+        XCTAssertTrue(entry.hasArtwork)
     }
 
     // MARK: - formattedDate
@@ -56,7 +59,7 @@ final class MoodEntryTests: XCTestCase {
 
 private extension MoodEntryTests {
     func makeMoodEntry(
-        artworkURL: String? = nil,
+        artworkURLs: [String] = [],
         date: Date = Date()
     ) -> MoodEntry {
         return MoodEntry(
@@ -66,7 +69,7 @@ private extension MoodEntryTests {
             promptResponse: "Test response",
             colorHex: "#FFD700",
             colorIntensity: 0.8,
-            artworkURL: artworkURL,
+            artworkURLs: artworkURLs,
             topic: .emotional
         )
     }
