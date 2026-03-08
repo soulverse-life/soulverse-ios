@@ -61,24 +61,22 @@ final class DrawingGalleryPresenter: DrawingGalleryPresenterType {
         ) ?? Date()
 
         drawingService.fetchDrawings(uid: uid, from: startDate, to: nil) { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                self.isFetching = false
+            guard let self = self else { return }
+            self.isFetching = false
 
-                switch result {
-                case .success(let drawings):
-                    let sections = self.groupByDay(drawings)
-                    self.delegate?.didUpdate(
-                        viewModel: DrawingGalleryViewModel(isLoading: false, sections: sections)
+            switch result {
+            case .success(let drawings):
+                let sections = self.groupByDay(drawings)
+                self.delegate?.didUpdate(
+                    viewModel: DrawingGalleryViewModel(isLoading: false, sections: sections)
+                )
+            case .failure(let error):
+                self.delegate?.didUpdate(
+                    viewModel: DrawingGalleryViewModel(
+                        isLoading: false,
+                        errorMessage: error.localizedDescription
                     )
-                case .failure(let error):
-                    self.delegate?.didUpdate(
-                        viewModel: DrawingGalleryViewModel(
-                            isLoading: false,
-                            errorMessage: error.localizedDescription
-                        )
-                    )
-                }
+                )
             }
         }
     }

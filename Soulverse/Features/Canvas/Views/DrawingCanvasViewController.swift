@@ -595,9 +595,12 @@ extension DrawingCanvasViewController: DrawingCanvasPresenterDelegate {
     }
 
     func didFinishSavingDrawing(image: UIImage) {
-        hideLoadingView()
-        saveButton.isEnabled = true
-        AppCoordinator.presentDrawingResult(image: image, from: self)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            hideLoadingView()
+            saveButton.isEnabled = true
+            AppCoordinator.presentDrawingResult(image: image, from: self)
+        }
     }
 
     func didFailSavingDrawing(error: Error) {
