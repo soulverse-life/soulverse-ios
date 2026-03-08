@@ -24,9 +24,6 @@ extension UIViewController {
 
         let loadingView = LoadingView()
         view.addSubview(loadingView)
-        if let belowSubview = belowSubview {
-            view.bringSubviewToFront(belowSubview)
-        }
         loadingView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

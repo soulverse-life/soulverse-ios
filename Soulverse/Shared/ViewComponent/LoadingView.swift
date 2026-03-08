@@ -47,6 +47,7 @@ final class LoadingView: UIView {
     // MARK: - Setup
 
     private func setupUI() {
+        isUserInteractionEnabled = false
         backgroundColor = UIColor.black.withAlphaComponent(Layout.dimmingAlpha)
 
         addSubview(animationView)
