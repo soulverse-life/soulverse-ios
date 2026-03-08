@@ -62,13 +62,13 @@ class WebViewController: ViewController, WKUIDelegate, WKNavigationDelegate {
             make.left.right.bottom.equalToSuperview()
         }
         
-        showLoading = true
+        showLoadingView(below: navigationBar)
         guard let pageUrl = pageUrl else { return }
         let request = URLRequest(url: pageUrl)
         webView.load(request)
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        showLoading = false
+        hideLoadingView()
     }
 }

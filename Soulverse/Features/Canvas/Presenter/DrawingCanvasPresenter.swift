@@ -68,16 +68,15 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
             promptUsed: promptUsed,
             templateName: templateName
         ) { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                self.isSaving = false
+            
+            guard let self = self else { return }
+            self.isSaving = false
 
-                switch result {
-                case .success:
-                    self.delegate?.didFinishSavingDrawing(image: image)
-                case .failure(let error):
-                    self.delegate?.didFailSavingDrawing(error: error)
-                }
+            switch result {
+            case .success:
+                self.delegate?.didFinishSavingDrawing(image: image)
+            case .failure(let error):
+                self.delegate?.didFailSavingDrawing(error: error)
             }
         }
     }

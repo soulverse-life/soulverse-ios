@@ -289,7 +289,11 @@ extension ProfileViewController: ProfileViewPresenterDelegate {
     func didUpdate(viewModel: ProfileViewModel) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.showLoading = viewModel.isLoading
+            if viewModel.isLoading {
+                self.showLoadingView(below: self.navigationView)
+            } else {
+                self.hideLoadingView()
+            }
             self.configure(with: viewModel)
         }
     }

@@ -21,7 +21,7 @@ final class DrawingGalleryCell: UICollectionViewCell {
 
     private let drawingImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.backgroundColor = .themeCardBackground
         imageView.layer.cornerRadius = Layout.cornerRadius

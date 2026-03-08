@@ -267,7 +267,11 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
     func didUpdate(viewModel: InnerCosmoViewModel) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.showLoading = viewModel.isLoading
+            if viewModel.isLoading {
+                self.showLoadingView(below: self.navigationView)
+            } else {
+                self.hideLoadingView()
+            }
             self.scrollView.refreshControl?.endRefreshing()
             self.configure(with: viewModel)
         }

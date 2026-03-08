@@ -65,8 +65,9 @@ final class DrawingReplayModalViewController: UIViewController {
         return canvas
     }()
 
-    private lazy var loadingView: LoadingView = {
+    private lazy var replayLoadingView: LoadingView = {
         let view = LoadingView()
+        view.isHidden = true
         return view
     }()
 
@@ -126,7 +127,7 @@ final class DrawingReplayModalViewController: UIViewController {
         view.addSubview(cardView)
         cardView.addSubview(templateImageView)
         cardView.addSubview(canvasView)
-        cardView.addSubview(loadingView)
+        cardView.addSubview(replayLoadingView)
         cardView.addSubview(closeButton)
     }
 
@@ -149,8 +150,8 @@ final class DrawingReplayModalViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
-        loadingView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+        replayLoadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
 
         closeButton.snp.makeConstraints { make in
@@ -227,11 +228,11 @@ final class DrawingReplayModalViewController: UIViewController {
 extension DrawingReplayModalViewController: DrawingReplayPresenterDelegate {
 
     func didStartLoading() {
-        loadingView.startAnimating()
+        replayLoadingView.startAnimating()
     }
 
     func didFinishLoading(strokes: [PKStroke], bounds: CGRect) {
-        loadingView.stopAnimating()
+        replayLoadingView.stopAnimating()
         allStrokes = strokes
         drawingBounds = bounds
         isLoadingComplete = true
@@ -240,7 +241,7 @@ extension DrawingReplayModalViewController: DrawingReplayPresenterDelegate {
     }
 
     func didFailLoading(error: Error) {
-        loadingView.stopAnimating()
+        replayLoadingView.stopAnimating()
         let message = NSLocalizedString("drawing_replay_error", comment: "Unable to load drawing")
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(

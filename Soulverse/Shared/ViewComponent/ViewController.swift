@@ -6,17 +6,9 @@
 
 import UIKit
 import SnapKit
-import NVActivityIndicatorView
 import MessageUI
 
 class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
-
-    var showLoading: Bool = false {
-        didSet {
-            toggleLoading()
-        }
-    }
-    var loadingIndicator: NVActivityIndicatorView!
 
     /// Gradient background view - added in init for instant display
     private lazy var gradientBackgroundView: GradientView = {
@@ -44,24 +36,6 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
         view.sendSubviewToBack(gradientBackgroundView)
 
         setupNavigationBar()
-
-        loadingIndicator = NVActivityIndicatorView(frame: CGRect.zero, color: .lightGray)
-        loadingIndicator.type = .ballSpinFadeLoader
-        view.addSubview(loadingIndicator)
-        loadingIndicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.size.equalTo(40)
-        }
-
-    }
-
-    func toggleLoading() {
-        if showLoading {
-            view.bringSubviewToFront(loadingIndicator)
-            loadingIndicator.startAnimating()
-        } else {
-            loadingIndicator.stopAnimating()
-        }
     }
     
     private func setupNavigationBar() {

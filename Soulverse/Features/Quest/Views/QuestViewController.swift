@@ -165,8 +165,12 @@ extension QuestViewController: QuestViewPresenterDelegate {
     func didUpdate(viewModel: QuestViewModel) {
         DispatchQueue.main.async { [weak self] in
             guard let weakSelf = self else { return }
-            weakSelf.showLoading = viewModel.isLoading
-            
+            if viewModel.isLoading {
+                weakSelf.showLoadingView(below: weakSelf.navigationView)
+            } else {
+                weakSelf.hideLoadingView()
+            }
+
             // End refresh control
             if weakSelf.tableView.refreshControl?.isRefreshing == true {
                 weakSelf.tableView.refreshControl?.endRefreshing()

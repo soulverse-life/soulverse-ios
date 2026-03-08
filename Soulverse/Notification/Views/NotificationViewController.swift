@@ -90,11 +90,11 @@ class NotificationViewController: ViewController {
         self.tabBarController?.cleanTitles()
 
         setupView()
-        showLoading = true
+        showLoadingView()
         presenter?.fetchData( completion:{ [weak self]  in
-            
+
             guard let weakSelf = self else { return }
-            weakSelf.showLoading = false
+            weakSelf.hideLoadingView()
         })
 
     }
