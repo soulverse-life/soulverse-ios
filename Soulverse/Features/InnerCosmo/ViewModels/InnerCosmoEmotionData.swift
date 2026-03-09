@@ -19,18 +19,15 @@ struct EmotionPlanetData {
 
 /// Period options for InnerCosmo view
 enum InnerCosmoPeriod: Int, CaseIterable {
-    case daily = 0
-    case weekly = 1
-    case monthly = 2
+    case recent = 0
+    case all = 1
 
     var title: String {
         switch self {
-        case .daily:
-            return NSLocalizedString("inner_cosmo_period_daily", comment: "")
-        case .weekly:
-            return NSLocalizedString("inner_cosmo_period_weekly", comment: "")
-        case .monthly:
-            return NSLocalizedString("inner_cosmo_period_monthly", comment: "")
+        case .recent:
+            return NSLocalizedString("inner_cosmo_period_recent", comment: "")
+        case .all:
+            return NSLocalizedString("inner_cosmo_period_all", comment: "")
         }
     }
 }
