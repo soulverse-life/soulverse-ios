@@ -268,7 +268,7 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
         // Not used in scroll view implementation
     }
 
-    func didAppendMoodEntries(_ entries: [MoodEntry]) {
+    func didAppendMoodEntries(_ entries: [MoodEntryCardCellViewModel]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.moodEntriesSection.appendEntries(entries)
@@ -316,9 +316,9 @@ extension InnerCosmoViewController: SoulverseButtonDelegate {
 
 extension InnerCosmoViewController: MoodEntriesSectionDelegate {
 
-    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, entry: MoodEntry) {
+    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, entry: MoodEntryCardCellViewModel) {
         // TODO: Navigate to drawing canvas with the mood entry context
-        print("[InnerCosmo] Draw tapped for entry: \(entry.emotion.displayName)")
+        print("[InnerCosmo] Draw tapped for entry: \(entry.emotion?.displayName ?? "drawing")")
         AppCoordinator.openDrawingCanvas(from: self)
     }
 

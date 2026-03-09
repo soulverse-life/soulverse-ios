@@ -30,7 +30,7 @@ struct InnerCosmoViewModel {
 
     // MARK: - Mood Entry Cards
 
-    var moodEntries: [MoodEntry]
+    var moodEntries: [MoodEntryCardCellViewModel]
     var moodEntriesError: MoodEntriesLoadError?
 
     // MARK: - Initialization
@@ -41,7 +41,7 @@ struct InnerCosmoViewModel {
         petName: String? = nil,
         planetName: String? = nil,
         emotions: [EmotionPlanetData] = [],
-        moodEntries: [MoodEntry] = [],
+        moodEntries: [MoodEntryCardCellViewModel] = [],
         moodEntriesError: MoodEntriesLoadError? = nil
     ) {
         self.isLoading = isLoading

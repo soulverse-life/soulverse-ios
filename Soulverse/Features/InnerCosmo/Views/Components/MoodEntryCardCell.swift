@@ -17,7 +17,7 @@ class MoodEntryCardCell: UICollectionViewCell {
 
     weak var delegate: MoodEntryCardCellDelegate?
 
-    private var currentEntry: MoodEntry?
+    private var currentEntry: MoodEntryCardCellViewModel?
 
     // MARK: - UI Components
 
@@ -187,7 +187,7 @@ class MoodEntryCardCell: UICollectionViewCell {
         }
 
         dateLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(emotionLabel)
+            make.top.equalToSuperview().offset(InnerCosmoLayout.moodEntryDateTopOffset)
             make.trailing.equalToSuperview().offset(-padding)
         }
 
@@ -206,17 +206,17 @@ class MoodEntryCardCell: UICollectionViewCell {
 
     // MARK: - Configuration
 
-    func configure(with entry: MoodEntry) {
+    func configure(with entry: MoodEntryCardCellViewModel) {
         currentEntry = entry
 
-        emotionLabel.text = entry.emotion.displayName
+        emotionLabel.text = entry.emotion?.displayName
         dateLabel.text = entry.formattedDate
         quoteLabel.text = entry.journal
 
-        let urls = Array(entry.artworkURLs.prefix(4))
+        let urls = entry.artworkURLs
 
         if urls.isEmpty {
-            layoutEmptyState(color: entry.color)
+            layoutEmptyState()
         } else {
             emptyDescriptionLabel.isHidden = true
             drawCTAButton.isHidden = true
@@ -237,7 +237,7 @@ class MoodEntryCardCell: UICollectionViewCell {
 
     // MARK: - Layout Methods
 
-    private func layoutEmptyState(color: UIColor) {
+    private func layoutEmptyState() {
         // Hide all image views
         for imageView in artworkImageViews {
             imageView.isHidden = true
@@ -353,5 +353,5 @@ class MoodEntryCardCell: UICollectionViewCell {
 // MARK: - Delegate Protocol
 
 protocol MoodEntryCardCellDelegate: AnyObject {
-    func moodEntryCardDidTapDraw(_ cell: MoodEntryCardCell, entry: MoodEntry)
+    func moodEntryCardDidTapDraw(_ cell: MoodEntryCardCell, entry: MoodEntryCardCellViewModel)
 }

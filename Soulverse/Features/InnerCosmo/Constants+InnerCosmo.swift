@@ -21,6 +21,7 @@ enum InnerCosmoLayout {
     static let moodEntryCardCornerRadius: CGFloat = 16
     static let moodEntryCardSpacing: CGFloat = 16
     static let moodEntryCardPadding: CGFloat = 16
+    static let moodEntryDateTopOffset: CGFloat = 22
     static let moodEntryQuoteLabelHeight: CGFloat = 42
     static let moodEntryImageCornerRadius: CGFloat = 5
     static let moodEntryImageHeight: CGFloat = 140

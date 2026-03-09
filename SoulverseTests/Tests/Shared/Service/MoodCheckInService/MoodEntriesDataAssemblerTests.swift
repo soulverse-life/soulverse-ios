@@ -233,6 +233,60 @@ final class MoodEntriesDataAssemblerTests: XCTestCase {
         XCTAssertEqual(cards[0].drawings[2].id, "d1") // 12:00
     }
 
+    // MARK: - Cross-Day Standalone Drawing
+
+    func test_assembleCards_standaloneDrawingOnDifferentDay_becomesOrphanCard() {
+        // Check-in on Mar 8, standalone drawing on Mar 9
+        let checkIn = makeCheckIn(id: "c1", createdAt: date(2026, 3, 8, 10, 0))
+        let drawing = makeDrawing(id: "d1", checkinId: nil, createdAt: date(2026, 3, 9, 14, 0))
+
+        let cards = MoodEntriesDataAssembler.assembleCards(
+            checkIns: [checkIn],
+            drawings: [drawing]
+        )
+
+        // Expect two cards: one for the check-in (no drawing), one orphan for the drawing
+        XCTAssertEqual(cards.count, 2, "Should produce two separate cards")
+
+        let checkInCard = cards.first { !$0.isOrphan }
+        XCTAssertNotNil(checkInCard)
+        XCTAssertEqual(checkInCard?.checkIn?.id, "c1")
+        XCTAssertTrue(checkInCard?.drawings.isEmpty ?? false, "Check-in card should have no drawings")
+
+        let orphanCard = cards.first { $0.isOrphan }
+        XCTAssertNotNil(orphanCard, "Drawing on a different day should be an orphan card")
+        XCTAssertEqual(orphanCard?.drawings.count, 1)
+        XCTAssertEqual(orphanCard?.drawings[0].id, "d1")
+    }
+
+    // MARK: - convertToMoodEntries
+
+    func test_convertToMoodEntries_includesOrphanCards() {
+        let checkIn = makeCheckIn(id: "c1", createdAt: date(2026, 3, 8, 10, 0))
+        let orphanDrawing = makeDrawing(id: "d1", checkinId: nil, createdAt: date(2026, 3, 9, 14, 0))
+
+        let cards = MoodEntriesDataAssembler.assembleCards(
+            checkIns: [checkIn],
+            drawings: [orphanDrawing]
+        )
+
+        let entries = MoodEntriesDataAssembler.convertToMoodEntries(cards)
+
+        // Both check-in card and orphan card should be converted
+        XCTAssertEqual(entries.count, 2, "Orphan cards should be included in MoodEntry conversion")
+
+        // Check-in entry should have emotion, no artwork
+        let checkInEntry = entries.first { $0.emotion != nil }
+        XCTAssertNotNil(checkInEntry)
+        XCTAssertTrue(checkInEntry?.artworkURLs.isEmpty ?? false)
+
+        // Orphan entry should have nil emotion, with artwork
+        let orphanEntry = entries.first { $0.emotion == nil }
+        XCTAssertNotNil(orphanEntry, "Orphan entry should have nil emotion")
+        XCTAssertEqual(orphanEntry?.artworkURLs.count, 1)
+        XCTAssertTrue(orphanEntry?.hasArtwork ?? false)
+    }
+
     // MARK: - Edge Cases
 
     func test_assembleCards_drawingWithNilCreatedAt_isSkipped() {
@@ -292,15 +346,7 @@ private extension MoodEntriesDataAssemblerTests {
         )
     }
 
-    /// Creates a Date for the given components (UTC).
     func date(_ year: Int, _ month: Int, _ day: Int, _ hour: Int, _ minute: Int) -> Date {
-        var components = DateComponents()
-        components.year = year
-        components.month = month
-        components.day = day
-        components.hour = hour
-        components.minute = minute
-        components.timeZone = TimeZone(identifier: "UTC")
-        return Calendar.current.date(from: components)!
+        TestHelpers.date(year, month, day, hour, minute)
     }
 }

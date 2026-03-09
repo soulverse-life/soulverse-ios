@@ -9,7 +9,7 @@ import XCTest
 final class InnerCosmoViewPresenterDelegateMock: InnerCosmoViewPresenterDelegate {
     var updatedViewModel: InnerCosmoViewModel?
     var updatedSectionIndex: IndexSet?
-    var appendedEntries: [MoodEntry]?
+    var appendedEntries: [MoodEntryCardCellViewModel]?
     var updateCount = 0
     var appendCount = 0
 
@@ -31,7 +31,7 @@ final class InnerCosmoViewPresenterDelegateMock: InnerCosmoViewPresenterDelegate
         updatedSectionIndex = index
     }
 
-    func didAppendMoodEntries(_ entries: [MoodEntry]) {
+    func didAppendMoodEntries(_ entries: [MoodEntryCardCellViewModel]) {
         appendedEntries = entries
         appendCount += 1
         appendExpectation?.fulfill()

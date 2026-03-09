@@ -135,7 +135,6 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         let entries = delegateMock.updatedViewModel?.moodEntries ?? []
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries.first?.emotion, .joy)
-        XCTAssertEqual(entries.first?.colorHex, "#FFD700")
         XCTAssertEqual(entries.first?.journal, "Feeling great today")
         XCTAssertEqual(entries.first?.artworkURLs, [])
     }

@@ -9,7 +9,7 @@ import SnapKit
 import UIKit
 
 protocol MoodEntriesSectionDelegate: AnyObject {
-    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, entry: MoodEntry)
+    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, entry: MoodEntryCardCellViewModel)
     func moodEntriesSectionDidRequestMore(_ section: MoodEntriesSection)
 }
 
@@ -19,7 +19,7 @@ class MoodEntriesSection: UIView {
 
     weak var delegate: MoodEntriesSectionDelegate?
 
-    private var entries: [MoodEntry] = []
+    private var entries: [MoodEntryCardCellViewModel] = []
     private var isRequestingMore = false
 
     // MARK: - UI Components
@@ -74,13 +74,13 @@ class MoodEntriesSection: UIView {
 
     // MARK: - Public Methods
 
-    func configure(with entries: [MoodEntry]) {
+    func configure(with entries: [MoodEntryCardCellViewModel]) {
         isRequestingMore = false
         self.entries = entries
         collectionView.reloadData()
     }
 
-    func appendEntries(_ newEntries: [MoodEntry]) {
+    func appendEntries(_ newEntries: [MoodEntryCardCellViewModel]) {
         guard !newEntries.isEmpty else {
             isRequestingMore = false
             return
@@ -137,7 +137,7 @@ extension MoodEntriesSection: UICollectionViewDelegate {
 
 extension MoodEntriesSection: MoodEntryCardCellDelegate {
 
-    func moodEntryCardDidTapDraw(_ cell: MoodEntryCardCell, entry: MoodEntry) {
+    func moodEntryCardDidTapDraw(_ cell: MoodEntryCardCell, entry: MoodEntryCardCellViewModel) {
         delegate?.moodEntriesSectionDidTapDraw(self, entry: entry)
     }
 }
