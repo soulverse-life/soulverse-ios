@@ -267,6 +267,24 @@
 "insight_sentiment_negative" = "Negative";
 "insight_sentiment_neutral" = "Neutral";
 "insight_last_7_days" = "Last 7 days";
+"insight_all_time" = "All";
+"insight_dimensions_title" = "Dimensions";
+"insight_habit_activity_title" = "Habit Activity";
+"insight_habit_exercise" = "Exercise";
+"insight_habit_water" = "Water";
+"insight_habit_meditation" = "Meditation";
+"insight_habit_custom" = "Reading";
+"insight_habit_streak" = "%d day streak";
+"insight_habit_total" = "%d total";
+"insight_journals" = "Journals";
+"insight_drawings" = "Drawings";
+
+// Insight - Mood Check-in Activity
+"insight_mood_checkin_activity_title" = "Mood Check-in Activity";
+"insight_total_checkins" = "Total";
+"insight_current_streak" = "Streak";
+"insight_avg_per_week" = "Avg/Week";
+"insight_streak_days" = "days";
 
 // Drawing Save
 "drawing_save_error_title" = "Save Failed";
