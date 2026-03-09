@@ -64,7 +64,7 @@ class MoodEntryCardCell: UICollectionViewCell {
     private lazy var artworkImageViews: [UIImageView] = {
         (0..<4).map { _ in
             let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFill
+            imageView.contentMode = .scaleAspectFit
             imageView.clipsToBounds = true
             imageView.layer.cornerRadius = InnerCosmoLayout.moodEntryImageCornerRadius
             imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
