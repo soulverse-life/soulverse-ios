@@ -80,6 +80,12 @@ class InnerCosmoViewController: ViewController {
         return view
     }()
 
+    private lazy var allPeriodView: InnerCosmoAllPeriodView = {
+        let view = InnerCosmoAllPeriodView()
+        view.isHidden = true
+        return view
+    }()
+
     private lazy var moodEntriesSection: MoodEntriesSection = {
         let view = MoodEntriesSection()
         view.delegate = self
@@ -129,6 +135,7 @@ class InnerCosmoViewController: ViewController {
         contentView.addSubview(periodContainerView)
 
         periodContainerView.addSubview(dailyView)
+        periodContainerView.addSubview(allPeriodView)
         contentView.addSubview(moodEntriesSection)
         contentView.addSubview(moodCheckInButton)
 
@@ -174,6 +181,10 @@ class InnerCosmoViewController: ViewController {
         dailyView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        allPeriodView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 
     private func setupPresenter() {
@@ -200,9 +211,11 @@ class InnerCosmoViewController: ViewController {
         switch period {
         case .recent:
             dailyView.isHidden = false
+            allPeriodView.isHidden = true
             dailyView.startAnimations()
         case .all:
             dailyView.isHidden = true
+            allPeriodView.isHidden = false
             dailyView.stopAnimations()
         }
     }
