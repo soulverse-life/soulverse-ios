@@ -71,6 +71,7 @@ class WeeklyMoodScoreView: UIView {
         chartView.setScaleEnabled(false)
         chartView.pinchZoomEnabled = false
         chartView.doubleTapToZoomEnabled = false
+        chartView.clipValuesToContentEnabled = false
 
         // Right axis disabled
         chartView.rightAxis.enabled = false
