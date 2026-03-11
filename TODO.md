@@ -133,6 +133,14 @@ Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as t
 
 ## In Progress
 
+### 23. feat/insight-view: Implement full InsightView with 6 sections [P1] [XL]
+- Status: completed
+- Branch: feat/insight-view
+- Worktree: ../soulverse-feature/
+- Created: 2026-03-09
+- Completed: 2026-03-09
+- PR: #49
+
 ### 22. fix/tab-bar-hidden-after-drawing: Tab bar not displayed after returning from drawing to InnerCosmoView [P1] [S]
 - Status: completed
 - Branch: fix/tab-bar-hidden-after-drawing

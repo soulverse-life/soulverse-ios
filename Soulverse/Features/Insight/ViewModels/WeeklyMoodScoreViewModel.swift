@@ -15,3 +15,45 @@ struct WeeklyMoodScoreViewModel {
     let title: String
     let dailyScores: [DailyMoodScore]
 }
+
+// MARK: - Factory from Firestore Data
+
+extension WeeklyMoodScoreViewModel {
+
+    /// Build from real mood check-in data.
+    /// Always displays the last 7 days regardless of TimeRange, since this is a "weekly" chart.
+    /// - Parameter checkIns: Array of MoodCheckInModel from Firestore
+    /// - Returns: Populated ViewModel for the scatter chart
+    static func from(checkIns: [MoodCheckInModel]) -> WeeklyMoodScoreViewModel {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+
+        // Always show last 7 days (this is a weekly mood chart)
+        var dailyScores: [DailyMoodScore] = []
+
+        for dayOffset in (-6...0) {
+            guard let date = calendar.date(byAdding: .day, value: dayOffset, to: today) else { continue }
+            guard let nextDate = calendar.date(byAdding: .day, value: 1, to: date) else { continue }
+
+            // Find check-ins for this day
+            let dayCheckIns = checkIns.filter { checkIn in
+                guard let createdAt = checkIn.createdAt else { return false }
+                return createdAt >= date && createdAt < nextDate
+            }
+
+            // Build entries for each check-in
+            let entries = dayCheckIns.compactMap { checkIn -> MoodCheckInEntry? in
+                guard let createdAt = checkIn.createdAt else { return nil }
+                let emotionScore = RecordedEmotion(rawValue: checkIn.emotion)?.score ?? 0.0
+                return MoodCheckInEntry(time: createdAt, score: emotionScore, colorHex: checkIn.colorHex)
+            }
+
+            dailyScores.append(DailyMoodScore(date: date, entries: entries))
+        }
+
+        return WeeklyMoodScoreViewModel(
+            title: NSLocalizedString("insight_weekly_mood_score_title", comment: ""),
+            dailyScores: dailyScores
+        )
+    }
+}

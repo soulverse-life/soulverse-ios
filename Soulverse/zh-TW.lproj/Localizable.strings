@@ -267,6 +267,24 @@
 "insight_sentiment_negative" = "負面";
 "insight_sentiment_neutral" = "中性";
 "insight_last_7_days" = "過去 7 天";
+"insight_all_time" = "全部";
+"insight_dimensions_title" = "面向分佈";
+"insight_habit_activity_title" = "習慣活動";
+"insight_habit_exercise" = "運動";
+"insight_habit_water" = "喝水";
+"insight_habit_meditation" = "冥想";
+"insight_habit_custom" = "閱讀";
+"insight_habit_streak" = "連續 %d 天";
+"insight_habit_total" = "共 %d 次";
+"insight_journals" = "日記";
+"insight_drawings" = "繪畫";
+
+// Insight - Mood Check-in Activity
+"insight_mood_checkin_activity_title" = "情緒打卡紀錄";
+"insight_total_checkins" = "總計";
+"insight_current_streak" = "連續天數";
+"insight_avg_per_week" = "週平均";
+"insight_streak_days" = "天";
 
 // Drawing Save
 "drawing_save_error_title" = "儲存失敗";
