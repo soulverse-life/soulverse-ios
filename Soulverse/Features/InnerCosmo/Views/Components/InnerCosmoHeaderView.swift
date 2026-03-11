@@ -28,7 +28,7 @@ class InnerCosmoHeaderView: UIView {
 
     weak var delegate: InnerCosmoHeaderViewDelegate?
 
-    private var currentPeriod: InnerCosmoPeriod = .daily
+    private var currentPeriod: InnerCosmoPeriod = .recent
 
     // MARK: - UI Components
 

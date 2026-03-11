@@ -25,6 +25,8 @@
 		2CCBEC17866E20A84A4C5B5F /* MoodCheckInServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4342554B5B0F59BAA4F80 /* MoodCheckInServiceMock.swift */; };
 		2DD9A04D95121B93E0C3F374 /* DrawingGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0F6891306A7CF5655B2CA9 /* DrawingGalleryViewModel.swift */; };
 		2FC61BC19AEDCC653A77B45F /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
+		DA65ED4FA21F10A77F596D7A /* WeeklyMoodScoreViewModel+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */; };
+		3340F94A6A51E47EF6FA9BF6 /* CalendarMonthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976539F4687169A12C33597 /* CalendarMonthViewModelTests.swift */; };
 		385D2519CEFF7A5BED4D0255 /* EmotionTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7278578F137612349A77E22 /* EmotionTypeTests.swift */; };
 		39F2E1BFB36DFC87A73C114A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9953E6511CE3505A303F9E7 /* LoadingView.swift */; };
 		3B14B08F9555C197E1E4F9FA /* ProfileViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13356FF749A1E34851D44C3 /* ProfileViewPresenterDelegateMock.swift */; };
@@ -346,16 +348,22 @@
 		79EE74CD2F2E4F220082EECF /* Constants+MoodCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CB2F2E4F220082EECF /* Constants+MoodCheckIn.swift */; };
 		79EE74CF2F308DA40082EECF /* RecordedEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CE2F308DA40082EECF /* RecordedEmotion.swift */; };
 		79EE74D02F308DA40082EECF /* RecordedEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CE2F308DA40082EECF /* RecordedEmotion.swift */; };
+		E4CAAEAFC6F0AFF09FD4A9D7 /* RecordedEmotion+MoodScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */; };
+		D54590E011F0616291933B80 /* RecordedEmotion+MoodScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */; };
 		79EE74D12F2BE1000082EECF /* SoulverseTopicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D02F2BE1000082EECF /* SoulverseTopicList.swift */; };
 		79EE74D22F2BE1000082EECF /* SoulverseTopicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D02F2BE1000082EECF /* SoulverseTopicList.swift */; };
 		79EE74D22F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D12F30AE3F0082EECF /* Constants+InnerCosmo.swift */; };
 		79EE74D32F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D12F30AE3F0082EECF /* Constants+InnerCosmo.swift */; };
-		79EE74D52F30AE790082EECF /* MoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D42F30AE790082EECF /* MoodEntry.swift */; };
-		79EE74D62F30AE790082EECF /* MoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D42F30AE790082EECF /* MoodEntry.swift */; };
+		79EE74D52F30AE790082EECF /* MoodEntryCardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D42F30AE790082EECF /* MoodEntryCardCellViewModel.swift */; };
+		79EE74D62F30AE790082EECF /* MoodEntryCardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D42F30AE790082EECF /* MoodEntryCardCellViewModel.swift */; };
 		79EE74D92F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */; };
 		79EE74DA2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */; };
 		79EE74DB2F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */; };
 		79EE74DC2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */; };
+		79EE74E12F30AF000082EECF /* CalendarMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74E02F30AF000082EECF /* CalendarMonthViewModel.swift */; };
+		79EE74E22F30AF000082EECF /* CalendarMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74E02F30AF000082EECF /* CalendarMonthViewModel.swift */; };
+		79EE74E42F30AF100082EECF /* InnerCosmoAllPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74E32F30AF100082EECF /* InnerCosmoAllPeriodView.swift */; };
+		79EE74E52F30AF100082EECF /* InnerCosmoAllPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74E32F30AF100082EECF /* InnerCosmoAllPeriodView.swift */; };
 		79F138052F379BF90034D325 /* ActionTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F138042F379BF90034D325 /* ActionTagView.swift */; };
 		79F138062F379BF90034D325 /* ActionTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F138042F379BF90034D325 /* ActionTagView.swift */; };
 		79F1380B2F3875E10034D325 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79F1380A2F3875E10034D325 /* GoogleService-Info.plist */; };
@@ -380,13 +388,14 @@
 		AAB8686144E132BDBD175A2A /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
 		B2F6E0449E68EA3F6D6B8FB9 /* ToolsViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E171DE35597BA70C8B122CD8 /* ToolsViewPresenterTests.swift */; };
 		B4684A5181281B705F0F08BE /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
+		A88F46F2FE6B761AC9159FDA /* WeeklyMoodScoreViewModel+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */; };
 		B4E8CAB694343C5B86954CE7 /* FirestoreSchemaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E4D78EAA08D9BD40D689C /* FirestoreSchemaTests.swift */; };
 		B687959D9AD055A99B195148 /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
 		BCCF4852163421323A310717 /* MoodEntriesDataAssemblerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4883D32CE380C31648AE6 /* MoodEntriesDataAssemblerMock.swift */; };
 		C0DFE64282D5F1868C0544F4 /* CanvasPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A95C383DB61DE6370611AFF /* CanvasPromptTests.swift */; };
 		C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
 		CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */; };
-		D45ECEE25B2D86CBF6C11B49 /* MoodEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5E26D95352B5C69AD10D7 /* MoodEntryTests.swift */; };
+		D45ECEE25B2D86CBF6C11B49 /* MoodEntryCardCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */; };
 		D99A21CCC605492A90ACCFDA /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E82F16483EBA0D0699E631 /* TestHelpers.swift */; };
 		D9F6D2D60270F6AB9ECB99CE /* InnerCosmoViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6975331B3B4B8D90409C867C /* InnerCosmoViewPresenterDelegateMock.swift */; };
 		DA5B7EAE3A96109C935B5C2B /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
@@ -445,6 +454,7 @@
 
 /* Begin PBXFileReference section */
 		014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreViewModel.swift; sourceTree = "<group>"; };
+		DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklyMoodScoreViewModel+MockData.swift"; sourceTree = "<group>"; };
 		0AE0AE8D83427C1DF0E30948 /* DrawingReplayPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReplayPresenter.swift; sourceTree = "<group>"; };
 		0D7EF684720D96D0B88C701D /* Pods-SoulverseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulverseTests.release.xcconfig"; path = "Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests.release.xcconfig"; sourceTree = "<group>"; };
 		10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssembler.swift; sourceTree = "<group>"; };
@@ -456,10 +466,11 @@
 		188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenter.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenter.swift; sourceTree = SOURCE_ROOT; };
 		218012824D64D4ED75251E3C /* Pods-Base-SoulverseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.release.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		24FBCBDFE64D2D1ECA4EFA0D /* FirestoreSchema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreSchema.swift; sourceTree = "<group>"; };
+		2976539F4687169A12C33597 /* CalendarMonthViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CalendarMonthViewModelTests.swift; sourceTree = "<group>"; };
 		2CD6A03F5EE59C7A4854CAF0 /* DrawingServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingServiceProtocol.swift; sourceTree = "<group>"; };
 		2D0F6891306A7CF5655B2CA9 /* DrawingGalleryViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryViewModel.swift; sourceTree = "<group>"; };
 		2F968EB81037659FA48E9E96 /* DrawingServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingServiceTests.swift; sourceTree = "<group>"; };
-		33D5E26D95352B5C69AD10D7 /* MoodEntryTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntryTests.swift; sourceTree = "<group>"; };
+		33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntryCardCellViewModelTests.swift; sourceTree = "<group>"; };
 		3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreView.swift; sourceTree = "<group>"; };
 		379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Soulverse/Features/Profile/ViewModels/ProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -636,11 +647,14 @@
 		79EE74C82F2BB6C80082EECF /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
 		79EE74CB2F2E4F220082EECF /* Constants+MoodCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+MoodCheckIn.swift"; sourceTree = "<group>"; };
 		79EE74CE2F308DA40082EECF /* RecordedEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedEmotion.swift; sourceTree = "<group>"; };
+		761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordedEmotion+MoodScore.swift"; sourceTree = "<group>"; };
 		79EE74D02F2BE1000082EECF /* SoulverseTopicList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTopicList.swift; sourceTree = "<group>"; };
 		79EE74D12F30AE3F0082EECF /* Constants+InnerCosmo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+InnerCosmo.swift"; sourceTree = "<group>"; };
-		79EE74D42F30AE790082EECF /* MoodEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntry.swift; sourceTree = "<group>"; };
+		79EE74D42F30AE790082EECF /* MoodEntryCardCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntryCardCellViewModel.swift; sourceTree = "<group>"; };
 		79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntriesSection.swift; sourceTree = "<group>"; };
 		79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntryCardCell.swift; sourceTree = "<group>"; };
+		79EE74E02F30AF000082EECF /* CalendarMonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthViewModel.swift; sourceTree = "<group>"; };
+		79EE74E32F30AF100082EECF /* InnerCosmoAllPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoAllPeriodView.swift; sourceTree = "<group>"; };
 		79F138042F379BF90034D325 /* ActionTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTagView.swift; sourceTree = "<group>"; };
 		79F1380A2F3875E10034D325 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
@@ -779,8 +793,9 @@
 		1BD0A7054CD0FF4F7BF0E311 /* InnerCosmo */ = {
 			isa = PBXGroup;
 			children = (
+				2976539F4687169A12C33597 /* CalendarMonthViewModelTests.swift */,
 				5DB9147A86FBF42436C1031E /* InnerCosmoPeriodTests.swift */,
-				33D5E26D95352B5C69AD10D7 /* MoodEntryTests.swift */,
+				33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */,
 			);
 			path = InnerCosmo;
 			sourceTree = "<group>";
@@ -1358,6 +1373,7 @@
 				79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */,
 				79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */,
 				79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */,
+				79EE74E32F30AF100082EECF /* InnerCosmoAllPeriodView.swift */,
 				79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */,
 				79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */,
 				79389F5C2F05760D0016CB7F /* InnerCosmoDailyView.swift */,
@@ -1399,7 +1415,8 @@
 		7951A9C42E5376B5006EB0EC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				79EE74D42F30AE790082EECF /* MoodEntry.swift */,
+				79EE74E02F30AF000082EECF /* CalendarMonthViewModel.swift */,
+				79EE74D42F30AE790082EECF /* MoodEntryCardCellViewModel.swift */,
 				79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */,
 				79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */,
 				7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */,
@@ -1479,6 +1496,7 @@
 			children = (
 				798687E92E6C248E00EB3B38 /* InsightViewModel.swift */,
 				014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */,
+				DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1602,6 +1620,7 @@
 			isa = PBXGroup;
 			children = (
 				79EE74CE2F308DA40082EECF /* RecordedEmotion.swift */,
+				761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */,
 				79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */,
 				79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */,
 				79B6AAA42EACCA5D00A8B079 /* MoodCheckInData.swift */,
@@ -2282,11 +2301,14 @@
 				790D87EC2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
 				790D87ED2ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
 				79EE74D22F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */,
+				79EE74E12F30AF000082EECF /* CalendarMonthViewModel.swift in Sources */,
+				79EE74E42F30AF100082EECF /* InnerCosmoAllPeriodView.swift in Sources */,
 				79EE74BF2F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */,
 				790AD2182DF9E43200C33CD1 /* Constants.swift in Sources */,
 				79D576832EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */,
 				790AD21A2DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
 				79EE74D02F308DA40082EECF /* RecordedEmotion.swift in Sources */,
+				D54590E011F0616291933B80 /* RecordedEmotion+MoodScore.swift in Sources */,
 				79B6AAD72EACCABA00A8B079 /* RadioOptionView.swift in Sources */,
 				79B6AAD82EACCABA00A8B079 /* ColorGradientSliderView.swift in Sources */,
 				79B6AAD92EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */,
@@ -2295,6 +2317,7 @@
 				79DD63412EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */,
 				798687F32E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */,
 				B4684A5181281B705F0F08BE /* WeeklyMoodScoreViewModel.swift in Sources */,
+				A88F46F2FE6B761AC9159FDA /* WeeklyMoodScoreViewModel+MockData.swift in Sources */,
 				6026E6F1B6136CA370157840 /* WeeklyMoodScoreView.swift in Sources */,
 				790AD21D2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */,
 				790AD21F2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */,
@@ -2400,7 +2423,7 @@
 				79B6AABC2EACCA5D00A8B079 /* MoodCheckInNamingViewController.swift in Sources */,
 				79B6AABD2EACCA5D00A8B079 /* EmotionType.swift in Sources */,
 				79B6AABE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */,
-				79EE74D62F30AE790082EECF /* MoodEntry.swift in Sources */,
+				79EE74D62F30AE790082EECF /* MoodEntryCardCellViewModel.swift in Sources */,
 				79B6AABF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */,
 				79EE74D12F2BE1000082EECF /* SoulverseTopicList.swift in Sources */,
 				79B6AAC22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */,
@@ -2441,11 +2464,14 @@
 				790D87EF2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
 				790D87F02ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
 				79EE74D32F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */,
+				79EE74E22F30AF000082EECF /* CalendarMonthViewModel.swift in Sources */,
+				79EE74E52F30AF100082EECF /* InnerCosmoAllPeriodView.swift in Sources */,
 				79EE74C02F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */,
 				790AD2C62DF9E43200C33CD1 /* Constants.swift in Sources */,
 				79D576842EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */,
 				790AD2C82DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
 				79EE74CF2F308DA40082EECF /* RecordedEmotion.swift in Sources */,
+				E4CAAEAFC6F0AFF09FD4A9D7 /* RecordedEmotion+MoodScore.swift in Sources */,
 				79B6AADA2EACCABA00A8B079 /* RadioOptionView.swift in Sources */,
 				79B6AADB2EACCABA00A8B079 /* ColorGradientSliderView.swift in Sources */,
 				79B6AADC2EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */,
@@ -2454,6 +2480,7 @@
 				79DD63422EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */,
 				798687F02E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */,
 				2FC61BC19AEDCC653A77B45F /* WeeklyMoodScoreViewModel.swift in Sources */,
+				DA65ED4FA21F10A77F596D7A /* WeeklyMoodScoreViewModel+MockData.swift in Sources */,
 				AAB8686144E132BDBD175A2A /* WeeklyMoodScoreView.swift in Sources */,
 				790AD2CB2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */,
 				790AD2CD2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */,
@@ -2559,7 +2586,7 @@
 				79B6AACC2EACCA5D00A8B079 /* MoodCheckInNamingViewController.swift in Sources */,
 				79B6AACD2EACCA5D00A8B079 /* EmotionType.swift in Sources */,
 				79B6AACE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */,
-				79EE74D52F30AE790082EECF /* MoodEntry.swift in Sources */,
+				79EE74D52F30AE790082EECF /* MoodEntryCardCellViewModel.swift in Sources */,
 				79B6AACF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */,
 				79EE74D22F2BE1000082EECF /* SoulverseTopicList.swift in Sources */,
 				79B6AAD22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */,
@@ -2616,11 +2643,12 @@
 				F2E2FC2A93FA9CEABE0AAC5F /* TopicTests.swift in Sources */,
 				CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */,
 				A77917A68943640D3F9C24D4 /* InnerCosmoPeriodTests.swift in Sources */,
+				3340F94A6A51E47EF6FA9BF6 /* CalendarMonthViewModelTests.swift in Sources */,
 				C0DFE64282D5F1868C0544F4 /* CanvasPromptTests.swift in Sources */,
 				4C5DA1990A7740F49529882A /* WeeklyMoodScoreViewModelTests.swift in Sources */,
 				A3428F453B2E78C47D54B7E8 /* ToolsViewModelTests.swift in Sources */,
 				FEAEF3464658DBB02F096ED0 /* DrawingGalleryViewModelTests.swift in Sources */,
-				D45ECEE25B2D86CBF6C11B49 /* MoodEntryTests.swift in Sources */,
+				D45ECEE25B2D86CBF6C11B49 /* MoodEntryCardCellViewModelTests.swift in Sources */,
 				E2DEEB2BE29159796EBC4495 /* DrawingServiceMock.swift in Sources */,
 				2CCBEC17866E20A84A4C5B5F /* MoodCheckInServiceMock.swift in Sources */,
 				0924C6D537F42931C325A80D /* CanvasViewPresenterDelegateMock.swift in Sources */,

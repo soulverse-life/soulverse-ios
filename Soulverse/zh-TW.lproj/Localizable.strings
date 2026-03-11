@@ -236,9 +236,8 @@
 
 // MARK: - Inner Cosmo
 "inner_cosmo_greeting_format" = "你好，%@";
-"inner_cosmo_period_daily" = "每日";
-"inner_cosmo_period_weekly" = "每週";
-"inner_cosmo_period_monthly" = "每月";
+"inner_cosmo_period_recent" = "近期";
+"inner_cosmo_period_all" = "全部";
 "inner_cosmo_emo_pet" = "情緒寵物";
 "inner_cosmo_mood_checkin_button" = "情緒紀錄";
 "inner_cosmo_mood_entry_draw_cta" = "繪製";

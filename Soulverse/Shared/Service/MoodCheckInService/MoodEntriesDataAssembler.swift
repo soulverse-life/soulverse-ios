@@ -191,10 +191,11 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
         for drawing in sortedStandalone {
             guard let drawingDate = drawing.createdAt else { continue }
 
-            // Find the preceding check-in (latest check-in before this drawing)
+            // Find the preceding check-in on the same day (latest check-in before this drawing)
             let precedingCheckIn = sortedCheckIns.last { checkIn in
                 guard let checkInDate = checkIn.createdAt else { return false }
                 return checkInDate <= drawingDate
+                    && calendar.isDate(checkInDate, inSameDayAs: drawingDate)
             }
 
             if let checkIn = precedingCheckIn, let checkInId = checkIn.id {
@@ -238,23 +239,30 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
     // MARK: - MoodEntry Conversion
 
     /// Converts assembled cards into MoodEntry view models.
-    /// Orphan cards (no check-in) are filtered out since MoodEntry requires an emotion.
-    static func convertToMoodEntries(_ cards: [MoodEntryCard]) -> [MoodEntry] {
+
+    static func convertToMoodEntries(_ cards: [MoodEntryCard]) -> [MoodEntryCardCellViewModel] {
         cards.compactMap { card in
-            guard let checkIn = card.checkIn else { return nil }
+            let artworkURLs = Array(card.drawings.prefix(MoodEntryCardCellViewModel.maxArtworkCount).map { $0.imageURL })
 
-            let emotion = RecordedEmotion(rawValue: checkIn.emotion) ?? .joy
-            let topic = Topic(rawValue: checkIn.topic)
+            if let checkIn = card.checkIn {
+                let emotion = RecordedEmotion(rawValue: checkIn.emotion) ?? .joy
 
-            return MoodEntry(
-                id: checkIn.id ?? UUID().uuidString,
-                emotion: emotion,
+                return MoodEntryCardCellViewModel(
+                    emotion: emotion,
+                    date: card.date,
+                    journal: checkIn.journal,
+                    artworkURLs: artworkURLs
+                )
+            }
+
+            // Orphan card (drawing-only) — only include if it has artwork
+            guard !artworkURLs.isEmpty else { return nil }
+
+            return MoodEntryCardCellViewModel(
+                emotion: nil,
                 date: card.date,
-                journal: checkIn.journal ?? "",
-                colorHex: checkIn.colorHex,
-                colorIntensity: checkIn.colorIntensity,
-                artworkURLs: Array(card.drawings.prefix(4).map { $0.imageURL }),
-                topic: topic
+                journal: nil,
+                artworkURLs: artworkURLs
             )
         }
     }

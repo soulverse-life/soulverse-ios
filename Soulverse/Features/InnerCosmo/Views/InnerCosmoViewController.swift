@@ -20,7 +20,7 @@ class InnerCosmoViewController: ViewController {
     // MARK: - Properties
 
     private let presenter = InnerCosmoViewPresenter()
-    private var currentPeriod: InnerCosmoPeriod = .daily
+    private var currentPeriod: InnerCosmoPeriod = .recent
 
     // MARK: - UI Components
 
@@ -80,14 +80,8 @@ class InnerCosmoViewController: ViewController {
         return view
     }()
 
-    private lazy var weeklyView: InnerCosmoWeeklyView = {
-        let view = InnerCosmoWeeklyView()
-        view.isHidden = true
-        return view
-    }()
-
-    private lazy var monthlyView: InnerCosmoMonthlyView = {
-        let view = InnerCosmoMonthlyView()
+    private lazy var allPeriodView: InnerCosmoAllPeriodView = {
+        let view = InnerCosmoAllPeriodView()
         view.isHidden = true
         return view
     }()
@@ -141,8 +135,7 @@ class InnerCosmoViewController: ViewController {
         contentView.addSubview(periodContainerView)
 
         periodContainerView.addSubview(dailyView)
-        periodContainerView.addSubview(weeklyView)
-        periodContainerView.addSubview(monthlyView)
+        periodContainerView.addSubview(allPeriodView)
         contentView.addSubview(moodEntriesSection)
         contentView.addSubview(moodCheckInButton)
 
@@ -185,11 +178,12 @@ class InnerCosmoViewController: ViewController {
             make.bottom.equalToSuperview().offset(-ViewComponentConstants.horizontalPadding)
         }
 
-        // All period views fill the container
-        [dailyView, weeklyView, monthlyView].forEach { (periodView: UIView) in
-            periodView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
+        dailyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        allPeriodView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 
@@ -214,21 +208,14 @@ class InnerCosmoViewController: ViewController {
     private func switchToPeriod(_ period: InnerCosmoPeriod) {
         currentPeriod = period
 
-        // Hide all period views
-        dailyView.isHidden = true
-        weeklyView.isHidden = true
-        monthlyView.isHidden = true
-
-        // Show the selected period view
         switch period {
-        case .daily:
+        case .recent:
             dailyView.isHidden = false
+            allPeriodView.isHidden = true
             dailyView.startAnimations()
-        case .weekly:
-            weeklyView.isHidden = false
-            dailyView.stopAnimations()
-        case .monthly:
-            monthlyView.isHidden = false
+        case .all:
+            dailyView.isHidden = true
+            allPeriodView.isHidden = false
             dailyView.stopAnimations()
         }
     }
@@ -268,7 +255,7 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
         // Not used in scroll view implementation
     }
 
-    func didAppendMoodEntries(_ entries: [MoodEntry]) {
+    func didAppendMoodEntries(_ entries: [MoodEntryCardCellViewModel]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.moodEntriesSection.appendEntries(entries)
@@ -316,9 +303,9 @@ extension InnerCosmoViewController: SoulverseButtonDelegate {
 
 extension InnerCosmoViewController: MoodEntriesSectionDelegate {
 
-    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, entry: MoodEntry) {
+    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, entry: MoodEntryCardCellViewModel) {
         // TODO: Navigate to drawing canvas with the mood entry context
-        print("[InnerCosmo] Draw tapped for entry: \(entry.emotion.displayName)")
+        print("[InnerCosmo] Draw tapped for entry: \(entry.emotion?.displayName ?? "drawing")")
         AppCoordinator.openDrawingCanvas(from: self)
     }
 
