@@ -19,7 +19,7 @@ class WeeklyMoodScoreView: UIView {
         static let axisLabelFontSize: CGFloat = 10
         static let titleBottomSpacing: CGFloat = 16
         static let chartHeight: CGFloat = 200
-        static let scatterPointSize: CGFloat = 15
+        static let scatterPointSize: CGFloat = 12
         static let axisLineWidth: CGFloat = 2
         static let zeroLineWidth: CGFloat = 2
         static let zeroLineAlpha: CGFloat = 0.4
@@ -28,13 +28,14 @@ class WeeklyMoodScoreView: UIView {
         static let dashedLineWidth: CGFloat = 1.5
         static let dashedLineDashLength: CGFloat = 6
         static let dashedLineGapLength: CGFloat = 4
-        static let weekdayAreaHeight: CGFloat = 34
-        static let dayAbbrRowHeight: CGFloat = 16
-        static let dateNumberRowHeight: CGFloat = 16
+        static let weekdayRowHeight: CGFloat = 16
         static let weekdayLabelFontSize: CGFloat = 10
         static let weekdayDateFontSize: CGFloat = 10
         static let weekdayLabelTopSpacing: CGFloat = 4
-        static let dateNumberTopSpacing: CGFloat = 2
+        static let dateNumberRowTopSpacing: CGFloat = 2
+        static let daysPerWeek = 7
+        static let pastWeekPages = 52
+        static let futureWeekPages = 4
     }
 
     // MARK: - Formatters
@@ -55,30 +56,25 @@ class WeeklyMoodScoreView: UIView {
 
     weak var delegate: WeeklyMoodScoreViewDelegate?
 
-    /// Tracks the last laid-out bounds to avoid redundant repositioning
     private var lastLayoutBounds: CGRect = .zero
-
-    /// Mapping of x-index to entries for tap lookup
     private var entriesByIndex: [Int: [MoodCheckInEntry]] = [:]
-
-    /// Currently selected column index (-1 = none)
     private var selectedColumnIndex: Int = -1
-
-    /// Current week reference date for swipe navigation
-    private var currentReferenceDate: Date = Date()
-
-    /// Overlay layer for dashed line
     private var dashedLineLayer: CAShapeLayer?
-
-    /// Time label views shown on tap
     private var timeLabelViews: [UILabel] = []
-
-    /// Fixed day abbreviation labels (Sat, Sun, Mon...) — created once
     private var dayAbbrLabels: [UILabel] = []
 
-    /// Date number labels (20, 21, 22...) — animated on swipe
-    private var dateNumberLabels: [UILabel] = []
+    /// Pixel x-positions for 7 columns, computed from chart transformer.
+    /// Stored so cells can position labels to match chart data points.
+    private var columnXPositions: [CGFloat] = []
 
+    /// The Saturday start date for each page in the collection view.
+    private var weekStartDates: [Date] = []
+
+    /// Index of the currently visible page.
+    private var currentPageIndex: Int = 0
+
+    /// Suppresses delegate calls during programmatic scroll
+    private var isSuppressingPageChange = false
 
     // MARK: - Subviews
 
@@ -108,10 +104,8 @@ class WeeklyMoodScoreView: UIView {
         chartView.clipValuesToContentEnabled = false
         chartView.delegate = self
 
-        // Right axis disabled
         chartView.rightAxis.enabled = false
 
-        // Y-axis
         let yAxis = chartView.leftAxis
         yAxis.axisMinimum = -1.0
         yAxis.axisMaximum = 1.0
@@ -125,13 +119,11 @@ class WeeklyMoodScoreView: UIView {
         yAxis.axisLineWidth = Layout.axisLineWidth
         yAxis.valueFormatter = MoodScoreYAxisFormatter()
 
-        // Zero line (solid)
         let zeroLine = ChartLimitLine(limit: 0)
         zeroLine.lineWidth = Layout.zeroLineWidth
         zeroLine.lineColor = UIColor.themeTextSecondary.withAlphaComponent(Layout.zeroLineAlpha)
         yAxis.addLimitLine(zeroLine)
 
-        // X-axis — labels disabled, we use a custom weekday label view
         let xAxis = chartView.xAxis
         xAxis.labelPosition = .bottom
         xAxis.drawLabelsEnabled = false
@@ -142,22 +134,25 @@ class WeeklyMoodScoreView: UIView {
         return chartView
     }()
 
-    /// Fixed row for day abbreviations (Sat, Sun, Mon...)
     private lazy var dayAbbrRow: UIView = {
         let view = UIView()
         return view
     }()
 
-    /// Container for date number labels
-    private lazy var dateNumberContainer: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private lazy var dateNumberCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.minimumInteritemSpacing = 0
 
-    /// Inner view holding date number labels, animated on swipe
-    private lazy var dateNumberRow: UIView = {
-        let view = UIView()
-        return view
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        cv.isPagingEnabled = true
+        cv.showsHorizontalScrollIndicator = false
+        cv.backgroundColor = .clear
+        cv.dataSource = self
+        cv.delegate = self
+        cv.register(DateWeekCell.self, forCellWithReuseIdentifier: DateWeekCell.reuseID)
+        return cv
     }()
 
     // MARK: - Initialization
@@ -178,8 +173,7 @@ class WeeklyMoodScoreView: UIView {
         baseView.addSubview(titleLabel)
         baseView.addSubview(scatterChartView)
         baseView.addSubview(dayAbbrRow)
-        dateNumberContainer.addSubview(dateNumberRow)
-        baseView.addSubview(dateNumberContainer)
+        baseView.addSubview(dateNumberCollectionView)
 
         if #available(iOS 26.0, *) {
             let glassEffect = UIGlassEffect(style: .clear)
@@ -207,7 +201,6 @@ class WeeklyMoodScoreView: UIView {
         }
 
         setupConstraints()
-        setupSwipeGestures()
     }
 
     private func setupConstraints() {
@@ -228,52 +221,75 @@ class WeeklyMoodScoreView: UIView {
         dayAbbrRow.snp.makeConstraints { make in
             make.top.equalTo(scatterChartView.snp.bottom).offset(Layout.weekdayLabelTopSpacing)
             make.left.right.equalTo(scatterChartView)
-            make.height.equalTo(Layout.dayAbbrRowHeight)
+            make.height.equalTo(Layout.weekdayRowHeight)
         }
 
-        dateNumberContainer.snp.makeConstraints { make in
-            make.top.equalTo(dayAbbrRow.snp.bottom).offset(Layout.dateNumberTopSpacing)
+        dateNumberCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(dayAbbrRow.snp.bottom).offset(Layout.dateNumberRowTopSpacing)
             make.left.right.equalTo(scatterChartView)
-            make.height.equalTo(Layout.dateNumberRowHeight)
+            make.height.equalTo(Layout.weekdayRowHeight)
             make.bottom.equalToSuperview().inset(Layout.cardPadding)
         }
-
-        dateNumberRow.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-
-    private func setupSwipeGestures() {
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
-        swipeLeft.direction = .left
-        dateNumberContainer.addGestureRecognizer(swipeLeft)
-
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
-        swipeRight.direction = .right
-        dateNumberContainer.addGestureRecognizer(swipeRight)
-    }
-
-    // MARK: - Swipe Handling
-
-    @objc private func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
-        let calendar = Calendar.current
-        let offset = gesture.direction == .left ? 7 : -7
-
-        guard let newDate = calendar.date(byAdding: .day, value: offset, to: currentReferenceDate) else { return }
-        currentReferenceDate = newDate
-        clearSelectionOverlay()
-        delegate?.weeklyMoodScoreView(self, didSwipeToWeekContaining: newDate)
     }
 
     // MARK: - Configuration
 
     func configure(with viewModel: WeeklyMoodScoreViewModel) {
         titleLabel.text = viewModel.title
+
+        guard let firstDate = viewModel.dailyScores.first?.date else { return }
+
+        // Only generate week pages on initial setup; subsequent calls just update chart data.
+        if weekStartDates.isEmpty {
+            generateWeekPages(around: firstDate)
+        }
         updateChart(with: viewModel.dailyScores)
     }
 
     func setReferenceDate(_ date: Date) {
-        currentReferenceDate = date
+        generateWeekPages(around: date)
+    }
+
+    // MARK: - Week Pages
+
+    private func generateWeekPages(around referenceDate: Date) {
+        let calendar = Calendar.current
+
+        // Find the Saturday of the reference week
+        // Calendar weekday: Sun=1, Mon=2, ..., Sat=7
+        let weekday = calendar.component(.weekday, from: referenceDate)
+        let daysBackToSaturday = (weekday % 7)  // Sat=7→0, Sun=1→1, Mon=2→2...
+        guard let saturday = calendar.date(byAdding: .day, value: -daysBackToSaturday, to: referenceDate) else { return }
+
+        // Generate past + current + future week pages
+        var dates: [Date] = []
+        for offset in -Layout.pastWeekPages...Layout.futureWeekPages {
+            if let weekStart = calendar.date(byAdding: .weekOfYear, value: offset, to: saturday) {
+                dates.append(weekStart)
+            }
+        }
+
+        weekStartDates = dates
+        currentPageIndex = Layout.pastWeekPages // current week is in the middle
+
+        dateNumberCollectionView.reloadData()
+
+        // Scroll to current page without triggering delegate
+        DispatchQueue.main.async { [weak self] in
+            guard let self, !self.weekStartDates.isEmpty else { return }
+            self.isSuppressingPageChange = true
+            let indexPath = IndexPath(item: self.currentPageIndex, section: 0)
+            self.dateNumberCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+            self.isSuppressingPageChange = false
+        }
+    }
+
+    /// Returns 7 day dates for the week starting at `saturday`.
+    private func datesForWeek(startingAt saturday: Date) -> [Date] {
+        let calendar = Calendar.current
+        return (0..<Layout.daysPerWeek).compactMap {
+            calendar.date(byAdding: .day, value: $0, to: saturday)
+        }
     }
 
     // MARK: - Chart
@@ -283,10 +299,8 @@ class WeeklyMoodScoreView: UIView {
         setupDayAbbrLabels(count: dailyScores.count)
         applyChartData(with: dailyScores)
         scatterChartView.animate(yAxisDuration: 0.8, easingOption: .easeOutQuint)
-        updateDateNumberLabels(with: dailyScores)
     }
 
-    /// Builds and sets chart data without animation
     private func applyChartData(with dailyScores: [DailyMoodScore]) {
         entriesByIndex.removeAll()
         var dataSets: [ScatterChartDataSet] = []
@@ -320,14 +334,12 @@ class WeeklyMoodScoreView: UIView {
         scatterChartView.data = chartData
     }
 
-    // MARK: - Day Abbreviation Labels (Fixed)
+    // MARK: - Day Abbreviation Labels
 
-    /// Creates the fixed day abbreviation labels once. These don't change on swipe.
     private func setupDayAbbrLabels(count: Int) {
         guard dayAbbrLabels.isEmpty else { return }
 
         let daySymbols = Calendar.current.shortWeekdaySymbols
-        // Build the 7-day order starting from Saturday (index 6 in Calendar)
         let saturdayIndex = 6
         let orderedSymbols = (0..<count).map { daySymbols[(saturdayIndex + $0) % 7] }
 
@@ -343,50 +355,35 @@ class WeeklyMoodScoreView: UIView {
     }
 
     private func repositionDayAbbrLabels() {
-        repositionLabels(dayAbbrLabels, in: dayAbbrRow)
+        repositionLabelsToChart(dayAbbrLabels)
     }
 
-    // MARK: - Date Number Labels (Updated on Swipe)
+    // MARK: - Column Positions
 
-    /// Creates date number labels once, then reuses them on subsequent updates.
-    private func updateDateNumberLabels(with dailyScores: [DailyMoodScore]) {
-        let formatter = Self.dateNumberFormatter
-
-        if dateNumberLabels.isEmpty {
-            // First call — create labels
-            for dailyScore in dailyScores {
-                let label = UILabel()
-                label.text = formatter.string(from: dailyScore.date)
-                label.textAlignment = .center
-                label.font = UIFont.projectFont(ofSize: Layout.weekdayDateFontSize, weight: .regular, scalable: false)
-                label.textColor = .themeTextSecondary
-                dateNumberRow.addSubview(label)
-                dateNumberLabels.append(label)
-            }
-        } else {
-            // Subsequent calls — reuse labels, update text only
-            for (index, dailyScore) in dailyScores.enumerated() where index < dateNumberLabels.count {
-                dateNumberLabels[index].text = formatter.string(from: dailyScore.date)
-            }
-        }
-
-        repositionLabels(dateNumberLabels, in: dateNumberRow)
-    }
-
-    private func repositionDateNumberLabels() {
-        repositionLabels(dateNumberLabels, in: dateNumberRow)
-    }
-
-    /// Shared helper to align labels to chart x-coordinates within a container row.
-    private func repositionLabels(_ labels: [UILabel], in row: UIView) {
-        guard !labels.isEmpty else { return }
+    /// Computes and caches pixel x-positions for chart columns.
+    /// Called after layout so the chart transformer has valid values.
+    private func updateColumnXPositions() {
         let transformer = scatterChartView.getTransformer(forAxis: .left)
-        let containerOriginX = scatterChartView.frame.origin.x - row.superview!.frame.origin.x
-        for (index, label) in labels.enumerated() {
-            var point = CGPoint(x: Double(index), y: 0)
+        var positions: [CGFloat] = []
+        for i in 0..<Layout.daysPerWeek {
+            var point = CGPoint(x: Double(i), y: 0)
             transformer.pointValueToPixel(&point)
+            positions.append(point.x)
+        }
+        columnXPositions = positions
+
+        // Reload visible cells so they pick up updated positions
+        dateNumberCollectionView.visibleCells.forEach { cell in
+            (cell as? DateWeekCell)?.updateLabelPositions(columnXPositions)
+        }
+    }
+
+    private func repositionLabelsToChart(_ labels: [UILabel]) {
+        guard !labels.isEmpty, !columnXPositions.isEmpty else { return }
+        for (index, label) in labels.enumerated() where index < columnXPositions.count {
+            let xOffset = columnXPositions[index]
             label.snp.remakeConstraints { make in
-                make.centerX.equalTo(row.snp.left).offset(containerOriginX + point.x)
+                make.centerX.equalTo(scatterChartView.snp.left).offset(xOffset)
                 make.top.bottom.equalToSuperview()
             }
         }
@@ -396,8 +393,8 @@ class WeeklyMoodScoreView: UIView {
         super.layoutSubviews()
         guard bounds != lastLayoutBounds else { return }
         lastLayoutBounds = bounds
+        updateColumnXPositions()
         repositionDayAbbrLabels()
-        repositionDateNumberLabels()
     }
 
     // MARK: - Tap Selection Overlay
@@ -410,10 +407,8 @@ class WeeklyMoodScoreView: UIView {
 
         let xPixel = pixelXForIndex(columnIndex)
 
-        // Draw dashed vertical line
         let lineLayer = CAShapeLayer()
         let path = UIBezierPath()
-
         let chartContentTop = scatterChartView.viewPortHandler.contentTop
         let chartContentBottom = scatterChartView.viewPortHandler.contentBottom
 
@@ -431,7 +426,6 @@ class WeeklyMoodScoreView: UIView {
         scatterChartView.layer.addSublayer(lineLayer)
         dashedLineLayer = lineLayer
 
-        // Add time labels for each entry
         let timeFormatter = Self.timeFormatter
 
         for entry in entries {
@@ -443,7 +437,6 @@ class WeeklyMoodScoreView: UIView {
             timeLabel.textColor = .themeTextPrimary
             timeLabel.sizeToFit()
 
-            // Position to the right of the dot; if it would go off-screen, put it on the left
             let labelX: CGFloat
             let rightEdge = xPixel + Layout.timeLabelOffsetX + timeLabel.bounds.width
             if rightEdge > scatterChartView.bounds.width - Layout.cardPadding {
@@ -490,6 +483,57 @@ class WeeklyMoodScoreView: UIView {
     }
 }
 
+// MARK: - UICollectionViewDataSource
+
+extension WeeklyMoodScoreView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return weekStartDates.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateWeekCell.reuseID, for: indexPath) as! DateWeekCell
+        let weekDates = datesForWeek(startingAt: weekStartDates[indexPath.item])
+        let dateStrings = weekDates.map { Self.dateNumberFormatter.string(from: $0) }
+        cell.configure(dateStrings: dateStrings, xPositions: columnXPositions)
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension WeeklyMoodScoreView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionView.bounds.size
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard scrollView === dateNumberCollectionView, !isSuppressingPageChange else { return }
+        handlePageChange()
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard scrollView === dateNumberCollectionView, !decelerate, !isSuppressingPageChange else { return }
+        handlePageChange()
+    }
+
+    private func handlePageChange() {
+        let pageWidth = dateNumberCollectionView.bounds.width
+        guard pageWidth > 0 else { return }
+
+        let newPage = Int(round(dateNumberCollectionView.contentOffset.x / pageWidth))
+        guard newPage >= 0, newPage < weekStartDates.count, newPage != currentPageIndex else { return }
+
+        currentPageIndex = newPage
+        clearSelectionOverlay()
+
+        let calendar = Calendar.current
+        let weekStart = weekStartDates[newPage]
+        if let midWeekDate = calendar.date(byAdding: .day, value: 3, to: weekStart) {
+            delegate?.weeklyMoodScoreView(self, didSwipeToWeekContaining: midWeekDate)
+        }
+    }
+}
+
 // MARK: - ChartViewDelegate
 
 extension WeeklyMoodScoreView: ChartViewDelegate {
@@ -497,7 +541,6 @@ extension WeeklyMoodScoreView: ChartViewDelegate {
         let columnIndex = Int(round(entry.x))
         guard columnIndex >= 0, columnIndex < (entriesByIndex.count) else { return }
 
-        // If tapping the same column again, deselect
         if columnIndex == selectedColumnIndex {
             clearSelectionOverlay()
             return
@@ -508,6 +551,62 @@ extension WeeklyMoodScoreView: ChartViewDelegate {
 
     func chartValueNothingSelected(_ chartView: ChartViewBase) {
         clearSelectionOverlay()
+    }
+}
+
+// MARK: - DateWeekCell
+
+private final class DateWeekCell: UICollectionViewCell {
+    static let reuseID = "DateWeekCell"
+    private static let labelFontSize: CGFloat = 10
+
+    private var labels: [UILabel] = []
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .clear
+
+        for _ in 0..<7 {
+            let label = UILabel()
+            label.textAlignment = .center
+            label.font = UIFont.projectFont(ofSize: Self.labelFontSize, weight: .regular, scalable: false)
+            label.textColor = .themeTextSecondary
+            contentView.addSubview(label)
+            labels.append(label)
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func configure(dateStrings: [String], xPositions: [CGFloat]) {
+        for (index, label) in labels.enumerated() {
+            label.text = index < dateStrings.count ? dateStrings[index] : ""
+        }
+        updateLabelPositions(xPositions)
+    }
+
+    func updateLabelPositions(_ xPositions: [CGFloat]) {
+        guard !xPositions.isEmpty else {
+            // Fallback: distribute evenly
+            let count = CGFloat(labels.count)
+            for (index, label) in labels.enumerated() {
+                let fraction = (CGFloat(index) + 0.5) / count
+                label.snp.remakeConstraints { make in
+                    make.centerX.equalTo(contentView.snp.left).offset(contentView.bounds.width * fraction)
+                    make.top.bottom.equalToSuperview()
+                }
+            }
+            return
+        }
+
+        for (index, label) in labels.enumerated() where index < xPositions.count {
+            label.snp.remakeConstraints { make in
+                make.centerX.equalTo(contentView.snp.left).offset(xPositions[index])
+                make.top.bottom.equalToSuperview()
+            }
+        }
     }
 }
 
