@@ -31,6 +31,7 @@ class InsightViewController: ViewController {
 
     private lazy var weeklyMoodScoreView: WeeklyMoodScoreView = {
         let view = WeeklyMoodScoreView()
+        view.delegate = self
         return view
     }()
 
@@ -103,6 +104,14 @@ extension InsightViewController: InsightViewPresenterDelegate {
         DispatchQueue.main.async { [weak self] in
             guard self != nil else { return }
         }
+    }
+}
+
+// MARK: - WeeklyMoodScoreViewDelegate
+
+extension InsightViewController: WeeklyMoodScoreViewDelegate {
+    func weeklyMoodScoreView(_ view: WeeklyMoodScoreView, didSwipeToWeekContaining date: Date) {
+        presenter.fetchWeeklyMoodScore(for: date)
     }
 }
 

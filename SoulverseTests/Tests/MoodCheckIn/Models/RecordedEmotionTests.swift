@@ -159,6 +159,23 @@ final class RecordedEmotionTests: XCTestCase {
         }
     }
 
+    // MARK: - moodScore
+
+    func test_RecordedEmotion_moodScore_knownValues() {
+        XCTAssertEqual(RecordedEmotion.joy.moodScore, 0.46)
+        XCTAssertEqual(RecordedEmotion.rage.moodScore, -0.44)
+        XCTAssertEqual(RecordedEmotion.fatalism.moodScore, 0.0)
+        XCTAssertEqual(RecordedEmotion.love.moodScore, 0.41)
+        XCTAssertEqual(RecordedEmotion.serenity.moodScore, 0.17)
+    }
+
+    func test_RecordedEmotion_moodScore_allWithinValidRange() {
+        for emotion in RecordedEmotion.allCases {
+            XCTAssertGreaterThanOrEqual(emotion.moodScore, -1.0, "\(emotion) moodScore below -1.0")
+            XCTAssertLessThanOrEqual(emotion.moodScore, 1.0, "\(emotion) moodScore above 1.0")
+        }
+    }
+
     // MARK: - CaseIterable Count
 
     func test_RecordedEmotion_allCases_contains48Cases() {

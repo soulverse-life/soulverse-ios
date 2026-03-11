@@ -12,6 +12,7 @@ protocol InsightViewPresenterDelegate: AnyObject {
 protocol InsightViewPresenterType: AnyObject {
     var delegate: InsightViewPresenterDelegate? { get set }
     func fetchData(isUpdate: Bool)
+    func fetchWeeklyMoodScore(for weekDate: Date)
     func numberOfSectionsOnTableView() -> Int
 }
 
@@ -37,7 +38,17 @@ class InsightViewPresenter: InsightViewPresenterType {
         loadedModel = model
         isFetchingData = false
     }
+
+    public func fetchWeeklyMoodScore(for weekDate: Date) {
+        /*
+        // mock data for testing
+        var model = loadedModel
+        model.weeklyMoodScore = WeeklyMoodScoreViewModel.mockData(referenceDate: weekDate)
+        loadedModel = model
+        */
+    }
+
     public func numberOfSectionsOnTableView() -> Int {
         return 0
     }
-} 
+}
