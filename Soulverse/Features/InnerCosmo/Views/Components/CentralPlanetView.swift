@@ -11,18 +11,22 @@ protocol CentralPlanetViewDelegate: AnyObject {
     func centralPlanetViewDidTapEmoPet(_ view: CentralPlanetView)
 }
 
-/// Central planet view with E.M.O pet image and name
+/// Central planet view showing emotion gradient with E.M.O pet overlay
 class CentralPlanetView: UIView {
 
     // MARK: - Layout Constants
 
     private enum Layout {
-        static let outerDiameter: CGFloat = 280
+        static let outerGlowAlpha: CGFloat = 0.3
         static let innerDiameter: CGFloat = 160
 
         static let emoPetImageSize: CGFloat = 64
-        static let emoPetLabelFontSize: CGFloat = 11
-        static let emoPetNameFontSize: CGFloat = 11
+        static let emoPetImageCenterYOffset: CGFloat = -8
+
+        static let emotionLabelFontSize: CGFloat = 11
+
+        // Edge halo: slightly larger circle with radial gradient behind inner planet
+        static let haloExpand: CGFloat = 8
 
         static let tapScaleDown: CGFloat = 0.9
         static let tapAnimationDuration: TimeInterval = 0.1
@@ -31,23 +35,54 @@ class CentralPlanetView: UIView {
     // MARK: - Properties
 
     weak var delegate: CentralPlanetViewDelegate?
+    private let size: CGFloat
 
     // MARK: - UI Components
 
-    private lazy var outerPlanetView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "planet_large")
-        imageView.contentMode = .center
-        imageView.clipsToBounds = false
-        imageView.frame.size = CGSize(width: size, height: size)
-        return imageView
+    private lazy var outerGlowView: UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        return view
     }()
 
+    private lazy var outerGlowGradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .radial
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        return gradient
+    }()
+
+    /// Radial gradient circle behind inner planet — fades from color to transparent
+    private lazy var haloView: UIView = {
+        let haloSize = Layout.innerDiameter + Layout.haloExpand * 2
+        let view = UIView()
+        view.layer.cornerRadius = haloSize / 2
+        view.clipsToBounds = true
+        return view
+    }()
+
+    private lazy var haloGradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .radial
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        return gradient
+    }()
 
     private lazy var innerPlanetView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
+        view.layer.cornerRadius = Layout.innerDiameter / 2
         return view
+    }()
+
+    private lazy var emotionGradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .radial
+        gradient.startPoint = CGPoint(x: 0.3, y: 0.3)
+        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        return gradient
     }()
 
     private lazy var emoPetImageView: UIImageView = {
@@ -57,30 +92,20 @@ class CentralPlanetView: UIView {
         return imageView
     }()
 
-    private lazy var emoPetLabel: UILabel = {
+    private lazy var emotionLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("inner_cosmo_emo_pet", comment: "")
-        label.font = UIFont.projectFont(ofSize: Layout.emoPetLabelFontSize, weight: .regular)
-        label.textColor = .themeTextSecondary
-        label.textAlignment = .center
-        return label
-    }()
-
-    private lazy var emoPetNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.projectFont(ofSize: Layout.emoPetNameFontSize, weight: .semibold)
+        label.font = UIFont.projectFont(ofSize: Layout.emotionLabelFontSize, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.textAlignment = .center
+        label.isHidden = true
         return label
     }()
 
-    private let size: CGFloat
-    
     // MARK: - Initialization
+
     init(size: CGFloat) {
         self.size = size
         super.init(frame: .zero)
-        
         setupView()
     }
 
@@ -90,6 +115,10 @@ class CentralPlanetView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        outerGlowView.layer.cornerRadius = size / 2
+        outerGlowGradientLayer.frame = outerGlowView.bounds
+        haloGradientLayer.frame = haloView.bounds
+        emotionGradientLayer.frame = innerPlanetView.bounds
     }
 
     // MARK: - Setup
@@ -97,41 +126,42 @@ class CentralPlanetView: UIView {
     private func setupView() {
         backgroundColor = .clear
 
-        addSubview(outerPlanetView)
-        outerPlanetView.addSubview(innerPlanetView)
+        addSubview(outerGlowView)
+        outerGlowView.layer.insertSublayer(outerGlowGradientLayer, at: 0)
+        addSubview(haloView)
+        haloView.layer.insertSublayer(haloGradientLayer, at: 0)
+        addSubview(innerPlanetView)
+        innerPlanetView.layer.insertSublayer(emotionGradientLayer, at: 0)
         innerPlanetView.addSubview(emoPetImageView)
-        innerPlanetView.addSubview(emoPetLabel)
-        innerPlanetView.addSubview(emoPetNameLabel)
+        innerPlanetView.addSubview(emotionLabel)
 
-        // Ensure user interaction is enabled on the view hierarchy
         isUserInteractionEnabled = true
-        outerPlanetView.isUserInteractionEnabled = true
-
         setupTapGesture()
-        
-        outerPlanetView.snp.makeConstraints { make in
+
+        outerGlowView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.size.equalTo(size)
+            make.width.height.equalTo(size)
+        }
+
+        let haloSize = Layout.innerDiameter + Layout.haloExpand * 2
+        haloView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(haloSize)
         }
 
         innerPlanetView.snp.makeConstraints { make in
-            make.center.equalTo(outerPlanetView)
+            make.center.equalToSuperview()
             make.width.height.equalTo(Layout.innerDiameter)
         }
 
         emoPetImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-8)
+            make.centerY.equalToSuperview().offset(Layout.emoPetImageCenterYOffset)
             make.width.height.equalTo(Layout.emoPetImageSize)
         }
 
-        emoPetLabel.snp.makeConstraints { make in
+        emotionLabel.snp.makeConstraints { make in
             make.top.equalTo(emoPetImageView.snp.bottom)
-            make.centerX.equalToSuperview()
-        }
-
-        emoPetNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(emoPetLabel.snp.bottom)
             make.centerX.equalToSuperview()
         }
     }
@@ -169,15 +199,52 @@ class CentralPlanetView: UIView {
 
     // MARK: - Configuration
 
-    /// Configure the central planet with E.M.O pet name
-    /// - Parameter petName: The name of the E.M.O pet
-    func configure(petName: String?) {
-        emoPetNameLabel.text = petName ?? "Stark"
+    /// Configure the central planet with emotion data (gradient circle + outer glow + emotion label)
+    func configure(emotionPlanet data: EmotionPlanetData) {
+        let baseColor = data.color
+
+        // Spotlight gradient: highlight at upper-left → base → dark edge
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        baseColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+        let highlightColor = UIColor(red: min(r + 0.4, 1), green: min(g + 0.4, 1), blue: min(b + 0.4, 1), alpha: a)
+        let darkerColor = UIColor(red: r * 0.6, green: g * 0.6, blue: b * 0.6, alpha: a)
+        emotionGradientLayer.colors = [
+            highlightColor.cgColor,
+            baseColor.cgColor,
+            darkerColor.cgColor
+        ]
+        emotionGradientLayer.locations = [0.0, 0.45, 1.0]
+
+        // Outer glow: faded radial gradient of the same color
+        outerGlowGradientLayer.colors = [
+            baseColor.withAlphaComponent(Layout.outerGlowAlpha).cgColor,
+            baseColor.withAlphaComponent(Layout.outerGlowAlpha * 0.5).cgColor,
+            UIColor.clear.cgColor
+        ]
+
+        // Halo: radial gradient from color → transparent at edge
+        let haloSize = Layout.innerDiameter + Layout.haloExpand * 2
+        let fadeStart = NSNumber(value: Double(Layout.innerDiameter / haloSize))
+        haloGradientLayer.colors = [
+            baseColor.cgColor,
+            baseColor.cgColor,
+            UIColor.clear.cgColor
+        ]
+        haloGradientLayer.locations = [0.0, fadeStart, 1.0]
+
+        if data.emotion.isEmpty {
+            emotionLabel.isHidden = true
+            accessibilityLabel = nil
+        } else {
+            emotionLabel.isHidden = false
+            emotionLabel.text = data.emotion
+            accessibilityLabel = data.emotion
+        }
     }
 
     // MARK: - Size
 
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: Layout.outerDiameter, height: Layout.outerDiameter)
+        return CGSize(width: size, height: size)
     }
 }

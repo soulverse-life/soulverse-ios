@@ -11,7 +11,7 @@ class InnerCosmoViewController: ViewController {
     // MARK: - Layout Constants
 
     private enum Layout {
-        static let dailyViewTopPadding: CGFloat = 8
+        static let recentViewTopPadding: CGFloat = 8
         static let contentViewMinHeight: CGFloat = 320
         static let moodCheckInButtonTopPadding: CGFloat = 24
         static let moodCheckInButtonWidth: CGFloat = 240
@@ -75,8 +75,8 @@ class InnerCosmoViewController: ViewController {
         return view
     }()
 
-    private lazy var dailyView: InnerCosmoDailyView = {
-        let view = InnerCosmoDailyView()
+    private lazy var recentView: InnerCosmoRecentView = {
+        let view = InnerCosmoRecentView()
         return view
     }()
 
@@ -114,12 +114,12 @@ class InnerCosmoViewController: ViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
-        dailyView.startAnimations()
+        recentView.startAnimations()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        dailyView.stopAnimations()
+        recentView.stopAnimations()
     }
 
     // MARK: - Setup
@@ -134,7 +134,7 @@ class InnerCosmoViewController: ViewController {
         contentView.addSubview(headerView)
         contentView.addSubview(periodContainerView)
 
-        periodContainerView.addSubview(dailyView)
+        periodContainerView.addSubview(recentView)
         periodContainerView.addSubview(allPeriodView)
         contentView.addSubview(moodEntriesSection)
         contentView.addSubview(moodCheckInButton)
@@ -160,7 +160,7 @@ class InnerCosmoViewController: ViewController {
         }
 
         periodContainerView.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom).offset(Layout.dailyViewTopPadding)
+            make.top.equalTo(headerView.snp.bottom).offset(Layout.recentViewTopPadding)
             make.left.right.equalToSuperview()
             make.height.greaterThanOrEqualTo(Layout.contentViewMinHeight)
         }
@@ -178,7 +178,7 @@ class InnerCosmoViewController: ViewController {
             make.bottom.equalToSuperview().offset(-ViewComponentConstants.horizontalPadding)
         }
 
-        dailyView.snp.makeConstraints { make in
+        recentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
 
@@ -193,7 +193,7 @@ class InnerCosmoViewController: ViewController {
 
     private func configure(with viewModel: InnerCosmoViewModel) {
         headerView.configure(userName: viewModel.userName)
-        dailyView.configure(petName: viewModel.petName, emotions: viewModel.emotions)
+        recentView.configure(emotions: viewModel.emotions)
 
         // Configure mood entries section
         let hasEntries = !viewModel.moodEntries.isEmpty
@@ -210,13 +210,13 @@ class InnerCosmoViewController: ViewController {
 
         switch period {
         case .recent:
-            dailyView.isHidden = false
+            recentView.isHidden = false
             allPeriodView.isHidden = true
-            dailyView.startAnimations()
+            recentView.startAnimations()
         case .all:
-            dailyView.isHidden = true
+            recentView.isHidden = true
             allPeriodView.isHidden = false
-            dailyView.stopAnimations()
+            recentView.stopAnimations()
         }
     }
 

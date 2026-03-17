@@ -9,7 +9,7 @@ import UIKit
 struct EmotionPlanetData {
     let emotion: String
     let colorHex: String
-    let sizeMultiplier: CGFloat
+    var sizeMultiplier: CGFloat = 1.0
 
     /// Converts hex string to UIColor
     var color: UIColor {
@@ -37,6 +37,6 @@ enum InnerCosmoPeriod: Int, CaseIterable {
 extension EmotionPlanetData {
     /// Mock data for development and testing
     static let mockData: [EmotionPlanetData] = [
-        EmotionPlanetData(emotion: "Day1", colorHex: "#A5D6A7", sizeMultiplier: 1.0)
+        EmotionPlanetData(emotion: "Day1", colorHex: "#A5D6A7")
     ]
 }

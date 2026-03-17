@@ -87,7 +87,7 @@ Make the emo pet interaction feel more human and natural. Improve implementation
 - `Soulverse/Features/InnerCosmo/Views/Components/AffirmationBubbleView.swift`
 - `Soulverse/Shared/Service/SpeechService.swift`
 - `CentralPlanetView.swift`
-- `InnerCosmoDailyView.swift`
+- `InnerCosmoRecentView.swift`
 
 ---
 
@@ -303,7 +303,7 @@ Added tap gesture to emo pet image in InnerCosmos. When tapped, displays an affi
 
 **Files Modified**:
 - `CentralPlanetView.swift` - Added tap gesture + delegate
-- `InnerCosmoDailyView.swift` - Handles tap, shows bubble, integrates TTS
+- `InnerCosmoRecentView.swift` - Handles tap, shows bubble, integrates TTS
 
 ---
 
