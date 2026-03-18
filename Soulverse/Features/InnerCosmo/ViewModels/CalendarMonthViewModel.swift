@@ -23,6 +23,9 @@ struct CalendarMonthViewModel {
     /// Only current-month days.
     let dayItems: [CalendarDayItem]
 
+    /// Number of mood check-ins per day (day number → count). Empty by default.
+    var checkInCounts: [Int: Int] = [:]
+
     static let gridColumns = 7
     static let maxGridRows = 6
 

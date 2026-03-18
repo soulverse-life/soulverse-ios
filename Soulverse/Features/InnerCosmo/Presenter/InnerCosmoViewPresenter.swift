@@ -24,21 +24,55 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
 
     private let user: UserProtocol
     private let assembler: MoodEntriesDataAssemblerProtocol
+    private let moodCheckInService: MoodCheckInServiceProtocol
+    private let drawingService: DrawingServiceProtocol
 
     private static let checkInLimit = 7
+
+    /// Current recent mood entries for restoring when switching back to Recent tab
+    var currentMoodEntries: [MoodEntryCardCellViewModel] {
+        loadedModel.moodEntries
+    }
+
+    // MARK: - Month Cache
+
+    private struct MonthCacheEntry {
+        let checkInCounts: [Int: Int]
+        let moodEntries: [MoodEntryCardCellViewModel]
+    }
+
+    private var monthCache: [String: MonthCacheEntry] = [:]
+    private var fetchingMonths: Set<String> = []
+    private var currentVisibleMonth: String = ""
 
     // MARK: - Initialization
 
     init(user: UserProtocol = User.shared,
-         assembler: MoodEntriesDataAssemblerProtocol = MoodEntriesDataAssembler()) {
+         assembler: MoodEntriesDataAssemblerProtocol = MoodEntriesDataAssembler(),
+         moodCheckInService: MoodCheckInServiceProtocol = FirestoreMoodCheckInService.shared,
+         drawingService: DrawingServiceProtocol = FirestoreDrawingService.shared) {
         self.user = user
         self.assembler = assembler
+        self.moodCheckInService = moodCheckInService
+        self.drawingService = drawingService
         self.loadedModel = InnerCosmoViewModel(isLoading: true)
 
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(userIdentityChange),
             name: NSNotification.Name(rawValue: Notification.UserIdentityChange),
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onDataChanged),
+            name: NSNotification.Name(rawValue: Notification.MoodCheckInCreated),
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onDataChanged),
+            name: NSNotification.Name(rawValue: Notification.DrawingSaved),
             object: nil
         )
     }
@@ -113,8 +147,146 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
     // MARK: - Private Methods
 
     @objc private func userIdentityChange() {
-        // Refresh data when user identity changes
+        invalidateMonthCache()
         fetchData(isUpdate: true)
+    }
+
+    @objc private func onDataChanged() {
+        invalidateMonthCache()
+        fetchData(isUpdate: true)
+    }
+
+    // MARK: - Month Data Fetching
+
+    public func fetchMonthData(year: Int, month: Int) {
+        let key = cacheKey(year: year, month: month)
+        currentVisibleMonth = key
+
+        // Return cached data immediately
+        if let cached = monthCache[key] {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self, self.currentVisibleMonth == key else { return }
+                self.delegate?.didUpdateMonthCheckInCounts(year: year, month: month, counts: cached.checkInCounts)
+                self.delegate?.didUpdateMonthMoodEntries(cached.moodEntries)
+            }
+            return
+        }
+
+        fetchMonthFromFirestore(year: year, month: month, silent: false)
+    }
+
+    public func invalidateMonthCache() {
+        monthCache.removeAll()
+        fetchingMonths.removeAll()
+    }
+
+    private func cacheKey(year: Int, month: Int) -> String {
+        "\(year)-\(String(format: "%02d", month))"
+    }
+
+    private func fetchMonthFromFirestore(year: Int, month: Int, silent: Bool) {
+        let key = cacheKey(year: year, month: month)
+        guard !fetchingMonths.contains(key) else { return }
+        guard let uid = user.userId else { return }
+
+        fetchingMonths.insert(key)
+
+        let calendar = Calendar.current
+        var startComponents = DateComponents()
+        startComponents.year = year
+        startComponents.month = month
+        startComponents.day = 1
+        guard let startDate = calendar.date(from: startComponents) else {
+            fetchingMonths.remove(key)
+            return
+        }
+
+        guard let endDate = calendar.date(byAdding: .month, value: 1, to: startDate) else {
+            fetchingMonths.remove(key)
+            return
+        }
+
+        moodCheckInService.fetchCheckIns(uid: uid, from: startDate, to: endDate) { [weak self] checkInResult in
+            guard let self = self else { return }
+
+            switch checkInResult {
+            case .failure:
+                self.fetchingMonths.remove(key)
+
+            case .success(let checkIns):
+                self.drawingService.fetchDrawings(uid: uid, from: startDate, to: endDate) { [weak self] drawingResult in
+                    guard let self = self else { return }
+                    self.fetchingMonths.remove(key)
+
+                    let drawings: [DrawingModel]
+                    switch drawingResult {
+                    case .success(let d): drawings = d
+                    case .failure: drawings = []
+                    }
+
+                    // assembleCards expects descending order; fetchCheckIns returns ascending
+                    let descendingCheckIns = checkIns.reversed()
+                    let cards = MoodEntriesDataAssembler.assembleCards(
+                        checkIns: Array(descendingCheckIns),
+                        drawings: drawings
+                    )
+
+                    // Compute check-in counts per day
+                    var counts: [Int: Int] = [:]
+                    for checkIn in checkIns {
+                        guard let createdAt = checkIn.createdAt else { continue }
+                        let day = calendar.component(.day, from: createdAt)
+                        counts[day, default: 0] += 1
+                    }
+
+                    let entries = MoodEntriesDataAssembler.convertToMoodEntries(cards)
+
+                    let cacheEntry = MonthCacheEntry(
+                        checkInCounts: counts,
+                        moodEntries: entries
+                    )
+                    self.monthCache[key] = cacheEntry
+
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+
+                        if !silent && self.currentVisibleMonth == key {
+                            self.delegate?.didUpdateMonthCheckInCounts(year: year, month: month, counts: counts)
+                            self.delegate?.didUpdateMonthMoodEntries(entries)
+                        }
+
+                        // Pre-fetch adjacent months
+                        if !silent {
+                            self.prefetchAdjacentMonths(year: year, month: month)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private func prefetchAdjacentMonths(year: Int, month: Int) {
+        // Previous month
+        var prevYear = year
+        var prevMonth = month - 1
+        if prevMonth < 1 { prevMonth = 12; prevYear -= 1 }
+        if monthCache[cacheKey(year: prevYear, month: prevMonth)] == nil {
+            fetchMonthFromFirestore(year: prevYear, month: prevMonth, silent: true)
+        }
+
+        // Next month (only if not in the future)
+        var nextYear = year
+        var nextMonth = month + 1
+        if nextMonth > 12 { nextMonth = 1; nextYear += 1 }
+        let now = Date()
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: now)
+        let currentMonth = calendar.component(.month, from: now)
+        if nextYear < currentYear || (nextYear == currentYear && nextMonth <= currentMonth) {
+            if monthCache[cacheKey(year: nextYear, month: nextMonth)] == nil {
+                fetchMonthFromFirestore(year: nextYear, month: nextMonth, silent: true)
+            }
+        }
     }
 
     // MARK: - Emotion Planet Conversion

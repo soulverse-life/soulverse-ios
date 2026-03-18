@@ -74,6 +74,8 @@ struct DeviceConstants {
 
 struct Notification {
     static let UserIdentityChange = "UserIdentityChange"
+    static let MoodCheckInCreated = "MoodCheckInCreated"
+    static let DrawingSaved = "DrawingSaved"
 }
 
 struct InAppURLScheme {

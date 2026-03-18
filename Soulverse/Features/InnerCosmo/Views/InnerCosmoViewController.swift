@@ -82,6 +82,7 @@ class InnerCosmoViewController: ViewController {
 
     private lazy var allPeriodView: InnerCosmoAllPeriodView = {
         let view = InnerCosmoAllPeriodView()
+        view.delegate = self
         view.isHidden = true
         return view
     }()
@@ -213,17 +214,36 @@ class InnerCosmoViewController: ViewController {
             recentView.isHidden = false
             allPeriodView.isHidden = true
             recentView.startAnimations()
+            // Restore recent entries
+            let hasEntries = !presenter.currentMoodEntries.isEmpty
+            moodEntriesSection.isHidden = !hasEntries
+            if hasEntries {
+                moodEntriesSection.configure(with: presenter.currentMoodEntries)
+            }
         case .all:
             recentView.isHidden = true
             allPeriodView.isHidden = false
             recentView.stopAnimations()
+            // Trigger fetch for currently visible month
+            if let visible = allPeriodView.currentVisibleMonth() {
+                presenter.fetchMonthData(year: visible.year, month: visible.month)
+            }
         }
     }
 
     // MARK: - Actions
 
     @objc private func pullToRefresh() {
-        presenter.fetchData(isUpdate: true)
+        switch currentPeriod {
+        case .recent:
+            presenter.fetchData(isUpdate: true)
+        case .all:
+            presenter.invalidateMonthCache()
+            if let visible = allPeriodView.currentVisibleMonth() {
+                presenter.fetchMonthData(year: visible.year, month: visible.month)
+            }
+            scrollView.refreshControl?.endRefreshing()
+        }
     }
 }
 
@@ -260,6 +280,37 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
             guard let self = self else { return }
             self.moodEntriesSection.appendEntries(entries)
         }
+    }
+
+    func didUpdateMonthCheckInCounts(year: Int, month: Int, counts: [Int: Int]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.allPeriodView.updateMonth(year: year, month: month, checkInCounts: counts)
+        }
+    }
+
+    func didUpdateMonthMoodEntries(_ entries: [MoodEntryCardCellViewModel]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self, self.currentPeriod == .all else { return }
+            let hasEntries = !entries.isEmpty
+            self.moodEntriesSection.isHidden = !hasEntries
+            if hasEntries {
+                self.moodEntriesSection.configure(with: entries)
+            }
+        }
+    }
+}
+
+// MARK: - InnerCosmoAllPeriodViewDelegate
+
+extension InnerCosmoViewController: InnerCosmoAllPeriodViewDelegate {
+    func allPeriodView(_ view: InnerCosmoAllPeriodView, didChangeToMonth year: Int, month: Int) {
+        presenter.fetchMonthData(year: year, month: month)
+    }
+
+    func allPeriodView(_ view: InnerCosmoAllPeriodView, didTapDay day: Int, inMonth month: Int, year: Int) {
+        // Future: navigate to day detail view
+        print("[InnerCosmo] Tapped day \(day) in \(year)-\(month)")
     }
 }
 

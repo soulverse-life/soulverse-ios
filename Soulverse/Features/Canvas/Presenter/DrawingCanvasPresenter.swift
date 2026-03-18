@@ -74,6 +74,10 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
 
             switch result {
             case .success:
+                NotificationCenter.default.post(
+                    name: NSNotification.Name(rawValue: Notification.DrawingSaved),
+                    object: nil
+                )
                 self.delegate?.didFinishSavingDrawing(image: image)
             case .failure(let error):
                 self.delegate?.didFailSavingDrawing(error: error)
