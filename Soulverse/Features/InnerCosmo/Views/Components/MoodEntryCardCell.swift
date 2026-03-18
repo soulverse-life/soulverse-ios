@@ -244,7 +244,7 @@ class MoodEntryCardCell: UICollectionViewCell {
         }
 
         emptyDescriptionLabel.isHidden = false
-        drawCTAButton.isHidden = false
+        drawCTAButton.isHidden = (currentEntry?.checkinId == nil)
 
         emptyDescriptionLabel.snp.remakeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(12)
