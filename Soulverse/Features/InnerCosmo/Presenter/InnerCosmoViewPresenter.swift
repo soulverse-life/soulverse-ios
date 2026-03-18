@@ -137,16 +137,13 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
             )
         }
 
-        // Pad with grey placeholders (dynamic sizes) to always have 7 planets
-        let placeholderSizes: [CGFloat] = [0.8, 1.0, 0.6, 0.9, 0.7, 1.1, 0.75]
-        var sizeIndex = 0
+        // Pad with grey placeholders (random sizes) to always have 7 planets
         while planets.count < totalPlanetCount {
             planets.append(EmotionPlanetData(
                 emotion: "",
                 colorHex: placeholderColorHex,
-                sizeMultiplier: placeholderSizes[sizeIndex % placeholderSizes.count]
+                sizeMultiplier: CGFloat.random(in: 0.7...1.1)
             ))
-            sizeIndex += 1
         }
 
         return planets
