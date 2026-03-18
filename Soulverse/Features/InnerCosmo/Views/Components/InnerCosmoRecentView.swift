@@ -1,13 +1,13 @@
 //
-//  InnerCosmoDailyView.swift
+//  InnerCosmoRecentView.swift
 //  Soulverse
 //
 
 import SnapKit
 import UIKit
 
-/// Daily view containing central planet and surrounding emotion planets
-class InnerCosmoDailyView: UIView {
+/// Recent view containing central planet and surrounding emotion planets
+class InnerCosmoRecentView: UIView {
 
     // MARK: - Layout Constants
 
@@ -16,24 +16,17 @@ class InnerCosmoDailyView: UIView {
         static let centralPlanetSize: CGFloat = 200        // Diameter of the central planet
         static let centralPlanetTopPadding: CGFloat = 20   // Distance from top of view to central planet
 
-        // Orbit radius: distance from central planet center to emotion planets
-        // - Increase: planets move further from center
-        // - Decrease: planets move closer to center
-        static let minOrbitRadius: CGFloat = 150
-        static let maxOrbitRadius: CGFloat = 155
+        // Horseshoe arc around central planet
+        // UIKit angle: 0=right, π/2=bottom, π=left, 3π/2=top
+        // Starts upper-left, sweeps clockwise through bottom to upper-right
+        static let nearestOrbitRadius: CGFloat = 115    // Radius for the 2nd planet (closest)
+        static let farthestOrbitRadius: CGFloat = 150   // Radius for the 7th planet (farthest)
 
-        // Semi-circular arrangement: horseshoe open at top
-        // UIKit angle reference: 0=right, π/2=bottom, π=left, 3π/2=top
-        //
-        // startAngle: where the first emotion planet is positioned
-        // - Increase (towards 1.25π): moves first planet higher (upper-left)
-        // - Decrease (towards π): moves first planet lower (left side)
-        static let startAngle: Double = 1.08 * Double.pi   // ~194°, slightly above left
+        // Arc starts at ~200° (upper-left) and sweeps clockwise ~200°
+        static let startAngle: Double = 1.1 * Double.pi
+        static let arcSpan: Double = -1.15 * Double.pi
 
-        // arcSpan: total angle covered by all emotion planets (negative = counter-clockwise)
-        // - Increase magnitude: planets spread over wider arc
-        // - Decrease magnitude: planets grouped in tighter arc
-        static let arcSpan: Double = -1.12 * Double.pi
+        static let positionRandomness: CGFloat = 3   // Slight jitter for organic feel
     }
 
     // MARK: - Properties
@@ -79,21 +72,23 @@ class InnerCosmoDailyView: UIView {
 
     // MARK: - Configuration
 
-    /// Configure the daily view with E.M.O pet name and emotion data
-    /// - Parameters:
-    ///   - petName: The E.M.O pet name
-    ///   - emotions: Array of emotion planet data
-    func configure(petName: String?, emotions: [EmotionPlanetData]) {
-        centralPlanetView.configure(petName: petName)
+    /// Configure the recent view with emotion data
+    /// - Parameter emotions: Array of emotion planet data (first = central, rest = surrounding)
+    func configure(emotions: [EmotionPlanetData]) {
+        // Configure central planet with first emotion (latest check-in)
+        if let centralEmotion = emotions.first {
+            centralPlanetView.configure(emotionPlanet: centralEmotion)
+        }
 
-        // Clear existing emotion planets
+        // Clear existing surrounding emotion planets
         emotionPlanets.forEach { $0.removeFromSuperview() }
         emotionPlanets.removeAll()
 
-        emotionData = emotions
+        // Surrounding planets = remaining emotions (indices 1-6)
+        let surroundingEmotions = Array(emotions.dropFirst())
+        emotionData = surroundingEmotions
 
-        // Create new emotion planets
-        for data in emotions {
+        for data in surroundingEmotions {
             let planetView = EmotionPlanetView(data: data)
             addSubview(planetView)
             emotionPlanets.append(planetView)
@@ -120,29 +115,26 @@ class InnerCosmoDailyView: UIView {
     private func positionEmotionPlanets() {
         guard !emotionPlanets.isEmpty else { return }
 
-        // Center point should match the central planet's actual position
         let centralPlanetCenterY = Layout.centralPlanetTopPadding + (Layout.centralPlanetSize / 2)
         let center = CGPoint(x: bounds.midX, y: centralPlanetCenterY)
         let count = emotionPlanets.count
 
-        // Distribute planets in a horseshoe arc (open at top)
-        // From upper-right → right → bottom → left → upper-left
         for (index, planetView) in emotionPlanets.enumerated() {
-            // Calculate angle for this planet within the arc span
-            // Spread planets evenly across the arc, with slight randomness
+            // Distribute evenly along the horseshoe arc
             let spacing = count > 1 ? Layout.arcSpan / Double(count - 1) : 0
-            let baseAngle = Layout.startAngle + spacing * Double(index)
-            let angleOffset = Double.random(in: -0.15...0.15)
-            let angle = baseAngle + angleOffset
+            let angle = Layout.startAngle + spacing * Double(index)
 
-            // Calculate radius with some variation
-            let radius = CGFloat.random(in: Layout.minOrbitRadius...Layout.maxOrbitRadius)
+            // Radius increases with index: nearest planet orbits tighter
+            let t = count > 1 ? CGFloat(index) / CGFloat(count - 1) : 0
+            let radius = Layout.nearestOrbitRadius + t * (Layout.farthestOrbitRadius - Layout.nearestOrbitRadius)
 
-            // Calculate position
-            let x = center.x + radius * CGFloat(cos(angle))
-            let y = center.y + radius * CGFloat(sin(angle))
+            // Add slight jitter for organic feel
+            let jitterX = CGFloat.random(in: -Layout.positionRandomness...Layout.positionRandomness)
+            let jitterY = CGFloat.random(in: -Layout.positionRandomness...Layout.positionRandomness)
 
-            // Size the planet view
+            let x = center.x + radius * CGFloat(cos(angle)) + jitterX
+            let y = center.y + radius * CGFloat(sin(angle)) + jitterY
+
             let planetSize = planetView.calculateSize()
             planetView.bounds = CGRect(origin: .zero, size: planetSize)
             planetView.center = CGPoint(x: x, y: y)
@@ -153,7 +145,7 @@ class InnerCosmoDailyView: UIView {
 
     /// Start floating animations for all emotion planets
     func startAnimations() {
-        for (_, planetView) in emotionPlanets.enumerated() {
+        for planetView in emotionPlanets {
             // Use random phase offset for each planet to avoid synchronized movement
             let phaseOffset = Double.random(in: 0...1)
             planetView.startFloatingAnimation(withPhaseOffset: phaseOffset)
@@ -220,7 +212,7 @@ class InnerCosmoDailyView: UIView {
 
 // MARK: - CentralPlanetViewDelegate
 
-extension InnerCosmoDailyView: CentralPlanetViewDelegate {
+extension InnerCosmoRecentView: CentralPlanetViewDelegate {
     func centralPlanetViewDidTapEmoPet(_ view: CentralPlanetView) {
         showAffirmationBubble()
     }
@@ -228,7 +220,7 @@ extension InnerCosmoDailyView: CentralPlanetViewDelegate {
 
 // MARK: - SpeechServiceDelegate
 
-extension InnerCosmoDailyView: SpeechServiceDelegate {
+extension InnerCosmoRecentView: SpeechServiceDelegate {
     func speechServiceDidFinishSpeaking(_ service: SpeechService) {
         // Dismiss bubble 0.2s after TTS finishes
         bubbleHideTimer?.invalidate()

@@ -21,6 +21,8 @@ class EmotionPlanetView: UIView {
         static let labelCornerRadius: CGFloat = 11
         static let labelHorizontalPadding: CGFloat = 8
         static let labelVerticalPadding: CGFloat = 4
+        // Edge halo: slightly larger circle with radial gradient behind the planet
+        static let haloExpand: CGFloat = 6
     }
 
     // MARK: - Properties
@@ -29,6 +31,23 @@ class EmotionPlanetView: UIView {
     private let planetSize: CGFloat
 
     // MARK: - UI Components
+
+    /// Radial gradient circle behind the planet — fades from color to transparent at edge
+    private lazy var haloView: UIView = {
+        let haloSize = planetSize + Layout.haloExpand * 2
+        let view = UIView()
+        view.layer.cornerRadius = haloSize / 2
+        view.clipsToBounds = true
+        return view
+    }()
+
+    private lazy var haloGradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.type = .radial
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        return gradient
+    }()
 
     private lazy var planetView: UIView = {
         let view = UIView()
@@ -84,6 +103,7 @@ class EmotionPlanetView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         gradientLayer.frame = planetView.bounds
+        haloGradientLayer.frame = haloView.bounds
     }
 
     // MARK: - Setup
@@ -92,13 +112,21 @@ class EmotionPlanetView: UIView {
         backgroundColor = .clear
         translatesAutoresizingMaskIntoConstraints = false
 
+        addSubview(haloView)
+        haloView.layer.insertSublayer(haloGradientLayer, at: 0)
         addSubview(planetView)
         addSubview(labelContainerView)
 
         planetView.layer.insertSublayer(gradientLayer, at: 0)
 
+        let haloSize = planetSize + Layout.haloExpand * 2
+        haloView.snp.makeConstraints { make in
+            make.center.equalTo(planetView)
+            make.width.height.equalTo(haloSize)
+        }
+
         planetView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(Layout.haloExpand)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(planetSize)
         }
@@ -147,6 +175,15 @@ class EmotionPlanetView: UIView {
     private func configure(with data: EmotionPlanetData) {
         emotionLabel.text = data.emotion
 
+        // Accessibility
+        if data.emotion.isEmpty {
+            isAccessibilityElement = false
+        } else {
+            isAccessibilityElement = true
+            accessibilityLabel = data.emotion
+            accessibilityTraits = .staticText
+        }
+
         // Hide label container when emotion text is empty
         if data.emotion.isEmpty {
             labelContainerView.isHidden = true
@@ -156,22 +193,37 @@ class EmotionPlanetView: UIView {
             }
         }
 
-        // Create gradient colors based on the planet color
+        // Spotlight gradient: white highlight at upper-left → base → dark edge (3D sphere)
         let baseColor = data.color
-        let lighterColor = baseColor.withAlphaComponent(0.8)
-        let darkerColor = baseColor.withAlphaComponent(0.4)
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        baseColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+        let highlightColor = UIColor(red: min(r + 0.4, 1), green: min(g + 0.4, 1), blue: min(b + 0.4, 1), alpha: a)
+        let darkerColor = UIColor(red: r * 0.6, green: g * 0.6, blue: b * 0.6, alpha: a)
 
         gradientLayer.colors = [
-            lighterColor.cgColor,
+            highlightColor.cgColor,
             baseColor.cgColor,
             darkerColor.cgColor
         ]
+        gradientLayer.locations = [0.0, 0.45, 1.0]
+
+        // Halo: radial gradient from color → transparent at edge
+        let haloSize = planetSize + Layout.haloExpand * 2
+        let fadeStart = NSNumber(value: Double(planetSize / haloSize))
+        haloGradientLayer.colors = [
+            baseColor.cgColor,
+            baseColor.cgColor,
+            UIColor.clear.cgColor
+        ]
+        haloGradientLayer.locations = [0.0, fadeStart, 1.0]
     }
 
     // MARK: - Animation
 
     /// Start floating animation
     func startFloatingAnimation(withPhaseOffset offset: Double = 0) {
+        guard !UIAccessibility.isReduceMotionEnabled else { return }
+
         // Remove any existing animations
         layer.removeAnimation(forKey: "floatingAnimation")
 
