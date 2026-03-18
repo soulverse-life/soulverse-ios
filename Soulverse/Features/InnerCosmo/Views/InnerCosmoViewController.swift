@@ -303,10 +303,8 @@ extension InnerCosmoViewController: SoulverseButtonDelegate {
 
 extension InnerCosmoViewController: MoodEntriesSectionDelegate {
 
-    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, entry: MoodEntryCardCellViewModel) {
-        // TODO: Navigate to drawing canvas with the mood entry context
-        print("[InnerCosmo] Draw tapped for entry: \(entry.emotion?.displayName ?? "drawing")")
-        AppCoordinator.openDrawingCanvas(from: self)
+    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, checkinId: String?) {
+        AppCoordinator.openDrawingCanvas(from: self, checkinId: checkinId)
     }
 
     func moodEntriesSectionDidRequestMore(_ section: MoodEntriesSection) {

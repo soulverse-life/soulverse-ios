@@ -244,7 +244,7 @@ class MoodEntryCardCell: UICollectionViewCell {
         }
 
         emptyDescriptionLabel.isHidden = false
-        drawCTAButton.isHidden = false
+        drawCTAButton.isHidden = (currentEntry?.checkinId == nil)
 
         emptyDescriptionLabel.snp.remakeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(12)
@@ -345,13 +345,12 @@ class MoodEntryCardCell: UICollectionViewCell {
     // MARK: - Actions
 
     @objc private func drawButtonTapped() {
-        guard let entry = currentEntry else { return }
-        delegate?.moodEntryCardDidTapDraw(self, entry: entry)
+        delegate?.moodEntryCardDidTapDraw(self, checkinId: currentEntry?.checkinId)
     }
 }
 
 // MARK: - Delegate Protocol
 
 protocol MoodEntryCardCellDelegate: AnyObject {
-    func moodEntryCardDidTapDraw(_ cell: MoodEntryCardCell, entry: MoodEntryCardCellViewModel)
+    func moodEntryCardDidTapDraw(_ cell: MoodEntryCardCell, checkinId: String?)
 }
