@@ -306,8 +306,6 @@ class DrawingCanvasViewController: UIViewController {
         // 使用傳入的背景圖片，如果沒有則使用默認圖片
         if let image = backgroundImage {
             backgroundImageView.image = image
-        } else {
-            backgroundImageView.image = UIImage(named: "emotion_jar")
         }
         // 佈局配置會在 viewDidAppear 中進行
     }

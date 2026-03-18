@@ -9,7 +9,7 @@ import SnapKit
 import UIKit
 
 protocol MoodEntriesSectionDelegate: AnyObject {
-    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, entry: MoodEntryCardCellViewModel)
+    func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, checkinId: String?)
     func moodEntriesSectionDidRequestMore(_ section: MoodEntriesSection)
 }
 
@@ -137,7 +137,7 @@ extension MoodEntriesSection: UICollectionViewDelegate {
 
 extension MoodEntriesSection: MoodEntryCardCellDelegate {
 
-    func moodEntryCardDidTapDraw(_ cell: MoodEntryCardCell, entry: MoodEntryCardCellViewModel) {
-        delegate?.moodEntriesSectionDidTapDraw(self, entry: entry)
+    func moodEntryCardDidTapDraw(_ cell: MoodEntryCardCell, checkinId: String?) {
+        delegate?.moodEntriesSectionDidTapDraw(self, checkinId: checkinId)
     }
 }

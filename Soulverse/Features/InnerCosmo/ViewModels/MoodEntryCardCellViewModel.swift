@@ -15,6 +15,7 @@ struct MoodEntryCardCellViewModel {
 
     // MARK: - Properties
 
+    let checkinId: String?
     let emotion: RecordedEmotion?
     let date: Date
     let journal: String?

@@ -248,6 +248,7 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
                 let emotion = RecordedEmotion(rawValue: checkIn.emotion) ?? .joy
 
                 return MoodEntryCardCellViewModel(
+                    checkinId: checkIn.id,
                     emotion: emotion,
                     date: card.date,
                     journal: checkIn.journal,
@@ -259,6 +260,7 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
             guard !artworkURLs.isEmpty else { return nil }
 
             return MoodEntryCardCellViewModel(
+                checkinId: nil,
                 emotion: nil,
                 date: card.date,
                 journal: nil,
