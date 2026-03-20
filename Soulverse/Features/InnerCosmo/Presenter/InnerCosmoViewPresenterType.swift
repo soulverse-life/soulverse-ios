@@ -10,6 +10,7 @@ protocol InnerCosmoViewPresenterDelegate: AnyObject {
     func didAppendMoodEntries(_ entries: [MoodEntryCardCellViewModel])
     func didUpdateMonthCheckInCounts(year: Int, month: Int, counts: [Int: Int])
     func didUpdateMonthMoodEntries(_ entries: [MoodEntryCardCellViewModel])
+    func didRequestDayDetail(checkIns: [MoodCheckInModel])
 }
 
 protocol InnerCosmoViewPresenterType {
@@ -18,4 +19,5 @@ protocol InnerCosmoViewPresenterType {
     func loadMoreMoodEntries()
     func fetchMonthData(year: Int, month: Int)
     func invalidateMonthCache()
+    func didSelectDay(day: Int, month: Int, year: Int)
 }

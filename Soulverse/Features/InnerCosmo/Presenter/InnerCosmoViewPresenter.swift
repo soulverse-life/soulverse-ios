@@ -37,6 +37,7 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
     // MARK: - Month Cache
 
     private struct MonthCacheEntry {
+        let checkIns: [MoodCheckInModel]
         let checkInCounts: [Int: Int]
         let moodEntries: [MoodEntryCardCellViewModel]
     }
@@ -180,6 +181,18 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
         fetchingMonths.removeAll()
     }
 
+    public func didSelectDay(day: Int, month: Int, year: Int) {
+        let key = cacheKey(year: year, month: month)
+        guard let cached = monthCache[key] else { return }
+        let calendar = Calendar.current
+        let checkIns = cached.checkIns.filter { checkIn in
+            guard let createdAt = checkIn.createdAt else { return false }
+            return calendar.component(.day, from: createdAt) == day
+        }
+        guard !checkIns.isEmpty else { return }
+        delegate?.didRequestDayDetail(checkIns: checkIns)
+    }
+
     private func cacheKey(year: Int, month: Int) -> String {
         "\(year)-\(String(format: "%02d", month))"
     }
@@ -242,6 +255,7 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
                     let entries = MoodEntriesDataAssembler.convertToMoodEntries(cards)
 
                     let cacheEntry = MonthCacheEntry(
+                        checkIns: checkIns,
                         checkInCounts: counts,
                         moodEntries: entries
                     )

@@ -289,6 +289,12 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
         }
     }
 
+    func didRequestDayDetail(checkIns: [MoodCheckInModel]) {
+        // TODO: Navigate to day detail VC with data models
+        // e.g. AppCoordinator.presentDayDetail(from: self, checkIns: checkIns)
+        print("[InnerCosmo] Day detail requested with \(checkIns.count) check-in(s)")
+    }
+
     func didUpdateMonthMoodEntries(_ entries: [MoodEntryCardCellViewModel]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self, self.currentPeriod == .all else { return }
@@ -309,8 +315,7 @@ extension InnerCosmoViewController: InnerCosmoAllPeriodViewDelegate {
     }
 
     func allPeriodView(_ view: InnerCosmoAllPeriodView, didTapDay day: Int, inMonth month: Int, year: Int) {
-        // Future: navigate to day detail view
-        print("[InnerCosmo] Tapped day \(day) in \(year)-\(month)")
+        presenter.didSelectDay(day: day, month: month, year: year)
     }
 }
 
