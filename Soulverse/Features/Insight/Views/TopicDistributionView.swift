@@ -14,21 +14,18 @@ class TopicDistributionView: UIView {
         static let cardCornerRadius: CGFloat = 20
         static let cardPadding: CGFloat = 20
         static let titleFontSize: CGFloat = 18
+        static let subtitleFontSize: CGFloat = 14
         static let topicNameFontSize: CGFloat = 14
-        static let countFontSize: CGFloat = 14
-        static let iconSize: CGFloat = 20
-        static let barHeight: CGFloat = 8
-        static let barCornerRadius: CGFloat = 4
+        static let barHeight: CGFloat = 15
+        static let barCornerRadius: CGFloat = 7.5
+        static let rowHeight: CGFloat = 20
         static let rowSpacing: CGFloat = 10
-        static let titleBottomSpacing: CGFloat = 16
-        static let iconToNameSpacing: CGFloat = 8
+        static let titleBottomSpacing: CGFloat = 8
+        static let subtitleBottomSpacing: CGFloat = 16
         static let nameToBarSpacing: CGFloat = 8
-        static let barToCountSpacing: CGFloat = 8
-        static let nameWidth: CGFloat = 70
-        static let countWidth: CGFloat = 28
-        static let trackAlpha: CGFloat = 0.3
-        static let minimumBarPercentage: Double = 0.02
-        static let fallbackBackgroundAlpha: CGFloat = 0.1
+        static let barWidth: CGFloat = 200
+        static let barRightInset: CGFloat = 20
+        static let trackBackgroundAlpha: CGFloat = 0.2
     }
 
     // MARK: - Subviews
@@ -44,6 +41,15 @@ class TopicDistributionView: UIView {
         let label = UILabel()
         label.font = UIFont.projectFont(ofSize: Layout.titleFontSize, weight: .bold)
         label.textColor = .themeTextPrimary
+        label.numberOfLines = 0
+        return label
+    }()
+
+    private lazy var subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.projectFont(ofSize: Layout.subtitleFontSize, weight: .regular)
+        label.textColor = .themeTextSecondary
+        label.numberOfLines = 0
         return label
     }()
 
@@ -70,6 +76,7 @@ class TopicDistributionView: UIView {
 
     private func setupView() {
         baseView.addSubview(titleLabel)
+        baseView.addSubview(subtitleLabel)
         baseView.addSubview(rowsStackView)
 
         if #available(iOS 26.0, *) {
@@ -109,8 +116,13 @@ class TopicDistributionView: UIView {
             make.top.left.right.equalToSuperview().inset(Layout.cardPadding)
         }
 
-        rowsStackView.snp.makeConstraints { make in
+        subtitleLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(Layout.titleBottomSpacing)
+            make.left.right.equalToSuperview().inset(Layout.cardPadding)
+        }
+
+        rowsStackView.snp.makeConstraints { make in
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(Layout.subtitleBottomSpacing)
             make.left.right.equalToSuperview().inset(Layout.cardPadding)
             make.bottom.equalToSuperview().inset(Layout.cardPadding)
         }
@@ -120,6 +132,7 @@ class TopicDistributionView: UIView {
 
     func configure(with viewModel: TopicDistributionViewModel) {
         titleLabel.text = viewModel.title
+        subtitleLabel.text = viewModel.subtitle
 
         // Remove existing rows
         rowsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
@@ -135,23 +148,17 @@ class TopicDistributionView: UIView {
     private func createRowView(for item: TopicDistributionViewModel.TopicDistributionItem) -> UIView {
         let rowView = UIView()
 
-        // Icon
-        let iconImageView = UIImageView()
-        iconImageView.image = item.topic.iconImage.withRenderingMode(.alwaysTemplate)
-        iconImageView.tintColor = item.topic.mainColor
-        iconImageView.contentMode = .scaleAspectFit
-        rowView.addSubview(iconImageView)
-
         // Topic name label
         let nameLabel = UILabel()
         nameLabel.text = item.topic.localizedTitle
         nameLabel.font = UIFont.projectFont(ofSize: Layout.topicNameFontSize, weight: .regular)
         nameLabel.textColor = .themeTextSecondary
+        nameLabel.lineBreakMode = .byClipping
         rowView.addSubview(nameLabel)
 
-        // Bar track (background)
+        // Bar track (background) — uses the topic's own dimmed color
         let barTrackView = UIView()
-        barTrackView.backgroundColor = UIColor.themeSeparator.withAlphaComponent(Layout.trackAlpha)
+        barTrackView.backgroundColor = item.topic.mainColor.withAlphaComponent(Layout.trackBackgroundAlpha)
         barTrackView.layer.cornerRadius = Layout.barCornerRadius
         barTrackView.clipsToBounds = true
         rowView.addSubview(barTrackView)
@@ -162,48 +169,33 @@ class TopicDistributionView: UIView {
         barFillView.layer.cornerRadius = Layout.barCornerRadius
         barTrackView.addSubview(barFillView)
 
-        // Count label
-        let countLabel = UILabel()
-        countLabel.text = "\(item.count)"
-        countLabel.font = UIFont.projectFont(ofSize: Layout.countFontSize, weight: .medium)
-        countLabel.textColor = .themeTextPrimary
-        countLabel.textAlignment = .right
-        rowView.addSubview(countLabel)
-
         // Layout
-        iconImageView.snp.makeConstraints { make in
+        nameLabel.setContentHuggingPriority(.required, for: .horizontal)
+        nameLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        nameLabel.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.width.height.equalTo(Layout.iconSize)
-        }
-
-        nameLabel.snp.makeConstraints { make in
-            make.left.equalTo(iconImageView.snp.right).offset(Layout.iconToNameSpacing)
-            make.centerY.equalToSuperview()
-            make.width.equalTo(Layout.nameWidth)
         }
 
         barTrackView.snp.makeConstraints { make in
-            make.left.equalTo(nameLabel.snp.right).offset(Layout.nameToBarSpacing)
+            make.right.equalToSuperview().inset(Layout.barRightInset)
             make.centerY.equalToSuperview()
             make.height.equalTo(Layout.barHeight)
-            make.right.equalTo(countLabel.snp.left).offset(-Layout.barToCountSpacing)
+            make.width.equalTo(Layout.barWidth)
         }
 
-        let clampedPercentage = max(item.percentage, Layout.minimumBarPercentage)
+        let fillPercentage = item.percentage
         barFillView.snp.makeConstraints { make in
             make.left.top.bottom.equalToSuperview()
-            make.width.equalTo(barTrackView).multipliedBy(clampedPercentage)
-        }
-
-        countLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.width.equalTo(Layout.countWidth)
+            if fillPercentage > 0 {
+                make.width.equalTo(barTrackView).multipliedBy(fillPercentage)
+            } else {
+                make.width.equalTo(0)
+            }
         }
 
         rowView.snp.makeConstraints { make in
-            make.height.equalTo(Layout.iconSize)
+            make.height.equalTo(Layout.rowHeight)
         }
 
         return rowView

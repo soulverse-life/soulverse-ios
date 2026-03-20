@@ -13,7 +13,7 @@ class InsightViewController: ViewController {
     }
 
     private lazy var navigationView: SoulverseNavigationView = {
-        let view = SoulverseNavigationView(title: NSLocalizedString("insight", comment: ""))
+        let view = SoulverseNavigationView(title: NSLocalizedString("insight_mood_insight", comment: ""))
         return view
     }()
 
@@ -33,6 +33,11 @@ class InsightViewController: ViewController {
     private lazy var timeRangeToggleView: TimeRangeToggleView = {
         let view = TimeRangeToggleView()
         view.delegate = self
+        return view
+    }()
+
+    private lazy var insightSummaryView: InsightSummaryView = {
+        let view = InsightSummaryView()
         return view
     }()
 
@@ -88,6 +93,7 @@ class InsightViewController: ViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentStackView)
         contentStackView.addArrangedSubview(timeRangeToggleView)
+        contentStackView.addArrangedSubview(insightSummaryView)
         contentStackView.addArrangedSubview(weeklyMoodScoreView)
         contentStackView.addArrangedSubview(topicDistributionView)
         contentStackView.addArrangedSubview(habitActivityView)
@@ -126,6 +132,7 @@ extension InsightViewController: InsightViewPresenterDelegate {
             } else {
                 self.hideLoadingView()
             }
+            self.insightSummaryView.configure(with: NSLocalizedString("insight_summary_placeholder", comment: ""))
             if let weeklyMoodScore = viewModel.weeklyMoodScore {
                 self.weeklyMoodScoreView.configure(with: weeklyMoodScore)
             }

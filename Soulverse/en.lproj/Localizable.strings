@@ -260,6 +260,10 @@
 // MARK: - Action Modal
 "action_modal_close" = "Close";
 
+// Insight - Navigation
+"insight_mood_insight" = "Mood Insight";
+"insight_summary_placeholder" = "Your inner universe is reaching a stage of calm equilibrium. Keep nurturing your space";
+
 // Insight - Weekly Mood Score
 "insight_weekly_mood_score_title" = "Weekly Mood Score";
 "insight_weekly_mood_score_description" = "Your mood has been mostly positive this week, with a notable dip mid-week. Overall trending upward.";
@@ -268,7 +272,8 @@
 "insight_sentiment_neutral" = "Neutral";
 "insight_last_7_days" = "Last 7 days";
 "insight_all_time" = "All";
-"insight_dimensions_title" = "Dimensions";
+"insight_dimensions_title" = "Which dimension do your emotions show up";
+"insight_dimensions_subtitle" = "Based on your check-ins, these areas were most present during this period.";
 "insight_habit_activity_title" = "Habit Activity";
 "insight_habit_exercise" = "Exercise";
 "insight_habit_water" = "Water";

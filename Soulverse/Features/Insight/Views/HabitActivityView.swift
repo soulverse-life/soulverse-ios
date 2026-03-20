@@ -22,7 +22,6 @@ class HabitActivityView: UIView {
         static let streakTotalSpacing: CGFloat = 12
         static let flameIconSize: CGFloat = 13
         static let borderWidth: CGFloat = 1
-        static let fallbackBackgroundAlpha: CGFloat = 0.1
     }
 
     // MARK: - Subviews

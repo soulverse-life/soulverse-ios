@@ -24,6 +24,8 @@
 		A3B4C5D6E7F8A9B0C1D2E3F6 /* HabitActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */; };
 		A4B5C6D7E8F9A0B1C2D3E4F6 /* HabitActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */; };
 		A4B5C6D7E8F9A0B1C2D3E4F7 /* HabitActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */; };
+		C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
+		D5E6F7A8B9C0D1E2F3A4B5C6 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
 		A5B6C7D8E9F0A1B2C3D4E5F7 /* MoodCheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B6C7D8E9F0A1B2C3D4E5F6 /* MoodCheckinActivityViewModel.swift */; };
 		A5B6C7D8E9F0A1B2C3D4E5F8 /* MoodCheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B6C7D8E9F0A1B2C3D4E5F6 /* MoodCheckinActivityViewModel.swift */; };
 		A6B7C8D9E0F1A2B3C4D5E6F8 /* MoodCheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B7C8D9E0F1A2B3C4D5E6F7 /* MoodCheckinActivityView.swift */; };
@@ -519,6 +521,7 @@
 		6DE60F310C8AB64668217ECB /* DrawingModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
 		6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DevAuthService.swift; sourceTree = "<group>"; };
 		715B7B1090574611BFDFC632 /* TopicDistributionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionView.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSummaryView.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
 		A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangeToggleView.swift; sourceTree = "<group>"; };
 		A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitActivityViewModel.swift; sourceTree = "<group>"; };
@@ -1564,6 +1567,7 @@
 			isa = PBXGroup;
 			children = (
 				798687EB2E6C248E00EB3B38 /* InsightViewController.swift */,
+				B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */,
 				3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */,
 				715B7B1090574611BFDFC632 /* TopicDistributionView.swift */,
 				A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */,
@@ -2397,6 +2401,7 @@
 				A2B3C4D5E6F7A8B9C0D1E2F4 /* TimeRangeToggleView.swift in Sources */,
 				A3B4C5D6E7F8A9B0C1D2E3F5 /* HabitActivityViewModel.swift in Sources */,
 				A4B5C6D7E8F9A0B1C2D3E4F6 /* HabitActivityView.swift in Sources */,
+				C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */,
 				A5B6C7D8E9F0A1B2C3D4E5F7 /* MoodCheckinActivityViewModel.swift in Sources */,
 				A6B7C8D9E0F1A2B3C4D5E6F8 /* MoodCheckinActivityView.swift in Sources */,
 				A7B8C9D0E1F2A3B4C5D6E7F9 /* ReflectionCreationViewModel.swift in Sources */,
@@ -2712,6 +2717,7 @@
 				A2B3C4D5E6F7A8B9C0D1E2F5 /* TimeRangeToggleView.swift in Sources */,
 				A3B4C5D6E7F8A9B0C1D2E3F6 /* HabitActivityViewModel.swift in Sources */,
 				A4B5C6D7E8F9A0B1C2D3E4F7 /* HabitActivityView.swift in Sources */,
+				D5E6F7A8B9C0D1E2F3A4B5C6 /* InsightSummaryView.swift in Sources */,
 				A5B6C7D8E9F0A1B2C3D4E5F8 /* MoodCheckinActivityViewModel.swift in Sources */,
 				A6B7C8D9E0F1A2B3C4D5E6F9 /* MoodCheckinActivityView.swift in Sources */,
 				A7B8C9D0E1F2A3B4C5D6E7FA /* ReflectionCreationViewModel.swift in Sources */,

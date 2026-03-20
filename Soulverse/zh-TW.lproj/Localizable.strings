@@ -260,6 +260,10 @@
 // MARK: - Action Modal
 "action_modal_close" = "關閉";
 
+// Insight - Navigation
+"insight_mood_insight" = "心情洞察";
+"insight_summary_placeholder" = "你的內在宇宙正達到一種平靜的平衡狀態。繼續呵護你的空間";
+
 // Insight - Weekly Mood Score
 "insight_weekly_mood_score_title" = "每週情緒分數";
 "insight_weekly_mood_score_description" = "這週你的情緒大多是正面的，週中有明顯的低潮。整體趨勢向上。";
@@ -268,7 +272,8 @@
 "insight_sentiment_neutral" = "中性";
 "insight_last_7_days" = "過去 7 天";
 "insight_all_time" = "全部";
-"insight_dimensions_title" = "面向分佈";
+"insight_dimensions_title" = "你的情緒出現在哪個面向";
+"insight_dimensions_subtitle" = "根據你的打卡紀錄，這些領域在此期間最常出現。";
 "insight_habit_activity_title" = "習慣活動";
 "insight_habit_exercise" = "運動";
 "insight_habit_water" = "喝水";
