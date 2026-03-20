@@ -17,12 +17,6 @@ class HabitActivityView: UIView {
         static let titleSubtitleSpacing: CGFloat = 4
         static let headerGridSpacing: CGFloat = 16
         static let gridSpacing: CGFloat = 12
-        static let innerCardCornerRadius: CGFloat = 16
-        static let innerCardPadding: CGFloat = 16
-        static let iconSize: CGFloat = 24
-        static let nameFontSize: CGFloat = 13
-        static let valueFontSize: CGFloat = 22
-        static let innerVerticalSpacing: CGFloat = 8
         static let borderWidth: CGFloat = 1
     }
 
@@ -138,10 +132,13 @@ class HabitActivityView: UIView {
         // Remove existing grid cards
         gridContainerView.subviews.forEach { $0.removeFromSuperview() }
 
+        // Map habits to grid card view models
+        let cardViewModels = viewModel.habits.map { $0.toGridCardViewModel() }
+
         // Build 2-column grid using rows of horizontal stacks
-        let rows = stride(from: 0, to: viewModel.habits.count, by: 2).map { startIndex in
-            let endIndex = min(startIndex + 2, viewModel.habits.count)
-            return Array(viewModel.habits[startIndex..<endIndex])
+        let rows = stride(from: 0, to: cardViewModels.count, by: 2).map { startIndex in
+            let endIndex = min(startIndex + 2, cardViewModels.count)
+            return Array(cardViewModels[startIndex..<endIndex])
         }
 
         var previousRowStack: UIStackView?
@@ -152,12 +149,9 @@ class HabitActivityView: UIView {
             rowStack.spacing = Layout.gridSpacing
             rowStack.distribution = .fillEqually
 
-            for habit in row {
-                let card = createGridCard(
-                    iconName: habit.iconName,
-                    name: habit.name,
-                    value: habit.valueText
-                )
+            for cardViewModel in row {
+                let card = InsightGridCardView()
+                card.configure(with: cardViewModel)
                 rowStack.addArrangedSubview(card)
             }
 
@@ -185,73 +179,5 @@ class HabitActivityView: UIView {
         previousRowStack?.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
         }
-    }
-
-    // MARK: - Grid Card Builder
-
-    private func createGridCard(iconName: String, name: String, value: String) -> UIView {
-        let container = UIView()
-
-        let iconImageView = UIImageView()
-        iconImageView.image = UIImage(systemName: iconName)
-        iconImageView.tintColor = .themeTextPrimary
-        iconImageView.contentMode = .scaleAspectFit
-
-        let nameLabel = UILabel()
-        nameLabel.text = name
-        nameLabel.font = UIFont.projectFont(ofSize: Layout.nameFontSize, weight: .regular)
-        nameLabel.textColor = .themeTextSecondary
-
-        let valueLabel = UILabel()
-        valueLabel.text = value
-        valueLabel.font = UIFont.projectFont(ofSize: Layout.valueFontSize, weight: .bold)
-        valueLabel.textColor = .themeTextPrimary
-
-        let contentStack = UIStackView(arrangedSubviews: [iconImageView, nameLabel, valueLabel])
-        contentStack.axis = .vertical
-        contentStack.spacing = Layout.innerVerticalSpacing
-        contentStack.alignment = .leading
-
-        iconImageView.snp.makeConstraints { make in
-            make.size.equalTo(Layout.iconSize)
-        }
-
-        if #available(iOS 26.0, *) {
-            let innerEffect = UIVisualEffectView()
-            let glassEffect = UIGlassEffect(style: .clear)
-            innerEffect.effect = glassEffect
-            innerEffect.layer.cornerRadius = Layout.innerCardCornerRadius
-            innerEffect.clipsToBounds = true
-            innerEffect.contentView.addSubview(contentStack)
-
-            container.addSubview(innerEffect)
-
-            innerEffect.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-
-            contentStack.snp.makeConstraints { make in
-                make.edges.equalToSuperview().inset(Layout.innerCardPadding)
-            }
-
-            UIView.animate {
-                innerEffect.effect = glassEffect
-                innerEffect.overrideUserInterfaceStyle = .light
-            }
-        } else {
-            container.layer.cornerRadius = Layout.innerCardCornerRadius
-            container.layer.borderWidth = Layout.borderWidth
-            container.layer.borderColor = UIColor.themeSeparator.cgColor
-            container.backgroundColor = .themeCardBackground
-            container.clipsToBounds = true
-
-            container.addSubview(contentStack)
-
-            contentStack.snp.makeConstraints { make in
-                make.edges.equalToSuperview().inset(Layout.innerCardPadding)
-            }
-        }
-
-        return container
     }
 }

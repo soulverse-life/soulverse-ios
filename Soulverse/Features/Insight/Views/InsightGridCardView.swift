@@ -1,0 +1,116 @@
+//
+//  InsightGridCardView.swift
+//
+
+import UIKit
+import SnapKit
+
+class InsightGridCardView: UIView {
+
+    // MARK: - Layout Constants
+
+    private enum Layout {
+        static let cornerRadius: CGFloat = 16
+        static let padding: CGFloat = 16
+        static let iconSize: CGFloat = 24
+        static let nameFontSize: CGFloat = 13
+        static let valueFontSize: CGFloat = 22
+        static let verticalSpacing: CGFloat = 8
+        static let borderWidth: CGFloat = 1
+    }
+
+    // MARK: - Subviews
+
+    private let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.tintColor = .themeTextPrimary
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.projectFont(ofSize: Layout.nameFontSize, weight: .regular)
+        label.textColor = .themeTextSecondary
+        return label
+    }()
+
+    private let valueLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.projectFont(ofSize: Layout.valueFontSize, weight: .bold)
+        label.textColor = .themeTextPrimary
+        return label
+    }()
+
+    private lazy var contentStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [iconImageView, nameLabel, valueLabel])
+        stack.axis = .vertical
+        stack.spacing = Layout.verticalSpacing
+        stack.alignment = .leading
+        return stack
+    }()
+
+    // MARK: - Initialization
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
+    }
+
+    // MARK: - Setup
+
+    private func setupView() {
+        iconImageView.snp.makeConstraints { make in
+            make.size.equalTo(Layout.iconSize)
+        }
+
+        if #available(iOS 26.0, *) {
+            let visualEffectView = UIVisualEffectView()
+            let glassEffect = UIGlassEffect(style: .clear)
+            visualEffectView.effect = glassEffect
+            visualEffectView.layer.cornerRadius = Layout.cornerRadius
+            visualEffectView.clipsToBounds = true
+            visualEffectView.contentView.addSubview(contentStack)
+
+            addSubview(visualEffectView)
+
+            visualEffectView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+
+            contentStack.snp.makeConstraints { make in
+                make.edges.equalToSuperview().inset(Layout.padding)
+            }
+
+            UIView.animate {
+                visualEffectView.effect = glassEffect
+                visualEffectView.overrideUserInterfaceStyle = .light
+            }
+        } else {
+            layer.cornerRadius = Layout.cornerRadius
+            layer.borderWidth = Layout.borderWidth
+            layer.borderColor = UIColor.themeSeparator.cgColor
+            backgroundColor = .themeCardBackground
+            clipsToBounds = true
+
+            addSubview(contentStack)
+
+            contentStack.snp.makeConstraints { make in
+                make.edges.equalToSuperview().inset(Layout.padding)
+            }
+        }
+    }
+
+    // MARK: - Configuration
+
+    func configure(with viewModel: InsightGridCardViewModel) {
+        iconImageView.image = UIImage(systemName: viewModel.iconName)
+        nameLabel.text = viewModel.name
+        valueLabel.text = viewModel.value
+    }
+}

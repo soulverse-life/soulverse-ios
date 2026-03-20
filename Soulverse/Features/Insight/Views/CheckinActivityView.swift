@@ -17,12 +17,6 @@ class CheckinActivityView: UIView {
         static let titleSubtitleSpacing: CGFloat = 4
         static let headerGridSpacing: CGFloat = 16
         static let gridSpacing: CGFloat = 12
-        static let innerCardCornerRadius: CGFloat = 16
-        static let innerCardPadding: CGFloat = 16
-        static let iconSize: CGFloat = 24
-        static let nameFontSize: CGFloat = 13
-        static let valueFontSize: CGFloat = 22
-        static let innerVerticalSpacing: CGFloat = 8
         static let borderWidth: CGFloat = 1
     }
 
@@ -133,87 +127,10 @@ class CheckinActivityView: UIView {
 
         gridStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
-        let journalCard = createGridCard(
-            iconName: "doc.text.fill",
-            name: NSLocalizedString("insight_journals", comment: ""),
-            value: String(format: NSLocalizedString("insight_journal_entries", comment: ""), viewModel.journalCount)
-        )
-
-        let drawingCard = createGridCard(
-            iconName: "drop.fill",
-            name: NSLocalizedString("insight_drawings", comment: ""),
-            value: String(format: NSLocalizedString("insight_drawing_pieces", comment: ""), viewModel.drawingCount)
-        )
-
-        gridStackView.addArrangedSubview(journalCard)
-        gridStackView.addArrangedSubview(drawingCard)
-    }
-
-    // MARK: - Grid Card Builder
-
-    private func createGridCard(iconName: String, name: String, value: String) -> UIView {
-        let container = UIView()
-
-        let iconImageView = UIImageView()
-        iconImageView.image = UIImage(systemName: iconName)
-        iconImageView.tintColor = .themeTextPrimary
-        iconImageView.contentMode = .scaleAspectFit
-
-        let nameLabel = UILabel()
-        nameLabel.text = name
-        nameLabel.font = UIFont.projectFont(ofSize: Layout.nameFontSize, weight: .regular)
-        nameLabel.textColor = .themeTextSecondary
-
-        let valueLabel = UILabel()
-        valueLabel.text = value
-        valueLabel.font = UIFont.projectFont(ofSize: Layout.valueFontSize, weight: .bold)
-        valueLabel.textColor = .themeTextPrimary
-
-        let contentStack = UIStackView(arrangedSubviews: [iconImageView, nameLabel, valueLabel])
-        contentStack.axis = .vertical
-        contentStack.spacing = Layout.innerVerticalSpacing
-        contentStack.alignment = .leading
-
-        iconImageView.snp.makeConstraints { make in
-            make.size.equalTo(Layout.iconSize)
+        for cardViewModel in viewModel.toGridCardViewModels() {
+            let card = InsightGridCardView()
+            card.configure(with: cardViewModel)
+            gridStackView.addArrangedSubview(card)
         }
-
-        if #available(iOS 26.0, *) {
-            let innerEffect = UIVisualEffectView()
-            let glassEffect = UIGlassEffect(style: .clear)
-            innerEffect.effect = glassEffect
-            innerEffect.layer.cornerRadius = Layout.innerCardCornerRadius
-            innerEffect.clipsToBounds = true
-            innerEffect.contentView.addSubview(contentStack)
-
-            container.addSubview(innerEffect)
-
-            innerEffect.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-
-            contentStack.snp.makeConstraints { make in
-                make.edges.equalToSuperview().inset(Layout.innerCardPadding)
-            }
-
-            UIView.animate {
-                innerEffect.effect = glassEffect
-                innerEffect.overrideUserInterfaceStyle = .light
-            }
-        } else {
-            container.layer.cornerRadius = Layout.innerCardCornerRadius
-            container.layer.borderWidth = Layout.borderWidth
-            container.layer.borderColor = UIColor.themeSeparator.cgColor
-            container.backgroundColor = .themeCardBackground
-            container.clipsToBounds = true
-
-            container.addSubview(contentStack)
-
-            contentStack.snp.makeConstraints { make in
-                make.edges.equalToSuperview().inset(Layout.innerCardPadding)
-            }
-        }
-
-        return container
     }
 }
