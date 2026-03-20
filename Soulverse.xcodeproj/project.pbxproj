@@ -26,14 +26,10 @@
 		A4B5C6D7E8F9A0B1C2D3E4F7 /* HabitActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */; };
 		C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
 		D5E6F7A8B9C0D1E2F3A4B5C6 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
-		A5B6C7D8E9F0A1B2C3D4E5F7 /* MoodCheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B6C7D8E9F0A1B2C3D4E5F6 /* MoodCheckinActivityViewModel.swift */; };
-		A5B6C7D8E9F0A1B2C3D4E5F8 /* MoodCheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B6C7D8E9F0A1B2C3D4E5F6 /* MoodCheckinActivityViewModel.swift */; };
-		A6B7C8D9E0F1A2B3C4D5E6F8 /* MoodCheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B7C8D9E0F1A2B3C4D5E6F7 /* MoodCheckinActivityView.swift */; };
-		A6B7C8D9E0F1A2B3C4D5E6F9 /* MoodCheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B7C8D9E0F1A2B3C4D5E6F7 /* MoodCheckinActivityView.swift */; };
-		A7B8C9D0E1F2A3B4C5D6E7F9 /* ReflectionCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8C9D0E1F2A3B4C5D6E7F8 /* ReflectionCreationViewModel.swift */; };
-		A7B8C9D0E1F2A3B4C5D6E7FA /* ReflectionCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8C9D0E1F2A3B4C5D6E7F8 /* ReflectionCreationViewModel.swift */; };
-		A8B9C0D1E2F3A4B5C6D7E8FA /* ReflectionCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B9C0D1E2F3A4B5C6D7E8F9 /* ReflectionCreationView.swift */; };
-		A8B9C0D1E2F3A4B5C6D7E8FB /* ReflectionCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B9C0D1E2F3A4B5C6D7E8F9 /* ReflectionCreationView.swift */; };
+		B1A2C3D4E5F6A7B8C9D0E1F2 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
+		B1A2C3D4E5F6A7B8C9D0E1F3 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
+		B2A3C4D5E6F7A8B9C0D1E2F3 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
+		B2A3C4D5E6F7A8B9C0D1E2F4 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
 		1A2CFCCD95653982DC90244B /* SoulverseActionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90781A662B73BED5786934DE /* SoulverseActionModal.swift */; };
 		1C2E0E31B00B3123E9EB4873 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */; };
 		244A5F23289862BDB386843F /* ProfileViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */; };
@@ -526,10 +522,8 @@
 		A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangeToggleView.swift; sourceTree = "<group>"; };
 		A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitActivityViewModel.swift; sourceTree = "<group>"; };
 		A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitActivityView.swift; sourceTree = "<group>"; };
-		A5B6C7D8E9F0A1B2C3D4E5F6 /* MoodCheckinActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckinActivityViewModel.swift; sourceTree = "<group>"; };
-		A6B7C8D9E0F1A2B3C4D5E6F7 /* MoodCheckinActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckinActivityView.swift; sourceTree = "<group>"; };
-		A7B8C9D0E1F2A3B4C5D6E7F8 /* ReflectionCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionCreationViewModel.swift; sourceTree = "<group>"; };
-		A8B9C0D1E2F3A4B5C6D7E8F9 /* ReflectionCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionCreationView.swift; sourceTree = "<group>"; };
+		B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityViewModel.swift; sourceTree = "<group>"; };
+		B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityView.swift; sourceTree = "<group>"; };
 		747376777B5866EF992CA14C /* InsightViewPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InsightViewPresenterTests.swift; sourceTree = "<group>"; };
 		761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordedEmotion+MoodScore.swift"; sourceTree = "<group>"; };
 		790AD1692DF9E43200C33CD1 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -1557,8 +1551,7 @@
 				BC0D4A98EBE3D4825FA7F02B /* TopicDistributionViewModel.swift */,
 				A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */,
 				A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */,
-				A5B6C7D8E9F0A1B2C3D4E5F6 /* MoodCheckinActivityViewModel.swift */,
-				A7B8C9D0E1F2A3B4C5D6E7F8 /* ReflectionCreationViewModel.swift */,
+				B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1572,8 +1565,7 @@
 				715B7B1090574611BFDFC632 /* TopicDistributionView.swift */,
 				A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */,
 				A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */,
-				A6B7C8D9E0F1A2B3C4D5E6F7 /* MoodCheckinActivityView.swift */,
-				A8B9C0D1E2F3A4B5C6D7E8F9 /* ReflectionCreationView.swift */,
+				B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2402,10 +2394,8 @@
 				A3B4C5D6E7F8A9B0C1D2E3F5 /* HabitActivityViewModel.swift in Sources */,
 				A4B5C6D7E8F9A0B1C2D3E4F6 /* HabitActivityView.swift in Sources */,
 				C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */,
-				A5B6C7D8E9F0A1B2C3D4E5F7 /* MoodCheckinActivityViewModel.swift in Sources */,
-				A6B7C8D9E0F1A2B3C4D5E6F8 /* MoodCheckinActivityView.swift in Sources */,
-				A7B8C9D0E1F2A3B4C5D6E7F9 /* ReflectionCreationViewModel.swift in Sources */,
-				A8B9C0D1E2F3A4B5C6D7E8FA /* ReflectionCreationView.swift in Sources */,
+				B1A2C3D4E5F6A7B8C9D0E1F2 /* CheckinActivityViewModel.swift in Sources */,
+				B2A3C4D5E6F7A8B9C0D1E2F3 /* CheckinActivityView.swift in Sources */,
 				790AD21D2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */,
 				790AD21F2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */,
 				794B59FE2E9EA436006CF069 /* UniverseTheme.swift in Sources */,
@@ -2718,10 +2708,8 @@
 				A3B4C5D6E7F8A9B0C1D2E3F6 /* HabitActivityViewModel.swift in Sources */,
 				A4B5C6D7E8F9A0B1C2D3E4F7 /* HabitActivityView.swift in Sources */,
 				D5E6F7A8B9C0D1E2F3A4B5C6 /* InsightSummaryView.swift in Sources */,
-				A5B6C7D8E9F0A1B2C3D4E5F8 /* MoodCheckinActivityViewModel.swift in Sources */,
-				A6B7C8D9E0F1A2B3C4D5E6F9 /* MoodCheckinActivityView.swift in Sources */,
-				A7B8C9D0E1F2A3B4C5D6E7FA /* ReflectionCreationViewModel.swift in Sources */,
-				A8B9C0D1E2F3A4B5C6D7E8FB /* ReflectionCreationView.swift in Sources */,
+				B1A2C3D4E5F6A7B8C9D0E1F3 /* CheckinActivityViewModel.swift in Sources */,
+				B2A3C4D5E6F7A8B9C0D1E2F4 /* CheckinActivityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -99,8 +99,7 @@ class InsightViewPresenter: InsightViewPresenterType {
 
             model.topicDistribution = TopicDistributionViewModel.from(checkIns: fetchedCheckIns)
             model.habitActivity = HabitActivityViewModel.mockData()
-            model.moodCheckinActivity = MoodCheckinActivityViewModel.from(checkIns: fetchedCheckIns)
-            model.reflectionCreation = ReflectionCreationViewModel.from(
+            model.checkinActivity = CheckinActivityViewModel.from(
                 checkIns: fetchedCheckIns, drawings: fetchedDrawings
             )
 

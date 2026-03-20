@@ -274,22 +274,22 @@
 "insight_all_time" = "All";
 "insight_dimensions_title" = "Which dimension do your emotions show up";
 "insight_dimensions_subtitle" = "Based on your check-ins, these areas were most present during this period.";
-"insight_habit_activity_title" = "Habit Activity";
+// Insight - Habit Activity
 "insight_habit_exercise" = "Exercise";
 "insight_habit_water" = "Water";
 "insight_habit_meditation" = "Meditation";
-"insight_habit_custom" = "Reading";
-"insight_habit_streak" = "%d day streak";
-"insight_habit_total" = "%d total";
-"insight_journals" = "Journals";
-"insight_drawings" = "Drawings";
+"insight_habit_custom" = "Custom habits";
+"insight_habit_completed" = "%d completed";
+"insight_habit_subtitle" = "Your daily care, made visible";
+"insight_habit_locked" = "Locked";
 
-// Insight - Mood Check-in Activity
-"insight_mood_checkin_activity_title" = "Mood Check-in Activity";
-"insight_total_checkins" = "Total";
-"insight_current_streak" = "Streak";
-"insight_avg_per_week" = "Avg/Week";
-"insight_streak_days" = "days";
+// Insight - Checkin Activity
+"insight_checkin_activity_title" = "Checkin Activity";
+"insight_checkin_activity_subtitle" = "Your recent check-ins";
+"insight_journals" = "Journals";
+"insight_drawings" = "Drawing";
+"insight_journal_entries" = "%d entries";
+"insight_drawing_pieces" = "%d pieces";
 
 // Drawing Save
 "drawing_save_error_title" = "Save Failed";

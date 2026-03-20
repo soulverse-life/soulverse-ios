@@ -274,22 +274,22 @@
 "insight_all_time" = "全部";
 "insight_dimensions_title" = "你的情緒出現在哪個面向";
 "insight_dimensions_subtitle" = "根據你的打卡紀錄，這些領域在此期間最常出現。";
-"insight_habit_activity_title" = "習慣活動";
+// Insight - Habit Activity
 "insight_habit_exercise" = "運動";
 "insight_habit_water" = "喝水";
 "insight_habit_meditation" = "冥想";
-"insight_habit_custom" = "閱讀";
-"insight_habit_streak" = "連續 %d 天";
-"insight_habit_total" = "共 %d 次";
+"insight_habit_custom" = "自訂習慣";
+"insight_habit_completed" = "已完成 %d 項";
+"insight_habit_subtitle" = "你的日常照顧，清晰可見";
+"insight_habit_locked" = "鎖定";
+
+// Insight - Checkin Activity
+"insight_checkin_activity_title" = "打卡紀錄";
+"insight_checkin_activity_subtitle" = "你最近的打卡紀錄";
 "insight_journals" = "日記";
 "insight_drawings" = "繪畫";
-
-// Insight - Mood Check-in Activity
-"insight_mood_checkin_activity_title" = "情緒打卡紀錄";
-"insight_total_checkins" = "總計";
-"insight_current_streak" = "連續天數";
-"insight_avg_per_week" = "週平均";
-"insight_streak_days" = "天";
+"insight_journal_entries" = "%d 篇";
+"insight_drawing_pieces" = "%d 幅";
 
 // Drawing Save
 "drawing_save_error_title" = "儲存失敗";

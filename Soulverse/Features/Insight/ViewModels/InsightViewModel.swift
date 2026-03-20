@@ -10,6 +10,5 @@ struct InsightViewModel {
     var weeklyMoodScore: WeeklyMoodScoreViewModel?
     var topicDistribution: TopicDistributionViewModel?
     var habitActivity: HabitActivityViewModel?
-    var moodCheckinActivity: MoodCheckinActivityViewModel?
-    var reflectionCreation: ReflectionCreationViewModel?
+    var checkinActivity: CheckinActivityViewModel?
 }

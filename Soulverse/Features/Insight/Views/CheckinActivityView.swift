@@ -1,11 +1,11 @@
 //
-//  HabitActivityView.swift
+//  CheckinActivityView.swift
 //
 
 import UIKit
 import SnapKit
 
-class HabitActivityView: UIView {
+class CheckinActivityView: UIView {
 
     // MARK: - Layout Constants
 
@@ -49,9 +49,12 @@ class HabitActivityView: UIView {
         return label
     }()
 
-    private lazy var gridContainerView: UIView = {
-        let view = UIView()
-        return view
+    private lazy var gridStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = Layout.gridSpacing
+        stackView.distribution = .fillEqually
+        return stackView
     }()
 
     // MARK: - Initialization
@@ -71,7 +74,7 @@ class HabitActivityView: UIView {
     private func setupView() {
         baseView.addSubview(titleLabel)
         baseView.addSubview(subtitleLabel)
-        baseView.addSubview(gridContainerView)
+        baseView.addSubview(gridStackView)
 
         if #available(iOS 26.0, *) {
             let glassEffect = UIGlassEffect(style: .clear)
@@ -115,7 +118,7 @@ class HabitActivityView: UIView {
             make.left.right.equalToSuperview().inset(Layout.cardPadding)
         }
 
-        gridContainerView.snp.makeConstraints { make in
+        gridStackView.snp.makeConstraints { make in
             make.top.equalTo(subtitleLabel.snp.bottom).offset(Layout.headerGridSpacing)
             make.left.right.equalToSuperview().inset(Layout.cardPadding)
             make.bottom.equalToSuperview().inset(Layout.cardPadding)
@@ -124,67 +127,26 @@ class HabitActivityView: UIView {
 
     // MARK: - Configuration
 
-    func configure(with viewModel: HabitActivityViewModel) {
+    func configure(with viewModel: CheckinActivityViewModel) {
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
 
-        if viewModel.habits.isEmpty {
-            isHidden = true
-            return
-        }
+        gridStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
-        isHidden = false
+        let journalCard = createGridCard(
+            iconName: "doc.text.fill",
+            name: NSLocalizedString("insight_journals", comment: ""),
+            value: String(format: NSLocalizedString("insight_journal_entries", comment: ""), viewModel.journalCount)
+        )
 
-        // Remove existing grid cards
-        gridContainerView.subviews.forEach { $0.removeFromSuperview() }
+        let drawingCard = createGridCard(
+            iconName: "drop.fill",
+            name: NSLocalizedString("insight_drawings", comment: ""),
+            value: String(format: NSLocalizedString("insight_drawing_pieces", comment: ""), viewModel.drawingCount)
+        )
 
-        // Build 2-column grid using rows of horizontal stacks
-        let rows = stride(from: 0, to: viewModel.habits.count, by: 2).map { startIndex in
-            let endIndex = min(startIndex + 2, viewModel.habits.count)
-            return Array(viewModel.habits[startIndex..<endIndex])
-        }
-
-        var previousRowStack: UIStackView?
-
-        for row in rows {
-            let rowStack = UIStackView()
-            rowStack.axis = .horizontal
-            rowStack.spacing = Layout.gridSpacing
-            rowStack.distribution = .fillEqually
-
-            for habit in row {
-                let card = createGridCard(
-                    iconName: habit.iconName,
-                    name: habit.name,
-                    value: habit.valueText
-                )
-                rowStack.addArrangedSubview(card)
-            }
-
-            // If odd number of items, add spacer to keep equal width
-            if row.count == 1 {
-                let spacer = UIView()
-                rowStack.addArrangedSubview(spacer)
-            }
-
-            gridContainerView.addSubview(rowStack)
-
-            rowStack.snp.makeConstraints { make in
-                make.left.right.equalToSuperview()
-                if let previous = previousRowStack {
-                    make.top.equalTo(previous.snp.bottom).offset(Layout.gridSpacing)
-                } else {
-                    make.top.equalToSuperview()
-                }
-            }
-
-            previousRowStack = rowStack
-        }
-
-        // Pin last row to bottom
-        previousRowStack?.snp.makeConstraints { make in
-            make.bottom.equalToSuperview()
-        }
+        gridStackView.addArrangedSubview(journalCard)
+        gridStackView.addArrangedSubview(drawingCard)
     }
 
     // MARK: - Grid Card Builder

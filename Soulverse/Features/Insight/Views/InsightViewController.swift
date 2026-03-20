@@ -57,13 +57,8 @@ class InsightViewController: ViewController {
         return view
     }()
 
-    private lazy var moodCheckinActivityView: MoodCheckinActivityView = {
-        let view = MoodCheckinActivityView()
-        return view
-    }()
-
-    private lazy var reflectionCreationView: ReflectionCreationView = {
-        let view = ReflectionCreationView()
+    private lazy var checkinActivityView: CheckinActivityView = {
+        let view = CheckinActivityView()
         return view
     }()
 
@@ -97,8 +92,7 @@ class InsightViewController: ViewController {
         contentStackView.addArrangedSubview(weeklyMoodScoreView)
         contentStackView.addArrangedSubview(topicDistributionView)
         contentStackView.addArrangedSubview(habitActivityView)
-        contentStackView.addArrangedSubview(moodCheckinActivityView)
-        contentStackView.addArrangedSubview(reflectionCreationView)
+        contentStackView.addArrangedSubview(checkinActivityView)
 
         navigationView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -142,11 +136,8 @@ extension InsightViewController: InsightViewPresenterDelegate {
             if let habitActivity = viewModel.habitActivity {
                 self.habitActivityView.configure(with: habitActivity)
             }
-            if let moodCheckinActivity = viewModel.moodCheckinActivity {
-                self.moodCheckinActivityView.configure(with: moodCheckinActivity)
-            }
-            if let reflectionCreation = viewModel.reflectionCreation {
-                self.reflectionCreationView.configure(with: reflectionCreation)
+            if let checkinActivity = viewModel.checkinActivity {
+                self.checkinActivityView.configure(with: checkinActivity)
             }
         }
     }
