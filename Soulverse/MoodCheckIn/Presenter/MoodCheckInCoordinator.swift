@@ -150,6 +150,10 @@ final class MoodCheckInCoordinator {
     private func handleSubmissionSuccess() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            NotificationCenter.default.post(
+                name: NSNotification.Name(rawValue: Notification.MoodCheckInCreated),
+                object: nil
+            )
             self.onComplete?(self.moodCheckInData, self.selectedAction)
             // Release self-reference to allow deallocation
             self.strongSelf = nil
