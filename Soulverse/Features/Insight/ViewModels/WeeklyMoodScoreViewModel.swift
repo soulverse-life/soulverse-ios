@@ -14,6 +14,9 @@ struct DailyMoodScore {
 struct WeeklyMoodScoreViewModel {
     let title: String
     let dailyScores: [DailyMoodScore]
+    let weekStartDates: [Date]
+    let currentPageIndex: Int
+    let isSwipeEnabled: Bool
 }
 
 // MARK: - Factory from Firestore Data
@@ -25,25 +28,31 @@ extension WeeklyMoodScoreViewModel {
     /// - Parameters:
     ///   - checkIns: Array of MoodCheckInModel from Firestore
     ///   - referenceDate: The end date of the week to display (defaults to today)
+    ///   - weekStartDates: Pre-computed array of page start dates
+    ///   - currentPageIndex: Index of the currently visible page
+    ///   - isSwipeEnabled: Whether week swiping is allowed
     /// - Returns: Populated ViewModel for the scatter chart
-    static func from(checkIns: [MoodCheckInModel], referenceDate: Date = Date()) -> WeeklyMoodScoreViewModel {
+    static func from(
+        checkIns: [MoodCheckInModel],
+        referenceDate: Date = Date(),
+        weekStartDates: [Date],
+        currentPageIndex: Int,
+        isSwipeEnabled: Bool
+    ) -> WeeklyMoodScoreViewModel {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: referenceDate)
 
-        // Always show last 7 days (this is a weekly mood chart)
         var dailyScores: [DailyMoodScore] = []
 
         for dayOffset in (-6...0) {
             guard let date = calendar.date(byAdding: .day, value: dayOffset, to: today) else { continue }
             guard let nextDate = calendar.date(byAdding: .day, value: 1, to: date) else { continue }
 
-            // Find check-ins for this day
             let dayCheckIns = checkIns.filter { checkIn in
                 guard let createdAt = checkIn.createdAt else { return false }
                 return createdAt >= date && createdAt < nextDate
             }
 
-            // Build entries for each check-in
             let entries = dayCheckIns.compactMap { checkIn -> MoodCheckInEntry? in
                 guard let createdAt = checkIn.createdAt else { return nil }
                 let emotionScore = RecordedEmotion(rawValue: checkIn.emotion)?.score ?? 0.0
@@ -55,7 +64,10 @@ extension WeeklyMoodScoreViewModel {
 
         return WeeklyMoodScoreViewModel(
             title: NSLocalizedString("insight_weekly_mood_score_title", comment: ""),
-            dailyScores: dailyScores
+            dailyScores: dailyScores,
+            weekStartDates: weekStartDates,
+            currentPageIndex: currentPageIndex,
+            isSwipeEnabled: isSwipeEnabled
         )
     }
 }

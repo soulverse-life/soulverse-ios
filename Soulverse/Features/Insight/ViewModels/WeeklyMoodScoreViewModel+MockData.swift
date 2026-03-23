@@ -11,7 +11,12 @@ extension WeeklyMoodScoreViewModel {
 
     /// Returns mock data for the week containing `referenceDate`.
     /// Uses the week number to pick from pre-defined datasets so each week looks different.
-    static func mockData(referenceDate: Date = Date()) -> WeeklyMoodScoreViewModel {
+    static func mockData(
+        referenceDate: Date = Date(),
+        weekStartDates: [Date] = [],
+        currentPageIndex: Int = 0,
+        isSwipeEnabled: Bool = false
+    ) -> WeeklyMoodScoreViewModel {
         let calendar = Calendar.current
         let weekNumber = calendar.component(.weekOfYear, from: referenceDate)
 
@@ -102,7 +107,10 @@ extension WeeklyMoodScoreViewModel {
 
         return WeeklyMoodScoreViewModel(
             title: NSLocalizedString("insight_weekly_mood_score_title", comment: ""),
-            dailyScores: dailyScores
+            dailyScores: dailyScores,
+            weekStartDates: weekStartDates,
+            currentPageIndex: currentPageIndex,
+            isSwipeEnabled: isSwipeEnabled
         )
     }
 }

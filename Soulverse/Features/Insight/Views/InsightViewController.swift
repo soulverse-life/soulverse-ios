@@ -128,7 +128,7 @@ extension InsightViewController: InsightViewPresenterDelegate {
             }
             self.insightSummaryView.configure(with: NSLocalizedString("insight_summary_placeholder", comment: ""))
             if let weeklyMoodScore = viewModel.weeklyMoodScore {
-                self.weeklyMoodScoreView.configure(with: weeklyMoodScore, timeRange: viewModel.timeRange)
+                self.weeklyMoodScoreView.configure(with: weeklyMoodScore)
             }
             if let topicDistribution = viewModel.topicDistribution {
                 self.topicDistributionView.configure(with: topicDistribution)
@@ -152,8 +152,8 @@ extension InsightViewController: InsightViewPresenterDelegate {
 // MARK: - WeeklyMoodScoreViewDelegate
 
 extension InsightViewController: WeeklyMoodScoreViewDelegate {
-    func weeklyMoodScoreView(_ view: WeeklyMoodScoreView, didSwipeToWeekContaining date: Date) {
-        presenter.fetchWeeklyMoodScore(for: date)
+    func weeklyMoodScoreView(_ view: WeeklyMoodScoreView, didSwipeToPage pageIndex: Int) {
+        presenter.didSwipeToWeekPage(pageIndex)
     }
 }
 

@@ -5,7 +5,7 @@ import SnapKit
 // MARK: - Delegate Protocol
 
 protocol WeeklyMoodScoreViewDelegate: AnyObject {
-    func weeklyMoodScoreView(_ view: WeeklyMoodScoreView, didSwipeToWeekContaining date: Date)
+    func weeklyMoodScoreView(_ view: WeeklyMoodScoreView, didSwipeToPage pageIndex: Int)
 }
 
 class WeeklyMoodScoreView: UIView {
@@ -34,8 +34,6 @@ class WeeklyMoodScoreView: UIView {
         static let weekdayLabelTopSpacing: CGFloat = 4
         static let dateNumberRowTopSpacing: CGFloat = 2
         static let daysPerWeek = 7
-        static let pastWeekPages = 52
-        static let futureWeekPages = 4
     }
 
     // MARK: - Formatters
@@ -64,10 +62,9 @@ class WeeklyMoodScoreView: UIView {
     private var dayAbbrLabels: [UILabel] = []
 
     /// Pixel x-positions for 7 columns, computed from chart transformer.
-    /// Stored so cells can position labels to match chart data points.
     private var columnXPositions: [CGFloat] = []
 
-    /// The Saturday start date for each page in the collection view.
+    /// Page start dates received from ViewModel.
     private var weekStartDates: [Date] = []
 
     /// Index of the currently visible page.
@@ -75,9 +72,6 @@ class WeeklyMoodScoreView: UIView {
 
     /// Suppresses delegate calls during programmatic scroll
     private var isSuppressingPageChange = false
-
-    /// Whether week swiping is enabled (only in "All" time range)
-    private var isSwipeEnabled = false
 
     // MARK: - Subviews
 
@@ -240,62 +234,41 @@ class WeeklyMoodScoreView: UIView {
 
     // MARK: - Configuration
 
-    func configure(with viewModel: WeeklyMoodScoreViewModel, timeRange: TimeRange) {
+    func configure(with viewModel: WeeklyMoodScoreViewModel) {
         titleLabel.text = viewModel.title
 
-        guard let firstDate = viewModel.dailyScores.first?.date else { return }
+        guard !viewModel.dailyScores.isEmpty else { return }
 
-        let shouldSwipe = (timeRange == .all)
-        let rangeChanged = (isSwipeEnabled != shouldSwipe)
-        isSwipeEnabled = shouldSwipe
-        dateNumberCollectionView.isScrollEnabled = shouldSwipe
+        dateNumberCollectionView.isScrollEnabled = viewModel.isSwipeEnabled
 
-        // Regenerate pages on first load or when time range changes
-        if weekStartDates.isEmpty || rangeChanged {
-            generateWeekPages(around: firstDate)
-        }
-        updateChart(with: viewModel.dailyScores)
-    }
+        // Update page data if changed
+        let pagesChanged = (weekStartDates != viewModel.weekStartDates)
+        weekStartDates = viewModel.weekStartDates
+        currentPageIndex = viewModel.currentPageIndex
 
-    // MARK: - Week Pages
+        if pagesChanged {
+            dateNumberCollectionView.reloadData()
 
-    private func generateWeekPages(around referenceDate: Date) {
-        let calendar = Calendar.current
-
-        // Find the Saturday of the reference week
-        // Calendar weekday: Sun=1, Mon=2, ..., Sat=7
-        let weekday = calendar.component(.weekday, from: referenceDate)
-        let daysBackToSaturday = (weekday % 7)  // Sat=7→0, Sun=1→1, Mon=2→2...
-        guard let saturday = calendar.date(byAdding: .day, value: -daysBackToSaturday, to: referenceDate) else { return }
-
-        // Generate past + current + future week pages
-        var dates: [Date] = []
-        for offset in -Layout.pastWeekPages...Layout.futureWeekPages {
-            if let weekStart = calendar.date(byAdding: .weekOfYear, value: offset, to: saturday) {
-                dates.append(weekStart)
+            // Scroll to current page without triggering delegate
+            DispatchQueue.main.async { [weak self] in
+                guard let self, !self.weekStartDates.isEmpty else { return }
+                self.isSuppressingPageChange = true
+                let indexPath = IndexPath(item: self.currentPageIndex, section: 0)
+                self.dateNumberCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+                self.isSuppressingPageChange = false
             }
         }
 
-        weekStartDates = dates
-        currentPageIndex = Layout.pastWeekPages // current week is in the middle
-
-        dateNumberCollectionView.reloadData()
-
-        // Scroll to current page without triggering delegate
-        DispatchQueue.main.async { [weak self] in
-            guard let self, !self.weekStartDates.isEmpty else { return }
-            self.isSuppressingPageChange = true
-            let indexPath = IndexPath(item: self.currentPageIndex, section: 0)
-            self.dateNumberCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-            self.isSuppressingPageChange = false
-        }
+        updateChart(with: viewModel.dailyScores)
     }
 
-    /// Returns 7 day dates for the week starting at `saturday`.
-    private func datesForWeek(startingAt saturday: Date) -> [Date] {
+    // MARK: - Helpers
+
+    /// Returns 7 day dates for the week starting at the given date.
+    private func datesForWeek(startingAt startDate: Date) -> [Date] {
         let calendar = Calendar.current
         return (0..<Layout.daysPerWeek).compactMap {
-            calendar.date(byAdding: .day, value: $0, to: saturday)
+            calendar.date(byAdding: .day, value: $0, to: startDate)
         }
     }
 
@@ -303,7 +276,7 @@ class WeeklyMoodScoreView: UIView {
 
     private func updateChart(with dailyScores: [DailyMoodScore]) {
         clearSelectionOverlay()
-        setupDayAbbrLabels(count: dailyScores.count)
+        updateDayAbbrLabels(from: dailyScores)
         applyChartData(with: dailyScores)
         scatterChartView.animate(yAxisDuration: 0.8, easingOption: .easeOutQuint)
     }
@@ -343,21 +316,31 @@ class WeeklyMoodScoreView: UIView {
 
     // MARK: - Day Abbreviation Labels
 
-    private func setupDayAbbrLabels(count: Int) {
-        guard dayAbbrLabels.isEmpty else { return }
+    /// Updates weekday labels based on the dates in dailyScores.
+    private func updateDayAbbrLabels(from dailyScores: [DailyMoodScore]) {
+        let calendar = Calendar.current
+        let daySymbols = calendar.shortWeekdaySymbols
 
-        let daySymbols = Calendar.current.shortWeekdaySymbols
-        let saturdayIndex = 6
-        let orderedSymbols = (0..<count).map { daySymbols[(saturdayIndex + $0) % 7] }
+        // Derive weekday abbreviations from actual dates
+        let orderedSymbols = dailyScores.map { dailyScore -> String in
+            let weekdayIndex = calendar.component(.weekday, from: dailyScore.date) - 1  // 0-based
+            return daySymbols[weekdayIndex]
+        }
 
-        for symbol in orderedSymbols {
-            let label = UILabel()
-            label.text = symbol
-            label.textAlignment = .center
-            label.font = UIFont.projectFont(ofSize: Layout.weekdayLabelFontSize, weight: .regular, scalable: false)
-            label.textColor = .themeTextSecondary
-            dayAbbrRow.addSubview(label)
-            dayAbbrLabels.append(label)
+        if dayAbbrLabels.isEmpty {
+            for symbol in orderedSymbols {
+                let label = UILabel()
+                label.text = symbol
+                label.textAlignment = .center
+                label.font = UIFont.projectFont(ofSize: Layout.weekdayLabelFontSize, weight: .regular, scalable: false)
+                label.textColor = .themeTextSecondary
+                dayAbbrRow.addSubview(label)
+                dayAbbrLabels.append(label)
+            }
+        } else {
+            for (index, symbol) in orderedSymbols.enumerated() where index < dayAbbrLabels.count {
+                dayAbbrLabels[index].text = symbol
+            }
         }
     }
 
@@ -367,8 +350,6 @@ class WeeklyMoodScoreView: UIView {
 
     // MARK: - Column Positions
 
-    /// Computes and caches pixel x-positions for chart columns.
-    /// Called after layout so the chart transformer has valid values.
     private func updateColumnXPositions() {
         let transformer = scatterChartView.getTransformer(forAxis: .left)
         var positions: [CGFloat] = []
@@ -379,7 +360,6 @@ class WeeklyMoodScoreView: UIView {
         }
         columnXPositions = positions
 
-        // Reload visible cells so they pick up updated positions
         dateNumberCollectionView.visibleCells.forEach { cell in
             (cell as? DateWeekCell)?.updateLabelPositions(columnXPositions)
         }
@@ -533,11 +513,7 @@ extension WeeklyMoodScoreView: UICollectionViewDelegateFlowLayout {
         currentPageIndex = newPage
         clearSelectionOverlay()
 
-        let calendar = Calendar.current
-        let weekStart = weekStartDates[newPage]
-        if let midWeekDate = calendar.date(byAdding: .day, value: 3, to: weekStart) {
-            delegate?.weeklyMoodScoreView(self, didSwipeToWeekContaining: midWeekDate)
-        }
+        delegate?.weeklyMoodScoreView(self, didSwipeToPage: newPage)
     }
 }
 
@@ -596,7 +572,6 @@ private final class DateWeekCell: UICollectionViewCell {
 
     func updateLabelPositions(_ xPositions: [CGFloat]) {
         guard !xPositions.isEmpty else {
-            // Fallback: distribute evenly
             let count = CGFloat(labels.count)
             for (index, label) in labels.enumerated() {
                 let fraction = (CGFloat(index) + 0.5) / count
