@@ -109,11 +109,14 @@ class WeeklyMoodScoreView: UIView {
 
         chartView.rightAxis.enabled = false
 
+        chartView.clipDataToContentEnabled = false
+
         let yAxis = chartView.leftAxis
-        yAxis.axisMinimum = -1.0
-        yAxis.axisMaximum = 1.0
-        yAxis.labelCount = 2
-        yAxis.forceLabelsEnabled = true
+        yAxis.axisMinimum = -1.15
+        yAxis.axisMaximum = 1.15
+        yAxis.labelCount = 3
+        yAxis.granularity = 1.0
+        yAxis.forceLabelsEnabled = false
         yAxis.labelTextColor = .themeTextSecondary
         yAxis.labelFont = UIFont.projectFont(ofSize: Layout.axisLabelFontSize, weight: .regular, scalable: false)
         yAxis.drawGridLinesEnabled = false
