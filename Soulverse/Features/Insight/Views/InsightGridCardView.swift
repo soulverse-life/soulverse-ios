@@ -19,7 +19,21 @@ class InsightGridCardView: UIView {
         static let borderWidth: CGFloat = 1
     }
 
+    // MARK: - Style Constants
+
+    private enum Style {
+        static let activeBackground = UIColor.white.withAlphaComponent(0.15)
+        static let lockedBackground = UIColor.white.withAlphaComponent(0.05)
+    }
+
     // MARK: - Subviews
+
+    private let backgroundColorView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = Layout.cornerRadius
+        view.clipsToBounds = true
+        return view
+    }()
 
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -65,6 +79,16 @@ class InsightGridCardView: UIView {
     // MARK: - Setup
 
     private func setupView() {
+        layer.cornerRadius = Layout.cornerRadius
+        layer.borderWidth = Layout.borderWidth
+        layer.borderColor = UIColor.themeSeparator.cgColor
+        clipsToBounds = true
+
+        addSubview(backgroundColorView)
+        backgroundColorView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
         iconImageView.snp.makeConstraints { make in
             make.size.equalTo(Layout.iconSize)
         }
@@ -92,12 +116,6 @@ class InsightGridCardView: UIView {
                 visualEffectView.overrideUserInterfaceStyle = .light
             }
         } else {
-            layer.cornerRadius = Layout.cornerRadius
-            layer.borderWidth = Layout.borderWidth
-            layer.borderColor = UIColor.themeSeparator.cgColor
-            backgroundColor = .themeCardBackground
-            clipsToBounds = true
-
             addSubview(contentStack)
 
             contentStack.snp.makeConstraints { make in
@@ -112,5 +130,6 @@ class InsightGridCardView: UIView {
         iconImageView.image = UIImage(systemName: viewModel.iconName)
         nameLabel.text = viewModel.name
         valueLabel.text = viewModel.value
+        backgroundColorView.backgroundColor = viewModel.isLocked ? Style.lockedBackground : Style.activeBackground
     }
 }

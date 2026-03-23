@@ -8,13 +8,26 @@ struct InsightGridCardViewModel {
     let iconName: String     // SF Symbol name
     let name: String
     let value: String
+    let isLocked: Bool
+
+    init(iconName: String, name: String, value: String, isLocked: Bool = false) {
+        self.iconName = iconName
+        self.name = name
+        self.value = value
+        self.isLocked = isLocked
+    }
 }
 
 // MARK: - Mappers
 
 extension HabitActivityViewModel.HabitItem {
     func toGridCardViewModel() -> InsightGridCardViewModel {
-        InsightGridCardViewModel(iconName: iconName, name: name, value: valueText)
+        InsightGridCardViewModel(
+            iconName: iconName,
+            name: name,
+            value: valueText,
+            isLocked: !isBuiltIn
+        )
     }
 }
 
