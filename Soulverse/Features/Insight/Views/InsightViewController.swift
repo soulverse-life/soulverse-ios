@@ -128,7 +128,7 @@ extension InsightViewController: InsightViewPresenterDelegate {
             }
             self.insightSummaryView.configure(with: NSLocalizedString("insight_summary_placeholder", comment: ""))
             if let weeklyMoodScore = viewModel.weeklyMoodScore {
-                self.weeklyMoodScoreView.configure(with: weeklyMoodScore)
+                self.weeklyMoodScoreView.configure(with: weeklyMoodScore, timeRange: viewModel.timeRange)
             }
             if let topicDistribution = viewModel.topicDistribution {
                 self.topicDistributionView.configure(with: topicDistribution)

@@ -76,6 +76,9 @@ class WeeklyMoodScoreView: UIView {
     /// Suppresses delegate calls during programmatic scroll
     private var isSuppressingPageChange = false
 
+    /// Whether week swiping is enabled (only in "All" time range)
+    private var isSwipeEnabled = false
+
     // MARK: - Subviews
 
     private let baseView: UIView = {
@@ -234,20 +237,21 @@ class WeeklyMoodScoreView: UIView {
 
     // MARK: - Configuration
 
-    func configure(with viewModel: WeeklyMoodScoreViewModel) {
+    func configure(with viewModel: WeeklyMoodScoreViewModel, timeRange: TimeRange) {
         titleLabel.text = viewModel.title
 
         guard let firstDate = viewModel.dailyScores.first?.date else { return }
 
-        // Only generate week pages on initial setup; subsequent calls just update chart data.
-        if weekStartDates.isEmpty {
+        let shouldSwipe = (timeRange == .all)
+        let rangeChanged = (isSwipeEnabled != shouldSwipe)
+        isSwipeEnabled = shouldSwipe
+        dateNumberCollectionView.isScrollEnabled = shouldSwipe
+
+        // Regenerate pages on first load or when time range changes
+        if weekStartDates.isEmpty || rangeChanged {
             generateWeekPages(around: firstDate)
         }
         updateChart(with: viewModel.dailyScores)
-    }
-
-    func setReferenceDate(_ date: Date) {
-        generateWeekPages(around: date)
     }
 
     // MARK: - Week Pages

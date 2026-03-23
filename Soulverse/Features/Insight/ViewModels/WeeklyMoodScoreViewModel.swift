@@ -21,12 +21,14 @@ struct WeeklyMoodScoreViewModel {
 extension WeeklyMoodScoreViewModel {
 
     /// Build from real mood check-in data.
-    /// Always displays the last 7 days regardless of TimeRange, since this is a "weekly" chart.
-    /// - Parameter checkIns: Array of MoodCheckInModel from Firestore
+    /// Displays 7 days ending at `referenceDate` (defaults to today).
+    /// - Parameters:
+    ///   - checkIns: Array of MoodCheckInModel from Firestore
+    ///   - referenceDate: The end date of the week to display (defaults to today)
     /// - Returns: Populated ViewModel for the scatter chart
-    static func from(checkIns: [MoodCheckInModel]) -> WeeklyMoodScoreViewModel {
+    static func from(checkIns: [MoodCheckInModel], referenceDate: Date = Date()) -> WeeklyMoodScoreViewModel {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: referenceDate)
 
         // Always show last 7 days (this is a weekly mood chart)
         var dailyScores: [DailyMoodScore] = []

@@ -93,35 +93,13 @@ class InsightGridCardView: UIView {
             make.size.equalTo(Layout.iconSize)
         }
 
-        if #available(iOS 26.0, *) {
-            let visualEffectView = UIVisualEffectView()
-            let glassEffect = UIGlassEffect(style: .clear)
-            visualEffectView.effect = glassEffect
-            visualEffectView.layer.cornerRadius = Layout.cornerRadius
-            visualEffectView.clipsToBounds = true
-            visualEffectView.contentView.addSubview(contentStack)
-
-            addSubview(visualEffectView)
-
-            visualEffectView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-
-            contentStack.snp.makeConstraints { make in
-                make.edges.equalToSuperview().inset(Layout.padding)
-            }
-
-            UIView.animate {
-                visualEffectView.effect = glassEffect
-                visualEffectView.overrideUserInterfaceStyle = .light
-            }
-        } else {
+       
             addSubview(contentStack)
 
             contentStack.snp.makeConstraints { make in
                 make.edges.equalToSuperview().inset(Layout.padding)
             }
-        }
+       
     }
 
     // MARK: - Configuration
