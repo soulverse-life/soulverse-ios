@@ -56,13 +56,14 @@ final class FirestoreMoodCheckInService: MoodCheckInServiceProtocol {
             Field.emotion.rawValue: data.recordedEmotion?.uniqueKey ?? "",
             Field.topic.rawValue: data.selectedTopic?.rawValue ?? "",
             Field.evaluation.rawValue: data.evaluation?.rawValue ?? "",
+            Field.reflectionPrompt.rawValue: data.reflectionPrompt ?? "",
             Field.timezoneOffsetMinutes.rawValue: timezoneOffset,
             Field.createdAt.rawValue: FieldValue.serverTimestamp(),
             Field.updatedAt.rawValue: FieldValue.serverTimestamp()
         ]
 
-        if let journal = data.journal {
-            fields[Field.journal.rawValue] = journal
+        if let reflection = data.reflection {
+            fields[Field.reflection.rawValue] = reflection
         }
 
         docRef.setData(fields) { error in

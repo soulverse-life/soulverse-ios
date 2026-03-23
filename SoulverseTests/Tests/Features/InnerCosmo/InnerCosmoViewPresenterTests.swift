@@ -26,6 +26,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         drawingServiceMock = DrawingServiceMock()
 
         let assembler = MoodEntriesDataAssembler(
+            user: userMock,
             moodCheckInService: moodCheckInServiceMock,
             drawingService: drawingServiceMock
         )
@@ -88,6 +89,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         customUser.planetName = "Neptune"
 
         let assembler = MoodEntriesDataAssembler(
+            user: userMock,
             moodCheckInService: moodCheckInServiceMock,
             drawingService: drawingServiceMock
         )
@@ -117,7 +119,6 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
             emotion: "joy",
             topic: "emotional",
             evaluation: "Feeling great today",
-            journal: nil,
             timezoneOffsetMinutes: 480,
             createdAt: now,
             updatedAt: now
@@ -135,7 +136,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         let entries = delegateMock.updatedViewModel?.moodEntries ?? []
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries.first?.emotion, .joy)
-        XCTAssertEqual(entries.first?.journal, "Feeling great today")
+        XCTAssertEqual(entries.first?.reflection, nil)
         XCTAssertEqual(entries.first?.artworkURLs, [])
     }
 
@@ -148,7 +149,6 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
             emotion: "serenity",
             topic: "spiritual",
             evaluation: "Peaceful moment",
-            journal: nil,
             timezoneOffsetMinutes: 480,
             createdAt: now,
             updatedAt: now
@@ -215,7 +215,6 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
             emotion: "joy",
             topic: "emotional",
             evaluation: "All good",
-            journal: nil,
             timezoneOffsetMinutes: 480,
             createdAt: now,
             updatedAt: now
@@ -238,6 +237,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         userMock.userId = nil
 
         let assembler = MoodEntriesDataAssembler(
+            user: userMock,
             moodCheckInService: moodCheckInServiceMock,
             drawingService: drawingServiceMock
         )

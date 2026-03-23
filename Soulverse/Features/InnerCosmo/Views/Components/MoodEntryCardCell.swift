@@ -211,7 +211,7 @@ class MoodEntryCardCell: UICollectionViewCell {
 
         emotionLabel.text = entry.emotion?.displayName
         dateLabel.text = entry.formattedDate
-        quoteLabel.text = entry.journal
+        quoteLabel.text = entry.reflection
 
         let urls = entry.artworkURLs
 

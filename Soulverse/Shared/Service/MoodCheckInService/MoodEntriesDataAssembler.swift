@@ -251,7 +251,7 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
                     checkinId: checkIn.id,
                     emotion: emotion,
                     date: card.date,
-                    journal: checkIn.journal,
+                    reflection: checkIn.reflection,
                     artworkURLs: artworkURLs
                 )
             }
@@ -263,7 +263,7 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
                 checkinId: nil,
                 emotion: nil,
                 date: card.date,
-                journal: nil,
+                reflection: nil,
                 artworkURLs: artworkURLs
             )
         }

@@ -14,6 +14,7 @@ final class FirestoreDrawingService: DrawingServiceProtocol {
     private let db = Firestore.firestore()
 
     private typealias Field = DrawingModel.CodingKeys
+    private typealias CheckInField = MoodCheckInModel.CodingKeys
 
     private init() {}
 
@@ -122,7 +123,22 @@ final class FirestoreDrawingService: DrawingServiceProtocol {
                 fields[Field.templateName.rawValue] = templateName
             }
 
-            docRef.setData(fields) { error in
+            // Batch write: create drawing doc + set checkin.drawingId (if linked)
+            let batch = self.db.batch()
+            batch.setData(fields, forDocument: docRef)
+
+            if let checkinId = checkinId {
+                let checkinRef = self.db.collection(FirestoreCollection.users)
+                    .document(uid)
+                    .collection(FirestoreCollection.moodCheckIns)
+                    .document(checkinId)
+                batch.updateData([
+                    CheckInField.drawingId.rawValue: drawingId,
+                    CheckInField.updatedAt.rawValue: FieldValue.serverTimestamp()
+                ], forDocument: checkinRef)
+            }
+
+            batch.commit { error in
                 if let error = error {
                     // Firestore write failed — clean up Storage files (best-effort)
                     FirebaseStorageService.deleteDrawingFiles(uid: uid, drawingId: drawingId) { _ in }
@@ -201,22 +217,49 @@ final class FirestoreDrawingService: DrawingServiceProtocol {
 
     // MARK: - Delete Drawing
 
-    /// Deletes a drawing document and its associated Storage files.
+    /// Deletes a drawing document, clears the linked check-in's drawingId, and removes Storage files.
     func deleteDrawing(
         uid: String,
         drawingId: String,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
-        // Delete Firestore document first
-        drawingsCollection(uid: uid).document(drawingId).delete { error in
+        let drawingRef = drawingsCollection(uid: uid).document(drawingId)
+
+        // Fetch the drawing first to check for a linked checkinId
+        drawingRef.getDocument { [weak self] snapshot, error in
+            guard let self = self else { return }
+
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            // Then delete Storage files (best-effort)
-            FirebaseStorageService.deleteDrawingFiles(uid: uid, drawingId: drawingId) { _ in
-                // Storage cleanup is best-effort; report success regardless
-                completion(.success(()))
+
+            let drawing = snapshot.flatMap { try? $0.data(as: DrawingModel.self) }
+
+            let batch = self.db.batch()
+            batch.deleteDocument(drawingRef)
+
+            // Clear the check-in's drawingId if this drawing was linked
+            if let checkinId = drawing?.checkinId {
+                let checkinRef = self.db.collection(FirestoreCollection.users)
+                    .document(uid)
+                    .collection(FirestoreCollection.moodCheckIns)
+                    .document(checkinId)
+                batch.updateData([
+                    CheckInField.drawingId.rawValue: FieldValue.delete(),
+                    CheckInField.updatedAt.rawValue: FieldValue.serverTimestamp()
+                ], forDocument: checkinRef)
+            }
+
+            batch.commit { error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                // Delete Storage files (best-effort)
+                FirebaseStorageService.deleteDrawingFiles(uid: uid, drawingId: drawingId) { _ in
+                    completion(.success(()))
+                }
             }
         }
     }
