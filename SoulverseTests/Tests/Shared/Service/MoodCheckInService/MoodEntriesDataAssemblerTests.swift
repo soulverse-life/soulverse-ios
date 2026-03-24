@@ -155,13 +155,13 @@ final class MoodEntriesDataAssemblerTests: XCTestCase {
     // MARK: - Orphan Card Properties
 
     func test_MoodEntryCard_isOrphan_trueWhenNoCheckIn() {
-        let card = MoodEntryCard(checkIn: nil, drawings: [], date: Date())
+        let card = MoodEntryCard(checkIn: nil, drawings: [], journal: nil, date: Date())
         XCTAssertTrue(card.isOrphan)
     }
 
     func test_MoodEntryCard_isOrphan_falseWhenHasCheckIn() {
         let checkIn = makeCheckIn(id: "c1", createdAt: Date())
-        let card = MoodEntryCard(checkIn: checkIn, drawings: [], date: Date())
+        let card = MoodEntryCard(checkIn: checkIn, drawings: [], journal: nil, date: Date())
         XCTAssertFalse(card.isOrphan)
     }
 
@@ -320,7 +320,6 @@ private extension MoodEntriesDataAssemblerTests {
             emotion: "happy",
             topic: "work",
             evaluation: "positive",
-            journal: nil,
             timezoneOffsetMinutes: 480,
             createdAt: createdAt,
             updatedAt: createdAt

@@ -15,6 +15,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
     private var userMock: UserMock!
     private var moodCheckInServiceMock: MoodCheckInServiceMock!
     private var drawingServiceMock: DrawingServiceMock!
+    private var journalServiceMock: JournalServiceMock!
 
     // MARK: - Lifecycle
 
@@ -24,10 +25,13 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         delegateMock = InnerCosmoViewPresenterDelegateMock()
         moodCheckInServiceMock = MoodCheckInServiceMock()
         drawingServiceMock = DrawingServiceMock()
+        journalServiceMock = JournalServiceMock()
 
         let assembler = MoodEntriesDataAssembler(
+            user: userMock,
             moodCheckInService: moodCheckInServiceMock,
-            drawingService: drawingServiceMock
+            drawingService: drawingServiceMock,
+            journalService: journalServiceMock
         )
 
         presenter = InnerCosmoViewPresenter(user: userMock, assembler: assembler)
@@ -40,6 +44,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         userMock = nil
         moodCheckInServiceMock = nil
         drawingServiceMock = nil
+        journalServiceMock = nil
         super.tearDown()
     }
 
@@ -88,8 +93,10 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         customUser.planetName = "Neptune"
 
         let assembler = MoodEntriesDataAssembler(
+            user: userMock,
             moodCheckInService: moodCheckInServiceMock,
-            drawingService: drawingServiceMock
+            drawingService: drawingServiceMock,
+            journalService: journalServiceMock
         )
         let customPresenter = InnerCosmoViewPresenter(user: customUser, assembler: assembler)
         let customDelegate = InnerCosmoViewPresenterDelegateMock()
@@ -117,7 +124,6 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
             emotion: "joy",
             topic: "emotional",
             evaluation: "Feeling great today",
-            journal: nil,
             timezoneOffsetMinutes: 480,
             createdAt: now,
             updatedAt: now
@@ -135,7 +141,7 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         let entries = delegateMock.updatedViewModel?.moodEntries ?? []
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries.first?.emotion, .joy)
-        XCTAssertEqual(entries.first?.journal, "Feeling great today")
+        XCTAssertNil(entries.first?.journalTitle)
         XCTAssertEqual(entries.first?.artworkURLs, [])
     }
 
@@ -148,7 +154,6 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
             emotion: "serenity",
             topic: "spiritual",
             evaluation: "Peaceful moment",
-            journal: nil,
             timezoneOffsetMinutes: 480,
             createdAt: now,
             updatedAt: now
@@ -215,7 +220,6 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
             emotion: "joy",
             topic: "emotional",
             evaluation: "All good",
-            journal: nil,
             timezoneOffsetMinutes: 480,
             createdAt: now,
             updatedAt: now
@@ -238,8 +242,10 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         userMock.userId = nil
 
         let assembler = MoodEntriesDataAssembler(
+            user: userMock,
             moodCheckInService: moodCheckInServiceMock,
-            drawingService: drawingServiceMock
+            drawingService: drawingServiceMock,
+            journalService: journalServiceMock
         )
         let noIdPresenter = InnerCosmoViewPresenter(user: userMock, assembler: assembler)
         let noIdDelegate = InnerCosmoViewPresenterDelegateMock()

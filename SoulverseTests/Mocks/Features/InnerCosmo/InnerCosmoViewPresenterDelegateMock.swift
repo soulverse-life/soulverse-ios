@@ -36,4 +36,10 @@ final class InnerCosmoViewPresenterDelegateMock: InnerCosmoViewPresenterDelegate
         appendCount += 1
         appendExpectation?.fulfill()
     }
+
+    func didUpdateMonthCheckInCounts(year: Int, month: Int, counts: [Int: Int]) {}
+
+    func didUpdateMonthMoodEntries(_ entries: [MoodEntryCardCellViewModel]) {}
+
+    func didRequestDayDetail(checkIns: [MoodCheckInModel]) {}
 }

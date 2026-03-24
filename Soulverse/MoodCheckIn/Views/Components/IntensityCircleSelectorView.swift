@@ -22,17 +22,13 @@ class IntensityCircleSelectorView: UIView {
         static let circleSpacing: CGFloat = 24
         static let borderWidth: CGFloat = 4
         static let selectedScale: CGFloat = 1.1
-
-        // Intensity alpha range
-        static let minAlpha: Double = 0.3
-        static let maxAlpha: Double = 1.0
     }
 
     // MARK: - Properties
 
     weak var delegate: IntensityCircleSelectorViewDelegate?
 
-    private let circleCount = 5
+    private let circleCount = ColorIntensityConstants.levelCount
     private var circleViews: [UIView] = []
     private var selectedIntensityIndex: Int = 2 // Default to middle circle (index 2)
     private var currentColor: UIColor = .yellow
@@ -129,9 +125,7 @@ class IntensityCircleSelectorView: UIView {
 
     /// Get the currently selected intensity value (0.3 to 1.0)
     func getSelectedIntensity() -> Double {
-        let range = Layout.maxAlpha - Layout.minAlpha
-        let intensityDifference = range / Double(circleCount - 1)
-        return Layout.minAlpha + intensityDifference * Double(selectedIntensityIndex)
+        return ColorIntensityConstants.alpha(forLevel: selectedIntensityIndex)
     }
 
     // MARK: - Actions
@@ -155,11 +149,7 @@ class IntensityCircleSelectorView: UIView {
         for (index, containerView) in circleViews.enumerated() {
             let isSelected = index == selectedIntensityIndex
 
-            // Calculate opacity based on index (0 = 30%, 4 = 100%)
-            // Each circle represents an intensity level: 0.3, 0.475, 0.65, 0.825, 1.0
-            let intensityLevel = Double(index) / Double(circleCount - 1) // 0.0, 0.25, 0.5, 0.75, 1.0
-            let range = Layout.maxAlpha - Layout.minAlpha
-            let alpha = Layout.minAlpha + (intensityLevel * range) // Range: 0.3 to 1.0
+            let alpha = ColorIntensityConstants.alpha(forLevel: index)
 
             // Get the colored view (last subview)
             guard let coloredView = containerView.subviews.last else { continue }

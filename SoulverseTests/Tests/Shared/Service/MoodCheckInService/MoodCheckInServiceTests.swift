@@ -159,7 +159,6 @@ private extension MoodCheckInServiceTests {
             emotion: "happy",
             topic: "work",
             evaluation: "positive",
-            journal: nil,
             timezoneOffsetMinutes: 480,
             createdAt: createdAt,
             updatedAt: createdAt

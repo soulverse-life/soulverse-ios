@@ -66,7 +66,8 @@ private extension MoodEntryCardCellViewModelTests {
             checkinId: "test-checkin-id",
             emotion: .joy,
             date: date,
-            journal: "Test response",
+            journalTitle: nil,
+            journalContent: "Test response",
             artworkURLs: artworkURLs
         )
     }
@@ -81,35 +82,40 @@ extension MoodEntryCardCellViewModel {
             checkinId: "mock-1",
             emotion: .joy,
             date: Date().addingTimeInterval(-86400),
-            journal: "The joy is in the journey, not the destination",
+            journalTitle: nil,
+            journalContent: "The joy is in the journey, not the destination",
             artworkURLs: []
         ),
         MoodEntryCardCellViewModel(
             checkinId: "mock-2",
             emotion: .fear,
             date: Date().addingTimeInterval(-172800),
-            journal: "It feels like standing at the edge of a cliff, looking down",
+            journalTitle: nil,
+            journalContent: "It feels like standing at the edge of a cliff, looking down",
             artworkURLs: []
         ),
         MoodEntryCardCellViewModel(
             checkinId: "mock-3",
             emotion: .serenity,
             date: Date().addingTimeInterval(-259200),
-            journal: "A gentle wave washing over warm sand",
+            journalTitle: nil,
+            journalContent: "A gentle wave washing over warm sand",
             artworkURLs: ["https://example.com/artwork1.png"]
         ),
         MoodEntryCardCellViewModel(
             checkinId: "mock-4",
             emotion: .love,
             date: Date().addingTimeInterval(-345600),
-            journal: "Warmth spreading from my heart to my fingertips",
+            journalTitle: nil,
+            journalContent: "Warmth spreading from my heart to my fingertips",
             artworkURLs: []
         ),
         MoodEntryCardCellViewModel(
             checkinId: "mock-5",
             emotion: .anticipation,
             date: Date().addingTimeInterval(-432000),
-            journal: "Like the moment before opening a gift",
+            journalTitle: nil,
+            journalContent: "Like the moment before opening a gift",
             artworkURLs: ["https://example.com/artwork2.png"]
         )
     ]
