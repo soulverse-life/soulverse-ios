@@ -15,6 +15,9 @@ struct MoodEntryCard {
     /// Drawings associated with this card (max display count enforced by UI).
     let drawings: [DrawingModel]
 
+    /// Journal associated with this card (fetched via check-in's journalId).
+    let journal: JournalModel?
+
     /// The date this card represents.
     let date: Date
 
@@ -49,6 +52,7 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
     private let user: UserProtocol
     private let moodCheckInService: MoodCheckInServiceProtocol
     private let drawingService: DrawingServiceProtocol
+    private let journalService: JournalServiceProtocol
 
     /// Tracks the oldest check-in's createdAt from last fetch.
     private var cursor: Date?
@@ -61,10 +65,12 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
 
     init(user: UserProtocol = User.shared,
          moodCheckInService: MoodCheckInServiceProtocol = FirestoreMoodCheckInService.shared,
-         drawingService: DrawingServiceProtocol = FirestoreDrawingService.shared) {
+         drawingService: DrawingServiceProtocol = FirestoreDrawingService.shared,
+         journalService: JournalServiceProtocol = FirestoreJournalService.shared) {
         self.user = user
         self.moodCheckInService = moodCheckInService
         self.drawingService = drawingService
+        self.journalService = journalService
     }
 
     func fetchInitial(limit: Int, completion: @escaping (Result<[MoodEntryCard], Error>) -> Void) {
@@ -100,12 +106,12 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
 
                 let startOfDay = Calendar.current.startOfDay(for: oldestDate)
 
-                self.drawingService.fetchDrawings(uid: uid, from: startOfDay, to: nil) { drawingResult in
-                    switch drawingResult {
+                self.fetchDrawingsAndJournals(uid: uid, from: startOfDay, to: nil) { result in
+                    switch result {
                     case .failure(let error):
                         completion(.failure(error))
-                    case .success(let drawings):
-                        let cards = Self.assembleCards(checkIns: checkIns, drawings: drawings)
+                    case .success(let (drawings, journals)):
+                        let cards = Self.assembleCards(checkIns: checkIns, drawings: drawings, journals: journals)
                         completion(.success(cards))
                     }
                 }
@@ -141,13 +147,12 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
 
                 let startOfDay = Calendar.current.startOfDay(for: oldestDate)
 
-                // Fetch drawings from start of oldest new check-in's day to the previous cursor
-                self.drawingService.fetchDrawings(uid: uid, from: startOfDay, to: cursor) { drawingResult in
-                    switch drawingResult {
+                self.fetchDrawingsAndJournals(uid: uid, from: startOfDay, to: cursor) { result in
+                    switch result {
                     case .failure(let error):
                         completion(.failure(error))
-                    case .success(let drawings):
-                        let cards = Self.assembleCards(checkIns: checkIns, drawings: drawings)
+                    case .success(let (drawings, journals)):
+                        let cards = Self.assembleCards(checkIns: checkIns, drawings: drawings, journals: journals)
                         completion(.success(cards))
                     }
                 }
@@ -160,7 +165,8 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
     /// Drawings should be sorted by createdAt descending (as returned by fetchDrawings).
     static func assembleCards(
         checkIns: [MoodCheckInModel],
-        drawings: [DrawingModel]
+        drawings: [DrawingModel],
+        journals: [JournalModel] = []
     ) -> [MoodEntryCard] {
         let calendar = Calendar.current
 
@@ -207,13 +213,21 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
             }
         }
 
+        // Build journal lookup by checkinId
+        var journalByCheckinId: [String: JournalModel] = [:]
+        for journal in journals {
+            journalByCheckinId[journal.checkinId] = journal
+        }
+
         // Build cards from check-ins
         var cards: [MoodEntryCard] = sortedCheckIns.map { checkIn in
             let drawings = checkInDrawings[checkIn.id ?? "", default: []]
                 .sorted { ($0.createdAt ?? .distantPast) < ($1.createdAt ?? .distantPast) }
+            let journal = checkIn.id.flatMap { journalByCheckinId[$0] }
             return MoodEntryCard(
                 checkIn: checkIn,
                 drawings: drawings,
+                journal: journal,
                 date: checkIn.createdAt ?? Date()
             )
         }
@@ -225,6 +239,7 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
                 cards.append(MoodEntryCard(
                     checkIn: nil,
                     drawings: sorted,
+                    journal: nil,
                     date: firstDate
                 ))
             }
@@ -251,7 +266,8 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
                     checkinId: checkIn.id,
                     emotion: emotion,
                     date: card.date,
-                    reflection: checkIn.reflection,
+                    journalTitle: card.journal?.title,
+                    journalContent: card.journal?.content,
                     artworkURLs: artworkURLs
                 )
             }
@@ -263,13 +279,54 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
                 checkinId: nil,
                 emotion: nil,
                 date: card.date,
-                reflection: nil,
+                journalTitle: nil,
+                journalContent: nil,
                 artworkURLs: artworkURLs
             )
         }
     }
 
     // MARK: - Private
+
+    /// Fetches drawings and journals in parallel for a date range.
+    private func fetchDrawingsAndJournals(
+        uid: String,
+        from startDate: Date,
+        to endDate: Date?,
+        completion: @escaping (Result<([DrawingModel], [JournalModel]), Error>) -> Void
+    ) {
+        let group = DispatchGroup()
+        var drawings: [DrawingModel] = []
+        var journals: [JournalModel] = []
+        var firstError: Error?
+
+        group.enter()
+        drawingService.fetchDrawings(uid: uid, from: startDate, to: endDate) { result in
+            switch result {
+            case .success(let d): drawings = d
+            case .failure(let e): firstError = firstError ?? e
+            }
+            group.leave()
+        }
+
+        group.enter()
+        let journalEndDate = endDate ?? Date()
+        journalService.fetchJournals(uid: uid, from: startDate, to: journalEndDate) { result in
+            switch result {
+            case .success(let j): journals = j
+            case .failure(let e): firstError = firstError ?? e
+            }
+            group.leave()
+        }
+
+        group.notify(queue: .global()) {
+            if let error = firstError {
+                completion(.failure(error))
+            } else {
+                completion(.success((drawings, journals)))
+            }
+        }
+    }
 
     /// Fetches recent drawings when there are no check-ins (all become orphan cards).
     private func fetchOrphanDrawings(
@@ -296,7 +353,7 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
                 let cards: [MoodEntryCard] = byDay.compactMap { _, dayDrawings in
                     let sorted = dayDrawings.sorted { ($0.createdAt ?? .distantPast) < ($1.createdAt ?? .distantPast) }
                     guard let firstDate = sorted.first?.createdAt else { return nil }
-                    return MoodEntryCard(checkIn: nil, drawings: sorted, date: firstDate)
+                    return MoodEntryCard(checkIn: nil, drawings: sorted, journal: nil, date: firstDate)
                 }.sorted { $0.date > $1.date }
 
                 completion(.success(cards))

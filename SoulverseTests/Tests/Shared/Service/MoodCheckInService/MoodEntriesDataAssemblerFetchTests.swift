@@ -13,6 +13,7 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
     private var userMock: UserMock!
     private var moodCheckInServiceMock: MoodCheckInServiceMock!
     private var drawingServiceMock: DrawingServiceMock!
+    private var journalServiceMock: JournalServiceMock!
 
     // MARK: - Lifecycle
 
@@ -21,12 +22,14 @@ final class MoodEntriesDataAssemblerFetchTests: XCTestCase {
         userMock = UserMock()
         moodCheckInServiceMock = MoodCheckInServiceMock()
         drawingServiceMock = DrawingServiceMock()
+        journalServiceMock = JournalServiceMock()
     }
 
     override func tearDown() {
         userMock = nil
         moodCheckInServiceMock = nil
         drawingServiceMock = nil
+        journalServiceMock = nil
         super.tearDown()
     }
 
@@ -167,7 +170,8 @@ private extension MoodEntriesDataAssemblerFetchTests {
         return MoodEntriesDataAssembler(
             user: userMock,
             moodCheckInService: moodCheckInServiceMock,
-            drawingService: drawingServiceMock
+            drawingService: drawingServiceMock,
+            journalService: journalServiceMock
         )
     }
 
