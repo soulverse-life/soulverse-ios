@@ -94,6 +94,32 @@ struct AnimationConstant {
     static let defaultDuration: TimeInterval = 0.2
 }
 
+struct ColorIntensityConstants {
+    /// Number of intensity levels (circles) for color selection
+    static let levelCount: Int = 5
+
+    /// Minimum alpha value for the weakest intensity level
+    static let minAlpha: Double = 0.3
+
+    /// Maximum alpha value for the strongest intensity level
+    static let maxAlpha: Double = 1.0
+
+    /// Converts an intensity level index (0..<levelCount) to an alpha value.
+    static func alpha(forLevel level: Int) -> Double {
+        guard levelCount > 1 else { return maxAlpha }
+        let step = (maxAlpha - minAlpha) / Double(levelCount - 1)
+        return minAlpha + step * Double(level)
+    }
+
+    /// Converts a stored alpha value back to the nearest intensity level index.
+    static func level(forAlpha alpha: Double) -> Int {
+        guard levelCount > 1 else { return 0 }
+        let step = (maxAlpha - minAlpha) / Double(levelCount - 1)
+        let level = (alpha - minAlpha) / step
+        return max(0, min(levelCount - 1, Int(round(level))))
+    }
+}
+
 struct Layout {
     // MARK: - Quest Progress View Layout
     struct QuestProgress {
