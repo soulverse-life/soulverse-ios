@@ -298,13 +298,13 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
         let group = DispatchGroup()
         var drawings: [DrawingModel] = []
         var journals: [JournalModel] = []
-        var firstError: Error?
+        var drawingError: Error?
 
         group.enter()
         drawingService.fetchDrawings(uid: uid, from: startDate, to: endDate) { result in
             switch result {
             case .success(let d): drawings = d
-            case .failure(let e): firstError = firstError ?? e
+            case .failure(let e): drawingError = e
             }
             group.leave()
         }
@@ -314,13 +314,14 @@ final class MoodEntriesDataAssembler: MoodEntriesDataAssemblerProtocol {
         journalService.fetchJournals(uid: uid, from: startDate, to: journalEndDate) { result in
             switch result {
             case .success(let j): journals = j
-            case .failure(let e): firstError = firstError ?? e
+            case .failure:
+                break // Journal fetch is non-fatal — proceed with empty journals
             }
             group.leave()
         }
 
         group.notify(queue: .global()) {
-            if let error = firstError {
+            if let error = drawingError {
                 completion(.failure(error))
             } else {
                 completion(.success((drawings, journals)))
