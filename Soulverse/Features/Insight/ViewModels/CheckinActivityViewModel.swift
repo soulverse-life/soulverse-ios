@@ -15,10 +15,7 @@ struct CheckinActivityViewModel {
 
 extension CheckinActivityViewModel {
     static func from(checkIns: [MoodCheckInModel], drawings: [DrawingModel]) -> CheckinActivityViewModel {
-        let journalCount = checkIns.filter { checkIn in
-            guard let journal = checkIn.journal else { return false }
-            return !journal.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-        }.count
+        let journalCount = checkIns.filter { $0.journalId != nil }.count
 
         return CheckinActivityViewModel(
             title: NSLocalizedString("insight_checkin_activity_title", comment: ""),
