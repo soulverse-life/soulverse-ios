@@ -22,6 +22,15 @@ service cloud.firestore {
                          ]);
         allow update: if request.auth.uid == uid;
       }
+
+      match /journals/{journalId} {
+        allow read, delete: if request.auth.uid == uid;
+        allow create: if request.auth.uid == uid
+                      && request.resource.data.keys().hasAll([
+                           'checkinId', 'createdAt'
+                         ]);
+        allow update: if request.auth.uid == uid;
+      }
     }
   }
 }
