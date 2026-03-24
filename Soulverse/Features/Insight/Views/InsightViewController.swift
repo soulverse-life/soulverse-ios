@@ -7,12 +7,13 @@ import UIKit
 class InsightViewController: ViewController {
 
     private enum Layout {
-        static let weeklyMoodScoreTopSpacing: CGFloat = 16
-        static let weeklyMoodScoreHorizontalPadding: CGFloat = 20
+        static let sectionSpacing: CGFloat = 16
+        static let horizontalPadding: CGFloat = 20
+        static let bottomPadding: CGFloat = 40
     }
 
     private lazy var navigationView: SoulverseNavigationView = {
-        let view = SoulverseNavigationView(title: NSLocalizedString("insight", comment: ""))
+        let view = SoulverseNavigationView(title: NSLocalizedString("insight_mood_insight", comment: ""))
         return view
     }()
 
@@ -25,13 +26,39 @@ class InsightViewController: ViewController {
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = Layout.weeklyMoodScoreTopSpacing
+        stackView.spacing = Layout.sectionSpacing
         return stackView
+    }()
+
+    private lazy var timeRangeToggleView: TimeRangeToggleView = {
+        let view = TimeRangeToggleView()
+        view.delegate = self
+        return view
+    }()
+
+    private lazy var insightSummaryView: InsightSummaryView = {
+        let view = InsightSummaryView()
+        return view
     }()
 
     private lazy var weeklyMoodScoreView: WeeklyMoodScoreView = {
         let view = WeeklyMoodScoreView()
         view.delegate = self
+        return view
+    }()
+
+    private lazy var topicDistributionView: TopicDistributionView = {
+        let view = TopicDistributionView()
+        return view
+    }()
+
+    private lazy var habitActivityView: HabitActivityView = {
+        let view = HabitActivityView()
+        return view
+    }()
+
+    private lazy var checkinActivityView: CheckinActivityView = {
+        let view = CheckinActivityView()
         return view
     }()
 
@@ -60,7 +87,12 @@ class InsightViewController: ViewController {
         view.addSubview(navigationView)
         view.addSubview(scrollView)
         scrollView.addSubview(contentStackView)
+        contentStackView.addArrangedSubview(timeRangeToggleView)
+        contentStackView.addArrangedSubview(insightSummaryView)
         contentStackView.addArrangedSubview(weeklyMoodScoreView)
+        contentStackView.addArrangedSubview(topicDistributionView)
+        contentStackView.addArrangedSubview(habitActivityView)
+        contentStackView.addArrangedSubview(checkinActivityView)
 
         navigationView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -73,10 +105,10 @@ class InsightViewController: ViewController {
         }
 
         contentStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Layout.weeklyMoodScoreTopSpacing)
-            make.left.right.equalToSuperview().inset(Layout.weeklyMoodScoreHorizontalPadding)
-            make.bottom.equalToSuperview()
-            make.width.equalToSuperview().inset(Layout.weeklyMoodScoreHorizontalPadding)
+            make.top.equalToSuperview().inset(Layout.sectionSpacing)
+            make.left.right.equalToSuperview().inset(Layout.horizontalPadding)
+            make.bottom.equalToSuperview().inset(Layout.bottomPadding)
+            make.width.equalToSuperview().inset(Layout.horizontalPadding)
         }
     }
 
@@ -94,8 +126,18 @@ extension InsightViewController: InsightViewPresenterDelegate {
             } else {
                 self.hideLoadingView()
             }
+            self.insightSummaryView.configure(with: NSLocalizedString("insight_summary_placeholder", comment: ""))
             if let weeklyMoodScore = viewModel.weeklyMoodScore {
                 self.weeklyMoodScoreView.configure(with: weeklyMoodScore)
+            }
+            if let topicDistribution = viewModel.topicDistribution {
+                self.topicDistributionView.configure(with: topicDistribution)
+            }
+            if let habitActivity = viewModel.habitActivity {
+                self.habitActivityView.configure(with: habitActivity)
+            }
+            if let checkinActivity = viewModel.checkinActivity {
+                self.checkinActivityView.configure(with: checkinActivity)
             }
         }
     }
@@ -110,8 +152,14 @@ extension InsightViewController: InsightViewPresenterDelegate {
 // MARK: - WeeklyMoodScoreViewDelegate
 
 extension InsightViewController: WeeklyMoodScoreViewDelegate {
-    func weeklyMoodScoreView(_ view: WeeklyMoodScoreView, didSwipeToWeekContaining date: Date) {
-        presenter.fetchWeeklyMoodScore(for: date)
+    func weeklyMoodScoreView(_ view: WeeklyMoodScoreView, didSwipeToPage pageIndex: Int) {
+        presenter.didSwipeToWeekPage(pageIndex)
+    }
+}
+
+extension InsightViewController: TimeRangeToggleViewDelegate {
+    func timeRangeToggleView(_ view: TimeRangeToggleView, didSelect range: TimeRange) {
+        presenter.setTimeRange(range)
     }
 }
 

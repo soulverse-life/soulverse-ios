@@ -94,6 +94,21 @@ enum EmotionType: String, CaseIterable {
         }
     }
 
+    /// Base valence score for this primary emotion type
+    /// Used by RecordedEmotion.score for combined emotion calculation
+    var valenceScore: Double {
+        switch self {
+        case .joy: return 0.6
+        case .trust: return 0.5
+        case .fear: return -0.6
+        case .surprise: return 0.1
+        case .sadness: return -0.6
+        case .disgust: return -0.5
+        case .anger: return -0.6
+        case .anticipation: return 0.4
+        }
+    }
+
     /// The opposite emotion on Plutchik's wheel (4 petals apart)
     var oppositeEmotion: EmotionType {
         switch self {

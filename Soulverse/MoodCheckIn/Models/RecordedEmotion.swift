@@ -320,3 +320,65 @@ extension RecordedEmotion {
         case low, medium, high
     }
 }
+
+// MARK: - Sentiment Score
+
+extension RecordedEmotion {
+
+    /// Sentiment score from -1.0 (most negative) to 1.0 (most positive)
+    /// Based on Plutchik's emotion valence: positive emotions score positive, negative emotions score negative.
+    /// Intensity scales the magnitude: low=0.3, medium=0.6, high=1.0
+    /// Combined emotions average their two source emotions' base scores.
+    var score: Double {
+        // For combined emotions, average the base emotion scores
+        if let (emotion1, emotion2) = sourceEmotions {
+            return (emotion1.valenceScore + emotion2.valenceScore) / 2.0
+        }
+
+        // For intensity-based emotions, use base valence scaled by intensity
+        switch self {
+        // Joy family (positive)
+        case .serenity: return 0.3
+        case .joy: return 0.6
+        case .ecstasy: return 1.0
+
+        // Trust family (positive)
+        case .acceptance: return 0.25
+        case .trust: return 0.5
+        case .admiration: return 0.8
+
+        // Fear family (negative)
+        case .apprehension: return -0.3
+        case .fear: return -0.6
+        case .terror: return -1.0
+
+        // Surprise family (slightly positive / neutral)
+        case .distraction: return 0.05
+        case .surprise: return 0.1
+        case .amazement: return 0.2
+
+        // Sadness family (negative)
+        case .pensiveness: return -0.3
+        case .sadness: return -0.6
+        case .grief: return -1.0
+
+        // Disgust family (negative)
+        case .boredom: return -0.2
+        case .disgust: return -0.5
+        case .loathing: return -0.8
+
+        // Anger family (negative)
+        case .annoyance: return -0.3
+        case .anger: return -0.6
+        case .rage: return -1.0
+
+        // Anticipation family (slightly positive)
+        case .interest: return 0.2
+        case .anticipation: return 0.4
+        case .vigilance: return 0.6
+
+        // Combined emotions handled above, but Swift requires exhaustive switch
+        default: return 0.0
+        }
+    }
+}
