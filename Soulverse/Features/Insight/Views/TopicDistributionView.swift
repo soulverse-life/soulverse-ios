@@ -23,7 +23,7 @@ class TopicDistributionView: UIView {
         static let titleBottomSpacing: CGFloat = 8
         static let subtitleBottomSpacing: CGFloat = 16
         static let nameToBarSpacing: CGFloat = 8
-        static let barWidth: CGFloat = 200
+        static let barWidthRatio: CGFloat = 0.55
         static let barRightInset: CGFloat = 20
         static let trackBackgroundAlpha: CGFloat = 0.2
     }
@@ -181,7 +181,7 @@ class TopicDistributionView: UIView {
             make.right.equalToSuperview().inset(Layout.barRightInset)
             make.centerY.equalToSuperview()
             make.height.equalTo(Layout.barHeight)
-            make.width.equalTo(Layout.barWidth)
+            make.width.equalToSuperview().multipliedBy(Layout.barWidthRatio)
         }
 
         let fillPercentage = item.percentage

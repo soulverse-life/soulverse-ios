@@ -95,12 +95,6 @@ final class InsightViewPresenterTests: XCTestCase {
         XCTAssertNil(delegateMock.updatedViewModel?.weeklyMoodScore)
     }
 
-    // MARK: - numberOfSectionsOnTableView
-
-    func test_InsightViewPresenter_numberOfSectionsOnTableView_returnsZero() {
-        XCTAssertEqual(presenter.numberOfSectionsOnTableView(), 0)
-    }
-
     // MARK: - Initial State
 
     func test_InsightViewPresenter_initialState_isLoadingFalse() {

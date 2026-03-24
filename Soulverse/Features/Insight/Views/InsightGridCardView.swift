@@ -93,13 +93,11 @@ class InsightGridCardView: UIView {
             make.size.equalTo(Layout.iconSize)
         }
 
-       
-            addSubview(contentStack)
+        addSubview(contentStack)
 
-            contentStack.snp.makeConstraints { make in
-                make.edges.equalToSuperview().inset(Layout.padding)
-            }
-       
+        contentStack.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(Layout.padding)
+        }
     }
 
     // MARK: - Configuration

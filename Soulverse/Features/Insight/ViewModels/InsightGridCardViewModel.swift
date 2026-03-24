@@ -40,7 +40,7 @@ extension CheckinActivityViewModel {
                 value: String(format: NSLocalizedString("insight_journal_entries", comment: ""), journalCount)
             ),
             InsightGridCardViewModel(
-                iconName: "drop.fill",
+                iconName: "paintbrush.fill",
                 name: NSLocalizedString("insight_drawings", comment: ""),
                 value: String(format: NSLocalizedString("insight_drawing_pieces", comment: ""), drawingCount)
             ),
