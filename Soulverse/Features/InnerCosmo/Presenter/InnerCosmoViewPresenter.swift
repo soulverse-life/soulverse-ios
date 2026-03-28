@@ -37,6 +37,9 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
         loadedModel.moodEntries
     }
 
+    /// Cached cards from the last recent fetch (for looking up MoodCheckInModel by checkinId)
+    private var recentCards: [MoodEntryCard] = []
+
     // MARK: - Month Cache
 
     private struct MonthCacheEntry {
@@ -99,6 +102,7 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
 
                 switch result {
                 case .success(let cards):
+                    self.recentCards = cards
                     let entries = MoodEntriesDataAssembler.convertToMoodEntries(cards)
                     let emotions = Self.convertToEmotionPlanets(cards)
                     self.planetCheckIns = Array(cards
@@ -202,6 +206,11 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
     public func didSelectPlanet(at index: Int) {
         guard index >= 0, index < planetCheckIns.count else { return }
         delegate?.didRequestCheckInDetail(checkIn: planetCheckIns[index])
+    }
+
+    /// Looks up a MoodCheckInModel by its checkinId from recent cards cache.
+    func checkInModel(forId checkinId: String) -> MoodCheckInModel? {
+        return recentCards.compactMap { $0.checkIn }.first { $0.id == checkinId }
     }
 
     private func cacheKey(year: Int, month: Int) -> String {

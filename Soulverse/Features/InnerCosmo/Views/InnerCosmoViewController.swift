@@ -291,9 +291,7 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
     }
 
     func didRequestDayDetail(checkIns: [MoodCheckInModel]) {
-        // TODO: Navigate to day detail VC with data models
-        // e.g. AppCoordinator.presentDayDetail(from: self, checkIns: checkIns)
-        print("[InnerCosmo] Day detail requested with \(checkIns.count) check-in(s)")
+        AppCoordinator.openCheckInDetail(from: self, checkIns: checkIns)
     }
 
     func didRequestCheckInDetail(checkIn: MoodCheckInModel) {
@@ -375,6 +373,12 @@ extension InnerCosmoViewController: MoodEntriesSectionDelegate {
 
     func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, checkinId: String?) {
         AppCoordinator.openDrawingCanvas(from: self, checkinId: checkinId)
+    }
+
+    func moodEntriesSectionDidSelectEntry(_ section: MoodEntriesSection, checkinId: String?) {
+        guard let checkinId = checkinId,
+              let checkIn = presenter.checkInModel(forId: checkinId) else { return }
+        AppCoordinator.openCheckInDetail(from: self, checkIns: [checkIn])
     }
 
     func moodEntriesSectionDidRequestMore(_ section: MoodEntriesSection) {
