@@ -77,6 +77,7 @@ class InnerCosmoViewController: ViewController {
 
     private lazy var recentView: InnerCosmoRecentView = {
         let view = InnerCosmoRecentView()
+        view.delegate = self
         return view
     }()
 
@@ -295,6 +296,11 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
         print("[InnerCosmo] Day detail requested with \(checkIns.count) check-in(s)")
     }
 
+    func didRequestCheckInDetail(checkIn: MoodCheckInModel) {
+        // TODO: Navigate to mood check-in detail view
+        print("[InnerCosmo] Check-in detail requested for id: \(checkIn.id ?? "unknown")")
+    }
+
     func didUpdateMonthMoodEntries(_ entries: [MoodEntryCardCellViewModel]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self, self.currentPeriod == .all else { return }
@@ -352,6 +358,14 @@ extension InnerCosmoViewController: SoulverseButtonDelegate {
                 self.presenter.fetchData(isUpdate: true)
             }
         }
+    }
+}
+
+// MARK: - InnerCosmoRecentViewDelegate
+
+extension InnerCosmoViewController: InnerCosmoRecentViewDelegate {
+    func recentViewDidTapPlanet(_ view: InnerCosmoRecentView, at index: Int) {
+        presenter.didSelectPlanet(at: index)
     }
 }
 
