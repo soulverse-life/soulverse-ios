@@ -42,4 +42,12 @@ final class InnerCosmoViewPresenterDelegateMock: InnerCosmoViewPresenterDelegate
     func didUpdateMonthMoodEntries(_ entries: [MoodEntryCardCellViewModel]) {}
 
     func didRequestDayDetail(checkIns: [MoodCheckInModel]) {}
+
+    var requestedCheckIn: MoodCheckInModel?
+    var checkInDetailExpectation: XCTestExpectation?
+
+    func didRequestCheckInDetail(checkIn: MoodCheckInModel) {
+        requestedCheckIn = checkIn
+        checkInDetailExpectation?.fulfill()
+    }
 }

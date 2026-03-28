@@ -8,7 +8,7 @@ import UIKit
 
 /// Delegate protocol for CentralPlanetView tap events
 protocol CentralPlanetViewDelegate: AnyObject {
-    func centralPlanetViewDidTapEmoPet(_ view: CentralPlanetView)
+    func centralPlanetViewDidTapPlanet(_ view: CentralPlanetView)
 }
 
 /// Central planet view showing emotion gradient with E.M.O pet overlay
@@ -30,12 +30,19 @@ class CentralPlanetView: UIView {
 
         static let tapScaleDown: CGFloat = 0.9
         static let tapAnimationDuration: TimeInterval = 0.1
+
+        // Affirmation bubble positioning (relative to center)
+        static let bubbleLeftOffset: CGFloat = 20
+        static let bubbleCenterYOffset: CGFloat = -10
+        static let bubbleHideDelay: TimeInterval = 0.2
     }
 
     // MARK: - Properties
 
     weak var delegate: CentralPlanetViewDelegate?
     private let size: CGFloat
+    private var currentBubbleView: AffirmationBubbleView?
+    private var bubbleHideTimer: Timer?
 
     // MARK: - UI Components
 
@@ -125,6 +132,7 @@ class CentralPlanetView: UIView {
 
     private func setupView() {
         backgroundColor = .clear
+        clipsToBounds = false
 
         addSubview(outerGlowView)
         outerGlowView.layer.insertSublayer(outerGlowGradientLayer, at: 0)
@@ -169,14 +177,24 @@ class CentralPlanetView: UIView {
     // MARK: - Tap Gesture
 
     private func setupTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleEmoPetTap))
-        innerPlanetView.addGestureRecognizer(tapGesture)
+        // EmoPet image tap → affirmation bubble
+        let emoPetTap = UITapGestureRecognizer(target: self, action: #selector(handleEmoPetTap))
+        emoPetImageView.addGestureRecognizer(emoPetTap)
+        emoPetImageView.isUserInteractionEnabled = true
+
+        // Planet tap (outside emoPet) → navigation
+        let planetTap = UITapGestureRecognizer(target: self, action: #selector(handlePlanetTap))
+        innerPlanetView.addGestureRecognizer(planetTap)
         innerPlanetView.isUserInteractionEnabled = true
     }
 
     @objc private func handleEmoPetTap() {
         animateTap()
-        delegate?.centralPlanetViewDidTapEmoPet(self)
+        showAffirmationBubble()
+    }
+
+    @objc private func handlePlanetTap() {
+        delegate?.centralPlanetViewDidTapPlanet(self)
     }
 
     private func animateTap() {
@@ -246,5 +264,66 @@ class CentralPlanetView: UIView {
 
     override var intrinsicContentSize: CGSize {
         return CGSize(width: size, height: size)
+    }
+
+    // MARK: - Affirmation Bubble
+
+    private func showAffirmationBubble() {
+        // Remove existing bubble if any
+        hideAffirmationBubble(animated: false)
+
+        let bubbleView = AffirmationBubbleView()
+        let quote = AffirmationQuoteProvider.random()
+        bubbleView.configure(with: quote)
+
+        // Speak the quote using TTS
+        SpeechService.shared.speak(quote.text)
+
+        addSubview(bubbleView)
+        superview?.bringSubviewToFront(self)
+
+        // Position bubble to the right of the emo pet, close to center
+        bubbleView.snp.makeConstraints { make in
+            make.left.equalTo(self.snp.centerX).offset(Layout.bubbleLeftOffset)
+            make.centerY.equalTo(self.snp.centerY).offset(Layout.bubbleCenterYOffset)
+        }
+
+        currentBubbleView = bubbleView
+
+        bubbleView.showAnimated()
+
+        // Listen for TTS completion to dismiss bubble
+        SpeechService.shared.delegate = self
+    }
+
+    private func hideAffirmationBubble(animated: Bool) {
+        bubbleHideTimer?.invalidate()
+        bubbleHideTimer = nil
+
+        // Stop TTS and clear delegate
+        SpeechService.shared.stop()
+        SpeechService.shared.delegate = nil
+
+        guard let bubbleView = currentBubbleView else { return }
+
+        if animated {
+            bubbleView.hideAnimated { [weak self] in
+                self?.currentBubbleView = nil
+            }
+        } else {
+            bubbleView.removeFromSuperview()
+            currentBubbleView = nil
+        }
+    }
+}
+
+// MARK: - SpeechServiceDelegate
+
+extension CentralPlanetView: SpeechServiceDelegate {
+    func speechServiceDidFinishSpeaking(_ service: SpeechService) {
+        bubbleHideTimer?.invalidate()
+        bubbleHideTimer = Timer.scheduledTimer(withTimeInterval: Layout.bubbleHideDelay, repeats: false) { [weak self] _ in
+            self?.hideAffirmationBubble(animated: true)
+        }
     }
 }

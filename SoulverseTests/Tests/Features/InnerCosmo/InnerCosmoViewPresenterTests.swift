@@ -238,6 +238,107 @@ final class InnerCosmoViewPresenterTests: XCTestCase {
         XCTAssertEqual(viewModel?.moodEntries.count, 1)
     }
 
+    // MARK: - didSelectPlanet
+
+    func test_InnerCosmoViewPresenter_didSelectPlanet_deliversCheckInToDelegate() {
+        let now = Date()
+        let checkIn = MoodCheckInModel(
+            id: "planet-checkin-1",
+            colorHex: "#FFD700",
+            colorIntensity: 0.8,
+            emotion: "joy",
+            topic: "emotional",
+            evaluation: "Feeling great",
+            timezoneOffsetMinutes: 480,
+            createdAt: now,
+            updatedAt: now
+        )
+        moodCheckInServiceMock.fetchLatestResult = .success([checkIn])
+        drawingServiceMock.fetchByDateResult = .success([])
+
+        let fetchExp = expectation(description: "delegate receives final update")
+        delegateMock.expectation = fetchExp
+
+        presenter.fetchData()
+        wait(for: [fetchExp], timeout: 2.0)
+
+        // Now select planet at index 0 (central planet)
+        presenter.didSelectPlanet(at: 0)
+
+        XCTAssertNotNil(delegateMock.requestedCheckIn)
+        XCTAssertEqual(delegateMock.requestedCheckIn?.id, "planet-checkin-1")
+    }
+
+    func test_InnerCosmoViewPresenter_didSelectPlanet_outOfBoundsDoesNotCrash() {
+        let now = Date()
+        let checkIn = MoodCheckInModel(
+            id: "planet-checkin-2",
+            colorHex: "#A5D6A7",
+            colorIntensity: 0.5,
+            emotion: "serenity",
+            topic: "spiritual",
+            evaluation: "Calm",
+            timezoneOffsetMinutes: 480,
+            createdAt: now,
+            updatedAt: now
+        )
+        moodCheckInServiceMock.fetchLatestResult = .success([checkIn])
+        drawingServiceMock.fetchByDateResult = .success([])
+
+        let fetchExp = expectation(description: "delegate receives final update")
+        delegateMock.expectation = fetchExp
+
+        presenter.fetchData()
+        wait(for: [fetchExp], timeout: 2.0)
+
+        // Out of bounds — should not crash or call delegate
+        presenter.didSelectPlanet(at: 10)
+        XCTAssertNil(delegateMock.requestedCheckIn)
+
+        // Negative index
+        presenter.didSelectPlanet(at: -1)
+        XCTAssertNil(delegateMock.requestedCheckIn)
+    }
+
+    func test_InnerCosmoViewPresenter_didSelectPlanet_beforeFetchDoesNotCrash() {
+        // No fetchData called — planetCheckIns is empty
+        presenter.didSelectPlanet(at: 0)
+        XCTAssertNil(delegateMock.requestedCheckIn)
+    }
+
+    func test_InnerCosmoViewPresenter_didSelectPlanet_selectsCorrectCheckInByIndex() {
+        let now = Date()
+        var checkIns: [MoodCheckInModel] = []
+        for i in 0..<3 {
+            checkIns.append(MoodCheckInModel(
+                id: "checkin-\(i)",
+                colorHex: "#FFD700",
+                colorIntensity: 0.5,
+                emotion: "joy",
+                topic: "emotional",
+                evaluation: "Entry \(i)",
+                timezoneOffsetMinutes: 480,
+                createdAt: now.addingTimeInterval(Double(-i * 60)),
+                updatedAt: now.addingTimeInterval(Double(-i * 60))
+            ))
+        }
+        moodCheckInServiceMock.fetchLatestResult = .success(checkIns)
+        drawingServiceMock.fetchByDateResult = .success([])
+
+        let fetchExp = expectation(description: "delegate receives final update")
+        delegateMock.expectation = fetchExp
+
+        presenter.fetchData()
+        wait(for: [fetchExp], timeout: 2.0)
+
+        // Select surrounding planet (index 2 = third check-in)
+        presenter.didSelectPlanet(at: 2)
+
+        XCTAssertEqual(delegateMock.requestedCheckIn?.id, "checkin-2")
+    }
+
+    // MARK: - No User ID
+
     func test_InnerCosmoViewPresenter_fetchData_deliversEmptyEntriesWhenNoUserId() {
         userMock.userId = nil
 

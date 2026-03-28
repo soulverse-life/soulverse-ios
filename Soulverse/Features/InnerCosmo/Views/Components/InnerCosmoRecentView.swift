@@ -6,6 +6,11 @@
 import SnapKit
 import UIKit
 
+/// Delegate protocol for InnerCosmoRecentView events
+protocol InnerCosmoRecentViewDelegate: AnyObject {
+    func recentViewDidTapPlanet(_ view: InnerCosmoRecentView, at index: Int)
+}
+
 /// Recent view containing central planet and surrounding emotion planets
 class InnerCosmoRecentView: UIView {
 
@@ -31,10 +36,10 @@ class InnerCosmoRecentView: UIView {
 
     // MARK: - Properties
 
+    weak var delegate: InnerCosmoRecentViewDelegate?
+
     private var emotionPlanets: [EmotionPlanetView] = []
     private var emotionData: [EmotionPlanetData] = []
-    private var currentBubbleView: AffirmationBubbleView?
-    private var bubbleHideTimer: Timer?
     private var hasPositionedPlanets = false
 
     // MARK: - UI Components
@@ -88,8 +93,10 @@ class InnerCosmoRecentView: UIView {
         let surroundingEmotions = Array(emotions.dropFirst())
         emotionData = surroundingEmotions
 
-        for data in surroundingEmotions {
+        for (index, data) in surroundingEmotions.enumerated() {
             let planetView = EmotionPlanetView(data: data)
+            planetView.planetIndex = index + 1  // index 0 is central planet
+            planetView.delegate = self
             addSubview(planetView)
             emotionPlanets.append(planetView)
         }
@@ -156,76 +163,20 @@ class InnerCosmoRecentView: UIView {
     func stopAnimations() {
         emotionPlanets.forEach { $0.stopFloatingAnimation() }
     }
-
-    // MARK: - Affirmation Bubble
-
-    private func showAffirmationBubble() {
-        // Remove existing bubble if any
-        hideAffirmationBubble(animated: false)
-
-        let bubbleView = AffirmationBubbleView()
-        let quote = AffirmationQuoteProvider.random()
-        bubbleView.configure(with: quote)
-
-        // Speak the quote using TTS
-        SpeechService.shared.speak(quote.text)
-
-        addSubview(bubbleView)
-
-        // Position bubble to the right of the emo pet, close to center
-        bubbleView.snp.makeConstraints { make in
-            make.left.equalTo(centralPlanetView.snp.centerX).offset(20)
-            make.centerY.equalTo(centralPlanetView.snp.centerY).offset(-10)
-        }
-
-        currentBubbleView = bubbleView
-
-        // Force layout to get correct frame before animation
-        layoutIfNeeded()
-
-        bubbleView.showAnimated()
-
-        // Listen for TTS completion to dismiss bubble
-        SpeechService.shared.delegate = self
-    }
-
-    private func hideAffirmationBubble(animated: Bool) {
-        bubbleHideTimer?.invalidate()
-        bubbleHideTimer = nil
-
-        // Stop TTS and clear delegate
-        SpeechService.shared.stop()
-        SpeechService.shared.delegate = nil
-
-        guard let bubbleView = currentBubbleView else { return }
-
-        if animated {
-            bubbleView.hideAnimated { [weak self] in
-                self?.currentBubbleView = nil
-            }
-        } else {
-            bubbleView.removeFromSuperview()
-            currentBubbleView = nil
-        }
-    }
 }
 
 // MARK: - CentralPlanetViewDelegate
 
 extension InnerCosmoRecentView: CentralPlanetViewDelegate {
-    func centralPlanetViewDidTapEmoPet(_ view: CentralPlanetView) {
-        showAffirmationBubble()
+    func centralPlanetViewDidTapPlanet(_ view: CentralPlanetView) {
+        delegate?.recentViewDidTapPlanet(self, at: 0)
     }
 }
 
-// MARK: - SpeechServiceDelegate
+// MARK: - EmotionPlanetViewDelegate
 
-extension InnerCosmoRecentView: SpeechServiceDelegate {
-    func speechServiceDidFinishSpeaking(_ service: SpeechService) {
-        // Dismiss bubble 0.2s after TTS finishes
-        bubbleHideTimer?.invalidate()
-        bubbleHideTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
-            self?.hideAffirmationBubble(animated: true)
-        }
+extension InnerCosmoRecentView: EmotionPlanetViewDelegate {
+    func emotionPlanetViewDidTap(_ view: EmotionPlanetView, at index: Int) {
+        delegate?.recentViewDidTapPlanet(self, at: index)
     }
 }
