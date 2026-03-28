@@ -301,5 +301,19 @@
 "gallery_unknown_date" = "未知日期";
 "drawing_replay_error" = "無法載入畫作";
 
+// Check-In Detail
+"checkin_detail_title" = "情緒詳情";
+"checkin_detail_reflection" = "反思";
+"checkin_detail_journal" = "日記";
+"checkin_detail_draw_cta" = "畫出你的感受";
+"checkin_detail_journal_cta" = "寫日記";
+"checkin_detail_intensity" = "強度";
+"checkin_detail_dimension" = "面向";
+"checkin_detail_intensity_1" = "非常低";
+"checkin_detail_intensity_2" = "低";
+"checkin_detail_intensity_3" = "中等";
+"checkin_detail_intensity_4" = "高";
+"checkin_detail_intensity_5" = "非常高";
+
 // Common
 "ok" = "確定";

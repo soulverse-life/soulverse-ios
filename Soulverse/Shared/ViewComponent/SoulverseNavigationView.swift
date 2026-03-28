@@ -266,8 +266,13 @@ class SoulverseNavigationView: UIView {
             let itemView = item.createView()
             rightItemsStackView.addArrangedSubview(itemView)
 
-            itemView.snp.makeConstraints { make in
-                make.width.height.equalTo(Layout.rightItemButtonWidth)
+            switch item.type {
+            case .button:
+                itemView.snp.makeConstraints { make in
+                    make.width.height.equalTo(Layout.rightItemButtonWidth)
+                }
+            case .customView:
+                break
             }
         }
 
