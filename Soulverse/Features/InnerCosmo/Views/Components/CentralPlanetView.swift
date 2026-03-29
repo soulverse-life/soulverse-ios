@@ -306,14 +306,15 @@ class CentralPlanetView: UIView {
 
         guard let bubbleView = currentBubbleView else { return }
 
+        // Clear reference immediately to avoid race with rapid taps
+        currentBubbleView = nil
+
         if animated {
             bubbleView.hideAnimated { [weak self] in
-                self?.currentBubbleView = nil
                 self?.layer.zPosition = 0
             }
         } else {
             bubbleView.removeFromSuperview()
-            currentBubbleView = nil
             layer.zPosition = 0
         }
     }
