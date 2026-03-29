@@ -40,7 +40,6 @@ class InnerCosmoRecentView: UIView {
 
     private var emotionPlanets: [EmotionPlanetView] = []
     private var emotionData: [EmotionPlanetData] = []
-    private var hasPositionedPlanets = false
 
     // MARK: - UI Components
 
@@ -101,20 +100,12 @@ class InnerCosmoRecentView: UIView {
             emotionPlanets.append(planetView)
         }
 
-        // Reset flag so planets get positioned on next layout
-        hasPositionedPlanets = false
-        setNeedsLayout()
-    }
+        positionEmotionPlanets()
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        // Only position planets once to avoid re-randomizing their positions
-        if !hasPositionedPlanets {
-            positionEmotionPlanets()
-            startAnimations()
-            hasPositionedPlanets = true
-        }
+        // Resolve constraint positions before starting floating animations,
+        // since they read layer.position.y for from/to values
+        layoutIfNeeded()
+        startAnimations()
     }
 
     // MARK: - Positioning
@@ -122,8 +113,6 @@ class InnerCosmoRecentView: UIView {
     private func positionEmotionPlanets() {
         guard !emotionPlanets.isEmpty else { return }
 
-        let centralPlanetCenterY = Layout.centralPlanetTopPadding + (Layout.centralPlanetSize / 2)
-        let center = CGPoint(x: bounds.midX, y: centralPlanetCenterY)
         let count = emotionPlanets.count
 
         for (index, planetView) in emotionPlanets.enumerated() {
@@ -139,12 +128,18 @@ class InnerCosmoRecentView: UIView {
             let jitterX = CGFloat.random(in: -Layout.positionRandomness...Layout.positionRandomness)
             let jitterY = CGFloat.random(in: -Layout.positionRandomness...Layout.positionRandomness)
 
-            let x = center.x + radius * CGFloat(cos(angle)) + jitterX
-            let y = center.y + radius * CGFloat(sin(angle)) + jitterY
+            let offsetX = radius * CGFloat(cos(angle)) + jitterX
+            let offsetY = radius * CGFloat(sin(angle)) + jitterY
 
             let planetSize = planetView.calculateSize()
-            planetView.bounds = CGRect(origin: .zero, size: planetSize)
-            planetView.center = CGPoint(x: x, y: y)
+
+            // Use constraints so auto-layout preserves positions across layout passes
+            planetView.snp.remakeConstraints { make in
+                make.centerX.equalTo(centralPlanetView).offset(offsetX)
+                make.centerY.equalTo(centralPlanetView).offset(offsetY)
+                make.width.equalTo(planetSize.width)
+                make.height.equalTo(planetSize.height)
+            }
         }
     }
 

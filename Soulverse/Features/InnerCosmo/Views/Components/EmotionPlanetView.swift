@@ -118,6 +118,7 @@ class EmotionPlanetView: UIView {
 
     private func setupView() {
         backgroundColor = .clear
+        translatesAutoresizingMaskIntoConstraints = false
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         addGestureRecognizer(tap)
