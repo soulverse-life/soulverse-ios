@@ -267,19 +267,21 @@ class EmotionPlanetView: UIView {
 
     // MARK: - Size Calculation
 
-    /// Calculate the size needed for this planet view
+    /// Calculate the size needed for this planet view.
+    /// Must match the internal constraint chain to avoid auto-layout conflicts.
     func calculateSize() -> CGSize {
         if data.emotion.isEmpty {
-            return CGSize(width: planetSize, height: planetSize)
+            return CGSize(width: planetSize + Layout.haloExpand * 2,
+                          height: planetSize + Layout.haloExpand)
         }
 
         let labelIntrinsicHeight = emotionLabel.intrinsicContentSize.height
         let labelContainerHeight = labelIntrinsicHeight + (Layout.labelVerticalPadding * 2)
-        let totalHeight = planetSize + Layout.labelTopPadding + labelContainerHeight
+        let totalHeight = Layout.haloExpand + planetSize + Layout.labelTopPadding + labelContainerHeight
 
         let labelIntrinsicWidth = emotionLabel.intrinsicContentSize.width
         let labelContainerWidth = labelIntrinsicWidth + (Layout.labelHorizontalPadding * 2)
-        let width = max(planetSize, labelContainerWidth)
+        let width = max(planetSize + Layout.haloExpand * 2, labelContainerWidth)
 
         return CGSize(width: width, height: totalHeight)
     }
