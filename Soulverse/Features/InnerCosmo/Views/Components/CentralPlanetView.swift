@@ -189,6 +189,7 @@ class CentralPlanetView: UIView {
     }
 
     @objc private func handleEmoPetTap() {
+        guard currentBubbleView == nil else { return }
         animateTap()
         showAffirmationBubble()
     }
