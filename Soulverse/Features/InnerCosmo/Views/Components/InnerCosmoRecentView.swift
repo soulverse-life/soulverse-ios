@@ -40,6 +40,9 @@ class InnerCosmoRecentView: UIView {
 
     private var emotionPlanets: [EmotionPlanetView] = []
     private var emotionData: [EmotionPlanetData] = []
+    /// Saved planet positions (center + bounds) to restore after auto-layout passes
+    private var savedPlanetPositions: [(center: CGPoint, bounds: CGRect)] = []
+    private var hasPositionedPlanets = false
 
     // MARK: - UI Components
 
@@ -87,6 +90,7 @@ class InnerCosmoRecentView: UIView {
         // Clear existing surrounding emotion planets
         emotionPlanets.forEach { $0.removeFromSuperview() }
         emotionPlanets.removeAll()
+        savedPlanetPositions.removeAll()
 
         // Surrounding planets = remaining emotions (indices 1-6)
         let surroundingEmotions = Array(emotions.dropFirst())
@@ -100,12 +104,23 @@ class InnerCosmoRecentView: UIView {
             emotionPlanets.append(planetView)
         }
 
-        positionEmotionPlanets()
+        // Reset flag so planets get positioned on next layout pass
+        hasPositionedPlanets = false
+        setNeedsLayout()
+    }
 
-        // Resolve constraint positions before starting floating animations,
-        // since they read layer.position.y for from/to values
-        layoutIfNeeded()
-        startAnimations()
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        if !hasPositionedPlanets {
+            // First layout: calculate and apply positions, then save them
+            positionEmotionPlanets()
+            startAnimations()
+            hasPositionedPlanets = true
+        } else {
+            // Subsequent layouts: restore saved positions that auto-layout may have reset
+            restorePlanetPositions()
+        }
     }
 
     // MARK: - Positioning
@@ -113,7 +128,11 @@ class InnerCosmoRecentView: UIView {
     private func positionEmotionPlanets() {
         guard !emotionPlanets.isEmpty else { return }
 
+        let centralPlanetCenterY = Layout.centralPlanetTopPadding + (Layout.centralPlanetSize / 2)
+        let center = CGPoint(x: bounds.midX, y: centralPlanetCenterY)
         let count = emotionPlanets.count
+
+        savedPlanetPositions.removeAll()
 
         for (index, planetView) in emotionPlanets.enumerated() {
             // Distribute evenly along the horseshoe arc
@@ -128,18 +147,24 @@ class InnerCosmoRecentView: UIView {
             let jitterX = CGFloat.random(in: -Layout.positionRandomness...Layout.positionRandomness)
             let jitterY = CGFloat.random(in: -Layout.positionRandomness...Layout.positionRandomness)
 
-            let offsetX = radius * CGFloat(cos(angle)) + jitterX
-            let offsetY = radius * CGFloat(sin(angle)) + jitterY
+            let x = center.x + radius * CGFloat(cos(angle)) + jitterX
+            let y = center.y + radius * CGFloat(sin(angle)) + jitterY
 
             let planetSize = planetView.calculateSize()
+            planetView.bounds = CGRect(origin: .zero, size: planetSize)
+            planetView.center = CGPoint(x: x, y: y)
 
-            // Use constraints so auto-layout preserves positions across layout passes
-            planetView.snp.remakeConstraints { make in
-                make.centerX.equalTo(centralPlanetView).offset(offsetX)
-                make.centerY.equalTo(centralPlanetView).offset(offsetY)
-                make.width.equalTo(planetSize.width)
-                make.height.equalTo(planetSize.height)
-            }
+            // Save position to restore after future layout passes
+            savedPlanetPositions.append((center: planetView.center, bounds: planetView.bounds))
+        }
+    }
+
+    /// Restore saved planet positions after auto-layout resets them
+    private func restorePlanetPositions() {
+        for (index, planetView) in emotionPlanets.enumerated() where index < savedPlanetPositions.count {
+            let saved = savedPlanetPositions[index]
+            planetView.bounds = saved.bounds
+            planetView.center = saved.center
         }
     }
 
