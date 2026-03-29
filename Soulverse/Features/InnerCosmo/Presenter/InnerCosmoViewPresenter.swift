@@ -101,10 +101,9 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
                 case .success(let cards):
                     let entries = MoodEntriesDataAssembler.convertToMoodEntries(cards)
                     let emotions = Self.convertToEmotionPlanets(cards)
-                    self.planetCheckIns = cards
+                    self.planetCheckIns = Array(cards
                         .compactMap { $0.checkIn }
-                        .prefix(Self.checkInLimit)
-                        .map { $0 }
+                        .prefix(Self.checkInLimit))
                     self.loadedModel = InnerCosmoViewModel(
                         isLoading: false,
                         userName: self.user.nickName,

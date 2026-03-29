@@ -120,6 +120,10 @@ class CentralPlanetView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    deinit {
+        bubbleHideTimer?.invalidate()
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         outerGlowView.layer.cornerRadius = size / 2
