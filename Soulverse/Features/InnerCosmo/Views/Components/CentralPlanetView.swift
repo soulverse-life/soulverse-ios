@@ -280,7 +280,7 @@ class CentralPlanetView: UIView {
         SpeechService.shared.speak(quote.text)
 
         addSubview(bubbleView)
-        superview?.bringSubviewToFront(self)
+        layer.zPosition = 1
 
         // Position bubble to the right of the emo pet, close to center
         bubbleView.snp.makeConstraints { make in
@@ -309,10 +309,12 @@ class CentralPlanetView: UIView {
         if animated {
             bubbleView.hideAnimated { [weak self] in
                 self?.currentBubbleView = nil
+                self?.layer.zPosition = 0
             }
         } else {
             bubbleView.removeFromSuperview()
             currentBubbleView = nil
+            layer.zPosition = 0
         }
     }
 }
