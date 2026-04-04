@@ -17,6 +17,12 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
     private let drawingService: DrawingServiceProtocol
     private let journalService: JournalServiceProtocol
 
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d"
+        return formatter
+    }()
+
     // MARK: - Initialization
 
     init(checkIns: [MoodCheckInModel],
@@ -51,12 +57,14 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
         guard currentIndex < checkIns.count else { return }
         let checkIn = checkIns[currentIndex]
 
-        guard let uid = user.userId else {
-            let viewModel = buildViewModel(checkIn: checkIn, drawing: nil, journal: nil)
-            delegate?.didUpdateViewModel(viewModel)
-            return
-        }
+        // Phase 1: Show mandatory data immediately (planet, emotion, tags)
+        let immediateViewModel = buildViewModel(checkIn: checkIn, drawing: nil, journal: nil, isLoadingContent: true)
+        delegate?.didUpdateViewModel(immediateViewModel)
 
+        // Phase 2: Fetch drawing + journal async, then update sections
+        guard let uid = user.userId else { return }
+
+        let capturedIndex = currentIndex
         let group = DispatchGroup()
         var fetchedDrawing: DrawingModel?
         var fetchedJournal: JournalModel?
@@ -93,8 +101,8 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
         }
 
         group.notify(queue: .main) { [weak self] in
-            guard let self = self else { return }
-            let viewModel = self.buildViewModel(checkIn: checkIn, drawing: fetchedDrawing, journal: fetchedJournal)
+            guard let self = self, self.currentIndex == capturedIndex else { return }
+            let viewModel = self.buildViewModel(checkIn: checkIn, drawing: fetchedDrawing, journal: fetchedJournal, isLoadingContent: false)
             self.delegate?.didUpdateViewModel(viewModel)
         }
     }
@@ -104,14 +112,12 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
     private func buildViewModel(
         checkIn: MoodCheckInModel,
         drawing: DrawingModel?,
-        journal: JournalModel?
+        journal: JournalModel?,
+        isLoadingContent: Bool
     ) -> CheckInDetailViewModel {
         let emotion = RecordedEmotion(rawValue: checkIn.emotion)
         let topic = Topic(rawValue: checkIn.topic)
         let intensityLevel = ColorIntensityConstants.level(forAlpha: checkIn.colorIntensity)
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d"
         let dateText = checkIn.createdAt.map { dateFormatter.string(from: $0) } ?? ""
 
         return CheckInDetailViewModel(
@@ -124,6 +130,7 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
             topicRawValue: checkIn.topic,
             currentIndex: currentIndex,
             totalCount: checkIns.count,
+            isLoadingContent: isLoadingContent,
             drawingImageURL: drawing?.imageURL,
             reflectionPrompt: checkIn.reflectionPrompt,
             reflectionText: checkIn.reflection,

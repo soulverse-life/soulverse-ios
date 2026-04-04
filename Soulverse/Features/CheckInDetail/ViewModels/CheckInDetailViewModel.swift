@@ -27,18 +27,21 @@ struct CheckInDetailViewModel {
     var canGoBack: Bool { currentIndex > 0 }
     var canGoForward: Bool { currentIndex < totalCount - 1 }
 
+    // MARK: - Loading State
+
+    /// True while drawing/journal are still being fetched from Firestore.
+    let isLoadingContent: Bool
+
     // MARK: - Drawing / Reflection
 
     let drawingImageURL: String?
     let reflectionPrompt: String?
     let reflectionText: String?
-    var hasDrawing: Bool { drawingImageURL != nil }
 
     // MARK: - Journal
 
     let journalTitle: String?
     let journalContent: String?
-    var hasJournal: Bool { journalTitle != nil || journalContent != nil }
 
     // MARK: - Identity
 

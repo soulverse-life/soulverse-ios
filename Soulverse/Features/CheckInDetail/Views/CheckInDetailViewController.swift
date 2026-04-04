@@ -57,8 +57,8 @@ final class CheckInDetailViewController: ViewController {
     private let tagsStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 16
-        stack.alignment = .center
+        stack.spacing = 32
+        stack.alignment = .fill
         return stack
     }()
 
@@ -238,38 +238,42 @@ final class CheckInDetailViewController: ViewController {
 
 extension CheckInDetailViewController: CheckInDetailPresenterDelegate {
     func didUpdateViewModel(_ viewModel: CheckInDetailViewModel) {
-        dateLabelView.text = viewModel.dateText
+        if viewModel.isLoadingContent {
+            // Phase 1: render mandatory sections + show loading spinners
+            dateLabelView.text = viewModel.dateText
+            planetView.configure(colorHex: viewModel.colorHex, intensity: viewModel.colorIntensity)
+            emotionLabel.text = viewModel.emotionName
 
-        planetView.configure(colorHex: viewModel.colorHex, intensity: viewModel.colorIntensity)
-        emotionLabel.text = viewModel.emotionName
+            intensityTagView.configure(
+                level: viewModel.intensityLevel,
+                totalLevels: ColorIntensityConstants.levelCount,
+                color: UIColor(hex: viewModel.colorHex) ?? .themeTextSecondary
+            )
+            dimensionTagView.configure(
+                topicLabel: viewModel.topicLabel,
+                topicColor: Topic(rawValue: viewModel.topicRawValue)?.mainColor ?? .themeTextSecondary
+            )
 
-        intensityTagView.configure(
-            level: viewModel.intensityLevel,
-            totalLevels: ColorIntensityConstants.levelCount,
-            color: UIColor(hex: viewModel.colorHex) ?? .themeTextSecondary
-        )
-        dimensionTagView.configure(
-            topicLabel: viewModel.topicLabel,
-            topicColor: Topic(rawValue: viewModel.topicRawValue)?.mainColor ?? .themeTextSecondary
-        )
+            leftArrowButton.isHidden = !viewModel.canGoBack
+            rightArrowButton.isHidden = !viewModel.canGoForward
 
-        leftArrowButton.isHidden = !viewModel.canGoBack
-        rightArrowButton.isHidden = !viewModel.canGoForward
-
-        drawingSection.configure(
-            imageURL: viewModel.drawingImageURL,
-            prompt: viewModel.reflectionPrompt,
-            reflection: viewModel.reflectionText,
-            checkinId: viewModel.checkinId
-        )
-
-        journalSection.configure(
-            title: viewModel.journalTitle,
-            content: viewModel.journalContent,
-            checkinId: viewModel.checkinId
-        )
-
-        scrollView.setContentOffset(.zero, animated: false)
+            drawingSection.showLoading()
+            journalSection.showLoading()
+            scrollView.setContentOffset(.zero, animated: false)
+        } else {
+            // Phase 2: only update drawing/journal sections
+            drawingSection.configure(
+                imageURL: viewModel.drawingImageURL,
+                prompt: viewModel.reflectionPrompt,
+                reflection: viewModel.reflectionText,
+                checkinId: viewModel.checkinId
+            )
+            journalSection.configure(
+                title: viewModel.journalTitle,
+                content: viewModel.journalContent,
+                checkinId: viewModel.checkinId
+            )
+        }
     }
 }
 
@@ -287,23 +291,43 @@ extension CheckInDetailViewController: DetailJournalSectionDelegate {
     }
 }
 
+// MARK: - Tag Header Shared Layout
+
+private enum TagHeaderLayout {
+    static let iconSize: CGFloat = 14
+    static let headerFont: UIFont = .projectFont(ofSize: 13, weight: .semibold)
+    static let iconToLabelSpacing: CGFloat = 4
+    static let headerToContentSpacing: CGFloat = 8
+
+    /// Creates a header row with icon + label, used by both IntensityTagView and DimensionTagView.
+    static func makeHeaderStack(iconName: String, title: String) -> UIStackView {
+        let icon = UIImageView(image: UIImage(systemName: iconName))
+        icon.tintColor = .themeTextSecondary
+        icon.contentMode = .scaleAspectFit
+        icon.snp.makeConstraints { make in make.width.height.equalTo(iconSize) }
+
+        let label = UILabel()
+        label.font = headerFont
+        label.textColor = .themeTextSecondary
+        label.text = title
+
+        let stack = UIStackView(arrangedSubviews: [icon, label])
+        stack.axis = .horizontal
+        stack.spacing = iconToLabelSpacing
+        stack.alignment = .center
+        return stack
+    }
+}
+
 // MARK: - IntensityTagView
 
-/// Shows "◇ Intensity" label header with a row of small dots indicating the selected level.
+/// Shows header with a row of dots: filled up to the selected level, outlined for the rest.
 private class IntensityTagView: UIView {
 
     private enum Layout {
-        static let dotSize: CGFloat = 10
+        static let dotSize: CGFloat = 17
         static let dotSpacing: CGFloat = 6
-        static let headerToDotsSpacing: CGFloat = 8
     }
-
-    private let headerLabel: UILabel = {
-        let label = UILabel()
-        label.font = .projectFont(ofSize: 12, weight: .medium)
-        label.textColor = .themeTextSecondary
-        return label
-    }()
 
     private let dotsStack: UIStackView = {
         let stack = UIStackView()
@@ -325,27 +349,20 @@ private class IntensityTagView: UIView {
     }
 
     private func setupView() {
-        let icon = UIImageView(image: UIImage(systemName: "diamond"))
-        icon.tintColor = .themeTextSecondary
-        icon.contentMode = .scaleAspectFit
-        icon.snp.makeConstraints { make in make.width.height.equalTo(12) }
-
-        let headerStack = UIStackView(arrangedSubviews: [icon, headerLabel])
-        headerStack.axis = .horizontal
-        headerStack.spacing = 4
-        headerStack.alignment = .center
+        let headerStack = TagHeaderLayout.makeHeaderStack(
+            iconName: "rays",
+            title: NSLocalizedString("checkin_detail_intensity", comment: "")
+        )
 
         let mainStack = UIStackView(arrangedSubviews: [headerStack, dotsStack])
         mainStack.axis = .vertical
-        mainStack.spacing = Layout.headerToDotsSpacing
-        mainStack.alignment = .center
+        mainStack.spacing = TagHeaderLayout.headerToContentSpacing
+        mainStack.alignment = .leading
         addSubview(mainStack)
 
         mainStack.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
-        headerLabel.text = NSLocalizedString("checkin_detail_intensity", comment: "")
     }
 
     func configure(level: Int, totalLevels: Int, color: UIColor) {
@@ -358,12 +375,12 @@ private class IntensityTagView: UIView {
             dot.layer.cornerRadius = Layout.dotSize / 2
             dot.snp.makeConstraints { make in make.width.height.equalTo(Layout.dotSize) }
 
-            if i == level {
+            if i < level {
                 dot.backgroundColor = color
-                dot.layer.borderWidth = 2
-                dot.layer.borderColor = UIColor.white.withAlphaComponent(0.8).cgColor
             } else {
-                dot.backgroundColor = color.withAlphaComponent(0.3)
+                dot.backgroundColor = .clear
+                dot.layer.borderWidth = 1.5
+                dot.layer.borderColor = UIColor.white.withAlphaComponent(0.4).cgColor
             }
 
             dotsStack.addArrangedSubview(dot)
@@ -374,22 +391,13 @@ private class IntensityTagView: UIView {
 
 // MARK: - DimensionTagView
 
-/// Shows "◇ Dimension" label header with a colored topic pill below.
+/// Shows header with a colored topic label below.
 private class DimensionTagView: UIView {
 
-    private let headerLabel: UILabel = {
+    private let topicLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 12, weight: .medium)
-        label.textColor = .themeTextSecondary
-        return label
-    }()
-
-    private let topicPill: UILabel = {
-        let label = UILabel()
-        label.font = .projectFont(ofSize: 13, weight: .semibold)
+        label.font = .projectFont(ofSize: 17, weight: .regular)
         label.textAlignment = .center
-        label.clipsToBounds = true
-        label.layer.cornerRadius = 12
         return label
     }()
 
@@ -403,40 +411,24 @@ private class DimensionTagView: UIView {
     }
 
     private func setupView() {
-        let icon = UIImageView(image: UIImage(systemName: "diamond"))
-        icon.tintColor = .themeTextSecondary
-        icon.contentMode = .scaleAspectFit
-        icon.snp.makeConstraints { make in make.width.height.equalTo(12) }
+        let headerStack = TagHeaderLayout.makeHeaderStack(
+            iconName: "list.bullet",
+            title: NSLocalizedString("checkin_detail_dimension", comment: "")
+        )
 
-        let headerStack = UIStackView(arrangedSubviews: [icon, headerLabel])
-        headerStack.axis = .horizontal
-        headerStack.spacing = 4
-        headerStack.alignment = .center
-
-        let pillContainer = UIView()
-        pillContainer.addSubview(topicPill)
-        topicPill.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.top.bottom.equalToSuperview()
-            make.height.equalTo(24)
-        }
-
-        let mainStack = UIStackView(arrangedSubviews: [headerStack, pillContainer])
+        let mainStack = UIStackView(arrangedSubviews: [headerStack, topicLabel])
         mainStack.axis = .vertical
-        mainStack.spacing = 8
+        mainStack.spacing = TagHeaderLayout.headerToContentSpacing
         mainStack.alignment = .center
         addSubview(mainStack)
 
         mainStack.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
-        headerLabel.text = NSLocalizedString("checkin_detail_dimension", comment: "")
     }
 
     func configure(topicLabel: String, topicColor: UIColor) {
-        topicPill.text = "  \(topicLabel)  "
-        topicPill.textColor = .white
-        topicPill.backgroundColor = topicColor
+        self.topicLabel.text = topicLabel
+        self.topicLabel.textColor = topicColor
     }
 }

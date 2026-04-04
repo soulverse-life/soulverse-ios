@@ -272,7 +272,8 @@ class SoulverseNavigationView: UIView {
                     make.width.height.equalTo(Layout.rightItemButtonWidth)
                 }
             case .customView:
-                break
+                itemView.setContentHuggingPriority(.required, for: .horizontal)
+                itemView.setContentCompressionResistancePriority(.required, for: .horizontal)
             }
         }
 

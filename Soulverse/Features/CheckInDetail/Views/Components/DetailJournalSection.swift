@@ -2,8 +2,8 @@
 //  DetailJournalSection.swift
 //  Soulverse
 //
-//  Card section displaying journal title and content,
-//  or a CTA button when no journal exists.
+//  Glass-effect card displaying journal header, title and content,
+//  or a CTA button when no journal exists. Uses state machine for layout.
 //
 
 import SnapKit
@@ -15,22 +15,53 @@ protocol DetailJournalSectionDelegate: AnyObject {
 
 class DetailJournalSection: UIView {
 
+    // MARK: - State
+
+    private enum State {
+        case loading
+        case content
+        case empty
+    }
+
     // MARK: - Properties
 
     weak var delegate: DetailJournalSectionDelegate?
     private var checkinId: String?
+    private var currentState: State?
 
     // MARK: - UI Components
 
     private let cardView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black.withAlphaComponent(0.3)
         view.layer.cornerRadius = CheckInDetailLayout.sectionCornerRadius
         view.clipsToBounds = true
         return view
     }()
 
-    private let sectionIconView: UIImageView = {
+    private let visualEffectView = UIVisualEffectView()
+
+    /// Single container whose child is swapped between loading / content / CTA.
+    private let bodyContainer = UIView()
+
+    // -- Loading --
+
+    private lazy var loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .themeTextSecondary
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+
+    // -- Content --
+
+    private lazy var contentStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 8
+        return stack
+    }()
+
+    private lazy var sectionIconView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "book")
         imageView.tintColor = .themeTextSecondary
@@ -38,7 +69,7 @@ class DetailJournalSection: UIView {
         return imageView
     }()
 
-    private let sectionTitleLabel: UILabel = {
+    private lazy var sectionTitleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("checkin_detail_journal", comment: "")
         label.font = .projectFont(ofSize: CheckInDetailLayout.sectionTitleFontSize, weight: .semibold)
@@ -46,7 +77,7 @@ class DetailJournalSection: UIView {
         return label
     }()
 
-    private let journalTitleLabel: UILabel = {
+    private lazy var journalTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .projectFont(ofSize: 18, weight: .bold)
         label.textColor = .themeTextPrimary
@@ -54,13 +85,15 @@ class DetailJournalSection: UIView {
         return label
     }()
 
-    private let journalContentLabel: UILabel = {
+    private lazy var journalContentLabel: UILabel = {
         let label = UILabel()
         label.font = .projectFont(ofSize: 16, weight: .regular)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         return label
     }()
+
+    // -- Empty / CTA --
 
     private lazy var ctaButton: UIButton = {
         let button = UIButton(type: .system)
@@ -69,16 +102,8 @@ class DetailJournalSection: UIView {
         button.setTitleColor(.themeButtonPrimaryText, for: .normal)
         button.backgroundColor = .themeButtonPrimaryBackground
         button.layer.cornerRadius = CheckInDetailLayout.ctaButtonCornerRadius
-        button.isHidden = true
         button.addTarget(self, action: #selector(ctaTapped), for: .touchUpInside)
         return button
-    }()
-
-    private let contentStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 8
-        return stack
     }()
 
     // MARK: - Initialization
@@ -96,22 +121,7 @@ class DetailJournalSection: UIView {
 
     private func setupView() {
         addSubview(cardView)
-
-        let headerStack = UIStackView(arrangedSubviews: [sectionIconView, sectionTitleLabel])
-        headerStack.axis = .horizontal
-        headerStack.spacing = 6
-        headerStack.alignment = .center
-
-        sectionIconView.snp.makeConstraints { make in
-            make.width.height.equalTo(CheckInDetailLayout.sectionTitleIconSize)
-        }
-
-        contentStack.addArrangedSubview(journalTitleLabel)
-        contentStack.addArrangedSubview(journalContentLabel)
-
-        cardView.addSubview(headerStack)
-        cardView.addSubview(contentStack)
-        cardView.addSubview(ctaButton)
+        setupCardGlassEffect()
 
         let padding = CheckInDetailLayout.sectionContentPadding
 
@@ -119,47 +129,106 @@ class DetailJournalSection: UIView {
             make.edges.equalToSuperview()
         }
 
-        headerStack.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview().offset(padding)
-            make.trailing.lessThanOrEqualToSuperview().offset(-padding)
-        }
-
-        contentStack.snp.makeConstraints { make in
-            make.top.equalTo(headerStack.snp.bottom).offset(12)
-            make.leading.trailing.equalToSuperview().inset(padding)
-            make.bottom.equalToSuperview().offset(-padding)
-        }
-
-        ctaButton.snp.makeConstraints { make in
-            make.top.equalTo(headerStack.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(padding)
-            make.height.equalTo(CheckInDetailLayout.ctaButtonHeight)
-            make.bottom.equalToSuperview().offset(-padding)
+        bodyContainer.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(padding)
         }
     }
 
-    // MARK: - Configuration
+    private func setupCardGlassEffect() {
+        ViewComponentConstants.applyGlassCardEffect(
+            to: cardView,
+            visualEffectView: visualEffectView,
+            contentView: bodyContainer,
+            cornerRadius: CheckInDetailLayout.sectionCornerRadius,
+            darkMode: true
+        )
+    }
+
+    // MARK: - State Transitions
+
+    private func transition(to state: State) {
+        guard currentState != state else { return }
+        currentState = state
+
+        // Remove previous content
+        bodyContainer.subviews.forEach { $0.removeFromSuperview() }
+
+        switch state {
+        case .loading:
+            installLoading()
+        case .content:
+            installContent()
+        case .empty:
+            installCTA()
+        }
+    }
+
+    private func installLoading() {
+        bodyContainer.addSubview(loadingIndicator)
+        loadingIndicator.snp.makeConstraints { make in
+            make.top.bottom.centerX.equalToSuperview()
+        }
+        loadingIndicator.startAnimating()
+    }
+
+    private func installContent() {
+        let headerStack = UIStackView(arrangedSubviews: [sectionIconView, sectionTitleLabel])
+        headerStack.axis = .horizontal
+        headerStack.spacing = 6
+        headerStack.alignment = .center
+
+        sectionIconView.snp.remakeConstraints { make in
+            make.width.height.equalTo(CheckInDetailLayout.sectionTitleIconSize)
+        }
+
+        contentStack.arrangedSubviews.forEach { contentStack.removeArrangedSubview($0); $0.removeFromSuperview() }
+        contentStack.addArrangedSubview(headerStack)
+        contentStack.addArrangedSubview(journalTitleLabel)
+        contentStack.addArrangedSubview(journalContentLabel)
+
+        bodyContainer.addSubview(contentStack)
+        contentStack.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+
+    private func installCTA() {
+        bodyContainer.addSubview(ctaButton)
+        ctaButton.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.height.equalTo(CheckInDetailLayout.ctaButtonHeight)
+        }
+    }
+
+    // MARK: - Public API
+
+    func showLoading() {
+        transition(to: .loading)
+    }
 
     func configure(title: String?, content: String?, checkinId: String?) {
         self.checkinId = checkinId
 
         let hasContent = title != nil || content != nil
 
-        contentStack.isHidden = !hasContent
-        ctaButton.isHidden = hasContent
+        if hasContent {
+            transition(to: .content)
 
-        if let title = title {
-            journalTitleLabel.isHidden = false
-            journalTitleLabel.text = title
-        } else {
-            journalTitleLabel.isHidden = true
-        }
+            if let title = title {
+                journalTitleLabel.isHidden = false
+                journalTitleLabel.text = title
+            } else {
+                journalTitleLabel.isHidden = true
+            }
 
-        if let content = content {
-            journalContentLabel.isHidden = false
-            journalContentLabel.text = content
+            if let content = content {
+                journalContentLabel.isHidden = false
+                journalContentLabel.text = content
+            } else {
+                journalContentLabel.isHidden = true
+            }
         } else {
-            journalContentLabel.isHidden = true
+            transition(to: .empty)
         }
     }
 
