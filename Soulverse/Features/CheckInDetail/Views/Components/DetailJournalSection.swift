@@ -13,7 +13,7 @@ protocol DetailJournalSectionDelegate: AnyObject {
     func detailJournalSectionDidTapCreate(_ section: DetailJournalSection, checkinId: String?)
 }
 
-class DetailJournalSection: UIView {
+final class DetailJournalSection: UIView {
 
     // MARK: - State
 
@@ -195,8 +195,9 @@ class DetailJournalSection: UIView {
     private func installCTA() {
         bodyContainer.addSubview(ctaButton)
         ctaButton.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(CheckInDetailLayout.ctaButtonHeight)
+            make.bottom.lessThanOrEqualToSuperview()
         }
     }
 

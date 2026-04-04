@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-class DetailPlanetView: UIView {
+final class DetailPlanetView: UIView {
 
     // MARK: - UI Components
 
