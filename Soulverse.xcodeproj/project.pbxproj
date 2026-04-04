@@ -232,15 +232,11 @@
 		79389F592EFFBEF60016CB7F /* TopicCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F572EFFBEF60016CB7F /* TopicCardView.swift */; };
 		79389F612F05760D0016CB7F /* EmotionPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */; };
 		79389F622F05760D0016CB7F /* InnerCosmoRecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5C2F05760D0016CB7F /* InnerCosmoRecentView.swift */; };
-		79389F632F05760D0016CB7F /* InnerCosmoMonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5E2F05760D0016CB7F /* InnerCosmoMonthlyView.swift */; };
 		79389F642F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */; };
-		79389F652F05760D0016CB7F /* InnerCosmoWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5F2F05760D0016CB7F /* InnerCosmoWeeklyView.swift */; };
 		79389F662F05760D0016CB7F /* CentralPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */; };
 		79389F672F05760D0016CB7F /* EmotionPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */; };
 		79389F682F05760D0016CB7F /* InnerCosmoRecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5C2F05760D0016CB7F /* InnerCosmoRecentView.swift */; };
-		79389F692F05760D0016CB7F /* InnerCosmoMonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5E2F05760D0016CB7F /* InnerCosmoMonthlyView.swift */; };
 		79389F6A2F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */; };
-		79389F6B2F05760D0016CB7F /* InnerCosmoWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5F2F05760D0016CB7F /* InnerCosmoWeeklyView.swift */; };
 		79389F6C2F05760D0016CB7F /* CentralPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */; };
 		79389F6E2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */; };
 		79389F6F2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */; };
@@ -624,8 +620,6 @@
 		79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionPlanetView.swift; sourceTree = "<group>"; };
 		79389F5C2F05760D0016CB7F /* InnerCosmoRecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoRecentView.swift; sourceTree = "<group>"; };
 		79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoHeaderView.swift; sourceTree = "<group>"; };
-		79389F5E2F05760D0016CB7F /* InnerCosmoMonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoMonthlyView.swift; sourceTree = "<group>"; };
-		79389F5F2F05760D0016CB7F /* InnerCosmoWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoWeeklyView.swift; sourceTree = "<group>"; };
 		79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoEmotionData.swift; sourceTree = "<group>"; };
 		7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1_bounce_lottie.json; sourceTree = "<group>"; };
 		794B59F22E9EA3E1006CF069 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -1435,8 +1429,6 @@
 				79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */,
 				79389F5C2F05760D0016CB7F /* InnerCosmoRecentView.swift */,
 				79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */,
-				79389F5E2F05760D0016CB7F /* InnerCosmoMonthlyView.swift */,
-				79389F5F2F05760D0016CB7F /* InnerCosmoWeeklyView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2481,9 +2473,7 @@
 				79710ED82E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
 				79389F612F05760D0016CB7F /* EmotionPlanetView.swift in Sources */,
 				79389F622F05760D0016CB7F /* InnerCosmoRecentView.swift in Sources */,
-				79389F632F05760D0016CB7F /* InnerCosmoMonthlyView.swift in Sources */,
 				79389F642F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */,
-				79389F652F05760D0016CB7F /* InnerCosmoWeeklyView.swift in Sources */,
 				79389F662F05760D0016CB7F /* CentralPlanetView.swift in Sources */,
 				790AD25B2DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
 				790AD25C2DF9E43200C33CD1 /* UserModel.swift in Sources */,
@@ -2644,9 +2634,7 @@
 				79710EDA2E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
 				79389F672F05760D0016CB7F /* EmotionPlanetView.swift in Sources */,
 				79389F682F05760D0016CB7F /* InnerCosmoRecentView.swift in Sources */,
-				79389F692F05760D0016CB7F /* InnerCosmoMonthlyView.swift in Sources */,
 				79389F6A2F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */,
-				79389F6B2F05760D0016CB7F /* InnerCosmoWeeklyView.swift in Sources */,
 				79389F6C2F05760D0016CB7F /* CentralPlanetView.swift in Sources */,
 				790AD3092DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
 				790AD30A2DF9E43200C33CD1 /* UserModel.swift in Sources */,
