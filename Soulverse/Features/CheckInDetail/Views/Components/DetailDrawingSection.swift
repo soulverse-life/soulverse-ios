@@ -14,7 +14,7 @@ protocol DetailDrawingSectionDelegate: AnyObject {
     func detailDrawingSectionDidTapCreate(_ section: DetailDrawingSection, checkinId: String?)
 }
 
-class DetailDrawingSection: UIView {
+final class DetailDrawingSection: UIView {
 
     // MARK: - State
 
@@ -226,8 +226,9 @@ class DetailDrawingSection: UIView {
     private func installCTA() {
         bodyContainer.addSubview(ctaButton)
         ctaButton.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(CheckInDetailLayout.ctaButtonHeight)
+            make.bottom.lessThanOrEqualToSuperview()
         }
     }
 

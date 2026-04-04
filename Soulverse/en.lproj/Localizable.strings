@@ -309,11 +309,6 @@
 "checkin_detail_journal_cta" = "Write a journal";
 "checkin_detail_intensity" = "Intensity";
 "checkin_detail_dimension" = "Dimension";
-"checkin_detail_intensity_1" = "Very Low";
-"checkin_detail_intensity_2" = "Low";
-"checkin_detail_intensity_3" = "Medium";
-"checkin_detail_intensity_4" = "High";
-"checkin_detail_intensity_5" = "Very High";
 
 // Common
 "ok" = "OK";

@@ -208,9 +208,12 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
         delegate?.didRequestCheckInDetail(checkIn: planetCheckIns[index])
     }
 
-    /// Looks up a MoodCheckInModel by its checkinId from recent cards cache.
+    /// Looks up a MoodCheckInModel by its checkinId from recent cards or month cache.
     func checkInModel(forId checkinId: String) -> MoodCheckInModel? {
-        return recentCards.compactMap { $0.checkIn }.first { $0.id == checkinId }
+        if let match = recentCards.compactMap({ $0.checkIn }).first(where: { $0.id == checkinId }) {
+            return match
+        }
+        return monthCache[currentVisibleMonth]?.checkIns.first { $0.id == checkinId }
     }
 
     private func cacheKey(year: Int, month: Int) -> String {
