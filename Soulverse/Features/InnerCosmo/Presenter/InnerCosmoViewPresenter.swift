@@ -29,6 +29,9 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
 
     private static let checkInLimit = 7
 
+    /// Check-in models backing the 7 emotion planets (index 0 = central planet)
+    private var planetCheckIns: [MoodCheckInModel] = []
+
     /// Current recent mood entries for restoring when switching back to Recent tab
     var currentMoodEntries: [MoodEntryCardCellViewModel] {
         loadedModel.moodEntries
@@ -98,6 +101,9 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
                 case .success(let cards):
                     let entries = MoodEntriesDataAssembler.convertToMoodEntries(cards)
                     let emotions = Self.convertToEmotionPlanets(cards)
+                    self.planetCheckIns = Array(cards
+                        .compactMap { $0.checkIn }
+                        .prefix(Self.checkInLimit))
                     self.loadedModel = InnerCosmoViewModel(
                         isLoading: false,
                         userName: self.user.nickName,
@@ -191,6 +197,11 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
         }
         guard !checkIns.isEmpty else { return }
         delegate?.didRequestDayDetail(checkIns: checkIns)
+    }
+
+    public func didSelectPlanet(at index: Int) {
+        guard index >= 0, index < planetCheckIns.count else { return }
+        delegate?.didRequestCheckInDetail(checkIn: planetCheckIns[index])
     }
 
     private func cacheKey(year: Int, month: Int) -> String {

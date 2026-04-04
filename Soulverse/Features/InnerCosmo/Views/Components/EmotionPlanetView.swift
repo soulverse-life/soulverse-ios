@@ -6,6 +6,11 @@
 import SnapKit
 import UIKit
 
+/// Delegate protocol for EmotionPlanetView tap events
+protocol EmotionPlanetViewDelegate: AnyObject {
+    func emotionPlanetViewDidTap(_ view: EmotionPlanetView, at index: Int)
+}
+
 /// Individual emotion planet view with label
 class EmotionPlanetView: UIView {
 
@@ -26,6 +31,9 @@ class EmotionPlanetView: UIView {
     }
 
     // MARK: - Properties
+
+    weak var delegate: EmotionPlanetViewDelegate?
+    var planetIndex: Int = 0
 
     private let data: EmotionPlanetData
     private let planetSize: CGFloat
@@ -111,6 +119,10 @@ class EmotionPlanetView: UIView {
     private func setupView() {
         backgroundColor = .clear
         translatesAutoresizingMaskIntoConstraints = false
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        addGestureRecognizer(tap)
+        isUserInteractionEnabled = true
 
         addSubview(haloView)
         haloView.layer.insertSublayer(haloGradientLayer, at: 0)
@@ -216,6 +228,12 @@ class EmotionPlanetView: UIView {
             UIColor.clear.cgColor
         ]
         haloGradientLayer.locations = [0.0, fadeStart, 1.0]
+    }
+
+    // MARK: - Tap Handling
+
+    @objc private func handleTap() {
+        delegate?.emotionPlanetViewDidTap(self, at: planetIndex)
     }
 
     // MARK: - Animation
