@@ -295,8 +295,7 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
     }
 
     func didRequestCheckInDetail(checkIn: MoodCheckInModel) {
-        // TODO: Navigate to mood check-in detail view
-        print("[InnerCosmo] Check-in detail requested for id: \(checkIn.id ?? "unknown")")
+        AppCoordinator.openCheckInDetail(from: self, checkIns: [checkIn])
     }
 
     func didUpdateMonthMoodEntries(_ entries: [MoodEntryCardCellViewModel]) {
