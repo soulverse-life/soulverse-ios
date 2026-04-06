@@ -32,7 +32,9 @@ class InnerCosmoRecentView: UIView {
         static let arcSpan: Double = -1.15 * Double.pi
 
         static let positionRandomness: CGFloat = 3   // Slight jitter for organic feel
-        static let tapHitExpansion: CGFloat = 10     // Extra tap area around planet circle
+        // Extra tap area around planet circle. Also covers the ±5pt floating animation
+        // offset since planetCircleCenter(in:) reads the model layer, not the presentation layer.
+        static let tapHitExpansion: CGFloat = 10
     }
 
     // MARK: - Properties
@@ -204,7 +206,8 @@ class InnerCosmoRecentView: UIView {
             return centralHit
         }
 
-        return nil
+        // Fall back to standard hit testing for any other subviews
+        return super.hitTest(point, with: event)
     }
 
     /// Find which emotion planet the point hits.
