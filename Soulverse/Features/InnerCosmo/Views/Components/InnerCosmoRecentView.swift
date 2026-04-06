@@ -32,6 +32,9 @@ class InnerCosmoRecentView: UIView {
         static let arcSpan: Double = -1.15 * Double.pi
 
         static let positionRandomness: CGFloat = 3   // Slight jitter for organic feel
+        // Extra tap area around planet circle. Also covers the ±5pt floating animation
+        // offset since planetCircleCenter(in:) reads the model layer, not the presentation layer.
+        static let tapHitExpansion: CGFloat = 10
     }
 
     // MARK: - Properties
@@ -70,6 +73,14 @@ class InnerCosmoRecentView: UIView {
 
         centralPlanetView.delegate = self
 
+        // Emotion planet taps are handled at this level instead of on each EmotionPlanetView.
+        // EmotionPlanetView uses translatesAutoresizingMaskIntoConstraints = false with no
+        // external constraints, so Auto Layout can corrupt its frame. This makes gesture
+        // recognizers on individual planets unreliable. By handling taps here and using
+        // the actual rendered subview positions for hit testing, we bypass the frame issue.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEmotionPlanetTap(_:)))
+        addGestureRecognizer(tap)
+
         centralPlanetView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(Layout.centralPlanetTopPadding)
@@ -96,10 +107,8 @@ class InnerCosmoRecentView: UIView {
         let surroundingEmotions = Array(emotions.dropFirst())
         emotionData = surroundingEmotions
 
-        for (index, data) in surroundingEmotions.enumerated() {
+        for data in surroundingEmotions {
             let planetView = EmotionPlanetView(data: data)
-            planetView.planetIndex = index + 1  // index 0 is central planet
-            planetView.delegate = self
             addSubview(planetView)
             emotionPlanets.append(planetView)
         }
@@ -168,6 +177,76 @@ class InnerCosmoRecentView: UIView {
         }
     }
 
+    // MARK: - Hit Testing
+
+    /// Custom hit testing that bypasses EmotionPlanetView's potentially corrupt frame.
+    ///
+    /// EmotionPlanetView uses `translatesAutoresizingMaskIntoConstraints = false` for its
+    /// internal SnapKit layout, but has no external Auto Layout constraints (it's positioned
+    /// via manual frame setting). This causes Auto Layout to resolve its internal constraints
+    /// with zero-size bounds before the parent sets the correct bounds. The internal subviews
+    /// (planet circle, label) end up rendered at offset positions that don't match the view's
+    /// frame. Since standard hit testing relies on the view's frame, taps on the visible planet
+    /// can miss while taps on empty space can register.
+    ///
+    /// This override returns `self` for emotion planet taps so the gesture recognizer on
+    /// InnerCosmoRecentView handles them using the actual rendered subview positions.
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard !isHidden, alpha > 0.01, isUserInteractionEnabled else { return nil }
+
+        // Emotion planets first — they render on top of the central planet's outer glow,
+        // so they should have priority for overlapping areas.
+        if emotionPlanetIndex(at: point) != nil {
+            return self
+        }
+
+        // Central planet uses proper Auto Layout constraints, so standard hitTest works.
+        let centralPoint = convert(point, to: centralPlanetView)
+        if let centralHit = centralPlanetView.hitTest(centralPoint, with: event) {
+            return centralHit
+        }
+
+        // Fall back to standard hit testing for any other subviews
+        return super.hitTest(point, with: event)
+    }
+
+    /// Find which emotion planet the point hits.
+    ///
+    /// Uses `planetCircleCenter(in:)` to query the actual rendered position of each planet's
+    /// circle subview, rather than relying on pre-calculated positions. This is necessary
+    /// because Auto Layout resolves EmotionPlanetView's internal constraints with zero-size
+    /// bounds (before the parent sets the correct bounds), causing the circle subview to
+    /// render at an offset from the view's center. The offset equals bounds.width/2 horizontally.
+    private func emotionPlanetIndex(at point: CGPoint) -> Int? {
+        var bestIndex: Int?
+        var bestDistanceSq: CGFloat = .greatestFiniteMagnitude
+
+        for (index, planet) in emotionPlanets.enumerated() {
+            let renderedCenter = planet.planetCircleCenter(in: self)
+            let hitRadius = planet.planetSize / 2 + Layout.tapHitExpansion
+            let dx = point.x - renderedCenter.x
+            let dy = point.y - renderedCenter.y
+            let distanceSq = dx * dx + dy * dy
+
+            guard distanceSq <= hitRadius * hitRadius else { continue }
+
+            if distanceSq < bestDistanceSq {
+                bestDistanceSq = distanceSq
+                bestIndex = index
+            }
+        }
+
+        return bestIndex
+    }
+
+    @objc private func handleEmotionPlanetTap(_ gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: self)
+        if let index = emotionPlanetIndex(at: point) {
+            // Planet indices: 0 = central, 1-6 = surrounding
+            delegate?.recentViewDidTapPlanet(self, at: index + 1)
+        }
+    }
+
     // MARK: - Animation
 
     /// Start floating animations for all emotion planets
@@ -193,10 +272,3 @@ extension InnerCosmoRecentView: CentralPlanetViewDelegate {
     }
 }
 
-// MARK: - EmotionPlanetViewDelegate
-
-extension InnerCosmoRecentView: EmotionPlanetViewDelegate {
-    func emotionPlanetViewDidTap(_ view: EmotionPlanetView, at index: Int) {
-        delegate?.recentViewDidTapPlanet(self, at: index)
-    }
-}

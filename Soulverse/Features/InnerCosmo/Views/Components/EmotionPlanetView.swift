@@ -6,11 +6,6 @@
 import SnapKit
 import UIKit
 
-/// Delegate protocol for EmotionPlanetView tap events
-protocol EmotionPlanetViewDelegate: AnyObject {
-    func emotionPlanetViewDidTap(_ view: EmotionPlanetView, at index: Int)
-}
-
 /// Individual emotion planet view with label
 class EmotionPlanetView: UIView {
 
@@ -32,11 +27,9 @@ class EmotionPlanetView: UIView {
 
     // MARK: - Properties
 
-    weak var delegate: EmotionPlanetViewDelegate?
-    var planetIndex: Int = 0
-
     private let data: EmotionPlanetData
-    private let planetSize: CGFloat
+    /// Internal access for parent hit testing (see InnerCosmoRecentView.emotionPlanetIndex)
+    let planetSize: CGFloat
 
     // MARK: - UI Components
 
@@ -119,10 +112,6 @@ class EmotionPlanetView: UIView {
     private func setupView() {
         backgroundColor = .clear
         translatesAutoresizingMaskIntoConstraints = false
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        addGestureRecognizer(tap)
-        isUserInteractionEnabled = true
 
         addSubview(haloView)
         haloView.layer.insertSublayer(haloGradientLayer, at: 0)
@@ -230,10 +219,15 @@ class EmotionPlanetView: UIView {
         haloGradientLayer.locations = [0.0, fadeStart, 1.0]
     }
 
-    // MARK: - Tap Handling
+    // MARK: - Hit Testing
 
-    @objc private func handleTap() {
-        delegate?.emotionPlanetViewDidTap(self, at: planetIndex)
+    /// Returns the planet circle's actual rendered center in the given view's coordinate system.
+    /// Used by InnerCosmoRecentView for hit testing, because the internal subview positions
+    /// can diverge from the view's frame due to Auto Layout resolving constraints with
+    /// zero-size bounds before the parent sets the correct bounds.
+    func planetCircleCenter(in targetView: UIView) -> CGPoint {
+        let localCenter = CGPoint(x: planetView.frame.midX, y: planetView.frame.midY)
+        return convert(localCenter, to: targetView)
     }
 
     // MARK: - Animation
