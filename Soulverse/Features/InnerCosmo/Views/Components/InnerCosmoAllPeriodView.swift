@@ -134,7 +134,7 @@ class InnerCosmoAllPeriodView: UIView {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(weekdayHeaderStack.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(Layout.maxGridHeight).priority(.high)
+            make.height.equalTo(Layout.maxGridHeight)
             make.bottom.equalToSuperview()
         }
     }

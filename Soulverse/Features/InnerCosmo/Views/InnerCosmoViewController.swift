@@ -12,7 +12,7 @@ class InnerCosmoViewController: ViewController {
 
     private enum Layout {
         static let recentViewTopPadding: CGFloat = 8
-        static let contentViewMinHeight: CGFloat = 340
+        static let contentViewMinHeight: CGFloat = 320
         static let moodCheckInButtonTopPadding: CGFloat = 24
         static let moodCheckInButtonWidth: CGFloat = 240
     }
@@ -299,11 +299,6 @@ extension InnerCosmoViewController: InnerCosmoViewPresenterDelegate {
     func didRequestCheckInDetail(checkIn: MoodCheckInModel) {
         // TODO: Navigate to mood check-in detail view
         print("[InnerCosmo] Check-in detail requested for id: \(checkIn.id ?? "unknown")")
-        AppCoordinator.presentMoodCheckIn(from: self) { [weak self] success, _ in
-            guard let self = self, success else { return }
-            // Refresh data after mood check-in completion
-            self.presenter.fetchData(isUpdate: true)
-        }
     }
 
     func didUpdateMonthMoodEntries(_ entries: [MoodEntryCardCellViewModel]) {
