@@ -36,7 +36,8 @@ class EmotionPlanetView: UIView {
     var planetIndex: Int = 0
 
     private let data: EmotionPlanetData
-    private let planetSize: CGFloat
+    /// Internal access for parent hit testing (see InnerCosmoRecentView.emotionPlanetIndex)
+    let planetSize: CGFloat
 
     // MARK: - UI Components
 
@@ -234,6 +235,15 @@ class EmotionPlanetView: UIView {
 
     @objc private func handleTap() {
         delegate?.emotionPlanetViewDidTap(self, at: planetIndex)
+    }
+
+    /// Returns the planet circle's actual rendered center in the given view's coordinate system.
+    /// Used by InnerCosmoRecentView for hit testing, because the internal subview positions
+    /// can diverge from the view's frame due to Auto Layout resolving constraints with
+    /// zero-size bounds before the parent sets the correct bounds.
+    func planetCircleCenter(in targetView: UIView) -> CGPoint {
+        let localCenter = CGPoint(x: planetView.frame.midX, y: planetView.frame.midY)
+        return convert(localCenter, to: targetView)
     }
 
     // MARK: - Animation
