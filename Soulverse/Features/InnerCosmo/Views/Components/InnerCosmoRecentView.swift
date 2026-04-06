@@ -105,10 +105,8 @@ class InnerCosmoRecentView: UIView {
         let surroundingEmotions = Array(emotions.dropFirst())
         emotionData = surroundingEmotions
 
-        for (index, data) in surroundingEmotions.enumerated() {
+        for data in surroundingEmotions {
             let planetView = EmotionPlanetView(data: data)
-            planetView.planetIndex = index + 1  // index 0 is central planet
-            planetView.delegate = self
             addSubview(planetView)
             emotionPlanets.append(planetView)
         }
@@ -271,10 +269,3 @@ extension InnerCosmoRecentView: CentralPlanetViewDelegate {
     }
 }
 
-// MARK: - EmotionPlanetViewDelegate
-
-extension InnerCosmoRecentView: EmotionPlanetViewDelegate {
-    func emotionPlanetViewDidTap(_ view: EmotionPlanetView, at index: Int) {
-        delegate?.recentViewDidTapPlanet(self, at: index)
-    }
-}
