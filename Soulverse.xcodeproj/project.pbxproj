@@ -10,6 +10,7 @@
 		00D4EFCE0FFB3ED52205CCE5 /* JournalServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E20AAA3AF4B7A41DF30E6B /* JournalServiceMock.swift */; };
 		00FBCE53E3FB150F40186DE5 /* MoodEntriesDataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */; };
 		03BF3892B476AB6AD4B17CC6 /* MoodEntriesDataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */; };
+		03F48090BE3E05B2B7366B43 /* BundleFormFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EAEF5AEB337CC3DACE9A68 /* BundleFormFieldView.swift */; };
 		0924C6D537F42931C325A80D /* CanvasViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA116D179BEAA6D57A12D74 /* CanvasViewPresenterDelegateMock.swift */; };
 		0AEA5D20108485EA3EF5494E /* DrawingGallerySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70D0337BCECFA7C98A0482 /* DrawingGallerySectionHeaderView.swift */; };
 		0E375C48E26FC465DCF1178D /* EmotionalBundleMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A458615FF4DBD7CB06D6654 /* EmotionalBundleMainViewModel.swift */; };
@@ -18,6 +19,7 @@
 		1068DC503C449FA2F1E94253 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		1135B47B75C583A6E7DE7F32 /* TopicDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B7B1090574611BFDFC632 /* TopicDistributionView.swift */; };
 		1A2CFCCD95653982DC90244B /* SoulverseActionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90781A662B73BED5786934DE /* SoulverseActionModal.swift */; };
+		1C064D30E462FF14A1DC4BDC /* CrisisResourceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42762D57CBBA0A87B1D5C733 /* CrisisResourceCardView.swift */; };
 		1C2E0E31B00B3123E9EB4873 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */; };
 		1EE00F4E2DFB0E88F2E07C99 /* EmotionalBundleServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE130905112E9999824DBAA2 /* EmotionalBundleServiceMock.swift */; };
 		23D0DEBE9588086A94A36477 /* RedFlagsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348D94EA8312D4C9A8E6837 /* RedFlagsSectionViewModel.swift */; };
@@ -445,6 +447,7 @@
 		E54A7F04A3201883F4A2DA5D /* DrawingGalleryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1409E46492A9298B17FDE1D /* DrawingGalleryPresenterTests.swift */; };
 		E6BB48BEC7E8D6744978A8B5 /* TopicDistributionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D4A98EBE3D4825FA7F02B /* TopicDistributionViewModel.swift */; };
 		E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */; };
+		E9D694DEE57BA594D2169C63 /* BundleSectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6F9856E4AC47CE6B05355 /* BundleSectionCardView.swift */; };
 		EA40CFB07B604234819D7CA4 /* CanvasViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1311990A33E93E5D4C6F37E6 /* CanvasViewPresenterTests.swift */; };
 		F204463776F9581F97BBF6C6 /* DrawingGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87D35E8E7AD990440D588A0 /* DrawingGalleryViewController.swift */; };
 		F2E2FC2A93FA9CEABE0AAC5F /* TopicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E56565E1067F09318717526 /* TopicTests.swift */; };
@@ -522,9 +525,11 @@
 		33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntryCardCellViewModelTests.swift; sourceTree = "<group>"; };
 		3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreView.swift; sourceTree = "<group>"; };
 		379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
+		39C6F9856E4AC47CE6B05355 /* BundleSectionCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BundleSectionCardView.swift; sourceTree = "<group>"; };
 		3A458615FF4DBD7CB06D6654 /* EmotionalBundleMainViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainViewModel.swift; sourceTree = "<group>"; };
 		4217F49B101E056F9679585A /* StaySafeSectionViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StaySafeSectionViewModelTests.swift; sourceTree = "<group>"; };
 		4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Soulverse/Features/Profile/ViewModels/ProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
+		42762D57CBBA0A87B1D5C733 /* CrisisResourceCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CrisisResourceCardView.swift; sourceTree = "<group>"; };
 		4F086EFB7A0C114933FE0F5D /* EmotionalBundleServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleServiceProtocol.swift; sourceTree = "<group>"; };
 		5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		545EED434F6369FD9BF5FB8A /* MoodCheckInServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceTests.swift; sourceTree = "<group>"; };
@@ -532,6 +537,7 @@
 		55E82F16483EBA0D0699E631 /* TestHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		56BB214046513A25767B1757 /* FeelCalmSectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeelCalmSectionViewModel.swift; sourceTree = "<group>"; };
 		57F4883D32CE380C31648AE6 /* MoodEntriesDataAssemblerMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerMock.swift; sourceTree = "<group>"; };
+		59EAEF5AEB337CC3DACE9A68 /* BundleFormFieldView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BundleFormFieldView.swift; sourceTree = "<group>"; };
 		5A7A89532F54342452F4E920 /* ToolsViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		5A95C383DB61DE6370611AFF /* CanvasPromptTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CanvasPromptTests.swift; sourceTree = "<group>"; };
 		5C70D0337BCECFA7C98A0482 /* DrawingGallerySectionHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGallerySectionHeaderView.swift; sourceTree = "<group>"; };
@@ -1850,6 +1856,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		7E1ED07F200552EA2D02CE0C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A654863331F32A11FDCE3421 /* Components */,
+			);
+			name = Views;
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8B885CAC90F0C57D72ADB2AA /* Quest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1922,6 +1937,7 @@
 				9C926D0238843F88E79385AB /* Models */,
 				9D9D90746D74121DC1871D5E /* ViewModels */,
 				3ECBA3C42EA99354A86E7B29 /* Presenter */,
+				7E1ED07F200552EA2D02CE0C /* Views */,
 			);
 			name = EmotionalBundle;
 			path = EmotionalBundle;
@@ -1935,6 +1951,17 @@
 			);
 			name = JournalService;
 			path = JournalService;
+			sourceTree = "<group>";
+		};
+		A654863331F32A11FDCE3421 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				39C6F9856E4AC47CE6B05355 /* BundleSectionCardView.swift */,
+				59EAEF5AEB337CC3DACE9A68 /* BundleFormFieldView.swift */,
+				42762D57CBBA0A87B1D5C733 /* CrisisResourceCardView.swift */,
+			);
+			name = Components;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		ABF216993E65F7CD43C300DE /* Tests */ = {
@@ -2842,6 +2869,9 @@
 				36FB7C92D35BD446284B0C9D /* ProfessionalSupportSectionViewModel.swift in Sources */,
 				84C584B3B496CFED3DBBEDB3 /* EmotionalBundleMainPresenter.swift in Sources */,
 				DF12EBFF3AB9445233E99868 /* FirestoreEmotionalBundleService.swift in Sources */,
+				E9D694DEE57BA594D2169C63 /* BundleSectionCardView.swift in Sources */,
+				03F48090BE3E05B2B7366B43 /* BundleFormFieldView.swift in Sources */,
+				1C064D30E462FF14A1DC4BDC /* CrisisResourceCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
