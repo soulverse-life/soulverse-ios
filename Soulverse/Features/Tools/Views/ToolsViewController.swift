@@ -252,9 +252,7 @@ extension ToolsViewController: UICollectionViewDelegateFlowLayout {
 
         switch action {
         case .emotionBundle:
-            // TODO: Navigate to Emotion Bundle
-            print("📦 [Tools] Navigating to Emotion Bundle...")
-        // AppCoordinator.openEmotionBundle(from: self)
+            AppCoordinator.openEmotionalBundle(from: self)
 
         case .selfSoothingLabyrinth:
             print("🌀 [Tools] Navigating to Self-Soothing Labyrinth (Spiral Breathing)...")

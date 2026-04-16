@@ -390,6 +390,7 @@
 		7D54880ED3482D5B8E7B101A /* StaySafeSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557EAAE097EC0EB8B2C9994B /* StaySafeSectionViewModel.swift */; };
 		83B406F26FBBD050AAB70357 /* DrawingReplayPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D57DE6A82816385F47A87 /* DrawingReplayPresenterTests.swift */; };
 		84C584B3B496CFED3DBBEDB3 /* EmotionalBundleMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67594929C616A41B994759EA /* EmotionalBundleMainPresenter.swift */; };
+		84C584B3B496CFED3DBBEDA1 /* EmotionalBundleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67594929C616A41B994759EB /* EmotionalBundleCoordinator.swift */; };
 		868E394575E9B8110914957B /* DrawingReplayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0AE8D83427C1DF0E30948 /* DrawingReplayPresenter.swift */; };
 		86D0E5F0B454853840C60855 /* DrawingGalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4863D9AA9015B5E1ABBEB /* DrawingGalleryPresenter.swift */; };
 		89054E3902CF31DC4A50A47A /* ProfileViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */; };
@@ -563,6 +564,7 @@
 		659D171EB01E4F3823113C03 /* FirestoreJournalService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreJournalService.swift; sourceTree = "<group>"; };
 		67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingCanvasPresenter.swift; sourceTree = "<group>"; };
 		67594929C616A41B994759EA /* EmotionalBundleMainPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainPresenter.swift; sourceTree = "<group>"; };
+		67594929C616A41B994759EB /* EmotionalBundleCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleCoordinator.swift; sourceTree = "<group>"; };
 		6975331B3B4B8D90409C867C /* InnerCosmoViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		6A1E4D78EAA08D9BD40D689C /* FirestoreSchemaTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreSchemaTests.swift; sourceTree = "<group>"; };
 		6DE60F310C8AB64668217ECB /* DrawingModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
@@ -997,6 +999,7 @@
 		3ECBA3C42EA99354A86E7B29 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				67594929C616A41B994759EB /* EmotionalBundleCoordinator.swift */,
 				67594929C616A41B994759EA /* EmotionalBundleMainPresenter.swift */,
 			);
 			name = Presenter;
@@ -2886,6 +2889,7 @@
 				7D54880ED3482D5B8E7B101A /* StaySafeSectionViewModel.swift in Sources */,
 				36FB7C92D35BD446284B0C9D /* ProfessionalSupportSectionViewModel.swift in Sources */,
 				84C584B3B496CFED3DBBEDB3 /* EmotionalBundleMainPresenter.swift in Sources */,
+				84C584B3B496CFED3DBBEDA1 /* EmotionalBundleCoordinator.swift in Sources */,
 				DF12EBFF3AB9445233E99868 /* FirestoreEmotionalBundleService.swift in Sources */,
 				E9D694DEE57BA594D2169C63 /* BundleSectionCardView.swift in Sources */,
 				01AFEAE51929AC8297AD205B /* EmotionalBundleMainViewController.swift in Sources */,

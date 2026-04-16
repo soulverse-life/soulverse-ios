@@ -135,6 +135,16 @@ class AppCoordinator {
         navigationVC.pushViewController(spiralVC, animated: true)
     }
 
+    static func openEmotionalBundle(from sourceVC: UIViewController) {
+        guard let uid = User.shared.userId,
+              let navigationVC = sourceVC.navigationController else { return }
+        let coordinator = EmotionalBundleCoordinator(
+            navigationController: navigationVC,
+            uid: uid
+        )
+        coordinator.start()
+    }
+
     static func presentMoodCheckIn(from sourceVC: UIViewController, completion: ((Bool, MoodCheckInData?) -> Void)? = nil) {
         let navigationController = UINavigationController()
         navigationController.modalPresentationStyle = .fullScreen
