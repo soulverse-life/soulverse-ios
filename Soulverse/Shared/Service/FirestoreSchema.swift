@@ -8,7 +8,8 @@
 //  ┌─ users/{uid}                          (FirestoreUserService)
 //  │   ├─ mood_checkins/{checkinId}        (FirestoreMoodCheckInService)
 //  │   ├─ drawings/{drawingId}             (FirestoreDrawingService)
-//  │   └─ journals/{journalId}             (FirestoreJournalService)
+//  │   ├─ journals/{journalId}             (FirestoreJournalService)
+//  │   └─ emotional_bundle/{bundleId}      (EmotionalBundleService)
 //  │
 //  └─ Storage: users/{uid}/drawings/{drawingId}/
 //      ├─ image.png                        (rendered drawing)
@@ -39,6 +40,10 @@ enum FirestoreCollection {
     /// Subcollection for journals under a user.
     /// Path: `users/{uid}/journals/{journalId}`
     static let journals = "journals"
+
+    /// Subcollection for emotional bundle (safety plan) under a user.
+    /// Path: `users/{uid}/emotional_bundle/{bundleId}`
+    static let emotionalBundle = "emotional_bundle"
 }
 
 // MARK: - Firebase Storage Paths
