@@ -303,3 +303,67 @@
 
 // Common
 "ok" = "OK";
+
+// MARK: - Emotional Bundle
+"emotional_bundle_title" = "Emotional Bundle";
+"emotional_bundle_subtitle" = "Prepare helpful tools for difficult emotional moments";
+
+// Section titles
+"emotional_bundle_section_red_flags" = "Red Flags";
+"emotional_bundle_section_support_me" = "Support Me";
+"emotional_bundle_section_feel_calm" = "Feel Calm";
+"emotional_bundle_section_stay_safe" = "Stay Safe";
+"emotional_bundle_section_professional_support" = "Professional Support";
+
+// Red Flags
+"emotional_bundle_red_flags_question" = "What tells me I'm having a hard time?";
+"emotional_bundle_red_flag_label_1" = "Red Flag 1";
+"emotional_bundle_red_flag_label_2" = "Red Flag 2";
+"emotional_bundle_red_flag_placeholder" = "e.g., Being yelled at";
+"emotional_bundle_red_flag_required_error" = "Please enter at least one red flag";
+
+// Support Me
+"emotional_bundle_support_me_question" = "Who helps me feel safer or less alone?";
+"emotional_bundle_contact_label" = "Contact %d";
+"emotional_bundle_contact_name" = "Name";
+"emotional_bundle_contact_phone" = "Phone number";
+"emotional_bundle_contact_email" = "Email";
+"emotional_bundle_contact_relationship" = "Relationship";
+"emotional_bundle_contact_name_placeholder" = "e.g., Stephy";
+"emotional_bundle_contact_phone_placeholder" = "e.g., 646-098-7654";
+"emotional_bundle_contact_email_placeholder" = "e.g., stephy@email.com";
+"emotional_bundle_contact_relationship_placeholder" = "e.g., Friend";
+
+// Feel Calm
+"emotional_bundle_feel_calm_question" = "Things I can do to make me feel better";
+"emotional_bundle_activity_label_1" = "Activity 1";
+"emotional_bundle_activity_label_2" = "Activity 2 (Optional)";
+"emotional_bundle_activity_label_3" = "Activity 3 (Optional)";
+"emotional_bundle_activity_placeholder_1" = "e.g., Drawing helps me release stress";
+"emotional_bundle_activity_placeholder_2" = "e.g., Drinking cold water";
+"emotional_bundle_activity_placeholder_3" = "e.g., Go outside for 5 minutes";
+"emotional_bundle_activity_required_error" = "Please enter at least one activity";
+
+// Stay Safe
+"emotional_bundle_stay_safe_question" = "How can I make this moment feel safer?";
+"emotional_bundle_stay_safe_label" = "Actions";
+"emotional_bundle_stay_safe_placeholder" = "e.g., Remove risky objects, Step outside";
+
+// Professional Support
+"emotional_bundle_professional_support_question" = "Professional Support";
+"emotional_bundle_professional_contact_label" = "Professional Contact 1";
+"emotional_bundle_professional_place" = "Place / Clinic";
+"emotional_bundle_professional_name" = "Professional Name";
+"emotional_bundle_professional_phone" = "Emergency Contact Number";
+"emotional_bundle_professional_place_placeholder" = "e.g., Soulverse Wellness Center";
+"emotional_bundle_professional_name_placeholder" = "e.g., Dr. Louis Reves";
+"emotional_bundle_professional_phone_placeholder" = "e.g., (222) 140-310";
+
+// Crisis resource
+"emotional_bundle_crisis_call_confirmation" = "Call %@?";
+"emotional_bundle_crisis_call_action" = "Call";
+"emotional_bundle_crisis_cancel" = "Cancel";
+
+// Error states
+"emotional_bundle_load_error" = "Unable to load your bundle";
+"emotional_bundle_retry" = "Retry";

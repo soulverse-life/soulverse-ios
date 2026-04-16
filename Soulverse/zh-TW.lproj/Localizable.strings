@@ -303,3 +303,67 @@
 
 // Common
 "ok" = "確定";
+
+// MARK: - Emotional Bundle
+"emotional_bundle_title" = "情緒急救包";
+"emotional_bundle_subtitle" = "為情緒困難的時刻準備實用的工具";
+
+// Section titles
+"emotional_bundle_section_red_flags" = "警訊";
+"emotional_bundle_section_support_me" = "支持我的人";
+"emotional_bundle_section_feel_calm" = "讓我平靜";
+"emotional_bundle_section_stay_safe" = "保持安全";
+"emotional_bundle_section_professional_support" = "專業支援";
+
+// Red Flags
+"emotional_bundle_red_flags_question" = "什麼跡象告訴我正在經歷困難？";
+"emotional_bundle_red_flag_label_1" = "警訊 1";
+"emotional_bundle_red_flag_label_2" = "警訊 2";
+"emotional_bundle_red_flag_placeholder" = "例如：被大聲責罵";
+"emotional_bundle_red_flag_required_error" = "請至少輸入一項警訊";
+
+// Support Me
+"emotional_bundle_support_me_question" = "誰能讓我感到安全或不那麼孤單？";
+"emotional_bundle_contact_label" = "聯絡人 %d";
+"emotional_bundle_contact_name" = "姓名";
+"emotional_bundle_contact_phone" = "電話號碼";
+"emotional_bundle_contact_email" = "電子信箱";
+"emotional_bundle_contact_relationship" = "關係";
+"emotional_bundle_contact_name_placeholder" = "例如：Stephy";
+"emotional_bundle_contact_phone_placeholder" = "例如：646-098-7654";
+"emotional_bundle_contact_email_placeholder" = "例如：stephy@email.com";
+"emotional_bundle_contact_relationship_placeholder" = "例如：朋友";
+
+// Feel Calm
+"emotional_bundle_feel_calm_question" = "做什麼事能讓我感覺好一點";
+"emotional_bundle_activity_label_1" = "活動 1";
+"emotional_bundle_activity_label_2" = "活動 2（選填）";
+"emotional_bundle_activity_label_3" = "活動 3（選填）";
+"emotional_bundle_activity_placeholder_1" = "例如：畫畫幫助我釋放壓力";
+"emotional_bundle_activity_placeholder_2" = "例如：喝一杯冰水";
+"emotional_bundle_activity_placeholder_3" = "例如：到外面走五分鐘";
+"emotional_bundle_activity_required_error" = "請至少輸入一項活動";
+
+// Stay Safe
+"emotional_bundle_stay_safe_question" = "如何讓這個當下更安全？";
+"emotional_bundle_stay_safe_label" = "行動";
+"emotional_bundle_stay_safe_placeholder" = "例如：移除危險物品、走到戶外";
+
+// Professional Support
+"emotional_bundle_professional_support_question" = "專業支援";
+"emotional_bundle_professional_contact_label" = "專業聯絡人 1";
+"emotional_bundle_professional_place" = "機構／診所";
+"emotional_bundle_professional_name" = "專業人員姓名";
+"emotional_bundle_professional_phone" = "緊急聯絡電話";
+"emotional_bundle_professional_place_placeholder" = "例如：Soulverse 身心健康中心";
+"emotional_bundle_professional_name_placeholder" = "例如：Dr. Louis Reves";
+"emotional_bundle_professional_phone_placeholder" = "例如：(222) 140-310";
+
+// Crisis resource
+"emotional_bundle_crisis_call_confirmation" = "撥打電話給 %@？";
+"emotional_bundle_crisis_call_action" = "撥打";
+"emotional_bundle_crisis_cancel" = "取消";
+
+// Error states
+"emotional_bundle_load_error" = "無法載入你的急救包";
+"emotional_bundle_retry" = "重試";
