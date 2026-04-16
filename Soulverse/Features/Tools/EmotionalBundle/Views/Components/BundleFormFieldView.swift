@@ -89,6 +89,16 @@ final class BundleFormFieldView: UIView {
         }
     }
 
+    // MARK: - Public Interface
+
+    var text: String {
+        return textField.text ?? ""
+    }
+
+    func showError() {
+        textField.updateStatus(status: .errorWithoutMessage)
+    }
+
     // MARK: - Configuration
 
     func configure(
