@@ -18,6 +18,7 @@
 		1135B47B75C583A6E7DE7F32 /* TopicDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B7B1090574611BFDFC632 /* TopicDistributionView.swift */; };
 		1A2CFCCD95653982DC90244B /* SoulverseActionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90781A662B73BED5786934DE /* SoulverseActionModal.swift */; };
 		1C2E0E31B00B3123E9EB4873 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */; };
+		1EE00F4E2DFB0E88F2E07C99 /* EmotionalBundleServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE130905112E9999824DBAA2 /* EmotionalBundleServiceMock.swift */; };
 		244A5F23289862BDB386843F /* ProfileViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */; };
 		27427F547F5406EEC24899AC /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
 		280A04AAC641DB794DD696B7 /* DrawingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6A03F5EE59C7A4854CAF0 /* DrawingServiceProtocol.swift */; };
@@ -724,6 +725,7 @@
 		B7278578F137612349A77E22 /* EmotionTypeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionTypeTests.swift; sourceTree = "<group>"; };
 		BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerFetchTests.swift; sourceTree = "<group>"; };
 		BC0D4A98EBE3D4825FA7F02B /* TopicDistributionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionViewModel.swift; sourceTree = "<group>"; };
+		BE130905112E9999824DBAA2 /* EmotionalBundleServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleServiceMock.swift; sourceTree = "<group>"; };
 		BEAB351D7409FEACE9BE53BE /* WeeklyMoodScoreViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreViewModelTests.swift; sourceTree = "<group>"; };
 		C1409E46492A9298B17FDE1D /* DrawingGalleryPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterTests.swift; sourceTree = "<group>"; };
 		C206EA9BF532D3A837AAC558 /* DrawingGalleryCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryCell.swift; sourceTree = "<group>"; };
@@ -931,6 +933,7 @@
 				28E20AAA3AF4B7A41DF30E6B /* JournalServiceMock.swift */,
 				039B005BCF2FF3EB7E3F7DDE /* MoodCheckInServiceMock.swift */,
 				ACD8D9DC4265FF367E93D223 /* MoodEntriesDataAssemblerMock.swift */,
+				BE130905112E9999824DBAA2 /* EmotionalBundleServiceMock.swift */,
 			);
 			name = Service;
 			path = Service;
@@ -2814,6 +2817,7 @@
 				BCCF4852163421323A310717 /* MoodEntriesDataAssemblerMock.swift in Sources */,
 				00D4EFCE0FFB3ED52205CCE5 /* JournalServiceMock.swift in Sources */,
 				63F4F1AF3408C11CF109DEF5 /* EmotionalBundleModelTests.swift in Sources */,
+				1EE00F4E2DFB0E88F2E07C99 /* EmotionalBundleServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
