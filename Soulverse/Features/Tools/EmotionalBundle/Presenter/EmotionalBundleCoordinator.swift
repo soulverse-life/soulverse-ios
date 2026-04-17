@@ -46,7 +46,6 @@ final class EmotionalBundleCoordinator {
 
         self.presenter = mainPresenter
 
-        mainVC.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(mainVC, animated: true)
     }
 
