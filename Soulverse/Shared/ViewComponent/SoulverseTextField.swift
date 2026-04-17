@@ -105,6 +105,18 @@ class SoulverseTextField: UIView {
         get {
             inputTextField.text
         }
+        set {
+            inputTextField.text = newValue
+        }
+    }
+
+    var keyboardType: UIKeyboardType {
+        get {
+            inputTextField.keyboardType
+        }
+        set {
+            inputTextField.keyboardType = newValue
+        }
     }
     var inputType: SoulverseTextFieldType
     var status: SoulverseTextFieldStatus = .normal

@@ -111,14 +111,19 @@ final class BundleFormFieldView: UIView {
         titleLabel.text = title
         self.maxCharacters = maxCharacters
 
-        // Re-create textField with proper title and placeholder
+        // Re-create textField with empty title (title is shown by our own titleLabel)
         textField.removeFromSuperview()
         textField = SoulverseTextField(
-            title: title,
+            title: "",
             placeholder: placeholder,
             type: .general,
             delegate: self
         )
+        textField.keyboardType = keyboardType
+
+        if let text = text, !text.isEmpty {
+            textField.text = text
+        }
 
         addSubview(textField)
         textField.snp.makeConstraints { make in
