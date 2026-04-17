@@ -14,9 +14,9 @@ final class BundleSectionCardView: UIView {
         static let cornerRadius: CGFloat = 16
         static let iconTopInset: CGFloat = 8
         static let contentInsetHorizontal: CGFloat = 16
-        static let iconSize: CGFloat = 24
+        static let iconSize: CGFloat = 36
         static let iconToTitleSpacing: CGFloat = 4
-        static let titleFontSize: CGFloat = 14
+        static let titleFontSize: CGFloat = 17
         static let checkmarkSize: CGFloat = 20
         static let checkmarkTopInset: CGFloat = 12
         static let checkmarkTrailingInset: CGFloat = 12
@@ -39,7 +39,7 @@ final class BundleSectionCardView: UIView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: Layout.titleFontSize, weight: .medium)
+        label.font = .projectFont(ofSize: Layout.titleFontSize, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 2
         return label

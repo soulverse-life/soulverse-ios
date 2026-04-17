@@ -35,7 +35,6 @@ final class EmotionalBundleMainViewController: ViewController {
         static let errorLabelFontSize: CGFloat = 15
         static let errorSpacing: CGFloat = 16
         static let columnsPerRow: Int = 2
-        static let emoPetBottomMessage: String = "emotional_bundle_subtitle"
     }
 
     // MARK: - Properties
@@ -273,7 +272,7 @@ final class EmotionalBundleMainViewController: ViewController {
 
     private func showEmoPetChat() {
         guard chatView == nil else { return }
-        let message = NSLocalizedString("emotional_bundle_subtitle", comment: "")
+        let message = NSLocalizedString("emotional_bundle_emo_pet_message", comment: "")
         let newChatView = EmoPetChatView.create(config: EmoPetChatConfig(
             image: petImage,
             message: message

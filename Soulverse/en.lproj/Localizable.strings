@@ -367,6 +367,9 @@
 "emotional_bundle_crisis_call_unavailable_message" = "Phone calls are not supported on this device.";
 "emotional_bundle_crisis_ok" = "OK";
 
+// EmoPet message
+"emotional_bundle_emo_pet_message" = "This is your support plan for hard moments. You're filling this out now so we don't have to figure everything out when you feel overwhelmed.";
+
 // Error states
 "emotional_bundle_load_error" = "Unable to load your bundle";
 "emotional_bundle_retry" = "Retry";
