@@ -266,6 +266,8 @@
 		7951A9BC2E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
+		7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
+		7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
 		7951A9C92E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */; };
 		7951A9CA2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */; };
 		7951A9CB2E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */; };
@@ -633,6 +635,7 @@
 		794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingViewController.swift; sourceTree = "<group>"; };
 		7951A9B62E532C85006EB0EC /* SoulverseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButton.swift; sourceTree = "<group>"; };
 		7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseNavigationView.swift; sourceTree = "<group>"; };
+		7AE10C0001000000000000A1 /* EmoPetChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoPetChatView.swift; sourceTree = "<group>"; };
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
 		7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenter.swift; sourceTree = "<group>"; };
 		7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterType.swift; sourceTree = "<group>"; };
@@ -1219,6 +1222,7 @@
 				79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */,
 				7951A9B62E532C85006EB0EC /* SoulverseButton.swift */,
 				7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */,
+				7AE10C0001000000000000A1 /* EmoPetChatView.swift */,
 				7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */,
 				790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */,
 				794B5A022EA38B45006CF069 /* SoulverseTextField.swift */,
@@ -2450,6 +2454,7 @@
 				7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */,
 				79DD633C2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */,
 				7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
+				7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */,
 				790D87D22ECF668700D4F61F /* SpiralView.swift in Sources */,
 				790D87D32ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
@@ -2611,6 +2616,7 @@
 				7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */,
 				79DD633B2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */,
 				7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
+				7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */,
 				790D87D42ECF668700D4F61F /* SpiralView.swift in Sources */,
 				790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A082EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,

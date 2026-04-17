@@ -67,6 +67,11 @@ extension UIColor {
         ThemeManager.shared.currentTheme.cardBackground
     }
 
+    /// Chat bubble background color for emo pet chat overlay
+    static var themeChatBubbleBackground: UIColor {
+        ThemeManager.shared.currentTheme.chatBubbleBackground
+    }
+
     /// Separator color - adapts to current theme
     static var themeSeparator: UIColor {
         ThemeManager.shared.currentTheme.separator

@@ -32,6 +32,7 @@ protocol Theme: Identifiable where ID == String {
 
     // Component colors
     var cardBackground: UIColor { get }
+    var chatBubbleBackground: UIColor { get }
     var cardShadow: UIColor { get }
     var separator: UIColor { get }
     var modalBackground: UIColor { get }

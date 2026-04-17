@@ -16,7 +16,7 @@ class SpiralBreathingViewController: ViewController {
     }()
 
     private let spiralView = SpiralView()
-    private let instructionLabel = UILabel()
+    private var chatView: EmoPetChatView?
     private let backgroundImageView = UIImageView()  // Optional, for atmosphere
 
     // MARK: - State
@@ -77,25 +77,33 @@ class SpiralBreathingViewController: ViewController {
         // spiralView.visualConfig = ...
         view.addSubview(spiralView)
 
-        // Instruction Label
-        instructionLabel.translatesAutoresizingMaskIntoConstraints = false
-        instructionLabel.textAlignment = .center
-        instructionLabel.textColor = .themeTextPrimary
-        instructionLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        instructionLabel.numberOfLines = 0
-        view.addSubview(instructionLabel)
-
         NSLayoutConstraint.activate([
             spiralView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spiralView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             // Make spiral larger: use almost full width
             spiralView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20),
             spiralView.heightAnchor.constraint(equalTo: spiralView.widthAnchor),
-
-            instructionLabel.bottomAnchor.constraint(equalTo: spiralView.topAnchor, constant: -40),
-            instructionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            instructionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ])
+    }
+
+    // MARK: - Chat View
+
+    private func showInstruction(_ message: String) {
+        if let chatView = chatView {
+            chatView.update(config: EmoPetChatConfig(
+                image: UIImage(named: "basic_first_level"),
+                message: message
+            ))
+            return
+        }
+
+        let newChatView = EmoPetChatView.create(config: EmoPetChatConfig(
+            image: UIImage(named: "basic_first_level"),
+            message: message
+        ))
+        newChatView.delegate = self
+        newChatView.show(in: view, animated: true)
+        chatView = newChatView
     }
 
     private func setupHeroTransitions() {
@@ -110,9 +118,9 @@ class SpiralBreathingViewController: ViewController {
 
         switch state {
         case .idle:
-            instructionLabel.text = NSLocalizedString(
+            showInstruction(NSLocalizedString(
                 "spiral_idle_instruction", comment: "Place your finger in the center of the spiral."
-            )
+            ))
             spiralView.setProgress(0.0, isInhale: true)
             spiralView.setHeadGlow(visible: true)
             spiralView.pulseHead()
@@ -120,25 +128,25 @@ class SpiralBreathingViewController: ViewController {
             lastHapticProgress = 0.0
 
         case .inhale:
-            instructionLabel.text = NSLocalizedString(
+            showInstruction(NSLocalizedString(
                 "spiral_inhale_instruction",
-                comment: "Inhale slowly and draw outward along the spiral.")
+                comment: "Inhale slowly and draw outward along the spiral."))
             spiralView.stopPulse()
             spiralView.setHeadGlow(visible: true)
             impactGenerator.prepare()
 
         case .hold:
-            instructionLabel.text = NSLocalizedString(
-                "spiral_hold_instruction", comment: "Hold your breath")
+            showInstruction(NSLocalizedString(
+                "spiral_hold_instruction", comment: "Hold your breath"))
             spiralView.stopPulse()
             holdRemainingTime = actionConfig.holdDuration
             notificationGenerator.notificationOccurred(.success)
         // Timer starts only when user touches
 
         case .exhale:
-            instructionLabel.text = NSLocalizedString(
+            showInstruction(NSLocalizedString(
                 "spiral_exhale_instruction",
-                comment: "Exhale gently as you trace your way back to the center.")
+                comment: "Exhale gently as you trace your way back to the center."))
             spiralView.resetForExhale()
             // Reset progress for exhale logic (0 = start of exhale at outer edge)
             currentProgress = 0.0
@@ -146,8 +154,8 @@ class SpiralBreathingViewController: ViewController {
             impactGenerator.prepare()
 
         case .completed:
-            instructionLabel.text = NSLocalizedString(
-                "spiral_completion_message", comment: "Well done.")
+            showInstruction(NSLocalizedString(
+                "spiral_completion_message", comment: "Well done."))
             spiralView.setHeadGlow(visible: false)
             showCompletionAlert()
         }
@@ -359,16 +367,16 @@ class SpiralBreathingViewController: ViewController {
 
         if cycleProgress < upDuration {
             // Inhale phase
-            instructionLabel.text = NSLocalizedString(
-                "spiral_hold_inhale", comment: "Breathe in slowly")
+            showInstruction(NSLocalizedString(
+                "spiral_hold_inhale", comment: "Breathe in slowly"))
         } else if cycleProgress < upDuration + pauseDuration {
             // Hold phase
-            instructionLabel.text = NSLocalizedString(
-                "spiral_hold_pause", comment: "Hold your breath")
+            showInstruction(NSLocalizedString(
+                "spiral_hold_pause", comment: "Hold your breath"))
         } else {
             // Exhale phase
-            instructionLabel.text = NSLocalizedString(
-                "spiral_hold_exhale", comment: "Breathe out slowly")
+            showInstruction(NSLocalizedString(
+                "spiral_hold_exhale", comment: "Breathe out slowly"))
         }
     }
 
@@ -385,5 +393,13 @@ class SpiralBreathingViewController: ViewController {
                     self?.transition(to: .idle)
                 }))
         present(alert, animated: true)
+    }
+}
+
+// MARK: - EmoPetChatViewDelegate
+
+extension SpiralBreathingViewController: EmoPetChatViewDelegate {
+    func emoPetChatViewDidDismiss(_ view: EmoPetChatView) {
+        chatView = nil
     }
 }

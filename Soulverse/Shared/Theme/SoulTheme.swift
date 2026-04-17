@@ -78,6 +78,10 @@ extension SoulTheme {
         UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
     }
 
+    var chatBubbleBackground: UIColor {
+        UIColor(red: 118.0 / 255.0, green: 118.0 / 255.0, blue: 128.0 / 255.0, alpha: 0.12)
+    }
+
     var cardShadow: UIColor {
         UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
     }
