@@ -21,18 +21,21 @@ final class EmotionalBundleMainViewController: ViewController {
 
     private enum Layout {
         static let horizontalPadding: CGFloat = 16
-        static let gridSpacing: CGFloat = 12
+        static let gridSpacing: CGFloat = 16
         static let scrollViewTopPadding: CGFloat = 8
+        static let titleTopPadding: CGFloat = 16
+        static let titleFontSize: CGFloat = 22
         static let subtitleTopPadding: CGFloat = 8
         static let subtitleHorizontalPadding: CGFloat = 20
         static let subtitleFontSize: CGFloat = 14
-        static let gridTopPadding: CGFloat = 16
+        static let gridTopPadding: CGFloat = 20
         static let gridBottomPadding: CGFloat = 24
         static let retryButtonWidth: CGFloat = 120
         static let retryButtonHeight: CGFloat = 44
         static let errorLabelFontSize: CGFloat = 15
         static let errorSpacing: CGFloat = 16
         static let columnsPerRow: Int = 2
+        static let emoPetBottomMessage: String = "emotional_bundle_subtitle"
     }
 
     // MARK: - Properties
@@ -44,12 +47,21 @@ final class EmotionalBundleMainViewController: ViewController {
 
     private lazy var navigationView: SoulverseNavigationView = {
         let config = SoulverseNavigationConfig(
-            title: NSLocalizedString("emotional_bundle_title", comment: ""),
+            title: "",
             showBackButton: true
         )
         let view = SoulverseNavigationView(config: config)
         view.delegate = self
         return view
+    }()
+
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("emotional_bundle_title", comment: "")
+        label.font = .projectFont(ofSize: Layout.titleFontSize, weight: .bold)
+        label.textColor = .themeTextPrimary
+        label.textAlignment = .center
+        return label
     }()
 
     private lazy var subtitleLabel: UILabel = {
@@ -86,6 +98,8 @@ final class EmotionalBundleMainViewController: ViewController {
     }()
 
     private var sectionCardViews: [BundleSectionCardView] = []
+    private var chatView: EmoPetChatView?
+    private let petImage = UIImage(named: "basic_first_level")
 
     // MARK: - Error State Views
 
@@ -127,6 +141,16 @@ final class EmotionalBundleMainViewController: ViewController {
         presenter.fetchData()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showEmoPetChat()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        dismissEmoPetChat()
+    }
+
     // MARK: - Setup
 
     private func setupView() {
@@ -137,6 +161,7 @@ final class EmotionalBundleMainViewController: ViewController {
         view.addSubview(errorContainerView)
 
         scrollView.addSubview(contentView)
+        contentView.addSubview(titleLabel)
         contentView.addSubview(subtitleLabel)
         contentView.addSubview(gridStackView)
 
@@ -162,8 +187,13 @@ final class EmotionalBundleMainViewController: ViewController {
             make.width.equalTo(scrollView)
         }
 
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Layout.titleTopPadding)
+            make.left.right.equalToSuperview().inset(Layout.subtitleHorizontalPadding)
+        }
+
         subtitleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Layout.subtitleTopPadding)
+            make.top.equalTo(titleLabel.snp.bottom).offset(Layout.subtitleTopPadding)
             make.left.right.equalToSuperview().inset(Layout.subtitleHorizontalPadding)
         }
 
@@ -239,6 +269,25 @@ final class EmotionalBundleMainViewController: ViewController {
         }
     }
 
+    // MARK: - EmoPetChatView
+
+    private func showEmoPetChat() {
+        guard chatView == nil else { return }
+        let message = NSLocalizedString("emotional_bundle_subtitle", comment: "")
+        let newChatView = EmoPetChatView.create(config: EmoPetChatConfig(
+            image: petImage,
+            message: message
+        ))
+        newChatView.delegate = self
+        chatView = newChatView
+        newChatView.show(in: view)
+    }
+
+    private func dismissEmoPetChat() {
+        chatView?.dismiss()
+        chatView = nil
+    }
+
     // MARK: - State Management
 
     private func showContentState() {
@@ -264,6 +313,14 @@ final class EmotionalBundleMainViewController: ViewController {
 extension EmotionalBundleMainViewController {
     func navigationViewDidTapBack(_ soulverseNavigationView: SoulverseNavigationView) {
         delegate?.didTapClose(self)
+    }
+}
+
+// MARK: - EmoPetChatViewDelegate
+
+extension EmotionalBundleMainViewController: EmoPetChatViewDelegate {
+    func emoPetChatViewDidDismiss(_ view: EmoPetChatView) {
+        chatView = nil
     }
 }
 

@@ -2,8 +2,6 @@
 //  BundleSectionCardView.swift
 //  Soulverse
 //
-//  Created on 2026/4/16.
-//
 
 import UIKit
 import SnapKit
@@ -18,10 +16,12 @@ final class BundleSectionCardView: UIView {
         static let contentInsetHorizontal: CGFloat = 16
         static let iconSize: CGFloat = 24
         static let iconToTitleSpacing: CGFloat = 12
-        static let titleFontSize: CGFloat = 16
+        static let titleFontSize: CGFloat = 14
         static let checkmarkSize: CGFloat = 20
         static let checkmarkTopInset: CGFloat = 12
         static let checkmarkTrailingInset: CGFloat = 12
+        static let cardHeight: CGFloat = 105
+        static let borderWidth: CGFloat = 0.5
     }
 
     // MARK: - Properties
@@ -29,14 +29,6 @@ final class BundleSectionCardView: UIView {
     var onTap: (() -> Void)?
 
     // MARK: - UI Elements
-
-    private let baseView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .themeCardBackground
-        return view
-    }()
-
-    private let visualEffectView = UIVisualEffectView()
 
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -77,54 +69,31 @@ final class BundleSectionCardView: UIView {
     // MARK: - Setup
 
     private func setupView() {
-        baseView.addSubview(iconImageView)
-        baseView.addSubview(titleLabel)
-        baseView.addSubview(checkmarkImageView)
+        backgroundColor = .themeCardBackground
+        layer.cornerRadius = Layout.cornerRadius
+        layer.borderWidth = Layout.borderWidth
+        layer.borderColor = UIColor.themeSeparator.cgColor
+        clipsToBounds = true
 
-        if #available(iOS 26.0, *) {
-            let glassEffect = UIGlassEffect(style: .clear)
-            visualEffectView.effect = glassEffect
-            visualEffectView.layer.cornerRadius = Layout.cornerRadius
-            visualEffectView.clipsToBounds = true
-            visualEffectView.contentView.addSubview(baseView)
-            addSubview(visualEffectView)
-
-            visualEffectView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-
-            UIView.animate {
-                self.visualEffectView.effect = glassEffect
-                self.visualEffectView.overrideUserInterfaceStyle = .light
-            }
-        } else {
-            addSubview(baseView)
-            baseView.layer.cornerRadius = Layout.cornerRadius
-            baseView.layer.borderWidth = 1
-            baseView.layer.borderColor = UIColor.themeSeparator.cgColor
-            baseView.clipsToBounds = true
-
-            baseView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-        }
+        addSubview(iconImageView)
+        addSubview(titleLabel)
+        addSubview(checkmarkImageView)
 
         setupConstraints()
     }
 
     private func setupConstraints() {
-        baseView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        snp.makeConstraints { make in
+            make.height.equalTo(Layout.cardHeight)
         }
 
         iconImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Layout.contentInsetVertical)
+            make.bottom.equalTo(titleLabel.snp.top).offset(-Layout.iconToTitleSpacing)
             make.leading.equalToSuperview().inset(Layout.contentInsetHorizontal)
             make.width.height.equalTo(Layout.iconSize)
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(iconImageView.snp.bottom).offset(Layout.iconToTitleSpacing)
             make.leading.trailing.equalToSuperview().inset(Layout.contentInsetHorizontal)
             make.bottom.equalToSuperview().inset(Layout.contentInsetVertical)
         }
