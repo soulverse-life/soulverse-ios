@@ -24,7 +24,10 @@ final class FeelCalmSectionViewController: ViewController {
         static let scrollViewTopPadding: CGFloat = 8
         static let titleTopPadding: CGFloat = 24
         static let titleHorizontalPadding: CGFloat = 20
-        static let titleFontSize: CGFloat = 18
+        static let titleFontSize: CGFloat = 22
+        static let iconTopPadding: CGFloat = 24
+        static let iconSize: CGFloat = 36
+        static let iconToTitleSpacing: CGFloat = 12
         static let fieldSpacing: CGFloat = 20
         static let firstFieldTopPadding: CGFloat = 24
         static let contentBottomPadding: CGFloat = 40
@@ -38,12 +41,6 @@ final class FeelCalmSectionViewController: ViewController {
     // MARK: - UI Components
 
     private lazy var navigationView: SoulverseNavigationView = {
-        let cancelItem = SoulverseNavigationItem.button(
-            image: UIImage(systemName: "xmark"),
-            identifier: "cancel"
-        ) { [weak self] in
-            self?.handleCancel()
-        }
         let saveItem = SoulverseNavigationItem.button(
             image: UIImage(systemName: "checkmark"),
             identifier: "save"
@@ -52,13 +49,20 @@ final class FeelCalmSectionViewController: ViewController {
         }
         let config = SoulverseNavigationConfig(
             title: NSLocalizedString("emotional_bundle_section_feel_calm", comment: ""),
-            showBackButton: false,
+            showBackButton: true,
             rightItems: [saveItem]
         )
         let view = SoulverseNavigationView(config: config)
-        view.addRightItems([cancelItem, saveItem])
         view.delegate = self
         return view
+    }()
+
+    private lazy var sectionIconView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: EmotionalBundleSection.feelCalm.iconName)
+        imageView.tintColor = .themeTextSecondary
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
 
     private lazy var scrollView: UIScrollView = {
@@ -79,7 +83,7 @@ final class FeelCalmSectionViewController: ViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("emotional_bundle_feel_calm_question", comment: "")
-        label.font = .projectFont(ofSize: Layout.titleFontSize, weight: .semibold)
+        label.font = .projectFont(ofSize: Layout.titleFontSize, weight: .bold)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         return label
@@ -153,6 +157,7 @@ final class FeelCalmSectionViewController: ViewController {
         view.addSubview(navigationView)
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addSubview(sectionIconView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(activity1Field)
         contentView.addSubview(activity2Field)
@@ -177,8 +182,14 @@ final class FeelCalmSectionViewController: ViewController {
             make.width.equalTo(scrollView)
         }
 
+        sectionIconView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Layout.iconTopPadding)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(Layout.iconSize)
+        }
+
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Layout.titleTopPadding)
+            make.top.equalTo(sectionIconView.snp.bottom).offset(Layout.iconToTitleSpacing)
             make.left.right.equalToSuperview().inset(Layout.titleHorizontalPadding)
         }
 
@@ -215,5 +226,11 @@ final class FeelCalmSectionViewController: ViewController {
     private func handleCancel() {
         view.endEditing(true)
         delegate?.didTapCancel(self)
+    }
+
+    // MARK: - SoulverseNavigationViewDelegate
+
+    func navigationViewDidTapBack(_ soulverseNavigationView: SoulverseNavigationView) {
+        handleCancel()
     }
 }
