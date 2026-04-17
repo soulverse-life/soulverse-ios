@@ -54,7 +54,7 @@ final class SupportMeSectionViewController: ViewController {
             self?.handleSave()
         }
         let config = SoulverseNavigationConfig(
-            title: "",
+            title: NSLocalizedString("emotional_bundle_section_support_me", comment: ""),
             showBackButton: false,
             rightItems: [saveItem]
         )
@@ -91,7 +91,7 @@ final class SupportMeSectionViewController: ViewController {
     // Contact 1 fields
     private lazy var contact1HeaderLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("emotional_bundle_contact_1_header", comment: "")
+        label.text = String(format: NSLocalizedString("emotional_bundle_contact_label", comment: ""), 1)
         label.font = .projectFont(ofSize: Layout.contactHeaderFontSize, weight: .semibold)
         label.textColor = .themeTextPrimary
         return label
@@ -100,7 +100,7 @@ final class SupportMeSectionViewController: ViewController {
     private lazy var contact1NameField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_name_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_contact_name", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_name_placeholder", comment: ""),
             text: viewModel.contacts[0].name,
             maxCharacters: viewModel.maxCharacters
@@ -114,7 +114,7 @@ final class SupportMeSectionViewController: ViewController {
     private lazy var contact1PhoneField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_phone_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_contact_phone", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_phone_placeholder", comment: ""),
             text: viewModel.contacts[0].phone,
             maxCharacters: viewModel.maxCharacters,
@@ -129,7 +129,7 @@ final class SupportMeSectionViewController: ViewController {
     private lazy var contact1EmailField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_email_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_contact_email", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_email_placeholder", comment: ""),
             text: viewModel.contacts[0].email,
             maxCharacters: viewModel.maxCharacters,
@@ -144,7 +144,7 @@ final class SupportMeSectionViewController: ViewController {
     private lazy var contact1RelationshipField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_relationship_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_contact_relationship", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_relationship_placeholder", comment: ""),
             text: viewModel.contacts[0].relationship,
             maxCharacters: viewModel.maxCharacters
@@ -158,7 +158,7 @@ final class SupportMeSectionViewController: ViewController {
     // Contact 2 fields
     private lazy var contact2HeaderLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("emotional_bundle_contact_2_header", comment: "")
+        label.text = String(format: NSLocalizedString("emotional_bundle_contact_label", comment: ""), 2)
         label.font = .projectFont(ofSize: Layout.contactHeaderFontSize, weight: .semibold)
         label.textColor = .themeTextPrimary
         return label
@@ -167,7 +167,7 @@ final class SupportMeSectionViewController: ViewController {
     private lazy var contact2NameField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_name_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_contact_name", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_name_placeholder", comment: ""),
             text: viewModel.contacts[1].name,
             maxCharacters: viewModel.maxCharacters
@@ -181,7 +181,7 @@ final class SupportMeSectionViewController: ViewController {
     private lazy var contact2PhoneField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_phone_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_contact_phone", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_phone_placeholder", comment: ""),
             text: viewModel.contacts[1].phone,
             maxCharacters: viewModel.maxCharacters,
@@ -196,7 +196,7 @@ final class SupportMeSectionViewController: ViewController {
     private lazy var contact2EmailField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_email_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_contact_email", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_email_placeholder", comment: ""),
             text: viewModel.contacts[1].email,
             maxCharacters: viewModel.maxCharacters,
@@ -211,7 +211,7 @@ final class SupportMeSectionViewController: ViewController {
     private lazy var contact2RelationshipField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_relationship_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_contact_relationship", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_relationship_placeholder", comment: ""),
             text: viewModel.contacts[1].relationship,
             maxCharacters: viewModel.maxCharacters

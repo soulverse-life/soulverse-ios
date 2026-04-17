@@ -194,12 +194,12 @@ final class CrisisResourceCardView: UIView {
         // Check if device can make phone calls
         guard UIApplication.shared.canOpenURL(url) else {
             let alert = UIAlertController(
-                title: NSLocalizedString("emotional_bundle_call_unavailable_title", comment: ""),
-                message: NSLocalizedString("emotional_bundle_call_unavailable_message", comment: ""),
+                title: NSLocalizedString("emotional_bundle_crisis_call_unavailable_title", comment: ""),
+                message: NSLocalizedString("emotional_bundle_crisis_call_unavailable_message", comment: ""),
                 preferredStyle: .alert
             )
             alert.addAction(UIAlertAction(
-                title: NSLocalizedString("emotional_bundle_ok", comment: ""),
+                title: NSLocalizedString("emotional_bundle_crisis_ok", comment: ""),
                 style: .default
             ))
             parentViewController?.present(alert, animated: true)
@@ -208,23 +208,23 @@ final class CrisisResourceCardView: UIView {
 
         // Show confirmation alert before dialing
         let alert = UIAlertController(
-            title: NSLocalizedString("emotional_bundle_call_confirm_title", comment: ""),
-            message: String(
-                format: NSLocalizedString("emotional_bundle_call_confirm_message", comment: ""),
+            title: String(
+                format: NSLocalizedString("emotional_bundle_crisis_call_confirmation", comment: ""),
                 number
             ),
+            message: nil,
             preferredStyle: .alert
         )
 
         alert.addAction(UIAlertAction(
-            title: NSLocalizedString("emotional_bundle_call_action", comment: ""),
+            title: NSLocalizedString("emotional_bundle_crisis_call_action", comment: ""),
             style: .default
         ) { _ in
             UIApplication.shared.open(url)
         })
 
         alert.addAction(UIAlertAction(
-            title: NSLocalizedString("emotional_bundle_cancel", comment: ""),
+            title: NSLocalizedString("emotional_bundle_crisis_cancel", comment: ""),
             style: .cancel
         ))
 

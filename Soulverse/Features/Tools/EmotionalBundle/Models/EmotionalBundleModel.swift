@@ -150,6 +150,16 @@ enum EmotionalBundleSection: String, CaseIterable {
         case .professionalSupport: return NSLocalizedString("emotional_bundle_section_professional_support", comment: "")
         }
     }
+
+    var iconName: String {
+        switch self {
+        case .redFlags: return "exclamationmark.triangle"
+        case .supportMe: return "person.2"
+        case .feelCalm: return "leaf"
+        case .staySafe: return "shield"
+        case .professionalSupport: return "stethoscope"
+        }
+    }
 }
 
 // MARK: - Section Data (for partial saves)

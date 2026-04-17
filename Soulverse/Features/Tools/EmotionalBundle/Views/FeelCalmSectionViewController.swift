@@ -51,7 +51,7 @@ final class FeelCalmSectionViewController: ViewController {
             self?.handleSave()
         }
         let config = SoulverseNavigationConfig(
-            title: "",
+            title: NSLocalizedString("emotional_bundle_section_feel_calm", comment: ""),
             showBackButton: false,
             rightItems: [saveItem]
         )
@@ -88,8 +88,8 @@ final class FeelCalmSectionViewController: ViewController {
     private lazy var activity1Field: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_activity_1_title", comment: ""),
-            placeholder: NSLocalizedString("emotional_bundle_activity_1_placeholder", comment: ""),
+            title: NSLocalizedString("emotional_bundle_activity_label_1", comment: ""),
+            placeholder: NSLocalizedString("emotional_bundle_activity_placeholder_1", comment: ""),
             text: viewModel.activities[0],
             maxCharacters: viewModel.maxCharacters
         )
@@ -102,8 +102,8 @@ final class FeelCalmSectionViewController: ViewController {
     private lazy var activity2Field: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_activity_2_title", comment: ""),
-            placeholder: NSLocalizedString("emotional_bundle_activity_2_placeholder", comment: ""),
+            title: NSLocalizedString("emotional_bundle_activity_label_2", comment: ""),
+            placeholder: NSLocalizedString("emotional_bundle_activity_placeholder_2", comment: ""),
             text: viewModel.activities[1],
             maxCharacters: viewModel.maxCharacters
         )
@@ -116,8 +116,8 @@ final class FeelCalmSectionViewController: ViewController {
     private lazy var activity3Field: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_activity_3_title", comment: ""),
-            placeholder: NSLocalizedString("emotional_bundle_activity_3_placeholder", comment: ""),
+            title: NSLocalizedString("emotional_bundle_activity_label_3", comment: ""),
+            placeholder: NSLocalizedString("emotional_bundle_activity_placeholder_3", comment: ""),
             text: viewModel.activities[2],
             maxCharacters: viewModel.maxCharacters
         )

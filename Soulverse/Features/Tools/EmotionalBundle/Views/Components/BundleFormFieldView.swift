@@ -49,7 +49,7 @@ final class BundleFormFieldView: UIView {
     private let characterCountLabel: UILabel = {
         let label = UILabel()
         label.font = .projectFont(ofSize: Layout.counterFontSize, weight: .regular)
-        label.textColor = .primaryOrange
+        label.textColor = .themeTextSecondary
         label.textAlignment = .right
         label.isHidden = true
         return label

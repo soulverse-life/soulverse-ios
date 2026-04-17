@@ -53,7 +53,7 @@ final class ProfessionalSupportSectionViewController: ViewController {
             self?.handleSave()
         }
         let config = SoulverseNavigationConfig(
-            title: "",
+            title: NSLocalizedString("emotional_bundle_section_professional_support", comment: ""),
             showBackButton: false,
             rightItems: [saveItem]
         )
@@ -100,7 +100,7 @@ final class ProfessionalSupportSectionViewController: ViewController {
     private lazy var placeField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_professional_place_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_professional_place", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_professional_place_placeholder", comment: ""),
             text: viewModel.placeName,
             maxCharacters: viewModel.maxCharacters
@@ -114,7 +114,7 @@ final class ProfessionalSupportSectionViewController: ViewController {
     private lazy var professionalNameField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_professional_name_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_professional_name", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_professional_name_placeholder", comment: ""),
             text: viewModel.contactName,
             maxCharacters: viewModel.maxCharacters
@@ -128,7 +128,7 @@ final class ProfessionalSupportSectionViewController: ViewController {
     private lazy var emergencyNumberField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_professional_phone_title", comment: ""),
+            title: NSLocalizedString("emotional_bundle_professional_phone", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_professional_phone_placeholder", comment: ""),
             text: viewModel.phone,
             maxCharacters: viewModel.maxCharacters,

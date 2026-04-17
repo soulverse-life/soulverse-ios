@@ -363,6 +363,9 @@
 "emotional_bundle_crisis_call_confirmation" = "Call %@?";
 "emotional_bundle_crisis_call_action" = "Call";
 "emotional_bundle_crisis_cancel" = "Cancel";
+"emotional_bundle_crisis_call_unavailable_title" = "Calling Not Available";
+"emotional_bundle_crisis_call_unavailable_message" = "Phone calls are not supported on this device.";
+"emotional_bundle_crisis_ok" = "OK";
 
 // Error states
 "emotional_bundle_load_error" = "Unable to load your bundle";

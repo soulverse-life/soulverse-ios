@@ -62,6 +62,7 @@ final class EmotionalBundleMainPresenter: EmotionalBundleMainPresenterType {
             BundleSectionCardViewModel(
                 section: section,
                 title: section.displayTitle,
+                iconName: section.iconName,
                 isCompleted: EmotionalBundleMainViewModel.completionCheck(for: section, in: bundle)
             )
         }

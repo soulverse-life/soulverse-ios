@@ -8,6 +8,7 @@ import Foundation
 struct BundleSectionCardViewModel {
     let section: EmotionalBundleSection
     let title: String
+    let iconName: String
     let isCompleted: Bool
 }
 

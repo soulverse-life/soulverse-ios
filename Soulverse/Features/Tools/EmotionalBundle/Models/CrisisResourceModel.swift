@@ -19,7 +19,9 @@ struct CrisisResourceLoader {
               let resources = try? JSONDecoder().decode([String: CrisisResource].self, from: data) else {
             return nil
         }
-        let countryCode = Locale.current.region?.identifier ?? ""
-        return resources[countryCode]
+        let countryCode = Locale.current.region?.identifier
+            ?? Locale.current.regionCode
+            ?? "US"
+        return resources[countryCode] ?? resources["US"]
     }
 }

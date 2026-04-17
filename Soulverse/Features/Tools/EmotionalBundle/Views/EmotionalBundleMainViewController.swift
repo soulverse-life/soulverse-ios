@@ -21,17 +21,18 @@ final class EmotionalBundleMainViewController: ViewController {
 
     private enum Layout {
         static let horizontalPadding: CGFloat = 16
-        static let stackViewSpacing: CGFloat = 12
+        static let gridSpacing: CGFloat = 12
         static let scrollViewTopPadding: CGFloat = 8
         static let subtitleTopPadding: CGFloat = 8
         static let subtitleHorizontalPadding: CGFloat = 20
         static let subtitleFontSize: CGFloat = 14
-        static let stackViewTopPadding: CGFloat = 16
-        static let stackViewBottomPadding: CGFloat = 24
+        static let gridTopPadding: CGFloat = 16
+        static let gridBottomPadding: CGFloat = 24
         static let retryButtonWidth: CGFloat = 120
         static let retryButtonHeight: CGFloat = 44
         static let errorLabelFontSize: CGFloat = 15
         static let errorSpacing: CGFloat = 16
+        static let columnsPerRow: Int = 2
     }
 
     // MARK: - Properties
@@ -75,10 +76,10 @@ final class EmotionalBundleMainViewController: ViewController {
         return view
     }()
 
-    private lazy var stackView: UIStackView = {
+    private lazy var gridStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = Layout.stackViewSpacing
+        stack.spacing = Layout.gridSpacing
         stack.alignment = .fill
         stack.distribution = .fill
         return stack
@@ -137,7 +138,7 @@ final class EmotionalBundleMainViewController: ViewController {
 
         scrollView.addSubview(contentView)
         contentView.addSubview(subtitleLabel)
-        contentView.addSubview(stackView)
+        contentView.addSubview(gridStackView)
 
         errorContainerView.addSubview(errorLabel)
         errorContainerView.addSubview(retryButton)
@@ -166,10 +167,10 @@ final class EmotionalBundleMainViewController: ViewController {
             make.left.right.equalToSuperview().inset(Layout.subtitleHorizontalPadding)
         }
 
-        stackView.snp.makeConstraints { make in
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(Layout.stackViewTopPadding)
+        gridStackView.snp.makeConstraints { make in
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(Layout.gridTopPadding)
             make.left.right.equalToSuperview().inset(Layout.horizontalPadding)
-            make.bottom.equalToSuperview().offset(-Layout.stackViewBottomPadding)
+            make.bottom.equalToSuperview().offset(-Layout.gridBottomPadding)
         }
 
         // Error state
@@ -193,15 +194,48 @@ final class EmotionalBundleMainViewController: ViewController {
     }
 
     private func createSectionCards() {
-        for section in EmotionalBundleSection.allCases {
-            let cardView = BundleSectionCardView()
-            cardView.configure(title: section.displayTitle, isCompleted: false)
-            cardView.onTap = { [weak self] in
+        let sections = EmotionalBundleSection.allCases
+
+        // Build rows of 2 cards each
+        var index = 0
+        while index < sections.count {
+            let rowStack = UIStackView()
+            rowStack.axis = .horizontal
+            rowStack.spacing = Layout.gridSpacing
+            rowStack.alignment = .fill
+            rowStack.distribution = .fillEqually
+
+            // First card in the row
+            let section1 = sections[index]
+            let card1 = BundleSectionCardView()
+            card1.configure(title: section1.displayTitle, iconName: section1.iconName, isCompleted: false)
+            card1.onTap = { [weak self] in
                 guard let self = self else { return }
-                self.delegate?.didSelectSection(self, section: section)
+                self.delegate?.didSelectSection(self, section: section1)
             }
-            sectionCardViews.append(cardView)
-            stackView.addArrangedSubview(cardView)
+            sectionCardViews.append(card1)
+            rowStack.addArrangedSubview(card1)
+
+            // Second card in the row (or spacer if odd last item)
+            if index + 1 < sections.count {
+                let section2 = sections[index + 1]
+                let card2 = BundleSectionCardView()
+                card2.configure(title: section2.displayTitle, iconName: section2.iconName, isCompleted: false)
+                card2.onTap = { [weak self] in
+                    guard let self = self else { return }
+                    self.delegate?.didSelectSection(self, section: section2)
+                }
+                sectionCardViews.append(card2)
+                rowStack.addArrangedSubview(card2)
+            } else {
+                // Add an invisible spacer view to keep single card the same width
+                let spacer = UIView()
+                spacer.backgroundColor = .clear
+                rowStack.addArrangedSubview(spacer)
+            }
+
+            gridStackView.addArrangedSubview(rowStack)
+            index += Layout.columnsPerRow
         }
     }
 
@@ -255,6 +289,7 @@ extension EmotionalBundleMainViewController: EmotionalBundleMainPresenterDelegat
                 guard index < self.sectionCardViews.count else { break }
                 self.sectionCardViews[index].configure(
                     title: cardViewModel.title,
+                    iconName: cardViewModel.iconName,
                     isCompleted: cardViewModel.isCompleted
                 )
             }

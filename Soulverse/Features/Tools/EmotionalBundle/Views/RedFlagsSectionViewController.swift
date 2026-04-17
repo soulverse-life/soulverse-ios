@@ -51,7 +51,7 @@ final class RedFlagsSectionViewController: ViewController {
             self?.handleSave()
         }
         let config = SoulverseNavigationConfig(
-            title: "",
+            title: NSLocalizedString("emotional_bundle_section_red_flags", comment: ""),
             showBackButton: false,
             rightItems: [saveItem]
         )
@@ -88,8 +88,8 @@ final class RedFlagsSectionViewController: ViewController {
     private lazy var redFlag1Field: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_red_flag_1_title", comment: ""),
-            placeholder: NSLocalizedString("emotional_bundle_red_flag_1_placeholder", comment: ""),
+            title: NSLocalizedString("emotional_bundle_red_flag_label_1", comment: ""),
+            placeholder: NSLocalizedString("emotional_bundle_red_flag_placeholder", comment: ""),
             text: viewModel.redFlags[0],
             maxCharacters: viewModel.maxCharacters
         )
@@ -102,8 +102,8 @@ final class RedFlagsSectionViewController: ViewController {
     private lazy var redFlag2Field: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_red_flag_2_title", comment: ""),
-            placeholder: NSLocalizedString("emotional_bundle_red_flag_2_placeholder", comment: ""),
+            title: NSLocalizedString("emotional_bundle_red_flag_label_2", comment: ""),
+            placeholder: NSLocalizedString("emotional_bundle_red_flag_placeholder", comment: ""),
             text: viewModel.redFlags[1],
             maxCharacters: viewModel.maxCharacters
         )

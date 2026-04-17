@@ -15,11 +15,13 @@ final class BundleSectionCardView: UIView {
     private enum Layout {
         static let cornerRadius: CGFloat = 16
         static let contentInsetVertical: CGFloat = 16
-        static let contentInsetHorizontal: CGFloat = 20
-        static let checkmarkSize: CGFloat = 24
+        static let contentInsetHorizontal: CGFloat = 16
+        static let iconSize: CGFloat = 24
+        static let iconToTitleSpacing: CGFloat = 12
         static let titleFontSize: CGFloat = 16
-        static let minimumHeight: CGFloat = ViewComponentConstants.navigationButtonSize
-        static let titleToCheckmarkSpacing: CGFloat = 12
+        static let checkmarkSize: CGFloat = 20
+        static let checkmarkTopInset: CGFloat = 12
+        static let checkmarkTrailingInset: CGFloat = 12
     }
 
     // MARK: - Properties
@@ -36,11 +38,18 @@ final class BundleSectionCardView: UIView {
 
     private let visualEffectView = UIVisualEffectView()
 
+    private let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .themeTextSecondary
+        return imageView
+    }()
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .projectFont(ofSize: Layout.titleFontSize, weight: .medium)
         label.textColor = .themeTextPrimary
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         return label
     }()
 
@@ -68,6 +77,7 @@ final class BundleSectionCardView: UIView {
     // MARK: - Setup
 
     private func setupView() {
+        baseView.addSubview(iconImageView)
         baseView.addSubview(titleLabel)
         baseView.addSubview(checkmarkImageView)
 
@@ -81,7 +91,6 @@ final class BundleSectionCardView: UIView {
 
             visualEffectView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
-                make.height.greaterThanOrEqualTo(Layout.minimumHeight)
             }
 
             UIView.animate {
@@ -97,7 +106,6 @@ final class BundleSectionCardView: UIView {
 
             baseView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
-                make.height.greaterThanOrEqualTo(Layout.minimumHeight)
             }
         }
 
@@ -109,15 +117,21 @@ final class BundleSectionCardView: UIView {
             make.edges.equalToSuperview()
         }
 
-        titleLabel.snp.makeConstraints { make in
+        iconImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Layout.contentInsetVertical)
             make.leading.equalToSuperview().inset(Layout.contentInsetHorizontal)
-            make.top.bottom.equalToSuperview().inset(Layout.contentInsetVertical)
-            make.trailing.lessThanOrEqualTo(checkmarkImageView.snp.leading).offset(-Layout.titleToCheckmarkSpacing)
+            make.width.height.equalTo(Layout.iconSize)
+        }
+
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(iconImageView.snp.bottom).offset(Layout.iconToTitleSpacing)
+            make.leading.trailing.equalToSuperview().inset(Layout.contentInsetHorizontal)
+            make.bottom.equalToSuperview().inset(Layout.contentInsetVertical)
         }
 
         checkmarkImageView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(Layout.contentInsetHorizontal)
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().inset(Layout.checkmarkTopInset)
+            make.trailing.equalToSuperview().inset(Layout.checkmarkTrailingInset)
             make.width.height.equalTo(Layout.checkmarkSize)
         }
     }
@@ -136,8 +150,9 @@ final class BundleSectionCardView: UIView {
 
     // MARK: - Configuration
 
-    func configure(title: String, isCompleted: Bool) {
+    func configure(title: String, iconName: String, isCompleted: Bool) {
         titleLabel.text = title
+        iconImageView.image = UIImage(systemName: iconName)
         checkmarkImageView.isHidden = !isCompleted
     }
 }

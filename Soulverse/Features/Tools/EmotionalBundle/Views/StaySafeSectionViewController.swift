@@ -50,7 +50,7 @@ final class StaySafeSectionViewController: ViewController {
             self?.handleSave()
         }
         let config = SoulverseNavigationConfig(
-            title: "",
+            title: NSLocalizedString("emotional_bundle_section_stay_safe", comment: ""),
             showBackButton: false,
             rightItems: [saveItem]
         )
@@ -87,8 +87,8 @@ final class StaySafeSectionViewController: ViewController {
     private lazy var actionField: BundleFormFieldView = {
         let field = BundleFormFieldView()
         field.configure(
-            title: NSLocalizedString("emotional_bundle_stay_safe_action_title", comment: ""),
-            placeholder: NSLocalizedString("emotional_bundle_stay_safe_action_placeholder", comment: ""),
+            title: NSLocalizedString("emotional_bundle_stay_safe_label", comment: ""),
+            placeholder: NSLocalizedString("emotional_bundle_stay_safe_placeholder", comment: ""),
             text: viewModel.action,
             maxCharacters: viewModel.maxCharacters
         )

@@ -363,6 +363,9 @@
 "emotional_bundle_crisis_call_confirmation" = "撥打電話給 %@？";
 "emotional_bundle_crisis_call_action" = "撥打";
 "emotional_bundle_crisis_cancel" = "取消";
+"emotional_bundle_crisis_call_unavailable_title" = "無法撥打電話";
+"emotional_bundle_crisis_call_unavailable_message" = "此裝置不支援電話功能。";
+"emotional_bundle_crisis_ok" = "確定";
 
 // Error states
 "emotional_bundle_load_error" = "無法載入你的急救包";
