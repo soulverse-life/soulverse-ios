@@ -114,6 +114,7 @@ final class EmoPetChatView: UIView {
     }
 
     func show(in parent: UIView) {
+        guard superview == nil else { return }
         parent.addSubview(self)
         snp.remakeConstraints { make in
             make.left.right.equalTo(parent.safeAreaLayoutGuide).inset(Layout.horizontalPadding)
@@ -144,8 +145,8 @@ final class EmoPetChatView: UIView {
             },
             completion: { [weak self] _ in
                 guard let self = self else { return }
-                self.removeFromSuperview()
                 self.delegate?.emoPetChatViewDidDismiss(self)
+                self.removeFromSuperview()
             }
         )
     }

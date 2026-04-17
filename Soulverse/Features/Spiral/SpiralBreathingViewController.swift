@@ -17,6 +17,7 @@ class SpiralBreathingViewController: ViewController {
 
     private let spiralView = SpiralView()
     private var chatView: EmoPetChatView?
+    private let petImage = UIImage(named: "basic_first_level")
     private let backgroundImageView = UIImageView()  // Optional, for atmosphere
 
     // MARK: - State
@@ -58,6 +59,8 @@ class SpiralBreathingViewController: ViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopHolding()
+        chatView?.removeFromSuperview()
+        chatView = nil
     }
 
     // MARK: - Setup
@@ -91,14 +94,14 @@ class SpiralBreathingViewController: ViewController {
     private func showInstruction(_ message: String) {
         if let chatView = chatView {
             chatView.update(config: EmoPetChatConfig(
-                image: UIImage(named: "basic_first_level"),
+                image: petImage,
                 message: message
             ))
             return
         }
 
         let newChatView = EmoPetChatView.create(config: EmoPetChatConfig(
-            image: UIImage(named: "basic_first_level"),
+            image: petImage,
             message: message
         ))
         newChatView.delegate = self
