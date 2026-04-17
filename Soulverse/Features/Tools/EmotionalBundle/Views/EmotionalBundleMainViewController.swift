@@ -135,6 +135,7 @@ final class EmotionalBundleMainViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = true
         setupView()
         createSectionCards()
         presenter.fetchData()
