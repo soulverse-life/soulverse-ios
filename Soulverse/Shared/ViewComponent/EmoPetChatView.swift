@@ -26,7 +26,7 @@ final class EmoPetChatView: UIView {
         static let cardPadding: CGFloat = 12
         static let petImageSize: CGFloat = 54
         static let petImageSpacing: CGFloat = 8
-        static let messageFontSize: CGFloat = 14
+        static let messageFontSize: CGFloat = 13
         static let animationDuration: TimeInterval = 0.25
         static let animationOffset: CGFloat = 8
     }
@@ -113,7 +113,7 @@ final class EmoPetChatView: UIView {
         petImageView.image = config.image
     }
 
-    func show(in parent: UIView, animated: Bool) {
+    func show(in parent: UIView) {
         parent.addSubview(self)
         snp.remakeConstraints { make in
             make.left.right.equalTo(parent.safeAreaLayoutGuide).inset(Layout.horizontalPadding)
@@ -121,7 +121,6 @@ final class EmoPetChatView: UIView {
         }
         parent.layoutIfNeeded()
 
-        guard animated else { return }
         alpha = 0
         transform = CGAffineTransform(translationX: 0, y: Layout.animationOffset)
         UIView.animate(
@@ -134,18 +133,7 @@ final class EmoPetChatView: UIView {
         }
     }
 
-    func dismiss(animated: Bool) {
-        let cleanup = { [weak self] in
-            guard let self = self else { return }
-            self.removeFromSuperview()
-            self.delegate?.emoPetChatViewDidDismiss(self)
-        }
-
-        guard animated else {
-            cleanup()
-            return
-        }
-
+    func dismiss() {
         UIView.animate(
             withDuration: Layout.animationDuration,
             delay: 0,
@@ -154,13 +142,17 @@ final class EmoPetChatView: UIView {
                 self.alpha = 0
                 self.transform = CGAffineTransform(translationX: 0, y: Layout.animationOffset)
             },
-            completion: { _ in cleanup() }
+            completion: { [weak self] _ in
+                guard let self = self else { return }
+                self.removeFromSuperview()
+                self.delegate?.emoPetChatViewDidDismiss(self)
+            }
         )
     }
 
     // MARK: - Actions
 
     @objc private func didTap() {
-        dismiss(animated: true)
+        dismiss()
     }
 }

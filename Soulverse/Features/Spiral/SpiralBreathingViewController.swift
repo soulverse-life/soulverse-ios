@@ -102,7 +102,7 @@ class SpiralBreathingViewController: ViewController {
             message: message
         ))
         newChatView.delegate = self
-        newChatView.show(in: view, animated: true)
+        newChatView.show(in: view)
         chatView = newChatView
     }
 
