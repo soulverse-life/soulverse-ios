@@ -12,10 +12,10 @@ final class BundleSectionCardView: UIView {
 
     private enum Layout {
         static let cornerRadius: CGFloat = 16
-        static let contentInsetVertical: CGFloat = 16
+        static let iconTopInset: CGFloat = 8
         static let contentInsetHorizontal: CGFloat = 16
         static let iconSize: CGFloat = 24
-        static let iconToTitleSpacing: CGFloat = 12
+        static let iconToTitleSpacing: CGFloat = 4
         static let titleFontSize: CGFloat = 14
         static let checkmarkSize: CGFloat = 20
         static let checkmarkTopInset: CGFloat = 12
@@ -88,14 +88,14 @@ final class BundleSectionCardView: UIView {
         }
 
         iconImageView.snp.makeConstraints { make in
-            make.bottom.equalTo(titleLabel.snp.top).offset(-Layout.iconToTitleSpacing)
+            make.top.equalToSuperview().inset(Layout.iconTopInset)
             make.leading.equalToSuperview().inset(Layout.contentInsetHorizontal)
             make.width.height.equalTo(Layout.iconSize)
         }
 
         titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(iconImageView.snp.bottom).offset(Layout.iconToTitleSpacing)
             make.leading.trailing.equalToSuperview().inset(Layout.contentInsetHorizontal)
-            make.bottom.equalToSuperview().inset(Layout.contentInsetVertical)
         }
 
         checkmarkImageView.snp.makeConstraints { make in
