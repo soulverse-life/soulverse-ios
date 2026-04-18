@@ -8,7 +8,7 @@ import Foundation
 struct CrisisResource: Codable {
     let name: String
     let number: String
-    let description: String
+    let descriptionKey: String
     let availability: String
 }
 
@@ -19,9 +19,7 @@ struct CrisisResourceLoader {
               let resources = try? JSONDecoder().decode([String: CrisisResource].self, from: data) else {
             return nil
         }
-        let countryCode = Locale.current.region?.identifier
-            ?? Locale.current.regionCode
-            ?? "US"
-        return resources[countryCode] ?? resources["US"]
+        let countryCode = "US"
+        return resources[countryCode]
     }
 }

@@ -59,6 +59,9 @@ struct SoulverseNavigationItem {
             if let image = image {
                 button.setImage(image, for: .normal)
                 button.tintColor = .themeNavigationText
+                button.imageView?.contentMode = .center
+                button.imageView?.clipsToBounds = false
+                button.clipsToBounds = false
             }
 
             // Store action in a way that can be called later
@@ -75,14 +78,20 @@ struct SoulverseNavigationItem {
 struct SoulverseNavigationConfig {
     let title: String
     let showBackButton: Bool
+    let backButtonAssetName: String
+    let backButtonFallbackSymbol: String
     let rightItems: [SoulverseNavigationItem]
 
     init(
         title: String, showBackButton: Bool = false,
+        backButtonAssetName: String = "naviconBack",
+        backButtonFallbackSymbol: String = "chevron.left",
         rightItems: [SoulverseNavigationItem] = []
     ) {
         self.title = title
         self.showBackButton = showBackButton
+        self.backButtonAssetName = backButtonAssetName
+        self.backButtonFallbackSymbol = backButtonFallbackSymbol
         self.rightItems = rightItems
     }
 }
@@ -95,7 +104,7 @@ class SoulverseNavigationView: UIView {
         static let itemSpacing: CGFloat = 8
         static let backButtonSize: CGFloat = 44
         static let backButtonToTitleSpacing: CGFloat = 8
-        static let rightItemButtonWidth: CGFloat = 28
+        static let rightItemButtonWidth: CGFloat = 44
         static let maxRightItemsWidth: CGFloat = 120
     }
 
@@ -132,23 +141,27 @@ class SoulverseNavigationView: UIView {
 
     private lazy var backButton: UIButton = {
         let button = UIButton()
-        if #available(iOS 26.0, *) {
-            button.setImage(UIImage(named: "naviconBack")?.withRenderingMode(.alwaysOriginal), for: .normal)
-            button.imageView?.contentMode = .center
-            button.imageView?.clipsToBounds = false
-            button.clipsToBounds = false
-        } else {
-            button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-            button.tintColor = .themeTextPrimary
-        }
         button.isHidden = true
         button.accessibilityLabel = NSLocalizedString("navigation_back_button", comment: "Back button")
         button.accessibilityIdentifier = "SoulverseNavigationView.backButton"
         button.addTarget(self, action: #selector(didTapBack), for: .touchUpInside)
-
         return button
-        
     }()
+
+    private func applyBackButtonImage() {
+        if #available(iOS 26.0, *) {
+            backButton.setImage(
+                UIImage(named: config.backButtonAssetName)?.withRenderingMode(.alwaysOriginal),
+                for: .normal
+            )
+            backButton.imageView?.contentMode = .center
+            backButton.imageView?.clipsToBounds = false
+            backButton.clipsToBounds = false
+        } else {
+            backButton.setImage(UIImage(systemName: config.backButtonFallbackSymbol), for: .normal)
+            backButton.tintColor = .themeTextPrimary
+        }
+    }
 
     private let leadingSpacer: UIView = {
         let spacer = UIView()
@@ -240,6 +253,7 @@ class SoulverseNavigationView: UIView {
     }
 
     private func configureWithConfig() {
+        applyBackButtonImage()
         backButton.isHidden = !config.showBackButton
         leadingSpacer.isHidden = config.showBackButton
 

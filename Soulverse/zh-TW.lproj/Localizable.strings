@@ -369,6 +369,15 @@
 "emotional_bundle_professional_phone_placeholder" = "例如：(222) 140-310";
 
 // Crisis resource
+"emotional_bundle_crisis_call_or_text_format" = "撥打或傳訊息至 %@";
+"emotional_bundle_crisis_description_us" = "免費且保密的心理支持熱線，為身處困境的人而設";
+"emotional_bundle_crisis_description_tw" = "免費 24 小時心理支持與自殺防治專線";
+"emotional_bundle_crisis_description_gb" = "免費、保密的情緒支持，給所有身處困境的人";
+"emotional_bundle_crisis_description_ca" = "全加拿大雙語、具同理心的危機支持服務";
+"emotional_bundle_crisis_description_au" = "為全澳洲人提供的危機支持與自殺防治";
+"emotional_bundle_crisis_description_hk" = "24 小時情緒支援及自殺預防熱線";
+"emotional_bundle_crisis_description_sg" = "為身處危機中的人提供保密情緒支援";
+"emotional_bundle_crisis_fallback_message" = "很抱歉，我們找不到您目前所在地的危機支援熱線。\n\n如果您可能有自傷風險或現在不安全，請立即撥打當地緊急電話，或前往最近的醫院。\n\n如果可以，請與信任的人待在一起，或請他們陪伴您直到您感到安全為止。";
 "emotional_bundle_crisis_call_confirmation" = "撥打電話給 %@？";
 "emotional_bundle_crisis_call_action" = "撥打";
 "emotional_bundle_crisis_cancel" = "取消";

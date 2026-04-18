@@ -369,6 +369,15 @@
 "emotional_bundle_professional_phone_placeholder" = "e.g., (222) 140-310";
 
 // Crisis resource
+"emotional_bundle_crisis_call_or_text_format" = "Call or text %@";
+"emotional_bundle_crisis_description_us" = "Free and confidential support for people in distress";
+"emotional_bundle_crisis_description_tw" = "Free 24-hour emotional support and suicide prevention";
+"emotional_bundle_crisis_description_gb" = "Free confidential emotional support for anyone in distress";
+"emotional_bundle_crisis_description_ca" = "Bilingual, trauma-informed crisis support across Canada";
+"emotional_bundle_crisis_description_au" = "Crisis support and suicide prevention for all Australians";
+"emotional_bundle_crisis_description_hk" = "24-hour emotional support and suicide prevention hotline";
+"emotional_bundle_crisis_description_sg" = "Confidential emotional support for those in crisis";
+"emotional_bundle_crisis_fallback_message" = "We're sorry, we couldn't find a crisis hotline for your current location.\n\nIf you may be at risk of harming yourself or are not safe right now, call local emergency services immediately or go to the nearest hospital.\n\nIf possible, stay with someone you trust or ask them to stay with you until you are safe.";
 "emotional_bundle_crisis_call_confirmation" = "Call %@?";
 "emotional_bundle_crisis_call_action" = "Call";
 "emotional_bundle_crisis_cancel" = "Cancel";

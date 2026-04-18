@@ -43,8 +43,14 @@ final class ProfessionalSupportSectionViewController: ViewController {
     // MARK: - UI Components
 
     private lazy var navigationView: SoulverseNavigationView = {
+        let saveImage: UIImage?
+        if #available(iOS 26.0, *) {
+            saveImage = UIImage(named: "naviconCheck")?.withRenderingMode(.alwaysOriginal)
+        } else {
+            saveImage = UIImage(systemName: "checkmark")
+        }
         let saveItem = SoulverseNavigationItem.button(
-            image: UIImage(systemName: "checkmark"),
+            image: saveImage,
             identifier: "save"
         ) { [weak self] in
             self?.handleSave()
@@ -52,6 +58,8 @@ final class ProfessionalSupportSectionViewController: ViewController {
         let config = SoulverseNavigationConfig(
             title: NSLocalizedString("emotional_bundle_section_professional_support", comment: ""),
             showBackButton: true,
+            backButtonAssetName: "naviconClose",
+            backButtonFallbackSymbol: "xmark",
             rightItems: [saveItem]
         )
         let view = SoulverseNavigationView(config: config)
@@ -94,9 +102,10 @@ final class ProfessionalSupportSectionViewController: ViewController {
 
     private lazy var crisisResourceCard: CrisisResourceCardView = {
         let card = CrisisResourceCardView()
-        card.isHidden = viewModel.crisisResource == nil
         if let resource = viewModel.crisisResource {
             card.configure(with: resource)
+        } else {
+            card.configureWithFallbackMessage()
         }
         card.parentViewController = self
         return card
@@ -214,11 +223,7 @@ final class ProfessionalSupportSectionViewController: ViewController {
         }
 
         placeField.snp.makeConstraints { make in
-            if viewModel.crisisResource != nil {
-                make.top.equalTo(crisisResourceCard.snp.bottom).offset(Layout.crisisCardBottomPadding)
-            } else {
-                make.top.equalTo(titleLabel.snp.bottom).offset(Layout.firstFieldTopPadding)
-            }
+            make.top.equalTo(crisisResourceCard.snp.bottom).offset(Layout.crisisCardBottomPadding)
             make.left.right.equalToSuperview().inset(Layout.horizontalPadding)
         }
 

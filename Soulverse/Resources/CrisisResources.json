@@ -2,7 +2,43 @@
     "US": {
         "name": "988 Suicide & Crisis Lifeline",
         "number": "988",
-        "description": "Free and confidential support for people in distress",
+        "descriptionKey": "emotional_bundle_crisis_description_us",
+        "availability": "24/7"
+    },
+    "TW": {
+        "name": "1925 安心專線",
+        "number": "1925",
+        "descriptionKey": "emotional_bundle_crisis_description_tw",
+        "availability": "24/7"
+    },
+    "GB": {
+        "name": "Samaritans",
+        "number": "116 123",
+        "descriptionKey": "emotional_bundle_crisis_description_gb",
+        "availability": "24/7"
+    },
+    "CA": {
+        "name": "9-8-8 Suicide Crisis Helpline",
+        "number": "988",
+        "descriptionKey": "emotional_bundle_crisis_description_ca",
+        "availability": "24/7"
+    },
+    "AU": {
+        "name": "Lifeline Australia",
+        "number": "13 11 14",
+        "descriptionKey": "emotional_bundle_crisis_description_au",
+        "availability": "24/7"
+    },
+    "HK": {
+        "name": "Samaritan Befrienders Hong Kong",
+        "number": "2389 2222",
+        "descriptionKey": "emotional_bundle_crisis_description_hk",
+        "availability": "24/7"
+    },
+    "SG": {
+        "name": "Samaritans of Singapore",
+        "number": "1767",
+        "descriptionKey": "emotional_bundle_crisis_description_sg",
         "availability": "24/7"
     }
 }

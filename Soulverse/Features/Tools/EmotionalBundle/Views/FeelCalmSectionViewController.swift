@@ -41,8 +41,14 @@ final class FeelCalmSectionViewController: ViewController {
     // MARK: - UI Components
 
     private lazy var navigationView: SoulverseNavigationView = {
+        let saveImage: UIImage?
+        if #available(iOS 26.0, *) {
+            saveImage = UIImage(named: "naviconCheck")?.withRenderingMode(.alwaysOriginal)
+        } else {
+            saveImage = UIImage(systemName: "checkmark")
+        }
         let saveItem = SoulverseNavigationItem.button(
-            image: UIImage(systemName: "checkmark"),
+            image: saveImage,
             identifier: "save"
         ) { [weak self] in
             self?.handleSave()
@@ -50,6 +56,8 @@ final class FeelCalmSectionViewController: ViewController {
         let config = SoulverseNavigationConfig(
             title: NSLocalizedString("emotional_bundle_section_feel_calm", comment: ""),
             showBackButton: true,
+            backButtonAssetName: "naviconClose",
+            backButtonFallbackSymbol: "xmark",
             rightItems: [saveItem]
         )
         let view = SoulverseNavigationView(config: config)

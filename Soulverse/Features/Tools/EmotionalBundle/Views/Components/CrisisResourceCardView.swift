@@ -17,15 +17,13 @@ final class CrisisResourceCardView: UIView {
         static let contentInsetVertical: CGFloat = 16
         static let contentInsetHorizontal: CGFloat = 20
         static let nameFontSize: CGFloat = 16
-        static let numberFontSize: CGFloat = 20
-        static let descriptionFontSize: CGFloat = 14
-        static let availabilityFontSize: CGFloat = 12
-        static let nameToNumberSpacing: CGFloat = 4
-        static let numberToDescriptionSpacing: CGFloat = 8
-        static let descriptionToAvailabilitySpacing: CGFloat = 4
-        static let phoneIconSize: CGFloat = 20
-        static let phoneIconTrailingInset: CGFloat = 20
-        static let labelToIconSpacing: CGFloat = 12
+        static let numberFontSize: CGFloat = 17
+        static let descriptionFontSize: CGFloat = 15
+        static let availabilityFontSize: CGFloat = 13
+        static let starIconSize: CGFloat = 14
+        static let headerRowSpacing: CGFloat = 8
+        static let headerToBodySpacing: CGFloat = 16
+        static let numberToDescriptionSpacing: CGFloat = 4
         static let minimumHeight: CGFloat = ViewComponentConstants.navigationButtonSize
     }
 
@@ -38,11 +36,19 @@ final class CrisisResourceCardView: UIView {
 
     private let baseView: UIView = {
         let view = UIView()
-        view.backgroundColor = .themeCardBackground
+        view.backgroundColor = .black.withAlphaComponent(0.5)
         return view
     }()
 
     private let visualEffectView = UIVisualEffectView()
+
+    private let starIconView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .themeTextPrimary
+        imageView.image = UIImage(systemName: "star")
+        return imageView
+    }()
 
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -52,10 +58,28 @@ final class CrisisResourceCardView: UIView {
         return label
     }()
 
+    private let availabilityLabel: UILabel = {
+        let label = UILabel()
+        label.font = .projectFont(ofSize: Layout.availabilityFontSize, weight: .regular)
+        label.textColor = .themeTextSecondary
+        label.numberOfLines = 1
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
+        return label
+    }()
+
+    private lazy var headerRow: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [starIconView, nameLabel, availabilityLabel])
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.spacing = Layout.headerRowSpacing
+        return stack
+    }()
+
     private let numberLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: Layout.numberFontSize, weight: .bold)
-        label.textColor = .themePrimary
+        label.font = .projectFont(ofSize: Layout.numberFontSize, weight: .regular)
+        label.textColor = .themeTextPrimary
         label.numberOfLines = 1
         return label
     }()
@@ -68,20 +92,24 @@ final class CrisisResourceCardView: UIView {
         return label
     }()
 
-    private let availabilityLabel: UILabel = {
+    private let fallbackMessageLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: Layout.availabilityFontSize, weight: .regular)
-        label.textColor = .themeTextDisabled
-        label.numberOfLines = 1
+        label.font = .projectFont(ofSize: Layout.descriptionFontSize, weight: .regular)
+        label.textColor = .themeTextSecondary
+        label.numberOfLines = 0
+        label.isHidden = true
         return label
     }()
 
-    private let phoneIconView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .themePrimary
-        imageView.image = UIImage(systemName: "phone.fill")
-        return imageView
+    private lazy var rootStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [
+            headerRow, numberLabel, descriptionLabel, fallbackMessageLabel
+        ])
+        stack.axis = .vertical
+        stack.spacing = 0
+        stack.setCustomSpacing(Layout.headerToBodySpacing, after: headerRow)
+        stack.setCustomSpacing(Layout.numberToDescriptionSpacing, after: numberLabel)
+        return stack
     }()
 
     // MARK: - Initialization
@@ -99,11 +127,7 @@ final class CrisisResourceCardView: UIView {
     // MARK: - Setup
 
     private func setupView() {
-        baseView.addSubview(nameLabel)
-        baseView.addSubview(numberLabel)
-        baseView.addSubview(descriptionLabel)
-        baseView.addSubview(availabilityLabel)
-        baseView.addSubview(phoneIconView)
+        baseView.addSubview(rootStack)
 
         if #available(iOS 26.0, *) {
             let glassEffect = UIGlassEffect(style: .clear)
@@ -127,6 +151,7 @@ final class CrisisResourceCardView: UIView {
             baseView.layer.cornerRadius = Layout.cornerRadius
             baseView.layer.borderWidth = 1
             baseView.layer.borderColor = UIColor.themeSeparator.cgColor
+            baseView.backgroundColor = .white.withAlphaComponent(0.1)
             baseView.clipsToBounds = true
 
             baseView.snp.makeConstraints { make in
@@ -143,35 +168,13 @@ final class CrisisResourceCardView: UIView {
             make.edges.equalToSuperview()
         }
 
-        phoneIconView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(Layout.phoneIconTrailingInset)
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(Layout.phoneIconSize)
+        rootStack.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(Layout.contentInsetVertical)
+            make.leading.trailing.equalToSuperview().inset(Layout.contentInsetHorizontal)
         }
 
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Layout.contentInsetVertical)
-            make.leading.equalToSuperview().inset(Layout.contentInsetHorizontal)
-            make.trailing.lessThanOrEqualTo(phoneIconView.snp.leading).offset(-Layout.labelToIconSpacing)
-        }
-
-        numberLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(Layout.nameToNumberSpacing)
-            make.leading.equalToSuperview().inset(Layout.contentInsetHorizontal)
-            make.trailing.lessThanOrEqualTo(phoneIconView.snp.leading).offset(-Layout.labelToIconSpacing)
-        }
-
-        descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(numberLabel.snp.bottom).offset(Layout.numberToDescriptionSpacing)
-            make.leading.equalToSuperview().inset(Layout.contentInsetHorizontal)
-            make.trailing.lessThanOrEqualTo(phoneIconView.snp.leading).offset(-Layout.labelToIconSpacing)
-        }
-
-        availabilityLabel.snp.makeConstraints { make in
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(Layout.descriptionToAvailabilitySpacing)
-            make.leading.equalToSuperview().inset(Layout.contentInsetHorizontal)
-            make.trailing.lessThanOrEqualTo(phoneIconView.snp.leading).offset(-Layout.labelToIconSpacing)
-            make.bottom.equalToSuperview().inset(Layout.contentInsetVertical)
+        starIconView.snp.makeConstraints { make in
+            make.width.height.equalTo(Layout.starIconSize)
         }
     }
 
@@ -191,7 +194,6 @@ final class CrisisResourceCardView: UIView {
 
         guard let url = URL(string: "tel:\(cleanedNumber)") else { return }
 
-        // Check if device can make phone calls
         guard UIApplication.shared.canOpenURL(url) else {
             let alert = UIAlertController(
                 title: NSLocalizedString("emotional_bundle_crisis_call_unavailable_title", comment: ""),
@@ -206,7 +208,6 @@ final class CrisisResourceCardView: UIView {
             return
         }
 
-        // Show confirmation alert before dialing
         let alert = UIAlertController(
             title: String(
                 format: NSLocalizedString("emotional_bundle_crisis_call_confirmation", comment: ""),
@@ -236,8 +237,28 @@ final class CrisisResourceCardView: UIView {
     func configure(with resource: CrisisResource) {
         phoneNumber = resource.number
         nameLabel.text = resource.name
-        numberLabel.text = resource.number
-        descriptionLabel.text = resource.description
+        numberLabel.text = String(
+            format: NSLocalizedString("emotional_bundle_crisis_call_or_text_format", comment: ""),
+            resource.number
+        )
+        descriptionLabel.text = NSLocalizedString(resource.descriptionKey, comment: "")
         availabilityLabel.text = resource.availability
+
+        headerRow.isHidden = false
+        numberLabel.isHidden = false
+        descriptionLabel.isHidden = false
+        fallbackMessageLabel.isHidden = true
+        isUserInteractionEnabled = true
+    }
+
+    func configureWithFallbackMessage() {
+        phoneNumber = nil
+        fallbackMessageLabel.text = NSLocalizedString("emotional_bundle_crisis_fallback_message", comment: "")
+
+        headerRow.isHidden = true
+        numberLabel.isHidden = true
+        descriptionLabel.isHidden = true
+        fallbackMessageLabel.isHidden = false
+        isUserInteractionEnabled = false
     }
 }

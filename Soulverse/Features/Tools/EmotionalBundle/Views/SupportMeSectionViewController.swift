@@ -44,8 +44,14 @@ final class SupportMeSectionViewController: ViewController {
     // MARK: - UI Components
 
     private lazy var navigationView: SoulverseNavigationView = {
+        let saveImage: UIImage?
+        if #available(iOS 26.0, *) {
+            saveImage = UIImage(named: "naviconCheck")?.withRenderingMode(.alwaysOriginal)
+        } else {
+            saveImage = UIImage(systemName: "checkmark")
+        }
         let saveItem = SoulverseNavigationItem.button(
-            image: UIImage(systemName: "checkmark"),
+            image: saveImage,
             identifier: "save"
         ) { [weak self] in
             self?.handleSave()
@@ -53,6 +59,8 @@ final class SupportMeSectionViewController: ViewController {
         let config = SoulverseNavigationConfig(
             title: NSLocalizedString("emotional_bundle_section_support_me", comment: ""),
             showBackButton: true,
+            backButtonAssetName: "naviconClose",
+            backButtonFallbackSymbol: "xmark",
             rightItems: [saveItem]
         )
         let view = SoulverseNavigationView(config: config)
