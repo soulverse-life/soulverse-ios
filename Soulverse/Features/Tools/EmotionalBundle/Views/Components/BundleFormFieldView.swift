@@ -332,8 +332,7 @@ final class BundleFormFieldView: UIView {
             // State 2: Focused with text — clear button
             clearButton.isHidden = false
         } else if hasBeenModified {
-            // State 4: Unfocused, modified but not saved — pencil
-            unsavedIcon.isHidden = false
+            // State 4: Unfocused, modified but not saved — no icon
         } else {
             // State 3: Unfocused, text matches saved/original — checkmark
             savedIcon.isHidden = false
