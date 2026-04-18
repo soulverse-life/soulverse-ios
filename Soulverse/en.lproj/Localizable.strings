@@ -301,5 +301,14 @@
 "gallery_unknown_date" = "Unknown Date";
 "drawing_replay_error" = "Unable to load drawing";
 
+// Check-In Detail
+"checkin_detail_title" = "Mood detail";
+"checkin_detail_reflection" = "Reflection";
+"checkin_detail_journal" = "Journal";
+"checkin_detail_draw_cta" = "Draw your feelings";
+"checkin_detail_journal_cta" = "Write a journal";
+"checkin_detail_intensity" = "Intensity";
+"checkin_detail_dimension" = "Dimension";
+
 // Common
 "ok" = "OK";

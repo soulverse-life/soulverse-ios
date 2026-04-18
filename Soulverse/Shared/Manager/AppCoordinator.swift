@@ -78,6 +78,12 @@ class AppCoordinator {
     }
     
     
+    static func openCheckInDetail(from sourceVC: UIViewController, checkIns: [MoodCheckInModel], initialIndex: Int = 0) {
+        let detailVC = CheckInDetailViewController(checkIns: checkIns, initialIndex: initialIndex)
+        detailVC.hidesBottomBarWhenPushed = true
+        sourceVC.navigationController?.pushViewController(detailVC, animated: true)
+    }
+
     static func openDrawingCanvas(from sourceVC: UIViewController, prompt: CanvasPrompt? = nil, checkinId: String? = nil) {
         let drawingCanvasVC = DrawingCanvasViewController()
         drawingCanvasVC.hidesBottomBarWhenPushed = true

@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import SnapKit
 import UIKit
 
 
@@ -14,10 +15,40 @@ struct ViewComponentConstants {
     static let smallActionButtonHeight: CGFloat = 20.0
     static let navigationButtonSize: CGFloat = 44.0
     static let colorDisplaySize: CGFloat = 30.0
-    
+
     static let progressViewWidth: CGFloat = 144.0
-    
+
     static let horizontalPadding: CGFloat = 26.0
+
+    /// Configures a card view with glass effect (iOS 26+) or semi-transparent fallback.
+    static func applyGlassCardEffect(
+        to cardView: UIView,
+        visualEffectView: UIVisualEffectView,
+        contentView: UIView,
+        cornerRadius: CGFloat,
+        darkMode: Bool = false
+    ) {
+        if #available(iOS 26.0, *) {
+            let glassEffect = UIGlassEffect(style: .clear)
+            visualEffectView.effect = glassEffect
+            if darkMode {
+                visualEffectView.overrideUserInterfaceStyle = .dark
+            }
+            visualEffectView.layer.cornerRadius = cornerRadius
+            visualEffectView.clipsToBounds = true
+            visualEffectView.contentView.addSubview(contentView)
+            cardView.addSubview(visualEffectView)
+
+            visualEffectView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        } else {
+            cardView.backgroundColor = .white.withAlphaComponent(0.1)
+            cardView.layer.borderWidth = 1
+            cardView.layer.borderColor = UIColor.themeSeparator.cgColor
+            cardView.addSubview(contentView)
+        }
+    }
 }
 
 
