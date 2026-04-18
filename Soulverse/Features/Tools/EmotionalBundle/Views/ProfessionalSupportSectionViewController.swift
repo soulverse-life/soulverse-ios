@@ -24,7 +24,7 @@ final class ProfessionalSupportSectionViewController: ViewController {
         static let scrollViewTopPadding: CGFloat = 8
         static let titleTopPadding: CGFloat = 24
         static let titleHorizontalPadding: CGFloat = 20
-        static let titleFontSize: CGFloat = 22
+        static let titleFontSize: CGFloat = 28
         static let iconTopPadding: CGFloat = 24
         static let iconSize: CGFloat = 36
         static let iconToTitleSpacing: CGFloat = 12
