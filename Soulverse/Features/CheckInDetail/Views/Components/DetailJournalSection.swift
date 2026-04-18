@@ -73,13 +73,13 @@ final class DetailJournalSection: UIView {
         let label = UILabel()
         label.text = NSLocalizedString("checkin_detail_journal", comment: "")
         label.font = .projectFont(ofSize: CheckInDetailLayout.sectionTitleFontSize, weight: .semibold)
-        label.textColor = .themeTextSecondary
+        label.textColor = .themeTextPrimary
         return label
     }()
 
     private lazy var journalTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 18, weight: .bold)
+        label.font = .projectFont(ofSize: 20, weight: .bold)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         return label
@@ -87,7 +87,7 @@ final class DetailJournalSection: UIView {
 
     private lazy var journalContentLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: 17, weight: .regular)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         return label
@@ -95,14 +95,12 @@ final class DetailJournalSection: UIView {
 
     // -- Empty / CTA --
 
-    private lazy var ctaButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("checkin_detail_journal_cta", comment: ""), for: .normal)
-        button.titleLabel?.font = .projectFont(ofSize: 17, weight: .medium)
-        button.setTitleColor(.themeButtonPrimaryText, for: .normal)
-        button.backgroundColor = .themeButtonPrimaryBackground
-        button.layer.cornerRadius = CheckInDetailLayout.ctaButtonCornerRadius
-        button.addTarget(self, action: #selector(ctaTapped), for: .touchUpInside)
+    private lazy var ctaButton: SoulverseButton = {
+        let button = SoulverseButton(
+            title: NSLocalizedString("checkin_detail_journal_cta", comment: ""),
+            style: .primary,
+            delegate: self
+        )
         return button
     }()
 
@@ -233,9 +231,12 @@ final class DetailJournalSection: UIView {
         }
     }
 
-    // MARK: - Actions
+}
 
-    @objc private func ctaTapped() {
+// MARK: - SoulverseButtonDelegate
+
+extension DetailJournalSection: SoulverseButtonDelegate {
+    func clickSoulverseButton(_ button: SoulverseButton) {
         delegate?.detailJournalSectionDidTapCreate(self, checkinId: checkinId)
     }
 }

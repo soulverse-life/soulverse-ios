@@ -30,8 +30,9 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
          user: UserProtocol = User.shared,
          drawingService: DrawingServiceProtocol = FirestoreDrawingService.shared,
          journalService: JournalServiceProtocol = FirestoreJournalService.shared) {
-        self.checkIns = checkIns
-        self.currentIndex = min(initialIndex, max(checkIns.count - 1, 0))
+        let persistedCheckIns = checkIns.filter { $0.id != nil }
+        self.checkIns = persistedCheckIns
+        self.currentIndex = min(initialIndex, max(persistedCheckIns.count - 1, 0))
         self.user = user
         self.drawingService = drawingService
         self.journalService = journalService
@@ -56,6 +57,7 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
     func loadCurrentCheckIn() {
         guard currentIndex < checkIns.count else { return }
         let checkIn = checkIns[currentIndex]
+        guard let checkinId = checkIn.id else { return }
 
         // Phase 1: Show mandatory data immediately (planet, emotion, tags)
         let immediateViewModel = buildViewModel(checkIn: checkIn, drawing: nil, journal: nil, isLoadingContent: true)
@@ -69,30 +71,17 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
         var fetchedDrawing: DrawingModel?
         var fetchedJournal: JournalModel?
 
-        // Fetch drawing if linked
-        if let checkinId = checkIn.id {
-            group.enter()
-            drawingService.fetchDrawings(uid: uid, checkinId: checkinId) { result in
-                if case .success(let drawings) = result {
-                    fetchedDrawing = drawings.first
-                }
-                group.leave()
+        group.enter()
+        drawingService.fetchDrawings(uid: uid, checkinId: checkinId) { result in
+            if case .success(let drawings) = result {
+                fetchedDrawing = drawings.first
             }
+            group.leave()
         }
 
-        // Fetch journal if linked
         if let journalId = checkIn.journalId {
             group.enter()
             journalService.fetchJournal(uid: uid, journalId: journalId) { result in
-                if case .success(let journal) = result {
-                    fetchedJournal = journal
-                }
-                group.leave()
-            }
-        } else if let checkinId = checkIn.id {
-            // Fallback: query by checkinId
-            group.enter()
-            journalService.fetchJournal(uid: uid, checkinId: checkinId) { result in
                 if case .success(let journal) = result {
                     fetchedJournal = journal
                 }
@@ -136,7 +125,7 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
             reflectionText: checkIn.reflection,
             journalTitle: journal?.title,
             journalContent: journal?.content,
-            checkinId: checkIn.id
+            checkinId: checkIn.id ?? ""
         )
     }
 }

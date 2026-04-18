@@ -325,7 +325,7 @@ private enum TagHeaderLayout {
 private class IntensityTagView: UIView {
 
     private enum Layout {
-        static let dotSize: CGFloat = 17
+        static let dotSize: CGFloat = 20
         static let dotSpacing: CGFloat = 6
     }
 
@@ -380,7 +380,7 @@ private class IntensityTagView: UIView {
             } else {
                 dot.backgroundColor = .clear
                 dot.layer.borderWidth = 1.5
-                dot.layer.borderColor = UIColor.white.withAlphaComponent(0.4).cgColor
+                dot.layer.borderColor = UIColor.white.cgColor
             }
 
             dotsStack.addArrangedSubview(dot)

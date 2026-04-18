@@ -81,7 +81,7 @@ final class DetailDrawingSection: UIView {
 
     private lazy var sectionIconView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "paintbrush")
+        imageView.image = UIImage(systemName: "star")
         imageView.tintColor = .themeTextSecondary
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -97,15 +97,15 @@ final class DetailDrawingSection: UIView {
 
     private lazy var promptLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 14, weight: .regular)
-        label.textColor = .themeTextSecondary
+        label.font = .projectFont(ofSize: 20, weight: .regular)
+        label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         return label
     }()
 
     private lazy var reflectionLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 16, weight: .regular)
+        label.font = .projectFont(ofSize: 17, weight: .regular)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         return label
@@ -113,14 +113,12 @@ final class DetailDrawingSection: UIView {
 
     // -- Empty / CTA --
 
-    private lazy var ctaButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("checkin_detail_draw_cta", comment: ""), for: .normal)
-        button.titleLabel?.font = .projectFont(ofSize: 17, weight: .medium)
-        button.setTitleColor(.themeButtonPrimaryText, for: .normal)
-        button.backgroundColor = .themeButtonPrimaryBackground
-        button.layer.cornerRadius = CheckInDetailLayout.ctaButtonCornerRadius
-        button.addTarget(self, action: #selector(ctaTapped), for: .touchUpInside)
+    private lazy var ctaButton: SoulverseButton = {
+        let button = SoulverseButton(
+            title: NSLocalizedString("checkin_detail_draw_cta", comment: ""),
+            style: .primary,
+            delegate: self
+        )
         return button
     }()
 
@@ -241,7 +239,7 @@ final class DetailDrawingSection: UIView {
     func configure(imageURL: String?, prompt: String?, reflection: String?, checkinId: String?) {
         self.checkinId = checkinId
 
-        let hasContent = imageURL != nil || prompt != nil || reflection != nil
+        let hasContent = imageURL != nil
 
         if hasContent {
             transition(to: .content)
@@ -271,9 +269,12 @@ final class DetailDrawingSection: UIView {
         }
     }
 
-    // MARK: - Actions
+}
 
-    @objc private func ctaTapped() {
+// MARK: - SoulverseButtonDelegate
+
+extension DetailDrawingSection: SoulverseButtonDelegate {
+    func clickSoulverseButton(_ button: SoulverseButton) {
         delegate?.detailDrawingSectionDidTapCreate(self, checkinId: checkinId)
     }
 }
