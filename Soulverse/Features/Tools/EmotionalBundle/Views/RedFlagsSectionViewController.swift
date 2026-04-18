@@ -95,7 +95,8 @@ final class RedFlagsSectionViewController: ViewController {
             title: NSLocalizedString("emotional_bundle_red_flag_label_1", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_red_flag_placeholder", comment: ""),
             text: viewModel.redFlags[0],
-            maxCharacters: viewModel.maxCharacters
+            maxCharacters: viewModel.maxCharacters,
+            fieldHeight: 80
         )
         field.onTextChanged = { [weak self] text in
             self?.viewModel.redFlags[0] = text
@@ -109,7 +110,8 @@ final class RedFlagsSectionViewController: ViewController {
             title: NSLocalizedString("emotional_bundle_red_flag_label_2", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_red_flag_placeholder", comment: ""),
             text: viewModel.redFlags[1],
-            maxCharacters: viewModel.maxCharacters
+            maxCharacters: viewModel.maxCharacters,
+            fieldHeight: 80
         )
         field.onTextChanged = { [weak self] text in
             self?.viewModel.redFlags[1] = text

@@ -103,8 +103,8 @@ final class SupportMeSectionViewController: ViewController {
 
     private lazy var contact1NameField: BundleFormFieldView = {
         let field = BundleFormFieldView()
-        field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_name", comment: ""),
+        field.configureLabeled(
+            inlineTitle: NSLocalizedString("emotional_bundle_contact_name", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_name_placeholder", comment: ""),
             text: viewModel.contacts[0].name,
             maxCharacters: viewModel.maxCharacters
@@ -117,8 +117,8 @@ final class SupportMeSectionViewController: ViewController {
 
     private lazy var contact1PhoneField: BundleFormFieldView = {
         let field = BundleFormFieldView()
-        field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_phone", comment: ""),
+        field.configureLabeled(
+            inlineTitle: NSLocalizedString("emotional_bundle_contact_phone", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_phone_placeholder", comment: ""),
             text: viewModel.contacts[0].phone,
             maxCharacters: viewModel.maxCharacters,
@@ -132,8 +132,8 @@ final class SupportMeSectionViewController: ViewController {
 
     private lazy var contact1EmailField: BundleFormFieldView = {
         let field = BundleFormFieldView()
-        field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_email", comment: ""),
+        field.configureLabeled(
+            inlineTitle: NSLocalizedString("emotional_bundle_contact_email", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_email_placeholder", comment: ""),
             text: viewModel.contacts[0].email,
             maxCharacters: viewModel.maxCharacters,
@@ -147,8 +147,8 @@ final class SupportMeSectionViewController: ViewController {
 
     private lazy var contact1RelationshipField: BundleFormFieldView = {
         let field = BundleFormFieldView()
-        field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_relationship", comment: ""),
+        field.configureLabeled(
+            inlineTitle: NSLocalizedString("emotional_bundle_contact_relationship", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_relationship_placeholder", comment: ""),
             text: viewModel.contacts[0].relationship,
             maxCharacters: viewModel.maxCharacters
@@ -170,8 +170,8 @@ final class SupportMeSectionViewController: ViewController {
 
     private lazy var contact2NameField: BundleFormFieldView = {
         let field = BundleFormFieldView()
-        field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_name", comment: ""),
+        field.configureLabeled(
+            inlineTitle: NSLocalizedString("emotional_bundle_contact_name", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_name_placeholder", comment: ""),
             text: viewModel.contacts[1].name,
             maxCharacters: viewModel.maxCharacters
@@ -184,8 +184,8 @@ final class SupportMeSectionViewController: ViewController {
 
     private lazy var contact2PhoneField: BundleFormFieldView = {
         let field = BundleFormFieldView()
-        field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_phone", comment: ""),
+        field.configureLabeled(
+            inlineTitle: NSLocalizedString("emotional_bundle_contact_phone", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_phone_placeholder", comment: ""),
             text: viewModel.contacts[1].phone,
             maxCharacters: viewModel.maxCharacters,
@@ -199,8 +199,8 @@ final class SupportMeSectionViewController: ViewController {
 
     private lazy var contact2EmailField: BundleFormFieldView = {
         let field = BundleFormFieldView()
-        field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_email", comment: ""),
+        field.configureLabeled(
+            inlineTitle: NSLocalizedString("emotional_bundle_contact_email", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_email_placeholder", comment: ""),
             text: viewModel.contacts[1].email,
             maxCharacters: viewModel.maxCharacters,
@@ -214,8 +214,8 @@ final class SupportMeSectionViewController: ViewController {
 
     private lazy var contact2RelationshipField: BundleFormFieldView = {
         let field = BundleFormFieldView()
-        field.configure(
-            title: NSLocalizedString("emotional_bundle_contact_relationship", comment: ""),
+        field.configureLabeled(
+            inlineTitle: NSLocalizedString("emotional_bundle_contact_relationship", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_relationship_placeholder", comment: ""),
             text: viewModel.contacts[1].relationship,
             maxCharacters: viewModel.maxCharacters
