@@ -256,27 +256,11 @@ class SoulverseTextField: UIView {
             inputTextField.textContentType = .emailAddress
             inputTextField.autocorrectionType = .no
         default:
-            break
+            return
         }
-
+        
         inputTextField.attributedPlaceholder =
         NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.disableGray])
-    }
-
-    /// Hide the floating title label (used when external title is provided)
-    func hideInternalTitle() {
-        inputTitleView.isHidden = true
-        inputTitleLabel.isHidden = true
-        inputBorderView.snp.remakeConstraints { make in
-            make.edges.equalToSuperview()
-            make.height.equalTo(48)
-        }
-    }
-
-    /// Set right accessory view
-    func setRightAccessoryView(_ view: UIView?) {
-        inputTextField.rightView = view
-        inputTextField.rightViewMode = view != nil ? .always : .never
     }
     
     @objc func pressFunctionButton(_ sender: Any) {
