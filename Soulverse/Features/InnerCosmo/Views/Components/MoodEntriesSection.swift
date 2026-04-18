@@ -10,6 +10,7 @@ import UIKit
 
 protocol MoodEntriesSectionDelegate: AnyObject {
     func moodEntriesSectionDidTapDraw(_ section: MoodEntriesSection, checkinId: String?)
+    func moodEntriesSectionDidSelectEntry(_ section: MoodEntriesSection, checkinId: String?)
     func moodEntriesSectionDidRequestMore(_ section: MoodEntriesSection)
 }
 
@@ -121,7 +122,9 @@ extension MoodEntriesSection: UICollectionViewDataSource {
 extension MoodEntriesSection: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // No action for now - future: navigate to detail view
+        guard indexPath.item < entries.count else { return }
+        let checkinId = entries[indexPath.item].checkinId
+        delegate?.moodEntriesSectionDidSelectEntry(self, checkinId: checkinId)
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
