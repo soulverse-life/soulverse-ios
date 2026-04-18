@@ -317,25 +317,46 @@ final class BundleFormFieldView: UIView {
         }
     }
 
-    // MARK: - Right Accessory Management
+    // MARK: - Accessory State
+
+    private enum AccessoryState {
+        case empty
+        case editing
+        case saved
+        case modified
+    }
+
+    private func resolveAccessoryState(isFocused: Bool) -> AccessoryState {
+        let hasContent = !isShowingPlaceholder && !(inputTextView.text ?? "").isEmpty
+
+        switch (hasContent, isFocused, hasBeenModified) {
+        case (false, _, _):
+            return .empty
+        case (true, true, _):
+            return .editing
+        case (true, false, true):
+            return .modified
+        case (true, false, false):
+            return .saved
+        }
+    }
 
     private func updateRightAccessory(isFocused: Bool) {
-        let hasContent = !isShowingPlaceholder && !(inputTextView.text ?? "").isEmpty
+        let state = resolveAccessoryState(isFocused: isFocused)
 
         clearButton.isHidden = true
         savedIcon.isHidden = true
         unsavedIcon.isHidden = true
 
-        if !hasContent {
-            // State 1: Empty, not focused — no icon
-        } else if isFocused {
-            // State 2: Focused with text — clear button
+        switch state {
+        case .empty:
+            break
+        case .editing:
             clearButton.isHidden = false
-        } else if hasBeenModified {
-            // State 4: Unfocused, modified but not saved — no icon
-        } else {
-            // State 3: Unfocused, text matches saved/original — checkmark
+        case .saved:
             savedIcon.isHidden = false
+        case .modified:
+            break
         }
     }
 
