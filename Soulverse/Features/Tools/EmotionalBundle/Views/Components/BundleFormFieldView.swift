@@ -219,13 +219,32 @@ final class BundleFormFieldView: UIView {
 
         // Without inline label, use full vertical space
         inputTextView.snp.remakeConstraints { make in
-            make.top.equalToSuperview().offset(Layout.fieldVerticalPadding)
-            make.bottom.equalToSuperview().offset(-Layout.fieldVerticalPadding)
+            make.edges.equalToSuperview()
             make.leading.equalToSuperview().offset(Layout.fieldHorizontalPadding)
             make.trailing.equalTo(clearButton.snp.leading)
         }
 
+        // For single-line fields, vertically center the text
+        if fieldHeight <= Layout.singleLineHeight {
+            centerTextVertically(in: fieldHeight)
+        } else {
+            inputTextView.textContainerInset = UIEdgeInsets(
+                top: Layout.fieldVerticalPadding, left: 0,
+                bottom: Layout.fieldVerticalPadding, right: 0
+            )
+        }
+
         updateRightAccessory(isFocused: false)
+    }
+
+    private func centerTextVertically(in height: CGFloat) {
+        let font = inputTextView.font ?? .systemFont(ofSize: Layout.fieldFontSize)
+        let lineHeight = font.lineHeight
+        let topInset = max(0, (height - lineHeight) / 2)
+        inputTextView.textContainerInset = UIEdgeInsets(
+            top: topInset, left: 0,
+            bottom: topInset, right: 0
+        )
     }
 
     /// Configure as a labeled field (inline label inside the field container)
