@@ -88,9 +88,17 @@ final class BundleFormFieldView: UIView {
         return button
     }()
 
-    private lazy var modifiedIcon: UIImageView = {
+    private lazy var savedIcon: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "checkmark"))
-        imageView.tintColor = .themePrimary
+        imageView.tintColor = .themeTextPrimary
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        return imageView
+    }()
+
+    private lazy var unsavedIcon: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "pencil"))
+        imageView.tintColor = .themeTextSecondary
         imageView.contentMode = .scaleAspectFit
         imageView.isHidden = true
         return imageView
@@ -126,7 +134,8 @@ final class BundleFormFieldView: UIView {
         fieldContainer.addSubview(inlineLabel)
         fieldContainer.addSubview(inputTextView)
         fieldContainer.addSubview(clearButton)
-        fieldContainer.addSubview(modifiedIcon)
+        fieldContainer.addSubview(savedIcon)
+        fieldContainer.addSubview(unsavedIcon)
 
         titleLabel.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -158,8 +167,14 @@ final class BundleFormFieldView: UIView {
             make.height.equalTo(Layout.accessoryContainerWidth)
         }
 
-        modifiedIcon.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Layout.fieldVerticalPadding)
+        savedIcon.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(Layout.fieldHorizontalPadding)
+            make.width.height.equalTo(Layout.accessorySize)
+        }
+
+        unsavedIcon.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(Layout.fieldHorizontalPadding)
             make.width.height.equalTo(Layout.accessorySize)
         }
@@ -307,15 +322,21 @@ final class BundleFormFieldView: UIView {
     private func updateRightAccessory(isFocused: Bool) {
         let hasContent = !isShowingPlaceholder && !(inputTextView.text ?? "").isEmpty
 
+        clearButton.isHidden = true
+        savedIcon.isHidden = true
+        unsavedIcon.isHidden = true
+
         if !hasContent {
-            clearButton.isHidden = true
-            modifiedIcon.isHidden = true
+            // State 1: Empty, not focused — no icon
         } else if isFocused {
+            // State 2: Focused with text — clear button
             clearButton.isHidden = false
-            modifiedIcon.isHidden = true
+        } else if hasBeenModified {
+            // State 4: Unfocused, modified but not saved — pencil
+            unsavedIcon.isHidden = false
         } else {
-            clearButton.isHidden = true
-            modifiedIcon.isHidden = false
+            // State 3: Unfocused, text matches saved/original — checkmark
+            savedIcon.isHidden = false
         }
     }
 
