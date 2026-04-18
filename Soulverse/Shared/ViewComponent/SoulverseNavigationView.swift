@@ -94,6 +94,7 @@ class SoulverseNavigationView: UIView {
         static let edgeInset: CGFloat = 16
         static let itemSpacing: CGFloat = 8
         static let backButtonSize: CGFloat = 44
+        static let backButtonToTitleSpacing: CGFloat = 8
         static let rightItemButtonWidth: CGFloat = 28
         static let maxRightItemsWidth: CGFloat = 120
     }
@@ -204,7 +205,7 @@ class SoulverseNavigationView: UIView {
         mainStackView.addArrangedSubview(trailingSpacer)
 
         // Set custom spacing
-        mainStackView.setCustomSpacing(0, after: backButton)  // No space between back button and title
+        mainStackView.setCustomSpacing(Layout.backButtonToTitleSpacing, after: backButton)  // 8px between back button and title
         mainStackView.setCustomSpacing(0, after: rightItemsStackView)  // No space between right items and trailing spacer
 
         // Set specific constraints for items
@@ -243,7 +244,7 @@ class SoulverseNavigationView: UIView {
         leadingSpacer.isHidden = config.showBackButton
 
         navigationTitle.text = config.title
-        navigationTitle.textAlignment = config.showBackButton ? .center : .left
+        navigationTitle.textAlignment = config.showBackButton ? .left : .center
 
         // Configure right items
         if !config.rightItems.isEmpty {
