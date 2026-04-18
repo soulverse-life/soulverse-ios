@@ -19,9 +19,9 @@ final class BundleFormFieldView: UIView {
         static let singleLineHeight: CGFloat = 60
         static let multiLineHeight: CGFloat = 80
         static let fieldCornerRadius: CGFloat = 8
-        static let fieldBorderWidth: CGFloat = 1
         static let fieldFontSize: CGFloat = 15
         static let fieldHorizontalPadding: CGFloat = 16
+        static let fieldVerticalPadding: CGFloat = 12
         static let inlineLabelFontSize: CGFloat = 12
         static let inlineLabelTopPadding: CGFloat = 10
         static let inlineLabelToInputSpacing: CGFloat = 2
@@ -37,6 +37,7 @@ final class BundleFormFieldView: UIView {
     private var hasBeenModified: Bool = false
     private var fieldHeight: CGFloat = Layout.singleLineHeight
     private var hasInlineLabel: Bool = false
+    private var placeholderText: String = ""
 
     // MARK: - UI Elements
 
@@ -51,8 +52,7 @@ final class BundleFormFieldView: UIView {
     private lazy var fieldContainer: UIView = {
         let view = UIView()
         view.layer.cornerRadius = Layout.fieldCornerRadius
-        view.layer.borderWidth = Layout.fieldBorderWidth
-        view.layer.borderColor = UIColor.disableGray.cgColor
+        view.clipsToBounds = true
         view.backgroundColor = .groupAreaBackgroundBlack
         return view
     }()
@@ -65,14 +65,18 @@ final class BundleFormFieldView: UIView {
         return label
     }()
 
-    private lazy var inputTextField: UITextField = {
-        let textField = UITextField()
-        textField.font = .projectFont(ofSize: Layout.fieldFontSize, weight: .regular)
-        textField.textColor = .themeTextPrimary
-        textField.autocapitalizationType = .none
-        textField.delegate = self
-        textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        return textField
+    private lazy var inputTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = .projectFont(ofSize: Layout.fieldFontSize, weight: .regular)
+        textView.textColor = .themeTextPrimary
+        textView.backgroundColor = .clear
+        textView.autocapitalizationType = .none
+        textView.delegate = self
+        textView.textContainerInset = .zero
+        textView.textContainer.lineFragmentPadding = 0
+        textView.isScrollEnabled = true
+        textView.showsVerticalScrollIndicator = false
+        return textView
     }()
 
     private lazy var clearButton: UIButton = {
@@ -120,7 +124,7 @@ final class BundleFormFieldView: UIView {
         addSubview(characterCountLabel)
 
         fieldContainer.addSubview(inlineLabel)
-        fieldContainer.addSubview(inputTextField)
+        fieldContainer.addSubview(inputTextView)
         fieldContainer.addSubview(clearButton)
         fieldContainer.addSubview(modifiedIcon)
 
@@ -140,22 +144,22 @@ final class BundleFormFieldView: UIView {
             make.trailing.equalTo(clearButton.snp.leading)
         }
 
-        inputTextField.snp.makeConstraints { make in
-            make.bottom.equalToSuperview()
+        inputTextView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Layout.fieldVerticalPadding)
+            make.bottom.equalToSuperview().offset(-Layout.fieldVerticalPadding)
             make.leading.equalToSuperview().offset(Layout.fieldHorizontalPadding)
             make.trailing.equalTo(clearButton.snp.leading)
-            make.top.equalTo(inlineLabel.snp.bottom).offset(Layout.inlineLabelToInputSpacing)
         }
 
         clearButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(Layout.fieldVerticalPadding)
             make.trailing.equalToSuperview()
             make.width.equalTo(Layout.accessoryContainerWidth)
             make.height.equalTo(Layout.accessoryContainerWidth)
         }
 
         modifiedIcon.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(Layout.fieldVerticalPadding)
             make.trailing.equalToSuperview().inset(Layout.fieldHorizontalPadding)
             make.width.height.equalTo(Layout.accessorySize)
         }
@@ -170,11 +174,11 @@ final class BundleFormFieldView: UIView {
     // MARK: - Public Interface
 
     var text: String {
-        return inputTextField.text ?? ""
+        return inputTextView.text ?? ""
     }
 
     func showError() {
-        updateBorderColor(for: .error)
+        // Could add visual feedback here if needed
     }
 
     // MARK: - Configuration
@@ -194,18 +198,18 @@ final class BundleFormFieldView: UIView {
         self.originalText = text ?? ""
         self.fieldHeight = fieldHeight
         self.hasInlineLabel = false
+        self.placeholderText = placeholder
 
         inlineLabel.isHidden = true
 
-        inputTextField.keyboardType = keyboardType
-        inputTextField.attributedPlaceholder = NSAttributedString(
-            string: placeholder,
-            attributes: [.foregroundColor: UIColor.themeTextDisabled]
-        )
+        inputTextView.keyboardType = keyboardType
 
         if let text = text, !text.isEmpty {
-            inputTextField.text = text
-            hasBeenModified = false
+            inputTextView.text = text
+            inputTextView.textColor = .themeTextPrimary
+        } else {
+            inputTextView.text = placeholder
+            inputTextView.textColor = .themeTextDisabled
         }
 
         // Update field height
@@ -213,9 +217,10 @@ final class BundleFormFieldView: UIView {
             make.height.equalTo(fieldHeight)
         }
 
-        // Without inline label, center the text field vertically
-        inputTextField.snp.remakeConstraints { make in
-            make.top.bottom.equalToSuperview()
+        // Without inline label, use full vertical space
+        inputTextView.snp.remakeConstraints { make in
+            make.top.equalToSuperview().offset(Layout.fieldVerticalPadding)
+            make.bottom.equalToSuperview().offset(-Layout.fieldVerticalPadding)
             make.leading.equalToSuperview().offset(Layout.fieldHorizontalPadding)
             make.trailing.equalTo(clearButton.snp.leading)
         }
@@ -223,7 +228,7 @@ final class BundleFormFieldView: UIView {
         updateRightAccessory(isFocused: false)
     }
 
-    /// Configure as a labeled field (inline label inside the field container, e.g., "Name" above "Stephy")
+    /// Configure as a labeled field (inline label inside the field container)
     func configureLabeled(
         inlineTitle: String,
         placeholder: String,
@@ -237,19 +242,19 @@ final class BundleFormFieldView: UIView {
         self.originalText = text ?? ""
         self.fieldHeight = Layout.singleLineHeight
         self.hasInlineLabel = true
+        self.placeholderText = placeholder
 
         inlineLabel.text = inlineTitle
         inlineLabel.isHidden = false
 
-        inputTextField.keyboardType = keyboardType
-        inputTextField.attributedPlaceholder = NSAttributedString(
-            string: placeholder,
-            attributes: [.foregroundColor: UIColor.themeTextDisabled]
-        )
+        inputTextView.keyboardType = keyboardType
 
         if let text = text, !text.isEmpty {
-            inputTextField.text = text
-            hasBeenModified = false
+            inputTextView.text = text
+            inputTextView.textColor = .themeTextPrimary
+        } else {
+            inputTextView.text = placeholder
+            inputTextView.textColor = .themeTextDisabled
         }
 
         // Update field height
@@ -258,22 +263,40 @@ final class BundleFormFieldView: UIView {
         }
 
         // With inline label, stack vertically
-        inputTextField.snp.remakeConstraints { make in
-            make.bottom.equalToSuperview()
+        inputTextView.snp.remakeConstraints { make in
+            make.top.equalTo(inlineLabel.snp.bottom).offset(Layout.inlineLabelToInputSpacing)
+            make.bottom.equalToSuperview().offset(-Layout.fieldVerticalPadding)
             make.leading.equalToSuperview().offset(Layout.fieldHorizontalPadding)
             make.trailing.equalTo(clearButton.snp.leading)
-            make.top.equalTo(inlineLabel.snp.bottom).offset(Layout.inlineLabelToInputSpacing)
         }
 
         updateRightAccessory(isFocused: false)
     }
 
+    // MARK: - Placeholder Management
+
+    private var isShowingPlaceholder: Bool {
+        return inputTextView.textColor == .themeTextDisabled && inputTextView.text == placeholderText
+    }
+
+    private func showPlaceholder() {
+        inputTextView.text = placeholderText
+        inputTextView.textColor = .themeTextDisabled
+    }
+
+    private func hidePlaceholder() {
+        if isShowingPlaceholder {
+            inputTextView.text = ""
+            inputTextView.textColor = .themeTextPrimary
+        }
+    }
+
     // MARK: - Right Accessory Management
 
     private func updateRightAccessory(isFocused: Bool) {
-        let currentText = inputTextField.text ?? ""
+        let hasContent = !isShowingPlaceholder && !(inputTextView.text ?? "").isEmpty
 
-        if currentText.isEmpty {
+        if !hasContent {
             clearButton.isHidden = true
             modifiedIcon.isHidden = true
         } else if isFocused {
@@ -286,27 +309,10 @@ final class BundleFormFieldView: UIView {
     }
 
     @objc private func clearText() {
-        inputTextField.text = ""
         hasBeenModified = true
+        showPlaceholder()
         updateRightAccessory(isFocused: true)
         onTextChanged?("")
-    }
-
-    // MARK: - Border State
-
-    private func updateBorderColor(for status: FieldStatus) {
-        switch status {
-        case .normal:
-            fieldContainer.layer.borderColor = UIColor.disableGray.cgColor
-        case .focused:
-            fieldContainer.layer.borderColor = UIColor.themePrimary.cgColor
-        case .error:
-            fieldContainer.layer.borderColor = UIColor.primaryOrange.cgColor
-        }
-    }
-
-    private enum FieldStatus {
-        case normal, focused, error
     }
 
     // MARK: - Character Limit Handling
@@ -317,21 +323,36 @@ final class BundleFormFieldView: UIView {
         if count >= maxCharacters {
             characterCountLabel.text = "\(count)/\(maxCharacters)"
             characterCountLabel.isHidden = false
-            updateBorderColor(for: .error)
         } else {
             characterCountLabel.isHidden = true
-            updateBorderColor(for: .focused)
         }
     }
+}
 
-    // MARK: - Actions
+// MARK: - UITextViewDelegate
 
-    @objc private func editingChanged() {
-        guard let text = inputTextField.text else { return }
+extension BundleFormFieldView: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        hidePlaceholder()
+        updateRightAccessory(isFocused: true)
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        let text = textView.text ?? ""
+        if text.isEmpty {
+            showPlaceholder()
+        }
+        characterCountLabel.isHidden = true
+        updateRightAccessory(isFocused: false)
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+        guard let text = textView.text else { return }
 
         if text.count > maxCharacters {
             let truncated = String(text.prefix(maxCharacters))
-            inputTextField.text = truncated
+            textView.text = truncated
             onTextChanged?(truncated)
             updateCharacterCount(for: truncated)
             return
@@ -342,28 +363,13 @@ final class BundleFormFieldView: UIView {
         updateRightAccessory(isFocused: true)
         onTextChanged?(text)
     }
-}
 
-// MARK: - UITextFieldDelegate
-
-extension BundleFormFieldView: UITextFieldDelegate {
-
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        updateBorderColor(for: .focused)
-        if let text = textField.text {
-            updateCharacterCount(for: text)
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // For single-line fields (not multiline), treat return as done
+        if fieldHeight <= Layout.singleLineHeight && text == "\n" {
+            textView.resignFirstResponder()
+            return false
         }
-        updateRightAccessory(isFocused: true)
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        characterCountLabel.isHidden = true
-        updateBorderColor(for: .normal)
-        updateRightAccessory(isFocused: false)
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
         return true
     }
 }

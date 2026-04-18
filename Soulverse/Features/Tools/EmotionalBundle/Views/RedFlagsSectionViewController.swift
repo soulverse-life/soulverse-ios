@@ -25,7 +25,7 @@ final class RedFlagsSectionViewController: ViewController {
         static let iconTopPadding: CGFloat = 24
         static let iconSize: CGFloat = 36
         static let iconToTitleSpacing: CGFloat = 12
-        static let titleHorizontalPadding: CGFloat = 20
+        static let titleHorizontalPadding: CGFloat = 24
         static let titleFontSize: CGFloat = 28
         static let fieldLabelFontSize: CGFloat = 14
         static let fieldSpacing: CGFloat = 20
@@ -86,6 +86,7 @@ final class RedFlagsSectionViewController: ViewController {
         label.font = .projectFont(ofSize: Layout.titleFontSize, weight: .bold)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
 

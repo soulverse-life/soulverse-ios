@@ -23,7 +23,7 @@ final class ProfessionalSupportSectionViewController: ViewController {
         static let horizontalPadding: CGFloat = 16
         static let scrollViewTopPadding: CGFloat = 8
         static let titleTopPadding: CGFloat = 24
-        static let titleHorizontalPadding: CGFloat = 20
+        static let titleHorizontalPadding: CGFloat = 24
         static let titleFontSize: CGFloat = 28
         static let iconTopPadding: CGFloat = 24
         static let iconSize: CGFloat = 36
@@ -88,6 +88,7 @@ final class ProfessionalSupportSectionViewController: ViewController {
         label.font = .projectFont(ofSize: Layout.titleFontSize, weight: .bold)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
 
