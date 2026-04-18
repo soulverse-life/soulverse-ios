@@ -2,8 +2,6 @@
 //  BundleFormFieldView.swift
 //  Soulverse
 //
-//  Created on 2026/4/16.
-//
 
 import UIKit
 import SnapKit
@@ -18,20 +16,23 @@ final class BundleFormFieldView: UIView {
         static let titleBottomSpacing: CGFloat = 8
         static let counterTopSpacing: CGFloat = 4
         static let defaultMaxCharacters: Int = 100
-        static let redFlagMaxCharacters: Int = 200
+        static let accessorySize: CGFloat = 20
+        static let accessoryContainerSize: CGFloat = 44
     }
 
     // MARK: - Properties
 
     var onTextChanged: ((String) -> Void)?
     private var maxCharacters: Int = Layout.defaultMaxCharacters
+    private var originalText: String = ""
+    private var hasBeenModified: Bool = false
 
     // MARK: - UI Elements
 
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .projectFont(ofSize: Layout.titleFontSize, weight: .medium)
-        label.textColor = .themeTextPrimary
+        label.textColor = .themeTextSecondary
         label.numberOfLines = 1
         return label
     }()
@@ -53,6 +54,45 @@ final class BundleFormFieldView: UIView {
         label.textAlignment = .right
         label.isHidden = true
         return label
+    }()
+
+    private lazy var clearButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.tintColor = .themeTextSecondary
+        button.frame = CGRect(x: 0, y: 0, width: Layout.accessoryContainerSize, height: Layout.accessoryContainerSize)
+        button.addTarget(self, action: #selector(clearText), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var modifiedIndicator: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "checkmark"))
+        imageView.tintColor = .themePrimary
+        imageView.contentMode = .scaleAspectFit
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: Layout.accessoryContainerSize, height: Layout.accessoryContainerSize))
+        imageView.frame = CGRect(
+            x: (Layout.accessoryContainerSize - Layout.accessorySize) / 2,
+            y: (Layout.accessoryContainerSize - Layout.accessorySize) / 2,
+            width: Layout.accessorySize,
+            height: Layout.accessorySize
+        )
+        container.addSubview(imageView)
+        return imageView
+    }()
+
+    private lazy var modifiedContainer: UIView = {
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: Layout.accessoryContainerSize, height: Layout.accessoryContainerSize))
+        let imageView = UIImageView(image: UIImage(systemName: "checkmark"))
+        imageView.tintColor = .themePrimary
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame = CGRect(
+            x: (Layout.accessoryContainerSize - Layout.accessorySize) / 2,
+            y: (Layout.accessoryContainerSize - Layout.accessorySize) / 2,
+            width: Layout.accessorySize,
+            height: Layout.accessorySize
+        )
+        container.addSubview(imageView)
+        return container
     }()
 
     // MARK: - Initialization
@@ -110,8 +150,9 @@ final class BundleFormFieldView: UIView {
     ) {
         titleLabel.text = title
         self.maxCharacters = maxCharacters
+        self.originalText = text ?? ""
 
-        // Re-create textField with empty title (title is shown by our own titleLabel)
+        // Re-create textField with placeholder
         textField.removeFromSuperview()
         textField = SoulverseTextField(
             title: "",
@@ -119,10 +160,13 @@ final class BundleFormFieldView: UIView {
             type: .general,
             delegate: self
         )
+        textField.hideInternalTitle()
         textField.keyboardType = keyboardType
 
         if let text = text, !text.isEmpty {
             textField.text = text
+            hasBeenModified = false
+            updateRightAccessory(isFocused: false)
         }
 
         addSubview(textField)
@@ -135,6 +179,33 @@ final class BundleFormFieldView: UIView {
         bringSubviewToFront(characterCountLabel)
     }
 
+    // MARK: - Right Accessory Management
+
+    private func updateRightAccessory(isFocused: Bool) {
+        let currentText = textField.text ?? ""
+
+        if currentText.isEmpty {
+            // State 1: No input — no right icon
+            textField.setRightAccessoryView(nil)
+        } else if isFocused {
+            // State 2: Has input + focused — show clear button
+            textField.setRightAccessoryView(clearButton)
+        } else if hasBeenModified {
+            // State 3: Has been modified — show checkmark
+            textField.setRightAccessoryView(modifiedContainer)
+        } else {
+            // Has original text, not modified — show checkmark (pre-existing data)
+            textField.setRightAccessoryView(modifiedContainer)
+        }
+    }
+
+    @objc private func clearText() {
+        textField.text = ""
+        hasBeenModified = true
+        updateRightAccessory(isFocused: true)
+        onTextChanged?("")
+    }
+
     // MARK: - Character Limit Handling
 
     private func updateCharacterCount(for text: String) {
@@ -143,7 +214,7 @@ final class BundleFormFieldView: UIView {
         if count >= maxCharacters {
             characterCountLabel.text = "\(count)/\(maxCharacters)"
             characterCountLabel.isHidden = false
-            textField.updateStatus(status: .errorWithoutMessage)
+            textField.updateStatus(status: .errorWithMessage("\(count)/\(maxCharacters)"))
         } else {
             characterCountLabel.isHidden = true
             textField.updateStatus(status: .highlight)
@@ -160,14 +231,15 @@ extension BundleFormFieldView: SoulverseTextFieldDelegate {
 
         // Enforce character limit
         if text.count > maxCharacters {
-            // Text exceeds limit — the delegate will be informed with truncated text
             let truncated = String(text.prefix(maxCharacters))
             onTextChanged?(truncated)
             updateCharacterCount(for: truncated)
             return
         }
 
+        hasBeenModified = (text != originalText)
         updateCharacterCount(for: text)
+        updateRightAccessory(isFocused: true)
         onTextChanged?(text)
     }
 
@@ -175,6 +247,7 @@ extension BundleFormFieldView: SoulverseTextFieldDelegate {
         if let text = textField.text {
             updateCharacterCount(for: text)
         }
+        updateRightAccessory(isFocused: true)
     }
 
     func textFieldDidEndEditing(_ textField: SoulverseTextField) {
@@ -182,6 +255,7 @@ extension BundleFormFieldView: SoulverseTextFieldDelegate {
         if let text = textField.text, text.count < maxCharacters {
             textField.updateStatus(status: .normal)
         }
+        updateRightAccessory(isFocused: false)
     }
 
     func textFieldShouldReturn(_ textField: SoulverseTextField) {
