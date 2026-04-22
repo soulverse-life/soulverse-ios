@@ -127,6 +127,20 @@ class AppCoordinator {
         }
     }
 
+    static func presentDrawingPrompt(
+        from sourceVC: UIViewController,
+        checkinId: String?,
+        recordedEmotion: RecordedEmotion?
+    ) {
+        let promptVC = DrawingPromptViewController(
+            checkinId: checkinId,
+            recordedEmotion: recordedEmotion
+        )
+        let navigationController = UINavigationController(rootViewController: promptVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        sourceVC.present(navigationController, animated: true)
+    }
+
     static func openSpiralBreathing(from sourceVC: UIViewController) {
         let spiralVC = SpiralBreathingViewController()
 
@@ -169,7 +183,11 @@ class AppCoordinator {
                 guard let sourceVC = sourceVC else { return }
                 switch selectedAction {
                 case .draw:
-                    AppCoordinator.openDrawingCanvas(from: sourceVC, checkinId: checkinId)
+                    AppCoordinator.presentDrawingPrompt(
+                        from: sourceVC,
+                        checkinId: checkinId,
+                        recordedEmotion: data.recordedEmotion
+                    )
                 case .writeJournal:
                     print("TODO: Write Journal action")
                 case .none:

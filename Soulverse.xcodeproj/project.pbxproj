@@ -272,6 +272,16 @@
 		7951A9BC2E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
+		7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
+		7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
+		7AE10CFF01000000000000A2 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
+		7AE10CFF01000000000000A3 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
+		7AE10CFF01000000000000B2 /* DrawingPromptPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */; };
+		7AE10CFF01000000000000B3 /* DrawingPromptPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */; };
+		7AE10CFF01000000000000C2 /* DrawingPromptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */; };
+		7AE10CFF01000000000000C3 /* DrawingPromptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */; };
+		7AE10CFF01000000000000D2 /* DrawingPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */; };
+		7AE10CFF01000000000000D3 /* DrawingPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */; };
 		7951A9C92E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */; };
 		7951A9CA2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */; };
 		7951A9CB2E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */; };
@@ -697,6 +707,11 @@
 		794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingViewController.swift; sourceTree = "<group>"; };
 		7951A9B62E532C85006EB0EC /* SoulverseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButton.swift; sourceTree = "<group>"; };
 		7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseNavigationView.swift; sourceTree = "<group>"; };
+		7AE10C0001000000000000A1 /* EmoPetChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoPetChatView.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptViewModel.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterType.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenter.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptViewController.swift; sourceTree = "<group>"; };
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
 		7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenter.swift; sourceTree = "<group>"; };
 		7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterType.swift; sourceTree = "<group>"; };
@@ -1781,6 +1796,7 @@
 				7951A9C72E5376B5006EB0EC /* InnerCosmo */,
 				798687ED2E6C248E00EB3B38 /* Insight */,
 				79B24C742DFC7B2A001220B6 /* Canvas */,
+				7AE10CF00100000000000001 /* DrawingPrompt */,
 				7951A9FF2E537704006EB0EC /* Tools */,
 				79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */,
 				798688072E6C24EE00EB3B38 /* Quest */,
@@ -1833,6 +1849,41 @@
 				79B24C732DFC7B2A001220B6 /* Views */,
 			);
 			path = Canvas;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000001 /* DrawingPrompt */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CF00100000000000002 /* ViewModels */,
+				7AE10CF00100000000000003 /* Presenter */,
+				7AE10CF00100000000000004 /* Views */,
+			);
+			path = DrawingPrompt;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000002 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000003 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */,
+				7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		79B6AAA62EACCA5D00A8B079 /* Models */ = {
@@ -2718,6 +2769,10 @@
 				79DD633C2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */,
 				7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
 				7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */,
+				7AE10CFF01000000000000A2 /* DrawingPromptViewModel.swift in Sources */,
+				7AE10CFF01000000000000B2 /* DrawingPromptPresenterType.swift in Sources */,
+				7AE10CFF01000000000000C2 /* DrawingPromptPresenter.swift in Sources */,
+				7AE10CFF01000000000000D2 /* DrawingPromptViewController.swift in Sources */,
 				790D87D22ECF668700D4F61F /* SpiralView.swift in Sources */,
 				790D87D32ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
@@ -2881,6 +2936,10 @@
 				79DD633B2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */,
 				7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
 				7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */,
+				7AE10CFF01000000000000A3 /* DrawingPromptViewModel.swift in Sources */,
+				7AE10CFF01000000000000B3 /* DrawingPromptPresenterType.swift in Sources */,
+				7AE10CFF01000000000000C3 /* DrawingPromptPresenter.swift in Sources */,
+				7AE10CFF01000000000000D3 /* DrawingPromptViewController.swift in Sources */,
 				790D87D42ECF668700D4F61F /* SpiralView.swift in Sources */,
 				790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A082EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
