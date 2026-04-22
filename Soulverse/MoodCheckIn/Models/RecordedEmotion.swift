@@ -209,6 +209,23 @@ enum RecordedEmotion: String, CaseIterable, Codable, Hashable {
     var isCombinedEmotion: Bool {
         return sourceEmotions != nil
     }
+
+    /// The primary emotion family this recorded emotion belongs to.
+    /// - Intensity-based cases return their family primary (e.g. `.serenity`/`.joy`/`.ecstasy` → `.joy`).
+    /// - Combined dyads return `nil` — use `sourceEmotions` or `isCombinedEmotion` for those.
+    var primaryEmotion: EmotionType? {
+        switch self {
+        case .serenity, .joy, .ecstasy: return .joy
+        case .acceptance, .trust, .admiration: return .trust
+        case .apprehension, .fear, .terror: return .fear
+        case .distraction, .surprise, .amazement: return .surprise
+        case .pensiveness, .sadness, .grief: return .sadness
+        case .boredom, .disgust, .loathing: return .disgust
+        case .annoyance, .anger, .rage: return .anger
+        case .interest, .anticipation, .vigilance: return .anticipation
+        default: return nil
+        }
+    }
 }
 
 // MARK: - Resolution Methods

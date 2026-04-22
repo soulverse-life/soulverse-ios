@@ -26,11 +26,11 @@ class CanvasViewPresenter: CanvasViewPresenterType {
     private var isFetchingData: Bool = false
     private var dataAccessQueue = DispatchQueue(label: "canvas_data", attributes: .concurrent)
 
-    init(emotionFilter: EmotionType? = nil) {
+    init(recordedEmotion: RecordedEmotion? = nil) {
         self.loadedModel = CanvasViewModel(
             isLoading: false,
             currentPrompt: nil,
-            emotionFilter: emotionFilter
+            recordedEmotion: recordedEmotion
         )
     }
 
@@ -45,7 +45,7 @@ class CanvasViewPresenter: CanvasViewPresenterType {
     }
 
     public func loadRandomPrompt() {
-        let randomPrompt = CanvasPromptManager.randomPrompt(for: loadedModel.emotionFilter)
+        let randomPrompt = CanvasPromptManager.randomPrompt(for: loadedModel.recordedEmotion)
         loadedModel.currentPrompt = randomPrompt
     }
 } 

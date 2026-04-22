@@ -133,8 +133,8 @@ class CanvasViewController: ViewController {
     }
 
     // MARK: - Lifecycle
-    init(emotionFilter: EmotionType? = nil) {
-        self.presenter = CanvasViewPresenter(emotionFilter: emotionFilter)
+    init(recordedEmotion: RecordedEmotion? = nil) {
+        self.presenter = CanvasViewPresenter(recordedEmotion: recordedEmotion)
         super.init(nibName: nil, bundle: nil)
         self.presenter.delegate = self
     }
