@@ -8,35 +8,6 @@ import XCTest
 
 final class CanvasPromptTests: XCTestCase {
 
-    // MARK: - emotion Computed Property
-
-    func test_CanvasPrompt_emotion_validEmotionStr_returnsEmotionType() {
-        let prompt = makePrompt(emotionStr: "joy")
-        XCTAssertEqual(prompt.emotion, .joy)
-    }
-
-    func test_CanvasPrompt_emotion_nilEmotionStr_returnsNil() {
-        let prompt = makePrompt(emotionStr: nil)
-        XCTAssertNil(prompt.emotion)
-    }
-
-    func test_CanvasPrompt_emotion_emptyEmotionStr_returnsNil() {
-        let prompt = makePrompt(emotionStr: "")
-        XCTAssertNil(prompt.emotion)
-    }
-
-    func test_CanvasPrompt_emotion_invalidEmotionStr_returnsNil() {
-        let prompt = makePrompt(emotionStr: "happiness")
-        XCTAssertNil(prompt.emotion)
-    }
-
-    func test_CanvasPrompt_emotion_allValidEmotionTypes() {
-        for emotionType in EmotionType.allCases {
-            let prompt = makePrompt(emotionStr: emotionType.rawValue)
-            XCTAssertEqual(prompt.emotion, emotionType, "Failed for \(emotionType.rawValue)")
-        }
-    }
-
     // MARK: - templateImage
 
     func test_CanvasPrompt_templateImage_nilTemplateName_returnsNil() {
@@ -49,21 +20,62 @@ final class CanvasPromptTests: XCTestCase {
         XCTAssertNil(prompt.templateImage)
     }
 
-    // MARK: - Codable
+    // MARK: - Codable round-trip
 
-    func test_CanvasPrompt_codable_roundTrip() throws {
-        let original = makePrompt(
-            templateName: "template1",
-            emotionStr: "anger"
-        )
-
-        let data = try JSONEncoder().encode(original)
-        let decoded = try JSONDecoder().decode(CanvasPrompt.self, from: data)
+    func test_CanvasPrompt_codable_roundTrip_single() throws {
+        let original = makePrompt(templateName: "template1", category: .single(.anger))
+        let decoded = try roundTrip(original)
 
         XCTAssertEqual(decoded.templateName, original.templateName)
         XCTAssertEqual(decoded.artTherapyPrompt, original.artTherapyPrompt)
         XCTAssertEqual(decoded.reflectiveQuestion, original.reflectiveQuestion)
-        XCTAssertEqual(decoded.emotion, original.emotion)
+        XCTAssertEqual(decoded.category, .single(.anger))
+    }
+
+    func test_CanvasPrompt_codable_roundTrip_mixed() throws {
+        let decoded = try roundTrip(makePrompt(category: .mixed))
+        XCTAssertEqual(decoded.category, .mixed)
+    }
+
+    func test_CanvasPrompt_codable_roundTrip_general() throws {
+        let decoded = try roundTrip(makePrompt(category: .general))
+        XCTAssertEqual(decoded.category, .general)
+    }
+
+    func test_CanvasPrompt_codable_roundTrip_allEmotionTypes() throws {
+        for emotionType in EmotionType.allCases {
+            let decoded = try roundTrip(makePrompt(category: .single(emotionType)))
+            XCTAssertEqual(decoded.category, .single(emotionType), "Failed for \(emotionType.rawValue)")
+        }
+    }
+
+    // MARK: - JSON schema guards
+
+    func test_CanvasPrompt_decode_nullEmotion_isGeneral() throws {
+        let decoded = try decodePrompt(emotionJSON: "null")
+        XCTAssertEqual(decoded.category, .general)
+    }
+
+    func test_CanvasPrompt_decode_mixedEmotion_isMixed() throws {
+        let decoded = try decodePrompt(emotionJSON: "\"mixed\"")
+        XCTAssertEqual(decoded.category, .mixed)
+    }
+
+    func test_CanvasPrompt_decode_knownPrimary_isSingle() throws {
+        let decoded = try decodePrompt(emotionJSON: "\"joy\"")
+        XCTAssertEqual(decoded.category, .single(.joy))
+    }
+
+    func test_CanvasPrompt_decode_unknownEmotion_fallsBackToGeneral() throws {
+        let decoded = try decodePrompt(emotionJSON: "\"happiness\"")
+        XCTAssertEqual(decoded.category, .general)
+    }
+
+    func test_CanvasPrompt_encode_general_writesNullEmotion() throws {
+        let data = try JSONEncoder().encode(makePrompt(category: .general))
+        let object = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        // `NSNull` on encode = JSON null; ensure the key exists with a null value.
+        XCTAssertTrue(object?["emotion"] is NSNull)
     }
 }
 
@@ -72,13 +84,30 @@ final class CanvasPromptTests: XCTestCase {
 private extension CanvasPromptTests {
     func makePrompt(
         templateName: String? = "default_template",
-        emotionStr: String? = nil
+        category: CanvasPromptCategory = .general
     ) -> CanvasPrompt {
         return CanvasPrompt(
             templateName: templateName,
             artTherapyPrompt: "Draw how you feel",
             reflectiveQuestion: "What do you see?",
-            emotionStr: emotionStr
+            category: category
         )
+    }
+
+    func roundTrip(_ prompt: CanvasPrompt) throws -> CanvasPrompt {
+        let data = try JSONEncoder().encode(prompt)
+        return try JSONDecoder().decode(CanvasPrompt.self, from: data)
+    }
+
+    func decodePrompt(emotionJSON: String) throws -> CanvasPrompt {
+        let json = """
+        {
+            "templateName": null,
+            "artTherapyPrompt": "Draw how you feel",
+            "reflectiveQuestion": "What do you see?",
+            "emotion": \(emotionJSON)
+        }
+        """
+        return try JSONDecoder().decode(CanvasPrompt.self, from: Data(json.utf8))
     }
 }

@@ -24,24 +24,24 @@ final class CanvasViewPresenterTests: XCTestCase {
         super.tearDown()
     }
 
-    // MARK: - Init Without Emotion Filter
+    // MARK: - Init Without Recorded Emotion
 
-    func test_CanvasViewPresenter_initWithoutEmotionFilter_emotionFilterIsNil() {
+    func test_CanvasViewPresenter_initWithoutRecordedEmotion_recordedEmotionIsNil() {
         let presenter = makePresenter()
 
         presenter.fetchData()
 
-        XCTAssertNil(delegateMock.updatedViewModel?.emotionFilter)
+        XCTAssertNil(delegateMock.updatedViewModel?.recordedEmotion)
     }
 
-    // MARK: - Init With Emotion Filter
+    // MARK: - Init With Recorded Emotion
 
-    func test_CanvasViewPresenter_initWithEmotionFilter_emotionFilterMatches() {
-        let presenter = makePresenter(emotionFilter: .joy)
+    func test_CanvasViewPresenter_initWithRecordedEmotion_recordedEmotionMatches() {
+        let presenter = makePresenter(recordedEmotion: .joy)
 
         presenter.fetchData()
 
-        XCTAssertEqual(delegateMock.updatedViewModel?.emotionFilter, .joy)
+        XCTAssertEqual(delegateMock.updatedViewModel?.recordedEmotion, .joy)
     }
 
     // MARK: - fetchData
@@ -66,8 +66,8 @@ final class CanvasViewPresenterTests: XCTestCase {
 // MARK: - Helpers
 
 private extension CanvasViewPresenterTests {
-    func makePresenter(emotionFilter: EmotionType? = nil) -> CanvasViewPresenter {
-        let presenter = CanvasViewPresenter(emotionFilter: emotionFilter)
+    func makePresenter(recordedEmotion: RecordedEmotion? = nil) -> CanvasViewPresenter {
+        let presenter = CanvasViewPresenter(recordedEmotion: recordedEmotion)
         presenter.delegate = delegateMock
         return presenter
     }
