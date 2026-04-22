@@ -113,25 +113,16 @@ struct CanvasPromptManager {
 
     // MARK: - Public API (RecordedEmotion-driven)
 
-    /// Returns prompts that match the user's recorded emotion.
-    /// - `nil` → general prompts.
-    /// - Combined dyad → mixed-emotion pool.
+    /// Returns a random prompt that matches the user's recorded emotion.
+    /// - `nil` → general prompt.
+    /// - Combined dyad → mixed-pool prompt.
     /// - Intensity emotion → that primary's pool (e.g. `.serenity`/`.joy`/`.ecstasy` → joy pool).
-    static func prompts(for recordedEmotion: RecordedEmotion?) -> [CanvasPrompt] {
-        return prompts(for: category(for: recordedEmotion))
-    }
-
-    /// Returns a random prompt matching the user's recorded emotion.
     static func randomPrompt(for recordedEmotion: RecordedEmotion?) -> CanvasPrompt? {
-        return prompts(for: recordedEmotion).randomElement()
+        let target = category(for: recordedEmotion)
+        return allPrompts.filter { $0.category == target }.randomElement()
     }
 
     // MARK: - Category routing
-
-    /// Returns prompts for a given category.
-    static func prompts(for category: CanvasPromptCategory) -> [CanvasPrompt] {
-        return allPrompts.filter { $0.category == category }
-    }
 
     /// Maps a `RecordedEmotion` to the category of prompts that should be shown.
     static func category(for recordedEmotion: RecordedEmotion?) -> CanvasPromptCategory {
