@@ -52,6 +52,8 @@ final class DrawingPromptViewController: ViewController {
         view.backgroundColor = .white
         view.layer.cornerRadius = Layout.templateCardCornerRadius
         view.clipsToBounds = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapTemplateCard))
+        view.addGestureRecognizer(tap)
         return view
     }()
 
@@ -142,6 +144,19 @@ final class DrawingPromptViewController: ViewController {
     @objc private func didTapClose() {
         dismiss(animated: true)
     }
+
+    @objc private func didTapTemplateCard() {
+        startDrawing()
+    }
+
+    private func startDrawing() {
+        guard presenter.viewModel.prompt != nil else { return }
+        AppCoordinator.openDrawingCanvas(
+            from: self,
+            prompt: presenter.viewModel.prompt,
+            checkinId: presenter.viewModel.checkinId
+        )
+    }
 }
 
 // MARK: - DrawingPromptPresenterDelegate
@@ -163,10 +178,6 @@ extension DrawingPromptViewController: SoulverseButtonDelegate {
 
     func clickSoulverseButton(_ button: SoulverseButton) {
         guard button === startDrawButton else { return }
-        AppCoordinator.openDrawingCanvas(
-            from: self,
-            prompt: presenter.viewModel.prompt,
-            checkinId: presenter.viewModel.checkinId
-        )
+        startDrawing()
     }
 }
