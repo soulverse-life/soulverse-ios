@@ -9,7 +9,6 @@ import SnapKit
 final class DrawingPromptViewController: ViewController {
 
     private enum Layout {
-        static let closeButtonSize: CGFloat = 32
         static let closeButtonTopInset: CGFloat = 12
         static let horizontalInset: CGFloat = ViewComponentConstants.horizontalPadding
         static let promptTopSpacing: CGFloat = 12
@@ -28,11 +27,7 @@ final class DrawingPromptViewController: ViewController {
 
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
-        let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .semibold)
-        button.setImage(UIImage(systemName: "xmark", withConfiguration: config), for: .normal)
-        button.tintColor = .themeTextSecondary
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.25)
-        button.layer.cornerRadius = Layout.closeButtonSize / 2
+        button.setImage(UIImage(named: "naviconClose")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.accessibilityLabel = NSLocalizedString("action_modal_close", comment: "")
         button.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
         return button
@@ -113,7 +108,7 @@ final class DrawingPromptViewController: ViewController {
         closeButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(Layout.closeButtonTopInset)
             make.trailing.equalToSuperview().inset(Layout.horizontalInset)
-            make.size.equalTo(Layout.closeButtonSize)
+            make.size.equalTo(ViewComponentConstants.navigationButtonSize)
         }
 
         promptLabel.snp.makeConstraints { make in
