@@ -88,13 +88,7 @@ class AppCoordinator {
         let drawingCanvasVC = DrawingCanvasViewController()
         drawingCanvasVC.hidesBottomBarWhenPushed = true
         drawingCanvasVC.checkinId = checkinId
-        drawingCanvasVC.promptUsed = drawingsPrompt?.artTherapyPrompt
-        drawingCanvasVC.templateName = drawingsPrompt?.templateName
-
-        // Set background image from prompt's template if available
-        if let templateImage = drawingsPrompt?.templateImage {
-            drawingCanvasVC.backgroundImage = templateImage
-        }
+        drawingCanvasVC.drawingsPrompt = drawingsPrompt
 
         guard let navigationVC = sourceVC.navigationController else {
             sourceVC.show(drawingCanvasVC, sender: nil)
