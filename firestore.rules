@@ -31,6 +31,12 @@ service cloud.firestore {
                          ]);
         allow update: if request.auth.uid == uid;
       }
+
+      match /emotional_bundle/{bundleId} {
+        allow read: if request.auth.uid == uid;
+        allow create, update: if request.auth.uid == uid;
+        allow delete: if request.auth.uid == uid;
+      }
     }
   }
 }
