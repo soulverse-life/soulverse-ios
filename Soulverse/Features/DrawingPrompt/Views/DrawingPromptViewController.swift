@@ -148,7 +148,7 @@ final class DrawingPromptViewController: ViewController {
         guard presenter.viewModel.prompt != nil else { return }
         AppCoordinator.openDrawingCanvas(
             from: self,
-            prompt: presenter.viewModel.prompt,
+            drawingsPrompt: presenter.viewModel.prompt,
             checkinId: presenter.viewModel.checkinId
         )
     }

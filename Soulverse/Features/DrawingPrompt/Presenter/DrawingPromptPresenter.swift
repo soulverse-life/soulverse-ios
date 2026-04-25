@@ -24,13 +24,13 @@ final class DrawingPromptPresenter: DrawingPromptPresenterType {
     }
 
     func loadPrompt() {
-        let emotionMatched = CanvasPromptManager.randomPrompt(for: viewModel.recordedEmotion)
+        let emotionMatched = DrawingsPromptManager.randomPrompt(for: viewModel.recordedEmotion)
         if let emotionMatched = emotionMatched {
             viewModel.prompt = emotionMatched
             return
         }
 
         // Fall back to a general prompt if the emotion-specific pool is empty.
-        viewModel.prompt = CanvasPromptManager.randomPrompt(for: nil)
+        viewModel.prompt = DrawingsPromptManager.randomPrompt(for: nil)
     }
 }

@@ -84,15 +84,15 @@ class AppCoordinator {
         sourceVC.navigationController?.pushViewController(detailVC, animated: true)
     }
 
-    static func openDrawingCanvas(from sourceVC: UIViewController, prompt: CanvasPrompt? = nil, checkinId: String? = nil) {
+    static func openDrawingCanvas(from sourceVC: UIViewController, drawingsPrompt: DrawingsPrompt? = nil, checkinId: String? = nil) {
         let drawingCanvasVC = DrawingCanvasViewController()
         drawingCanvasVC.hidesBottomBarWhenPushed = true
         drawingCanvasVC.checkinId = checkinId
-        drawingCanvasVC.promptUsed = prompt?.artTherapyPrompt
-        drawingCanvasVC.templateName = prompt?.templateName
+        drawingCanvasVC.promptUsed = drawingsPrompt?.artTherapyPrompt
+        drawingCanvasVC.templateName = drawingsPrompt?.templateName
 
         // Set background image from prompt's template if available
-        if let templateImage = prompt?.templateImage {
+        if let templateImage = drawingsPrompt?.templateImage {
             drawingCanvasVC.backgroundImage = templateImage
         }
 

@@ -126,7 +126,7 @@ class CanvasViewController: ViewController {
 
     // MARK: - Properties
     private var presenter: CanvasViewPresenterType
-    private var currentPrompt: CanvasPrompt? {
+    private var currentPrompt: DrawingsPrompt? {
         didSet {
             updatePromptUI()
         }
@@ -275,7 +275,7 @@ class CanvasViewController: ViewController {
 // MARK: - SoulverseButtonDelegate
 extension CanvasViewController: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        AppCoordinator.openDrawingCanvas(from: self, prompt: currentPrompt)
+        AppCoordinator.openDrawingCanvas(from: self, drawingsPrompt: currentPrompt)
     }
 }
 
