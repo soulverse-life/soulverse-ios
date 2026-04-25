@@ -26,8 +26,13 @@ final class DrawingPromptViewController: ViewController {
     // MARK: - UI
 
     private lazy var closeButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton()
         button.setImage(UIImage(named: "naviconClose")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        // Match SoulverseNavigationView convention: render the asset at its
+        // native size and let it overflow the 44pt hit target.
+        button.imageView?.contentMode = .center
+        button.imageView?.clipsToBounds = false
+        button.clipsToBounds = false
         button.accessibilityLabel = NSLocalizedString("action_modal_close", comment: "")
         button.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
         return button

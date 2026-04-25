@@ -95,6 +95,14 @@ class DrawingResultViewController: UIViewController {
 
     // MARK: - Actions
     @objc private func closeButtonTapped() {
-        dismiss(animated: true)
+        // Walk to the bottommost presenter so dismissing it cascades down
+        // through every modal above. This handles both the direct canvas
+        // entry (one modal to dismiss) and the post mood-check-in flow
+        // (drawing prompt + result modals) without context-aware branching.
+        var bottomPresenter: UIViewController = self
+        while let presenter = bottomPresenter.presentingViewController {
+            bottomPresenter = presenter
+        }
+        bottomPresenter.dismiss(animated: true)
     }
 }
