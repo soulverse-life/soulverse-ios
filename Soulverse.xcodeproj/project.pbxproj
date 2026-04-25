@@ -449,6 +449,8 @@
 		BE7CD9A80860FCBB70D7DDE7 /* SupportMeSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0774B104E6B7E8550A2C9ED /* SupportMeSectionViewModelTests.swift */; };
 		BFC00E7084C2C3B433CDCB5F /* DetailDrawingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A7FB0D1FCDD8CC81DECBB /* DetailDrawingSection.swift */; };
 		C0DFE64282D5F1868C0544F4 /* DrawingsPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A95C383DB61DE6370611AFF /* DrawingsPromptTests.swift */; };
+		7AE10CFF02000000000000A2 /* DrawingPromptPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */; };
+		7AE10CFF02000000000000B2 /* DrawingPromptPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */; };
 		C177ED8CA35EB3841C34BD3E /* CrisisResourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE368A37AF142928705DD2 /* CrisisResourceModel.swift */; };
 		C3B4A5D6E7F8A9B0C1D2E3F5 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
 		C3B4A5D6E7F8A9B0C1D2E3F6 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
@@ -581,6 +583,8 @@
 		17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfessionalSupportSectionViewController.swift; sourceTree = "<group>"; };
 		5A7A89532F54342452F4E920 /* ToolsViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		5A95C383DB61DE6370611AFF /* DrawingsPromptTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingsPromptTests.swift; sourceTree = "<group>"; };
+		7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterDelegateMock.swift; sourceTree = "<group>"; };
+		7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterTests.swift; sourceTree = "<group>"; };
 		5C70D0337BCECFA7C98A0482 /* DrawingGallerySectionHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGallerySectionHeaderView.swift; sourceTree = "<group>"; };
 		5DB9147A86FBF42436C1031E /* InnerCosmoPeriodTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerCosmoPeriodTests.swift; sourceTree = "<group>"; };
 		5E56565E1067F09318717526 /* TopicTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicTests.swift; sourceTree = "<group>"; };
@@ -905,6 +909,7 @@
 			children = (
 				1BD0A7054CD0FF4F7BF0E311 /* InnerCosmo */,
 				3CEF6868C99860B5053CC302 /* Canvas */,
+				7AE10CF00200000000000001 /* DrawingPrompt */,
 				B0D182D5DABBED761C600A70 /* Insight */,
 				D61CED62103A1FDB1695E641 /* Tools */,
 				8B885CAC90F0C57D72ADB2AA /* Quest */,
@@ -1029,6 +1034,22 @@
 				8AE6A1610F27FD47B57135DD /* DrawingGalleryViewModelTests.swift */,
 			);
 			path = Canvas;
+			sourceTree = "<group>";
+		};
+		7AE10CF00200000000000001 /* DrawingPrompt */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */,
+			);
+			path = DrawingPrompt;
+			sourceTree = "<group>";
+		};
+		7AE10CF00200000000000002 /* DrawingPrompt */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */,
+			);
+			path = DrawingPrompt;
 			sourceTree = "<group>";
 		};
 		3E0347340DD12AA45731FA37 /* Service */ = {
@@ -1166,6 +1187,7 @@
 			isa = PBXGroup;
 			children = (
 				203AF1130EAB7613BB5E4174 /* Canvas */,
+				7AE10CF00200000000000002 /* DrawingPrompt */,
 				FDC43F071837DF9E43379337 /* Tools */,
 				8F27D501DE454F32087D686E /* Insight */,
 				11A574F922E4F95788E99F30 /* InnerCosmo */,
@@ -3094,6 +3116,8 @@
 				A77917A68943640D3F9C24D4 /* InnerCosmoPeriodTests.swift in Sources */,
 				3340F94A6A51E47EF6FA9BF6 /* CalendarMonthViewModelTests.swift in Sources */,
 				C0DFE64282D5F1868C0544F4 /* DrawingsPromptTests.swift in Sources */,
+				7AE10CFF02000000000000A2 /* DrawingPromptPresenterDelegateMock.swift in Sources */,
+				7AE10CFF02000000000000B2 /* DrawingPromptPresenterTests.swift in Sources */,
 				4C5DA1990A7740F49529882A /* WeeklyMoodScoreViewModelTests.swift in Sources */,
 				A3428F453B2E78C47D54B7E8 /* ToolsViewModelTests.swift in Sources */,
 				FEAEF3464658DBB02F096ED0 /* DrawingGalleryViewModelTests.swift in Sources */,

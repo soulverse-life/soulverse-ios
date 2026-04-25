@@ -7,6 +7,5 @@ import Foundation
 
 struct DrawingPromptViewModel {
     var prompt: DrawingsPrompt?
-    var checkinId: String?
-    var recordedEmotion: RecordedEmotion?
+    let checkinId: String?
 }

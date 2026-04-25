@@ -91,6 +91,7 @@ final class DrawingPromptViewController: ViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         setupUI()
         setupConstraints()
+        startDrawButton.isEnabled = false
         presenter.loadPrompt()
     }
 
@@ -145,11 +146,12 @@ final class DrawingPromptViewController: ViewController {
     }
 
     private func startDrawing() {
-        guard presenter.viewModel.prompt != nil else { return }
+        let viewModel = presenter.viewModel
+        guard let prompt = viewModel.prompt else { return }
         AppCoordinator.openDrawingCanvas(
             from: self,
-            drawingsPrompt: presenter.viewModel.prompt,
-            checkinId: presenter.viewModel.checkinId
+            drawingsPrompt: prompt,
+            checkinId: viewModel.checkinId
         )
     }
 }
@@ -163,6 +165,7 @@ extension DrawingPromptViewController: DrawingPromptPresenterDelegate {
             guard let self else { return }
             self.promptLabel.text = viewModel.prompt?.artTherapyPrompt
             self.templateImageView.image = viewModel.prompt?.templateImage
+            self.startDrawButton.isEnabled = viewModel.prompt != nil
         }
     }
 }
