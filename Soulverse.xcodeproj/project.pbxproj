@@ -16,24 +16,6 @@
 		0E9E5F5550F10342BE4D579A /* MoodEntriesDataAssemblerFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */; };
 		1068DC503C449FA2F1E94253 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		1135B47B75C583A6E7DE7F32 /* TopicDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B7B1090574611BFDFC632 /* TopicDistributionView.swift */; };
-		A1B2C3D4E5F6A7B8C9D0E1F3 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */; };
-		A1B2C3D4E5F6A7B8C9D0E1F4 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */; };
-		A2B3C4D5E6F7A8B9C0D1E2F4 /* TimeRangeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */; };
-		A2B3C4D5E6F7A8B9C0D1E2F5 /* TimeRangeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */; };
-		A3B4C5D6E7F8A9B0C1D2E3F5 /* HabitActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */; };
-		A3B4C5D6E7F8A9B0C1D2E3F6 /* HabitActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */; };
-		A4B5C6D7E8F9A0B1C2D3E4F6 /* HabitActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */; };
-		A4B5C6D7E8F9A0B1C2D3E4F7 /* HabitActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */; };
-		C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
-		D5E6F7A8B9C0D1E2F3A4B5C6 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
-		B1A2C3D4E5F6A7B8C9D0E1F2 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
-		B1A2C3D4E5F6A7B8C9D0E1F3 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
-		B2A3C4D5E6F7A8B9C0D1E2F3 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
-		B2A3C4D5E6F7A8B9C0D1E2F4 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
-		C3B4A5D6E7F8A9B0C1D2E3F5 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
-		C3B4A5D6E7F8A9B0C1D2E3F6 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
-		D4C5B6A7E8F9A0B1C2D3E4F6 /* InsightGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */; };
-		D4C5B6A7E8F9A0B1C2D3E4F7 /* InsightGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */; };
 		16763768A15E67CD8952721D /* CheckInDetailPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C99EBD0D7244FE8D52E4F /* CheckInDetailPresenterType.swift */; };
 		1A2CFCCD95653982DC90244B /* SoulverseActionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90781A662B73BED5786934DE /* SoulverseActionModal.swift */; };
 		1C2E0E31B00B3123E9EB4873 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */; };
@@ -270,8 +252,6 @@
 		7951A9BC2E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
-		7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
-		7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
 		7951A9C92E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */; };
 		7951A9CA2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */; };
 		7951A9CB2E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */; };
@@ -391,6 +371,8 @@
 		79F1380C2F3875E10034D325 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79F1380A2F3875E10034D325 /* GoogleService-Info.plist */; };
 		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
+		7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
+		7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
 		7BB198E2D8DE3EDEF35DCDC8 /* InnerCosmoViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44C2E1B8167E15D1A17DB8 /* InnerCosmoViewPresenterTests.swift */; };
 		83B406F26FBBD050AAB70357 /* DrawingReplayPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D57DE6A82816385F47A87 /* DrawingReplayPresenterTests.swift */; };
 		868E394575E9B8110914957B /* DrawingReplayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0AE8D83427C1DF0E30948 /* DrawingReplayPresenter.swift */; };
@@ -401,14 +383,26 @@
 		9398C11F3FE373D542A298F1 /* MoodCheckInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */; };
 		94D160518894DE1AA49B9CFA /* FirestoreSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBCBDFE64D2D1ECA4EFA0D /* FirestoreSchema.swift */; };
 		9EBA99FEED0F4ADBBCA79ACC /* FirestoreSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBCBDFE64D2D1ECA4EFA0D /* FirestoreSchema.swift */; };
+		A1B2C3D4E5F6A7B8C9D0E1F3 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */; };
+		A1B2C3D4E5F6A7B8C9D0E1F4 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */; };
 		A2642779529DA52C41E8446B /* MoodCheckInServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59E22D0E948D8EE0F606C /* MoodCheckInServiceProtocol.swift */; };
+		A2B3C4D5E6F7A8B9C0D1E2F4 /* TimeRangeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */; };
+		A2B3C4D5E6F7A8B9C0D1E2F5 /* TimeRangeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */; };
 		A3428F453B2E78C47D54B7E8 /* ToolsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA67C204F2A591ECD30F1F /* ToolsViewModelTests.swift */; };
+		A3B4C5D6E7F8A9B0C1D2E3F5 /* HabitActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */; };
+		A3B4C5D6E7F8A9B0C1D2E3F6 /* HabitActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */; };
+		A4B5C6D7E8F9A0B1C2D3E4F6 /* HabitActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */; };
+		A4B5C6D7E8F9A0B1C2D3E4F7 /* HabitActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
 		A55E94296F5E8A6F806B4CC6 /* FirestoreDrawingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */; };
 		A77917A68943640D3F9C24D4 /* InnerCosmoPeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB9147A86FBF42436C1031E /* InnerCosmoPeriodTests.swift */; };
 		A848471F529A30BB4065C1A9 /* EvaluationOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F89A9D358017D65133095 /* EvaluationOptionTests.swift */; };
 		A88F46F2FE6B761AC9159FDA /* WeeklyMoodScoreViewModel+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */; };
 		AAB8686144E132BDBD175A2A /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
+		B1A2C3D4E5F6A7B8C9D0E1F2 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
+		B1A2C3D4E5F6A7B8C9D0E1F3 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
+		B2A3C4D5E6F7A8B9C0D1E2F3 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
+		B2A3C4D5E6F7A8B9C0D1E2F4 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
 		B2F6E0449E68EA3F6D6B8FB9 /* ToolsViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E171DE35597BA70C8B122CD8 /* ToolsViewPresenterTests.swift */; };
 		B3F4AD1CE7A2D4B674D29EAF /* JournalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E4F3C98DBB3D6E06CF3DF /* JournalModel.swift */; };
 		B4684A5181281B705F0F08BE /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
@@ -417,12 +411,18 @@
 		BCCF4852163421323A310717 /* MoodEntriesDataAssemblerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4883D32CE380C31648AE6 /* MoodEntriesDataAssemblerMock.swift */; };
 		BFC00E7084C2C3B433CDCB5F /* DetailDrawingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A7FB0D1FCDD8CC81DECBB /* DetailDrawingSection.swift */; };
 		C0DFE64282D5F1868C0544F4 /* CanvasPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A95C383DB61DE6370611AFF /* CanvasPromptTests.swift */; };
+		C3B4A5D6E7F8A9B0C1D2E3F5 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
+		C3B4A5D6E7F8A9B0C1D2E3F6 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
+		C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
 		C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
 		CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */; };
 		D14096F47439C0A9D91C7B28 /* Constants+CheckInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */; };
 		D250CF083B3F0918DA0E2ED1 /* CheckInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BE258FB1BB920041AA1B57 /* CheckInDetailViewController.swift */; };
 		D45ECEE25B2D86CBF6C11B49 /* MoodEntryCardCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */; };
+		D4C5B6A7E8F9A0B1C2D3E4F6 /* InsightGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */; };
+		D4C5B6A7E8F9A0B1C2D3E4F7 /* InsightGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */; };
 		D54590E011F0616291933B80 /* RecordedEmotion+MoodScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */; };
+		D5E6F7A8B9C0D1E2F3A4B5C6 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
 		D99A21CCC605492A90ACCFDA /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E82F16483EBA0D0699E631 /* TestHelpers.swift */; };
 		D9F6D2D60270F6AB9ECB99CE /* InnerCosmoViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6975331B3B4B8D90409C867C /* InnerCosmoViewPresenterDelegateMock.swift */; };
 		DA5B7EAE3A96109C935B5C2B /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
@@ -532,15 +532,6 @@
 		6DE60F310C8AB64668217ECB /* DrawingModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
 		6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DevAuthService.swift; sourceTree = "<group>"; };
 		715B7B1090574611BFDFC632 /* TopicDistributionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionView.swift; sourceTree = "<group>"; };
-		B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSummaryView.swift; sourceTree = "<group>"; };
-		A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
-		A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangeToggleView.swift; sourceTree = "<group>"; };
-		A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitActivityViewModel.swift; sourceTree = "<group>"; };
-		A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitActivityView.swift; sourceTree = "<group>"; };
-		B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityViewModel.swift; sourceTree = "<group>"; };
-		B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityView.swift; sourceTree = "<group>"; };
-		C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGridCardViewModel.swift; sourceTree = "<group>"; };
-		D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGridCardView.swift; sourceTree = "<group>"; };
 		747376777B5866EF992CA14C /* InsightViewPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InsightViewPresenterTests.swift; sourceTree = "<group>"; };
 		761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordedEmotion+MoodScore.swift"; sourceTree = "<group>"; };
 		790AD1692DF9E43200C33CD1 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -648,7 +639,6 @@
 		794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingViewController.swift; sourceTree = "<group>"; };
 		7951A9B62E532C85006EB0EC /* SoulverseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButton.swift; sourceTree = "<group>"; };
 		7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseNavigationView.swift; sourceTree = "<group>"; };
-		7AE10C0001000000000000A1 /* EmoPetChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoPetChatView.swift; sourceTree = "<group>"; };
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
 		7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenter.swift; sourceTree = "<group>"; };
 		7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterType.swift; sourceTree = "<group>"; };
@@ -707,6 +697,7 @@
 		79F138042F379BF90034D325 /* ActionTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTagView.swift; sourceTree = "<group>"; };
 		79F1380A2F3875E10034D325 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
+		7AE10C0001000000000000A1 /* EmoPetChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoPetChatView.swift; sourceTree = "<group>"; };
 		7D44F927D93BEB0DA5699F4F /* MoodEntriesDataAssemblerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerTests.swift; sourceTree = "<group>"; };
 		7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenterType.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenterType.swift; sourceTree = SOURCE_ROOT; };
 		86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreDrawingService.swift; sourceTree = "<group>"; };
@@ -718,8 +709,12 @@
 		9DA4863D9AA9015B5E1ABBEB /* DrawingGalleryPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenter.swift; sourceTree = "<group>"; };
 		9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserService.swift; sourceTree = "<group>"; };
 		A06A840760ABEE725B08771D /* MoodCheckInDataTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInDataTests.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
+		A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangeToggleView.swift; sourceTree = "<group>"; };
 		A30DBF3AA04EC4F8C683EA7F /* DrawingReplayPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReplayPresenterDelegateMock.swift; sourceTree = "<group>"; };
+		A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitActivityViewModel.swift; sourceTree = "<group>"; };
 		A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitActivityView.swift; sourceTree = "<group>"; };
 		A833DFE885D5514ECFD5960A /* DrawingCanvasPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingCanvasPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		A87D35E8E7AD990440D588A0 /* DrawingGalleryViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryViewController.swift; sourceTree = "<group>"; };
 		A8C59E22D0E948D8EE0F606C /* MoodCheckInServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceProtocol.swift; sourceTree = "<group>"; };
@@ -727,6 +722,9 @@
 		ABA97A0D5537477FC8E3374B /* RecordedEmotionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordedEmotionTests.swift; sourceTree = "<group>"; };
 		ACD8D9DC4265FF367E93D223 /* MoodEntriesDataAssemblerMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerMock.swift; sourceTree = "<group>"; };
 		B13356FF749A1E34851D44C3 /* ProfileViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
+		B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityViewModel.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSummaryView.swift; sourceTree = "<group>"; };
+		B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityView.swift; sourceTree = "<group>"; };
 		B7278578F137612349A77E22 /* EmotionTypeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionTypeTests.swift; sourceTree = "<group>"; };
 		BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerFetchTests.swift; sourceTree = "<group>"; };
 		BC0D4A98EBE3D4825FA7F02B /* TopicDistributionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionViewModel.swift; sourceTree = "<group>"; };
@@ -735,12 +733,14 @@
 		C206EA9BF532D3A837AAC558 /* DrawingGalleryCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryCell.swift; sourceTree = "<group>"; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGridCardViewModel.swift; sourceTree = "<group>"; };
 		C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreMoodCheckInService.swift; sourceTree = "<group>"; };
 		C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Constants+CheckInDetail.swift"; sourceTree = "<group>"; };
 		C7F022BFD84C7AB6E0A5520B /* DrawingServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingServiceMock.swift; sourceTree = "<group>"; };
 		CDD04250F40AD48441C462A5 /* DrawingCanvasPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingCanvasPresenterTests.swift; sourceTree = "<group>"; };
 		CDD732A67B3784224BA518E7 /* Pods-Base-Soulverse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.debug.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.debug.xcconfig"; sourceTree = "<group>"; };
 		D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Soulverse/Features/Profile/Views/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
+		D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGridCardView.swift; sourceTree = "<group>"; };
 		DCDBD33BA61C721E6FB149BC /* Pods-Base-SoulverseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.debug.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD2F83B1C4052FF05B9B061D /* DrawingReplayModalViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReplayModalViewController.swift; sourceTree = "<group>"; };
 		DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklyMoodScoreViewModel+MockData.swift"; sourceTree = "<group>"; };
@@ -813,7 +813,6 @@
 			children = (
 				178718BD3777BBF33A1E4037 /* CheckInDetailViewModel.swift */,
 			);
-			name = ViewModels;
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
@@ -946,7 +945,6 @@
 				039B005BCF2FF3EB7E3F7DDE /* MoodCheckInServiceMock.swift */,
 				ACD8D9DC4265FF367E93D223 /* MoodEntriesDataAssemblerMock.swift */,
 			);
-			name = Service;
 			path = Service;
 			sourceTree = "<group>";
 		};
@@ -1015,7 +1013,6 @@
 				EB4A7FB0D1FCDD8CC81DECBB /* DetailDrawingSection.swift */,
 				18271253D014FE9BF3211799 /* DetailJournalSection.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -1040,7 +1037,6 @@
 				567E73E8ACC679D33F2964EA /* Components */,
 				02BE258FB1BB920041AA1B57 /* CheckInDetailViewController.swift */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -1866,7 +1862,6 @@
 				172E4F3C98DBB3D6E06CF3DF /* JournalModel.swift */,
 				659D171EB01E4F3823113C03 /* FirestoreJournalService.swift */,
 			);
-			name = JournalService;
 			path = JournalService;
 			sourceTree = "<group>";
 		};
@@ -1961,7 +1956,6 @@
 				F86C99EBD0D7244FE8D52E4F /* CheckInDetailPresenterType.swift */,
 				5FAB13B6BE60834F09C4F60A /* CheckInDetailPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -2050,7 +2044,6 @@
 				60218361E6C4F5B81722D7A1 /* Views */,
 				C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */,
 			);
-			name = CheckInDetail;
 			path = CheckInDetail;
 			sourceTree = "<group>";
 		};
@@ -2102,6 +2095,7 @@
 				F8D69AE3299B8D2C004F19D3 /* Embed App Extensions */,
 				E8A61F7B2DE9C43E00A315C2 /* Embed Frameworks */,
 				E02D0EC8B6A81B0EAE6037CB /* [CP] Embed Pods Frameworks */,
+				79B734752F9CFE7D0064F4D4 /* [Firebase] Crashlytics Upload */,
 			);
 			buildRules = (
 			);
@@ -2357,6 +2351,30 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		79B734752F9CFE7D0064F4D4 /* [Firebase] Crashlytics Upload */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "[Firebase] Crashlytics Upload";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		9BF5ABFD045E88D401A47855 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
