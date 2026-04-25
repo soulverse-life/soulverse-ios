@@ -298,6 +298,10 @@ class User: UserProtocol {
     
     private func clearUserProperty() {
         // we won't clear the notification related userdefault
+        // Order matters: userId/email/etc. must be cleared BEFORE isLoggedin = false,
+        // because the isLoggedin setter posts Notification.UserIdentityChange — observers
+        // (Crashlytics setUserID, analytics) re-read these properties at notification time
+        // and would see stale values if the flag flipped first.
         userId = nil
         email = nil
         isLoggedin = false
