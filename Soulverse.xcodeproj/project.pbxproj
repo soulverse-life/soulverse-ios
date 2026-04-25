@@ -415,6 +415,7 @@
 		C3B4A5D6E7F8A9B0C1D2E3F6 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
 		C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
 		C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
+		CD272848378CB5C9FB794ADA /* ErrorReporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */; };
 		CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */; };
 		D14096F47439C0A9D91C7B28 /* Constants+CheckInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */; };
 		D250CF083B3F0918DA0E2ED1 /* CheckInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BE258FB1BB920041AA1B57 /* CheckInDetailViewController.swift */; };
@@ -739,6 +740,7 @@
 		C7F022BFD84C7AB6E0A5520B /* DrawingServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingServiceMock.swift; sourceTree = "<group>"; };
 		CDD04250F40AD48441C462A5 /* DrawingCanvasPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingCanvasPresenterTests.swift; sourceTree = "<group>"; };
 		CDD732A67B3784224BA518E7 /* Pods-Base-Soulverse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.debug.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.debug.xcconfig"; sourceTree = "<group>"; };
+		D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ErrorReporting.swift; sourceTree = "<group>"; };
 		D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Soulverse/Features/Profile/Views/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGridCardView.swift; sourceTree = "<group>"; };
 		DCDBD33BA61C721E6FB149BC /* Pods-Base-SoulverseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.debug.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1253,6 +1255,7 @@
 				24FBCBDFE64D2D1ECA4EFA0D /* FirestoreSchema.swift */,
 				423FB17B2B7E94613A8E6AA2 /* Protocols */,
 				A5024FC3B9CEEE55D1722B87 /* JournalService */,
+				D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2811,6 +2814,7 @@
 				2381B827DE55C82C4DB4D4A3 /* DetailPlanetView.swift in Sources */,
 				BFC00E7084C2C3B433CDCB5F /* DetailDrawingSection.swift in Sources */,
 				35A9A8B1F39547F21A073E3C /* DetailJournalSection.swift in Sources */,
+				CD272848378CB5C9FB794ADA /* ErrorReporting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
