@@ -52,6 +52,7 @@ final class FirestoreDrawingService: DrawingServiceProtocol {
         checkinId: String?,
         promptUsed: String?,
         templateName: String?,
+        reflectiveQuestion: String?,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
         let isFromCheckIn = checkinId != nil
@@ -121,6 +122,9 @@ final class FirestoreDrawingService: DrawingServiceProtocol {
             }
             if let templateName = templateName {
                 fields[Field.templateName.rawValue] = templateName
+            }
+            if let reflectiveQuestion = reflectiveQuestion {
+                fields[Field.reflectiveQuestion.rawValue] = reflectiveQuestion
             }
 
             // Batch write: create drawing doc + set checkin.drawingId (if linked)
@@ -213,6 +217,30 @@ final class FirestoreDrawingService: DrawingServiceProtocol {
                 }
                 completion(.success(drawings))
             }
+    }
+
+    // MARK: - Update Reflection
+
+    /// Sets `reflectiveAnswer` (and `reflectionAnsweredAt`) on an existing drawing document.
+    /// The drawing must already exist — this never creates a doc.
+    func updateDrawingReflection(
+        uid: String,
+        drawingId: String,
+        answer: String,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        let drawingRef = drawingsCollection(uid: uid).document(drawingId)
+        drawingRef.updateData([
+            Field.reflectiveAnswer.rawValue: answer,
+            Field.reflectionAnsweredAt.rawValue: FieldValue.serverTimestamp(),
+            Field.updatedAt.rawValue: FieldValue.serverTimestamp()
+        ]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
     }
 
     // MARK: - Delete Drawing

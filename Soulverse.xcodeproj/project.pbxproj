@@ -49,6 +49,9 @@
 		3DE6377D2BB4E7CB075946CC /* FeelCalmSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB214046513A25767B1757 /* FeelCalmSectionViewModel.swift */; };
 		3E613F5B554654A630D26EC3 /* FeelCalmSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B20A12DC4A86E20CFDF0 /* FeelCalmSectionViewModelTests.swift */; };
 		3EEC60F5808E55A5BDB9D81F /* DrawingCanvasPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */; };
+		D24B26041000010001000002 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
+		D24B26041000010001000003 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
+		D24B26041000010001000005 /* DrawingReflectionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000004 /* DrawingReflectionPresenterTests.swift */; };
 		419A37032825EC7BC46F4857 /* ProfileViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FDA00077B2E5E075CB1131 /* ProfileViewPresenterTests.swift */; };
 		423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		44372F0CF57371B1CFEDDD22 /* ProfessionalSupportSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A48E84E65B0EB1046B5AB8A /* ProfessionalSupportSectionViewModelTests.swift */; };
@@ -212,8 +215,8 @@
 		790D87FA2ED20A0A00D4F61F /* ToolsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F72ED20A0A00D4F61F /* ToolsModel.swift */; };
 		7922EC502E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
 		7922EC512E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
-		7922EC532E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */; };
-		7922EC542E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */; };
+		7922EC532E8D86EF0086B7CA /* DrawingReflectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingReflectionViewController.swift */; };
+		7922EC542E8D86EF0086B7CA /* DrawingReflectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingReflectionViewController.swift */; };
 		7922ECAC2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */; };
 		7922ECAD2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */; };
 		7922ECAF2E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */; };
@@ -596,6 +599,8 @@
 		655D57DE6A82816385F47A87 /* DrawingReplayPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReplayPresenterTests.swift; sourceTree = "<group>"; };
 		659D171EB01E4F3823113C03 /* FirestoreJournalService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreJournalService.swift; sourceTree = "<group>"; };
 		67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingCanvasPresenter.swift; sourceTree = "<group>"; };
+		D24B26041000010001000001 /* DrawingReflectionPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionPresenter.swift; sourceTree = "<group>"; };
+		D24B26041000010001000004 /* DrawingReflectionPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionPresenterTests.swift; sourceTree = "<group>"; };
 		67594929C616A41B994759EA /* EmotionalBundleMainPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainPresenter.swift; sourceTree = "<group>"; };
 		67594929C616A41B994759EB /* EmotionalBundleCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleCoordinator.swift; sourceTree = "<group>"; };
 		6975331B3B4B8D90409C867C /* InnerCosmoViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
@@ -681,7 +686,7 @@
 		790D87F42ED209F800D4F61F /* ToolsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCellViewModel.swift; sourceTree = "<group>"; };
 		790D87F72ED20A0A00D4F61F /* ToolsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsModel.swift; sourceTree = "<group>"; };
 		7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
-		7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingResultViewController.swift; sourceTree = "<group>"; };
+		7922EC522E8D86EF0086B7CA /* DrawingReflectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingReflectionViewController.swift; sourceTree = "<group>"; };
 		7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansTC-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		7922ECB12E993B8D0086B7CA /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
@@ -1833,6 +1838,7 @@
 			children = (
 				79B24C6E2DFC7B2A001220B6 /* CanvasViewPresenter.swift */,
 				67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */,
+				D24B26041000010001000001 /* DrawingReflectionPresenter.swift */,
 				9DA4863D9AA9015B5E1ABBEB /* DrawingGalleryPresenter.swift */,
 				0AE0AE8D83427C1DF0E30948 /* DrawingReplayPresenter.swift */,
 			);
@@ -1851,7 +1857,7 @@
 		79B24C732DFC7B2A001220B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7922EC522E8D86EF0086B7CA /* DrawingResultViewController.swift */,
+				7922EC522E8D86EF0086B7CA /* DrawingReflectionViewController.swift */,
 				7986880F2E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift */,
 				79B24C722DFC7B2A001220B6 /* CanvasViewController.swift */,
 				C206EA9BF532D3A837AAC558 /* DrawingGalleryCell.swift */,
@@ -2237,6 +2243,7 @@
 				1311990A33E93E5D4C6F37E6 /* CanvasViewPresenterTests.swift */,
 				655D57DE6A82816385F47A87 /* DrawingReplayPresenterTests.swift */,
 				CDD04250F40AD48441C462A5 /* DrawingCanvasPresenterTests.swift */,
+				D24B26041000010001000004 /* DrawingReflectionPresenterTests.swift */,
 				C1409E46492A9298B17FDE1D /* DrawingGalleryPresenterTests.swift */,
 			);
 			path = Canvas;
@@ -2748,6 +2755,7 @@
 				790AD2202DF9E43200C33CD1 /* UIButton+Extensions.swift in Sources */,
 				7951AA002E537704006EB0EC /* ToolsViewPresenter.swift in Sources */,
 				798688112E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */,
+				D24B26041000010001000003 /* DrawingReflectionPresenter.swift in Sources */,
 				790D87F92ED20A0A00D4F61F /* ToolsModel.swift in Sources */,
 				79710EDE2E6D974D007665DB /* QuestProgressLineView.swift in Sources */,
 				7951AA012E537704006EB0EC /* ToolsViewController.swift in Sources */,
@@ -2809,7 +2817,7 @@
 				790AD2522DF9E43200C33CD1 /* TrackingServiceType.swift in Sources */,
 				790AD2532DF9E43200C33CD1 /* UITabBarController+Extensions.swift in Sources */,
 				790AD2542DF9E43200C33CD1 /* User.swift in Sources */,
-				7922EC532E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */,
+				7922EC532E8D86EF0086B7CA /* DrawingReflectionViewController.swift in Sources */,
 				790AD2552DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */,
 				790D87F22ED201B200D4F61F /* ToolsViewModel.swift in Sources */,
 				790AD2592DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
@@ -2976,7 +2984,7 @@
 				790AD3002DF9E43200C33CD1 /* TrackingServiceType.swift in Sources */,
 				790AD3012DF9E43200C33CD1 /* UITabBarController+Extensions.swift in Sources */,
 				790AD3022DF9E43200C33CD1 /* User.swift in Sources */,
-				7922EC542E8D86EF0086B7CA /* DrawingResultViewController.swift in Sources */,
+				7922EC542E8D86EF0086B7CA /* DrawingReflectionViewController.swift in Sources */,
 				790AD3032DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */,
 				790D87F32ED201B200D4F61F /* ToolsViewModel.swift in Sources */,
 				790AD3072DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
@@ -3038,6 +3046,7 @@
 				94D160518894DE1AA49B9CFA /* FirestoreSchema.swift in Sources */,
 				03BF3892B476AB6AD4B17CC6 /* MoodEntriesDataAssembler.swift in Sources */,
 				3EEC60F5808E55A5BDB9D81F /* DrawingCanvasPresenter.swift in Sources */,
+				D24B26041000010001000002 /* DrawingReflectionPresenter.swift in Sources */,
 				39F2E1BFB36DFC87A73C114A /* LoadingView.swift in Sources */,
 				2DD9A04D95121B93E0C3F374 /* DrawingGalleryViewModel.swift in Sources */,
 				86D0E5F0B454853840C60855 /* DrawingGalleryPresenter.swift in Sources */,
@@ -3136,6 +3145,7 @@
 				EA40CFB07B604234819D7CA4 /* CanvasViewPresenterTests.swift in Sources */,
 				83B406F26FBBD050AAB70357 /* DrawingReplayPresenterTests.swift in Sources */,
 				F3AB32AEA30ED6FB62FD45D9 /* DrawingCanvasPresenterTests.swift in Sources */,
+				D24B26041000010001000005 /* DrawingReflectionPresenterTests.swift in Sources */,
 				E54A7F04A3201883F4A2DA5D /* DrawingGalleryPresenterTests.swift in Sources */,
 				48E8C991F90897E6DDA9807B /* InsightViewPresenterTests.swift in Sources */,
 				7BB198E2D8DE3EDEF35DCDC8 /* InnerCosmoViewPresenterTests.swift in Sources */,

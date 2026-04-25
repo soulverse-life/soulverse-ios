@@ -110,13 +110,19 @@ class AppCoordinator {
         navigationVC.pushViewController(galleryVC, animated: true)
     }
 
-    static func presentDrawingResult(image: UIImage, from sourceVC: UIViewController) {
-        let drawingResultVC = DrawingResultViewController(drawingImage: image)
-        let navigationController = UINavigationController(rootViewController: drawingResultVC)
+    static func presentDrawingReflection(
+        config: DrawingReflectionConfig,
+        from sourceVC: UIViewController
+    ) {
+        let reflectionVC = DrawingReflectionViewController(config: config)
+        let navigationController = UINavigationController(rootViewController: reflectionVC)
         navigationController.modalPresentationStyle = .fullScreen
 
         sourceVC.present(navigationController, animated: true) {
-            // After presentation, pop the DrawingCanvasViewController from the navigation stack
+            // Pop the DrawingCanvasViewController from the underlying nav stack
+            // when launched from the post-save flow, so cancelling out of
+            // reflection doesn't drop the user back into the canvas. Re-entry
+            // from CheckInDetail has no canvas underneath, so this is a no-op.
             sourceVC.navigationController?.popViewController(animated: false)
         }
     }

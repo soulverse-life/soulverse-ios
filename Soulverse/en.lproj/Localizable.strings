@@ -295,6 +295,15 @@
 "drawing_save_error_title" = "Save Failed";
 "drawing_save_not_logged_in" = "Please log in to save your drawing.";
 
+// Drawing Reflection
+"drawing_reflection_title" = "Reflection";
+"drawing_reflection_input_placeholder" = "Write down your thoughts..";
+"drawing_reflection_submit" = "Submit Reflection";
+"drawing_reflection_cancel" = "Cancel";
+"drawing_reflection_generic_question" = "What does this drawing mean to you right now?";
+"drawing_reflection_add_cta" = "Add reflection";
+"drawing_reflection_save_error_title" = "Couldn't save reflection";
+
 // Drawing Gallery
 "gallery" = "Gallery";
 "gallery_empty" = "No drawings yet. Start creating!";

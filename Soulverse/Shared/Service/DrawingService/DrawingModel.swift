@@ -22,6 +22,13 @@ struct DrawingModel: Codable {
     var promptUsed: String?
     var templateName: String?
 
+    // Reflection — optional, can be filled in later via DrawingReflectionView.
+    // `reflectiveQuestion` is captured at save time (snapshot of the prompt's
+    // reflective question, or a generic fallback for free drawings).
+    var reflectiveQuestion: String?
+    var reflectiveAnswer: String?
+    @ServerTimestamp var reflectionAnsweredAt: Date?
+
     // Timezone
     let timezoneOffsetMinutes: Int
 
@@ -38,6 +45,9 @@ struct DrawingModel: Codable {
         case thumbnailURL
         case promptUsed
         case templateName
+        case reflectiveQuestion
+        case reflectiveAnswer
+        case reflectionAnsweredAt
         case timezoneOffsetMinutes
         case createdAt
         case updatedAt

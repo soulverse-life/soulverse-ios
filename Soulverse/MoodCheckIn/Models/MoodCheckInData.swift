@@ -34,14 +34,6 @@ struct MoodCheckInData {
     /// Selected evaluation option
     var evaluation: EvaluationOption?
 
-    // MARK: - Reflection
-
-    /// The reflection prompt shown to the user (required at submit time)
-    var reflectionPrompt: String?
-
-    /// User's free-form reflection text (optional)
-    var reflection: String?
-
     // MARK: - Validation
 
     /// Check if Sensing step is complete

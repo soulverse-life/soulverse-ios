@@ -22,10 +22,6 @@ struct MoodCheckInModel: Codable {
     // Evaluating
     let evaluation: String
 
-    // Reflection
-    var reflectionPrompt: String?
-    var reflection: String?
-
     // Linked references (set by batch writes from other services)
     var journalId: String?
     var drawingId: String?
@@ -44,8 +40,6 @@ struct MoodCheckInModel: Codable {
         case emotion
         case topic
         case evaluation
-        case reflectionPrompt
-        case reflection
         case journalId
         case drawingId
         case timezoneOffsetMinutes
