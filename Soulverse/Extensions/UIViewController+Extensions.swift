@@ -20,6 +20,11 @@ extension UIViewController {
     // MARK: - Loading View
 
     func showLoadingView(below belowSubview: UIView? = nil) {
+        guard Thread.isMainThread else {
+            assertionFailure("showLoadingView must be called on the main thread")
+            DispatchQueue.main.async { [weak self] in self?.showLoadingView(below: belowSubview) }
+            return
+        }
         guard !view.subviews.contains(where: { $0 is LoadingView }) else { return }
 
         let loadingView = LoadingView()
@@ -31,6 +36,11 @@ extension UIViewController {
     }
 
     func hideLoadingView() {
+        guard Thread.isMainThread else {
+            assertionFailure("hideLoadingView must be called on the main thread")
+            DispatchQueue.main.async { [weak self] in self?.hideLoadingView() }
+            return
+        }
         guard let loadingView = view.subviews.first(where: { $0 is LoadingView }) as? LoadingView else { return }
         loadingView.stopAnimating()
         loadingView.removeFromSuperview()
