@@ -76,7 +76,7 @@ extension UniverseTheme {
 // MARK: - Component Colors
 extension UniverseTheme {
     var cardBackground: UIColor {
-        UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.95)
+        UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.15)
     }
 
     var chatBubbleBackground: UIColor {
