@@ -84,17 +84,11 @@ class AppCoordinator {
         sourceVC.navigationController?.pushViewController(detailVC, animated: true)
     }
 
-    static func openDrawingCanvas(from sourceVC: UIViewController, prompt: CanvasPrompt? = nil, checkinId: String? = nil) {
+    static func openDrawingCanvas(from sourceVC: UIViewController, drawingsPrompt: DrawingsPrompt? = nil, checkinId: String? = nil) {
         let drawingCanvasVC = DrawingCanvasViewController()
         drawingCanvasVC.hidesBottomBarWhenPushed = true
         drawingCanvasVC.checkinId = checkinId
-        drawingCanvasVC.promptUsed = prompt?.artTherapyPrompt
-        drawingCanvasVC.templateName = prompt?.templateName
-
-        // Set background image from prompt's template if available
-        if let templateImage = prompt?.templateImage {
-            drawingCanvasVC.backgroundImage = templateImage
-        }
+        drawingCanvasVC.drawingsPrompt = drawingsPrompt
 
         guard let navigationVC = sourceVC.navigationController else {
             sourceVC.show(drawingCanvasVC, sender: nil)
@@ -125,6 +119,20 @@ class AppCoordinator {
             // After presentation, pop the DrawingCanvasViewController from the navigation stack
             sourceVC.navigationController?.popViewController(animated: false)
         }
+    }
+
+    static func presentDrawingPrompt(
+        from sourceVC: UIViewController,
+        checkinId: String?,
+        recordedEmotion: RecordedEmotion?
+    ) {
+        let promptVC = DrawingPromptViewController(
+            checkinId: checkinId,
+            recordedEmotion: recordedEmotion
+        )
+        let navigationController = UINavigationController(rootViewController: promptVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        sourceVC.present(navigationController, animated: true)
     }
 
     static func openSpiralBreathing(from sourceVC: UIViewController) {
@@ -169,7 +177,11 @@ class AppCoordinator {
                 guard let sourceVC = sourceVC else { return }
                 switch selectedAction {
                 case .draw:
-                    AppCoordinator.openDrawingCanvas(from: sourceVC, checkinId: checkinId)
+                    AppCoordinator.presentDrawingPrompt(
+                        from: sourceVC,
+                        checkinId: checkinId,
+                        recordedEmotion: data.recordedEmotion
+                    )
                 case .writeJournal:
                     print("TODO: Write Journal action")
                 case .none:

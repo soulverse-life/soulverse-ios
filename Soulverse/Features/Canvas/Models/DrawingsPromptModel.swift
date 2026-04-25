@@ -1,16 +1,16 @@
 //
-//  CanvasPromptModel.swift
+//  DrawingsPromptModel.swift
 //  Soulverse
 //
 
 import UIKit
 
-/// Represents a canvas art therapy prompt with its associated template.
-struct CanvasPrompt: Codable {
-    let templateName: String?          // Name of the image asset in DrawingTemplate
-    let artTherapyPrompt: String       // Main prompt question
-    let reflectiveQuestion: String?    // Optional reflective question
-    let category: CanvasPromptCategory // Which pool this prompt belongs to
+/// Represents a drawing art-therapy prompt with its associated template.
+struct DrawingsPrompt: Codable {
+    let templateName: String?            // Name of the image asset in DrawingTemplate
+    let artTherapyPrompt: String         // Main prompt question
+    let reflectiveQuestion: String?      // Optional reflective question
+    let category: DrawingsPromptCategory // Which pool this prompt belongs to
 
     /// Returns the UIImage for this prompt's template, if available.
     var templateImage: UIImage? {
@@ -22,7 +22,7 @@ struct CanvasPrompt: Codable {
         templateName: String?,
         artTherapyPrompt: String,
         reflectiveQuestion: String?,
-        category: CanvasPromptCategory
+        category: DrawingsPromptCategory
     ) {
         self.templateName = templateName
         self.artTherapyPrompt = artTherapyPrompt
@@ -79,31 +79,31 @@ struct CanvasPrompt: Codable {
 /// - `general`: no specific emotion — shown in the Canvas tab without a mood filter.
 /// - `single`: tied to one primary emotion from Plutchik's 8 petals (joy, anger, …).
 /// - `mixed`: tied to any dyad (two-emotion combination, e.g. optimism = joy + anticipation).
-enum CanvasPromptCategory: Equatable {
+enum DrawingsPromptCategory: Equatable {
     case general
     case single(EmotionType)
     case mixed
 }
 
 /// Response structure for the JSON file
-private struct CanvasPromptsResponse: Codable {
-    let prompts: [CanvasPrompt]
+private struct DrawingsPromptsResponse: Codable {
+    let prompts: [DrawingsPrompt]
 }
 
-/// Manager for accessing and filtering canvas prompts.
-struct CanvasPromptManager {
+/// Manager for accessing and filtering drawing prompts.
+struct DrawingsPromptManager {
 
-    private static var _cachedPrompts: [CanvasPrompt]?
+    private static var _cachedPrompts: [DrawingsPrompt]?
 
     /// Returns all available prompts (loaded from JSON)
-    static var allPrompts: [CanvasPrompt] {
+    static var allPrompts: [DrawingsPrompt] {
         if let cached = _cachedPrompts {
             return cached
         }
 
-        guard let url = Bundle.main.url(forResource: "canvas_prompts", withExtension: "json"),
+        guard let url = Bundle.main.url(forResource: "drawings_prompts", withExtension: "json"),
               let data = try? Data(contentsOf: url),
-              let response = try? JSONDecoder().decode(CanvasPromptsResponse.self, from: data) else {
+              let response = try? JSONDecoder().decode(DrawingsPromptsResponse.self, from: data) else {
             return []
         }
 
@@ -117,7 +117,7 @@ struct CanvasPromptManager {
     /// - `nil` → general prompt.
     /// - Combined dyad → mixed-pool prompt.
     /// - Intensity emotion → that primary's pool (e.g. `.serenity`/`.joy`/`.ecstasy` → joy pool).
-    static func randomPrompt(for recordedEmotion: RecordedEmotion?) -> CanvasPrompt? {
+    static func randomPrompt(for recordedEmotion: RecordedEmotion?) -> DrawingsPrompt? {
         let target = category(for: recordedEmotion)
         return allPrompts.filter { $0.category == target }.randomElement()
     }
@@ -125,7 +125,7 @@ struct CanvasPromptManager {
     // MARK: - Category routing
 
     /// Maps a `RecordedEmotion` to the category of prompts that should be shown.
-    static func category(for recordedEmotion: RecordedEmotion?) -> CanvasPromptCategory {
+    static func category(for recordedEmotion: RecordedEmotion?) -> DrawingsPromptCategory {
         guard let recorded = recordedEmotion else { return .general }
         if recorded.isCombinedEmotion { return .mixed }
         guard let primary = recorded.primaryEmotion else { return .general }

@@ -45,7 +45,7 @@ class CanvasViewPresenter: CanvasViewPresenterType {
     }
 
     public func loadRandomPrompt() {
-        let randomPrompt = CanvasPromptManager.randomPrompt(for: loadedModel.recordedEmotion)
+        let randomPrompt = DrawingsPromptManager.randomPrompt(for: loadedModel.recordedEmotion)
         loadedModel.currentPrompt = randomPrompt
     }
 } 

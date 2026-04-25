@@ -272,6 +272,16 @@
 		7951A9BC2E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
+		7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
+		7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
+		7AE10CFF01000000000000A2 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
+		7AE10CFF01000000000000A3 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
+		7AE10CFF01000000000000B2 /* DrawingPromptPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */; };
+		7AE10CFF01000000000000B3 /* DrawingPromptPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */; };
+		7AE10CFF01000000000000C2 /* DrawingPromptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */; };
+		7AE10CFF01000000000000C3 /* DrawingPromptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */; };
+		7AE10CFF01000000000000D2 /* DrawingPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */; };
+		7AE10CFF01000000000000D3 /* DrawingPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */; };
 		7951A9C92E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */; };
 		7951A9CA2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */; };
 		7951A9CB2E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */; };
@@ -353,10 +363,10 @@
 		79DD63392EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */; };
 		79DD633B2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */; };
 		79DD633C2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */; };
-		79DD63402EDB2FAF008A5F8D /* canvas_prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */; };
-		79DD63412EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */; };
-		79DD63422EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */; };
-		79DD63432EDB2FAF008A5F8D /* canvas_prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */; };
+		79DD63402EDB2FAF008A5F8D /* drawings_prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DD633D2EDB2FAF008A5F8D /* drawings_prompts.json */; };
+		79DD63412EDB2FAF008A5F8D /* DrawingsPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* DrawingsPromptModel.swift */; };
+		79DD63422EDB2FAF008A5F8D /* DrawingsPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* DrawingsPromptModel.swift */; };
+		79DD63432EDB2FAF008A5F8D /* drawings_prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DD633D2EDB2FAF008A5F8D /* drawings_prompts.json */; };
 		79EE74BC2F2BB0660082EECF /* AffirmationQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */; };
 		79EE74BD2F2BB0660082EECF /* AffirmationQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */; };
 		79EE74BF2F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */; };
@@ -438,7 +448,9 @@
 		BCCF4852163421323A310717 /* MoodEntriesDataAssemblerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4883D32CE380C31648AE6 /* MoodEntriesDataAssemblerMock.swift */; };
 		BE7CD9A80860FCBB70D7DDE7 /* SupportMeSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0774B104E6B7E8550A2C9ED /* SupportMeSectionViewModelTests.swift */; };
 		BFC00E7084C2C3B433CDCB5F /* DetailDrawingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A7FB0D1FCDD8CC81DECBB /* DetailDrawingSection.swift */; };
-		C0DFE64282D5F1868C0544F4 /* CanvasPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A95C383DB61DE6370611AFF /* CanvasPromptTests.swift */; };
+		C0DFE64282D5F1868C0544F4 /* DrawingsPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A95C383DB61DE6370611AFF /* DrawingsPromptTests.swift */; };
+		7AE10CFF02000000000000A2 /* DrawingPromptPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */; };
+		7AE10CFF02000000000000B2 /* DrawingPromptPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */; };
 		C177ED8CA35EB3841C34BD3E /* CrisisResourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE368A37AF142928705DD2 /* CrisisResourceModel.swift */; };
 		C3B4A5D6E7F8A9B0C1D2E3F5 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
 		C3B4A5D6E7F8A9B0C1D2E3F6 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
@@ -570,7 +582,9 @@
 		9789F843142D96E67C70804C /* StaySafeSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StaySafeSectionViewController.swift; sourceTree = "<group>"; };
 		17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfessionalSupportSectionViewController.swift; sourceTree = "<group>"; };
 		5A7A89532F54342452F4E920 /* ToolsViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
-		5A95C383DB61DE6370611AFF /* CanvasPromptTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CanvasPromptTests.swift; sourceTree = "<group>"; };
+		5A95C383DB61DE6370611AFF /* DrawingsPromptTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingsPromptTests.swift; sourceTree = "<group>"; };
+		7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterDelegateMock.swift; sourceTree = "<group>"; };
+		7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterTests.swift; sourceTree = "<group>"; };
 		5C70D0337BCECFA7C98A0482 /* DrawingGallerySectionHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGallerySectionHeaderView.swift; sourceTree = "<group>"; };
 		5DB9147A86FBF42436C1031E /* InnerCosmoPeriodTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerCosmoPeriodTests.swift; sourceTree = "<group>"; };
 		5E56565E1067F09318717526 /* TopicTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicTests.swift; sourceTree = "<group>"; };
@@ -697,6 +711,11 @@
 		794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingViewController.swift; sourceTree = "<group>"; };
 		7951A9B62E532C85006EB0EC /* SoulverseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButton.swift; sourceTree = "<group>"; };
 		7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseNavigationView.swift; sourceTree = "<group>"; };
+		7AE10C0001000000000000A1 /* EmoPetChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoPetChatView.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptViewModel.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterType.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenter.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptViewController.swift; sourceTree = "<group>"; };
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
 		7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenter.swift; sourceTree = "<group>"; };
 		7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterType.swift; sourceTree = "<group>"; };
@@ -736,8 +755,8 @@
 		79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTagCell.swift; sourceTree = "<group>"; };
 		79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroTransitionID.swift; sourceTree = "<group>"; };
 		79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroTransitionID+Tools.swift"; sourceTree = "<group>"; };
-		79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = canvas_prompts.json; sourceTree = "<group>"; };
-		79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasPromptModel.swift; sourceTree = "<group>"; };
+		79DD633D2EDB2FAF008A5F8D /* drawings_prompts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = drawings_prompts.json; sourceTree = "<group>"; };
+		79DD633E2EDB2FAF008A5F8D /* DrawingsPromptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingsPromptModel.swift; sourceTree = "<group>"; };
 		79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AffirmationQuotes.json; sourceTree = "<group>"; };
 		79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationBubbleView.swift; sourceTree = "<group>"; };
 		79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationQuote.swift; sourceTree = "<group>"; };
@@ -890,6 +909,7 @@
 			children = (
 				1BD0A7054CD0FF4F7BF0E311 /* InnerCosmo */,
 				3CEF6868C99860B5053CC302 /* Canvas */,
+				7AE10CF00200000000000001 /* DrawingPrompt */,
 				B0D182D5DABBED761C600A70 /* Insight */,
 				D61CED62103A1FDB1695E641 /* Tools */,
 				8B885CAC90F0C57D72ADB2AA /* Quest */,
@@ -1010,10 +1030,26 @@
 		3CEF6868C99860B5053CC302 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
-				5A95C383DB61DE6370611AFF /* CanvasPromptTests.swift */,
+				5A95C383DB61DE6370611AFF /* DrawingsPromptTests.swift */,
 				8AE6A1610F27FD47B57135DD /* DrawingGalleryViewModelTests.swift */,
 			);
 			path = Canvas;
+			sourceTree = "<group>";
+		};
+		7AE10CF00200000000000001 /* DrawingPrompt */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */,
+			);
+			path = DrawingPrompt;
+			sourceTree = "<group>";
+		};
+		7AE10CF00200000000000002 /* DrawingPrompt */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */,
+			);
+			path = DrawingPrompt;
 			sourceTree = "<group>";
 		};
 		3E0347340DD12AA45731FA37 /* Service */ = {
@@ -1151,6 +1187,7 @@
 			isa = PBXGroup;
 			children = (
 				203AF1130EAB7613BB5E4174 /* Canvas */,
+				7AE10CF00200000000000002 /* DrawingPrompt */,
 				FDC43F071837DF9E43379337 /* Tools */,
 				8F27D501DE454F32087D686E /* Insight */,
 				11A574F922E4F95788E99F30 /* InnerCosmo */,
@@ -1781,6 +1818,7 @@
 				7951A9C72E5376B5006EB0EC /* InnerCosmo */,
 				798687ED2E6C248E00EB3B38 /* Insight */,
 				79B24C742DFC7B2A001220B6 /* Canvas */,
+				7AE10CF00100000000000001 /* DrawingPrompt */,
 				7951A9FF2E537704006EB0EC /* Tools */,
 				79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */,
 				798688072E6C24EE00EB3B38 /* Quest */,
@@ -1833,6 +1871,41 @@
 				79B24C732DFC7B2A001220B6 /* Views */,
 			);
 			path = Canvas;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000001 /* DrawingPrompt */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CF00100000000000002 /* ViewModels */,
+				7AE10CF00100000000000003 /* Presenter */,
+				7AE10CF00100000000000004 /* Views */,
+			);
+			path = DrawingPrompt;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000002 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000003 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */,
+				7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		79B6AAA62EACCA5D00A8B079 /* Models */ = {
@@ -1912,8 +1985,8 @@
 		79DD633F2EDB2FAF008A5F8D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				79DD633D2EDB2FAF008A5F8D /* canvas_prompts.json */,
-				79DD633E2EDB2FAF008A5F8D /* CanvasPromptModel.swift */,
+				79DD633D2EDB2FAF008A5F8D /* drawings_prompts.json */,
+				79DD633E2EDB2FAF008A5F8D /* DrawingsPromptModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2370,7 +2443,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79DD63402EDB2FAF008A5F8D /* canvas_prompts.json in Resources */,
+				79DD63402EDB2FAF008A5F8D /* drawings_prompts.json in Resources */,
 				7947DF402F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */,
 				790AD2732DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
 				79F1380C2F3875E10034D325 /* GoogleService-Info.plist in Resources */,
@@ -2387,7 +2460,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79DD63432EDB2FAF008A5F8D /* canvas_prompts.json in Resources */,
+				79DD63432EDB2FAF008A5F8D /* drawings_prompts.json in Resources */,
 				7947DF412F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */,
 				790AD29D2DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
 				79F1380B2F3875E10034D325 /* GoogleService-Info.plist in Resources */,
@@ -2651,7 +2724,7 @@
 				79B6AAD92EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */,
 				798687F12E6C248E00EB3B38 /* InsightViewModel.swift in Sources */,
 				798687F22E6C248E00EB3B38 /* InsightViewController.swift in Sources */,
-				79DD63412EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */,
+				79DD63412EDB2FAF008A5F8D /* DrawingsPromptModel.swift in Sources */,
 				798687F32E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */,
 				B4684A5181281B705F0F08BE /* WeeklyMoodScoreViewModel.swift in Sources */,
 				A88F46F2FE6B761AC9159FDA /* WeeklyMoodScoreViewModel+MockData.swift in Sources */,
@@ -2718,6 +2791,10 @@
 				79DD633C2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */,
 				7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
 				7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */,
+				7AE10CFF01000000000000A2 /* DrawingPromptViewModel.swift in Sources */,
+				7AE10CFF01000000000000B2 /* DrawingPromptPresenterType.swift in Sources */,
+				7AE10CFF01000000000000C2 /* DrawingPromptPresenter.swift in Sources */,
+				7AE10CFF01000000000000D2 /* DrawingPromptViewController.swift in Sources */,
 				790D87D22ECF668700D4F61F /* SpiralView.swift in Sources */,
 				790D87D32ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
@@ -2823,7 +2900,7 @@
 				79B6AADC2EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */,
 				798687EE2E6C248E00EB3B38 /* InsightViewModel.swift in Sources */,
 				798687EF2E6C248E00EB3B38 /* InsightViewController.swift in Sources */,
-				79DD63422EDB2FAF008A5F8D /* CanvasPromptModel.swift in Sources */,
+				79DD63422EDB2FAF008A5F8D /* DrawingsPromptModel.swift in Sources */,
 				798687F02E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */,
 				2FC61BC19AEDCC653A77B45F /* WeeklyMoodScoreViewModel.swift in Sources */,
 				DA65ED4FA21F10A77F596D7A /* WeeklyMoodScoreViewModel+MockData.swift in Sources */,
@@ -2881,6 +2958,10 @@
 				79DD633B2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */,
 				7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
 				7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */,
+				7AE10CFF01000000000000A3 /* DrawingPromptViewModel.swift in Sources */,
+				7AE10CFF01000000000000B3 /* DrawingPromptPresenterType.swift in Sources */,
+				7AE10CFF01000000000000C3 /* DrawingPromptPresenter.swift in Sources */,
+				7AE10CFF01000000000000D3 /* DrawingPromptViewController.swift in Sources */,
 				790D87D42ECF668700D4F61F /* SpiralView.swift in Sources */,
 				790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
 				794B5A082EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
@@ -3034,7 +3115,9 @@
 				CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */,
 				A77917A68943640D3F9C24D4 /* InnerCosmoPeriodTests.swift in Sources */,
 				3340F94A6A51E47EF6FA9BF6 /* CalendarMonthViewModelTests.swift in Sources */,
-				C0DFE64282D5F1868C0544F4 /* CanvasPromptTests.swift in Sources */,
+				C0DFE64282D5F1868C0544F4 /* DrawingsPromptTests.swift in Sources */,
+				7AE10CFF02000000000000A2 /* DrawingPromptPresenterDelegateMock.swift in Sources */,
+				7AE10CFF02000000000000B2 /* DrawingPromptPresenterTests.swift in Sources */,
 				4C5DA1990A7740F49529882A /* WeeklyMoodScoreViewModelTests.swift in Sources */,
 				A3428F453B2E78C47D54B7E8 /* ToolsViewModelTests.swift in Sources */,
 				FEAEF3464658DBB02F096ED0 /* DrawingGalleryViewModelTests.swift in Sources */,

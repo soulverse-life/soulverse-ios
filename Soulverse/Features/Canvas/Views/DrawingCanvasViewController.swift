@@ -14,10 +14,8 @@ class DrawingCanvasViewController: UIViewController {
     }
 
     // MARK: - Properties
-    var backgroundImage: UIImage?
+    var drawingsPrompt: DrawingsPrompt?
     var checkinId: String?
-    var promptUsed: String?
-    var templateName: String?
     private lazy var presenter: DrawingCanvasPresenterType = {
         let presenter = DrawingCanvasPresenter()
         presenter.delegate = self
@@ -123,19 +121,6 @@ class DrawingCanvasViewController: UIViewController {
     private var hasConfiguredInitialLayout = false
     private var canvasContentSize: CGSize = .zero
     private var initialZoomScale: CGFloat = 1.0
-
-    // MARK: - Initializers
-    convenience init(backgroundImage: UIImage?, checkinId: String? = nil, promptUsed: String? = nil) {
-        self.init()
-        self.backgroundImage = backgroundImage
-        self.checkinId = checkinId
-        self.promptUsed = promptUsed
-    }
-
-    // MARK: - Factory Methods
-    static func createWithBackground(_ image: UIImage?, checkinId: String? = nil, promptUsed: String? = nil) -> DrawingCanvasViewController {
-        return DrawingCanvasViewController(backgroundImage: image, checkinId: checkinId, promptUsed: promptUsed)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -303,8 +288,8 @@ class DrawingCanvasViewController: UIViewController {
     
     
     private func setupBackgroundImage() {
-        // 使用傳入的背景圖片，沒有則留空白畫布
-        if let image = backgroundImage {
+        // 使用傳入 prompt 的 template 圖片，沒有則留空白畫布
+        if let image = drawingsPrompt?.templateImage {
             backgroundImageView.image = image
         }
         // 佈局配置會在 viewDidAppear 中進行
@@ -437,8 +422,8 @@ class DrawingCanvasViewController: UIViewController {
             image: image,
             recordingData: recordingData,
             checkinId: checkinId,
-            promptUsed: promptUsed,
-            templateName: templateName
+            promptUsed: drawingsPrompt?.artTherapyPrompt,
+            templateName: drawingsPrompt?.templateName
         )
     }
 
