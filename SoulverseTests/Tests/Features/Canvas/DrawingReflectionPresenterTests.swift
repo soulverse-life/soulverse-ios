@@ -84,6 +84,21 @@ final class DrawingReflectionPresenterTests: XCTestCase {
 
         XCTAssertEqual(serviceMock.updateReflectionCallCount, 1)
     }
+
+    func test_submitReflection_success_postsDrawingDidChangeNotification() {
+        let delegateExp = expectation(description: "delegate finishes")
+        delegateMock.expectation = delegateExp
+        let notificationExp = expectation(
+            forNotification: NSNotification.Name(rawValue: Notification.DrawingDidChange),
+            object: nil
+        )
+        serviceMock.updateReflectionResult = .success(())
+        let presenter = makePresenter()
+
+        presenter.submitReflection(drawingId: "d1", answer: "hello")
+
+        wait(for: [delegateExp, notificationExp], timeout: 0.5)
+    }
 }
 
 // MARK: - Helpers

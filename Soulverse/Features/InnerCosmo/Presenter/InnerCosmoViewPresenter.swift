@@ -79,7 +79,7 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(onDataChanged),
-            name: NSNotification.Name(rawValue: Notification.DrawingSaved),
+            name: NSNotification.Name(rawValue: Notification.DrawingDidChange),
             object: nil
         )
     }

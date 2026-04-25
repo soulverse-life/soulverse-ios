@@ -112,7 +112,7 @@ final class CheckInDetailViewController: ViewController {
 
         NotificationCenter.default.addObserver(
             self, selector: #selector(handleDataChanged),
-            name: NSNotification.Name(Notification.DrawingSaved), object: nil
+            name: NSNotification.Name(Notification.DrawingDidChange), object: nil
         )
     }
 

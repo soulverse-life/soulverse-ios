@@ -60,6 +60,10 @@ final class DrawingReflectionPresenter: DrawingReflectionPresenterType {
 
             switch result {
             case .success:
+                NotificationCenter.default.post(
+                    name: NSNotification.Name(rawValue: Notification.DrawingDidChange),
+                    object: nil
+                )
                 self.delegate?.didFinishSavingReflection(answer: trimmed)
             case .failure(let error):
                 self.delegate?.didFailSavingReflection(error: error)
