@@ -133,6 +133,12 @@ Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as t
 
 ## In Progress
 
+### 24. fix/canvas-layout-save: Canvas without template renders at bottom-right and fails PNG export [P1] [S]
+- Status: in_progress
+- Branch: fix/canvas-layout-save
+- Worktree: . (main repo)
+- Created: 2026-04-25
+
 ### 23. feat/insight-view: Implement full InsightView with 6 sections [P1] [XL]
 - Status: completed
 - Branch: feat/insight-view
