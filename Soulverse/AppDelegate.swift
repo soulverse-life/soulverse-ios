@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         initSDK()
         setTrackingAgent()
+        // Must run after initSDK() — Crashlytics requires FirebaseApp.configure() to have run.
+        setupErrorReporting()
 
         application.beginReceivingRemoteControlEvents()
 
@@ -67,7 +69,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         PostHogSDK.shared.setup(config)
     }
-    
+
+    private func setupErrorReporting() {
+        ErrorReporting.shared.start()
+    }
+
     func setTrackingAgent() {
         // TODO: Use factory to build the tracker for individual target
         appTracker = TrackingService.shared
