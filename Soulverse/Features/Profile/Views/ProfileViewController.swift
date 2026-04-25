@@ -139,7 +139,6 @@ class ProfileViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupCrashTrigger()
         setupPresenter()
         presenter.fetchProfile()
     }
@@ -197,19 +196,6 @@ class ProfileViewController: ViewController {
 
     private func setupPresenter() {
         presenter.delegate = self
-    }
-
-    // TODO: REMOVE - TEMPORARY 5-tap crash trigger for Crashlytics integration verification.
-    // Must be reverted in Task 7 after a successful end-to-end crash report is observed.
-    private func setupCrashTrigger() {
-        let crashTap = UITapGestureRecognizer(target: self, action: #selector(handleCrashTrigger))
-        crashTap.numberOfTapsRequired = 5
-        authProviderRow.isUserInteractionEnabled = true
-        authProviderRow.addGestureRecognizer(crashTap)
-    }
-
-    @objc private func handleCrashTrigger() {
-        fatalError("Test crash from Crashlytics integration verification")
     }
 
     private func configure(with viewModel: ProfileViewModel) {
