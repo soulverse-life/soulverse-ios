@@ -142,6 +142,10 @@ final class CrisisResourceCardView: UIView {
                 make.height.greaterThanOrEqualTo(Layout.minimumHeight)
             }
 
+            baseView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+
             UIView.animate {
                 self.visualEffectView.effect = glassEffect
                 self.visualEffectView.overrideUserInterfaceStyle = .light
@@ -164,10 +168,6 @@ final class CrisisResourceCardView: UIView {
     }
 
     private func setupConstraints() {
-        baseView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-
         rootStack.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(Layout.contentInsetVertical)
             make.leading.trailing.equalToSuperview().inset(Layout.contentInsetHorizontal)

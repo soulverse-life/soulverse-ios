@@ -391,3 +391,8 @@
 // Error states
 "emotional_bundle_load_error" = "Unable to load your bundle";
 "emotional_bundle_retry" = "Retry";
+"emotional_bundle_save_error_title" = "Save Failed";
+"emotional_bundle_save_error_message" = "We couldn't save your changes. Please try again.";
+"emotional_bundle_required_field_title" = "Required";
+"emotional_bundle_red_flags_required_message" = "Please add at least one red flag before saving.";
+"emotional_bundle_feel_calm_required_message" = "Please add at least one calming activity before saving.";

@@ -391,3 +391,8 @@
 // Error states
 "emotional_bundle_load_error" = "無法載入你的急救包";
 "emotional_bundle_retry" = "重試";
+"emotional_bundle_save_error_title" = "儲存失敗";
+"emotional_bundle_save_error_message" = "無法儲存你的變更，請稍後再試。";
+"emotional_bundle_required_field_title" = "必填欄位";
+"emotional_bundle_red_flags_required_message" = "請至少新增一個警訊後再儲存。";
+"emotional_bundle_feel_calm_required_message" = "請至少新增一個放鬆活動後再儲存。";

@@ -56,8 +56,8 @@ class SoulverseTextField: UIView {
     
     private var inputTitleView: UIView = {
         let view = UIView()
-        view.backgroundColor = .themeCardBackground
-
+        view.backgroundColor = .white
+        
         return view
     }()
     
@@ -104,18 +104,6 @@ class SoulverseTextField: UIView {
     var text: String? {
         get {
             inputTextField.text
-        }
-        set {
-            inputTextField.text = newValue
-        }
-    }
-
-    var keyboardType: UIKeyboardType {
-        get {
-            inputTextField.keyboardType
-        }
-        set {
-            inputTextField.keyboardType = newValue
         }
     }
     var inputType: SoulverseTextFieldType

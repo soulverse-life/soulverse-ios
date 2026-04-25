@@ -305,6 +305,8 @@ class SoulverseNavigationView: UIView {
         config = SoulverseNavigationConfig(
             title: title,
             showBackButton: config.showBackButton,
+            backButtonAssetName: config.backButtonAssetName,
+            backButtonFallbackSymbol: config.backButtonFallbackSymbol,
             rightItems: config.rightItems
         )
         navigationTitle.text = title

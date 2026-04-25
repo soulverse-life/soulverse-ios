@@ -48,7 +48,7 @@ final class BundleSectionCardView: UIView {
     private let checkmarkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .themePrimary
+        imageView.tintColor = .themeTextPrimary
         imageView.image = UIImage(systemName: "checkmark.circle.fill")
         imageView.isHidden = true
         return imageView

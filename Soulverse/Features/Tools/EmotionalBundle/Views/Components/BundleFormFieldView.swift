@@ -192,10 +192,6 @@ final class BundleFormFieldView: UIView {
         return inputTextView.text ?? ""
     }
 
-    func showError() {
-        // Could add visual feedback here if needed
-    }
-
     // MARK: - Configuration
 
     /// Configure as a simple text field with external title label
@@ -362,7 +358,8 @@ final class BundleFormFieldView: UIView {
 
     @objc private func clearText() {
         hasBeenModified = true
-        showPlaceholder()
+        inputTextView.text = ""
+        inputTextView.textColor = .themeTextPrimary
         updateRightAccessory(isFocused: true)
         onTextChanged?("")
     }

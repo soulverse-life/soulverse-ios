@@ -11,6 +11,7 @@ import SnapKit
 protocol EmotionalBundleMainViewControllerDelegate: AnyObject {
     func didSelectSection(_ viewController: EmotionalBundleMainViewController, section: EmotionalBundleSection)
     func didTapClose(_ viewController: EmotionalBundleMainViewController)
+    func didFinish(_ viewController: EmotionalBundleMainViewController)
 }
 
 // MARK: - EmotionalBundleMainViewController
@@ -153,6 +154,14 @@ final class EmotionalBundleMainViewController: ViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         dismissEmoPetChat()
+        tabBarController?.tabBar.isHidden = false
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if isMovingFromParent {
+            delegate?.didFinish(self)
+        }
     }
 
     // MARK: - Setup

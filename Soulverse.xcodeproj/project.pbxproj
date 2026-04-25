@@ -138,6 +138,7 @@
 		790AD25E2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F22DF9E43200C33CD1 /* NotificationItemsResponse.swift */; };
 		790AD2602DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19A2DF9E43200C33CD1 /* NotificationViewModel.swift */; };
 		790AD2612DF9E43200C33CD1 /* SummitAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */; };
+		E2B7F1D5A8C4036459E0B186 /* SoulverseToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */; };
 		790AD2632DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19D2DF9E43200C33CD1 /* NotificationItemTableViewCell.swift */; };
 		790AD2662DF9E43200C33CD1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E62DF9E43200C33CD1 /* AppCoordinator.swift */; };
 		790AD26B2DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1752DF9E43200C33CD1 /* UIView+Extensions.swift */; };
@@ -197,6 +198,7 @@
 		790AD30C2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F22DF9E43200C33CD1 /* NotificationItemsResponse.swift */; };
 		790AD30E2DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19A2DF9E43200C33CD1 /* NotificationViewModel.swift */; };
 		790AD30F2DF9E43200C33CD1 /* SummitAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */; };
+		F3C8E2D6B1A4047568F1C297 /* SoulverseToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */; };
 		790AD3112DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19D2DF9E43200C33CD1 /* NotificationItemTableViewCell.swift */; };
 		790AD3142DF9E43200C33CD1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E62DF9E43200C33CD1 /* AppCoordinator.swift */; };
 		790AD3192DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1752DF9E43200C33CD1 /* UIView+Extensions.swift */; };
@@ -646,6 +648,7 @@
 		790AD1F62DF9E43200C33CD1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		790AD1F72DF9E43200C33CD1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitAlertView.swift; sourceTree = "<group>"; };
+		D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseToast.swift; sourceTree = "<group>"; };
 		790AD1FF2DF9E43200C33CD1 /* SummitSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitSeparator.swift; sourceTree = "<group>"; };
 		790AD2002DF9E43200C33CD1 /* SummitSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummitSlider.swift; sourceTree = "<group>"; };
 		790AD2012DF9E43200C33CD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1388,6 +1391,7 @@
 				7AE10C0001000000000000A1 /* EmoPetChatView.swift */,
 				7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */,
 				790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */,
+				D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */,
 				794B5A022EA38B45006CF069 /* SoulverseTextField.swift */,
 				794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */,
 				794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */,
@@ -2736,6 +2740,7 @@
 				790AD2602DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */,
 				794B5A0F2EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,
 				790AD2612DF9E43200C33CD1 /* SummitAlertView.swift in Sources */,
+				E2B7F1D5A8C4036459E0B186 /* SoulverseToast.swift in Sources */,
 				79B6AADE2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */,
 				790AD2632DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD2662DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
@@ -2898,6 +2903,7 @@
 				790AD30E2DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */,
 				794B5A102EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,
 				790AD30F2DF9E43200C33CD1 /* SummitAlertView.swift in Sources */,
+				F3C8E2D6B1A4047568F1C297 /* SoulverseToast.swift in Sources */,
 				79B6AADF2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */,
 				790AD3112DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
 				790AD3142DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,

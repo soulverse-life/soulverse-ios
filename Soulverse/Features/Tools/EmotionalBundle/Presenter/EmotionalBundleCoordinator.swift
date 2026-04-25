@@ -55,6 +55,14 @@ final class EmotionalBundleCoordinator {
         strongSelf = nil
     }
 
+    private func showSaveErrorToast() {
+        SoulverseToast.show(
+            .error,
+            title: NSLocalizedString("emotional_bundle_save_error_title", comment: ""),
+            message: NSLocalizedString("emotional_bundle_save_error_message", comment: "")
+        )
+    }
+
     private func saveSection(_ section: EmotionalBundleSection, data: EmotionalBundleSectionData) {
         service.saveSection(uid: uid, section: section, data: data) { [weak self] result in
             DispatchQueue.main.async {
@@ -65,6 +73,7 @@ final class EmotionalBundleCoordinator {
                     self.presenter.refreshAfterSave()
                 case .failure(let error):
                     debugPrint("[EmotionalBundle] Save failed: \(error.localizedDescription)")
+                    self.showSaveErrorToast()
                 }
             }
         }
@@ -113,6 +122,9 @@ extension EmotionalBundleCoordinator: EmotionalBundleMainViewControllerDelegate 
 
     func didTapClose(_ viewController: EmotionalBundleMainViewController) {
         navigationController.popViewController(animated: true)
+    }
+
+    func didFinish(_ viewController: EmotionalBundleMainViewController) {
         onDismiss?()
         cleanup()
     }

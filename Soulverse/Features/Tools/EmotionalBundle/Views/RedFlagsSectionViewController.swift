@@ -207,11 +207,19 @@ final class RedFlagsSectionViewController: ViewController {
         view.endEditing(true)
 
         guard viewModel.isValid else {
-            redFlag1Field.showError()
+            showRequiredFieldToast(message: NSLocalizedString("emotional_bundle_red_flags_required_message", comment: ""))
             return
         }
 
         delegate?.didTapSave(self, data: viewModel.toSectionData())
+    }
+
+    private func showRequiredFieldToast(message: String) {
+        SoulverseToast.show(
+            .warning,
+            title: NSLocalizedString("emotional_bundle_required_field_title", comment: ""),
+            message: message
+        )
     }
 
     private func handleCancel() {
