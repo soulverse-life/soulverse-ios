@@ -13,6 +13,7 @@ protocol DrawingServiceProtocol {
         checkinId: String?,
         promptUsed: String?,
         templateName: String?,
+        reflectiveQuestion: String?,
         completion: @escaping (Result<String, Error>) -> Void
     )
 
@@ -27,6 +28,13 @@ protocol DrawingServiceProtocol {
         uid: String,
         checkinId: String,
         completion: @escaping (Result<[DrawingModel], Error>) -> Void
+    )
+
+    func updateDrawingReflection(
+        uid: String,
+        drawingId: String,
+        answer: String,
+        completion: @escaping (Result<Void, Error>) -> Void
     )
 
     func deleteDrawing(

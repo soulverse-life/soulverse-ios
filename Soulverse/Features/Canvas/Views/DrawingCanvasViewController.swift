@@ -418,12 +418,19 @@ class DrawingCanvasViewController: UIViewController {
         let image = renderDrawingAsImage()
         let recordingData = canvasView.drawing.dataRepresentation()
 
+        // Always emit a question — fall back to a generic one for free drawings
+        // so the reflection step exists even when the user opened the canvas
+        // without picking a prompt.
+        let resolvedQuestion = drawingsPrompt?.reflectiveQuestion
+            ?? NSLocalizedString("drawing_reflection_generic_question", comment: "")
+
         presenter.submitDrawing(
             image: image,
             recordingData: recordingData,
             checkinId: checkinId,
             promptUsed: drawingsPrompt?.artTherapyPrompt,
-            templateName: drawingsPrompt?.templateName
+            templateName: drawingsPrompt?.templateName,
+            reflectiveQuestion: resolvedQuestion
         )
     }
 
@@ -579,12 +586,19 @@ extension DrawingCanvasViewController: DrawingCanvasPresenterDelegate {
         saveButton.isEnabled = false
     }
 
-    func didFinishSavingDrawing(image: UIImage) {
+    func didFinishSavingDrawing(drawingId: String, image: UIImage, reflectiveQuestion: String) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             hideLoadingView()
             saveButton.isEnabled = true
-            AppCoordinator.presentDrawingResult(image: image, from: self)
+            let config = DrawingReflectionConfig(
+                drawingId: drawingId,
+                drawingImage: image,
+                drawingImageURL: nil,
+                reflectiveQuestion: reflectiveQuestion,
+                reflectiveAnswer: nil
+            )
+            AppCoordinator.presentDrawingReflection(config: config, from: self)
         }
     }
 

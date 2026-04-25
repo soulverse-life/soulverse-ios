@@ -106,7 +106,9 @@ struct DeviceConstants {
 struct Notification {
     static let UserIdentityChange = "UserIdentityChange"
     static let MoodCheckInCreated = "MoodCheckInCreated"
-    static let DrawingSaved = "DrawingSaved"
+    /// Posted whenever a drawing's persisted state changes — created on save,
+    /// or updated when the reflection answer is filled in / changed.
+    static let DrawingDidChange = "DrawingDidChange"
 }
 
 struct InAppURLScheme {

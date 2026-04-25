@@ -12,6 +12,13 @@ import UIKit
 
 protocol DetailDrawingSectionDelegate: AnyObject {
     func detailDrawingSectionDidTapCreate(_ section: DetailDrawingSection, checkinId: String?)
+    func detailDrawingSectionDidTapAddReflection(
+        _ section: DetailDrawingSection,
+        drawingId: String,
+        imageURL: String?,
+        reflectiveQuestion: String?,
+        reflectiveAnswer: String?
+    )
 }
 
 final class DetailDrawingSection: UIView {
@@ -21,6 +28,7 @@ final class DetailDrawingSection: UIView {
     private enum State {
         case loading
         case content
+        case unanswered
         case empty
     }
 
@@ -28,6 +36,10 @@ final class DetailDrawingSection: UIView {
 
     weak var delegate: DetailDrawingSectionDelegate?
     private var checkinId: String?
+    private var pendingDrawingId: String?
+    private var pendingImageURL: String?
+    private var pendingReflectiveQuestion: String?
+    private var pendingReflectiveAnswer: String?
     private var currentState: State?
 
     // MARK: - UI Components
@@ -113,9 +125,18 @@ final class DetailDrawingSection: UIView {
 
     // -- Empty / CTA --
 
-    private lazy var ctaButton: SoulverseButton = {
+    private lazy var drawCTAButton: SoulverseButton = {
         let button = SoulverseButton(
             title: NSLocalizedString("checkin_detail_draw_cta", comment: ""),
+            style: .primary,
+            delegate: self
+        )
+        return button
+    }()
+
+    private lazy var addReflectionCTAButton: SoulverseButton = {
+        let button = SoulverseButton(
+            title: NSLocalizedString("drawing_reflection_add_cta", comment: ""),
             style: .primary,
             delegate: self
         )
@@ -173,9 +194,11 @@ final class DetailDrawingSection: UIView {
         case .loading:
             installLoading()
         case .content:
-            installContent()
+            installContent(showingAnswer: true)
+        case .unanswered:
+            installContent(showingAnswer: false)
         case .empty:
-            installCTA()
+            installDrawCTA()
         }
     }
 
@@ -187,7 +210,7 @@ final class DetailDrawingSection: UIView {
         loadingIndicator.startAnimating()
     }
 
-    private func installContent() {
+    private func installContent(showingAnswer: Bool) {
         let headerStack = UIStackView(arrangedSubviews: [sectionIconView, sectionTitleLabel])
         headerStack.axis = .horizontal
         headerStack.spacing = 6
@@ -200,7 +223,14 @@ final class DetailDrawingSection: UIView {
         textStack.arrangedSubviews.forEach { textStack.removeArrangedSubview($0); $0.removeFromSuperview() }
         textStack.addArrangedSubview(headerStack)
         textStack.addArrangedSubview(promptLabel)
-        textStack.addArrangedSubview(reflectionLabel)
+        if showingAnswer {
+            textStack.addArrangedSubview(reflectionLabel)
+        } else {
+            textStack.addArrangedSubview(addReflectionCTAButton)
+            addReflectionCTAButton.snp.remakeConstraints { make in
+                make.height.equalTo(CheckInDetailLayout.ctaButtonHeight)
+            }
+        }
 
         contentStack.arrangedSubviews.forEach { contentStack.removeArrangedSubview($0); $0.removeFromSuperview() }
         contentStack.addArrangedSubview(drawingImageView)
@@ -221,9 +251,9 @@ final class DetailDrawingSection: UIView {
         }
     }
 
-    private func installCTA() {
-        bodyContainer.addSubview(ctaButton)
-        ctaButton.snp.makeConstraints { make in
+    private func installDrawCTA() {
+        bodyContainer.addSubview(drawCTAButton)
+        drawCTAButton.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(CheckInDetailLayout.ctaButtonHeight)
             make.bottom.lessThanOrEqualToSuperview()
@@ -236,36 +266,46 @@ final class DetailDrawingSection: UIView {
         transition(to: .loading)
     }
 
-    func configure(imageURL: String?, prompt: String?, reflection: String?, checkinId: String?) {
+    func configure(
+        drawingId: String?,
+        imageURL: String?,
+        reflectiveQuestion: String?,
+        reflectiveAnswer: String?,
+        checkinId: String?
+    ) {
         self.checkinId = checkinId
+        self.pendingDrawingId = drawingId
+        self.pendingImageURL = imageURL
+        self.pendingReflectiveQuestion = reflectiveQuestion
+        self.pendingReflectiveAnswer = reflectiveAnswer
 
-        let hasContent = imageURL != nil
-
-        if hasContent {
-            transition(to: .content)
-
-            if let imageURL = imageURL, let url = URL(string: imageURL) {
-                drawingImageView.isHidden = false
-                drawingImageView.kf.setImage(with: url)
-            } else {
-                drawingImageView.isHidden = true
-            }
-
-            if let prompt = prompt {
-                promptLabel.isHidden = false
-                promptLabel.text = prompt
-            } else {
-                promptLabel.isHidden = true
-            }
-
-            if let reflection = reflection {
-                reflectionLabel.isHidden = false
-                reflectionLabel.text = reflection
-            } else {
-                reflectionLabel.isHidden = true
-            }
-        } else {
+        guard imageURL != nil else {
             transition(to: .empty)
+            return
+        }
+
+        let hasAnswer = reflectiveAnswer?.isEmpty == false
+        transition(to: hasAnswer ? .content : .unanswered)
+
+        if let imageURL = imageURL, let url = URL(string: imageURL) {
+            drawingImageView.isHidden = false
+            drawingImageView.kf.setImage(with: url)
+        } else {
+            drawingImageView.isHidden = true
+        }
+
+        if let question = reflectiveQuestion {
+            promptLabel.isHidden = false
+            promptLabel.text = question
+        } else {
+            promptLabel.isHidden = true
+        }
+
+        if hasAnswer {
+            reflectionLabel.isHidden = false
+            reflectionLabel.text = reflectiveAnswer
+        } else {
+            reflectionLabel.isHidden = true
         }
     }
 
@@ -275,6 +315,17 @@ final class DetailDrawingSection: UIView {
 
 extension DetailDrawingSection: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        delegate?.detailDrawingSectionDidTapCreate(self, checkinId: checkinId)
+        if button === addReflectionCTAButton {
+            guard let drawingId = pendingDrawingId else { return }
+            delegate?.detailDrawingSectionDidTapAddReflection(
+                self,
+                drawingId: drawingId,
+                imageURL: pendingImageURL,
+                reflectiveQuestion: pendingReflectiveQuestion,
+                reflectiveAnswer: pendingReflectiveAnswer
+            )
+        } else {
+            delegate?.detailDrawingSectionDidTapCreate(self, checkinId: checkinId)
+        }
     }
 }

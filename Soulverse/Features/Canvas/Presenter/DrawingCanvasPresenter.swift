@@ -9,7 +9,7 @@ import UIKit
 
 protocol DrawingCanvasPresenterDelegate: AnyObject {
     func didStartSavingDrawing()
-    func didFinishSavingDrawing(image: UIImage)
+    func didFinishSavingDrawing(drawingId: String, image: UIImage, reflectiveQuestion: String)
     func didFailSavingDrawing(error: Error)
 }
 
@@ -22,7 +22,8 @@ protocol DrawingCanvasPresenterType: AnyObject {
         recordingData: Data,
         checkinId: String?,
         promptUsed: String?,
-        templateName: String?
+        templateName: String?,
+        reflectiveQuestion: String
     )
 }
 
@@ -47,7 +48,8 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
         recordingData: Data,
         checkinId: String?,
         promptUsed: String?,
-        templateName: String?
+        templateName: String?,
+        reflectiveQuestion: String
     ) {
         guard !isSaving else { return }
         guard let uid = user.userId else {
@@ -66,19 +68,24 @@ final class DrawingCanvasPresenter: DrawingCanvasPresenterType {
             recordingData: recordingData,
             checkinId: checkinId,
             promptUsed: promptUsed,
-            templateName: templateName
+            templateName: templateName,
+            reflectiveQuestion: reflectiveQuestion
         ) { [weak self] result in
-            
+
             guard let self = self else { return }
             self.isSaving = false
 
             switch result {
-            case .success:
+            case .success(let drawingId):
                 NotificationCenter.default.post(
-                    name: NSNotification.Name(rawValue: Notification.DrawingSaved),
+                    name: NSNotification.Name(rawValue: Notification.DrawingDidChange),
                     object: nil
                 )
-                self.delegate?.didFinishSavingDrawing(image: image)
+                self.delegate?.didFinishSavingDrawing(
+                    drawingId: drawingId,
+                    image: image,
+                    reflectiveQuestion: reflectiveQuestion
+                )
             case .failure(let error):
                 self.delegate?.didFailSavingDrawing(error: error)
             }

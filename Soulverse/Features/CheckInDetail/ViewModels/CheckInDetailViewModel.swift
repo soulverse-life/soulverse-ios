@@ -34,9 +34,10 @@ struct CheckInDetailViewModel {
 
     // MARK: - Drawing / Reflection
 
+    let drawingId: String?
     let drawingImageURL: String?
-    let reflectionPrompt: String?
-    let reflectionText: String?
+    let reflectiveQuestion: String?
+    let reflectiveAnswer: String?
 
     // MARK: - Journal
 
@@ -46,4 +47,5 @@ struct CheckInDetailViewModel {
     // MARK: - Identity
 
     let checkinId: String
+    let recordedEmotion: RecordedEmotion?
 }
