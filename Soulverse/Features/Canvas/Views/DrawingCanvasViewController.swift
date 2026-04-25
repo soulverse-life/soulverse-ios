@@ -602,18 +602,21 @@ extension DrawingCanvasViewController: DrawingCanvasPresenterDelegate {
     }
 
     func didFailSavingDrawing(error: Error) {
-        hideLoadingView()
-        saveButton.isEnabled = true
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            hideLoadingView()
+            saveButton.isEnabled = true
 
-        let alert = UIAlertController(
-            title: NSLocalizedString("drawing_save_error_title", comment: "Save error title"),
-            message: error.localizedDescription,
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(
-            title: NSLocalizedString("ok", comment: "OK"),
-            style: .default
-        ))
-        present(alert, animated: true)
+            let alert = UIAlertController(
+                title: NSLocalizedString("drawing_save_error_title", comment: "Save error title"),
+                message: error.localizedDescription,
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(
+                title: NSLocalizedString("ok", comment: "OK"),
+                style: .default
+            ))
+            present(alert, animated: true)
+        }
     }
 }
