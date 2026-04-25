@@ -46,6 +46,7 @@
 		51D44910A218DC8B8116E288 /* FirestoreDrawingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */; };
 		537A9C9DB8B5757CF367B783 /* RecordedEmotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA97A0D5537477FC8E3374B /* RecordedEmotionTests.swift */; };
 		5420BA20E87D9967F501E129 /* FirestoreJournalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659D171EB01E4F3823113C03 /* FirestoreJournalService.swift */; };
+		5FB242B1781C5956CDC31A78 /* ErrorReportingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3936C4C4200D3E36282A /* ErrorReportingTests.swift */; };
 		6009E3A97AD857D0070766C9 /* MoodCheckInDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A840760ABEE725B08771D /* MoodCheckInDataTests.swift */; };
 		6026E6F1B6136CA370157840 /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
 		64AF4AE865D91E895E4BDC1C /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
@@ -415,6 +416,7 @@
 		C3B4A5D6E7F8A9B0C1D2E3F6 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
 		C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
 		C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
+		C84B64553755C52006E77CB0 /* CrashlyticsClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */; };
 		CD272848378CB5C9FB794ADA /* ErrorReporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */; };
 		CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */; };
 		D14096F47439C0A9D91C7B28 /* Constants+CheckInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */; };
@@ -515,6 +517,7 @@
 		5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		545EED434F6369FD9BF5FB8A /* MoodCheckInServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceTests.swift; sourceTree = "<group>"; };
 		55E82F16483EBA0D0699E631 /* TestHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		570A3936C4C4200D3E36282A /* ErrorReportingTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ErrorReportingTests.swift; sourceTree = "<group>"; };
 		57F4883D32CE380C31648AE6 /* MoodEntriesDataAssemblerMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerMock.swift; sourceTree = "<group>"; };
 		5A7A89532F54342452F4E920 /* ToolsViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		5A95C383DB61DE6370611AFF /* CanvasPromptTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CanvasPromptTests.swift; sourceTree = "<group>"; };
@@ -728,6 +731,7 @@
 		B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityView.swift; sourceTree = "<group>"; };
 		B7278578F137612349A77E22 /* EmotionTypeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionTypeTests.swift; sourceTree = "<group>"; };
 		BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerFetchTests.swift; sourceTree = "<group>"; };
+		BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CrashlyticsClientMock.swift; sourceTree = "<group>"; };
 		BC0D4A98EBE3D4825FA7F02B /* TopicDistributionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionViewModel.swift; sourceTree = "<group>"; };
 		BEAB351D7409FEACE9BE53BE /* WeeklyMoodScoreViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreViewModelTests.swift; sourceTree = "<group>"; };
 		C1409E46492A9298B17FDE1D /* DrawingGalleryPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterTests.swift; sourceTree = "<group>"; };
@@ -946,6 +950,7 @@
 				28E20AAA3AF4B7A41DF30E6B /* JournalServiceMock.swift */,
 				039B005BCF2FF3EB7E3F7DDE /* MoodCheckInServiceMock.swift */,
 				ACD8D9DC4265FF367E93D223 /* MoodEntriesDataAssemblerMock.swift */,
+				BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2011,6 +2016,7 @@
 			children = (
 				9038DFF1AFB0FEF611395226 /* MoodCheckInService */,
 				6A1E4D78EAA08D9BD40D689C /* FirestoreSchemaTests.swift */,
+				570A3936C4C4200D3E36282A /* ErrorReportingTests.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2866,6 +2872,8 @@
 				0E9E5F5550F10342BE4D579A /* MoodEntriesDataAssemblerFetchTests.swift in Sources */,
 				BCCF4852163421323A310717 /* MoodEntriesDataAssemblerMock.swift in Sources */,
 				00D4EFCE0FFB3ED52205CCE5 /* JournalServiceMock.swift in Sources */,
+				C84B64553755C52006E77CB0 /* CrashlyticsClientMock.swift in Sources */,
+				5FB242B1781C5956CDC31A78 /* ErrorReportingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
