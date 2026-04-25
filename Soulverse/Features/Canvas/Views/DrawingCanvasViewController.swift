@@ -311,14 +311,13 @@ class DrawingCanvasViewController: UIViewController {
     }
 
     private func setupInitialBackgroundFrame() {
-        guard let image = backgroundImageView.image else { return }
+        // Fall back to canvas bounds when no template image is provided so the
+        // layout pipeline still runs and the drawable area fills the screen.
+        let baseSize = backgroundImageView.image?.size ?? canvasView.bounds.size
+        guard baseSize != .zero else { return }
 
-        let imageSize = image.size
-        canvasContentSize = imageSize
-
-        // 只設置 canvas contentSize，不設置 backgroundImageView.frame
-        // frame 會在 configureBackgroundImageLayout() 中正確設置
-        canvasView.contentSize = imageSize
+        canvasContentSize = baseSize
+        canvasView.contentSize = baseSize
     }
 
     private func configureBackgroundImageLayout() {
@@ -352,22 +351,22 @@ class DrawingCanvasViewController: UIViewController {
         let currentZoom = canvasView.zoomScale
         let inset = LayoutConstant.backgroundImageInset
 
-        // 計算當前縮放下的圖片尺寸（扣除 inset）
         let scaledWidth = imageSize.width * currentZoom
         let scaledHeight = imageSize.height * currentZoom
 
-        // 背景圖片位置加上 inset 偏移
-        backgroundImageView.frame = CGRect(
-            x: inset,
-            y: inset,
-            width: scaledWidth - (inset * 2),
-            height: scaledHeight - (inset * 2)
-        )
+        if backgroundImageView.image != nil {
+            backgroundImageView.frame = CGRect(
+                x: inset,
+                y: inset,
+                width: max(scaledWidth - (inset * 2), 0),
+                height: max(scaledHeight - (inset * 2), 0)
+            )
+        } else {
+            backgroundImageView.frame = .zero
+        }
 
-        // 更新 contentSize 以匹配縮放後的尺寸（包含 inset）
         canvasView.contentSize = CGSize(width: scaledWidth, height: scaledHeight)
 
-        // 使用 contentInset 來居中內容（當內容小於 bounds 時）
         let horizontalInset = max((canvasBounds.width - scaledWidth) / 2, 0)
         let verticalInset = max((canvasBounds.height - scaledHeight) / 2, 0)
 
@@ -446,10 +445,13 @@ class DrawingCanvasViewController: UIViewController {
     
     // MARK: - Helper Methods
     private func renderDrawingAsImage() -> UIImage {
-        // 渲染整個 canvas 內容（完整的背景圖片尺寸 + 所有繪圖）
-        // 不考慮當前縮放或可見區域
+        // Render the full canvas content (template + strokes), independent of zoom.
+        // Defense-in-depth: fall back to the canvas bounds if the content size
+        // was never initialized — otherwise we'd produce a 0×0 image and
+        // pngData() would return nil at upload time.
+        let renderSize = canvasContentSize != .zero ? canvasContentSize : canvasView.bounds.size
+        guard renderSize.width > 0, renderSize.height > 0 else { return UIImage() }
 
-        let renderSize = canvasContentSize
         let format = UIGraphicsImageRendererFormat()
         format.scale = UIScreen.main.scale
 
