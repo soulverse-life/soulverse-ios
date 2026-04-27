@@ -198,10 +198,11 @@ class SoulverseNavigationView: UIView {
             make.height.equalTo(ViewComponentConstants.navigationBarHeight)
         }
 
-        // Main stack view layout — left inset is reapplied per-config in
-        // configureWithConfig() so the title can sit flush to the parent
-        // when there's no leading button.
-        applyMainStackLayout()
+        // Main stack view constraints — 16pt edge inset on both sides.
+        mainStackView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(Layout.edgeInset)
+            make.centerY.equalToSuperview()
+        }
 
         // Add arranged subviews to stack
         mainStackView.addArrangedSubview(backButton)
@@ -230,19 +231,6 @@ class SoulverseNavigationView: UIView {
         updateThemeColors()
     }
 
-    private func applyMainStackLayout() {
-        // When a leading button (e.g. back button) is shown, keep the standard
-        // 16pt edge inset so the button sits inside the safe horizontal margin.
-        // When no leading button exists, drop the left inset so the title hugs
-        // the parent's leading edge while right items keep their 16pt margin.
-        let leftInset: CGFloat = config.showBackButton ? Layout.edgeInset : 0
-        mainStackView.snp.remakeConstraints { make in
-            make.left.equalToSuperview().inset(leftInset)
-            make.right.equalToSuperview().inset(Layout.edgeInset)
-            make.centerY.equalToSuperview()
-        }
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
         // Update colors in case theme changed
@@ -256,10 +244,6 @@ class SoulverseNavigationView: UIView {
     private func configureWithConfig() {
         applyBackButtonImage()
         backButton.isHidden = !config.showBackButton
-
-        // Reapply the main stack layout so the left inset matches the current
-        // leading-button state (16pt with a back button, 0pt without).
-        applyMainStackLayout()
 
         navigationTitle.text = config.title
         navigationTitle.textAlignment = .left
