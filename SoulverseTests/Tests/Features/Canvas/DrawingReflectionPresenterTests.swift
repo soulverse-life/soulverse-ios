@@ -35,7 +35,7 @@ final class DrawingReflectionPresenterTests: XCTestCase {
 
         XCTAssertEqual(serviceMock.updateReflectionCallCount, 0)
         XCTAssertFalse(delegateMock.didStartSaving)
-        XCTAssertNil(delegateMock.didFinishAnswer)
+        XCTAssertEqual(delegateMock.didFinishCount, 0)
         XCTAssertNil(delegateMock.didFailError)
     }
 
@@ -60,7 +60,7 @@ final class DrawingReflectionPresenterTests: XCTestCase {
         presenter.submitReflection(drawingId: "d1", answer: "  reflection text  ")
 
         wait(for: [exp], timeout: 0.1)
-        XCTAssertEqual(delegateMock.didFinishAnswer, "reflection text")
+        XCTAssertEqual(delegateMock.didFinishCount, 1)
         XCTAssertEqual(serviceMock.lastUpdateReflectionAnswer, "reflection text")
     }
 
@@ -118,7 +118,7 @@ private extension DrawingReflectionPresenterTests {
 
 final class DrawingReflectionPresenterDelegateMock: DrawingReflectionPresenterDelegate {
     var didStartSaving = false
-    var didFinishAnswer: String?
+    var didFinishCount = 0
     var didFailError: Error?
     var expectation: XCTestExpectation?
 
@@ -126,8 +126,8 @@ final class DrawingReflectionPresenterDelegateMock: DrawingReflectionPresenterDe
         didStartSaving = true
     }
 
-    func didFinishSavingReflection(answer: String) {
-        didFinishAnswer = answer
+    func didFinishSavingReflection() {
+        didFinishCount += 1
         expectation?.fulfill()
     }
 

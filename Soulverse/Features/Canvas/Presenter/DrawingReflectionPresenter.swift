@@ -9,7 +9,7 @@ import Foundation
 
 protocol DrawingReflectionPresenterDelegate: AnyObject {
     func didStartSavingReflection()
-    func didFinishSavingReflection(answer: String)
+    func didFinishSavingReflection()
     func didFailSavingReflection(error: Error)
 }
 
@@ -64,7 +64,7 @@ final class DrawingReflectionPresenter: DrawingReflectionPresenterType {
                     name: NSNotification.Name(rawValue: Notification.DrawingDidChange),
                     object: nil
                 )
-                self.delegate?.didFinishSavingReflection(answer: trimmed)
+                self.delegate?.didFinishSavingReflection()
             case .failure(let error):
                 self.delegate?.didFailSavingReflection(error: error)
             }

@@ -52,6 +52,8 @@
 		D24B26041000010001000002 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
 		D24B26041000010001000003 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
 		D24B26041000010001000005 /* DrawingReflectionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000004 /* DrawingReflectionPresenterTests.swift */; };
+		D24B26041000010002000002 /* DrawingReflectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010002000001 /* DrawingReflectionViewModel.swift */; };
+		D24B26041000010002000003 /* DrawingReflectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010002000001 /* DrawingReflectionViewModel.swift */; };
 		419A37032825EC7BC46F4857 /* ProfileViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FDA00077B2E5E075CB1131 /* ProfileViewPresenterTests.swift */; };
 		423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		44372F0CF57371B1CFEDDD22 /* ProfessionalSupportSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A48E84E65B0EB1046B5AB8A /* ProfessionalSupportSectionViewModelTests.swift */; };
@@ -601,6 +603,7 @@
 		67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingCanvasPresenter.swift; sourceTree = "<group>"; };
 		D24B26041000010001000001 /* DrawingReflectionPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionPresenter.swift; sourceTree = "<group>"; };
 		D24B26041000010001000004 /* DrawingReflectionPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionPresenterTests.swift; sourceTree = "<group>"; };
+		D24B26041000010002000001 /* DrawingReflectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionViewModel.swift; sourceTree = "<group>"; };
 		67594929C616A41B994759EA /* EmotionalBundleMainPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainPresenter.swift; sourceTree = "<group>"; };
 		67594929C616A41B994759EB /* EmotionalBundleCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleCoordinator.swift; sourceTree = "<group>"; };
 		6975331B3B4B8D90409C867C /* InnerCosmoViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
@@ -1850,6 +1853,7 @@
 			children = (
 				79B24C702DFC7B2A001220B6 /* CanvasViewModel.swift */,
 				2D0F6891306A7CF5655B2CA9 /* DrawingGalleryViewModel.swift */,
+				D24B26041000010002000001 /* DrawingReflectionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -2783,6 +2787,7 @@
 				790AD2412DF9E43200C33CD1 /* SummitSlider.swift in Sources */,
 				79B24C782DFC7B2A001220B6 /* CanvasViewPresenter.swift in Sources */,
 				79B24C792DFC7B2A001220B6 /* CanvasViewModel.swift in Sources */,
+				D24B26041000010002000003 /* DrawingReflectionViewModel.swift in Sources */,
 				79B24C7A2DFC7B2A001220B6 /* CanvasViewController.swift in Sources */,
 				790AD2432DF9E43200C33CD1 /* UserService.swift in Sources */,
 				2C66302E39B2097233438B44 /* FirestoreUserService.swift in Sources */,
@@ -2950,6 +2955,7 @@
 				790AD2EF2DF9E43200C33CD1 /* SummitSlider.swift in Sources */,
 				79B24C752DFC7B2A001220B6 /* CanvasViewPresenter.swift in Sources */,
 				79B24C762DFC7B2A001220B6 /* CanvasViewModel.swift in Sources */,
+				D24B26041000010002000002 /* DrawingReflectionViewModel.swift in Sources */,
 				79B24C772DFC7B2A001220B6 /* CanvasViewController.swift in Sources */,
 				790AD2F12DF9E43200C33CD1 /* UserService.swift in Sources */,
 				27427F547F5406EEC24899AC /* FirestoreUserService.swift in Sources */,

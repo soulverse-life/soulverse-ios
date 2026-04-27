@@ -591,7 +591,7 @@ extension DrawingCanvasViewController: DrawingCanvasPresenterDelegate {
             guard let self else { return }
             hideLoadingView()
             saveButton.isEnabled = true
-            let config = DrawingReflectionConfig(
+            let viewModel = DrawingReflectionViewModel(
                 drawingId: drawingId,
                 drawingImage: image,
                 drawingImageURL: nil,
@@ -599,7 +599,7 @@ extension DrawingCanvasViewController: DrawingCanvasPresenterDelegate {
                 reflectiveAnswer: nil
             )
             AppCoordinator.presentDrawingReflection(
-                config: config,
+                viewModel: viewModel,
                 from: self,
                 popSourceOnPresent: true
             )

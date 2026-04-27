@@ -111,11 +111,11 @@ class AppCoordinator {
     }
 
     static func presentDrawingReflection(
-        config: DrawingReflectionConfig,
+        viewModel: DrawingReflectionViewModel,
         from sourceVC: UIViewController,
         popSourceOnPresent: Bool = false
     ) {
-        let reflectionVC = DrawingReflectionViewController(config: config)
+        let reflectionVC = DrawingReflectionViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: reflectionVC)
         navigationController.modalPresentationStyle = .fullScreen
 

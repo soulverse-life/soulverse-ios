@@ -301,14 +301,14 @@ extension CheckInDetailViewController: DetailDrawingSectionDelegate {
     ) {
         let resolvedQuestion = reflectiveQuestion
             ?? NSLocalizedString("drawing_reflection_generic_question", comment: "")
-        let config = DrawingReflectionConfig(
+        let viewModel = DrawingReflectionViewModel(
             drawingId: drawingId,
             drawingImage: nil,
             drawingImageURL: imageURL,
             reflectiveQuestion: resolvedQuestion,
             reflectiveAnswer: reflectiveAnswer
         )
-        AppCoordinator.presentDrawingReflection(config: config, from: self)
+        AppCoordinator.presentDrawingReflection(viewModel: viewModel, from: self)
     }
 }
 

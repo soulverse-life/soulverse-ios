@@ -11,19 +11,6 @@ import Kingfisher
 import SnapKit
 import UIKit
 
-// MARK: - Config
-
-/// Inputs needed to display the reflection screen. `drawingImage` is used
-/// when the screen is opened right after save (image already in memory);
-/// `drawingImageURL` is used when re-entering from a list view.
-struct DrawingReflectionConfig {
-    let drawingId: String
-    let drawingImage: UIImage?
-    let drawingImageURL: String?
-    let reflectiveQuestion: String
-    let reflectiveAnswer: String?
-}
-
 final class DrawingReflectionViewController: UIViewController {
 
     // MARK: - Layout
@@ -49,7 +36,7 @@ final class DrawingReflectionViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let config: DrawingReflectionConfig
+    private let viewModel: DrawingReflectionViewModel
     private let presenter: DrawingReflectionPresenterType
 
     // MARK: - UI Components
@@ -174,9 +161,9 @@ final class DrawingReflectionViewController: UIViewController {
 
     // MARK: - Init
 
-    init(config: DrawingReflectionConfig,
+    init(viewModel: DrawingReflectionViewModel,
          presenter: DrawingReflectionPresenterType = DrawingReflectionPresenter()) {
-        self.config = config
+        self.viewModel = viewModel
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
         self.presenter.delegate = self
@@ -194,7 +181,7 @@ final class DrawingReflectionViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         setupUI()
         setupConstraints()
-        applyConfig()
+        applyViewModel()
     }
 
     // MARK: - Setup
@@ -300,15 +287,15 @@ final class DrawingReflectionViewController: UIViewController {
         }
     }
 
-    private func applyConfig() {
-        questionLabel.text = config.reflectiveQuestion
-        if let image = config.drawingImage {
+    private func applyViewModel() {
+        questionLabel.text = viewModel.reflectiveQuestion
+        if let image = viewModel.drawingImage {
             drawingImageView.image = image
-        } else if let urlString = config.drawingImageURL,
+        } else if let urlString = viewModel.drawingImageURL,
                   let url = URL(string: urlString) {
             drawingImageView.kf.setImage(with: url)
         }
-        if let existing = config.reflectiveAnswer, !existing.isEmpty {
+        if let existing = viewModel.reflectiveAnswer, !existing.isEmpty {
             inputTextView.text = existing
         }
         updatePlaceholderVisibility()
@@ -334,7 +321,7 @@ final class DrawingReflectionViewController: UIViewController {
         let answer = inputTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !answer.isEmpty else { return }
         view.endEditing(true)
-        presenter.submitReflection(drawingId: config.drawingId, answer: answer)
+        presenter.submitReflection(drawingId: viewModel.drawingId, answer: answer)
     }
 
     /// Walks the presenter chain so that closing this VC also unwinds any
@@ -386,7 +373,7 @@ extension DrawingReflectionViewController: DrawingReflectionPresenterDelegate {
         }
     }
 
-    func didFinishSavingReflection(answer: String) {
+    func didFinishSavingReflection() {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             self.hideLoadingView()
