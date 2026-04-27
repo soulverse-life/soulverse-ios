@@ -133,6 +133,14 @@ Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as t
 
 ## In Progress
 
+### 25. feat/drawing-reflection-view: DrawingReflectionView replacing DrawingResult, with optional answer model [P1] [L]
+- Status: completed
+- Branch: feat/drawing-reflection-view
+- Worktree: . (main repo)
+- Created: 2026-04-26
+- Completed: 2026-04-26
+- PR: #68
+
 ### 24. fix/canvas-layout-save: Canvas without template renders at bottom-right and fails PNG export [P1] [S]
 - Status: completed
 - Branch: fix/canvas-layout-save

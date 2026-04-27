@@ -120,12 +120,14 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
             currentIndex: currentIndex,
             totalCount: checkIns.count,
             isLoadingContent: isLoadingContent,
+            drawingId: drawing?.id,
             drawingImageURL: drawing?.imageURL,
-            reflectionPrompt: checkIn.reflectionPrompt,
-            reflectionText: checkIn.reflection,
+            reflectiveQuestion: drawing?.reflectiveQuestion,
+            reflectiveAnswer: drawing?.reflectiveAnswer,
             journalTitle: journal?.title,
             journalContent: journal?.content,
-            checkinId: checkIn.id ?? ""
+            checkinId: checkIn.id ?? "",
+            recordedEmotion: emotion
         )
     }
 }

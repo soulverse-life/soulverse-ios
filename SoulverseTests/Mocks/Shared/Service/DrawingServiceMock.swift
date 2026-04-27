@@ -16,6 +16,7 @@ final class DrawingServiceMock: DrawingServiceProtocol {
     var submitResult: Result<String, Error> = .success("mock-drawing-id")
     var fetchByDateResult: Result<[DrawingModel], Error> = .success([])
     var fetchByCheckinResult: Result<[DrawingModel], Error> = .success([])
+    var updateReflectionResult: Result<Void, Error> = .success(())
     var deleteResult: Result<Void, Error> = .success(())
 
     // MARK: - Call Tracking
@@ -23,10 +24,14 @@ final class DrawingServiceMock: DrawingServiceProtocol {
     var submitCallCount = 0
     var fetchByDateCallCount = 0
     var fetchByCheckinCallCount = 0
+    var updateReflectionCallCount = 0
     var deleteCallCount = 0
 
     var lastSubmitUID: String?
+    var lastSubmitReflectiveQuestion: String?
     var lastFetchUID: String?
+    var lastUpdateReflectionDrawingId: String?
+    var lastUpdateReflectionAnswer: String?
     var lastDeleteDrawingId: String?
 
     // MARK: - Protocol Methods
@@ -38,10 +43,12 @@ final class DrawingServiceMock: DrawingServiceProtocol {
         checkinId: String?,
         promptUsed: String?,
         templateName: String?,
+        reflectiveQuestion: String?,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
         submitCallCount += 1
         lastSubmitUID = uid
+        lastSubmitReflectiveQuestion = reflectiveQuestion
         let result = submitResult
         callbackQueue.async { completion(result) }
     }
@@ -66,6 +73,19 @@ final class DrawingServiceMock: DrawingServiceProtocol {
         fetchByCheckinCallCount += 1
         lastFetchUID = uid
         let result = fetchByCheckinResult
+        callbackQueue.async { completion(result) }
+    }
+
+    func updateDrawingReflection(
+        uid: String,
+        drawingId: String,
+        answer: String,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        updateReflectionCallCount += 1
+        lastUpdateReflectionDrawingId = drawingId
+        lastUpdateReflectionAnswer = answer
+        let result = updateReflectionResult
         callbackQueue.async { completion(result) }
     }
 

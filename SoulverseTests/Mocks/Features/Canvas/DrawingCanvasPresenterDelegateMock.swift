@@ -10,6 +10,8 @@ import XCTest
 final class DrawingCanvasPresenterDelegateMock: DrawingCanvasPresenterDelegate {
     var didStartSaving = false
     var didFinishImage: UIImage?
+    var didFinishDrawingId: String?
+    var didFinishReflectiveQuestion: String?
     var didFailError: Error?
 
     /// Set before triggering the async action; fulfilled when didFinish or didFail is called.
@@ -19,8 +21,10 @@ final class DrawingCanvasPresenterDelegateMock: DrawingCanvasPresenterDelegate {
         didStartSaving = true
     }
 
-    func didFinishSavingDrawing(image: UIImage) {
+    func didFinishSavingDrawing(drawingId: String, image: UIImage, reflectiveQuestion: String) {
+        didFinishDrawingId = drawingId
         didFinishImage = image
+        didFinishReflectiveQuestion = reflectiveQuestion
         expectation?.fulfill()
     }
 

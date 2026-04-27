@@ -37,7 +37,8 @@ final class DrawingServiceTests: XCTestCase {
             recordingData: Data(),
             checkinId: nil,
             promptUsed: nil,
-            templateName: nil
+            templateName: nil,
+            reflectiveQuestion: nil
         ) { result in
             if case .success(let id) = result {
                 receivedId = id
@@ -56,7 +57,8 @@ final class DrawingServiceTests: XCTestCase {
             recordingData: Data(),
             checkinId: nil,
             promptUsed: nil,
-            templateName: nil
+            templateName: nil,
+            reflectiveQuestion: nil
         ) { _ in }
 
         serviceMock.submitDrawing(
@@ -65,7 +67,8 @@ final class DrawingServiceTests: XCTestCase {
             recordingData: Data(),
             checkinId: nil,
             promptUsed: nil,
-            templateName: nil
+            templateName: nil,
+            reflectiveQuestion: nil
         ) { _ in }
 
         // Call counts are incremented synchronously before dispatch
@@ -84,7 +87,8 @@ final class DrawingServiceTests: XCTestCase {
             recordingData: Data(),
             checkinId: nil,
             promptUsed: nil,
-            templateName: nil
+            templateName: nil,
+            reflectiveQuestion: nil
         ) { result in
             if case .failure(let error) = result {
                 receivedError = error
@@ -141,6 +145,42 @@ final class DrawingServiceTests: XCTestCase {
         XCTAssertEqual(serviceMock.lastFetchUID, "user1")
     }
 
+    // MARK: - updateDrawingReflection
+
+    func test_DrawingServiceMock_updateReflection_succeeds() {
+        let exp = expectation(description: "completion called")
+
+        var didSucceed = false
+        serviceMock.updateDrawingReflection(uid: "u", drawingId: "d1", answer: "hello") { result in
+            if case .success = result {
+                didSucceed = true
+            }
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 0.1)
+        XCTAssertTrue(didSucceed)
+        XCTAssertEqual(serviceMock.updateReflectionCallCount, 1)
+        XCTAssertEqual(serviceMock.lastUpdateReflectionDrawingId, "d1")
+        XCTAssertEqual(serviceMock.lastUpdateReflectionAnswer, "hello")
+    }
+
+    func test_DrawingServiceMock_updateReflection_returnsError() {
+        serviceMock.updateReflectionResult = .failure(TestError.mockError)
+        let exp = expectation(description: "completion called")
+
+        var receivedError: Error?
+        serviceMock.updateDrawingReflection(uid: "u", drawingId: "d1", answer: "x") { result in
+            if case .failure(let error) = result {
+                receivedError = error
+            }
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 0.1)
+        XCTAssertNotNil(receivedError)
+    }
+
     // MARK: - deleteDrawing
 
     func test_DrawingServiceMock_deleteDrawing_succeeds() {
@@ -170,7 +210,8 @@ final class DrawingServiceTests: XCTestCase {
 
         serviceMock.submitDrawing(
             uid: "u", image: UIImage(), recordingData: Data(),
-            checkinId: nil, promptUsed: nil, templateName: nil
+            checkinId: nil, promptUsed: nil, templateName: nil,
+            reflectiveQuestion: nil
         ) { _ in }
 
         serviceMock.fetchDrawings(uid: "u", from: Date(), to: nil) { _ in }

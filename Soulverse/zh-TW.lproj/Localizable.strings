@@ -295,6 +295,15 @@
 "drawing_save_error_title" = "儲存失敗";
 "drawing_save_not_logged_in" = "請先登入以儲存你的畫作。";
 
+// Drawing Reflection
+"drawing_reflection_title" = "省思";
+"drawing_reflection_input_placeholder" = "寫下你的想法..";
+"drawing_reflection_submit" = "送出省思";
+"drawing_reflection_cancel" = "取消";
+"drawing_reflection_generic_question" = "這幅畫對現在的你來說有什麼意義？";
+"drawing_reflection_add_cta" = "新增省思";
+"drawing_reflection_save_error_title" = "無法儲存省思";
+
 // Drawing Gallery
 "gallery" = "畫廊";
 "gallery_empty" = "還沒有畫作，開始創作吧！";

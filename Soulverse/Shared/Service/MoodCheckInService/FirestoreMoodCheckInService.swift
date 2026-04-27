@@ -50,21 +50,16 @@ final class FirestoreMoodCheckInService: MoodCheckInServiceProtocol {
 
         let timezoneOffset = TimeZone.current.secondsFromGMT() / 60
 
-        var fields: [String: Any] = [
+        let fields: [String: Any] = [
             Field.colorHex.rawValue: data.colorHexString ?? "",
             Field.colorIntensity.rawValue: data.colorIntensity,
             Field.emotion.rawValue: data.recordedEmotion?.uniqueKey ?? "",
             Field.topic.rawValue: data.selectedTopic?.rawValue ?? "",
             Field.evaluation.rawValue: data.evaluation?.rawValue ?? "",
-            Field.reflectionPrompt.rawValue: data.reflectionPrompt ?? "",
             Field.timezoneOffsetMinutes.rawValue: timezoneOffset,
             Field.createdAt.rawValue: FieldValue.serverTimestamp(),
             Field.updatedAt.rawValue: FieldValue.serverTimestamp()
         ]
-
-        if let reflection = data.reflection {
-            fields[Field.reflection.rawValue] = reflection
-        }
 
         docRef.setData(fields) { error in
             if let error = error {

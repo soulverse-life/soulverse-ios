@@ -41,7 +41,8 @@ final class DrawingCanvasPresenterTests: XCTestCase {
             recordingData: Data(),
             checkinId: nil,
             promptUsed: nil,
-            templateName: nil
+            templateName: nil,
+            reflectiveQuestion: "What do you see?"
         )
 
         XCTAssertNotNil(delegateMock.didFailError)
@@ -60,7 +61,8 @@ final class DrawingCanvasPresenterTests: XCTestCase {
             recordingData: Data(),
             checkinId: nil,
             promptUsed: nil,
-            templateName: nil
+            templateName: nil,
+            reflectiveQuestion: "What do you see?"
         )
 
         wait(for: [exp], timeout: 0.1)
@@ -81,7 +83,8 @@ final class DrawingCanvasPresenterTests: XCTestCase {
             recordingData: Data(),
             checkinId: nil,
             promptUsed: nil,
-            templateName: nil
+            templateName: nil,
+            reflectiveQuestion: "What do you see?"
         )
 
         wait(for: [exp], timeout: 0.1)
@@ -99,7 +102,8 @@ final class DrawingCanvasPresenterTests: XCTestCase {
             recordingData: Data(),
             checkinId: nil,
             promptUsed: nil,
-            templateName: nil
+            templateName: nil,
+            reflectiveQuestion: "What do you see?"
         )
 
         XCTAssertTrue(delegateMock.didStartSaving)
@@ -115,7 +119,8 @@ final class DrawingCanvasPresenterTests: XCTestCase {
             recordingData: Data(),
             checkinId: nil,
             promptUsed: nil,
-            templateName: nil
+            templateName: nil,
+            reflectiveQuestion: "What do you see?"
         )
 
         // submitCallCount is incremented synchronously in the mock before dispatch

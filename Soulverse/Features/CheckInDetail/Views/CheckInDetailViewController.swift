@@ -15,6 +15,7 @@ final class CheckInDetailViewController: ViewController {
     // MARK: - Properties
 
     private var presenter: CheckInDetailPresenterType
+    private var currentViewModel: CheckInDetailViewModel?
 
     // MARK: - UI Components
 
@@ -111,7 +112,7 @@ final class CheckInDetailViewController: ViewController {
 
         NotificationCenter.default.addObserver(
             self, selector: #selector(handleDataChanged),
-            name: NSNotification.Name(Notification.DrawingSaved), object: nil
+            name: NSNotification.Name(Notification.DrawingDidChange), object: nil
         )
     }
 
@@ -238,6 +239,8 @@ final class CheckInDetailViewController: ViewController {
 
 extension CheckInDetailViewController: CheckInDetailPresenterDelegate {
     func didUpdateViewModel(_ viewModel: CheckInDetailViewModel) {
+        currentViewModel = viewModel
+
         if viewModel.isLoadingContent {
             // Phase 1: render mandatory sections + show loading spinners
             dateLabelView.text = viewModel.dateText
@@ -263,9 +266,10 @@ extension CheckInDetailViewController: CheckInDetailPresenterDelegate {
         } else {
             // Phase 2: only update drawing/journal sections
             drawingSection.configure(
+                drawingId: viewModel.drawingId,
                 imageURL: viewModel.drawingImageURL,
-                prompt: viewModel.reflectionPrompt,
-                reflection: viewModel.reflectionText,
+                reflectiveQuestion: viewModel.reflectiveQuestion,
+                reflectiveAnswer: viewModel.reflectiveAnswer,
                 checkinId: viewModel.checkinId
             )
             journalSection.configure(
@@ -281,7 +285,30 @@ extension CheckInDetailViewController: CheckInDetailPresenterDelegate {
 
 extension CheckInDetailViewController: DetailDrawingSectionDelegate {
     func detailDrawingSectionDidTapCreate(_ section: DetailDrawingSection, checkinId: String?) {
-        AppCoordinator.openDrawingCanvas(from: self, checkinId: checkinId)
+        AppCoordinator.presentDrawingPrompt(
+            from: self,
+            checkinId: checkinId,
+            recordedEmotion: currentViewModel?.recordedEmotion
+        )
+    }
+
+    func detailDrawingSectionDidTapAddReflection(
+        _ section: DetailDrawingSection,
+        drawingId: String,
+        imageURL: String?,
+        reflectiveQuestion: String?,
+        reflectiveAnswer: String?
+    ) {
+        let resolvedQuestion = reflectiveQuestion
+            ?? NSLocalizedString("drawing_reflection_generic_question", comment: "")
+        let viewModel = DrawingReflectionViewModel(
+            drawingId: drawingId,
+            drawingImage: nil,
+            drawingImageURL: imageURL,
+            reflectiveQuestion: resolvedQuestion,
+            reflectiveAnswer: reflectiveAnswer
+        )
+        AppCoordinator.presentDrawingReflection(viewModel: viewModel, from: self)
     }
 }
 
