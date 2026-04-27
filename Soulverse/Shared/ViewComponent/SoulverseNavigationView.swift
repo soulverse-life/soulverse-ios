@@ -163,12 +163,6 @@ class SoulverseNavigationView: UIView {
         }
     }
 
-    private let leadingSpacer: UIView = {
-        let spacer = UIView()
-        spacer.isHidden = true  // Hidden by default (shown when back button is hidden)
-        return spacer
-    }()
-
     // Spacer to provide 16px right padding when right items are hidden (8px edge + 8px spacer)
     private let trailingSpacer: UIView = {
         let spacer = UIView()
@@ -204,15 +198,13 @@ class SoulverseNavigationView: UIView {
             make.height.equalTo(ViewComponentConstants.navigationBarHeight)
         }
 
-        // Main stack view constraints - with padding on left and right
-        mainStackView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(Layout.edgeInset)
-            make.centerY.equalToSuperview()
-        }
+        // Main stack view layout — left inset is reapplied per-config in
+        // configureWithConfig() so the title can sit flush to the parent
+        // when there's no leading button.
+        applyMainStackLayout()
 
         // Add arranged subviews to stack
         mainStackView.addArrangedSubview(backButton)
-        mainStackView.addArrangedSubview(leadingSpacer)
         mainStackView.addArrangedSubview(navigationTitle)
         mainStackView.addArrangedSubview(rightItemsStackView)
         mainStackView.addArrangedSubview(trailingSpacer)
@@ -226,10 +218,6 @@ class SoulverseNavigationView: UIView {
             make.size.equalTo(Layout.backButtonSize)
         }
 
-        leadingSpacer.snp.makeConstraints { make in
-            make.width.equalTo(Layout.itemSpacing)
-        }
-
         rightItemsStackView.snp.makeConstraints { make in
             make.width.lessThanOrEqualTo(Layout.maxRightItemsWidth)
         }
@@ -240,6 +228,19 @@ class SoulverseNavigationView: UIView {
 
         // Apply theme colors
         updateThemeColors()
+    }
+
+    private func applyMainStackLayout() {
+        // When a leading button (e.g. back button) is shown, keep the standard
+        // 16pt edge inset so the button sits inside the safe horizontal margin.
+        // When no leading button exists, drop the left inset so the title hugs
+        // the parent's leading edge while right items keep their 16pt margin.
+        let leftInset: CGFloat = config.showBackButton ? Layout.edgeInset : 0
+        mainStackView.snp.remakeConstraints { make in
+            make.left.equalToSuperview().inset(leftInset)
+            make.right.equalToSuperview().inset(Layout.edgeInset)
+            make.centerY.equalToSuperview()
+        }
     }
 
     override func layoutSubviews() {
@@ -255,10 +256,13 @@ class SoulverseNavigationView: UIView {
     private func configureWithConfig() {
         applyBackButtonImage()
         backButton.isHidden = !config.showBackButton
-        leadingSpacer.isHidden = config.showBackButton
+
+        // Reapply the main stack layout so the left inset matches the current
+        // leading-button state (16pt with a back button, 0pt without).
+        applyMainStackLayout()
 
         navigationTitle.text = config.title
-        navigationTitle.textAlignment = config.showBackButton ? .left : .center
+        navigationTitle.textAlignment = .left
 
         // Configure right items
         if !config.rightItems.isEmpty {
