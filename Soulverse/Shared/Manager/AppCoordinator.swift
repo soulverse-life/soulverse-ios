@@ -112,18 +112,22 @@ class AppCoordinator {
 
     static func presentDrawingReflection(
         config: DrawingReflectionConfig,
-        from sourceVC: UIViewController
+        from sourceVC: UIViewController,
+        popSourceOnPresent: Bool = false
     ) {
         let reflectionVC = DrawingReflectionViewController(config: config)
         let navigationController = UINavigationController(rootViewController: reflectionVC)
         navigationController.modalPresentationStyle = .fullScreen
 
         sourceVC.present(navigationController, animated: true) {
-            // Pop the DrawingCanvasViewController from the underlying nav stack
-            // when launched from the post-save flow, so cancelling out of
-            // reflection doesn't drop the user back into the canvas. Re-entry
-            // from CheckInDetail has no canvas underneath, so this is a no-op.
-            sourceVC.navigationController?.popViewController(animated: false)
+            // Only the post-save flow needs to pop the underlying canvas, so
+            // cancelling out of reflection doesn't drop the user back into
+            // the canvas. Re-entry flows (e.g. CheckInDetail) must NOT pop —
+            // sourceVC there is the detail page itself, and popping would
+            // silently remove it from its nav stack.
+            if popSourceOnPresent {
+                sourceVC.navigationController?.popViewController(animated: false)
+            }
         }
     }
 

@@ -598,7 +598,11 @@ extension DrawingCanvasViewController: DrawingCanvasPresenterDelegate {
                 reflectiveQuestion: reflectiveQuestion,
                 reflectiveAnswer: nil
             )
-            AppCoordinator.presentDrawingReflection(config: config, from: self)
+            AppCoordinator.presentDrawingReflection(
+                config: config,
+                from: self,
+                popSourceOnPresent: true
+            )
         }
     }
 
