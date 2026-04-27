@@ -133,6 +133,12 @@ Remove the `isXXXComplete` computed properties from `MoodCheckInData.swift` as t
 
 ## In Progress
 
+### 26. fix/drawing-prompt-routing: Issue #70 — combined dyad uses union of primary pools, nil includes mixed [P1] [S]
+- Status: in_progress
+- Branch: fix/drawing-prompt-routing
+- Worktree: . (main repo)
+- Created: 2026-04-27
+
 ### 25. feat/drawing-reflection-view: DrawingReflectionView replacing DrawingResult, with optional answer model [P1] [L]
 - Status: completed
 - Branch: feat/drawing-reflection-view

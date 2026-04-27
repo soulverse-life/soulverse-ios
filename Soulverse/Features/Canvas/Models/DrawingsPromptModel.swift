@@ -113,22 +113,45 @@ struct DrawingsPromptManager {
 
     // MARK: - Public API (RecordedEmotion-driven)
 
-    /// Returns a random prompt that matches the user's recorded emotion.
-    /// - `nil` → general prompt.
-    /// - Combined dyad → mixed-pool prompt.
-    /// - Intensity emotion → that primary's pool (e.g. `.serenity`/`.joy`/`.ecstasy` → joy pool).
-    static func randomPrompt(for recordedEmotion: RecordedEmotion?) -> DrawingsPrompt? {
-        let target = category(for: recordedEmotion)
-        return allPrompts.filter { $0.category == target }.randomElement()
+    /// Returns a random prompt drawn from the candidate pool for the user's
+    /// recorded emotion. The pool can span multiple categories:
+    /// - `nil` → `.general` ∪ `.mixed`
+    /// - Combined dyad with sources (A, B) → `.single(A)` ∪ `.single(B)`
+    /// - Intensity emotion → the family primary's pool (e.g. `.serenity`/
+    ///   `.joy`/`.ecstasy` → `.single(.joy)`).
+    ///
+    /// `prompts` is exposed for testing; production callers omit it and the
+    /// JSON-loaded pool is used.
+    static func randomPrompt(
+        for recordedEmotion: RecordedEmotion?,
+        from prompts: [DrawingsPrompt] = allPrompts
+    ) -> DrawingsPrompt? {
+        let candidates = candidateCategories(for: recordedEmotion)
+        return prompts.filter { candidates.contains($0.category) }.randomElement()
     }
 
     // MARK: - Category routing
 
-    /// Maps a `RecordedEmotion` to the category of prompts that should be shown.
-    static func category(for recordedEmotion: RecordedEmotion?) -> DrawingsPromptCategory {
-        guard let recorded = recordedEmotion else { return .general }
-        if recorded.isCombinedEmotion { return .mixed }
-        guard let primary = recorded.primaryEmotion else { return .general }
-        return .single(primary)
+    /// Maps a `RecordedEmotion` to the set of categories whose prompts are
+    /// eligible to be shown. Returning a set (rather than a single category)
+    /// lets combined dyads draw from both source primaries' pools and lets
+    /// the no-emotion path mix `.general` and `.mixed` prompts together.
+    static func candidateCategories(
+        for recordedEmotion: RecordedEmotion?
+    ) -> Set<DrawingsPromptCategory> {
+        guard let recorded = recordedEmotion else {
+            return [.general, .mixed]
+        }
+        if let sources = recorded.sourceEmotions {
+            return [.single(sources.0), .single(sources.1)]
+        }
+        if let primary = recorded.primaryEmotion {
+            return [.single(primary)]
+        }
+        return [.general]
     }
 }
+
+// MARK: - DrawingsPromptCategory + Hashable
+
+extension DrawingsPromptCategory: Hashable {}

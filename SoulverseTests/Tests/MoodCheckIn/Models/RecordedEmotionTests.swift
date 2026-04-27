@@ -127,22 +127,6 @@ final class RecordedEmotionTests: XCTestCase {
         XCTAssertNil(RecordedEmotion.ecstasy.sourceEmotions)
     }
 
-    // MARK: - isCombinedEmotion
-
-    func test_RecordedEmotion_isCombinedEmotion_trueForDyads() {
-        XCTAssertTrue(RecordedEmotion.optimism.isCombinedEmotion)
-        XCTAssertTrue(RecordedEmotion.love.isCombinedEmotion)
-        XCTAssertTrue(RecordedEmotion.pride.isCombinedEmotion)
-        XCTAssertTrue(RecordedEmotion.anxiety.isCombinedEmotion)
-    }
-
-    func test_RecordedEmotion_isCombinedEmotion_falseForIntensityBased() {
-        XCTAssertFalse(RecordedEmotion.serenity.isCombinedEmotion)
-        XCTAssertFalse(RecordedEmotion.joy.isCombinedEmotion)
-        XCTAssertFalse(RecordedEmotion.rage.isCombinedEmotion)
-        XCTAssertFalse(RecordedEmotion.terror.isCombinedEmotion)
-    }
-
     // MARK: - displayName
 
     func test_RecordedEmotion_displayName_nonEmptyForAllCases() {

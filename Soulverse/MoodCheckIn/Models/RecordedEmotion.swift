@@ -205,14 +205,9 @@ enum RecordedEmotion: String, CaseIterable, Codable, Hashable {
         }
     }
 
-    /// Whether this emotion is a combined emotion (from two primary emotions)
-    var isCombinedEmotion: Bool {
-        return sourceEmotions != nil
-    }
-
     /// The primary emotion family this recorded emotion belongs to.
     /// - Intensity-based cases return their family primary (e.g. `.serenity`/`.joy`/`.ecstasy` → `.joy`).
-    /// - Combined dyads return `nil` — use `sourceEmotions` or `isCombinedEmotion` for those.
+    /// - Combined dyads return `nil` — use `sourceEmotions` for those.
     var primaryEmotion: EmotionType? {
         switch self {
         case .serenity, .joy, .ecstasy: return .joy
