@@ -214,17 +214,8 @@ final class DrawingReflectionViewController: UIViewController {
             make.height.equalTo(ViewComponentConstants.navigationBarHeight)
         }
 
-        // Two-constraint pattern so the submit/cancel pair rises with the
-        // keyboard while the user is typing, but rests at the safe-area
-        // bottom otherwise. `keyboardLayoutGuide.top` collapses to view.bottom
-        // (under the home indicator) when no keyboard is visible, so we need
-        // the high-priority safe-area equality to win in that case.
         cancelButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
-                .inset(Layout.cancelButtonBottomInset)
-                .priority(.high)
-            make.bottom.lessThanOrEqualTo(view.keyboardLayoutGuide.snp.top)
-                .offset(-Layout.cancelButtonBottomInset)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Layout.cancelButtonBottomInset)
             make.centerX.equalToSuperview()
             make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
