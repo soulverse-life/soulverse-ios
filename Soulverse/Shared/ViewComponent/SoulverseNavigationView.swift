@@ -163,12 +163,6 @@ class SoulverseNavigationView: UIView {
         }
     }
 
-    private let leadingSpacer: UIView = {
-        let spacer = UIView()
-        spacer.isHidden = true  // Hidden by default (shown when back button is hidden)
-        return spacer
-    }()
-
     // Spacer to provide 16px right padding when right items are hidden (8px edge + 8px spacer)
     private let trailingSpacer: UIView = {
         let spacer = UIView()
@@ -204,7 +198,7 @@ class SoulverseNavigationView: UIView {
             make.height.equalTo(ViewComponentConstants.navigationBarHeight)
         }
 
-        // Main stack view constraints - with padding on left and right
+        // Main stack view constraints — 16pt edge inset on both sides.
         mainStackView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(Layout.edgeInset)
             make.centerY.equalToSuperview()
@@ -212,7 +206,6 @@ class SoulverseNavigationView: UIView {
 
         // Add arranged subviews to stack
         mainStackView.addArrangedSubview(backButton)
-        mainStackView.addArrangedSubview(leadingSpacer)
         mainStackView.addArrangedSubview(navigationTitle)
         mainStackView.addArrangedSubview(rightItemsStackView)
         mainStackView.addArrangedSubview(trailingSpacer)
@@ -224,10 +217,6 @@ class SoulverseNavigationView: UIView {
         // Set specific constraints for items
         backButton.snp.makeConstraints { make in
             make.size.equalTo(Layout.backButtonSize)
-        }
-
-        leadingSpacer.snp.makeConstraints { make in
-            make.width.equalTo(Layout.itemSpacing)
         }
 
         rightItemsStackView.snp.makeConstraints { make in
@@ -255,10 +244,9 @@ class SoulverseNavigationView: UIView {
     private func configureWithConfig() {
         applyBackButtonImage()
         backButton.isHidden = !config.showBackButton
-        leadingSpacer.isHidden = config.showBackButton
 
         navigationTitle.text = config.title
-        navigationTitle.textAlignment = config.showBackButton ? .left : .center
+        navigationTitle.textAlignment = .left
 
         // Configure right items
         if !config.rightItems.isEmpty {
