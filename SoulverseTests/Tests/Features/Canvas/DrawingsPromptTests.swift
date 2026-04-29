@@ -77,6 +77,94 @@ final class DrawingsPromptTests: XCTestCase {
         // `NSNull` on encode = JSON null; ensure the key exists with a null value.
         XCTAssertTrue(object?["emotion"] is NSNull)
     }
+
+    // MARK: - candidateCategories(for:)
+
+    func test_candidateCategories_nilEmotion_returnsGeneralAndMixed() {
+        let categories = DrawingsPromptManager.candidateCategories(for: nil)
+        XCTAssertEqual(categories, [.general, .mixed])
+    }
+
+    func test_candidateCategories_combinedDyad_returnsBothPrimaryPools() {
+        // optimism = joy + anticipation
+        let categories = DrawingsPromptManager.candidateCategories(for: .optimism)
+        XCTAssertEqual(categories, [.single(.joy), .single(.anticipation)])
+    }
+
+    func test_candidateCategories_intensityEmotion_returnsFamilyPrimaryOnly() {
+        let categories = DrawingsPromptManager.candidateCategories(for: .serenity)
+        XCTAssertEqual(categories, [.single(.joy)])
+    }
+
+    func test_candidateCategories_primaryEmotion_returnsThatPool() {
+        let categories = DrawingsPromptManager.candidateCategories(for: .anger)
+        XCTAssertEqual(categories, [.single(.anger)])
+    }
+
+    // MARK: - randomPrompt(for:from:)
+
+    func test_randomPrompt_nilEmotion_drawsFromGeneralOrMixed() {
+        let pool = [
+            makePrompt(templateName: "g", category: .general),
+            makePrompt(templateName: "m", category: .mixed),
+            makePrompt(templateName: "j", category: .single(.joy)),
+            makePrompt(templateName: "a", category: .single(.anger))
+        ]
+        let allowed: Set<DrawingsPromptCategory> = [.general, .mixed]
+        for _ in 0..<50 {
+            let picked = DrawingsPromptManager.randomPrompt(for: nil, from: pool)
+            XCTAssertNotNil(picked)
+            XCTAssertTrue(allowed.contains(picked!.category))
+        }
+    }
+
+    func test_randomPrompt_combinedDyad_drawsFromBothPrimaryPools() {
+        // optimism = joy + anticipation
+        let pool = [
+            makePrompt(templateName: "j", category: .single(.joy)),
+            makePrompt(templateName: "a", category: .single(.anticipation)),
+            makePrompt(templateName: "m", category: .mixed),
+            makePrompt(templateName: "g", category: .general),
+            makePrompt(templateName: "ang", category: .single(.anger))
+        ]
+        let allowed: Set<DrawingsPromptCategory> = [.single(.joy), .single(.anticipation)]
+        for _ in 0..<50 {
+            let picked = DrawingsPromptManager.randomPrompt(for: .optimism, from: pool)
+            XCTAssertNotNil(picked)
+            XCTAssertTrue(allowed.contains(picked!.category))
+        }
+    }
+
+    func test_randomPrompt_intensityEmotion_drawsFromFamilyPrimaryPool() {
+        // serenity → joy
+        let pool = [
+            makePrompt(templateName: "j", category: .single(.joy)),
+            makePrompt(templateName: "m", category: .mixed),
+            makePrompt(templateName: "g", category: .general),
+            makePrompt(templateName: "a", category: .single(.anticipation))
+        ]
+        for _ in 0..<20 {
+            let picked = DrawingsPromptManager.randomPrompt(for: .serenity, from: pool)
+            XCTAssertEqual(picked?.category, .single(.joy))
+        }
+    }
+
+    func test_randomPrompt_emptyMatchingPool_returnsNil() {
+        let pool = [makePrompt(templateName: "j", category: .single(.joy))]
+        let picked = DrawingsPromptManager.randomPrompt(for: .anger, from: pool)
+        XCTAssertNil(picked)
+    }
+
+    func test_randomPrompt_combinedDyad_doesNotIncludeMixedOrGeneral() {
+        // Regression guard: pre-fix routing pulled from .mixed for combined dyads.
+        // After issue #70 fix, combined dyads must stay within their two primary pools.
+        let pool = [
+            makePrompt(templateName: "g", category: .general),
+            makePrompt(templateName: "m", category: .mixed)
+        ]
+        let picked = DrawingsPromptManager.randomPrompt(for: .optimism, from: pool)
+        XCTAssertNil(picked)
+    }
 }
 
 // MARK: - Helpers
