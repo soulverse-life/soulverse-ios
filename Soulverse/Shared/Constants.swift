@@ -20,20 +20,17 @@ struct ViewComponentConstants {
 
     static let horizontalPadding: CGFloat = 26.0
 
-    /// Configures a card view with glass effect (iOS 26+) or semi-transparent fallback.
+    /// Configures a card view with a light glass effect (iOS 26+) or semi-transparent fallback.
+    /// Use for cards that sit over a light/neutral background.
     static func applyGlassCardEffect(
         to cardView: UIView,
         visualEffectView: UIVisualEffectView,
         contentView: UIView,
-        cornerRadius: CGFloat,
-        darkMode: Bool = false
+        cornerRadius: CGFloat
     ) {
         if #available(iOS 26.0, *) {
             let glassEffect = UIGlassEffect(style: .clear)
             visualEffectView.effect = glassEffect
-            if darkMode {
-                visualEffectView.overrideUserInterfaceStyle = .dark
-            }
             visualEffectView.layer.cornerRadius = cornerRadius
             visualEffectView.clipsToBounds = true
             visualEffectView.contentView.addSubview(contentView)
@@ -44,6 +41,43 @@ struct ViewComponentConstants {
             }
         } else {
             cardView.backgroundColor = .white.withAlphaComponent(0.1)
+            cardView.layer.borderWidth = 1
+            cardView.layer.borderColor = UIColor.themeSeparator.cgColor
+            cardView.addSubview(contentView)
+        }
+    }
+
+    /// Configures a card view with a dark glass effect (iOS 26+) or dark semi-transparent fallback.
+    /// Matches the look of `MoodEntryCardCell`: a black backing layer sits beneath the glass so
+    /// the card reads as dark even on top of dark backgrounds. Use for cards on dark-themed pages.
+    static func applyDarkGlassCardEffect(
+        to cardView: UIView,
+        visualEffectView: UIVisualEffectView,
+        contentView: UIView,
+        cornerRadius: CGFloat
+    ) {
+        if #available(iOS 26.0, *) {
+            let glassEffect = UIGlassEffect(style: .clear)
+            visualEffectView.effect = glassEffect
+            visualEffectView.layer.cornerRadius = cornerRadius
+            visualEffectView.clipsToBounds = true
+
+            // Black backing layer underneath the content so the glass card reads as dark.
+            let darkBackingView = UIView()
+            darkBackingView.backgroundColor = .black.withAlphaComponent(0.5)
+            visualEffectView.contentView.addSubview(darkBackingView)
+            darkBackingView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+
+            visualEffectView.contentView.addSubview(contentView)
+            cardView.addSubview(visualEffectView)
+
+            visualEffectView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        } else {
+            cardView.backgroundColor = .black.withAlphaComponent(0.4)
             cardView.layer.borderWidth = 1
             cardView.layer.borderColor = UIColor.themeSeparator.cgColor
             cardView.addSubview(contentView)

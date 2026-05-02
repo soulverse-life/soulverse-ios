@@ -58,8 +58,9 @@ final class CheckInDetailViewController: ViewController {
     private let tagsStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 32
+        stack.spacing = CheckInDetailLayout.tagsInterCardSpacing
         stack.alignment = .fill
+        stack.distribution = .fillEqually
         return stack
     }()
 
@@ -67,7 +68,17 @@ final class CheckInDetailViewController: ViewController {
     private let dimensionTagView = DimensionTagView()
 
     private let drawingSection = DetailDrawingSection()
+    private let reflectionSection = DetailReflectionSection()
     private let journalSection = DetailJournalSection()
+
+    /// Vertical stack so hidden sections collapse from layout (UIStackView respects isHidden).
+    private let sectionsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .fill
+        stack.spacing = CheckInDetailLayout.sectionSpacing
+        return stack
+    }()
 
     private lazy var leftArrowButton: UIButton = {
         let button = UIButton(type: .system)
@@ -134,13 +145,16 @@ final class CheckInDetailViewController: ViewController {
         tagsStack.addArrangedSubview(dimensionTagView)
         contentView.addSubview(tagsStack)
 
-        contentView.addSubview(drawingSection)
-        contentView.addSubview(journalSection)
+        sectionsStack.addArrangedSubview(drawingSection)
+        sectionsStack.addArrangedSubview(reflectionSection)
+        sectionsStack.addArrangedSubview(journalSection)
+        contentView.addSubview(sectionsStack)
 
         view.addSubview(leftArrowButton)
         view.addSubview(rightArrowButton)
 
         drawingSection.delegate = self
+        reflectionSection.delegate = self
         journalSection.delegate = self
 
         // Add date label as right content in navigation
@@ -180,16 +194,11 @@ final class CheckInDetailViewController: ViewController {
 
         tagsStack.snp.makeConstraints { make in
             make.top.equalTo(emotionLabel.snp.bottom).offset(CheckInDetailLayout.tagsTopPadding)
-            make.centerX.equalToSuperview()
-        }
-
-        drawingSection.snp.makeConstraints { make in
-            make.top.equalTo(tagsStack.snp.bottom).offset(CheckInDetailLayout.sectionSpacing)
             make.leading.trailing.equalToSuperview().inset(horizontalPadding)
         }
 
-        journalSection.snp.makeConstraints { make in
-            make.top.equalTo(drawingSection.snp.bottom).offset(CheckInDetailLayout.sectionSpacing)
+        sectionsStack.snp.makeConstraints { make in
+            make.top.equalTo(tagsStack.snp.bottom).offset(CheckInDetailLayout.sectionSpacing)
             make.leading.trailing.equalToSuperview().inset(horizontalPadding)
             make.bottom.equalToSuperview().offset(-CheckInDetailLayout.contentBottomPadding)
         }
@@ -261,17 +270,28 @@ extension CheckInDetailViewController: CheckInDetailPresenterDelegate {
             rightArrowButton.isHidden = !viewModel.canGoForward
 
             drawingSection.showLoading()
+            reflectionSection.showLoading()
+            reflectionSection.isHidden = false
             journalSection.showLoading()
             scrollView.setContentOffset(.zero, animated: false)
         } else {
-            // Phase 2: only update drawing/journal sections
+            // Phase 2: only update drawing/reflection/journal sections
             drawingSection.configure(
-                drawingId: viewModel.drawingId,
                 imageURL: viewModel.drawingImageURL,
-                reflectiveQuestion: viewModel.reflectiveQuestion,
-                reflectiveAnswer: viewModel.reflectiveAnswer,
                 checkinId: viewModel.checkinId
             )
+            // Reflection section is only meaningful when a drawing exists.
+            let hasDrawing = viewModel.drawingImageURL != nil
+            reflectionSection.isHidden = !hasDrawing
+            if hasDrawing {
+                reflectionSection.configure(
+                    drawingId: viewModel.drawingId,
+                    imageURL: viewModel.drawingImageURL,
+                    reflectiveQuestion: viewModel.reflectiveQuestion,
+                    reflectiveAnswer: viewModel.reflectiveAnswer,
+                    checkinId: viewModel.checkinId
+                )
+            }
             journalSection.configure(
                 title: viewModel.journalTitle,
                 content: viewModel.journalContent,
@@ -291,9 +311,11 @@ extension CheckInDetailViewController: DetailDrawingSectionDelegate {
             recordedEmotion: currentViewModel?.recordedEmotion
         )
     }
+}
 
-    func detailDrawingSectionDidTapAddReflection(
-        _ section: DetailDrawingSection,
+extension CheckInDetailViewController: DetailReflectionSectionDelegate {
+    func detailReflectionSectionDidTapAdd(
+        _ section: DetailReflectionSection,
         drawingId: String,
         imageURL: String?,
         reflectiveQuestion: String?,
@@ -346,13 +368,49 @@ private enum TagHeaderLayout {
     }
 }
 
+// MARK: - Tag Card Container
+
+/// Shared dark-card chrome for IntensityTagView and DimensionTagView. Wraps any inner content
+/// stack in a `applyDarkGlassCardEffect` card with the standard tag-card padding.
+private class TagCardContainer: UIView {
+    let cardView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = CheckInDetailLayout.tagCardCornerRadius
+        view.clipsToBounds = true
+        return view
+    }()
+    private let visualEffectView = UIVisualEffectView()
+    let bodyContainer = UIView()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(cardView)
+        ViewComponentConstants.applyDarkGlassCardEffect(
+            to: cardView,
+            visualEffectView: visualEffectView,
+            contentView: bodyContainer,
+            cornerRadius: CheckInDetailLayout.tagCardCornerRadius
+        )
+        cardView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        bodyContainer.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(CheckInDetailLayout.tagCardContentPadding)
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 // MARK: - IntensityTagView
 
-/// Shows header with a row of dots: filled up to the selected level, outlined for the rest.
-private class IntensityTagView: UIView {
+/// Dark card with header + a row of dots: filled up to the selected level, outlined for the rest.
+private class IntensityTagView: TagCardContainer {
 
     private enum Layout {
-        static let dotSize: CGFloat = 20
+        static let dotSize: CGFloat = 16
         static let dotSpacing: CGFloat = 6
     }
 
@@ -364,18 +422,16 @@ private class IntensityTagView: UIView {
         return stack
     }()
 
-    private var dotViews: [UIView] = []
-
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+        setupContent()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupView() {
+    private func setupContent() {
         let headerStack = TagHeaderLayout.makeHeaderStack(
             iconName: "rays",
             title: NSLocalizedString("checkin_detail_intensity", comment: "")
@@ -385,7 +441,7 @@ private class IntensityTagView: UIView {
         mainStack.axis = .vertical
         mainStack.spacing = TagHeaderLayout.headerToContentSpacing
         mainStack.alignment = .leading
-        addSubview(mainStack)
+        bodyContainer.addSubview(mainStack)
 
         mainStack.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -395,7 +451,6 @@ private class IntensityTagView: UIView {
     func configure(level: Int, totalLevels: Int, color: UIColor) {
         // Rebuild dots
         dotsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        dotViews.removeAll()
 
         for i in 0..<totalLevels {
             let dot = UIView()
@@ -411,33 +466,31 @@ private class IntensityTagView: UIView {
             }
 
             dotsStack.addArrangedSubview(dot)
-            dotViews.append(dot)
         }
     }
 }
 
 // MARK: - DimensionTagView
 
-/// Shows header with a colored topic label below.
-private class DimensionTagView: UIView {
+/// Dark card with header + colored topic label below.
+private class DimensionTagView: TagCardContainer {
 
     private let topicLabel: UILabel = {
         let label = UILabel()
         label.font = .projectFont(ofSize: 17, weight: .regular)
-        label.textAlignment = .center
         return label
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+        setupContent()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupView() {
+    private func setupContent() {
         let headerStack = TagHeaderLayout.makeHeaderStack(
             iconName: "list.bullet",
             title: NSLocalizedString("checkin_detail_dimension", comment: "")
@@ -446,8 +499,8 @@ private class DimensionTagView: UIView {
         let mainStack = UIStackView(arrangedSubviews: [headerStack, topicLabel])
         mainStack.axis = .vertical
         mainStack.spacing = TagHeaderLayout.headerToContentSpacing
-        mainStack.alignment = .center
-        addSubview(mainStack)
+        mainStack.alignment = .leading
+        bodyContainer.addSubview(mainStack)
 
         mainStack.snp.makeConstraints { make in
             make.edges.equalToSuperview()
