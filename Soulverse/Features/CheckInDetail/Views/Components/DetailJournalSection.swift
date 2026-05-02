@@ -82,7 +82,7 @@ final class DetailJournalSection: UIView {
         let label = UILabel()
         label.text = NSLocalizedString("checkin_detail_journal", comment: "")
         label.font = .projectFont(ofSize: CheckInDetailLayout.sectionTitleFontSize, weight: .semibold)
-        label.textColor = .themeTextPrimary
+        label.textColor = .themeTextSecondary
         return label
     }()
 

@@ -270,8 +270,13 @@ extension CheckInDetailViewController: CheckInDetailPresenterDelegate {
             rightArrowButton.isHidden = !viewModel.canGoForward
 
             drawingSection.showLoading()
-            reflectionSection.showLoading()
-            reflectionSection.isHidden = false
+            // Hide reflection upfront when the check-in has no linked drawing.
+            // Otherwise the section briefly appears during loading and collapses
+            // once phase 2 confirms drawingImageURL is nil.
+            reflectionSection.isHidden = !viewModel.hasLinkedDrawing
+            if viewModel.hasLinkedDrawing {
+                reflectionSection.showLoading()
+            }
             journalSection.showLoading()
             scrollView.setContentOffset(.zero, animated: false)
         } else {
@@ -288,8 +293,7 @@ extension CheckInDetailViewController: CheckInDetailPresenterDelegate {
                     drawingId: viewModel.drawingId,
                     imageURL: viewModel.drawingImageURL,
                     reflectiveQuestion: viewModel.reflectiveQuestion,
-                    reflectiveAnswer: viewModel.reflectiveAnswer,
-                    checkinId: viewModel.checkinId
+                    reflectiveAnswer: viewModel.reflectiveAnswer
                 )
             }
             journalSection.configure(
@@ -462,7 +466,12 @@ private class IntensityTagView: TagCardContainer {
             } else {
                 dot.backgroundColor = .clear
                 dot.layer.borderWidth = 1.5
-                dot.layer.borderColor = UIColor.white.cgColor
+                // Theme-aware border so the unfilled ring stays visible on both
+                // dark (UniverseTheme) and light (SoulTheme) backgrounds. Note:
+                // CALayer.borderColor is captured as CGColor and won't update
+                // on a live theme switch — fine here because theme changes
+                // typically reload the screen.
+                dot.layer.borderColor = UIColor.themeIntensityDotBorder.cgColor
             }
 
             dotsStack.addArrangedSubview(dot)

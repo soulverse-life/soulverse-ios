@@ -125,6 +125,12 @@ extension UniverseTheme {
     var circleUnselectedBackground: UIColor {
         UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 178.0/255.0, alpha: 1.0)
     }
+
+    var intensityDotBorder: UIColor {
+        // Slightly muted white for visibility on dark glass cards without
+        // overpowering the filled dots.
+        UIColor.white.withAlphaComponent(0.6)
+    }
 }
 
 // MARK: - Navigation Bar

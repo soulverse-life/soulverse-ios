@@ -121,7 +121,7 @@ final class DetailDrawingSection: UIView {
     private func installCTA() {
         bodyContainer.addSubview(ctaButton)
         ctaButton.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(CheckInDetailLayout.ctaButtonHeight)
         }
     }

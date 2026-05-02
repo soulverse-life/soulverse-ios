@@ -120,6 +120,7 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
             currentIndex: currentIndex,
             totalCount: checkIns.count,
             isLoadingContent: isLoadingContent,
+            hasLinkedDrawing: checkIn.drawingId != nil,
             drawingId: drawing?.id,
             drawingImageURL: drawing?.imageURL,
             reflectiveQuestion: drawing?.reflectiveQuestion,

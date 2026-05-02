@@ -38,7 +38,6 @@ final class DetailReflectionSection: UIView {
     // MARK: - Properties
 
     weak var delegate: DetailReflectionSectionDelegate?
-    private var checkinId: String?
     private var pendingDrawingId: String?
     private var pendingImageURL: String?
     private var pendingReflectiveQuestion: String?
@@ -240,10 +239,8 @@ final class DetailReflectionSection: UIView {
         drawingId: String?,
         imageURL: String?,
         reflectiveQuestion: String?,
-        reflectiveAnswer: String?,
-        checkinId: String?
+        reflectiveAnswer: String?
     ) {
-        self.checkinId = checkinId
         self.pendingDrawingId = drawingId
         self.pendingImageURL = imageURL
         self.pendingReflectiveQuestion = reflectiveQuestion

@@ -34,6 +34,12 @@ struct CheckInDetailViewModel {
 
     // MARK: - Drawing / Reflection
 
+    /// True when the check-in has a linked drawing in Firestore (driven by
+    /// `MoodCheckInModel.drawingId != nil`). Available synchronously during
+    /// phase 1, so the reflection section can be hidden upfront when no
+    /// drawing is linked — avoids a brief flash where the section appears
+    /// during loading and then collapses when phase 2 arrives.
+    let hasLinkedDrawing: Bool
     let drawingId: String?
     let drawingImageURL: String?
     let reflectiveQuestion: String?
