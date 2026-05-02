@@ -47,6 +47,10 @@ protocol Theme: Identifiable where ID == String {
 
     // Circle/Indicator colors
     var circleUnselectedBackground: UIColor { get }
+    /// Border color for unfilled intensity dots (e.g. `IntensityTagView`).
+    /// Should contrast against the page's dark glass cards in dark themes
+    /// and against the light page background in light themes.
+    var intensityDotBorder: UIColor { get }
 
     // Navigation
     var navigationBarBackground: UIColor { get }

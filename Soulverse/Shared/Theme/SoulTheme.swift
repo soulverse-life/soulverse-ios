@@ -124,6 +124,12 @@ extension SoulTheme {
     var circleUnselectedBackground: UIColor {
         UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 178.0/255.0, alpha: 1.0)
     }
+
+    var intensityDotBorder: UIColor {
+        // Dark border so unfilled dots remain visible against the light page
+        // background and white-ish glass card.
+        UIColor.black.withAlphaComponent(0.4)
+    }
 }
 
 // MARK: - Navigation Bar

@@ -117,6 +117,12 @@ extension UIColor {
         ThemeManager.shared.currentTheme.circleUnselectedBackground
     }
 
+    /// Intensity dot border - adapts to current theme.
+    /// Used by `IntensityTagView` for unfilled dot rings.
+    static var themeIntensityDotBorder: UIColor {
+        ThemeManager.shared.currentTheme.intensityDotBorder
+    }
+
     /// Navigation bar background - adapts to current theme
     static var themeNavigationBackground: UIColor {
         ThemeManager.shared.currentTheme.navigationBarBackground

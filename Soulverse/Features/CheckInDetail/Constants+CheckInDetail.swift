@@ -31,8 +31,15 @@ enum CheckInDetailLayout {
 
     static let contentBottomPadding: CGFloat = 40
 
-    static let sectionTitleFontSize: CGFloat = 14
+    static let sectionTitleFontSize: CGFloat = 13
     static let sectionTitleIconSize: CGFloat = 16
+
+    static let reflectionTitleFontSize: CGFloat = 20
+    static let reflectionAnswerFontSize: CGFloat = 17
+
+    static let tagCardCornerRadius: CGFloat = 12
+    static let tagCardContentPadding: CGFloat = 12
+    static let tagsInterCardSpacing: CGFloat = 12
 
     static let ctaButtonHeight: CGFloat = 48
     static let ctaButtonCornerRadius: CGFloat = 12

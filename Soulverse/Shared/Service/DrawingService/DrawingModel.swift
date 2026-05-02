@@ -27,7 +27,13 @@ struct DrawingModel: Codable {
     // reflective question, or a generic fallback for free drawings).
     var reflectiveQuestion: String?
     var reflectiveAnswer: String?
-    @ServerTimestamp var reflectionAnsweredAt: Date?
+    /// Set server-side via `FirestoreDrawingService.updateDrawingReflection`. We
+    /// deliberately don't use `@ServerTimestamp` here: the field is absent on
+    /// new drawings (no answer yet), and the wrapper's auto-synthesized
+    /// Codable init throws `keyNotFound` on absent keys — breaking decode for
+    /// every drawing in the "saved but reflection-not-yet-submitted" state.
+    /// Plain `Date?` lets Codable's decodeIfPresent path treat absence as nil.
+    var reflectionAnsweredAt: Date?
 
     // Timezone
     let timezoneOffsetMinutes: Int

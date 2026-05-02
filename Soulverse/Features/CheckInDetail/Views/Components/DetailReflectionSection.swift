@@ -1,19 +1,31 @@
 //
-//  DetailJournalSection.swift
+//  DetailReflectionSection.swift
 //  Soulverse
 //
-//  Glass-effect card displaying journal header, title and content,
-//  or a CTA button when no journal exists. Uses state machine for layout.
+//  Dark-card section showing the reflection prompt + answer for a check-in's drawing.
+//  Three states:
+//    - loading: spinner
+//    - content: prompt + answer
+//    - empty:   "Add Reflection" CTA (drawing exists, reflection missing)
+//
+//  When the parent has no drawing image at all, the entire section is hidden by the
+//  containing view controller (not handled here).
 //
 
 import SnapKit
 import UIKit
 
-protocol DetailJournalSectionDelegate: AnyObject {
-    func detailJournalSectionDidTapCreate(_ section: DetailJournalSection, checkinId: String?)
+protocol DetailReflectionSectionDelegate: AnyObject {
+    func detailReflectionSectionDidTapAdd(
+        _ section: DetailReflectionSection,
+        drawingId: String,
+        imageURL: String?,
+        reflectiveQuestion: String?,
+        reflectiveAnswer: String?
+    )
 }
 
-final class DetailJournalSection: UIView {
+final class DetailReflectionSection: UIView {
 
     // MARK: - State
 
@@ -25,8 +37,11 @@ final class DetailJournalSection: UIView {
 
     // MARK: - Properties
 
-    weak var delegate: DetailJournalSectionDelegate?
-    private var checkinId: String?
+    weak var delegate: DetailReflectionSectionDelegate?
+    private var pendingDrawingId: String?
+    private var pendingImageURL: String?
+    private var pendingReflectiveQuestion: String?
+    private var pendingReflectiveAnswer: String?
     private var currentState: State?
 
     // MARK: - UI Components
@@ -72,7 +87,7 @@ final class DetailJournalSection: UIView {
 
     private lazy var sectionIconView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "book")
+        imageView.image = UIImage(systemName: "star")
         imageView.tintColor = .themeTextSecondary
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -80,23 +95,23 @@ final class DetailJournalSection: UIView {
 
     private lazy var sectionTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("checkin_detail_journal", comment: "")
+        label.text = NSLocalizedString("checkin_detail_reflection", comment: "")
         label.font = .projectFont(ofSize: CheckInDetailLayout.sectionTitleFontSize, weight: .semibold)
         label.textColor = .themeTextSecondary
         return label
     }()
 
-    private lazy var journalTitleLabel: UILabel = {
+    private lazy var promptLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 20, weight: .semibold)
+        label.font = .projectFont(ofSize: CheckInDetailLayout.reflectionTitleFontSize, weight: .semibold)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         return label
     }()
 
-    private lazy var journalContentLabel: UILabel = {
+    private lazy var reflectionLabel: UILabel = {
         let label = UILabel()
-        label.font = .projectFont(ofSize: 17, weight: .regular)
+        label.font = .projectFont(ofSize: CheckInDetailLayout.reflectionAnswerFontSize, weight: .regular)
         label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         return label
@@ -106,7 +121,7 @@ final class DetailJournalSection: UIView {
 
     private lazy var ctaButton: SoulverseButton = {
         let button = SoulverseButton(
-            title: NSLocalizedString("checkin_detail_journal_cta", comment: ""),
+            title: NSLocalizedString("drawing_reflection_add_cta", comment: ""),
             style: .primary,
             delegate: self
         )
@@ -203,8 +218,8 @@ final class DetailJournalSection: UIView {
 
         contentStack.arrangedSubviews.forEach { contentStack.removeArrangedSubview($0); $0.removeFromSuperview() }
         contentStack.addArrangedSubview(headerStack)
-        contentStack.addArrangedSubview(journalTitleLabel)
-        contentStack.addArrangedSubview(journalContentLabel)
+        contentStack.addArrangedSubview(promptLabel)
+        contentStack.addArrangedSubview(reflectionLabel)
 
         bodyContainer.addSubview(contentStack)
         contentStack.snp.makeConstraints { make in
@@ -218,38 +233,41 @@ final class DetailJournalSection: UIView {
         transition(to: .loading)
     }
 
-    func configure(title: String?, content: String?, checkinId: String?) {
-        self.checkinId = checkinId
+    /// Configure with the drawing context. Pass nil/empty reflectiveAnswer to render the empty CTA.
+    /// drawingId is required because the "Add Reflection" navigation needs it to persist the answer.
+    func configure(
+        drawingId: String?,
+        imageURL: String?,
+        reflectiveQuestion: String?,
+        reflectiveAnswer: String?
+    ) {
+        self.pendingDrawingId = drawingId
+        self.pendingImageURL = imageURL
+        self.pendingReflectiveQuestion = reflectiveQuestion
+        self.pendingReflectiveAnswer = reflectiveAnswer
 
-        let hasContent = title != nil || content != nil
-
-        if hasContent {
+        if let reflectiveAnswer = reflectiveAnswer, !reflectiveAnswer.isEmpty {
             transition(to: .content)
-
-            if let title = title {
-                journalTitleLabel.isHidden = false
-                journalTitleLabel.text = title
-            } else {
-                journalTitleLabel.isHidden = true
-            }
-
-            if let content = content {
-                journalContentLabel.isHidden = false
-                journalContentLabel.text = content
-            } else {
-                journalContentLabel.isHidden = true
-            }
+            promptLabel.text = reflectiveQuestion
+            promptLabel.isHidden = (reflectiveQuestion == nil)
+            reflectionLabel.text = reflectiveAnswer
         } else {
             transition(to: .empty)
         }
     }
-
 }
 
 // MARK: - SoulverseButtonDelegate
 
-extension DetailJournalSection: SoulverseButtonDelegate {
+extension DetailReflectionSection: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        delegate?.detailJournalSectionDidTapCreate(self, checkinId: checkinId)
+        guard let drawingId = pendingDrawingId else { return }
+        delegate?.detailReflectionSectionDidTapAdd(
+            self,
+            drawingId: drawingId,
+            imageURL: pendingImageURL,
+            reflectiveQuestion: pendingReflectiveQuestion,
+            reflectiveAnswer: pendingReflectiveAnswer
+        )
     }
 }
