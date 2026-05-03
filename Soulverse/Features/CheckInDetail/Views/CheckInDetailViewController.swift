@@ -314,7 +314,40 @@ extension CheckInDetailViewController: DetailDrawingSectionDelegate {
 
 extension CheckInDetailViewController: DetailJournalSectionDelegate {
     func detailJournalSectionDidTapCreate(_ section: DetailJournalSection, checkinId: String?) {
-        // TODO: Open journal editor when implemented
+        guard let checkinId = checkinId, let viewModel = currentViewModel else { return }
+        let vc = JournalEditorViewController(
+            checkinId: checkinId,
+            colorHex: viewModel.colorHex,
+            colorIntensity: viewModel.colorIntensity,
+            emotionName: viewModel.emotionName
+        )
+        vc.delegate = self
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - JournalEditorViewControllerDelegate
+
+extension CheckInDetailViewController: JournalEditorViewControllerDelegate {
+    func journalEditorDidSave(_ vc: JournalEditorViewController, journalId: String) {
+        navigationController?.popViewController(animated: true)
+        // The MoodCheckInCreated notification (posted by VM) triggers detail refresh
+    }
+
+    func journalEditorDidRequestDraw(_ vc: JournalEditorViewController) {
+        let checkinId = vc.viewModel.checkinId
+        let recordedEmotion = currentViewModel?.recordedEmotion
+        navigationController?.popViewController(animated: true)
+        AppCoordinator.presentDrawingPrompt(
+            from: self,
+            checkinId: checkinId,
+            recordedEmotion: recordedEmotion
+        )
+    }
+
+    func journalEditorDidTapBack(_ vc: JournalEditorViewController) {
+        navigationController?.popViewController(animated: true)
     }
 }
 

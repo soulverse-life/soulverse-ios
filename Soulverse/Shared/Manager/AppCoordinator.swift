@@ -193,7 +193,14 @@ class AppCoordinator {
                         recordedEmotion: data.recordedEmotion
                     )
                 case .writeJournal:
-                    print("TODO: Write Journal action")
+                    AppCoordinator.presentJournalEditor(
+                        from: sourceVC,
+                        checkinId: checkinId,
+                        colorHex: data.colorHexString,
+                        colorIntensity: data.colorIntensity,
+                        emotionName: data.recordedEmotion?.displayName,
+                        recordedEmotion: data.recordedEmotion
+                    )
                 case .none:
                     break
                 }
@@ -211,5 +218,80 @@ class AppCoordinator {
 
         // Present the navigation controller
         sourceVC.present(navigationController, animated: true)
+    }
+
+    static func presentJournalEditor(
+        from sourceVC: UIViewController,
+        checkinId: String?,
+        colorHex: String?,
+        colorIntensity: Double,
+        emotionName: String?,
+        recordedEmotion: RecordedEmotion?
+    ) {
+        guard let checkinId = checkinId else { return }
+        let vc = JournalEditorViewController(
+            checkinId: checkinId,
+            colorHex: colorHex,
+            colorIntensity: colorIntensity,
+            emotionName: emotionName
+        )
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+
+        // Capture context in a holder that retains itself until dismiss
+        let holder = JournalEditorPresentationHolder(
+            sourceVC: sourceVC,
+            checkinId: checkinId,
+            recordedEmotion: recordedEmotion
+        )
+        holder.navigationController = nav
+        vc.delegate = holder
+
+        sourceVC.present(nav, animated: true)
+    }
+}
+
+// MARK: - Journal Editor Presentation Holder
+
+private final class JournalEditorPresentationHolder: JournalEditorViewControllerDelegate {
+    weak var sourceVC: UIViewController?
+    weak var navigationController: UINavigationController?
+    let checkinId: String
+    let recordedEmotion: RecordedEmotion?
+    private var strongSelf: JournalEditorPresentationHolder?
+
+    init(sourceVC: UIViewController, checkinId: String, recordedEmotion: RecordedEmotion?) {
+        self.sourceVC = sourceVC
+        self.checkinId = checkinId
+        self.recordedEmotion = recordedEmotion
+        self.strongSelf = self
+    }
+
+    func journalEditorDidSave(_ vc: JournalEditorViewController, journalId: String) {
+        navigationController?.dismiss(animated: true) { [weak self] in
+            self?.strongSelf = nil
+        }
+    }
+
+    func journalEditorDidRequestDraw(_ vc: JournalEditorViewController) {
+        let source = sourceVC
+        let checkinId = self.checkinId
+        let emotion = self.recordedEmotion
+        navigationController?.dismiss(animated: true) { [weak self] in
+            if let source = source {
+                AppCoordinator.presentDrawingPrompt(
+                    from: source,
+                    checkinId: checkinId,
+                    recordedEmotion: emotion
+                )
+            }
+            self?.strongSelf = nil
+        }
+    }
+
+    func journalEditorDidTapBack(_ vc: JournalEditorViewController) {
+        navigationController?.dismiss(animated: true) { [weak self] in
+            self?.strongSelf = nil
+        }
     }
 }

@@ -405,3 +405,14 @@
 "emotional_bundle_required_field_title" = "Required";
 "emotional_bundle_red_flags_required_message" = "Please add at least one red flag before saving.";
 "emotional_bundle_feel_calm_required_message" = "Please add at least one calming activity before saving.";
+
+
+// MARK: - Journal Editor
+
+"journal_editor_nav_title" = "Write a journal";
+"journal_editor_subtitle" = "Your emotional journey today";
+"journal_editor_title_placeholder" = "Give your entry a title";
+"journal_editor_content_placeholder" = "Start writing your thought";
+"journal_editor_save_button" = "Save";
+"journal_editor_draw_link" = "Draw";
+"journal_editor_save_failed" = "Failed to save journal. Please try again.";

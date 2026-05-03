@@ -1,12 +1,12 @@
 //
-//  BundleFormFieldView.swift
+//  SoulverseFormFieldView.swift
 //  Soulverse
 //
 
 import UIKit
 import SnapKit
 
-final class BundleFormFieldView: UIView {
+final class SoulverseFormFieldView: UIView {
 
     // MARK: - Layout Constants
 
@@ -380,7 +380,7 @@ final class BundleFormFieldView: UIView {
 
 // MARK: - UITextViewDelegate
 
-extension BundleFormFieldView: UITextViewDelegate {
+extension SoulverseFormFieldView: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
         hidePlaceholder()

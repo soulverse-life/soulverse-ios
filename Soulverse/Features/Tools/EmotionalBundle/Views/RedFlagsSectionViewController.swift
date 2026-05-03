@@ -98,8 +98,8 @@ final class RedFlagsSectionViewController: ViewController {
         return label
     }()
 
-    private lazy var redFlag1Field: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var redFlag1Field: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configure(
             title: NSLocalizedString("emotional_bundle_red_flag_label_1", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_red_flag_placeholder", comment: ""),
@@ -113,8 +113,8 @@ final class RedFlagsSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var redFlag2Field: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var redFlag2Field: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configure(
             title: NSLocalizedString("emotional_bundle_red_flag_label_2", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_red_flag_placeholder", comment: ""),
