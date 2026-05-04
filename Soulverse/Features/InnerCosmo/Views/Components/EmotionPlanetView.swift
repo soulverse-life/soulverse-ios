@@ -185,12 +185,17 @@ class EmotionPlanetView: UIView {
             accessibilityTraits = .staticText
         }
 
-        // Hide label container when emotion text is empty
+        // Hide label container when emotion text is empty and re-center the
+        // planet so the halo sits symmetrically around it (matches the
+        // CheckInDetail planet layout). The default planet position is
+        // top-aligned to leave room for the label below; without a label
+        // there's no reason to bias upward.
         if data.emotion.isEmpty {
             labelContainerView.isHidden = true
             labelContainerView.snp.remakeConstraints { _ in }
-            planetView.snp.makeConstraints { make in
-                make.bottom.equalToSuperview()
+            planetView.snp.remakeConstraints { make in
+                make.center.equalToSuperview()
+                make.width.height.equalTo(planetSize)
             }
         }
 
@@ -264,7 +269,10 @@ class EmotionPlanetView: UIView {
     /// Calculate the size needed for this planet view
     func calculateSize() -> CGSize {
         if data.emotion.isEmpty {
-            return CGSize(width: planetSize, height: planetSize)
+            // Reserve room for the halo so it isn't clipped when the parent
+            // sizes us tightly to this value.
+            let bound = planetSize + Layout.haloExpand * 2
+            return CGSize(width: bound, height: bound)
         }
 
         let labelIntrinsicHeight = emotionLabel.intrinsicContentSize.height

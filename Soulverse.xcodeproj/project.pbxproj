@@ -11,7 +11,15 @@
 		00FBCE53E3FB150F40186DE5 /* MoodEntriesDataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */; };
 		01AFEAE51929AC8297AD205B /* EmotionalBundleMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE76100ED69CDC5A76DE798 /* EmotionalBundleMainViewController.swift */; };
 		03BF3892B476AB6AD4B17CC6 /* MoodEntriesDataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */; };
-		03F48090BE3E05B2B7366B43 /* BundleFormFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EAEF5AEB337CC3DACE9A68 /* BundleFormFieldView.swift */; };
+		03F48090BE3E05B2B7366B43 /* SoulverseFormFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EAEF5AEB337CC3DACE9A68 /* SoulverseFormFieldView.swift */; };
+		0E000A0001000000000000A1 /* JournalEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E000A0001000000000000B1 /* JournalEditorViewController.swift */; };
+		0E000A0002000000000000A1 /* JournalEmotionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E000A0002000000000000B1 /* JournalEmotionHeaderView.swift */; };
+		0E000A0003000000000000A1 /* JournalEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E000A0003000000000000B1 /* JournalEditorViewModel.swift */; };
+		E78AEE7E4CFEF3446A70A7CD /* RedFlagsSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C55544C0570D9D226D8E8B /* RedFlagsSectionViewController.swift */; };
+		85C6646F9F43CB4B180F0091 /* SupportMeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE410EEDFCB6E5B7389899 /* SupportMeSectionViewController.swift */; };
+		D4E39A5B4F2D0B96563AF670 /* FeelCalmSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27163359DE3FFC4DF026F748 /* FeelCalmSectionViewController.swift */; };
+		AE8238450575EE11F60CD300 /* StaySafeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9789F843142D96E67C70804C /* StaySafeSectionViewController.swift */; };
+		9A5F6071A756E85D2358C622 /* ProfessionalSupportSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */; };
 		0924C6D537F42931C325A80D /* CanvasViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA116D179BEAA6D57A12D74 /* CanvasViewPresenterDelegateMock.swift */; };
 		0AEA5D20108485EA3EF5494E /* DrawingGallerySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70D0337BCECFA7C98A0482 /* DrawingGallerySectionHeaderView.swift */; };
 		0E375C48E26FC465DCF1178D /* EmotionalBundleMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A458615FF4DBD7CB06D6654 /* EmotionalBundleMainViewModel.swift */; };
@@ -585,7 +593,15 @@
 		56BB214046513A25767B1757 /* FeelCalmSectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeelCalmSectionViewModel.swift; sourceTree = "<group>"; };
 		570A3936C4C4200D3E36282A /* ErrorReportingTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ErrorReportingTests.swift; sourceTree = "<group>"; };
 		57F4883D32CE380C31648AE6 /* MoodEntriesDataAssemblerMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerMock.swift; sourceTree = "<group>"; };
-		59EAEF5AEB337CC3DACE9A68 /* BundleFormFieldView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BundleFormFieldView.swift; sourceTree = "<group>"; };
+		59EAEF5AEB337CC3DACE9A68 /* SoulverseFormFieldView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SoulverseFormFieldView.swift; sourceTree = "<group>"; };
+		0E000A0001000000000000B1 /* JournalEditorViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalEditorViewController.swift; sourceTree = "<group>"; };
+		0E000A0002000000000000B1 /* JournalEmotionHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalEmotionHeaderView.swift; sourceTree = "<group>"; };
+		0E000A0003000000000000B1 /* JournalEditorViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalEditorViewModel.swift; sourceTree = "<group>"; };
+		43C55544C0570D9D226D8E8B /* RedFlagsSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RedFlagsSectionViewController.swift; sourceTree = "<group>"; };
+		13AE410EEDFCB6E5B7389899 /* SupportMeSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SupportMeSectionViewController.swift; sourceTree = "<group>"; };
+		27163359DE3FFC4DF026F748 /* FeelCalmSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeelCalmSectionViewController.swift; sourceTree = "<group>"; };
+		9789F843142D96E67C70804C /* StaySafeSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StaySafeSectionViewController.swift; sourceTree = "<group>"; };
+		17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfessionalSupportSectionViewController.swift; sourceTree = "<group>"; };
 		5A7A89532F54342452F4E920 /* ToolsViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		5A95C383DB61DE6370611AFF /* DrawingsPromptTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingsPromptTests.swift; sourceTree = "<group>"; };
 		7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterDelegateMock.swift; sourceTree = "<group>"; };
@@ -1421,6 +1437,7 @@
 				79F138042F379BF90034D325 /* ActionTagView.swift */,
 				79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */,
 				7951A9B62E532C85006EB0EC /* SoulverseButton.swift */,
+				59EAEF5AEB337CC3DACE9A68 /* SoulverseFormFieldView.swift */,
 				7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */,
 				7AE10C0001000000000000A1 /* EmoPetChatView.swift */,
 				7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */,
@@ -1835,8 +1852,43 @@
 				798688072E6C24EE00EB3B38 /* Quest */,
 				A41A64F9EBA218CC228ACBB3 /* Profile */,
 				EB54972E4667D9E048FB9D3C /* CheckInDetail */,
+				0E000A0010000000000000C1 /* JournalEditor */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		0E000A0010000000000000C1 /* JournalEditor */ = {
+			isa = PBXGroup;
+			children = (
+				0E000A0013000000000000C1 /* ViewModels */,
+				0E000A0011000000000000C1 /* Views */,
+			);
+			path = JournalEditor;
+			sourceTree = "<group>";
+		};
+		0E000A0011000000000000C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0E000A0012000000000000C1 /* Components */,
+				0E000A0001000000000000B1 /* JournalEditorViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0E000A0012000000000000C1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0E000A0002000000000000B1 /* JournalEmotionHeaderView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		0E000A0013000000000000C1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0E000A0003000000000000B1 /* JournalEditorViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		79B24C6F2DFC7B2A001220B6 /* Presenter */ = {
@@ -2118,7 +2170,6 @@
 			isa = PBXGroup;
 			children = (
 				39C6F9856E4AC47CE6B05355 /* BundleSectionCardView.swift */,
-				59EAEF5AEB337CC3DACE9A68 /* BundleFormFieldView.swift */,
 				42762D57CBBA0A87B1D5C733 /* CrisisResourceCardView.swift */,
 			);
 			name = Components;
@@ -3094,7 +3145,10 @@
 				DF12EBFF3AB9445233E99868 /* FirestoreEmotionalBundleService.swift in Sources */,
 				E9D694DEE57BA594D2169C63 /* BundleSectionCardView.swift in Sources */,
 				01AFEAE51929AC8297AD205B /* EmotionalBundleMainViewController.swift in Sources */,
-				03F48090BE3E05B2B7366B43 /* BundleFormFieldView.swift in Sources */,
+				03F48090BE3E05B2B7366B43 /* SoulverseFormFieldView.swift in Sources */,
+				0E000A0001000000000000A1 /* JournalEditorViewController.swift in Sources */,
+				0E000A0002000000000000A1 /* JournalEmotionHeaderView.swift in Sources */,
+				0E000A0003000000000000A1 /* JournalEditorViewModel.swift in Sources */,
 				E78AEE7E4CFEF3446A70A7CD /* RedFlagsSectionViewController.swift in Sources */,
 				85C6646F9F43CB4B180F0091 /* SupportMeSectionViewController.swift in Sources */,
 				D4E39A5B4F2D0B96563AF670 /* FeelCalmSectionViewController.swift in Sources */,

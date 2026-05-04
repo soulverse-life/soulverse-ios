@@ -79,14 +79,12 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
             group.leave()
         }
 
-        if let journalId = checkIn.journalId {
-            group.enter()
-            journalService.fetchJournal(uid: uid, journalId: journalId) { result in
-                if case .success(let journal) = result {
-                    fetchedJournal = journal
-                }
-                group.leave()
+        group.enter()
+        journalService.fetchJournal(uid: uid, checkinId: checkinId) { result in
+            if case .success(let journal) = result {
+                fetchedJournal = journal
             }
+            group.leave()
         }
 
         group.notify(queue: .main) { [weak self] in

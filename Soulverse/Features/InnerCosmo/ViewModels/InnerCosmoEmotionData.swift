@@ -10,10 +10,17 @@ struct EmotionPlanetData {
     let emotion: String
     let colorHex: String
     var sizeMultiplier: CGFloat = 1.0
+    /// Check-in intensity (0.0–1.0). Applied as alpha to the planet color so
+    /// lower-intensity check-ins render as a more washed-out variant of the
+    /// same hue. Defaults to 1.0 (full intensity) for callers that don't
+    /// track intensity.
+    var intensity: Double = 1.0
 
-    /// Converts hex string to UIColor
+    /// Converts hex string to UIColor with intensity applied as alpha.
     var color: UIColor {
-        UIColor(hex: colorHex) ?? .themeTextSecondary
+        let base = UIColor(hex: colorHex) ?? .themeTextSecondary
+        let clamped = max(0, min(1, intensity))
+        return base.withAlphaComponent(CGFloat(clamped))
     }
 }
 

@@ -98,8 +98,8 @@ final class FeelCalmSectionViewController: ViewController {
         return label
     }()
 
-    private lazy var activity1Field: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var activity1Field: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configure(
             title: NSLocalizedString("emotional_bundle_activity_label_1", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_activity_placeholder_1", comment: ""),
@@ -112,8 +112,8 @@ final class FeelCalmSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var activity2Field: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var activity2Field: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configure(
             title: NSLocalizedString("emotional_bundle_activity_label_2", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_activity_placeholder_2", comment: ""),
@@ -126,8 +126,8 @@ final class FeelCalmSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var activity3Field: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var activity3Field: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configure(
             title: NSLocalizedString("emotional_bundle_activity_label_3", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_activity_placeholder_3", comment: ""),

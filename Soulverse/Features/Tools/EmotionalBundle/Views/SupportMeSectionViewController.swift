@@ -110,8 +110,8 @@ final class SupportMeSectionViewController: ViewController {
         return label
     }()
 
-    private lazy var contact1NameField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var contact1NameField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_contact_name", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_name_placeholder", comment: ""),
@@ -124,8 +124,8 @@ final class SupportMeSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var contact1PhoneField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var contact1PhoneField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_contact_phone", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_phone_placeholder", comment: ""),
@@ -139,8 +139,8 @@ final class SupportMeSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var contact1EmailField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var contact1EmailField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_contact_email", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_email_placeholder", comment: ""),
@@ -154,8 +154,8 @@ final class SupportMeSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var contact1RelationshipField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var contact1RelationshipField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_contact_relationship", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_relationship_placeholder", comment: ""),
@@ -177,8 +177,8 @@ final class SupportMeSectionViewController: ViewController {
         return label
     }()
 
-    private lazy var contact2NameField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var contact2NameField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_contact_name", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_name_placeholder", comment: ""),
@@ -191,8 +191,8 @@ final class SupportMeSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var contact2PhoneField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var contact2PhoneField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_contact_phone", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_phone_placeholder", comment: ""),
@@ -206,8 +206,8 @@ final class SupportMeSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var contact2EmailField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var contact2EmailField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_contact_email", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_email_placeholder", comment: ""),
@@ -221,8 +221,8 @@ final class SupportMeSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var contact2RelationshipField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var contact2RelationshipField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_contact_relationship", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_contact_relationship_placeholder", comment: ""),

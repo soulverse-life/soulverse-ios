@@ -193,7 +193,14 @@ class AppCoordinator {
                         recordedEmotion: data.recordedEmotion
                     )
                 case .writeJournal:
-                    print("TODO: Write Journal action")
+                    AppCoordinator.presentJournalEditor(
+                        from: sourceVC,
+                        checkinId: checkinId,
+                        colorHex: data.colorHexString,
+                        colorIntensity: data.colorIntensity,
+                        emotionName: data.recordedEmotion?.displayName,
+                        recordedEmotion: data.recordedEmotion
+                    )
                 case .none:
                     break
                 }
@@ -211,5 +218,68 @@ class AppCoordinator {
 
         // Present the navigation controller
         sourceVC.present(navigationController, animated: true)
+    }
+
+    static func presentJournalEditor(
+        from sourceVC: UIViewController,
+        checkinId: String?,
+        colorHex: String?,
+        colorIntensity: Double,
+        emotionName: String?,
+        recordedEmotion: RecordedEmotion?
+    ) {
+        guard let checkinId = checkinId else { return }
+        let vc = JournalEditorViewController(
+            checkinId: checkinId,
+            colorHex: colorHex,
+            colorIntensity: colorIntensity,
+            emotionName: emotionName
+        )
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+
+        // Holder is retained by the presented nav controller via associated object;
+        // it deallocates automatically once the modal is dismissed.
+        let holder = JournalEditorPresentationHolder(
+            sourceVC: sourceVC,
+            recordedEmotion: recordedEmotion
+        )
+        vc.delegate = holder
+        objc_setAssociatedObject(nav, &journalEditorHolderKey, holder, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+
+        sourceVC.present(nav, animated: true)
+    }
+}
+
+// MARK: - Journal Editor Presentation Holder
+
+private nonisolated(unsafe) var journalEditorHolderKey: UInt8 = 0
+
+private final class JournalEditorPresentationHolder: JournalEditorViewControllerDelegate {
+    weak var sourceVC: UIViewController?
+    let recordedEmotion: RecordedEmotion?
+
+    init(sourceVC: UIViewController, recordedEmotion: RecordedEmotion?) {
+        self.sourceVC = sourceVC
+        self.recordedEmotion = recordedEmotion
+    }
+
+    func journalEditorDidSave(_ vc: JournalEditorViewController, journalId: String) {
+        vc.presentingViewController?.dismiss(animated: true)
+    }
+
+    func journalEditorDidRequestDraw(_ vc: JournalEditorViewController) {
+        let source = sourceVC
+        let checkinId = vc.checkinId
+        let emotion = recordedEmotion
+        vc.presentingViewController?.dismiss(animated: true) {
+            if let source = source {
+                AppCoordinator.presentDrawingPrompt(
+                    from: source,
+                    checkinId: checkinId,
+                    recordedEmotion: emotion
+                )
+            }
+        }
     }
 }
