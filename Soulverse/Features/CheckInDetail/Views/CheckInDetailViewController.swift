@@ -125,6 +125,10 @@ final class CheckInDetailViewController: ViewController {
             self, selector: #selector(handleDataChanged),
             name: NSNotification.Name(Notification.DrawingDidChange), object: nil
         )
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(handleDataChanged),
+            name: NSNotification.Name(Notification.JournalDidChange), object: nil
+        )
     }
 
     deinit {
@@ -340,7 +344,49 @@ extension CheckInDetailViewController: DetailReflectionSectionDelegate {
 
 extension CheckInDetailViewController: DetailJournalSectionDelegate {
     func detailJournalSectionDidTapCreate(_ section: DetailJournalSection, checkinId: String?) {
-        // TODO: Open journal editor when implemented
+        guard let checkinId = checkinId, let viewModel = currentViewModel else { return }
+        let vc = JournalEditorViewController(
+            checkinId: checkinId,
+            colorHex: viewModel.colorHex,
+            colorIntensity: viewModel.colorIntensity,
+            emotionName: viewModel.emotionName
+        )
+        vc.delegate = self
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - JournalEditorViewControllerDelegate
+
+extension CheckInDetailViewController: JournalEditorViewControllerDelegate {
+    func journalEditorDidSave(_ vc: JournalEditorViewController, journalId: String) {
+        navigationController?.popViewController(animated: true)
+        // The MoodCheckInCreated notification (posted by VM) triggers detail refresh
+    }
+
+    func journalEditorDidRequestDraw(_ vc: JournalEditorViewController) {
+        let checkinId = vc.checkinId
+        let recordedEmotion = currentViewModel?.recordedEmotion
+        navigationController?.popViewController(animated: true)
+        // Defer the present until the pop animation finishes so the two
+        // transitions don't race. The modal entry's holder uses the same
+        // dismiss-completion pattern.
+        let presentDrawingPrompt: () -> Void = { [weak self] in
+            guard let self = self else { return }
+            AppCoordinator.presentDrawingPrompt(
+                from: self,
+                checkinId: checkinId,
+                recordedEmotion: recordedEmotion
+            )
+        }
+        if let coordinator = navigationController?.transitionCoordinator {
+            coordinator.animate(alongsideTransition: nil) { _ in
+                presentDrawingPrompt()
+            }
+        } else {
+            presentDrawingPrompt()
+        }
     }
 }
 

@@ -143,6 +143,8 @@ struct Notification {
     /// Posted whenever a drawing's persisted state changes — created on save,
     /// or updated when the reflection answer is filled in / changed.
     static let DrawingDidChange = "DrawingDidChange"
+    /// Posted when a journal entry is created or updated for a check-in.
+    static let JournalDidChange = "JournalDidChange"
 }
 
 struct InAppURLScheme {

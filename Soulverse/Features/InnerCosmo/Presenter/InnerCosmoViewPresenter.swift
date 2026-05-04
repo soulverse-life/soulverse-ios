@@ -82,6 +82,12 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
             name: NSNotification.Name(rawValue: Notification.DrawingDidChange),
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onDataChanged),
+            name: NSNotification.Name(rawValue: Notification.JournalDidChange),
+            object: nil
+        )
     }
 
     // MARK: - Public Methods

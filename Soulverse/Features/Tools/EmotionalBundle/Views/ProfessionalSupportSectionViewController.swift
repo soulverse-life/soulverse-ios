@@ -111,8 +111,8 @@ final class ProfessionalSupportSectionViewController: ViewController {
         return card
     }()
 
-    private lazy var placeField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var placeField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_professional_place", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_professional_place_placeholder", comment: ""),
@@ -125,8 +125,8 @@ final class ProfessionalSupportSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var professionalNameField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var professionalNameField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_professional_name", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_professional_name_placeholder", comment: ""),
@@ -139,8 +139,8 @@ final class ProfessionalSupportSectionViewController: ViewController {
         return field
     }()
 
-    private lazy var emergencyNumberField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var emergencyNumberField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configureLabeled(
             inlineTitle: NSLocalizedString("emotional_bundle_professional_phone", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_professional_phone_placeholder", comment: ""),

@@ -405,3 +405,14 @@
 "emotional_bundle_required_field_title" = "必填欄位";
 "emotional_bundle_red_flags_required_message" = "請至少新增一個警訊後再儲存。";
 "emotional_bundle_feel_calm_required_message" = "請至少新增一個放鬆活動後再儲存。";
+
+
+// MARK: - Journal Editor
+
+"journal_editor_nav_title" = "寫下日記";
+"journal_editor_subtitle" = "你的情緒旅程";
+"journal_editor_title_placeholder" = "為這篇日記取個標題";
+"journal_editor_content_placeholder" = "開始寫下你的想法";
+"journal_editor_save_button" = "儲存";
+"journal_editor_draw_link" = "改用畫畫";
+"journal_editor_save_failed" = "儲存失敗，請再試一次";

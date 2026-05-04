@@ -97,8 +97,8 @@ final class StaySafeSectionViewController: ViewController {
         return label
     }()
 
-    private lazy var actionField: BundleFormFieldView = {
-        let field = BundleFormFieldView()
+    private lazy var actionField: SoulverseFormFieldView = {
+        let field = SoulverseFormFieldView()
         field.configure(
             title: NSLocalizedString("emotional_bundle_stay_safe_label", comment: ""),
             placeholder: NSLocalizedString("emotional_bundle_stay_safe_placeholder", comment: ""),
