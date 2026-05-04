@@ -123,6 +123,14 @@ final class DetailDrawingSection: UIView {
         ctaButton.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(CheckInDetailLayout.ctaButtonHeight)
+            // High-priority bottom anchor (not required) so bodyContainer's
+            // height propagates from the button's intrinsic 48pt up to self.
+            // Without this, self collapses to 0 and the next section in the
+            // parent UIStackView overlaps the CTA. Priority keeps it
+            // breakable if any external pressure ever sizes bodyContainer
+            // taller than 48 — avoids the over-constrained .required vs
+            // height conflict the prior reviewer flagged.
+            make.bottom.equalToSuperview().priority(.high)
         }
     }
 
