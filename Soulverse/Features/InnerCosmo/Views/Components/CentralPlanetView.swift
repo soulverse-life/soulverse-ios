@@ -14,19 +14,25 @@ protocol CentralPlanetViewDelegate: AnyObject {
 /// Central planet view showing emotion gradient with E.M.O pet overlay
 class CentralPlanetView: UIView {
 
+    /// Outermost visible edge of the planet (inner circle + halo glow), measured
+    /// from the planet's center. Used by parent layouts (e.g. InnerCosmoRecentView)
+    /// to compute orbit gaps for surrounding planets.
+    static let visibleRadius: CGFloat = Layout.innerDiameter / 2 + Layout.haloExpand
+
     // MARK: - Layout Constants
 
     private enum Layout {
         static let outerGlowAlpha: CGFloat = 0.3
         static let innerDiameter: CGFloat = 160
 
+        // Edge halo: slightly larger circle with radial gradient behind inner planet
+        // Declared above other layout values so the static `visibleRadius` can reference it.
+        static let haloExpand: CGFloat = 8
+
         static let emoPetImageSize: CGFloat = 64
         static let emoPetImageCenterYOffset: CGFloat = -8
 
         static let emotionLabelFontSize: CGFloat = 11
-
-        // Edge halo: slightly larger circle with radial gradient behind inner planet
-        static let haloExpand: CGFloat = 8
 
         static let tapScaleDown: CGFloat = 0.9
         static let tapAnimationDuration: TimeInterval = 0.1

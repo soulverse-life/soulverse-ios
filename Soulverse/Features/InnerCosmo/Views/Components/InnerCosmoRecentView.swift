@@ -24,9 +24,6 @@ class InnerCosmoRecentView: UIView {
         // Horseshoe arc around central planet
         // UIKit angle: 0=right, π/2=bottom, π=left, 3π/2=top
         // Starts upper-left, sweeps clockwise through bottom to upper-right
-        static let nearestOrbitRadius: CGFloat = 115    // Radius for the 2nd planet (closest)
-        static let farthestOrbitRadius: CGFloat = 150   // Radius for the 7th planet (farthest)
-
         // Arc starts at ~200° (upper-left) and sweeps clockwise ~200°
         static let startAngle: Double = 1.1 * Double.pi
         static let arcSpan: Double = -1.15 * Double.pi
@@ -35,6 +32,44 @@ class InnerCosmoRecentView: UIView {
         // Extra tap area around planet circle. Also covers the ±5pt floating animation
         // offset since planetCircleCenter(in:) reads the model layer, not the presentation layer.
         static let tapHitExpansion: CGFloat = 10
+
+        // MARK: Orbit gap (between central planet halo and nearest emotion planet halo)
+        //
+        // Orbit radii are computed from the actual visible halo edges of both
+        // planets so the gap stays correct regardless of device, sizeMultiplier
+        // randomization, or future tweaks to either component's halo. Hardcoded
+        // radii were the original bug — they didn't account for the halos and
+        // produced ~1pt margin at rest, which any negative jitter or floating
+        // animation phase turned into a visible overlap.
+        //
+        // Components of `minOrbitGap`:
+        //   - positionRandomness (3pt) — jitter
+        //   - floating animation amplitude (5pt, from EmotionPlanetView)
+        //   - visual breathing room (8pt) — keeps the haloes clearly separate
+        //                                   so users perceive distinct planets
+        //
+        // `orbitSpread` controls how spread out the 6 surrounding planets appear
+        // along the arc. Sized so the rightmost planet's halo fits within
+        // iPhone SE 2nd/3rd gen width (375pt) with a small safety margin.
+        static let visualBreathingRoom: CGFloat = 8
+        static let orbitSpread: CGFloat = 30
+
+        static var minOrbitGap: CGFloat {
+            return positionRandomness + EmotionPlanetView.floatingAnimationAmplitude + visualBreathingRoom
+        }
+
+        /// Distance from the view's orbit center to the *visible circle center* of
+        /// the closest emotion planet. Computed so that the closest planet's halo
+        /// is `minOrbitGap` away from the central planet's halo:
+        ///   nearestOrbitRadius = centralVisibleRadius + maxEmotionVisibleRadius + minOrbitGap
+        static var nearestOrbitRadius: CGFloat {
+            return CentralPlanetView.visibleRadius + EmotionPlanetView.maxVisibleRadius + minOrbitGap
+        }
+
+        /// Farthest orbit radius — `orbitSpread` further out than the nearest.
+        static var farthestOrbitRadius: CGFloat {
+            return nearestOrbitRadius + orbitSpread
+        }
     }
 
     // MARK: - Properties
@@ -156,12 +191,23 @@ class InnerCosmoRecentView: UIView {
             let jitterX = CGFloat.random(in: -Layout.positionRandomness...Layout.positionRandomness)
             let jitterY = CGFloat.random(in: -Layout.positionRandomness...Layout.positionRandomness)
 
-            let x = center.x + radius * CGFloat(cos(angle)) + jitterX
-            let y = center.y + radius * CGFloat(sin(angle)) + jitterY
+            // Target position is for the *visible planet circle*, not the view's
+            // geometric center. For non-empty planets, the inner circle is offset
+            // upward inside its bounds (room for label below), so positioning by
+            // view.center would let the visible circle drift toward the central
+            // planet on the lower arc and away from it on the upper arc.
+            let targetCircleX = center.x + radius * CGFloat(cos(angle)) + jitterX
+            let targetCircleY = center.y + radius * CGFloat(sin(angle)) + jitterY
 
             let planetSize = planetView.calculateSize()
             planetView.bounds = CGRect(origin: .zero, size: planetSize)
-            planetView.center = CGPoint(x: x, y: y)
+
+            // Compute view.center such that the visible circle lands at the
+            // target orbit position.
+            let circleInBounds = planetView.planetCircleCenterInBounds()
+            let dx = circleInBounds.x - planetSize.width / 2
+            let dy = circleInBounds.y - planetSize.height / 2
+            planetView.center = CGPoint(x: targetCircleX - dx, y: targetCircleY - dy)
 
             // Save position to restore after future layout passes
             savedPlanetPositions.append((center: planetView.center, bounds: planetView.bounds))

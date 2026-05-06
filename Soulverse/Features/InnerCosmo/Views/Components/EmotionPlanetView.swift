@@ -25,6 +25,20 @@ class EmotionPlanetView: UIView {
         static let haloExpand: CGFloat = 6
     }
 
+    /// Maximum sizeMultiplier used by callers (placeholder planets randomize 0.7–1.1).
+    /// Parent layouts that need to reserve space for the worst-case planet size
+    /// should reference this constant rather than guessing.
+    static let maxSizeMultiplier: CGFloat = 1.1
+
+    /// Outermost visible edge (inner circle + halo glow) of the largest possible
+    /// emotion planet, measured from the planet circle's center. Used by parent
+    /// layouts to compute orbit gaps that work for all sizeMultiplier values.
+    static let maxVisibleRadius: CGFloat = (Layout.baseSize * maxSizeMultiplier) / 2 + Layout.haloExpand
+
+    /// Floating animation amplitude in points (vertical, ±). Exposed so parents
+    /// can include it in safety gaps for orbit calculations.
+    static let floatingAnimationAmplitude: CGFloat = Layout.animationDistance
+
     // MARK: - Properties
 
     private let data: EmotionPlanetData
@@ -266,23 +280,47 @@ class EmotionPlanetView: UIView {
 
     // MARK: - Size Calculation
 
-    /// Calculate the size needed for this planet view
+    /// Calculate the size needed for this planet view.
+    ///
+    /// The bounds match the internal SnapKit layout exactly:
+    /// - Vertical: `haloExpand` (top) + `planetSize` + `labelTopPadding` + label container
+    /// - Horizontal: max of the planet+halo footprint and the label container
+    ///
+    /// Including `haloExpand` in the height/width is critical: the inner planet
+    /// circle is constrained `top.offset(haloExpand)`, so a bounds.height that
+    /// omits `haloExpand` would force AutoLayout to squeeze the label container
+    /// AND make the visible circle render at an offset from `bounds.midY` —
+    /// which breaks orbit positioning in `InnerCosmoRecentView`.
     func calculateSize() -> CGSize {
         if data.emotion.isEmpty {
-            // Reserve room for the halo so it isn't clipped when the parent
-            // sizes us tightly to this value.
+            // Symmetric square — planet is centered, halo on all sides.
             let bound = planetSize + Layout.haloExpand * 2
             return CGSize(width: bound, height: bound)
         }
 
         let labelIntrinsicHeight = emotionLabel.intrinsicContentSize.height
         let labelContainerHeight = labelIntrinsicHeight + (Layout.labelVerticalPadding * 2)
-        let totalHeight = planetSize + Layout.labelTopPadding + labelContainerHeight
+        let totalHeight = Layout.haloExpand + planetSize + Layout.labelTopPadding + labelContainerHeight
 
         let labelIntrinsicWidth = emotionLabel.intrinsicContentSize.width
         let labelContainerWidth = labelIntrinsicWidth + (Layout.labelHorizontalPadding * 2)
-        let width = max(planetSize, labelContainerWidth)
+        // Halo extends ±haloExpand outside the planet circle on the sides too.
+        let planetWithHaloWidth = planetSize + Layout.haloExpand * 2
+        let width = max(planetWithHaloWidth, labelContainerWidth)
 
         return CGSize(width: width, height: totalHeight)
+    }
+
+    /// Center of the visible planet circle in this view's local (bounds) coordinates,
+    /// for the bounds returned by `calculateSize()`. Parents should use this to
+    /// position the *visible circle* at a target point (e.g. an orbit position),
+    /// rather than the view's geometric center which differs for non-empty planets.
+    func planetCircleCenterInBounds() -> CGPoint {
+        let size = calculateSize()
+        if data.emotion.isEmpty {
+            return CGPoint(x: size.width / 2, y: size.height / 2)
+        }
+        // Inner circle is constrained `top.offset(haloExpand)` and `centerX.equalToSuperview()`.
+        return CGPoint(x: size.width / 2, y: Layout.haloExpand + planetSize / 2)
     }
 }
