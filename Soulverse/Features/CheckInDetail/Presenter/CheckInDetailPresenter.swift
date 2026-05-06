@@ -30,7 +30,13 @@ final class CheckInDetailPresenter: CheckInDetailPresenterType {
          user: UserProtocol = User.shared,
          drawingService: DrawingServiceProtocol = FirestoreDrawingService.shared,
          journalService: JournalServiceProtocol = FirestoreJournalService.shared) {
-        let persistedCheckIns = checkIns.filter { $0.id != nil }
+        // Sort newest-first so currentIndex 0 always lands on the latest entry
+        // regardless of the order the caller hands in. createdAt is a server
+        // timestamp; entries missing one (shouldn't happen post-persistence)
+        // sink to the bottom via .distantPast.
+        let persistedCheckIns = checkIns
+            .filter { $0.id != nil }
+            .sorted { ($0.createdAt ?? .distantPast) > ($1.createdAt ?? .distantPast) }
         self.checkIns = persistedCheckIns
         self.currentIndex = min(initialIndex, max(persistedCheckIns.count - 1, 0))
         self.user = user
