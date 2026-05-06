@@ -18,7 +18,10 @@ class MoodCheckInSensingViewController: ViewController {
     var isFirstScreen: Bool = false
 
     private var selectedColor: UIColor = .yellow
-    private var selectedIntensity: Double = 0.5 // Default to middle intensity
+    /// Must mirror IntensityCircleSelectorView's default selectedIntensityIndex (2).
+    /// The selector only emits its delegate callback on tap, so if the user accepts
+    /// the visible default without tapping a circle this value is what gets saved.
+    private var selectedIntensity: Double = ColorIntensityConstants.alpha(forLevel: 2)
     private var hasInteractedWithSlider: Bool = false
 
     // MARK: - UI Elements
