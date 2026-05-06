@@ -16,8 +16,10 @@ struct MoodCheckInData {
     /// Selected color from the gradient slider (RGB)
     var selectedColor: UIColor?
 
-    /// Color intensity selected (0.0 to 1.0, maps to 5 circles)
-    var colorIntensity: Double = 0.5
+    /// Color intensity selected (alpha 0.3–1.0, maps to 5 circles).
+    /// Defaults to the middle level so any path that skips the Sensing
+    /// step still produces a value that round-trips through ColorIntensityConstants.
+    var colorIntensity: Double = ColorIntensityConstants.alpha(forLevel: 2)
 
     // MARK: - Naming Step
 
