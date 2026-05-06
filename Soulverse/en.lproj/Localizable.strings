@@ -7,11 +7,10 @@
 "inner_cosmo" = "Cosmo";
 "insight" = "Insight";
 "canvas" = "Canvas";
-"canvas_description" = "Drawing isn't about skill. It's about release, letting colors and shapes speak when words fall short, and giving form to feelings that need to find balance.";
+"canvas_description" = "Drawing isn’t about skill. It’s a way to let things out through color, shape, and feeling";
 "start_now" = "Start Now";
 "prompt" = "Prompt";
 "start_draw" = "Start Draw";
-"template_name" = "Template: %@";
 "no_template" = "Free Drawing";
 "cancel" = "Cancel";
 "save" = "Save";
