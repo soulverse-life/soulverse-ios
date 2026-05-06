@@ -51,19 +51,11 @@ class CanvasViewController: ViewController {
         return view
     }()
 
-    private lazy var canvasTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("canvas", comment: "")
-        label.font = UIFont.projectFont(ofSize: 18, weight: .semibold)
-        label.textColor = .themeTextPrimary
-        return label
-    }()
-
     private lazy var canvasDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("canvas_description", comment: "")
-        label.font = UIFont.projectFont(ofSize: 16, weight: .regular)
-        label.textColor = .themeTextSecondary
+        label.font = UIFont.projectFont(ofSize: 17, weight: .regular)
+        label.textColor = .themeTextPrimary
         label.numberOfLines = 0
         return label
     }()
@@ -82,26 +74,6 @@ class CanvasViewController: ViewController {
         label.font = UIFont.projectFont(ofSize: 16, weight: .regular)
         label.textColor = .themeTextSecondary
         label.numberOfLines = 0
-        return label
-    }()
-
-    private lazy var reflectiveQuestionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.projectFont(ofSize: 14, weight: .regular)
-        label.textColor = .themeTextSecondary
-        label.numberOfLines = 0
-        return label
-    }()
-
-    private lazy var templateHeaderView: UIView = {
-        let view = UIView()
-        return view
-    }()
-
-    private lazy var templateLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.projectFont(ofSize: 14, weight: .regular)
-        label.textColor = .themeTextSecondary
         return label
     }()
 
@@ -165,18 +137,13 @@ class CanvasViewController: ViewController {
         scrollView.addSubview(contentStackView)
 
         // Canvas Section
-        canvasSectionView.addSubview(canvasTitleLabel)
         canvasSectionView.addSubview(canvasDescriptionLabel)
         contentStackView.addArrangedSubview(canvasSectionView)
 
         // Prompt Section (add to stack view in order)
         contentStackView.addArrangedSubview(promptTitleLabel)
         contentStackView.addArrangedSubview(artTherapyPromptLabel)
-        contentStackView.addArrangedSubview(reflectiveQuestionLabel)
-        contentStackView.addArrangedSubview(templateHeaderView)
         contentStackView.addArrangedSubview(templateImageView)
-
-        templateHeaderView.addSubview(templateLabel)
 
         // Start Drawing Button
         contentStackView.addArrangedSubview(startDrawingButton)
@@ -184,8 +151,6 @@ class CanvasViewController: ViewController {
         // Initially hide prompt section until data loads
         promptTitleLabel.isHidden = true
         artTherapyPromptLabel.isHidden = true
-        reflectiveQuestionLabel.isHidden = true
-        templateHeaderView.isHidden = true
         templateImageView.isHidden = true
     }
 
@@ -209,22 +174,8 @@ class CanvasViewController: ViewController {
         }
 
         // Canvas Section Constraints
-        canvasTitleLabel.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-        }
-
         canvasDescriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(canvasTitleLabel.snp.bottom).offset(8)
-            make.left.right.bottom.equalToSuperview()
-        }
-
-        // Template Header Constraints (for label and button inside)
-        templateHeaderView.snp.makeConstraints { make in
-            make.height.equalTo(20)
-        }
-
-        templateLabel.snp.makeConstraints { make in
-            make.left.centerY.equalToSuperview()
+            make.edges.equalToSuperview()
         }
 
         // Template Image Constraints
@@ -248,26 +199,11 @@ class CanvasViewController: ViewController {
         // Update art therapy prompt
         artTherapyPromptLabel.text = prompt.artTherapyPrompt
 
-        // Update reflective question (hide if nil)
-        if let reflectiveQuestion = prompt.reflectiveQuestion, !reflectiveQuestion.isEmpty {
-            reflectiveQuestionLabel.text = reflectiveQuestion
-            reflectiveQuestionLabel.isHidden = false
-        } else {
-            reflectiveQuestionLabel.isHidden = true
-        }
-
         // Update template info
         if let templateName = prompt.templateName, !templateName.isEmpty {
-            templateLabel.text = String(
-                format: NSLocalizedString("template_name", comment: ""), templateName.capitalized)
             templateImageView.image = prompt.templateImage
-            templateHeaderView.isHidden = false
-            templateImageView.isHidden = false
-        } else {
-            // Hide both template header and image when no template
-            templateHeaderView.isHidden = true
-            templateImageView.isHidden = true
         }
+        templateImageView.isHidden = false
     }
 
 }
