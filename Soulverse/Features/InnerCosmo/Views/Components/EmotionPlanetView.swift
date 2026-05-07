@@ -125,7 +125,15 @@ class EmotionPlanetView: UIView {
 
     private func setupView() {
         backgroundColor = .clear
-        translatesAutoresizingMaskIntoConstraints = false
+        // NOTE: Leave `translatesAutoresizingMaskIntoConstraints` at its default (true).
+        // The parent (InnerCosmoRecentView) positions us by setting `bounds` and
+        // `center` directly, with no external AutoLayout anchors. Setting this to
+        // `false` would make AutoLayout treat us as having an undefined frame for
+        // constraint resolution: the internal `centerX.equalToSuperview()` would
+        // resolve once against `bounds.midX = 0` and stay glued to the left edge
+        // even after the parent assigns the real bounds. With the default `true`,
+        // mutating `bounds`/`center` propagates into implicit AutoLayout constraints,
+        // so inner subviews re-center correctly on the next layout pass.
 
         addSubview(haloView)
         haloView.layer.insertSublayer(haloGradientLayer, at: 0)

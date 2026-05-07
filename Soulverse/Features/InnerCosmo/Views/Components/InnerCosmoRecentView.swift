@@ -51,8 +51,8 @@ class InnerCosmoRecentView: UIView {
         // `orbitSpread` controls how spread out the 6 surrounding planets appear
         // along the arc. Sized so the rightmost planet's halo fits within
         // iPhone SE 2nd/3rd gen width (375pt) with a small safety margin.
-        static let visualBreathingRoom: CGFloat = 8
-        static let orbitSpread: CGFloat = 30
+        static let visualBreathingRoom: CGFloat = 12
+        static let orbitSpread: CGFloat = 20
 
         static var minOrbitGap: CGFloat {
             return positionRandomness + EmotionPlanetView.floatingAnimationAmplitude + visualBreathingRoom
@@ -109,10 +109,9 @@ class InnerCosmoRecentView: UIView {
         centralPlanetView.delegate = self
 
         // Emotion planet taps are handled at this level instead of on each EmotionPlanetView.
-        // EmotionPlanetView uses translatesAutoresizingMaskIntoConstraints = false with no
-        // external constraints, so Auto Layout can corrupt its frame. This makes gesture
-        // recognizers on individual planets unreliable. By handling taps here and using
-        // the actual rendered subview positions for hit testing, we bypass the frame issue.
+        // We use `planetCircleCenter(in:)` to query the actual rendered position of each
+        // planet's inner circle, so taps register on the visible circle even when its
+        // bounds are larger (e.g. wide labels widen the bounds horizontally).
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleEmotionPlanetTap(_:)))
         addGestureRecognizer(tap)
 
@@ -193,9 +192,9 @@ class InnerCosmoRecentView: UIView {
 
             // Target position is for the *visible planet circle*, not the view's
             // geometric center. For non-empty planets, the inner circle is offset
-            // upward inside its bounds (room for label below), so positioning by
-            // view.center would let the visible circle drift toward the central
-            // planet on the lower arc and away from it on the upper arc.
+            // (upward for label-below, downward for label-above) inside its bounds,
+            // so positioning by view.center would let the visible circle drift off
+            // the orbit. We compensate via planetCircleCenterInBounds() below.
             let targetCircleX = center.x + radius * CGFloat(cos(angle)) + jitterX
             let targetCircleY = center.y + radius * CGFloat(sin(angle)) + jitterY
 
