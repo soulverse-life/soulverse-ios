@@ -9,46 +9,6 @@
 
 import Foundation
 
-// MARK: - Radar / Line chart data (used by QuestRadarChartView; Plan 5 will refactor)
-
-struct RadarChartMetric {
-    let label: String
-    let value: Double
-    let maxValue: Double
-
-    var normalizedValue: Double {
-        return min(value / maxValue, 1.0)
-    }
-}
-
-struct QuestRadarData {
-    let metrics: [RadarChartMetric]
-    let title: String
-
-    init(title: String, metrics: [RadarChartMetric]) {
-        self.title = title
-        self.metrics = metrics
-    }
-}
-
-struct StageProgressPoint {
-    let stage: Int
-    let value: Double
-    let date: Date
-}
-
-struct QuestLineData {
-    let points: [StageProgressPoint]
-    let title: String
-    let maxStage: Int
-
-    init(title: String, points: [StageProgressPoint]) {
-        self.title = title
-        self.points = points.sorted { $0.stage < $1.stage }
-        self.maxStage = points.map { $0.stage }.max() ?? 0
-    }
-}
-
 // MARK: - Main ViewModel
 
 struct QuestViewModel {
@@ -81,11 +41,6 @@ struct QuestViewModel {
     // Derived: Plan 5 — Survey section composed state + 8-Dim render model
     var surveySection: SurveySectionModel
     var eightDimensions: EightDimensionsRenderModel
-
-    // Plan 5 will reintroduce a focused-axis radar field; until then the
-    // existing QuestRadarChartView stays consumer-less in this plan.
-    var radarChartData: QuestRadarData?
-    var lineChartData: QuestLineData?
 
     // MARK: - Stable unlock thresholds
 
@@ -167,9 +122,7 @@ struct QuestViewModel {
             customHabitSlotVisible: customHabitSlotVisible,
             surveySectionVisible: days >= surveySectionUnlockDay,
             surveySection: surveySection,
-            eightDimensions: eightDimensions,
-            radarChartData: nil,
-            lineChartData: nil
+            eightDimensions: eightDimensions
         )
     }
 }

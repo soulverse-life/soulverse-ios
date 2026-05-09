@@ -305,8 +305,6 @@
 		7951AA032E537704006EB0EC /* ToolsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */; };
 		7951AA042E537704006EB0EC /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FD2E537704006EB0EC /* ToolsViewController.swift */; };
 		79710ED82E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */; };
-		79710EDA2E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */; };
-		79710EDD2E6D974D007665DB /* QuestProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */; };
 		79710EDE2E6D974D007665DB /* QuestProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */; };
 		798687EE2E6C248E00EB3B38 /* InsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E92E6C248E00EB3B38 /* InsightViewModel.swift */; };
 		798687EF2E6C248E00EB3B38 /* InsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687EB2E6C248E00EB3B38 /* InsightViewController.swift */; };
@@ -794,8 +792,6 @@
 		7951A9C52E5376B5006EB0EC /* InnerCosmoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewController.swift; sourceTree = "<group>"; };
 		7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenter.swift; sourceTree = "<group>"; };
 		7951A9FD2E537704006EB0EC /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
-		79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRadarChartView.swift; sourceTree = "<group>"; };
-		79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestProgressLineView.swift; sourceTree = "<group>"; };
 		798687E72E6C248E00EB3B38 /* InsightViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightViewPresenter.swift; sourceTree = "<group>"; };
 		798687E92E6C248E00EB3B38 /* InsightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightViewModel.swift; sourceTree = "<group>"; };
 		798687EB2E6C248E00EB3B38 /* InsightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightViewController.swift; sourceTree = "<group>"; };
@@ -1978,8 +1974,6 @@
 		798688062E6C24EE00EB3B38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */,
-				79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */,
 				798688052E6C24EE00EB3B38 /* QuestViewController.swift */,
 				B0A6B3F9B3F7E258AD16B2CA /* ProgressSection */,
 				4F04A7E8F48E7744B1DA715C /* LockedCard */,
@@ -3198,7 +3192,6 @@
 				7951AA032E537704006EB0EC /* ToolsViewPresenter.swift in Sources */,
 				798688102E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */,
 				790D87FA2ED20A0A00D4F61F /* ToolsModel.swift in Sources */,
-				79710EDD2E6D974D007665DB /* QuestProgressLineView.swift in Sources */,
 				7951AA042E537704006EB0EC /* ToolsViewController.swift in Sources */,
 				790AD2CF2DF9E43200C33CD1 /* WebViewController.swift in Sources */,
 				790AD2D12DF9E43200C33CD1 /* String+Extension.swift in Sources */,
@@ -3265,7 +3258,6 @@
 				790AD3072DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
 				79EE74D92F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */,
 				79EE74DA2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */,
-				79710EDA2E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
 				79389F672F05760D0016CB7F /* EmotionPlanetView.swift in Sources */,
 				79389F682F05760D0016CB7F /* InnerCosmoRecentView.swift in Sources */,
 				79389F6A2F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */,

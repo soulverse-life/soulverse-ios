@@ -658,3 +658,6 @@
 "quest_result_card_soc_summary" = "Your stage is highlighted below the radar.";
 "quest_result_card_satisfaction_title" = "Satisfaction reflection";
 "quest_result_card_satisfaction_summary" = "Your highest and lowest areas are surfaced in your Quest.";
+
+// Quest — Plan 7 polish: habit increment button format
+"quest_habit_increment_button_format" = "+%d";

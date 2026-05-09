@@ -99,7 +99,10 @@ final class DefaultHabitCard: UIView {
 
     private func makeIncrementButton(amount: Int) -> UIButton {
         let button = UIButton(type: .system)
-        button.setTitle("+\(amount)", for: .normal)
+        button.setTitle(
+            String(format: NSLocalizedString("quest_habit_increment_button_format", comment: ""), amount),
+            for: .normal
+        )
         button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline)
         button.setTitleColor(.themeButtonSecondaryText, for: .normal)
         button.backgroundColor = .themeButtonSecondaryBackground
