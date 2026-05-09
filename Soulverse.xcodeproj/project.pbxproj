@@ -59,6 +59,7 @@
 		423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		44372F0CF57371B1CFEDDD22 /* ProfessionalSupportSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A48E84E65B0EB1046B5AB8A /* ProfessionalSupportSectionViewModelTests.swift */; };
 		44C3423F24CAD63B0FD3BE09 /* Pods_Base_Soulverse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */; };
+		4619BA04AAE13058073C1D82 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CADED06D1EF601E2CC1277 /* SurveyViewController.swift */; };
 		4620DA137B9A4DAD4EC56EA6 /* FirestoreQuestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBDAADA414C05475799488F /* FirestoreQuestService.swift */; };
 		47D5117114813C02666FD1AA /* JournalServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A1277CD76964C881879A2 /* JournalServiceProtocol.swift */; };
 		48E8C991F90897E6DDA9807B /* InsightViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747376777B5866EF992CA14C /* InsightViewPresenterTests.swift */; };
@@ -66,18 +67,23 @@
 		4B51C9757498E622AF693092 /* MoodEntriesDataAssemblerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D44F927D93BEB0DA5699F4F /* MoodEntriesDataAssemblerTests.swift */; };
 		4C5DA1990A7740F49529882A /* WeeklyMoodScoreViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB351D7409FEACE9BE53BE /* WeeklyMoodScoreViewModelTests.swift */; };
 		4D063BD599EEA6A2040C7ABB /* EmotionalBundleMainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEBCA322784CD8D7F94DE23 /* EmotionalBundleMainViewModelTests.swift */; };
+		50D75E8440ADED437FA7A431 /* SurveyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3EE1CA7C43DC2B8F401BE /* SurveyContent.swift */; };
 		51D44910A218DC8B8116E288 /* FirestoreDrawingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */; };
 		537A9C9DB8B5757CF367B783 /* RecordedEmotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA97A0D5537477FC8E3374B /* RecordedEmotionTests.swift */; };
 		5420BA20E87D9967F501E129 /* FirestoreJournalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659D171EB01E4F3823113C03 /* FirestoreJournalService.swift */; };
 		5FB242B1781C5956CDC31A78 /* ErrorReportingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3936C4C4200D3E36282A /* ErrorReportingTests.swift */; };
 		6009E3A97AD857D0070766C9 /* MoodCheckInDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A840760ABEE725B08771D /* MoodCheckInDataTests.swift */; };
 		6026E6F1B6136CA370157840 /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
+		635B4C73143CCB4B84261FD0 /* StateOfChangeSurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303767E85FD3EBF3A055AFC /* StateOfChangeSurveyDefinition.swift */; };
 		637799F14CA363C9E956E518 /* DetailReflectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2575FCF8292C633DF8FF8577 /* DetailReflectionSection.swift */; };
 		64AF4AE865D91E895E4BDC1C /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
 		658B57687FB0CB589B2E15A4 /* DrawingCanvasPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833DFE885D5514ECFD5960A /* DrawingCanvasPresenterDelegateMock.swift */; };
+		670D00D46B4991F2B995108E /* SurveyResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB8EBC88E1D452433AB815 /* SurveyResultViewController.swift */; };
 		6917E00E90C130BA55BD2B9A /* ToolsViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A89532F54342452F4E920 /* ToolsViewPresenterDelegateMock.swift */; };
+		6A07DF149382FA4CD96CE7F8 /* EightDimSurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9985ECA92204EF92DD6B325F /* EightDimSurveyDefinition.swift */; };
 		6B74A2A94CB8CB48FEF17C5D /* DrawingGalleryPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */; };
 		6B9D4AE88A3ADA775F9F4B6A /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
+		6DDD15AC54B126858F4C955A /* SurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18BFE437205D857853085D /* SurveyDefinition.swift */; };
 		6FC3F15D3FCC758F391229D6 /* CheckInDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178718BD3777BBF33A1E4037 /* CheckInDetailViewModel.swift */; };
 		7161096E3C272B5EACA82BC9 /* CustomHabitFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD987D99948ACB3446E74D68 /* CustomHabitFormViewModel.swift */; };
 		7386C88FE02C4A98CDC65395 /* QuestStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF61D471C9754C3495410815 /* QuestStateModel.swift */; };
@@ -414,6 +420,7 @@
 		7AE10CFF02000000000000B2 /* DrawingPromptPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */; };
 		7B8515DA6D49FBA7FB4B73F6 /* QuestNotificationHourTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27275458EC8CE2240070A491 /* QuestNotificationHourTests.swift */; };
 		7BB198E2D8DE3EDEF35DCDC8 /* InnerCosmoViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44C2E1B8167E15D1A17DB8 /* InnerCosmoViewPresenterTests.swift */; };
+		7C0507DE2BC98D3E7A7BD619 /* SatisfactionSurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA07F6545C75B921B88C8FC7 /* SatisfactionSurveyDefinition.swift */; };
 		7D54880ED3482D5B8E7B101A /* StaySafeSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557EAAE097EC0EB8B2C9994B /* StaySafeSectionViewModel.swift */; };
 		83B406F26FBBD050AAB70357 /* DrawingReplayPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D57DE6A82816385F47A87 /* DrawingReplayPresenterTests.swift */; };
 		844C6497E2BD379B8151FCAC /* HabitCheckerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CFCF4E6309377E6CD407E /* HabitCheckerSection.swift */; };
@@ -481,6 +488,7 @@
 		C607F743B51CA4C1DE23440E /* QuestTimezoneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245B803B3140A3F7D9CD61C /* QuestTimezoneCalculator.swift */; };
 		C84B64553755C52006E77CB0 /* CrashlyticsClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */; };
 		C9329A8334A5248AFA4C882E /* QuestStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B755C43C7BCDF8299509D6F1 /* QuestStage.swift */; };
+		CC05CB7C69046F0012AC8D46 /* ImportanceSurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DF47FA179B19C6AC02C909 /* ImportanceSurveyDefinition.swift */; };
 		CD272848378CB5C9FB794ADA /* ErrorReporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */; };
 		CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */; };
 		D14096F47439C0A9D91C7B28 /* Constants+CheckInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */; };
@@ -518,6 +526,7 @@
 		E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */; };
 		E9D694DEE57BA594D2169C63 /* BundleSectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6F9856E4AC47CE6B05355 /* BundleSectionCardView.swift */; };
 		EA40CFB07B604234819D7CA4 /* CanvasViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1311990A33E93E5D4C6F37E6 /* CanvasViewPresenterTests.swift */; };
+		EAA8D3C119257BB661088D98 /* FirestoreSurveyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E47A6900098AA0512D9D0 /* FirestoreSurveyService.swift */; };
 		F204463776F9581F97BBF6C6 /* DrawingGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87D35E8E7AD990440D588A0 /* DrawingGalleryViewController.swift */; };
 		F2E2FC2A93FA9CEABE0AAC5F /* TopicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E56565E1067F09318717526 /* TopicTests.swift */; };
 		F3AB32AEA30ED6FB62FD45D9 /* DrawingCanvasPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD04250F40AD48441C462A5 /* DrawingCanvasPresenterTests.swift */; };
@@ -616,10 +625,12 @@
 		42762D57CBBA0A87B1D5C733 /* CrisisResourceCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CrisisResourceCardView.swift; sourceTree = "<group>"; };
 		43C55544C0570D9D226D8E8B /* RedFlagsSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RedFlagsSectionViewController.swift; sourceTree = "<group>"; };
 		44B4FD47CBD19494846367A6 /* QuestServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceProtocol.swift; sourceTree = "<group>"; };
+		45CADED06D1EF601E2CC1277 /* SurveyViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		48E73787F4BF8E8C1D7A3403 /* QuestStageTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStageTests.swift; sourceTree = "<group>"; };
 		4F086EFB7A0C114933FE0F5D /* EmotionalBundleServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleServiceProtocol.swift; sourceTree = "<group>"; };
 		52FC116D149D9314A21F06C5 /* QuestServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceMock.swift; sourceTree = "<group>"; };
 		5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterDelegateMock.swift; sourceTree = "<group>"; };
+		5303767E85FD3EBF3A055AFC /* StateOfChangeSurveyDefinition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StateOfChangeSurveyDefinition.swift; sourceTree = "<group>"; };
 		5319EAD36EAC7E739D025A84 /* QuestStateModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStateModelTests.swift; sourceTree = "<group>"; };
 		53A1F174548B2DDBE153C93E /* FirestoreDeviceTokenService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreDeviceTokenService.swift; sourceTree = "<group>"; };
 		545EED434F6369FD9BF5FB8A /* MoodCheckInServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceTests.swift; sourceTree = "<group>"; };
@@ -638,6 +649,7 @@
 		5F2A1277CD76964C881879A2 /* JournalServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalServiceProtocol.swift; sourceTree = "<group>"; };
 		5FAB13B6BE60834F09C4F60A /* CheckInDetailPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckInDetailPresenter.swift; sourceTree = "<group>"; };
 		60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingUserDataTests.swift; sourceTree = "<group>"; };
+		62AB8EBC88E1D452433AB815 /* SurveyResultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveyResultViewController.swift; sourceTree = "<group>"; };
 		6348D94EA8312D4C9A8E6837 /* RedFlagsSectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RedFlagsSectionViewModel.swift; sourceTree = "<group>"; };
 		655D57DE6A82816385F47A87 /* DrawingReplayPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReplayPresenterTests.swift; sourceTree = "<group>"; };
 		659D171EB01E4F3823113C03 /* FirestoreJournalService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreJournalService.swift; sourceTree = "<group>"; };
@@ -648,6 +660,7 @@
 		6A1E4D78EAA08D9BD40D689C /* FirestoreSchemaTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreSchemaTests.swift; sourceTree = "<group>"; };
 		6BB6FE0EEE88FEEB784461AE /* LockedCardHint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LockedCardHint.swift; sourceTree = "<group>"; };
 		6DE60F310C8AB64668217ECB /* DrawingModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
+		6F9E47A6900098AA0512D9D0 /* FirestoreSurveyService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreSurveyService.swift; sourceTree = "<group>"; };
 		6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DevAuthService.swift; sourceTree = "<group>"; };
 		715B7B1090574611BFDFC632 /* TopicDistributionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionView.swift; sourceTree = "<group>"; };
 		747376777B5866EF992CA14C /* InsightViewPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InsightViewPresenterTests.swift; sourceTree = "<group>"; };
@@ -841,6 +854,7 @@
 		94A9B20A12DC4A86E20CFDF0 /* FeelCalmSectionViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeelCalmSectionViewModelTests.swift; sourceTree = "<group>"; };
 		95E9BE5C9E829C8D55487C0D /* QuestProgressSectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestProgressSectionView.swift; sourceTree = "<group>"; };
 		9789F843142D96E67C70804C /* StaySafeSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StaySafeSectionViewController.swift; sourceTree = "<group>"; };
+		9985ECA92204EF92DD6B325F /* EightDimSurveyDefinition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EightDimSurveyDefinition.swift; sourceTree = "<group>"; };
 		9A44C2E1B8167E15D1A17DB8 /* InnerCosmoViewPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterTests.swift; sourceTree = "<group>"; };
 		9DA4863D9AA9015B5E1ABBEB /* DrawingGalleryPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenter.swift; sourceTree = "<group>"; };
 		9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserService.swift; sourceTree = "<group>"; };
@@ -860,6 +874,7 @@
 		ABA97A0D5537477FC8E3374B /* RecordedEmotionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordedEmotionTests.swift; sourceTree = "<group>"; };
 		ABBDAADA414C05475799488F /* FirestoreQuestService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreQuestService.swift; sourceTree = "<group>"; };
 		ACD8D9DC4265FF367E93D223 /* MoodEntriesDataAssemblerMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerMock.swift; sourceTree = "<group>"; };
+		ADC3EE1CA7C43DC2B8F401BE /* SurveyContent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveyContent.swift; sourceTree = "<group>"; };
 		ADE76100ED69CDC5A76DE798 /* EmotionalBundleMainViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainViewController.swift; sourceTree = "<group>"; };
 		AE6B280020C45EA2E157E44B /* FirestoreHabitService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreHabitService.swift; sourceTree = "<group>"; };
 		B13356FF749A1E34851D44C3 /* ProfileViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
@@ -881,9 +896,11 @@
 		C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreMoodCheckInService.swift; sourceTree = "<group>"; };
 		C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Constants+CheckInDetail.swift"; sourceTree = "<group>"; };
 		C7F022BFD84C7AB6E0A5520B /* DrawingServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingServiceMock.swift; sourceTree = "<group>"; };
+		CA07F6545C75B921B88C8FC7 /* SatisfactionSurveyDefinition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SatisfactionSurveyDefinition.swift; sourceTree = "<group>"; };
 		CD522D21982055E427119340 /* RedFlagsSectionViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RedFlagsSectionViewModelTests.swift; sourceTree = "<group>"; };
 		CDD04250F40AD48441C462A5 /* DrawingCanvasPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingCanvasPresenterTests.swift; sourceTree = "<group>"; };
 		CDD732A67B3784224BA518E7 /* Pods-Base-Soulverse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.debug.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.debug.xcconfig"; sourceTree = "<group>"; };
+		CE18BFE437205D857853085D /* SurveyDefinition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveyDefinition.swift; sourceTree = "<group>"; };
 		CFA797599B2D96DABE13EE73 /* HabitTelemetry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitTelemetry.swift; sourceTree = "<group>"; };
 		D0774B104E6B7E8550A2C9ED /* SupportMeSectionViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SupportMeSectionViewModelTests.swift; sourceTree = "<group>"; };
 		D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ErrorReporting.swift; sourceTree = "<group>"; };
@@ -918,6 +935,7 @@
 		E8A4C89C26BA41150082B4F7 /* SoulverseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoulverseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9953E6511CE3505A303F9E7 /* LoadingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		E9A4342554B5B0F59BAA4F80 /* MoodCheckInServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceMock.swift; sourceTree = "<group>"; };
+		E9DF47FA179B19C6AC02C909 /* ImportanceSurveyDefinition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImportanceSurveyDefinition.swift; sourceTree = "<group>"; };
 		EB4A7FB0D1FCDD8CC81DECBB /* DetailDrawingSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetailDrawingSection.swift; sourceTree = "<group>"; };
 		EDA116D179BEAA6D57A12D74 /* CanvasViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CanvasViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		EF61D471C9754C3495410815 /* QuestStateModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStateModel.swift; sourceTree = "<group>"; };
@@ -1948,6 +1966,7 @@
 				798688042E6C24EE00EB3B38 /* ViewModels */,
 				798688062E6C24EE00EB3B38 /* Views */,
 				7CE17210223AD8EBC099FE94 /* Habits */,
+				B3356C80A319E7073646151D /* Surveys */,
 			);
 			path = Quest;
 			sourceTree = "<group>";
@@ -2342,6 +2361,23 @@
 				E171DE35597BA70C8B122CD8 /* ToolsViewPresenterTests.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		B3356C80A319E7073646151D /* Surveys */ = {
+			isa = PBXGroup;
+			children = (
+				ADC3EE1CA7C43DC2B8F401BE /* SurveyContent.swift */,
+				CE18BFE437205D857853085D /* SurveyDefinition.swift */,
+				E9DF47FA179B19C6AC02C909 /* ImportanceSurveyDefinition.swift */,
+				9985ECA92204EF92DD6B325F /* EightDimSurveyDefinition.swift */,
+				5303767E85FD3EBF3A055AFC /* StateOfChangeSurveyDefinition.swift */,
+				CA07F6545C75B921B88C8FC7 /* SatisfactionSurveyDefinition.swift */,
+				6F9E47A6900098AA0512D9D0 /* FirestoreSurveyService.swift */,
+				45CADED06D1EF601E2CC1277 /* SurveyViewController.swift */,
+				62AB8EBC88E1D452433AB815 /* SurveyResultViewController.swift */,
+			);
+			name = Surveys;
+			path = Surveys;
 			sourceTree = "<group>";
 		};
 		B54E6F390D87E6ECADF3FD48 /* ViewModels */ = {
@@ -3312,6 +3348,15 @@
 				D37276EE34A95E59EBA59B5F /* CustomHabitFormViewController.swift in Sources */,
 				B38740819593D1CB3F88AB41 /* CustomHabitDeletionConfirmation.swift in Sources */,
 				844C6497E2BD379B8151FCAC /* HabitCheckerSection.swift in Sources */,
+				50D75E8440ADED437FA7A431 /* SurveyContent.swift in Sources */,
+				6DDD15AC54B126858F4C955A /* SurveyDefinition.swift in Sources */,
+				CC05CB7C69046F0012AC8D46 /* ImportanceSurveyDefinition.swift in Sources */,
+				6A07DF149382FA4CD96CE7F8 /* EightDimSurveyDefinition.swift in Sources */,
+				635B4C73143CCB4B84261FD0 /* StateOfChangeSurveyDefinition.swift in Sources */,
+				7C0507DE2BC98D3E7A7BD619 /* SatisfactionSurveyDefinition.swift in Sources */,
+				EAA8D3C119257BB661088D98 /* FirestoreSurveyService.swift in Sources */,
+				4619BA04AAE13058073C1D82 /* SurveyViewController.swift in Sources */,
+				670D00D46B4991F2B995108E /* SurveyResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
