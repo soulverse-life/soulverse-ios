@@ -49,6 +49,7 @@
 		385D2519CEFF7A5BED4D0255 /* EmotionTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7278578F137612349A77E22 /* EmotionTypeTests.swift */; };
 		39F2E1BFB36DFC87A73C114A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9953E6511CE3505A303F9E7 /* LoadingView.swift */; };
 		3B14B08F9555C197E1E4F9FA /* ProfileViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13356FF749A1E34851D44C3 /* ProfileViewPresenterDelegateMock.swift */; };
+		3CC7DE3DA88074709D95B980 /* FirestoreDeviceTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB814AF8E37728828F8DFC7 /* FirestoreDeviceTokenServiceTests.swift */; };
 		3DE6377D2BB4E7CB075946CC /* FeelCalmSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB214046513A25767B1757 /* FeelCalmSectionViewModel.swift */; };
 		3E613F5B554654A630D26EC3 /* FeelCalmSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B20A12DC4A86E20CFDF0 /* FeelCalmSectionViewModelTests.swift */; };
 		3EEC60F5808E55A5BDB9D81F /* DrawingCanvasPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */; };
@@ -445,6 +446,7 @@
 		A848471F529A30BB4065C1A9 /* EvaluationOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F89A9D358017D65133095 /* EvaluationOptionTests.swift */; };
 		A88F46F2FE6B761AC9159FDA /* WeeklyMoodScoreViewModel+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */; };
 		AAB8686144E132BDBD175A2A /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
+		AAD7FE3D33B1610DA4D1093B /* FirestoreDeviceTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A1F174548B2DDBE153C93E /* FirestoreDeviceTokenService.swift */; };
 		AB5790658142702E96058E0B /* StaySafeSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4217F49B101E056F9679585A /* StaySafeSectionViewModelTests.swift */; };
 		AE8238450575EE11F60CD300 /* StaySafeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9789F843142D96E67C70804C /* StaySafeSectionViewController.swift */; };
 		B1A2C3D4E5F6A7B8C9D0E1F2 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
@@ -606,6 +608,7 @@
 		52FC116D149D9314A21F06C5 /* QuestServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceMock.swift; sourceTree = "<group>"; };
 		5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		5319EAD36EAC7E739D025A84 /* QuestStateModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStateModelTests.swift; sourceTree = "<group>"; };
+		53A1F174548B2DDBE153C93E /* FirestoreDeviceTokenService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreDeviceTokenService.swift; sourceTree = "<group>"; };
 		545EED434F6369FD9BF5FB8A /* MoodCheckInServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceTests.swift; sourceTree = "<group>"; };
 		557EAAE097EC0EB8B2C9994B /* StaySafeSectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StaySafeSectionViewModel.swift; sourceTree = "<group>"; };
 		55E82F16483EBA0D0699E631 /* TestHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
@@ -836,6 +839,7 @@
 		A87D35E8E7AD990440D588A0 /* DrawingGalleryViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryViewController.swift; sourceTree = "<group>"; };
 		A8C59E22D0E948D8EE0F606C /* MoodCheckInServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceProtocol.swift; sourceTree = "<group>"; };
 		A8FA67C204F2A591ECD30F1F /* ToolsViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewModelTests.swift; sourceTree = "<group>"; };
+		AAB814AF8E37728828F8DFC7 /* FirestoreDeviceTokenServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreDeviceTokenServiceTests.swift; sourceTree = "<group>"; };
 		ABA97A0D5537477FC8E3374B /* RecordedEmotionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordedEmotionTests.swift; sourceTree = "<group>"; };
 		ABBDAADA414C05475799488F /* FirestoreQuestService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreQuestService.swift; sourceTree = "<group>"; };
 		ACD8D9DC4265FF367E93D223 /* MoodEntriesDataAssemblerMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerMock.swift; sourceTree = "<group>"; };
@@ -1118,6 +1122,7 @@
 				7944F86CC003ED2E9C1444E8 /* FirestoreQuestServiceTests.swift */,
 				27275458EC8CE2240070A491 /* QuestNotificationHourTests.swift */,
 				8DEFAD9F0BEF567C9A881463 /* QuestViewModelTests.swift */,
+				AAB814AF8E37728828F8DFC7 /* FirestoreDeviceTokenServiceTests.swift */,
 			);
 			name = Quest;
 			path = Quest;
@@ -1504,6 +1509,7 @@
 				D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */,
 				3789987A38ACBD7FA32C1FFD /* EmotionalBundleService */,
 				69A4C542EF926121DB0FDB60 /* QuestService */,
+				53A1F174548B2DDBE153C93E /* FirestoreDeviceTokenService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -3248,6 +3254,7 @@
 				D18DEC6D7FD91EB16DC1B9D7 /* QuestProgressDotsView.swift in Sources */,
 				75CB5CEE916948455565C671 /* QuestProgressSectionView.swift in Sources */,
 				C47D335B0791DA4AC4C98D82 /* QuestLockedCardView.swift in Sources */,
+				AAD7FE3D33B1610DA4D1093B /* FirestoreDeviceTokenService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3320,6 +3327,7 @@
 				7B8515DA6D49FBA7FB4B73F6 /* QuestNotificationHourTests.swift in Sources */,
 				D7381A08AA552B1289C0C814 /* QuestViewModelTests.swift in Sources */,
 				2F58A765E45D0A433E30504F /* QuestServiceMock.swift in Sources */,
+				3CC7DE3DA88074709D95B980 /* FirestoreDeviceTokenServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
