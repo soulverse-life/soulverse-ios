@@ -430,3 +430,24 @@
 
 // Quest — 8-Dim card
 "quest_eight_dim_card_title" = "Your 8 Dimensions";
+
+// Quest — Habit Checker
+"quest_habit_section_title" = "Daily Micro Behaviors";
+"quest_habit_exercise_title" = "Exercise";
+"quest_habit_water_title" = "Water";
+"quest_habit_meditation_title" = "Meditation";
+"quest_habit_today_format" = "Today: %d %@";
+"quest_habit_yesterday_format" = "Yesterday: %d %@";
+"quest_habit_resets_at_midnight" = "Resets at midnight";
+"quest_habit_add_custom_locked_format" = "Custom habit unlocks in %d days";
+"quest_habit_add_custom_available" = "Add Custom Habit";
+"quest_habit_form_title" = "New Custom Habit";
+"quest_habit_form_name_placeholder" = "Habit name (e.g., Stretch)";
+"quest_habit_form_unit_placeholder" = "Unit (e.g., min, ml, pages)";
+"quest_habit_form_save" = "Save";
+"quest_habit_form_preview_format" = "Preview: %@ — buttons %@ %@";
+"quest_habit_form_preview_invalid" = "Fill in name, unit, and three distinct positive numbers.";
+"quest_habit_delete_alert_title" = "Delete Custom Habit?";
+"quest_habit_delete_alert_body_format" = "Delete '%@'? You can create a new custom habit after this.";
+"quest_habit_delete_alert_cancel" = "Cancel";
+"quest_habit_delete_alert_confirm" = "Delete";

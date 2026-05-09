@@ -58,6 +58,20 @@ class QuestViewController: ViewController {
 
     private let presenter = QuestViewPresenter()
 
+    /// Plan 3 — Habit Checker. Lazy because it needs an authenticated uid.
+    private lazy var habitService: FirestoreHabitService? = {
+        guard let uid = User.shared.userId else { return nil }
+        return FirestoreHabitService(uid: uid)
+    }()
+
+    private lazy var habitCheckerSection: HabitCheckerSection? = {
+        guard let service = habitService else { return nil }
+        let section = HabitCheckerSection(service: service)
+        section.onAddTap = { [weak self] in self?.presentCustomHabitForm() }
+        section.onDeleteTap = { [weak self] habit in self?.confirmDelete(habit: habit) }
+        return section
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -118,8 +132,7 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
         case .eightDimensions:
             return UITableView.automaticDimension
         case .habitChecker:
-            // Plan 3 fills this section.
-            return Layout.zeroHeight
+            return habitCheckerSection == nil ? Layout.zeroHeight : UITableView.automaticDimension
         case .surveys:
             // Plan 4 fills this section. Until then, hidden when distinctCheckInDays < 7.
             return model.surveySectionVisible ? UITableView.automaticDimension : Layout.zeroHeight
@@ -142,7 +155,7 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
         case .eightDimensions:
             renderEightDimensionsSection(into: cell, model: model)
         case .habitChecker:
-            break  // Plan 3
+            renderHabitCheckerSection(into: cell, model: model)
         case .surveys:
             break  // Plan 4
         }
@@ -160,6 +173,35 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
         progressView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+
+    private func renderHabitCheckerSection(into cell: UITableViewCell, model: QuestViewModel) {
+        guard let section = habitCheckerSection else { return }
+        section.update(distinctCheckInDays: model.state.distinctCheckInDays)
+        cell.contentView.addSubview(section)
+        section.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+
+    private func presentCustomHabitForm() {
+        guard let service = habitService else { return }
+        let formVC = CustomHabitFormViewController()
+        formVC.onSave = { [weak self] name, unit, increments in
+            service.createCustomHabit(name: name, unit: unit, increments: increments)
+            self?.dismiss(animated: true)
+        }
+        formVC.onCancel = { [weak self] in self?.dismiss(animated: true) }
+        let nav = UINavigationController(rootViewController: formVC)
+        present(nav, animated: true)
+    }
+
+    private func confirmDelete(habit: CustomHabit) {
+        guard let service = habitService else { return }
+        let alert = CustomHabitDeletionConfirmation.make(habitName: habit.name) {
+            service.softDeleteCustomHabit(id: habit.id)
+        }
+        present(alert, animated: true)
     }
 
     private func renderEightDimensionsSection(into cell: UITableViewCell, model: QuestViewModel) {
