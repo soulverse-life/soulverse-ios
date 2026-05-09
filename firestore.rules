@@ -4,16 +4,23 @@ service cloud.firestore {
     match /users/{uid} {
       allow read, write: if request.auth != null && request.auth.uid == uid;
 
+      // Mood check-ins — server-stamped createdAt, timezoneOffsetMinutes range
       match /mood_checkins/{checkinId} {
         allow read, delete: if request.auth.uid == uid;
         allow create: if request.auth.uid == uid
                       && request.resource.data.keys().hasAll([
                            'colorHex', 'colorIntensity', 'emotion',
-                           'topic', 'evaluation', 'createdAt'
-                         ]);
+                           'topic', 'evaluation', 'createdAt',
+                           'timezoneOffsetMinutes'
+                         ])
+                      && request.resource.data.createdAt == request.time
+                      && request.resource.data.timezoneOffsetMinutes is int
+                      && request.resource.data.timezoneOffsetMinutes >= -840
+                      && request.resource.data.timezoneOffsetMinutes <= 840;
         allow update: if request.auth.uid == uid;
       }
 
+      // Drawings (existing)
       match /drawings/{drawingId} {
         allow read, delete: if request.auth.uid == uid;
         allow create: if request.auth.uid == uid
@@ -23,6 +30,7 @@ service cloud.firestore {
         allow update: if request.auth.uid == uid;
       }
 
+      // Journals (existing)
       match /journals/{journalId} {
         allow read, delete: if request.auth.uid == uid;
         allow create: if request.auth.uid == uid
@@ -32,10 +40,49 @@ service cloud.firestore {
         allow update: if request.auth.uid == uid;
       }
 
+      // Emotional bundle (existing)
       match /emotional_bundle/{bundleId} {
         allow read: if request.auth.uid == uid;
         allow create, update: if request.auth.uid == uid;
         allow delete: if request.auth.uid == uid;
+      }
+
+      // Quest aggregate state — most fields server-only.
+      // Client may only set timezoneOffsetMinutes and notificationHour at app launch.
+      match /quest_state/{document=**} {
+        allow read: if request.auth.uid == uid;
+        allow create: if request.auth.uid == uid;
+        allow update: if request.auth.uid == uid
+                      && request.resource.data.diff(resource.data).affectedKeys()
+                            .hasOnly(['timezoneOffsetMinutes', 'notificationHour']);
+        allow delete: if false;
+      }
+
+      // Habit aggregate doc — client read/write within own scope.
+      match /habits/state {
+        allow read, write: if request.auth.uid == uid;
+      }
+
+      // Survey submissions — write-once.
+      match /survey_submissions/{submissionId} {
+        allow read: if request.auth.uid == uid;
+        allow create: if request.auth.uid == uid
+                      && request.resource.data.submittedAt == request.time
+                      && request.resource.data.surveyType in
+                          ['importance_check_in', '8dim',
+                           'state_of_change', 'satisfaction_check_in'];
+        allow update, delete: if false;
+      }
+
+      // Notification state — server-only via Admin SDK.
+      match /notification_state/{ruleId} {
+        allow read: if request.auth.uid == uid;
+        allow write: if false;
+      }
+
+      // FCM device tokens.
+      match /devices/{deviceId} {
+        allow read, write: if request.auth.uid == uid;
       }
     }
   }
