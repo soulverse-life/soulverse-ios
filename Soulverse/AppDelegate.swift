@@ -38,6 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardToolbarManager.shared.isEnabled = true
         IQKeyboardToolbarManager.shared.toolbarConfiguration.doneBarButtonConfiguration = IQBarButtonItemConfiguration(systemItem: .done)
 
+        // Quest: write current device timezone + notificationHour to quest_state
+        // (the only client-writable fields per Plan 1 Security Rules).
+        if let uid = User.shared.userId {
+            FirestoreQuestService.shared.writeCurrentTimezone(uid: uid)
+        }
+
         return true
     }
     

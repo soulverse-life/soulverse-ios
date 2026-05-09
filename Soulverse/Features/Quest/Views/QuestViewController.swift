@@ -3,9 +3,25 @@
 //
 
 import UIKit
+import SnapKit
 
 class QuestViewController: ViewController {
-    
+
+    private enum Section: Int, CaseIterable {
+        case progress = 0
+        case eightDimensions
+        case habitChecker
+        case surveys
+    }
+
+    private enum Layout {
+        static let progressSectionVerticalPadding: CGFloat = 16
+        static let cardSidePadding: CGFloat = ViewComponentConstants.horizontalPadding
+        static let cardVerticalPadding: CGFloat = 12
+        static let lockedCardHeight: CGFloat = 220
+        static let zeroHeight: CGFloat = 0.01
+    }
+
     private lazy var navigationView: SoulverseNavigationView = {
         let bellIcon = UIImage(systemName: "bell")
         let personIcon = UIImage(systemName: "person")
@@ -13,31 +29,25 @@ class QuestViewController: ViewController {
         let notificationItem = SoulverseNavigationItem.button(
             image: bellIcon,
             identifier: "notification"
-        ) { [weak self] in
-            self?.notificationTapped()
-        }
+        ) { [weak self] in self?.notificationTapped() }
 
         let profileItem = SoulverseNavigationItem.button(
             image: personIcon,
             identifier: "profile"
-        ) { [weak self] in
-            self?.profileTapped()
-        }
+        ) { [weak self] in self?.profileTapped() }
 
         let config = SoulverseNavigationConfig(
             title: NSLocalizedString("quest", comment: ""),
             showBackButton: false,
             rightItems: [notificationItem, profileItem]
         )
-
-        let view = SoulverseNavigationView(config: config)
-        return view
+        return SoulverseNavigationView(config: config)
     }()
-    
+
     private lazy var tableView: UITableView = { [weak self] in
         let table = UITableView(frame: .zero, style: .grouped)
         table.backgroundColor = .clear
-        table.backgroundView = nil  // Remove default background to show gradient
+        table.backgroundView = nil
         table.separatorStyle = .none
         table.delegate = self
         table.dataSource = self
@@ -45,164 +55,178 @@ class QuestViewController: ViewController {
         table.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         return table
     }()
+
     private let presenter = QuestViewPresenter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupPresenter()
+        presenter.delegate = self
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        // Load data when view appears
-        presenter.fetchData()
+        presenter.start()
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        presenter.stop()
     }
-    func setupView() {
-        // Hide default navigation bar
+
+    private func setupView() {
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
         view.addSubview(navigationView)
         view.addSubview(tableView)
-        
         navigationView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalToSuperview()
         }
-        
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(navigationView.snp.bottom).offset(24)
+            make.top.equalTo(navigationView.snp.bottom).offset(Layout.progressSectionVerticalPadding)
             make.left.right.bottom.equalToSuperview()
         }
-        
         self.extendedLayoutIncludesOpaqueBars = true
     }
-    func setupPresenter() {
-        presenter.delegate = self
-    }
-    @objc func pullToRefresh() {
-        presenter.fetchData(isUpdate: true)
+
+    @objc private func pullToRefresh() {
+        presenter.start()
     }
 }
 
+// MARK: - Section rendering
+
 extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
-    private func getSectionHeaderView(title: String, bottomPadding: CGFloat = 10) -> UIView {
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        let headerView = UIView()
-        headerView.addSubview(titleLabel)
-        titleLabel.numberOfLines = 0
-        titleLabel.text = title
-        titleLabel.lineBreakMode = .byWordWrapping
-        titleLabel.font = UIFont.projectFont(ofSize: 16, weight: .bold)
-        titleLabel.textColor = .themeTextPrimary
-        titleLabel.sizeToFit()
-        titleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().inset(bottomPadding)
-        }
-        return headerView
-    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        presenter.numberOfSectionsOnTableView()
+        return Section.allCases.count
     }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
+        return Layout.zeroHeight
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        guard let section = Section(rawValue: indexPath.section) else { return Layout.zeroHeight }
+        let model = presenter.loadedModel
+        switch section {
+        case .progress:
+            return model.progressSectionVisible ? UITableView.automaticDimension : Layout.zeroHeight
+        case .eightDimensions:
+            return UITableView.automaticDimension
+        case .habitChecker:
+            // Plan 3 fills this section.
+            return Layout.zeroHeight
+        case .surveys:
+            // Plan 4 fills this section. Until then, hidden when distinctCheckInDays < 7.
+            return model.surveySectionVisible ? UITableView.automaticDimension : Layout.zeroHeight
+        }
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
         cell.selectionStyle = .none
-
-        // Remove any existing subviews to prevent overlap
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
-        
-        if indexPath.section == 0 {
-            // Radar Chart Section
-            if let radarData = presenter.loadedModel.radarChartData {
-                let radarChartView = QuestRadarChartView()
-                radarChartView.configure(with: radarData)
-                
-                cell.contentView.addSubview(radarChartView)
-                radarChartView.snp.makeConstraints { make in
-                    make.edges.equalToSuperview()
-                    make.height.equalTo(400) // Fixed height for radar chart
-                }
-            }
-        } else if indexPath.section == 1 {
-            // Progress Line Section
-            let progressLineView = QuestProgressLineView()
-            
-            if let lineData = presenter.loadedModel.lineChartData {
-                progressLineView.configure(with: lineData)
-            }
-            // If no data, it will show placeholder state (just line, no dots)
-            
-            cell.contentView.addSubview(progressLineView)
-            progressLineView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-                make.height.equalTo(100)
-            }
+
+        guard let section = Section(rawValue: indexPath.section) else { return cell }
+        let model = presenter.loadedModel
+
+        switch section {
+        case .progress:
+            renderProgressSection(into: cell, model: model)
+        case .eightDimensions:
+            renderEightDimensionsSection(into: cell, model: model)
+        case .habitChecker:
+            break  // Plan 3
+        case .surveys:
+            break  // Plan 4
         }
-        
         return cell
     }
+
+    private func renderProgressSection(into cell: UITableViewCell, model: QuestViewModel) {
+        guard model.progressSectionVisible else { return }
+        let progressView = QuestProgressSectionView()
+        progressView.configure(viewModel: model)
+        progressView.onCTAtap = { [weak self] in
+            self?.presenter.didTapDailyCheckInCTA()
+        }
+        cell.contentView.addSubview(progressView)
+        progressView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+
+    private func renderEightDimensionsSection(into cell: UITableViewCell, model: QuestViewModel) {
+        let host = UIView()
+        cell.contentView.addSubview(host)
+        host.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(
+                UIEdgeInsets(top: Layout.cardVerticalPadding,
+                             left: Layout.cardSidePadding,
+                             bottom: Layout.cardVerticalPadding,
+                             right: Layout.cardSidePadding)
+            )
+            make.height.equalTo(Layout.lockedCardHeight)
+        }
+
+        if model.eightDimensionsLocked {
+            let locked = QuestLockedCardView()
+            locked.configure(
+                title: NSLocalizedString("quest_eight_dim_card_title", comment: "8-Dim card title"),
+                hint: model.eightDimensionsLockedHint
+            )
+            host.addSubview(locked)
+            locked.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
+        // When unlocked, Plan 5 will render the radar chart here.
+    }
 }
+
+// MARK: - Presenter delegate
+
 extension QuestViewController: QuestViewPresenterDelegate {
+
     func didUpdate(viewModel: QuestViewModel) {
         DispatchQueue.main.async { [weak self] in
-            guard let weakSelf = self else { return }
+            guard let self = self else { return }
             if viewModel.isLoading {
-                weakSelf.showLoadingView(below: weakSelf.navigationView)
+                self.showLoadingView(below: self.navigationView)
             } else {
-                weakSelf.hideLoadingView()
+                self.hideLoadingView()
             }
-
-            // End refresh control
-            if weakSelf.tableView.refreshControl?.isRefreshing == true {
-                weakSelf.tableView.refreshControl?.endRefreshing()
+            if self.tableView.refreshControl?.isRefreshing == true {
+                self.tableView.refreshControl?.endRefreshing()
             }
-            
-            // Reload table data
-            weakSelf.tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
+
     func didUpdateSection(at index: IndexSet) {
         DispatchQueue.main.async { [weak self] in
-            guard let weakSelf = self else { return }
-            weakSelf.tableView.reloadSections(index, with: .automatic)
+            self?.tableView.reloadSections(index, with: .automatic)
         }
     }
-}
-extension QuestViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-} 
 
-// MARK: - Navigation Actions
+    func didRequestPresentMoodCheckIn() {
+        AppCoordinator.presentMoodCheckIn(from: self)
+    }
+}
+
+// MARK: - Navigation actions
+
 extension QuestViewController {
-    
     private func notificationTapped() {
         print("[Quest] Notification button tapped")
-        // TODO: Navigate to notifications screen
     }
-
     private func profileTapped() {
         print("[Quest] Profile button tapped")
-        // TODO: Navigate to profile screen
     }
 }

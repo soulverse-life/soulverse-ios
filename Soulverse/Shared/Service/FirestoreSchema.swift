@@ -44,6 +44,13 @@ enum FirestoreCollection {
     /// Subcollection for emotional bundle (safety plan) under a user.
     /// Path: `users/{uid}/emotional_bundle/{bundleId}`
     static let emotionalBundle = "emotional_bundle"
+
+    /// Subcollection for the Quest aggregate doc under a user.
+    /// Path: `users/{uid}/quest_state/state`
+    static let questState = "quest_state"
+
+    /// Stable single-doc id under quest_state. Plan 1 writes this same id.
+    static let questStateDocId = "state"
 }
 
 // MARK: - Firebase Storage Paths

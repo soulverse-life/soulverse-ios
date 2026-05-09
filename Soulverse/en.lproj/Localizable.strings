@@ -405,7 +405,6 @@
 "emotional_bundle_red_flags_required_message" = "Please add at least one red flag before saving.";
 "emotional_bundle_feel_calm_required_message" = "Please add at least one calming activity before saving.";
 
-
 // MARK: - Journal Editor
 
 "journal_editor_nav_title" = "Write a journal";
@@ -415,3 +414,19 @@
 "journal_editor_save_button" = "Save";
 "journal_editor_draw_link" = "Draw";
 "journal_editor_save_failed" = "Failed to save journal. Please try again.";
+
+// Quest — locked card hints (proximity-based)
+"quest_locked_hint_future_day" = "On Day %d, you'll %@.";
+"quest_locked_hint_n_more" = "Just %d more check-ins!";
+"quest_locked_hint_one_more" = "Just 1 more check-in!";
+
+// Quest — progress section
+"quest_progress_day_pill" = "Day %d of %d";
+"quest_progress_daily_cta" = "Do today's Mood Check-In →";
+
+// Quest — locked-feature labels
+"quest_locked_feature_8dim" = "see your 8 Dimensions";
+"quest_locked_feature_custom_habit" = "add your own habit";
+
+// Quest — 8-Dim card
+"quest_eight_dim_card_title" = "Your 8 Dimensions";

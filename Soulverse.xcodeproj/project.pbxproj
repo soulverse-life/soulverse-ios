@@ -12,21 +12,19 @@
 		01AFEAE51929AC8297AD205B /* EmotionalBundleMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE76100ED69CDC5A76DE798 /* EmotionalBundleMainViewController.swift */; };
 		03BF3892B476AB6AD4B17CC6 /* MoodEntriesDataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */; };
 		03F48090BE3E05B2B7366B43 /* SoulverseFormFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EAEF5AEB337CC3DACE9A68 /* SoulverseFormFieldView.swift */; };
+		0924C6D537F42931C325A80D /* CanvasViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA116D179BEAA6D57A12D74 /* CanvasViewPresenterDelegateMock.swift */; };
+		0AEA5D20108485EA3EF5494E /* DrawingGallerySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70D0337BCECFA7C98A0482 /* DrawingGallerySectionHeaderView.swift */; };
 		0E000A0001000000000000A1 /* JournalEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E000A0001000000000000B1 /* JournalEditorViewController.swift */; };
 		0E000A0002000000000000A1 /* JournalEmotionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E000A0002000000000000B1 /* JournalEmotionHeaderView.swift */; };
 		0E000A0003000000000000A1 /* JournalEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E000A0003000000000000B1 /* JournalEditorViewModel.swift */; };
-		E78AEE7E4CFEF3446A70A7CD /* RedFlagsSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C55544C0570D9D226D8E8B /* RedFlagsSectionViewController.swift */; };
-		85C6646F9F43CB4B180F0091 /* SupportMeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE410EEDFCB6E5B7389899 /* SupportMeSectionViewController.swift */; };
-		D4E39A5B4F2D0B96563AF670 /* FeelCalmSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27163359DE3FFC4DF026F748 /* FeelCalmSectionViewController.swift */; };
-		AE8238450575EE11F60CD300 /* StaySafeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9789F843142D96E67C70804C /* StaySafeSectionViewController.swift */; };
-		9A5F6071A756E85D2358C622 /* ProfessionalSupportSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */; };
-		0924C6D537F42931C325A80D /* CanvasViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA116D179BEAA6D57A12D74 /* CanvasViewPresenterDelegateMock.swift */; };
-		0AEA5D20108485EA3EF5494E /* DrawingGallerySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70D0337BCECFA7C98A0482 /* DrawingGallerySectionHeaderView.swift */; };
 		0E375C48E26FC465DCF1178D /* EmotionalBundleMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A458615FF4DBD7CB06D6654 /* EmotionalBundleMainViewModel.swift */; };
 		0E4B0D04D56B8906AAFFF331 /* MoodCheckInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */; };
+		0E92E5946EDDFF19405FD264 /* QuestServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B4FD47CBD19494846367A6 /* QuestServiceProtocol.swift */; };
 		0E9E5F5550F10342BE4D579A /* MoodEntriesDataAssemblerFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */; };
 		1068DC503C449FA2F1E94253 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		1135B47B75C583A6E7DE7F32 /* TopicDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B7B1090574611BFDFC632 /* TopicDistributionView.swift */; };
+		14EF44422EB79065BBC8D829 /* LockedCardHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB6FE0EEE88FEEB784461AE /* LockedCardHint.swift */; };
+		150DCE169FB153B3A688F1E4 /* QuestStateModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319EAD36EAC7E739D025A84 /* QuestStateModelTests.swift */; };
 		16763768A15E67CD8952721D /* CheckInDetailPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C99EBD0D7244FE8D52E4F /* CheckInDetailPresenterType.swift */; };
 		1A2CFCCD95653982DC90244B /* SoulverseActionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90781A662B73BED5786934DE /* SoulverseActionModal.swift */; };
 		1C064D30E462FF14A1DC4BDC /* CrisisResourceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42762D57CBBA0A87B1D5C733 /* CrisisResourceCardView.swift */; };
@@ -42,6 +40,7 @@
 		2C66302E39B2097233438B44 /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
 		2CCBEC17866E20A84A4C5B5F /* MoodCheckInServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4342554B5B0F59BAA4F80 /* MoodCheckInServiceMock.swift */; };
 		2DD9A04D95121B93E0C3F374 /* DrawingGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0F6891306A7CF5655B2CA9 /* DrawingGalleryViewModel.swift */; };
+		2F58A765E45D0A433E30504F /* QuestServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC116D149D9314A21F06C5 /* QuestServiceMock.swift */; };
 		2FC61BC19AEDCC653A77B45F /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
 		314E0F198381155F9BF0E0AC /* SupportMeSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2BEFD6E0D6D3E52A39936 /* SupportMeSectionViewModel.swift */; };
 		3340F94A6A51E47EF6FA9BF6 /* CalendarMonthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976539F4687169A12C33597 /* CalendarMonthViewModelTests.swift */; };
@@ -53,15 +52,11 @@
 		3DE6377D2BB4E7CB075946CC /* FeelCalmSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB214046513A25767B1757 /* FeelCalmSectionViewModel.swift */; };
 		3E613F5B554654A630D26EC3 /* FeelCalmSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B20A12DC4A86E20CFDF0 /* FeelCalmSectionViewModelTests.swift */; };
 		3EEC60F5808E55A5BDB9D81F /* DrawingCanvasPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */; };
-		D24B26041000010001000002 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
-		D24B26041000010001000003 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
-		D24B26041000010001000005 /* DrawingReflectionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000004 /* DrawingReflectionPresenterTests.swift */; };
-		D24B26041000010002000002 /* DrawingReflectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010002000001 /* DrawingReflectionViewModel.swift */; };
-		D24B26041000010002000003 /* DrawingReflectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010002000001 /* DrawingReflectionViewModel.swift */; };
 		419A37032825EC7BC46F4857 /* ProfileViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FDA00077B2E5E075CB1131 /* ProfileViewPresenterTests.swift */; };
 		423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		44372F0CF57371B1CFEDDD22 /* ProfessionalSupportSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A48E84E65B0EB1046B5AB8A /* ProfessionalSupportSectionViewModelTests.swift */; };
 		44C3423F24CAD63B0FD3BE09 /* Pods_Base_Soulverse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */; };
+		4620DA137B9A4DAD4EC56EA6 /* FirestoreQuestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBDAADA414C05475799488F /* FirestoreQuestService.swift */; };
 		47D5117114813C02666FD1AA /* JournalServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A1277CD76964C881879A2 /* JournalServiceProtocol.swift */; };
 		48E8C991F90897E6DDA9807B /* InsightViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747376777B5866EF992CA14C /* InsightViewPresenterTests.swift */; };
 		4AB5D04BDAF01769900BA197 /* DrawingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F968EB81037659FA48E9E96 /* DrawingServiceTests.swift */; };
@@ -81,7 +76,9 @@
 		6B74A2A94CB8CB48FEF17C5D /* DrawingGalleryPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */; };
 		6B9D4AE88A3ADA775F9F4B6A /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
 		6FC3F15D3FCC758F391229D6 /* CheckInDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178718BD3777BBF33A1E4037 /* CheckInDetailViewModel.swift */; };
+		7386C88FE02C4A98CDC65395 /* QuestStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF61D471C9754C3495410815 /* QuestStateModel.swift */; };
 		74953AA13D7A3470144DF53F /* InsightViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D323DAF3E30DD98A2DDE6F /* InsightViewPresenterDelegateMock.swift */; };
+		75CB5CEE916948455565C671 /* QuestProgressSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9BE5C9E829C8D55487C0D /* QuestProgressSectionView.swift */; };
 		7621C92B3C88BB51568944AA /* ProfileInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */; };
 		77566AE5CB53A5A234F557E9 /* RedFlagsSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD522D21982055E427119340 /* RedFlagsSectionViewModelTests.swift */; };
 		78F55E5288873495F0501DAF /* Pods_SoulverseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */; };
@@ -280,16 +277,6 @@
 		7951A9BC2E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
-		7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
-		7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
-		7AE10CFF01000000000000A2 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
-		7AE10CFF01000000000000A3 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
-		7AE10CFF01000000000000B2 /* DrawingPromptPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */; };
-		7AE10CFF01000000000000B3 /* DrawingPromptPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */; };
-		7AE10CFF01000000000000C2 /* DrawingPromptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */; };
-		7AE10CFF01000000000000C3 /* DrawingPromptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */; };
-		7AE10CFF01000000000000D2 /* DrawingPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */; };
-		7AE10CFF01000000000000D3 /* DrawingPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */; };
 		7951A9C92E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */; };
 		7951A9CA2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */; };
 		7951A9CB2E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */; };
@@ -411,6 +398,17 @@
 		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
 		7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
+		7AE10CFF01000000000000A2 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
+		7AE10CFF01000000000000A3 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
+		7AE10CFF01000000000000B2 /* DrawingPromptPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */; };
+		7AE10CFF01000000000000B3 /* DrawingPromptPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */; };
+		7AE10CFF01000000000000C2 /* DrawingPromptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */; };
+		7AE10CFF01000000000000C3 /* DrawingPromptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */; };
+		7AE10CFF01000000000000D2 /* DrawingPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */; };
+		7AE10CFF01000000000000D3 /* DrawingPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */; };
+		7AE10CFF02000000000000A2 /* DrawingPromptPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */; };
+		7AE10CFF02000000000000B2 /* DrawingPromptPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */; };
+		7B8515DA6D49FBA7FB4B73F6 /* QuestNotificationHourTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27275458EC8CE2240070A491 /* QuestNotificationHourTests.swift */; };
 		7BB198E2D8DE3EDEF35DCDC8 /* InnerCosmoViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44C2E1B8167E15D1A17DB8 /* InnerCosmoViewPresenterTests.swift */; };
 		7D54880ED3482D5B8E7B101A /* StaySafeSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557EAAE097EC0EB8B2C9994B /* StaySafeSectionViewModel.swift */; };
 		83B406F26FBBD050AAB70357 /* DrawingReplayPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D57DE6A82816385F47A87 /* DrawingReplayPresenterTests.swift */; };
@@ -421,6 +419,7 @@
 		86D0E5F0B454853840C60855 /* DrawingGalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4863D9AA9015B5E1ABBEB /* DrawingGalleryPresenter.swift */; };
 		89054E3902CF31DC4A50A47A /* ProfileViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */; };
 		8B2E194AF28FCEAA5D91C18C /* DrawingGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EA9BF532D3A837AAC558 /* DrawingGalleryCell.swift */; };
+		8BD78081AC98B33905E98E1E /* FirestoreQuestServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7944F86CC003ED2E9C1444E8 /* FirestoreQuestServiceTests.swift */; };
 		8F50DC32E6FA9D90B6A71AE6 /* CheckInDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAB13B6BE60834F09C4F60A /* CheckInDetailPresenter.swift */; };
 		9398C11F3FE373D542A298F1 /* MoodCheckInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */; };
 		94D160518894DE1AA49B9CFA /* FirestoreSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBCBDFE64D2D1ECA4EFA0D /* FirestoreSchema.swift */; };
@@ -433,6 +432,7 @@
 		A2642779529DA52C41E8446B /* MoodCheckInServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59E22D0E948D8EE0F606C /* MoodCheckInServiceProtocol.swift */; };
 		A2B3C4D5E6F7A8B9C0D1E2F4 /* TimeRangeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */; };
 		A2B3C4D5E6F7A8B9C0D1E2F5 /* TimeRangeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */; };
+		A33E74EF9D5C7A9F3EA08C01 /* QuestStageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E73787F4BF8E8C1D7A3403 /* QuestStageTests.swift */; };
 		A3428F453B2E78C47D54B7E8 /* ToolsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA67C204F2A591ECD30F1F /* ToolsViewModelTests.swift */; };
 		A3B4C5D6E7F8A9B0C1D2E3F5 /* HabitActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */; };
 		A3B4C5D6E7F8A9B0C1D2E3F6 /* HabitActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */; };
@@ -458,19 +458,27 @@
 		B687959D9AD055A99B195148 /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
 		BCCF4852163421323A310717 /* MoodEntriesDataAssemblerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4883D32CE380C31648AE6 /* MoodEntriesDataAssemblerMock.swift */; };
 		BE7CD9A80860FCBB70D7DDE7 /* SupportMeSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0774B104E6B7E8550A2C9ED /* SupportMeSectionViewModelTests.swift */; };
+		BF43656595DC1CAEEC0F6BC2 /* LockedCardHintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892063B3E7FDA02E24605BC0 /* LockedCardHintTests.swift */; };
 		BFC00E7084C2C3B433CDCB5F /* DetailDrawingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A7FB0D1FCDD8CC81DECBB /* DetailDrawingSection.swift */; };
 		C0DFE64282D5F1868C0544F4 /* DrawingsPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A95C383DB61DE6370611AFF /* DrawingsPromptTests.swift */; };
-		7AE10CFF02000000000000A2 /* DrawingPromptPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */; };
-		7AE10CFF02000000000000B2 /* DrawingPromptPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */; };
 		C177ED8CA35EB3841C34BD3E /* CrisisResourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE368A37AF142928705DD2 /* CrisisResourceModel.swift */; };
 		C3B4A5D6E7F8A9B0C1D2E3F5 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
 		C3B4A5D6E7F8A9B0C1D2E3F6 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
 		C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
+		C47D335B0791DA4AC4C98D82 /* QuestLockedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0AFB2E02332DEA4A25A66D /* QuestLockedCardView.swift */; };
 		C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
+		C607F743B51CA4C1DE23440E /* QuestTimezoneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245B803B3140A3F7D9CD61C /* QuestTimezoneCalculator.swift */; };
 		C84B64553755C52006E77CB0 /* CrashlyticsClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */; };
+		C9329A8334A5248AFA4C882E /* QuestStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B755C43C7BCDF8299509D6F1 /* QuestStage.swift */; };
 		CD272848378CB5C9FB794ADA /* ErrorReporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */; };
 		CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */; };
 		D14096F47439C0A9D91C7B28 /* Constants+CheckInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */; };
+		D18DEC6D7FD91EB16DC1B9D7 /* QuestProgressDotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC4C49FF2CA899AB8798153 /* QuestProgressDotsView.swift */; };
+		D24B26041000010001000002 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
+		D24B26041000010001000003 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
+		D24B26041000010001000005 /* DrawingReflectionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000004 /* DrawingReflectionPresenterTests.swift */; };
+		D24B26041000010002000002 /* DrawingReflectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010002000001 /* DrawingReflectionViewModel.swift */; };
+		D24B26041000010002000003 /* DrawingReflectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010002000001 /* DrawingReflectionViewModel.swift */; };
 		D250CF083B3F0918DA0E2ED1 /* CheckInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BE258FB1BB920041AA1B57 /* CheckInDetailViewController.swift */; };
 		D45ECEE25B2D86CBF6C11B49 /* MoodEntryCardCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */; };
 		D4C5B6A7E8F9A0B1C2D3E4F6 /* InsightGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */; };
@@ -478,10 +486,12 @@
 		D4E39A5B4F2D0B96563AF670 /* FeelCalmSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27163359DE3FFC4DF026F748 /* FeelCalmSectionViewController.swift */; };
 		D54590E011F0616291933B80 /* RecordedEmotion+MoodScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */; };
 		D5E6F7A8B9C0D1E2F3A4B5C6 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
+		D7381A08AA552B1289C0C814 /* QuestViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEFAD9F0BEF567C9A881463 /* QuestViewModelTests.swift */; };
 		D99A21CCC605492A90ACCFDA /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E82F16483EBA0D0699E631 /* TestHelpers.swift */; };
 		D9F6D2D60270F6AB9ECB99CE /* InnerCosmoViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6975331B3B4B8D90409C867C /* InnerCosmoViewPresenterDelegateMock.swift */; };
 		DA5B7EAE3A96109C935B5C2B /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
 		DA65ED4FA21F10A77F596D7A /* WeeklyMoodScoreViewModel+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */; };
+		DBC902260371F8E6C4B86730 /* QuestServiceMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460ED3BDF4D48FF1E4573CC /* QuestServiceMockTests.swift */; };
 		DCB91A2E330B638CE50FEE94 /* CrisisResources.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AC2BF2A188F135E291E4EE8 /* CrisisResources.json */; };
 		DF12EBFF3AB9445233E99868 /* FirestoreEmotionalBundleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B68E594EF24B553645BDE5 /* FirestoreEmotionalBundleService.swift */; };
 		E2B7F1D5A8C4036459E0B186 /* SoulverseToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */; };
@@ -551,6 +561,9 @@
 		0AC2BF2A188F135E291E4EE8 /* CrisisResources.json */ = {isa = PBXFileReference; includeInIndex = 1; path = CrisisResources.json; sourceTree = "<group>"; };
 		0AE0AE8D83427C1DF0E30948 /* DrawingReplayPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReplayPresenter.swift; sourceTree = "<group>"; };
 		0D7EF684720D96D0B88C701D /* Pods-SoulverseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulverseTests.release.xcconfig"; path = "Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests.release.xcconfig"; sourceTree = "<group>"; };
+		0E000A0001000000000000B1 /* JournalEditorViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalEditorViewController.swift; sourceTree = "<group>"; };
+		0E000A0002000000000000B1 /* JournalEmotionHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalEmotionHeaderView.swift; sourceTree = "<group>"; };
+		0E000A0003000000000000B1 /* JournalEditorViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalEditorViewModel.swift; sourceTree = "<group>"; };
 		10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssembler.swift; sourceTree = "<group>"; };
 		11B68E594EF24B553645BDE5 /* FirestoreEmotionalBundleService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreEmotionalBundleService.swift; sourceTree = "<group>"; };
 		11FDA00077B2E5E075CB1131 /* ProfileViewPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenterTests.swift; sourceTree = "<group>"; };
@@ -570,12 +583,14 @@
 		24FBCBDFE64D2D1ECA4EFA0D /* FirestoreSchema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreSchema.swift; sourceTree = "<group>"; };
 		2575FCF8292C633DF8FF8577 /* DetailReflectionSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetailReflectionSection.swift; sourceTree = "<group>"; };
 		27163359DE3FFC4DF026F748 /* FeelCalmSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeelCalmSectionViewController.swift; sourceTree = "<group>"; };
+		27275458EC8CE2240070A491 /* QuestNotificationHourTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestNotificationHourTests.swift; sourceTree = "<group>"; };
 		28E20AAA3AF4B7A41DF30E6B /* JournalServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalServiceMock.swift; sourceTree = "<group>"; };
 		2976539F4687169A12C33597 /* CalendarMonthViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CalendarMonthViewModelTests.swift; sourceTree = "<group>"; };
 		2CD6A03F5EE59C7A4854CAF0 /* DrawingServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingServiceProtocol.swift; sourceTree = "<group>"; };
 		2D0F6891306A7CF5655B2CA9 /* DrawingGalleryViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryViewModel.swift; sourceTree = "<group>"; };
 		2D97B78D62A26C91686591BB /* DetailPlanetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetailPlanetView.swift; sourceTree = "<group>"; };
 		2F968EB81037659FA48E9E96 /* DrawingServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingServiceTests.swift; sourceTree = "<group>"; };
+		3245B803B3140A3F7D9CD61C /* QuestTimezoneCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestTimezoneCalculator.swift; sourceTree = "<group>"; };
 		33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntryCardCellViewModelTests.swift; sourceTree = "<group>"; };
 		3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreView.swift; sourceTree = "<group>"; };
 		379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
@@ -585,8 +600,12 @@
 		4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = Soulverse/Features/Profile/ViewModels/ProfileViewModel.swift; sourceTree = SOURCE_ROOT; };
 		42762D57CBBA0A87B1D5C733 /* CrisisResourceCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CrisisResourceCardView.swift; sourceTree = "<group>"; };
 		43C55544C0570D9D226D8E8B /* RedFlagsSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RedFlagsSectionViewController.swift; sourceTree = "<group>"; };
+		44B4FD47CBD19494846367A6 /* QuestServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceProtocol.swift; sourceTree = "<group>"; };
+		48E73787F4BF8E8C1D7A3403 /* QuestStageTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStageTests.swift; sourceTree = "<group>"; };
 		4F086EFB7A0C114933FE0F5D /* EmotionalBundleServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleServiceProtocol.swift; sourceTree = "<group>"; };
+		52FC116D149D9314A21F06C5 /* QuestServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceMock.swift; sourceTree = "<group>"; };
 		5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterDelegateMock.swift; sourceTree = "<group>"; };
+		5319EAD36EAC7E739D025A84 /* QuestStateModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStateModelTests.swift; sourceTree = "<group>"; };
 		545EED434F6369FD9BF5FB8A /* MoodCheckInServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceTests.swift; sourceTree = "<group>"; };
 		557EAAE097EC0EB8B2C9994B /* StaySafeSectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StaySafeSectionViewModel.swift; sourceTree = "<group>"; };
 		55E82F16483EBA0D0699E631 /* TestHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
@@ -594,18 +613,8 @@
 		570A3936C4C4200D3E36282A /* ErrorReportingTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ErrorReportingTests.swift; sourceTree = "<group>"; };
 		57F4883D32CE380C31648AE6 /* MoodEntriesDataAssemblerMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerMock.swift; sourceTree = "<group>"; };
 		59EAEF5AEB337CC3DACE9A68 /* SoulverseFormFieldView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SoulverseFormFieldView.swift; sourceTree = "<group>"; };
-		0E000A0001000000000000B1 /* JournalEditorViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalEditorViewController.swift; sourceTree = "<group>"; };
-		0E000A0002000000000000B1 /* JournalEmotionHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalEmotionHeaderView.swift; sourceTree = "<group>"; };
-		0E000A0003000000000000B1 /* JournalEditorViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalEditorViewModel.swift; sourceTree = "<group>"; };
-		43C55544C0570D9D226D8E8B /* RedFlagsSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RedFlagsSectionViewController.swift; sourceTree = "<group>"; };
-		13AE410EEDFCB6E5B7389899 /* SupportMeSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SupportMeSectionViewController.swift; sourceTree = "<group>"; };
-		27163359DE3FFC4DF026F748 /* FeelCalmSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeelCalmSectionViewController.swift; sourceTree = "<group>"; };
-		9789F843142D96E67C70804C /* StaySafeSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StaySafeSectionViewController.swift; sourceTree = "<group>"; };
-		17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfessionalSupportSectionViewController.swift; sourceTree = "<group>"; };
 		5A7A89532F54342452F4E920 /* ToolsViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		5A95C383DB61DE6370611AFF /* DrawingsPromptTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingsPromptTests.swift; sourceTree = "<group>"; };
-		7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterDelegateMock.swift; sourceTree = "<group>"; };
-		7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterTests.swift; sourceTree = "<group>"; };
 		5C70D0337BCECFA7C98A0482 /* DrawingGallerySectionHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGallerySectionHeaderView.swift; sourceTree = "<group>"; };
 		5DB9147A86FBF42436C1031E /* InnerCosmoPeriodTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerCosmoPeriodTests.swift; sourceTree = "<group>"; };
 		5E56565E1067F09318717526 /* TopicTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicTests.swift; sourceTree = "<group>"; };
@@ -617,13 +626,11 @@
 		655D57DE6A82816385F47A87 /* DrawingReplayPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReplayPresenterTests.swift; sourceTree = "<group>"; };
 		659D171EB01E4F3823113C03 /* FirestoreJournalService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreJournalService.swift; sourceTree = "<group>"; };
 		67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingCanvasPresenter.swift; sourceTree = "<group>"; };
-		D24B26041000010001000001 /* DrawingReflectionPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionPresenter.swift; sourceTree = "<group>"; };
-		D24B26041000010001000004 /* DrawingReflectionPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionPresenterTests.swift; sourceTree = "<group>"; };
-		D24B26041000010002000001 /* DrawingReflectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionViewModel.swift; sourceTree = "<group>"; };
 		67594929C616A41B994759EA /* EmotionalBundleMainPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainPresenter.swift; sourceTree = "<group>"; };
 		67594929C616A41B994759EB /* EmotionalBundleCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleCoordinator.swift; sourceTree = "<group>"; };
 		6975331B3B4B8D90409C867C /* InnerCosmoViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		6A1E4D78EAA08D9BD40D689C /* FirestoreSchemaTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreSchemaTests.swift; sourceTree = "<group>"; };
+		6BB6FE0EEE88FEEB784461AE /* LockedCardHint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LockedCardHint.swift; sourceTree = "<group>"; };
 		6DE60F310C8AB64668217ECB /* DrawingModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
 		6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DevAuthService.swift; sourceTree = "<group>"; };
 		715B7B1090574611BFDFC632 /* TopicDistributionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionView.swift; sourceTree = "<group>"; };
@@ -722,6 +729,7 @@
 		79389F5C2F05760D0016CB7F /* InnerCosmoRecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoRecentView.swift; sourceTree = "<group>"; };
 		79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoHeaderView.swift; sourceTree = "<group>"; };
 		79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoEmotionData.swift; sourceTree = "<group>"; };
+		7944F86CC003ED2E9C1444E8 /* FirestoreQuestServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreQuestServiceTests.swift; sourceTree = "<group>"; };
 		7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1_bounce_lottie.json; sourceTree = "<group>"; };
 		794B59F22E9EA3E1006CF069 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		794B59F52E9EA436006CF069 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -734,11 +742,6 @@
 		794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingViewController.swift; sourceTree = "<group>"; };
 		7951A9B62E532C85006EB0EC /* SoulverseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseButton.swift; sourceTree = "<group>"; };
 		7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseNavigationView.swift; sourceTree = "<group>"; };
-		7AE10C0001000000000000A1 /* EmoPetChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoPetChatView.swift; sourceTree = "<group>"; };
-		7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptViewModel.swift; sourceTree = "<group>"; };
-		7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterType.swift; sourceTree = "<group>"; };
-		7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenter.swift; sourceTree = "<group>"; };
-		7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptViewController.swift; sourceTree = "<group>"; };
 		7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseTabBar.swift; sourceTree = "<group>"; };
 		7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenter.swift; sourceTree = "<group>"; };
 		7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterType.swift; sourceTree = "<group>"; };
@@ -797,17 +800,27 @@
 		79F138042F379BF90034D325 /* ActionTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTagView.swift; sourceTree = "<group>"; };
 		79F1380A2F3875E10034D325 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosthogTrackingService.swift; sourceTree = "<group>"; };
+		7A0AFB2E02332DEA4A25A66D /* QuestLockedCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestLockedCardView.swift; sourceTree = "<group>"; };
 		7AE10C0001000000000000A1 /* EmoPetChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoPetChatView.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptViewModel.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterType.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenter.swift; sourceTree = "<group>"; };
+		7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptViewController.swift; sourceTree = "<group>"; };
+		7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterDelegateMock.swift; sourceTree = "<group>"; };
+		7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterTests.swift; sourceTree = "<group>"; };
 		7D44F927D93BEB0DA5699F4F /* MoodEntriesDataAssemblerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerTests.swift; sourceTree = "<group>"; };
 		7DE2BEFD6E0D6D3E52A39936 /* SupportMeSectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SupportMeSectionViewModel.swift; sourceTree = "<group>"; };
 		7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenterType.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenterType.swift; sourceTree = SOURCE_ROOT; };
 		86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreDrawingService.swift; sourceTree = "<group>"; };
+		892063B3E7FDA02E24605BC0 /* LockedCardHintTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LockedCardHintTests.swift; sourceTree = "<group>"; };
 		8AE6A1610F27FD47B57135DD /* DrawingGalleryViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryViewModelTests.swift; sourceTree = "<group>"; };
+		8DEFAD9F0BEF567C9A881463 /* QuestViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestViewModelTests.swift; sourceTree = "<group>"; };
 		90781A662B73BED5786934DE /* SoulverseActionModal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SoulverseActionModal.swift; sourceTree = "<group>"; };
 		911D4CD1621A6E627C39B025 /* ProfessionalSupportSectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfessionalSupportSectionViewModel.swift; sourceTree = "<group>"; };
 		91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileInfoRow.swift; path = Soulverse/Features/Profile/Views/ProfileInfoRow.swift; sourceTree = SOURCE_ROOT; };
 		93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInModel.swift; sourceTree = "<group>"; };
 		94A9B20A12DC4A86E20CFDF0 /* FeelCalmSectionViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeelCalmSectionViewModelTests.swift; sourceTree = "<group>"; };
+		95E9BE5C9E829C8D55487C0D /* QuestProgressSectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestProgressSectionView.swift; sourceTree = "<group>"; };
 		9789F843142D96E67C70804C /* StaySafeSectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StaySafeSectionViewController.swift; sourceTree = "<group>"; };
 		9A44C2E1B8167E15D1A17DB8 /* InnerCosmoViewPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterTests.swift; sourceTree = "<group>"; };
 		9DA4863D9AA9015B5E1ABBEB /* DrawingGalleryPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenter.swift; sourceTree = "<group>"; };
@@ -824,6 +837,7 @@
 		A8C59E22D0E948D8EE0F606C /* MoodCheckInServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceProtocol.swift; sourceTree = "<group>"; };
 		A8FA67C204F2A591ECD30F1F /* ToolsViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewModelTests.swift; sourceTree = "<group>"; };
 		ABA97A0D5537477FC8E3374B /* RecordedEmotionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordedEmotionTests.swift; sourceTree = "<group>"; };
+		ABBDAADA414C05475799488F /* FirestoreQuestService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreQuestService.swift; sourceTree = "<group>"; };
 		ACD8D9DC4265FF367E93D223 /* MoodEntriesDataAssemblerMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerMock.swift; sourceTree = "<group>"; };
 		ADE76100ED69CDC5A76DE798 /* EmotionalBundleMainViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainViewController.swift; sourceTree = "<group>"; };
 		B13356FF749A1E34851D44C3 /* ProfileViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
@@ -831,6 +845,7 @@
 		B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSummaryView.swift; sourceTree = "<group>"; };
 		B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityView.swift; sourceTree = "<group>"; };
 		B7278578F137612349A77E22 /* EmotionTypeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionTypeTests.swift; sourceTree = "<group>"; };
+		B755C43C7BCDF8299509D6F1 /* QuestStage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStage.swift; sourceTree = "<group>"; };
 		BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerFetchTests.swift; sourceTree = "<group>"; };
 		BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CrashlyticsClientMock.swift; sourceTree = "<group>"; };
 		BC0D4A98EBE3D4825FA7F02B /* TopicDistributionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionViewModel.swift; sourceTree = "<group>"; };
@@ -849,6 +864,9 @@
 		CDD732A67B3784224BA518E7 /* Pods-Base-Soulverse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.debug.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.debug.xcconfig"; sourceTree = "<group>"; };
 		D0774B104E6B7E8550A2C9ED /* SupportMeSectionViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SupportMeSectionViewModelTests.swift; sourceTree = "<group>"; };
 		D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ErrorReporting.swift; sourceTree = "<group>"; };
+		D24B26041000010001000001 /* DrawingReflectionPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionPresenter.swift; sourceTree = "<group>"; };
+		D24B26041000010001000004 /* DrawingReflectionPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionPresenterTests.swift; sourceTree = "<group>"; };
+		D24B26041000010002000001 /* DrawingReflectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionViewModel.swift; sourceTree = "<group>"; };
 		D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Soulverse/Features/Profile/Views/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseToast.swift; sourceTree = "<group>"; };
 		D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGridCardView.swift; sourceTree = "<group>"; };
@@ -875,6 +893,9 @@
 		E9A4342554B5B0F59BAA4F80 /* MoodCheckInServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceMock.swift; sourceTree = "<group>"; };
 		EB4A7FB0D1FCDD8CC81DECBB /* DetailDrawingSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetailDrawingSection.swift; sourceTree = "<group>"; };
 		EDA116D179BEAA6D57A12D74 /* CanvasViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CanvasViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
+		EF61D471C9754C3495410815 /* QuestStateModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStateModel.swift; sourceTree = "<group>"; };
+		EFC4C49FF2CA899AB8798153 /* QuestProgressDotsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestProgressDotsView.swift; sourceTree = "<group>"; };
+		F460ED3BDF4D48FF1E4573CC /* QuestServiceMockTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceMockTests.swift; sourceTree = "<group>"; };
 		F57870E8C853DEBE590F1CB3 /* Pods-Base-Soulverse Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse Dev.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev.release.xcconfig"; sourceTree = "<group>"; };
 		F792F4928C055E97CAA8A86F /* Pods-Base-Soulverse Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse Dev.debug.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		F83D2ACF027F80CD265BD4CA /* EmotionalBundleModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleModel.swift; sourceTree = "<group>"; };
@@ -942,6 +963,40 @@
 				42A8A07AB34436F06CD75282 /* EmotionalBundle */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		0E000A0010000000000000C1 /* JournalEditor */ = {
+			isa = PBXGroup;
+			children = (
+				0E000A0013000000000000C1 /* ViewModels */,
+				0E000A0011000000000000C1 /* Views */,
+			);
+			path = JournalEditor;
+			sourceTree = "<group>";
+		};
+		0E000A0011000000000000C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0E000A0012000000000000C1 /* Components */,
+				0E000A0001000000000000B1 /* JournalEditorViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0E000A0012000000000000C1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0E000A0002000000000000B1 /* JournalEmotionHeaderView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		0E000A0013000000000000C1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0E000A0003000000000000B1 /* JournalEditorViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		11A574F922E4F95788E99F30 /* InnerCosmo */ = {
@@ -1053,6 +1108,21 @@
 			path = EmotionalBundleService;
 			sourceTree = "<group>";
 		};
+		39B6874AE7136B6D6569C1DD /* Quest */ = {
+			isa = PBXGroup;
+			children = (
+				5319EAD36EAC7E739D025A84 /* QuestStateModelTests.swift */,
+				48E73787F4BF8E8C1D7A3403 /* QuestStageTests.swift */,
+				892063B3E7FDA02E24605BC0 /* LockedCardHintTests.swift */,
+				F460ED3BDF4D48FF1E4573CC /* QuestServiceMockTests.swift */,
+				7944F86CC003ED2E9C1444E8 /* FirestoreQuestServiceTests.swift */,
+				27275458EC8CE2240070A491 /* QuestNotificationHourTests.swift */,
+				8DEFAD9F0BEF567C9A881463 /* QuestViewModelTests.swift */,
+			);
+			name = Quest;
+			path = Quest;
+			sourceTree = "<group>";
+		};
 		3CEF6868C99860B5053CC302 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
@@ -1060,22 +1130,6 @@
 				8AE6A1610F27FD47B57135DD /* DrawingGalleryViewModelTests.swift */,
 			);
 			path = Canvas;
-			sourceTree = "<group>";
-		};
-		7AE10CF00200000000000001 /* DrawingPrompt */ = {
-			isa = PBXGroup;
-			children = (
-				7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */,
-			);
-			path = DrawingPrompt;
-			sourceTree = "<group>";
-		};
-		7AE10CF00200000000000002 /* DrawingPrompt */ = {
-			isa = PBXGroup;
-			children = (
-				7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */,
-			);
-			path = DrawingPrompt;
 			sourceTree = "<group>";
 		};
 		3E0347340DD12AA45731FA37 /* Service */ = {
@@ -1087,6 +1141,7 @@
 				ACD8D9DC4265FF367E93D223 /* MoodEntriesDataAssemblerMock.swift */,
 				BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */,
 				BE130905112E9999824DBAA2 /* EmotionalBundleServiceMock.swift */,
+				52FC116D149D9314A21F06C5 /* QuestServiceMock.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1166,6 +1221,15 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
+		4F04A7E8F48E7744B1DA715C /* LockedCard */ = {
+			isa = PBXGroup;
+			children = (
+				7A0AFB2E02332DEA4A25A66D /* QuestLockedCardView.swift */,
+			);
+			name = LockedCard;
+			path = LockedCard;
+			sourceTree = "<group>";
+		};
 		51C350327527415314F387D4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -1208,6 +1272,18 @@
 				02BE258FB1BB920041AA1B57 /* CheckInDetailViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		69A4C542EF926121DB0FDB60 /* QuestService */ = {
+			isa = PBXGroup;
+			children = (
+				EF61D471C9754C3495410815 /* QuestStateModel.swift */,
+				44B4FD47CBD19494846367A6 /* QuestServiceProtocol.swift */,
+				ABBDAADA414C05475799488F /* FirestoreQuestService.swift */,
+				3245B803B3140A3F7D9CD61C /* QuestTimezoneCalculator.swift */,
+			);
+			name = QuestService;
+			path = QuestService;
 			sourceTree = "<group>";
 		};
 		6D2D6446E9CF576A7A33BA6A /* Features */ = {
@@ -1427,6 +1503,7 @@
 				A5024FC3B9CEEE55D1722B87 /* JournalService */,
 				D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */,
 				3789987A38ACBD7FA32C1FFD /* EmotionalBundleService */,
+				69A4C542EF926121DB0FDB60 /* QuestService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1549,6 +1626,7 @@
 				261979950C84AB5C051E6994 /* MoodCheckIn */,
 				E0FBAE5D98507DEF73E3C8B5 /* Onboarding */,
 				04248B3D7F84580F9CD6D705 /* Features */,
+				39B6874AE7136B6D6569C1DD /* Quest */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1815,6 +1893,8 @@
 			isa = PBXGroup;
 			children = (
 				798688032E6C24EE00EB3B38 /* QuestViewModel.swift */,
+				B755C43C7BCDF8299509D6F1 /* QuestStage.swift */,
+				6BB6FE0EEE88FEEB784461AE /* LockedCardHint.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1825,6 +1905,8 @@
 				79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */,
 				79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */,
 				798688052E6C24EE00EB3B38 /* QuestViewController.swift */,
+				B0A6B3F9B3F7E258AD16B2CA /* ProgressSection */,
+				4F04A7E8F48E7744B1DA715C /* LockedCard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1855,40 +1937,6 @@
 				0E000A0010000000000000C1 /* JournalEditor */,
 			);
 			path = Features;
-			sourceTree = "<group>";
-		};
-		0E000A0010000000000000C1 /* JournalEditor */ = {
-			isa = PBXGroup;
-			children = (
-				0E000A0013000000000000C1 /* ViewModels */,
-				0E000A0011000000000000C1 /* Views */,
-			);
-			path = JournalEditor;
-			sourceTree = "<group>";
-		};
-		0E000A0011000000000000C1 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0E000A0012000000000000C1 /* Components */,
-				0E000A0001000000000000B1 /* JournalEditorViewController.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		0E000A0012000000000000C1 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				0E000A0002000000000000B1 /* JournalEmotionHeaderView.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		0E000A0013000000000000C1 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				0E000A0003000000000000B1 /* JournalEditorViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		79B24C6F2DFC7B2A001220B6 /* Presenter */ = {
@@ -1936,41 +1984,6 @@
 				79B24C732DFC7B2A001220B6 /* Views */,
 			);
 			path = Canvas;
-			sourceTree = "<group>";
-		};
-		7AE10CF00100000000000001 /* DrawingPrompt */ = {
-			isa = PBXGroup;
-			children = (
-				7AE10CF00100000000000002 /* ViewModels */,
-				7AE10CF00100000000000003 /* Presenter */,
-				7AE10CF00100000000000004 /* Views */,
-			);
-			path = DrawingPrompt;
-			sourceTree = "<group>";
-		};
-		7AE10CF00100000000000002 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		7AE10CF00100000000000003 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */,
-				7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		7AE10CF00100000000000004 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		79B6AAA62EACCA5D00A8B079 /* Models */ = {
@@ -2062,6 +2075,57 @@
 				79EE74C42F2BB1AB0082EECF /* Topic.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000001 /* DrawingPrompt */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CF00100000000000002 /* ViewModels */,
+				7AE10CF00100000000000003 /* Presenter */,
+				7AE10CF00100000000000004 /* Views */,
+			);
+			path = DrawingPrompt;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000002 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000003 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */,
+				7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7AE10CF00100000000000004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7AE10CF00200000000000001 /* DrawingPrompt */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */,
+			);
+			path = DrawingPrompt;
+			sourceTree = "<group>";
+		};
+		7AE10CF00200000000000002 /* DrawingPrompt */ = {
+			isa = PBXGroup;
+			children = (
+				7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */,
+			);
+			path = DrawingPrompt;
 			sourceTree = "<group>";
 		};
 		7E1ED07F200552EA2D02CE0C /* Views */ = {
@@ -2201,6 +2265,16 @@
 				11FDA00077B2E5E075CB1131 /* ProfileViewPresenterTests.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		B0A6B3F9B3F7E258AD16B2CA /* ProgressSection */ = {
+			isa = PBXGroup;
+			children = (
+				EFC4C49FF2CA899AB8798153 /* QuestProgressDotsView.swift */,
+				95E9BE5C9E829C8D55487C0D /* QuestProgressSectionView.swift */,
+			);
+			name = ProgressSection;
+			path = ProgressSection;
 			sourceTree = "<group>";
 		};
 		B0D182D5DABBED761C600A70 /* Insight */ = {
@@ -3165,6 +3239,15 @@
 				35A9A8B1F39547F21A073E3C /* DetailJournalSection.swift in Sources */,
 				CD272848378CB5C9FB794ADA /* ErrorReporting.swift in Sources */,
 				637799F14CA363C9E956E518 /* DetailReflectionSection.swift in Sources */,
+				7386C88FE02C4A98CDC65395 /* QuestStateModel.swift in Sources */,
+				0E92E5946EDDFF19405FD264 /* QuestServiceProtocol.swift in Sources */,
+				4620DA137B9A4DAD4EC56EA6 /* FirestoreQuestService.swift in Sources */,
+				C607F743B51CA4C1DE23440E /* QuestTimezoneCalculator.swift in Sources */,
+				C9329A8334A5248AFA4C882E /* QuestStage.swift in Sources */,
+				14EF44422EB79065BBC8D829 /* LockedCardHint.swift in Sources */,
+				D18DEC6D7FD91EB16DC1B9D7 /* QuestProgressDotsView.swift in Sources */,
+				75CB5CEE916948455565C671 /* QuestProgressSectionView.swift in Sources */,
+				C47D335B0791DA4AC4C98D82 /* QuestLockedCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3229,6 +3312,14 @@
 				44372F0CF57371B1CFEDDD22 /* ProfessionalSupportSectionViewModelTests.swift in Sources */,
 				4D063BD599EEA6A2040C7ABB /* EmotionalBundleMainViewModelTests.swift in Sources */,
 				9CF4FABB93B22A5501410AC9 /* EmotionalBundleMainPresenterTests.swift in Sources */,
+				150DCE169FB153B3A688F1E4 /* QuestStateModelTests.swift in Sources */,
+				A33E74EF9D5C7A9F3EA08C01 /* QuestStageTests.swift in Sources */,
+				BF43656595DC1CAEEC0F6BC2 /* LockedCardHintTests.swift in Sources */,
+				DBC902260371F8E6C4B86730 /* QuestServiceMockTests.swift in Sources */,
+				8BD78081AC98B33905E98E1E /* FirestoreQuestServiceTests.swift in Sources */,
+				7B8515DA6D49FBA7FB4B73F6 /* QuestNotificationHourTests.swift in Sources */,
+				D7381A08AA552B1289C0C814 /* QuestViewModelTests.swift in Sources */,
+				2F58A765E45D0A433E30504F /* QuestServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
