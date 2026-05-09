@@ -78,6 +78,10 @@ struct QuestViewModel {
     // Derived: Survey section visibility (consumed by Plan 4)
     var surveySectionVisible: Bool
 
+    // Derived: Plan 5 — Survey section composed state + 8-Dim render model
+    var surveySection: SurveySectionModel
+    var eightDimensions: EightDimensionsRenderModel
+
     // Plan 5 will reintroduce a focused-axis radar field; until then the
     // existing QuestRadarChartView stays consumer-less in this plan.
     var radarChartData: QuestRadarData?
@@ -107,6 +111,7 @@ struct QuestViewModel {
         state: QuestStateModel,
         didCheckInToday: Bool,
         customHabitExists: Bool,
+        recentSubmissions: [RecentSurveySubmission] = [],
         isLoading: Bool = false
     ) -> QuestViewModel {
 
@@ -142,6 +147,11 @@ struct QuestViewModel {
 
         let customHabitSlotVisible = !customHabitExists
 
+        let surveySection = SurveySectionComposer.compose(
+            state: state, recentSubmissions: recentSubmissions
+        )
+        let eightDimensions = EightDimensionsRenderModelBuilder.build(state: state)
+
         return QuestViewModel(
             isLoading: isLoading,
             state: state,
@@ -156,6 +166,8 @@ struct QuestViewModel {
             customHabitLockedHint: customHabitHint,
             customHabitSlotVisible: customHabitSlotVisible,
             surveySectionVisible: days >= surveySectionUnlockDay,
+            surveySection: surveySection,
+            eightDimensions: eightDimensions,
             radarChartData: nil,
             lineChartData: nil
         )

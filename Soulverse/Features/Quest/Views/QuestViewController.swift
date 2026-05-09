@@ -134,7 +134,6 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
         case .habitChecker:
             return habitCheckerSection == nil ? Layout.zeroHeight : UITableView.automaticDimension
         case .surveys:
-            // Plan 4 fills this section. Until then, hidden when distinctCheckInDays < 7.
             return model.surveySectionVisible ? UITableView.automaticDimension : Layout.zeroHeight
         }
     }
@@ -157,7 +156,7 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
         case .habitChecker:
             renderHabitCheckerSection(into: cell, model: model)
         case .surveys:
-            break  // Plan 4
+            renderSurveySection(into: cell, model: model)
         }
         return cell
     }
@@ -205,30 +204,67 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     private func renderEightDimensionsSection(into cell: UITableViewCell, model: QuestViewModel) {
-        let host = UIView()
-        cell.contentView.addSubview(host)
-        host.snp.makeConstraints { make in
+        let card = EightDimensionsCardView()
+        card.configure(model: model.eightDimensions, lockedHint: model.eightDimensionsLockedHint)
+        cell.contentView.addSubview(card)
+        card.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(
                 UIEdgeInsets(top: Layout.cardVerticalPadding,
                              left: Layout.cardSidePadding,
                              bottom: Layout.cardVerticalPadding,
                              right: Layout.cardSidePadding)
             )
-            make.height.equalTo(Layout.lockedCardHeight)
         }
+    }
 
-        if model.eightDimensionsLocked {
-            let locked = QuestLockedCardView()
-            locked.configure(
-                title: NSLocalizedString("quest_eight_dim_card_title", comment: "8-Dim card title"),
-                hint: model.eightDimensionsLockedHint
-            )
-            host.addSubview(locked)
-            locked.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+    private func renderSurveySection(into cell: UITableViewCell, model: QuestViewModel) {
+        guard case .composed = model.surveySection else { return }
+        let view = SurveySectionView()
+        view.configure(model: model.surveySection)
+        view.onTapPendingCard = { [weak self] type in self?.presentSurvey(for: type, focus: model.state.focusDimension) }
+        view.onTapRecentResult = { [weak self] result in self?.presentRecentResult(result) }
+        cell.contentView.addSubview(view)
+        view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+
+    private func presentSurvey(for type: QuestSurveyType, focus: WellnessDimension?) {
+        let definition = SurveyDefinition.definition(for: type, dimension: focus)
+        let surveyVC = SurveyViewController(definition: definition)
+        surveyVC.onCancel = { [weak self] in self?.dismiss(animated: true) }
+        surveyVC.onSubmit = { [weak self] responses, result in
+            guard let self = self, let uid = User.shared.userId else { return }
+            FirestoreSurveyService.submit(
+                uid: uid,
+                kind: type,
+                responses: responses,
+                result: result,
+                appVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0",
+                submittedFromQuestDay: self.presenter.loadedModel.state.distinctCheckInDays
+            ) { _ in }
+            self.dismiss(animated: true) {
+                let resultVC = SurveyResultViewController(result: result)
+                resultVC.onDone = { [weak self] in self?.dismiss(animated: true) }
+                let nav = UINavigationController(rootViewController: resultVC)
+                self.present(nav, animated: true)
             }
         }
-        // When unlocked, Plan 5 will render the radar chart here.
+        let nav = UINavigationController(rootViewController: surveyVC)
+        present(nav, animated: true)
+    }
+
+    private func presentRecentResult(_ result: RecentResultCardModel) {
+        // Recent results don't carry the full computed payload through the
+        // listener — show a lightweight summary alert. A future iteration can
+        // re-fetch the submission and render SurveyResultViewController.
+        let alert = UIAlertController(
+            title: NSLocalizedString(result.titleKey, comment: ""),
+            message: NSLocalizedString(result.summaryKey, comment: ""),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: NSLocalizedString("quest_survey_result_done", comment: ""), style: .default))
+        present(alert, animated: true)
     }
 }
 

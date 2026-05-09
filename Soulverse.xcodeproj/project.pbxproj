@@ -23,6 +23,7 @@
 		0E9E5F5550F10342BE4D579A /* MoodEntriesDataAssemblerFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */; };
 		1068DC503C449FA2F1E94253 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		1135B47B75C583A6E7DE7F32 /* TopicDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B7B1090574611BFDFC632 /* TopicDistributionView.swift */; };
+		115AAD38779A0114B9F4BADF /* SurveySectionComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3036E6E3BB6CCBD2255D816 /* SurveySectionComposer.swift */; };
 		14EF44422EB79065BBC8D829 /* LockedCardHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB6FE0EEE88FEEB784461AE /* LockedCardHint.swift */; };
 		150DCE169FB153B3A688F1E4 /* QuestStateModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319EAD36EAC7E739D025A84 /* QuestStateModelTests.swift */; };
 		16763768A15E67CD8952721D /* CheckInDetailPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C99EBD0D7244FE8D52E4F /* CheckInDetailPresenterType.swift */; };
@@ -71,6 +72,8 @@
 		51D44910A218DC8B8116E288 /* FirestoreDrawingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */; };
 		537A9C9DB8B5757CF367B783 /* RecordedEmotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA97A0D5537477FC8E3374B /* RecordedEmotionTests.swift */; };
 		5420BA20E87D9967F501E129 /* FirestoreJournalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659D171EB01E4F3823113C03 /* FirestoreJournalService.swift */; };
+		582A991426547E366511A666 /* QuestRadarOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0414230C16D4545A76D376 /* QuestRadarOverlayView.swift */; };
+		5C8C99E6FB798AD860DB8DD6 /* DimensionAxisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF47DEEDD827DCE9D8B2233 /* DimensionAxisState.swift */; };
 		5FB242B1781C5956CDC31A78 /* ErrorReportingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3936C4C4200D3E36282A /* ErrorReportingTests.swift */; };
 		6009E3A97AD857D0070766C9 /* MoodCheckInDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A840760ABEE725B08771D /* MoodCheckInDataTests.swift */; };
 		6026E6F1B6136CA370157840 /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
@@ -78,6 +81,7 @@
 		637799F14CA363C9E956E518 /* DetailReflectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2575FCF8292C633DF8FF8577 /* DetailReflectionSection.swift */; };
 		64AF4AE865D91E895E4BDC1C /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
 		658B57687FB0CB589B2E15A4 /* DrawingCanvasPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833DFE885D5514ECFD5960A /* DrawingCanvasPresenterDelegateMock.swift */; };
+		670572EE22CF3E39E5AEC703 /* StateOfChangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682222EE3E842BC31BB07917 /* StateOfChangeIndicatorView.swift */; };
 		670D00D46B4991F2B995108E /* SurveyResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB8EBC88E1D452433AB815 /* SurveyResultViewController.swift */; };
 		6917E00E90C130BA55BD2B9A /* ToolsViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A89532F54342452F4E920 /* ToolsViewPresenterDelegateMock.swift */; };
 		6A07DF149382FA4CD96CE7F8 /* EightDimSurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9985ECA92204EF92DD6B325F /* EightDimSurveyDefinition.swift */; };
@@ -86,6 +90,7 @@
 		6DDD15AC54B126858F4C955A /* SurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18BFE437205D857853085D /* SurveyDefinition.swift */; };
 		6FC3F15D3FCC758F391229D6 /* CheckInDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178718BD3777BBF33A1E4037 /* CheckInDetailViewModel.swift */; };
 		7161096E3C272B5EACA82BC9 /* CustomHabitFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD987D99948ACB3446E74D68 /* CustomHabitFormViewModel.swift */; };
+		729E62DDA6618548CBB22DE4 /* SurveySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BB786D34C328D239C3BFF /* SurveySectionView.swift */; };
 		7386C88FE02C4A98CDC65395 /* QuestStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF61D471C9754C3495410815 /* QuestStateModel.swift */; };
 		74953AA13D7A3470144DF53F /* InsightViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D323DAF3E30DD98A2DDE6F /* InsightViewPresenterDelegateMock.swift */; };
 		75CB5CEE916948455565C671 /* QuestProgressSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9BE5C9E829C8D55487C0D /* QuestProgressSectionView.swift */; };
@@ -406,6 +411,7 @@
 		79F1380C2F3875E10034D325 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79F1380A2F3875E10034D325 /* GoogleService-Info.plist */; };
 		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
+		7A84B99D8EA2DE2A1C1F3DD6 /* EightDimensionsRenderModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A09A8F71DC3281358297D3 /* EightDimensionsRenderModelBuilder.swift */; };
 		7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
 		7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
 		7AE10CFF01000000000000A2 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
@@ -435,6 +441,7 @@
 		8CAC3F6AE0262A3A41EC59B2 /* CustomHabitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE504AAB9D4D24A8360731 /* CustomHabitCard.swift */; };
 		8F50DC32E6FA9D90B6A71AE6 /* CheckInDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAB13B6BE60834F09C4F60A /* CheckInDetailPresenter.swift */; };
 		9398C11F3FE373D542A298F1 /* MoodCheckInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */; };
+		94741F0202385687C383000A /* RecentResultCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C762BE35696F9E56BFB0A9 /* RecentResultCardListView.swift */; };
 		94D160518894DE1AA49B9CFA /* FirestoreSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBCBDFE64D2D1ECA4EFA0D /* FirestoreSchema.swift */; };
 		99D7A073D137428E8D5EB65B /* EmotionalBundleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D2ACF027F80CD265BD4CA /* EmotionalBundleModel.swift */; };
 		9A5F6071A756E85D2358C622 /* ProfessionalSupportSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */; };
@@ -462,6 +469,7 @@
 		AAD7FE3D33B1610DA4D1093B /* FirestoreDeviceTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A1F174548B2DDBE153C93E /* FirestoreDeviceTokenService.swift */; };
 		AB5790658142702E96058E0B /* StaySafeSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4217F49B101E056F9679585A /* StaySafeSectionViewModelTests.swift */; };
 		AE8238450575EE11F60CD300 /* StaySafeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9789F843142D96E67C70804C /* StaySafeSectionViewController.swift */; };
+		AFF76F298711C642D48996FC /* RecentResultCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC35483047BC6A09E9021BB /* RecentResultCardView.swift */; };
 		B1A2C3D4E5F6A7B8C9D0E1F2 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
 		B1A2C3D4E5F6A7B8C9D0E1F3 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
 		B2A3C4D5E6F7A8B9C0D1E2F3 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
@@ -485,6 +493,7 @@
 		C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
 		C47D335B0791DA4AC4C98D82 /* QuestLockedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0AFB2E02332DEA4A25A66D /* QuestLockedCardView.swift */; };
 		C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
+		C50444AEB16419D17E67C9D0 /* SurveySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431274603BD62C7259A676C /* SurveySectionModel.swift */; };
 		C607F743B51CA4C1DE23440E /* QuestTimezoneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245B803B3140A3F7D9CD61C /* QuestTimezoneCalculator.swift */; };
 		C84B64553755C52006E77CB0 /* CrashlyticsClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */; };
 		C9329A8334A5248AFA4C882E /* QuestStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B755C43C7BCDF8299509D6F1 /* QuestStage.swift */; };
@@ -527,10 +536,13 @@
 		E9D694DEE57BA594D2169C63 /* BundleSectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6F9856E4AC47CE6B05355 /* BundleSectionCardView.swift */; };
 		EA40CFB07B604234819D7CA4 /* CanvasViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1311990A33E93E5D4C6F37E6 /* CanvasViewPresenterTests.swift */; };
 		EAA8D3C119257BB661088D98 /* FirestoreSurveyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E47A6900098AA0512D9D0 /* FirestoreSurveyService.swift */; };
+		F1ACA4F178ACAB39D873888F /* EightDimensionsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB459D420DC18CFD45DE5322 /* EightDimensionsCardView.swift */; };
 		F204463776F9581F97BBF6C6 /* DrawingGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87D35E8E7AD990440D588A0 /* DrawingGalleryViewController.swift */; };
 		F2E2FC2A93FA9CEABE0AAC5F /* TopicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E56565E1067F09318717526 /* TopicTests.swift */; };
 		F3AB32AEA30ED6FB62FD45D9 /* DrawingCanvasPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD04250F40AD48441C462A5 /* DrawingCanvasPresenterTests.swift */; };
 		F3C8E2D6B1A4047568F1C297 /* SoulverseToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */; };
+		F49ACAA09DFA8FD161EBFD90 /* PendingSurveyDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEE218E567C03CEC3216328 /* PendingSurveyDeckView.swift */; };
+		F54D4E9200EE03150C13D9DC /* PendingSurveyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD035236D1E4EE1B5F848A /* PendingSurveyCardView.swift */; };
 		F7E1CA046D941D59C3CEFECC /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
 		FDD7F704D70889440A7C0DF6 /* DrawingReplayPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30DBF3AA04EC4F8C683EA7F /* DrawingReplayPresenterDelegateMock.swift */; };
 		FEAEF3464658DBB02F096ED0 /* DrawingGalleryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE6A1610F27FD47B57135DD /* DrawingGalleryViewModelTests.swift */; };
@@ -615,6 +627,7 @@
 		2D97B78D62A26C91686591BB /* DetailPlanetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetailPlanetView.swift; sourceTree = "<group>"; };
 		2F968EB81037659FA48E9E96 /* DrawingServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingServiceTests.swift; sourceTree = "<group>"; };
 		3245B803B3140A3F7D9CD61C /* QuestTimezoneCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestTimezoneCalculator.swift; sourceTree = "<group>"; };
+		33CD035236D1E4EE1B5F848A /* PendingSurveyCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PendingSurveyCardView.swift; sourceTree = "<group>"; };
 		33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntryCardCellViewModelTests.swift; sourceTree = "<group>"; };
 		3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreView.swift; sourceTree = "<group>"; };
 		379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
@@ -627,6 +640,7 @@
 		44B4FD47CBD19494846367A6 /* QuestServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceProtocol.swift; sourceTree = "<group>"; };
 		45CADED06D1EF601E2CC1277 /* SurveyViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		48E73787F4BF8E8C1D7A3403 /* QuestStageTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStageTests.swift; sourceTree = "<group>"; };
+		4E5BB786D34C328D239C3BFF /* SurveySectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveySectionView.swift; sourceTree = "<group>"; };
 		4F086EFB7A0C114933FE0F5D /* EmotionalBundleServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleServiceProtocol.swift; sourceTree = "<group>"; };
 		52FC116D149D9314A21F06C5 /* QuestServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceMock.swift; sourceTree = "<group>"; };
 		5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterDelegateMock.swift; sourceTree = "<group>"; };
@@ -656,6 +670,7 @@
 		67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingCanvasPresenter.swift; sourceTree = "<group>"; };
 		67594929C616A41B994759EA /* EmotionalBundleMainPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainPresenter.swift; sourceTree = "<group>"; };
 		67594929C616A41B994759EB /* EmotionalBundleCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleCoordinator.swift; sourceTree = "<group>"; };
+		682222EE3E842BC31BB07917 /* StateOfChangeIndicatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StateOfChangeIndicatorView.swift; sourceTree = "<group>"; };
 		6975331B3B4B8D90409C867C /* InnerCosmoViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerCosmoViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		6A1E4D78EAA08D9BD40D689C /* FirestoreSchemaTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreSchemaTests.swift; sourceTree = "<group>"; };
 		6BB6FE0EEE88FEEB784461AE /* LockedCardHint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LockedCardHint.swift; sourceTree = "<group>"; };
@@ -846,8 +861,10 @@
 		892063B3E7FDA02E24605BC0 /* LockedCardHintTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LockedCardHintTests.swift; sourceTree = "<group>"; };
 		8AE6A1610F27FD47B57135DD /* DrawingGalleryViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryViewModelTests.swift; sourceTree = "<group>"; };
 		8DEFAD9F0BEF567C9A881463 /* QuestViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestViewModelTests.swift; sourceTree = "<group>"; };
+		8EF47DEEDD827DCE9D8B2233 /* DimensionAxisState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DimensionAxisState.swift; sourceTree = "<group>"; };
 		8F0DD9CFB201C766B1C4EFC5 /* CustomHabitFormViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomHabitFormViewController.swift; sourceTree = "<group>"; };
 		90781A662B73BED5786934DE /* SoulverseActionModal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SoulverseActionModal.swift; sourceTree = "<group>"; };
+		90C762BE35696F9E56BFB0A9 /* RecentResultCardListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecentResultCardListView.swift; sourceTree = "<group>"; };
 		911D4CD1621A6E627C39B025 /* ProfessionalSupportSectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfessionalSupportSectionViewModel.swift; sourceTree = "<group>"; };
 		91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileInfoRow.swift; path = Soulverse/Features/Profile/Views/ProfileInfoRow.swift; sourceTree = SOURCE_ROOT; };
 		93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInModel.swift; sourceTree = "<group>"; };
@@ -881,6 +898,7 @@
 		B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityViewModel.swift; sourceTree = "<group>"; };
 		B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSummaryView.swift; sourceTree = "<group>"; };
 		B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityView.swift; sourceTree = "<group>"; };
+		B3036E6E3BB6CCBD2255D816 /* SurveySectionComposer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveySectionComposer.swift; sourceTree = "<group>"; };
 		B7278578F137612349A77E22 /* EmotionTypeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionTypeTests.swift; sourceTree = "<group>"; };
 		B755C43C7BCDF8299509D6F1 /* QuestStage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStage.swift; sourceTree = "<group>"; };
 		BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerFetchTests.swift; sourceTree = "<group>"; };
@@ -888,6 +906,8 @@
 		BC0D4A98EBE3D4825FA7F02B /* TopicDistributionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionViewModel.swift; sourceTree = "<group>"; };
 		BE130905112E9999824DBAA2 /* EmotionalBundleServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleServiceMock.swift; sourceTree = "<group>"; };
 		BEAB351D7409FEACE9BE53BE /* WeeklyMoodScoreViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreViewModelTests.swift; sourceTree = "<group>"; };
+		BEEE218E567C03CEC3216328 /* PendingSurveyDeckView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PendingSurveyDeckView.swift; sourceTree = "<group>"; };
+		C0A09A8F71DC3281358297D3 /* EightDimensionsRenderModelBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EightDimensionsRenderModelBuilder.swift; sourceTree = "<group>"; };
 		C1409E46492A9298B17FDE1D /* DrawingGalleryPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterTests.swift; sourceTree = "<group>"; };
 		C206EA9BF532D3A837AAC558 /* DrawingGalleryCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryCell.swift; sourceTree = "<group>"; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
@@ -911,8 +931,10 @@
 		D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseToast.swift; sourceTree = "<group>"; };
 		D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGridCardView.swift; sourceTree = "<group>"; };
 		D6B6E67B0799EB42985630D6 /* HabitData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitData.swift; sourceTree = "<group>"; };
+		DB459D420DC18CFD45DE5322 /* EightDimensionsCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EightDimensionsCardView.swift; sourceTree = "<group>"; };
 		DCDBD33BA61C721E6FB149BC /* Pods-Base-SoulverseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.debug.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DCEBCA322784CD8D7F94DE23 /* EmotionalBundleMainViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainViewModelTests.swift; sourceTree = "<group>"; };
+		DD0414230C16D4545A76D376 /* QuestRadarOverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestRadarOverlayView.swift; sourceTree = "<group>"; };
 		DD2F83B1C4052FF05B9B061D /* DrawingReplayModalViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReplayModalViewController.swift; sourceTree = "<group>"; };
 		DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklyMoodScoreViewModel+MockData.swift"; sourceTree = "<group>"; };
 		E0409B121CB8806C94932214 /* Pods-SoulverseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulverseTests.debug.xcconfig"; path = "Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -940,11 +962,13 @@
 		EDA116D179BEAA6D57A12D74 /* CanvasViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CanvasViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		EF61D471C9754C3495410815 /* QuestStateModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStateModel.swift; sourceTree = "<group>"; };
 		EFC4C49FF2CA899AB8798153 /* QuestProgressDotsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestProgressDotsView.swift; sourceTree = "<group>"; };
+		F431274603BD62C7259A676C /* SurveySectionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveySectionModel.swift; sourceTree = "<group>"; };
 		F460ED3BDF4D48FF1E4573CC /* QuestServiceMockTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceMockTests.swift; sourceTree = "<group>"; };
 		F57870E8C853DEBE590F1CB3 /* Pods-Base-Soulverse Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse Dev.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev.release.xcconfig"; sourceTree = "<group>"; };
 		F792F4928C055E97CAA8A86F /* Pods-Base-Soulverse Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse Dev.debug.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		F83D2ACF027F80CD265BD4CA /* EmotionalBundleModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleModel.swift; sourceTree = "<group>"; };
 		F86C99EBD0D7244FE8D52E4F /* CheckInDetailPresenterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckInDetailPresenterType.swift; sourceTree = "<group>"; };
+		FBC35483047BC6A09E9021BB /* RecentResultCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecentResultCardView.swift; sourceTree = "<group>"; };
 		FD987D99948ACB3446E74D68 /* CustomHabitFormViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomHabitFormViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1943,6 +1967,10 @@
 				798688032E6C24EE00EB3B38 /* QuestViewModel.swift */,
 				B755C43C7BCDF8299509D6F1 /* QuestStage.swift */,
 				6BB6FE0EEE88FEEB784461AE /* LockedCardHint.swift */,
+				F431274603BD62C7259A676C /* SurveySectionModel.swift */,
+				8EF47DEEDD827DCE9D8B2233 /* DimensionAxisState.swift */,
+				B3036E6E3BB6CCBD2255D816 /* SurveySectionComposer.swift */,
+				C0A09A8F71DC3281358297D3 /* EightDimensionsRenderModelBuilder.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1955,6 +1983,8 @@
 				798688052E6C24EE00EB3B38 /* QuestViewController.swift */,
 				B0A6B3F9B3F7E258AD16B2CA /* ProgressSection */,
 				4F04A7E8F48E7744B1DA715C /* LockedCard */,
+				E8F10449CD069C6C76A2F17E /* SurveySection */,
+				911067AF83B4EF9FA329701C /* EightDimensions */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2236,6 +2266,17 @@
 			path = MoodCheckInService;
 			sourceTree = "<group>";
 		};
+		911067AF83B4EF9FA329701C /* EightDimensions */ = {
+			isa = PBXGroup;
+			children = (
+				DD0414230C16D4545A76D376 /* QuestRadarOverlayView.swift */,
+				682222EE3E842BC31BB07917 /* StateOfChangeIndicatorView.swift */,
+				DB459D420DC18CFD45DE5322 /* EightDimensionsCardView.swift */,
+			);
+			name = EightDimensions;
+			path = EightDimensions;
+			sourceTree = "<group>";
+		};
 		9C926D0238843F88E79385AB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -2508,6 +2549,19 @@
 				E838841F277AF9F80002C053 /* Soulverse Dev.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E8F10449CD069C6C76A2F17E /* SurveySection */ = {
+			isa = PBXGroup;
+			children = (
+				33CD035236D1E4EE1B5F848A /* PendingSurveyCardView.swift */,
+				BEEE218E567C03CEC3216328 /* PendingSurveyDeckView.swift */,
+				FBC35483047BC6A09E9021BB /* RecentResultCardView.swift */,
+				90C762BE35696F9E56BFB0A9 /* RecentResultCardListView.swift */,
+				4E5BB786D34C328D239C3BFF /* SurveySectionView.swift */,
+			);
+			name = SurveySection;
+			path = SurveySection;
 			sourceTree = "<group>";
 		};
 		EB54972E4667D9E048FB9D3C /* CheckInDetail */ = {
@@ -3357,6 +3411,18 @@
 				EAA8D3C119257BB661088D98 /* FirestoreSurveyService.swift in Sources */,
 				4619BA04AAE13058073C1D82 /* SurveyViewController.swift in Sources */,
 				670D00D46B4991F2B995108E /* SurveyResultViewController.swift in Sources */,
+				C50444AEB16419D17E67C9D0 /* SurveySectionModel.swift in Sources */,
+				5C8C99E6FB798AD860DB8DD6 /* DimensionAxisState.swift in Sources */,
+				115AAD38779A0114B9F4BADF /* SurveySectionComposer.swift in Sources */,
+				7A84B99D8EA2DE2A1C1F3DD6 /* EightDimensionsRenderModelBuilder.swift in Sources */,
+				F54D4E9200EE03150C13D9DC /* PendingSurveyCardView.swift in Sources */,
+				F49ACAA09DFA8FD161EBFD90 /* PendingSurveyDeckView.swift in Sources */,
+				AFF76F298711C642D48996FC /* RecentResultCardView.swift in Sources */,
+				94741F0202385687C383000A /* RecentResultCardListView.swift in Sources */,
+				729E62DDA6618548CBB22DE4 /* SurveySectionView.swift in Sources */,
+				582A991426547E366511A666 /* QuestRadarOverlayView.swift in Sources */,
+				670572EE22CF3E39E5AEC703 /* StateOfChangeIndicatorView.swift in Sources */,
+				F1ACA4F178ACAB39D873888F /* EightDimensionsCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

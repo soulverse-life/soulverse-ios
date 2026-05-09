@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 protocol QuestViewPresenterDelegate: AnyObject {
     func didUpdate(viewModel: QuestViewModel)
@@ -32,7 +33,9 @@ final class QuestViewPresenter: QuestViewPresenterType {
     private let userIdProvider: () -> String?
 
     private var listenerToken: QuestListenerToken?
+    private var surveyListener: ListenerRegistration?
     private var lastState: QuestStateModel?
+    private var lastRecentSubmissions: [RecentSurveySubmission] = []
     private var didCheckInToday: Bool = false
 
     init(
@@ -59,6 +62,13 @@ final class QuestViewPresenter: QuestViewPresenterType {
             self?.handle(state: state)
         }
 
+        surveyListener = FirestoreSurveyService.observeRecentSubmissions(uid: uid) { [weak self] subs in
+            DispatchQueue.main.async {
+                self?.lastRecentSubmissions = subs
+                self?.recomposeViewModel()
+            }
+        }
+
         refreshTodayCheckInFlag(uid: uid)
 
         NotificationCenter.default.addObserver(
@@ -72,6 +82,8 @@ final class QuestViewPresenter: QuestViewPresenterType {
     func stop() {
         listenerToken?.cancel()
         listenerToken = nil
+        surveyListener?.remove()
+        surveyListener = nil
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -108,6 +120,7 @@ final class QuestViewPresenter: QuestViewPresenterType {
             state: state,
             didCheckInToday: didCheckInToday,
             customHabitExists: false,    // Plan 3 fills this in
+            recentSubmissions: lastRecentSubmissions,
             isLoading: isLoading
         )
     }

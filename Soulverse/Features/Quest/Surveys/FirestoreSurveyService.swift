@@ -112,4 +112,46 @@ enum FirestoreSurveyService {
                 }
             }
     }
+
+    /// Observes the user's most recent survey submissions for the
+    /// RecentResultCardList. Returns a registration the caller cancels on teardown.
+    @discardableResult
+    static func observeRecentSubmissions(
+        uid: String,
+        windowDays: Int = 60,
+        onChange: @escaping ([RecentSurveySubmission]) -> Void
+    ) -> ListenerRegistration {
+        let cutoff = Date().addingTimeInterval(-Double(windowDays) * 86_400)
+        return db.collection("users").document(uid)
+            .collection("survey_submissions")
+            .whereField("submittedAt", isGreaterThan: cutoff)
+            .order(by: "submittedAt", descending: true)
+            .limit(to: 10)
+            .addSnapshotListener { snap, _ in
+                let docs = snap?.documents ?? []
+                let items: [RecentSurveySubmission] = docs.compactMap { doc in
+                    let d = doc.data()
+                    guard let typeRaw = d["surveyType"] as? String,
+                          let type = QuestSurveyType(rawValue: typeRaw),
+                          let ts = d["submittedAt"] as? Timestamp else { return nil }
+                    let payload = d["payload"] as? [String: Any] ?? [:]
+                    let computed = payload["computed"] as? [String: Any] ?? [:]
+                    let dim: WellnessDimension? = {
+                        let raw = (payload["dimension"] as? String) ?? (d["dimension"] as? String)
+                        return raw.flatMap(WellnessDimension.init(rawValue:))
+                    }()
+                    let stage = computed["stage"] as? Int
+                    let stageKey = computed["stageKey"] as? String
+                    return RecentSurveySubmission(
+                        submissionId: doc.documentID,
+                        surveyType: type,
+                        submittedAt: ts.dateValue(),
+                        dimension: dim,
+                        stage: stage,
+                        stageKey: stageKey
+                    )
+                }
+                onChange(items)
+            }
+    }
 }

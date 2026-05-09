@@ -614,3 +614,47 @@
 "quest_survey_satisfaction_q30_text" = "How satisfied are you with your environment?";
 "quest_survey_satisfaction_q31_text" = "How satisfied are you with the adequacy of transport?";
 "quest_survey_satisfaction_q32_text" = "How satisfied are you with the role your personal beliefs play in your life?";
+
+// Quest — Plan 5 Survey section + 8-Dim card
+"quest_survey_section_title" = "Reflections";
+"quest_survey_section_no_results" = "Your reflections will show up here once you complete a check-in.";
+"quest_pending_deck_more_badge" = "+%d more";
+
+// Pending card titles/bodies
+"quest_pending_card_importance_title" = "Importance Check-In";
+"quest_pending_card_importance_body" = "Take a moment to mark what matters most to you right now.";
+"quest_pending_card_8dim_title" = "8 Dimensions";
+"quest_pending_card_8dim_body" = "Reflect on how this dimension is showing up in your life.";
+"quest_pending_card_8dim_emotional_title" = "Emotional Check-In";
+"quest_pending_card_8dim_physical_title" = "Physical Check-In";
+"quest_pending_card_8dim_social_title" = "Social Check-In";
+"quest_pending_card_8dim_intellectual_title" = "Intellectual Check-In";
+"quest_pending_card_8dim_spiritual_title" = "Spiritual Check-In";
+"quest_pending_card_8dim_occupational_title" = "Occupational Check-In";
+"quest_pending_card_8dim_environmental_title" = "Environmental Check-In";
+"quest_pending_card_8dim_financial_title" = "Financial Check-In";
+"quest_pending_card_soc_title" = "Readiness Check-In";
+"quest_pending_card_soc_body" = "Where are you on your journey of change?";
+"quest_pending_card_satisfaction_title" = "Satisfaction Check-In";
+"quest_pending_card_satisfaction_body" = "How satisfied are you across the dimensions of your life?";
+
+// Recent result card titles/summaries
+"quest_result_card_importance_title" = "Importance reflection";
+"quest_result_card_importance_summary" = "Your top priority is highlighted in your Quest.";
+"quest_result_card_8dim_title" = "8 Dimensions reflection";
+"quest_result_card_8dim_summary" = "See your stage in the radar above.";
+"quest_result_card_8dim_emotional_title" = "Emotional reflection";
+"quest_result_card_8dim_physical_title" = "Physical reflection";
+"quest_result_card_8dim_social_title" = "Social reflection";
+"quest_result_card_8dim_intellectual_title" = "Intellectual reflection";
+"quest_result_card_8dim_spiritual_title" = "Spiritual reflection";
+"quest_result_card_8dim_occupational_title" = "Occupational reflection";
+"quest_result_card_8dim_environmental_title" = "Environmental reflection";
+"quest_result_card_8dim_financial_title" = "Financial reflection";
+"quest_result_card_8dim_emotional_stage_1" = "Dim Lantern — emotional awareness is just beginning to flicker.";
+"quest_result_card_8dim_emotional_stage_2" = "Steady Flame — your emotional self is finding its rhythm.";
+"quest_result_card_8dim_emotional_stage_3" = "Radiant Hearth — your emotional warmth shines through.";
+"quest_result_card_soc_title" = "Readiness reflection";
+"quest_result_card_soc_summary" = "Your stage is highlighted below the radar.";
+"quest_result_card_satisfaction_title" = "Satisfaction reflection";
+"quest_result_card_satisfaction_summary" = "Your highest and lowest areas are surfaced in your Quest.";
