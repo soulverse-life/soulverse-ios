@@ -16,6 +16,11 @@ final class CustomHabitCard: UIView {
         static let buttonStackSpacing: CGFloat = 8
         static let buttonHeight: CGFloat = 36
         static let buttonCornerRadius: CGFloat = 18
+        static let titleFontSize: CGFloat = 17
+        static let totalFontSize: CGFloat = 20
+        static let yesterdayFontSize: CGFloat = 13
+        static let resetSubtitleFontSize: CGFloat = 11
+        static let incrementButtonFontSize: CGFloat = 15
     }
 
     private let titleLabel = UILabel()
@@ -55,16 +60,16 @@ final class CustomHabitCard: UIView {
     private func setupView() {
         backgroundColor = .clear
 
-        titleLabel.font = .preferredFont(forTextStyle: .headline)
+        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .semibold)
         titleLabel.textColor = .themeTextPrimary
 
-        totalLabel.font = .preferredFont(forTextStyle: .title3)
+        totalLabel.font = .projectFont(ofSize: Layout.totalFontSize, weight: .regular)
         totalLabel.textColor = .themeTextPrimary
 
-        yesterdayLabel.font = .preferredFont(forTextStyle: .footnote)
+        yesterdayLabel.font = .projectFont(ofSize: Layout.yesterdayFontSize, weight: .regular)
         yesterdayLabel.textColor = .themeTextSecondary
 
-        resetSubtitleLabel.font = .preferredFont(forTextStyle: .caption2)
+        resetSubtitleLabel.font = .projectFont(ofSize: Layout.resetSubtitleFontSize, weight: .regular)
         resetSubtitleLabel.textColor = .themeTextSecondary
 
         buttonStack.axis = .horizontal
@@ -99,7 +104,7 @@ final class CustomHabitCard: UIView {
             String(format: NSLocalizedString("quest_habit_increment_button_format", comment: ""), amount),
             for: .normal
         )
-        button.titleLabel?.font = .preferredFont(forTextStyle: .subheadline)
+        button.titleLabel?.font = .projectFont(ofSize: Layout.incrementButtonFontSize, weight: .regular)
         button.setTitleColor(.themeButtonSecondaryText, for: .normal)
         button.backgroundColor = .themeButtonSecondaryBackground
         button.layer.cornerRadius = Layout.buttonCornerRadius

@@ -16,6 +16,8 @@ final class SurveySectionView: UIView {
         static let outerInset: CGFloat = 16
         static let sectionSpacing: CGFloat = 16
         static let deckHeight: CGFloat = 132
+        static let titleFontSize: CGFloat = 20
+        static let emptyResultsFontSize: CGFloat = 13
     }
 
     private let titleLabel = UILabel()
@@ -35,11 +37,11 @@ final class SurveySectionView: UIView {
     private func setupView() {
         backgroundColor = .clear
         titleLabel.text = NSLocalizedString("quest_survey_section_title", comment: "")
-        titleLabel.font = .preferredFont(forTextStyle: .title3)
+        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .regular)
         titleLabel.textColor = .themeTextPrimary
 
         emptyResultsLabel.text = NSLocalizedString("quest_survey_section_no_results", comment: "")
-        emptyResultsLabel.font = .preferredFont(forTextStyle: .footnote)
+        emptyResultsLabel.font = .projectFont(ofSize: Layout.emptyResultsFontSize, weight: .regular)
         emptyResultsLabel.textColor = .themeTextSecondary
         emptyResultsLabel.textAlignment = .center
         emptyResultsLabel.numberOfLines = 0

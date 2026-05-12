@@ -16,6 +16,9 @@ final class SurveyResultViewController: UIViewController {
         static let outerInset: CGFloat = 24
         static let stackSpacing: CGFloat = 16
         static let doneHeight: CGFloat = 48
+        static let titleFontSize: CGFloat = 22
+        static let messageFontSize: CGFloat = 17
+        static let doneButtonFontSize: CGFloat = 17
     }
 
     let result: SurveyComputedResult
@@ -41,18 +44,18 @@ final class SurveyResultViewController: UIViewController {
     }
 
     private func setupView() {
-        titleLabel.font = .preferredFont(forTextStyle: .title2)
+        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .regular)
         titleLabel.textColor = .themeTextPrimary
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
 
-        messageLabel.font = .preferredFont(forTextStyle: .body)
+        messageLabel.font = .projectFont(ofSize: Layout.messageFontSize, weight: .regular)
         messageLabel.textColor = .themeTextSecondary
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
 
         doneButton.setTitle(NSLocalizedString("quest_survey_result_done", comment: ""), for: .normal)
-        doneButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+        doneButton.titleLabel?.font = .projectFont(ofSize: Layout.doneButtonFontSize, weight: .semibold)
         doneButton.setTitleColor(.themeButtonPrimaryText, for: .normal)
         doneButton.backgroundColor = .themeButtonPrimaryBackground
         doneButton.layer.cornerRadius = Layout.doneHeight / 2

@@ -18,6 +18,10 @@ final class SurveyViewController: UIViewController {
         static let optionSpacing: CGFloat = 6
         static let optionHeight: CGFloat = 36
         static let submitHeight: CGFloat = 48
+        static let numberFontSize: CGFloat = 13
+        static let questionFontSize: CGFloat = 17
+        static let optionFontSize: CGFloat = 12
+        static let submitFontSize: CGFloat = 17
     }
 
     let definition: SurveyDefinition
@@ -75,12 +79,12 @@ final class SurveyViewController: UIViewController {
 
         let numberLabel = UILabel()
         numberLabel.text = "\(index + 1)."
-        numberLabel.font = .preferredFont(forTextStyle: .footnote)
+        numberLabel.font = .projectFont(ofSize: Layout.numberFontSize, weight: .regular)
         numberLabel.textColor = .themeTextSecondary
 
         let textLabel = UILabel()
         textLabel.text = question.text
-        textLabel.font = .preferredFont(forTextStyle: .body)
+        textLabel.font = .projectFont(ofSize: Layout.questionFontSize, weight: .regular)
         textLabel.textColor = .themeTextPrimary
         textLabel.numberOfLines = 0
 
@@ -118,7 +122,7 @@ final class SurveyViewController: UIViewController {
     private func makeOptionButton(title: String, questionIndex: Int, value: Int) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(title, for: .normal)
-        button.titleLabel?.font = .preferredFont(forTextStyle: .caption1)
+        button.titleLabel?.font = .projectFont(ofSize: Layout.optionFontSize, weight: .regular)
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.numberOfLines = 2
         button.setTitleColor(.themeTextPrimary, for: .normal)
@@ -147,7 +151,7 @@ final class SurveyViewController: UIViewController {
 
     private func configureSubmitButton() {
         submitButton.setTitle(NSLocalizedString("quest_survey_submit", comment: ""), for: .normal)
-        submitButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+        submitButton.titleLabel?.font = .projectFont(ofSize: Layout.submitFontSize, weight: .semibold)
         submitButton.setTitleColor(.themeButtonPrimaryText, for: .normal)
         submitButton.setTitleColor(.themeButtonDisabledText, for: .disabled)
         submitButton.backgroundColor = .themeButtonPrimaryBackground

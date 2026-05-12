@@ -16,6 +16,7 @@ final class PendingSurveyDeckView: UIView {
         static let cardHeight: CGFloat = 96
         static let stackOffset: CGFloat = 6
         static let backCardInset: CGFloat = 16
+        static let moreBadgeFontSize: CGFloat = 11
     }
 
     private let backCardA = UIView()
@@ -49,7 +50,7 @@ final class PendingSurveyDeckView: UIView {
             self.onTapFrontCard?(type)
         }
 
-        moreBadge.font = .preferredFont(forTextStyle: .caption2)
+        moreBadge.font = .projectFont(ofSize: Layout.moreBadgeFontSize, weight: .regular)
         moreBadge.textColor = .themeTextSecondary
         moreBadge.textAlignment = .center
         addSubview(moreBadge)

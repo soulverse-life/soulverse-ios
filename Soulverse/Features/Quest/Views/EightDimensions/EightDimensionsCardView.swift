@@ -28,6 +28,10 @@ final class EightDimensionsCardView: UIView {
         static let bottomLabelHeight: CGFloat = 18
         static let stageIndicatorHeight: CGFloat = 44
         static let centerLockSize: CGFloat = 80
+        static let bottomStackSpacing: CGFloat = 8
+        static let titleFontSize: CGFloat = 20
+        static let subtitleFontSize: CGFloat = 16
+        static let currentStageFontSize: CGFloat = 16
     }
 
     private let visualEffectView = UIVisualEffectView(effect: nil)
@@ -54,33 +58,32 @@ final class EightDimensionsCardView: UIView {
         clipsToBounds = true
 
         titleLabel.text = NSLocalizedString("quest_eight_dim_card_title", comment: "")
-        titleLabel.font = .preferredFont(forTextStyle: .title3)
+        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .bold)
         titleLabel.textColor = .themeTextPrimary
 
         subtitleLabel.text = NSLocalizedString("quest_eight_dim_card_subtitle", comment: "")
-        subtitleLabel.font = .preferredFont(forTextStyle: .footnote)
+        subtitleLabel.font = .projectFont(ofSize: Layout.subtitleFontSize, weight: .regular)
         subtitleLabel.textColor = .themeTextSecondary
-        subtitleLabel.numberOfLines = 0
 
-        currentStageLabel.font = .preferredFont(forTextStyle: .footnote)
+        currentStageLabel.font = .projectFont(ofSize: Layout.currentStageFontSize, weight: .regular)
         currentStageLabel.textColor = .themeTextSecondary
 
         centerLockImageView.image = UIImage(systemName: "lock.fill")
         centerLockImageView.tintColor = .themeTextPrimary
         centerLockImageView.contentMode = .scaleAspectFit
 
-        lockScrim.backgroundColor = UIColor.black.withAlphaComponent(0.35)
+        lockScrim.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         lockScrim.isHidden = true
 
-        let topStack = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
-        topStack.axis = .vertical
-        topStack.spacing = Layout.titleToSubtitle
+        let headerStack = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        headerStack.axis = .vertical
+        headerStack.spacing = Layout.titleToSubtitle
 
-        let bottomStack = UIStackView(arrangedSubviews: [currentStageLabel, stageDotsView])
-        bottomStack.axis = .vertical
-        bottomStack.spacing = 8
+        let currentStageStack = UIStackView(arrangedSubviews: [currentStageLabel, stageDotsView])
+        currentStageStack.axis = .vertical
+        currentStageStack.spacing = Layout.bottomStackSpacing
 
-        let mainStack = UIStackView(arrangedSubviews: [topStack, radarOverlay, bottomStack])
+        let mainStack = UIStackView(arrangedSubviews: [headerStack, radarOverlay, currentStageStack])
         mainStack.axis = .vertical
         mainStack.spacing = Layout.subtitleToRadar
         mainStack.setCustomSpacing(Layout.radarToBottom, after: radarOverlay)
@@ -162,6 +165,7 @@ final class QuestEightDimStageIndicator: UIView {
         static let dotSize: CGFloat = 8
         static let columnSpacing: CGFloat = 4
         static let labelTopSpacing: CGFloat = 4
+        static let labelFontSize: CGFloat = 11
     }
 
     private var columns: [UIStackView] = []
@@ -188,7 +192,7 @@ final class QuestEightDimStageIndicator: UIView {
             dots.append(dot)
 
             let label = UILabel()
-            label.font = .preferredFont(forTextStyle: .caption2)
+            label.font = .projectFont(ofSize: Layout.labelFontSize, weight: .regular)
             label.textColor = .themeTextSecondary
             label.textAlignment = .center
             label.text = String(

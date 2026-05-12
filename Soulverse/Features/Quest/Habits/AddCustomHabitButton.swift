@@ -14,6 +14,7 @@ final class AddCustomHabitButton: UIControl {
         static let height: CGFloat = 48
         static let cornerRadius: CGFloat = 24
         static let inset: CGFloat = 16
+        static let titleFontSize: CGFloat = 17
     }
 
     private let titleLabel = UILabel()
@@ -56,7 +57,7 @@ final class AddCustomHabitButton: UIControl {
         layer.cornerRadius = Layout.cornerRadius
         clipsToBounds = true
 
-        titleLabel.font = .preferredFont(forTextStyle: .headline)
+        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .semibold)
         titleLabel.textAlignment = .center
 
         lockIcon.image = UIImage(systemName: "lock.fill")

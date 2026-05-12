@@ -13,6 +13,9 @@ final class RecentResultCardView: UIView {
     private enum Layout {
         static let padding: CGFloat = 14
         static let cornerRadius: CGFloat = 12
+        static let titleFontSize: CGFloat = 15
+        static let summaryFontSize: CGFloat = 13
+        static let dateFontSize: CGFloat = 11
     }
 
     private let titleLabel = UILabel()
@@ -33,15 +36,15 @@ final class RecentResultCardView: UIView {
         layer.cornerRadius = Layout.cornerRadius
         layer.masksToBounds = true
 
-        titleLabel.font = .preferredFont(forTextStyle: .subheadline)
+        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .regular)
         titleLabel.textColor = .themeTextPrimary
         titleLabel.numberOfLines = 1
 
-        summaryLabel.font = .preferredFont(forTextStyle: .footnote)
+        summaryLabel.font = .projectFont(ofSize: Layout.summaryFontSize, weight: .regular)
         summaryLabel.textColor = .themeTextSecondary
         summaryLabel.numberOfLines = 2
 
-        dateLabel.font = .preferredFont(forTextStyle: .caption2)
+        dateLabel.font = .projectFont(ofSize: Layout.dateFontSize, weight: .regular)
         dateLabel.textColor = .themeTextSecondary
 
         chevron.tintColor = .themeTextSecondary

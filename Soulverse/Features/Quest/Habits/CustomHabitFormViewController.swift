@@ -11,6 +11,9 @@ final class CustomHabitFormViewController: UIViewController {
         static let formInset: CGFloat = 24
         static let fieldSpacing: CGFloat = 16
         static let saveButtonHeight: CGFloat = 48
+        static let saveButtonFontSize: CGFloat = 17
+        static let previewFontSize: CGFloat = 13
+        static let fieldFontSize: CGFloat = 17
     }
 
     private let viewModel = CustomHabitFormViewModel()
@@ -45,7 +48,7 @@ final class CustomHabitFormViewController: UIViewController {
         }
 
         saveButton.setTitle(NSLocalizedString("quest_habit_form_save", comment: ""), for: .normal)
-        saveButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+        saveButton.titleLabel?.font = .projectFont(ofSize: Layout.saveButtonFontSize, weight: .semibold)
         saveButton.setTitleColor(.themeButtonPrimaryText, for: .normal)
         saveButton.setTitleColor(.themeButtonDisabledText, for: .disabled)
         saveButton.backgroundColor = .themeButtonPrimaryBackground
@@ -53,7 +56,7 @@ final class CustomHabitFormViewController: UIViewController {
         saveButton.isEnabled = false
         saveButton.addAction(UIAction { [weak self] _ in self?.saveTapped() }, for: .touchUpInside)
 
-        previewLabel.font = .preferredFont(forTextStyle: .footnote)
+        previewLabel.font = .projectFont(ofSize: Layout.previewFontSize, weight: .regular)
         previewLabel.textColor = .themeTextSecondary
         previewLabel.numberOfLines = 0
         previewLabel.text = NSLocalizedString("quest_habit_form_preview_invalid", comment: "")
@@ -87,7 +90,7 @@ final class CustomHabitFormViewController: UIViewController {
     private func configureField(_ field: UITextField, placeholderKey: String) {
         field.placeholder = NSLocalizedString(placeholderKey, comment: "")
         field.borderStyle = .roundedRect
-        field.font = .preferredFont(forTextStyle: .body)
+        field.font = .projectFont(ofSize: Layout.fieldFontSize, weight: .regular)
     }
 
     private func applyUnitSuggestions() {

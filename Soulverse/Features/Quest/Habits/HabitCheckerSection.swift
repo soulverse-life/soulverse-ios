@@ -20,6 +20,7 @@ final class HabitCheckerSection: UIView {
         static let rowSpacing: CGFloat = 0   // dividers carry separation
         static let dividerHeight: CGFloat = 1
         static let containerPadding: CGFloat = 16
+        static let titleFontSize: CGFloat = 20
     }
 
     private let visualEffectView = UIVisualEffectView(effect: nil)
@@ -62,7 +63,7 @@ final class HabitCheckerSection: UIView {
         clipsToBounds = true
 
         titleLabel.text = NSLocalizedString("quest_habit_section_title", comment: "")
-        titleLabel.font = .preferredFont(forTextStyle: .title3)
+        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .regular)
         titleLabel.textColor = .themeTextPrimary
 
         rowsStack.axis = .vertical

@@ -15,6 +15,7 @@ final class StateOfChangeIndicatorView: UIView {
         static let dotSize: CGFloat = 10
         static let dotSpacing: CGFloat = 12
         static let labelSpacing: CGFloat = 8
+        static let activeLabelFontSize: CGFloat = 13
     }
 
     private let dotStack = UIStackView()
@@ -44,7 +45,7 @@ final class StateOfChangeIndicatorView: UIView {
             dots.append(dot)
         }
 
-        activeLabel.font = .preferredFont(forTextStyle: .footnote)
+        activeLabel.font = .projectFont(ofSize: Layout.activeLabelFontSize, weight: .regular)
         activeLabel.textColor = .themeTextPrimary
         activeLabel.textAlignment = .center
 

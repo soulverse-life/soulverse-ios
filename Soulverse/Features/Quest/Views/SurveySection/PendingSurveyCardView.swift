@@ -15,6 +15,8 @@ final class PendingSurveyCardView: UIView {
         static let cornerRadius: CGFloat = 16
         static let padding: CGFloat = 16
         static let titleSpacing: CGFloat = 6
+        static let titleFontSize: CGFloat = 17
+        static let bodyFontSize: CGFloat = 13
     }
 
     private let titleLabel = UILabel()
@@ -34,11 +36,11 @@ final class PendingSurveyCardView: UIView {
         layer.cornerRadius = Layout.cornerRadius
         layer.masksToBounds = true
 
-        titleLabel.font = .preferredFont(forTextStyle: .headline)
+        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .semibold)
         titleLabel.textColor = .themeTextPrimary
         titleLabel.numberOfLines = 0
 
-        bodyLabel.font = .preferredFont(forTextStyle: .footnote)
+        bodyLabel.font = .projectFont(ofSize: Layout.bodyFontSize, weight: .regular)
         bodyLabel.textColor = .themeTextSecondary
         bodyLabel.numberOfLines = 0
 
