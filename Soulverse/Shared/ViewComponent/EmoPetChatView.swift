@@ -6,9 +6,72 @@
 import SnapKit
 import UIKit
 
+/// Alignment of the pet image relative to the dialog bubble.
+enum EmoPetChatAlignment {
+    case imageTrailing   // bubble left, pet right (default — Quest header style)
+    case imageLeading    // pet left, bubble right
+}
+
 struct EmoPetChatConfig {
     let image: UIImage?
     let message: String
+    /// Optional pre-built attributed message. Takes precedence over `message`
+    /// when non-nil. Use this for mixed-weight text (e.g., bold spans).
+    let attributedMessage: NSAttributedString?
+    let alignment: EmoPetChatAlignment
+
+    init(
+        image: UIImage?,
+        message: String,
+        attributedMessage: NSAttributedString? = nil,
+        alignment: EmoPetChatAlignment = .imageTrailing
+    ) {
+        self.image = image
+        self.message = message
+        self.attributedMessage = attributedMessage
+        self.alignment = alignment
+    }
+}
+
+/// Tiny Markdown-style helper. Renders `**bold**` spans within a string into
+/// an `NSAttributedString` styled with the given base font and a bolded
+/// counterpart. Anything outside `**` markers keeps the base font.
+enum EmoPetChatMarkdown {
+    static func attributed(
+        from markdown: String,
+        baseFont: UIFont,
+        boldFont: UIFont,
+        color: UIColor
+    ) -> NSAttributedString {
+        let result = NSMutableAttributedString()
+        var remaining = Substring(markdown)
+        while let range = remaining.range(of: "**") {
+            let pre = remaining[..<range.lowerBound]
+            result.append(NSAttributedString(
+                string: String(pre),
+                attributes: [.font: baseFont, .foregroundColor: color]
+            ))
+            let afterOpen = remaining[range.upperBound...]
+            if let closeRange = afterOpen.range(of: "**") {
+                let bold = afterOpen[..<closeRange.lowerBound]
+                result.append(NSAttributedString(
+                    string: String(bold),
+                    attributes: [.font: boldFont, .foregroundColor: color]
+                ))
+                remaining = afterOpen[closeRange.upperBound...]
+            } else {
+                remaining = afterOpen
+                break
+            }
+        }
+        if !remaining.isEmpty {
+            result.append(NSAttributedString(
+                string: String(remaining),
+                attributes: [.font: baseFont, .foregroundColor: color]
+            ))
+        }
+        return result
+    }
 }
 
 protocol EmoPetChatViewDelegate: AnyObject {
@@ -89,28 +152,53 @@ final class EmoPetChatView: UIView {
 
         petImageView.snp.makeConstraints { make in
             make.size.equalTo(Layout.petImageSize)
-            make.right.equalToSuperview()
             make.centerY.equalTo(cardContainer)
         }
-
-        cardContainer.snp.makeConstraints { make in
-            make.left.top.bottom.equalToSuperview()
-            make.right.equalTo(petImageView.snp.left).offset(-Layout.petImageSpacing)
-        }
-
         messageLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(Layout.cardPadding)
         }
+
+        applyAlignment(.imageTrailing)
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
         addGestureRecognizer(tap)
     }
 
+    private func applyAlignment(_ alignment: EmoPetChatAlignment) {
+        switch alignment {
+        case .imageTrailing:
+            petImageView.snp.remakeConstraints { make in
+                make.size.equalTo(Layout.petImageSize)
+                make.right.equalToSuperview()
+                make.centerY.equalTo(cardContainer)
+            }
+            cardContainer.snp.remakeConstraints { make in
+                make.left.top.bottom.equalToSuperview()
+                make.right.equalTo(petImageView.snp.left).offset(-Layout.petImageSpacing)
+            }
+        case .imageLeading:
+            petImageView.snp.remakeConstraints { make in
+                make.size.equalTo(Layout.petImageSize)
+                make.left.equalToSuperview()
+                make.centerY.equalTo(cardContainer)
+            }
+            cardContainer.snp.remakeConstraints { make in
+                make.right.top.bottom.equalToSuperview()
+                make.left.equalTo(petImageView.snp.right).offset(Layout.petImageSpacing)
+            }
+        }
+    }
+
     // MARK: - Public API
 
     func update(config: EmoPetChatConfig) {
-        messageLabel.text = config.message
+        if let attributed = config.attributedMessage {
+            messageLabel.attributedText = attributed
+        } else {
+            messageLabel.text = config.message
+        }
         petImageView.image = config.image
+        applyAlignment(config.alignment)
     }
 
     func show(in parent: UIView) {

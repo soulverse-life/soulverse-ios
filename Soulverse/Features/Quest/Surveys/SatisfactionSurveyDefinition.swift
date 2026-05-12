@@ -40,9 +40,9 @@ enum SatisfactionSurveyDefinition {
         let means = ImportanceSurveyDefinition.categoryMeans(from: values)
         let max = means.values.max() ?? 0
         let min = means.values.min() ?? 0
-        let priorityOrder: [WellnessDimension] = [
+        let priorityOrder: [Topic] = [
             .physical, .emotional, .social, .intellectual,
-            .spiritual, .occupational, .environmental, .financial
+            .spiritual, .occupational, .environment, .financial
         ]
         let top = priorityOrder.first(where: { (means[$0] ?? 0) == max }) ?? .physical
         let lowest = priorityOrder.first(where: { (means[$0] ?? 0) == min }) ?? .physical

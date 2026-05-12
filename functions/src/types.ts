@@ -8,12 +8,12 @@ export type WellnessDimension =
   | "intellectual"
   | "spiritual"
   | "occupational"
-  | "environmental"
+  | "environment"
   | "financial";
 
 export const ALL_DIMENSIONS: WellnessDimension[] = [
   "physical", "emotional", "social", "intellectual",
-  "spiritual", "occupational", "environmental", "financial"
+  "spiritual", "occupational", "environment", "financial"
 ];
 
 export type SurveyType =

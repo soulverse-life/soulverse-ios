@@ -8,7 +8,7 @@ export interface FocusPickResult {
 /** Predetermined order used as the level-3 tie-breaker (matches wellness doc). */
 const PRIORITY_ORDER: WellnessDimension[] = [
   "physical", "emotional", "social", "intellectual",
-  "spiritual", "occupational", "environmental", "financial"
+  "spiritual", "occupational", "environment", "financial"
 ];
 
 export function pickFocusDimension(

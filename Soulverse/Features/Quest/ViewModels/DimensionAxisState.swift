@@ -32,7 +32,7 @@ struct StateOfChangeIndicatorModel: Equatable {
 
 /// One render entry per dimension, in canonical order.
 struct EightDimensionsRenderModel: Equatable {
-    /// Always 8 entries in `WellnessDimension.allCases` order.
+    /// Always 8 entries in `Topic.allCases` order.
     let axes: [DimensionAxisState]
     let stateOfChangeIndicator: StateOfChangeIndicatorModel?
     let isCardLocked: Bool

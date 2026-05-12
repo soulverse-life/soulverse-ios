@@ -2,8 +2,10 @@
 //  HabitCheckerSection.swift
 //  Soulverse
 //
-//  Container view that hosts three default habit cards, an optional active
-//  custom habit card, and the lock-aware Add Custom Habit button.
+//  Single glass card containing the section title and one row per active
+//  habit (three defaults + optional custom + the Add Custom Habit button).
+//  Per the design feedback, habits are sub-sections of ONE card, separated
+//  by themeSeparator dividers — they no longer have their own card chrome.
 //
 
 import UIKit
@@ -12,17 +14,24 @@ import Combine
 
 final class HabitCheckerSection: UIView {
     private enum Layout {
-        static let cardSpacing: CGFloat = 12
+        static let cornerRadius: CGFloat = 16
         static let outerInset: CGFloat = 16
-        static let headerSpacing: CGFloat = 8
+        static let titleToRowsSpacing: CGFloat = 12
+        static let rowSpacing: CGFloat = 0   // dividers carry separation
+        static let dividerHeight: CGFloat = 1
+        static let containerPadding: CGFloat = 16
     }
 
+    private let visualEffectView = UIVisualEffectView(effect: nil)
+    private let cardContent = UIView()
+
     private let titleLabel = UILabel()
-    private let stack = UIStackView()
-    private let exerciseCard = DefaultHabitCard()
-    private let waterCard = DefaultHabitCard()
-    private let meditationCard = DefaultHabitCard()
-    private let customCard = CustomHabitCard()
+    private let rowsStack = UIStackView()
+
+    private let exerciseRow = DefaultHabitCard()
+    private let waterRow = DefaultHabitCard()
+    private let meditationRow = DefaultHabitCard()
+    private let customRow = CustomHabitCard()
     private let addButton = AddCustomHabitButton()
 
     private let service: FirestoreHabitService
@@ -49,43 +58,69 @@ final class HabitCheckerSection: UIView {
     }
 
     private func setupView() {
+        layer.cornerRadius = Layout.cornerRadius
+        clipsToBounds = true
+
         titleLabel.text = NSLocalizedString("quest_habit_section_title", comment: "")
-        titleLabel.font = .preferredFont(forTextStyle: .title2)
+        titleLabel.font = .preferredFont(forTextStyle: .title3)
         titleLabel.textColor = .themeTextPrimary
 
-        stack.axis = .vertical
-        stack.spacing = Layout.cardSpacing
+        rowsStack.axis = .vertical
+        rowsStack.spacing = Layout.rowSpacing
 
-        stack.addArrangedSubview(exerciseCard)
-        stack.addArrangedSubview(waterCard)
-        stack.addArrangedSubview(meditationCard)
-        stack.addArrangedSubview(customCard)
-        stack.addArrangedSubview(addButton)
-        customCard.isHidden = true
+        // Order: exercise, water, meditation, custom (optional), add button
+        addRow(exerciseRow)
+        addRow(waterRow)
+        addRow(meditationRow)
+        addRow(customRow)
+        addRow(addButton)
+        customRow.isHidden = true
 
-        let outer = UIStackView(arrangedSubviews: [titleLabel, stack])
+        let outer = UIStackView(arrangedSubviews: [titleLabel, rowsStack])
         outer.axis = .vertical
-        outer.spacing = Layout.headerSpacing
-        addSubview(outer)
+        outer.spacing = Layout.titleToRowsSpacing
+
+        cardContent.addSubview(outer)
         outer.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(Layout.outerInset)
+            make.edges.equalToSuperview().inset(Layout.containerPadding)
         }
 
-        exerciseCard.onIncrementTap = { [weak self] amount in
+        ViewComponentConstants.applyGlassCardEffect(
+            to: self,
+            visualEffectView: visualEffectView,
+            contentView: cardContent,
+            cornerRadius: Layout.cornerRadius
+        )
+        cardContent.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        exerciseRow.onIncrementTap = { [weak self] amount in
             self?.service.logIncrement(habitId: DefaultHabitId.exercise.rawValue, amount: amount, telemetry: self?.telemetry)
         }
-        waterCard.onIncrementTap = { [weak self] amount in
+        waterRow.onIncrementTap = { [weak self] amount in
             self?.service.logIncrement(habitId: DefaultHabitId.water.rawValue, amount: amount, telemetry: self?.telemetry)
         }
-        meditationCard.onIncrementTap = { [weak self] amount in
+        meditationRow.onIncrementTap = { [weak self] amount in
             self?.service.logIncrement(habitId: DefaultHabitId.meditation.rawValue, amount: amount, telemetry: self?.telemetry)
         }
 
         addButton.onTap = { [weak self] in self?.onAddTap?() }
-        customCard.onDeleteTap = { [weak self] in
+        customRow.onDeleteTap = { [weak self] in
             guard let self = self, let active = self.service.activeCustomHabit() else { return }
             self.onDeleteTap?(active)
         }
+    }
+
+    /// Append a row + a divider underneath. Last divider is hidden in `rerender()`.
+    private func addRow(_ view: UIView) {
+        rowsStack.addArrangedSubview(view)
+        let divider = UIView()
+        divider.backgroundColor = .themeSeparator
+        divider.snp.makeConstraints { make in
+            make.height.equalTo(Layout.dividerHeight)
+        }
+        rowsStack.addArrangedSubview(divider)
     }
 
     private func wireService() {
@@ -100,19 +135,19 @@ final class HabitCheckerSection: UIView {
         let state = service.currentState
         let vm = HabitCheckerViewModel(state: state, todayKey: todayKey, distinctCheckInDays: distinctCheckInDays)
 
-        exerciseCard.configure(vm.cardModel(
+        exerciseRow.configure(vm.cardModel(
             for: DefaultHabitId.exercise.rawValue,
             titleKey: DefaultHabitId.exercise.titleKey,
             unit: DefaultHabitId.exercise.unit,
             increments: DefaultHabitId.exercise.increments
         ))
-        waterCard.configure(vm.cardModel(
+        waterRow.configure(vm.cardModel(
             for: DefaultHabitId.water.rawValue,
             titleKey: DefaultHabitId.water.titleKey,
             unit: DefaultHabitId.water.unit,
             increments: DefaultHabitId.water.increments
         ))
-        meditationCard.configure(vm.cardModel(
+        meditationRow.configure(vm.cardModel(
             for: DefaultHabitId.meditation.rawValue,
             titleKey: DefaultHabitId.meditation.titleKey,
             unit: DefaultHabitId.meditation.unit,
@@ -120,20 +155,41 @@ final class HabitCheckerSection: UIView {
         ))
 
         if let active = vm.activeCustomHabit {
-            customCard.isHidden = false
+            customRow.isHidden = false
             let yKey = HabitDateKey.yesterdayKey(of: todayKey)
-            customCard.configure(
+            customRow.configure(
                 active,
                 todayTotal: state.daily[todayKey]?[active.id] ?? 0,
                 yesterdayTotal: state.daily[yKey]?[active.id] ?? 0
             )
-            customCard.onIncrementTap = { [weak self] amount in
+            customRow.onIncrementTap = { [weak self] amount in
                 self?.service.logIncrement(habitId: active.id, amount: amount, telemetry: self?.telemetry)
             }
         } else {
-            customCard.isHidden = true
+            customRow.isHidden = true
         }
 
         addButton.configure(vm.addButtonState)
+        updateDividerVisibility()
+    }
+
+    /// Hide dividers under rows whose row is hidden, and the divider after
+    /// the last visible row.
+    private func updateDividerVisibility() {
+        let views = rowsStack.arrangedSubviews
+        // Rows are at even indices; dividers at odd.
+        for i in stride(from: 0, to: views.count, by: 2) {
+            let row = views[i]
+            let divider = (i + 1 < views.count) ? views[i + 1] : nil
+            divider?.isHidden = row.isHidden
+        }
+        // Hide the divider after the last visible row.
+        var lastVisibleRowIdx: Int?
+        for i in stride(from: 0, to: views.count, by: 2) where !views[i].isHidden {
+            lastVisibleRowIdx = i
+        }
+        if let last = lastVisibleRowIdx, last + 1 < views.count {
+            views[last + 1].isHidden = true
+        }
     }
 }

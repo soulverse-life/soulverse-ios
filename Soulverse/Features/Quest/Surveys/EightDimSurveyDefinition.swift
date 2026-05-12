@@ -15,7 +15,7 @@ enum EightDimSurveyDefinition {
     static let titleKey = "quest_survey_8dim_title"
     static let questionCount = 10
 
-    static func make(dimension: WellnessDimension) -> SurveyDefinition {
+    static func make(dimension: Topic) -> SurveyDefinition {
         let questions = SurveyDefinition.questions(
             prefix: "quest_survey_8dim_\(dimension.rawValue)",
             count: questionCount
@@ -38,7 +38,7 @@ enum EightDimSurveyDefinition {
         }
     }
 
-    static func score(dimension: WellnessDimension, responses: [SurveyResponse]) throws -> SurveyComputedResult {
+    static func score(dimension: Topic, responses: [SurveyResponse]) throws -> SurveyComputedResult {
         guard responses.count == questionCount else {
             throw SurveyDefinition.ScoringError.wrongResponseCount(expected: questionCount, actual: responses.count)
         }

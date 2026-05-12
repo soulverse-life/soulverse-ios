@@ -12,8 +12,8 @@ enum EightDimensionsRenderModelBuilder {
 
     static let unlockDay = 7
 
-    /// Canonical axis order — must match WellnessDimension.allCases.
-    static let canonicalOrder = WellnessDimension.allCases
+    /// Canonical axis order — must match Topic.allCases.
+    static let canonicalOrder = Topic.allCases
 
     static func build(state: QuestStateModel) -> EightDimensionsRenderModel {
         // Card-locked path: stage 1 lock icon affordance.

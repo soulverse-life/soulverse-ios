@@ -2,6 +2,13 @@
 //  QuestProgressDotsView.swift
 //  Soulverse
 //
+//  Renders a 7-dot row representing the current stage's days. Completed
+//  days are filled; the current day is highlighted with a slightly larger
+//  active dot; remaining days are dim.
+//
+//  Per the design (~/Desktop/quest_1.png), we never render all 21 planets
+//  at once — the stage being viewed always occupies the full row.
+//
 
 import UIKit
 import SnapKit
@@ -9,11 +16,10 @@ import SnapKit
 final class QuestProgressDotsView: UIView {
 
     private enum Layout {
-        static let totalDots: Int = QuestViewModel.questCompleteDay
-        static let dotSize: CGFloat = 6
-        static let activeDotSize: CGFloat = 10
-        static let dotSpacing: CGFloat = 4
-        static let stageGap: CGFloat = 8
+        static let dotsPerStage: Int = 7
+        static let dotSize: CGFloat = 24
+        static let activeDotSize: CGFloat = 30
+        static let dotSpacing: CGFloat = 14
     }
 
     private let stack: UIStackView = {
@@ -25,10 +31,8 @@ final class QuestProgressDotsView: UIView {
         return s
     }()
 
-    private var dotViews: [UIView] = []
-
-    private(set) var dotCount: Int = 0
-    private(set) var highlightedDotIndex: Int = 0
+    private var dotViews: [UIImageView] = []
+    private(set) var dotCount: Int = Layout.dotsPerStage
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,58 +44,50 @@ final class QuestProgressDotsView: UIView {
     private func setupView() {
         addSubview(stack)
         stack.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.center.equalToSuperview()
+            make.top.bottom.equalToSuperview()
         }
 
-        for i in 1...Layout.totalDots {
-            let dot = UIView()
-            dot.backgroundColor = .themeProgressBarInactive
-            dot.layer.cornerRadius = Layout.dotSize / 2
+        for _ in 0..<Layout.dotsPerStage {
+            let dot = UIImageView()
+            dot.contentMode = .scaleAspectFit
+            dot.image = UIImage(named: "EMOPet/basic_first_level")
             dot.snp.makeConstraints { make in
                 make.size.equalTo(Layout.dotSize)
             }
             stack.addArrangedSubview(dot)
             dotViews.append(dot)
-
-            // Insert a wider gap after each stage boundary (dots 7 and 14).
-            if i == 7 || i == 14 {
-                let gap = UIView()
-                gap.snp.makeConstraints { make in
-                    make.width.equalTo(Layout.stageGap)
-                }
-                stack.addArrangedSubview(gap)
-            }
         }
-        dotCount = dotViews.count
     }
 
+    /// Map the (1-indexed) absolute current dot to the (1..7) dot position
+    /// within the active stage, then style each dot.
     func configure(currentDot: Int, stage: QuestStage) {
-        highlightedDotIndex = max(0, min(currentDot, Layout.totalDots))
         let stageRange = stage.dotRange
+        // Map absolute dot → position within stage (1...7)
+        let relativeCurrent: Int = {
+            guard stageRange.contains(currentDot) else {
+                // Before the stage started → 0; after → 7 (all complete)
+                return currentDot < stageRange.lowerBound ? 0 : Layout.dotsPerStage
+            }
+            return currentDot - stageRange.lowerBound + 1
+        }()
 
         for (idx, dot) in dotViews.enumerated() {
-            let dotNumber = idx + 1
-            let inCurrentStage = stageRange.contains(dotNumber)
-            let completed = dotNumber <= currentDot
+            let position = idx + 1
+            let isCurrent = position == relativeCurrent
+            let isCompleted = position < relativeCurrent
 
             dot.snp.updateConstraints { make in
-                make.size.equalTo(dotNumber == currentDot ? Layout.activeDotSize : Layout.dotSize)
+                make.size.equalTo(isCurrent ? Layout.activeDotSize : Layout.dotSize)
             }
-            dot.layer.cornerRadius = (dotNumber == currentDot ? Layout.activeDotSize : Layout.dotSize) / 2
 
-            if dotNumber == currentDot {
-                dot.backgroundColor = .themeProgressBarActive
-                dot.layer.borderWidth = 2
-                dot.layer.borderColor = UIColor.themeProgressBarActive.withAlphaComponent(0.4).cgColor
-            } else if completed {
-                dot.backgroundColor = .themeProgressBarActive.withAlphaComponent(0.6)
-                dot.layer.borderWidth = 0
-            } else if inCurrentStage {
-                dot.backgroundColor = .themeProgressBarInactive
-                dot.layer.borderWidth = 0
+            if isCurrent {
+                dot.alpha = 1.0
+            } else if isCompleted {
+                dot.alpha = 0.85
             } else {
-                dot.backgroundColor = .themeProgressBarInactive.withAlphaComponent(0.5)
-                dot.layer.borderWidth = 0
+                dot.alpha = 0.4
             }
         }
     }

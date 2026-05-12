@@ -229,7 +229,7 @@ extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    private func presentSurvey(for type: QuestSurveyType, focus: WellnessDimension?) {
+    private func presentSurvey(for type: QuestSurveyType, focus: Topic?) {
         let definition = SurveyDefinition.definition(for: type, dimension: focus)
         let surveyVC = SurveyViewController(definition: definition)
         surveyVC.onCancel = { [weak self] in self?.dismiss(animated: true) }

@@ -14,7 +14,7 @@ struct RecentSurveySubmission: Equatable {
     let submissionId: String
     let surveyType: QuestSurveyType
     let submittedAt: Date
-    let dimension: WellnessDimension?    // 8-Dim only
+    let dimension: Topic?    // 8-Dim only
     let stage: Int?                      // 8-Dim or SoC
     let stageKey: String?
 }
@@ -55,7 +55,7 @@ enum SurveySectionComposer {
 
     // MARK: - Localization key helpers
 
-    static func titleKey(for type: QuestSurveyType, focus: WellnessDimension?) -> String {
+    static func titleKey(for type: QuestSurveyType, focus: Topic?) -> String {
         switch type {
         case .importanceCheckIn:   return "quest_pending_card_importance_title"
         case .eightDim:

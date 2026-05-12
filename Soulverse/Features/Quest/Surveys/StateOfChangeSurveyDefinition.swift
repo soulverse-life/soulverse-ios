@@ -16,7 +16,7 @@ enum StateOfChangeSurveyDefinition {
     static let titleKey = "quest_survey_soc_title"
     static let questionCount = 15
 
-    static func make(dimension: WellnessDimension) -> SurveyDefinition {
+    static func make(dimension: Topic) -> SurveyDefinition {
         let questions = SurveyDefinition.questions(prefix: "quest_survey_soc", count: questionCount)
         return SurveyDefinition(
             kind: kind,
@@ -45,7 +45,7 @@ enum StateOfChangeSurveyDefinition {
         }
     }
 
-    static func score(dimension: WellnessDimension, responses: [SurveyResponse]) throws -> SurveyComputedResult {
+    static func score(dimension: Topic, responses: [SurveyResponse]) throws -> SurveyComputedResult {
         guard responses.count == questionCount else {
             throw SurveyDefinition.ScoringError.wrongResponseCount(expected: questionCount, actual: responses.count)
         }

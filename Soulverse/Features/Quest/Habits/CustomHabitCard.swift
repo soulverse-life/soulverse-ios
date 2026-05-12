@@ -11,16 +11,12 @@ import SnapKit
 
 final class CustomHabitCard: UIView {
     private enum Layout {
-        static let cardCornerRadius: CGFloat = 16
-        static let outerInset: CGFloat = 16
-        static let stackSpacing: CGFloat = 8
+        static let outerInset: CGFloat = 12
+        static let stackSpacing: CGFloat = 6
         static let buttonStackSpacing: CGFloat = 8
         static let buttonHeight: CGFloat = 36
         static let buttonCornerRadius: CGFloat = 18
     }
-
-    private let visualEffectView = UIVisualEffectView(effect: nil)
-    private let cardContent = UIView()
 
     private let titleLabel = UILabel()
     private let totalLabel = UILabel()
@@ -57,8 +53,7 @@ final class CustomHabitCard: UIView {
     }
 
     private func setupView() {
-        layer.cornerRadius = Layout.cardCornerRadius
-        clipsToBounds = true
+        backgroundColor = .clear
 
         titleLabel.font = .preferredFont(forTextStyle: .headline)
         titleLabel.textColor = .themeTextPrimary
@@ -89,22 +84,12 @@ final class CustomHabitCard: UIView {
         vStack.axis = .vertical
         vStack.spacing = Layout.stackSpacing
 
-        cardContent.addSubview(vStack)
+        addSubview(vStack)
         vStack.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(Layout.outerInset)
         }
         buttonStack.snp.makeConstraints { make in
             make.height.equalTo(Layout.buttonHeight)
-        }
-
-        ViewComponentConstants.applyGlassCardEffect(
-            to: self,
-            visualEffectView: visualEffectView,
-            contentView: cardContent,
-            cornerRadius: Layout.cardCornerRadius
-        )
-        cardContent.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
         }
     }
 

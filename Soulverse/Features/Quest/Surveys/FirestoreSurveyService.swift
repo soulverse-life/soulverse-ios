@@ -72,7 +72,7 @@ enum FirestoreSurveyService {
         }
     }
 
-    private static func meansDict(_ means: [WellnessDimension: Double]) -> [String: Double] {
+    private static func meansDict(_ means: [Topic: Double]) -> [String: Double] {
         var out: [String: Double] = [:]
         for (k, v) in means { out[k.rawValue] = v }
         return out
@@ -136,9 +136,9 @@ enum FirestoreSurveyService {
                           let ts = d["submittedAt"] as? Timestamp else { return nil }
                     let payload = d["payload"] as? [String: Any] ?? [:]
                     let computed = payload["computed"] as? [String: Any] ?? [:]
-                    let dim: WellnessDimension? = {
+                    let dim: Topic? = {
                         let raw = (payload["dimension"] as? String) ?? (d["dimension"] as? String)
-                        return raw.flatMap(WellnessDimension.init(rawValue:))
+                        return raw.flatMap(Topic.init(rawValue:))
                     }()
                     let stage = computed["stage"] as? Int
                     let stageKey = computed["stageKey"] as? String

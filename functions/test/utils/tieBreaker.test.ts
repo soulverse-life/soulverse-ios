@@ -4,14 +4,14 @@ import { WellnessDimension } from "../../src/types";
 
 const zeroCounts = (): Record<WellnessDimension, number> => ({
   physical: 0, emotional: 0, social: 0, intellectual: 0,
-  spiritual: 0, occupational: 0, environmental: 0, financial: 0
+  spiritual: 0, occupational: 0, environment: 0, financial: 0
 });
 
 describe("pickFocusDimension", () => {
   it("returns the unique highest-mean category (level 1)", () => {
     const result = pickFocusDimension(
       { physical: 3.0, emotional: 4.5, social: 3.5, intellectual: 3.0,
-        spiritual: 2.5, occupational: 4.0, environmental: 3.0, financial: 3.5 },
+        spiritual: 2.5, occupational: 4.0, environment: 3.0, financial: 3.5 },
       zeroCounts()
     );
     expect(result.dimension).toBe("emotional");
@@ -24,7 +24,7 @@ describe("pickFocusDimension", () => {
     counts.emotional = 5;
     const result = pickFocusDimension(
       { physical: 4.0, emotional: 4.0, social: 3.0, intellectual: 3.0,
-        spiritual: 3.0, occupational: 3.0, environmental: 3.0, financial: 3.0 },
+        spiritual: 3.0, occupational: 3.0, environment: 3.0, financial: 3.0 },
       counts
     );
     expect(result.dimension).toBe("emotional");
@@ -34,7 +34,7 @@ describe("pickFocusDimension", () => {
   it("falls back to predetermined order when means and counts tie (level 3)", () => {
     const result = pickFocusDimension(
       { physical: 4.0, emotional: 4.0, social: 4.0, intellectual: 3.0,
-        spiritual: 3.0, occupational: 3.0, environmental: 3.0, financial: 3.0 },
+        spiritual: 3.0, occupational: 3.0, environment: 3.0, financial: 3.0 },
       zeroCounts()
     );
     expect(result.dimension).toBe("physical");
@@ -48,7 +48,7 @@ describe("pickFocusDimension", () => {
     counts.social = 5;
     const result = pickFocusDimension(
       { physical: 3.0, emotional: 4.0, social: 4.0, intellectual: 3.0,
-        spiritual: 3.0, occupational: 3.0, environmental: 3.0, financial: 3.0 },
+        spiritual: 3.0, occupational: 3.0, environment: 3.0, financial: 3.0 },
       counts
     );
     expect(result.dimension).toBe("social");

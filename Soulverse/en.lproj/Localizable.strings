@@ -487,14 +487,6 @@
 "quest_satisfaction_result_first_time_format" = "Highest satisfaction: %@. Room for growth: %@.";
 
 // Quest — Wellness dimension display names
-"quest_dimension_physical" = "Physical";
-"quest_dimension_emotional" = "Emotional";
-"quest_dimension_social" = "Social";
-"quest_dimension_intellectual" = "Intellectual";
-"quest_dimension_spiritual" = "Spiritual";
-"quest_dimension_occupational" = "Occupational";
-"quest_dimension_environmental" = "Environmental";
-"quest_dimension_financial" = "Financial";
 
 // Quest — State-of-Change friendly stage labels (5)
 "quest_stage_soc_1_label" = "Considering";
@@ -631,7 +623,7 @@
 "quest_pending_card_8dim_intellectual_title" = "Intellectual Check-In";
 "quest_pending_card_8dim_spiritual_title" = "Spiritual Check-In";
 "quest_pending_card_8dim_occupational_title" = "Occupational Check-In";
-"quest_pending_card_8dim_environmental_title" = "Environmental Check-In";
+"quest_pending_card_8dim_environment_title" = "Environment Check-In";
 "quest_pending_card_8dim_financial_title" = "Financial Check-In";
 "quest_pending_card_soc_title" = "Readiness Check-In";
 "quest_pending_card_soc_body" = "Where are you on your journey of change?";
@@ -649,7 +641,7 @@
 "quest_result_card_8dim_intellectual_title" = "Intellectual reflection";
 "quest_result_card_8dim_spiritual_title" = "Spiritual reflection";
 "quest_result_card_8dim_occupational_title" = "Occupational reflection";
-"quest_result_card_8dim_environmental_title" = "Environmental reflection";
+"quest_result_card_8dim_environment_title" = "Environment reflection";
 "quest_result_card_8dim_financial_title" = "Financial reflection";
 "quest_result_card_8dim_emotional_stage_1" = "Dim Lantern — emotional awareness is just beginning to flicker.";
 "quest_result_card_8dim_emotional_stage_2" = "Steady Flame — your emotional self is finding its rhythm.";
@@ -661,3 +653,15 @@
 
 // Quest — Plan 7 polish: habit increment button format
 "quest_habit_increment_button_format" = "+%d";
+
+// Quest progress section — design v2
+"quest_progress_subtitle" = "Your personal growth mission hub";
+"quest_progress_emo_stage_1_format" = "Need to check in **%d times** to unlock **Phase 1**";
+"quest_progress_emo_stage_2_format" = "Need to check in **%d times** to unlock **Phase 2**";
+"quest_progress_emo_stage_3_format" = "Need to check in **%d times** to **complete the quest**";
+"quest_progress_emo_completed" = "Mission accomplished — your **21-day quest** is complete!";
+
+// 8-Dim card — design v2
+"quest_eight_dim_card_subtitle" = "Unlock more dimensions by checkins";
+"quest_eight_dim_current_stage_format" = "%@ current stage";
+"quest_eight_dim_stage_label_format" = "Stage %d";

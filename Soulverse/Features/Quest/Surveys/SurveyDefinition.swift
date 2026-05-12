@@ -10,10 +10,10 @@ import Foundation
 
 /// Computed result of a survey submission. The shape varies by surveyType.
 enum SurveyComputedResult {
-    case importance(categoryMeans: [WellnessDimension: Double], topCategory: WellnessDimension, tieBreakerLevel: Int)
-    case eightDim(dimension: WellnessDimension, totalScore: Int, meanScore: Double, stage: Int, stageKey: String, messageKey: String)
+    case importance(categoryMeans: [Topic: Double], topCategory: Topic, tieBreakerLevel: Int)
+    case eightDim(dimension: Topic, totalScore: Int, meanScore: Double, stage: Int, stageKey: String, messageKey: String)
     case stateOfChange(substageMeans: [String: Double], readinessIndex: Double, stage: Int, stageKey: String, stageMessageKey: String)
-    case satisfaction(categoryMeans: [WellnessDimension: Double], topCategory: WellnessDimension, lowestCategory: WellnessDimension)
+    case satisfaction(categoryMeans: [Topic: Double], topCategory: Topic, lowestCategory: Topic)
 }
 
 /// One survey definition: questions + scoring.
@@ -31,7 +31,7 @@ struct SurveyDefinition {
     }
 
     /// Lookup table — used by the SurveyViewController router.
-    static func definition(for kind: QuestSurveyType, dimension: WellnessDimension? = nil) -> SurveyDefinition {
+    static func definition(for kind: QuestSurveyType, dimension: Topic? = nil) -> SurveyDefinition {
         switch kind {
         case .importanceCheckIn:   return ImportanceSurveyDefinition.make()
         case .eightDim:            return EightDimSurveyDefinition.make(dimension: dimension ?? .emotional)

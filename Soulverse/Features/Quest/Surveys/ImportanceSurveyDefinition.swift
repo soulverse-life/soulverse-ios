@@ -34,7 +34,7 @@ enum ImportanceSurveyDefinition {
 
     /// Pure scoring function — table-driven from wellness doc formulas.
     /// Q indices are 1-based to match the wellness doc.
-    static func categoryMeans(from values: [Int]) -> [WellnessDimension: Double] {
+    static func categoryMeans(from values: [Int]) -> [Topic: Double] {
         precondition(values.count == questionCount, "Importance survey requires \(questionCount) responses")
 
         // Convert to 1-based access.
@@ -46,21 +46,21 @@ enum ImportanceSurveyDefinition {
         let intellectual:  Double = (q(9) + q(10) + q(11) + q(27) + q(28)) / 5
         let spiritual:     Double = (q(7) + q(8) + q(32)) / 3
         let occupational:  Double = q(18) / 1
-        let environmental: Double = (q(22) + q(23) + q(30) + q(31)) / 4
+        let environment: Double = (q(22) + q(23) + q(30) + q(31)) / 4
         let financial:     Double = (q(17) + q(24) + q(25) + q(26)) / 4
 
         return [
             .physical: physical, .emotional: emotional, .social: social,
             .intellectual: intellectual, .spiritual: spiritual,
-            .occupational: occupational, .environmental: environmental,
+            .occupational: occupational, .environment: environment,
             .financial: financial
         ]
     }
 
     /// Predetermined order used as the level-3 tie-breaker (matches wellness doc).
-    private static let priorityOrder: [WellnessDimension] = [
+    private static let priorityOrder: [Topic] = [
         .physical, .emotional, .social, .intellectual,
-        .spiritual, .occupational, .environmental, .financial
+        .spiritual, .occupational, .environment, .financial
     ]
 
     /// Three-level tie-breaker:
@@ -68,11 +68,11 @@ enum ImportanceSurveyDefinition {
     /// 2. mood-check-in topic count (passed in by caller; defaults to all-zeros for client-side previews)
     /// 3. predetermined priority order
     static func pickFocus(
-        categoryMeans means: [WellnessDimension: Double],
-        moodTopicCounts: [WellnessDimension: Int] = [:]
-    ) -> (dimension: WellnessDimension, tieBreakerLevel: Int) {
+        categoryMeans means: [Topic: Double],
+        moodTopicCounts: [Topic: Int] = [:]
+    ) -> (dimension: Topic, tieBreakerLevel: Int) {
 
-        let dims: [WellnessDimension] = priorityOrder
+        let dims: [Topic] = priorityOrder
         let maxMean = dims.compactMap { means[$0] }.max() ?? 0
         let tiedAtMax = dims.filter { (means[$0] ?? 0) == maxMean }
 

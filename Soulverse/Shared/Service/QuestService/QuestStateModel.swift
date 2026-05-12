@@ -11,18 +11,6 @@
 import Foundation
 import FirebaseFirestore
 
-/// Eight wellness dimensions. Mirrors mood_checkins.topic enum + Plan 1 WellnessDimension.
-enum WellnessDimension: String, Codable, CaseIterable {
-    case physical
-    case emotional
-    case social
-    case intellectual
-    case spiritual
-    case occupational
-    case environmental
-    case financial
-}
-
 /// Onboarding Quest survey types. Renamed from `SurveyType` to avoid collision
 /// with `AppCoordinator.SurveyType` (UI-feedback survey enum).
 enum QuestSurveyType: String, Codable, CaseIterable {
@@ -40,7 +28,7 @@ struct QuestStateModel {
     var questCompletedAt: Date?
 
     // Focus dimension & UX state
-    var focusDimension: WellnessDimension?
+    var focusDimension: Topic?
     var focusDimensionAssignedAt: Date?
 
     // Server-derived pending surveys
@@ -50,7 +38,7 @@ struct QuestStateModel {
     // Survey submission timestamps (denormalized, read-only on client)
     var importanceCheckInSubmittedAt: Date?
     var lastEightDimSubmittedAt: Date?
-    var lastEightDimDimension: WellnessDimension?
+    var lastEightDimDimension: Topic?
     var lastStateOfChangeSubmittedAt: Date?
     var lastStateOfChangeStage: Int?
     var satisfactionCheckInSubmittedAt: Date?
@@ -92,13 +80,13 @@ struct QuestStateModel {
             distinctCheckInDays: data["distinctCheckInDays"] as? Int ?? 0,
             lastDistinctDayKey: data["lastDistinctDayKey"] as? String,
             questCompletedAt: (data["questCompletedAt"] as? Timestamp)?.dateValue(),
-            focusDimension: (data["focusDimension"] as? String).flatMap(WellnessDimension.init(rawValue:)),
+            focusDimension: (data["focusDimension"] as? String).flatMap(Topic.init(rawValue:)),
             focusDimensionAssignedAt: (data["focusDimensionAssignedAt"] as? Timestamp)?.dateValue(),
             pendingSurveys: pending,
             surveyEligibleSinceMap: eligibleMap,
             importanceCheckInSubmittedAt: (data["importanceCheckInSubmittedAt"] as? Timestamp)?.dateValue(),
             lastEightDimSubmittedAt: (data["lastEightDimSubmittedAt"] as? Timestamp)?.dateValue(),
-            lastEightDimDimension: (data["lastEightDimDimension"] as? String).flatMap(WellnessDimension.init(rawValue:)),
+            lastEightDimDimension: (data["lastEightDimDimension"] as? String).flatMap(Topic.init(rawValue:)),
             lastStateOfChangeSubmittedAt: (data["lastStateOfChangeSubmittedAt"] as? Timestamp)?.dateValue(),
             lastStateOfChangeStage: data["lastStateOfChangeStage"] as? Int,
             satisfactionCheckInSubmittedAt: (data["satisfactionCheckInSubmittedAt"] as? Timestamp)?.dateValue(),
