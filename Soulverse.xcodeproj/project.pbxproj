@@ -304,8 +304,8 @@
 		7951AA012E537704006EB0EC /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FD2E537704006EB0EC /* ToolsViewController.swift */; };
 		7951AA032E537704006EB0EC /* ToolsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */; };
 		7951AA042E537704006EB0EC /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FD2E537704006EB0EC /* ToolsViewController.swift */; };
-		79710ED82E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710ED72E6D5D6A007665DB /* QuestRadarChartView.swift */; };
-		79710EDE2E6D974D007665DB /* QuestProgressLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79710EDC2E6D974D007665DB /* QuestProgressLineView.swift */; };
+		79710ED82E6D5D6A007665DB /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		79710EDE2E6D974D007665DB /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		798687EE2E6C248E00EB3B38 /* InsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E92E6C248E00EB3B38 /* InsightViewModel.swift */; };
 		798687EF2E6C248E00EB3B38 /* InsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687EB2E6C248E00EB3B38 /* InsightViewController.swift */; };
 		798687F02E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E72E6C248E00EB3B38 /* InsightViewPresenter.swift */; };
@@ -531,6 +531,7 @@
 		E6BB48BEC7E8D6744978A8B5 /* TopicDistributionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D4A98EBE3D4825FA7F02B /* TopicDistributionViewModel.swift */; };
 		E78AEE7E4CFEF3446A70A7CD /* RedFlagsSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C55544C0570D9D226D8E8B /* RedFlagsSectionViewController.swift */; };
 		E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */; };
+		E7CC059444BAA269071A4780 /* QuestHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F66EC425FD40AF5AD6E8896 /* QuestHeaderView.swift */; };
 		E9D694DEE57BA594D2169C63 /* BundleSectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C6F9856E4AC47CE6B05355 /* BundleSectionCardView.swift */; };
 		EA40CFB07B604234819D7CA4 /* CanvasViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1311990A33E93E5D4C6F37E6 /* CanvasViewPresenterTests.swift */; };
 		EAA8D3C119257BB661088D98 /* FirestoreSurveyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E47A6900098AA0512D9D0 /* FirestoreSurveyService.swift */; };
@@ -659,6 +660,7 @@
 		5E56565E1067F09318717526 /* TopicTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicTests.swift; sourceTree = "<group>"; };
 		5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoulverseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2A1277CD76964C881879A2 /* JournalServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalServiceProtocol.swift; sourceTree = "<group>"; };
+		5F66EC425FD40AF5AD6E8896 /* QuestHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestHeaderView.swift; sourceTree = "<group>"; };
 		5FAB13B6BE60834F09C4F60A /* CheckInDetailPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckInDetailPresenter.swift; sourceTree = "<group>"; };
 		60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingUserDataTests.swift; sourceTree = "<group>"; };
 		62AB8EBC88E1D452433AB815 /* SurveyResultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveyResultViewController.swift; sourceTree = "<group>"; };
@@ -1979,6 +1981,7 @@
 				4F04A7E8F48E7744B1DA715C /* LockedCard */,
 				E8F10449CD069C6C76A2F17E /* SurveySection */,
 				911067AF83B4EF9FA329701C /* EightDimensions */,
+				F5A00D59E34208A8EDA0395E /* Header */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2569,6 +2572,15 @@
 			path = CheckInDetail;
 			sourceTree = "<group>";
 		};
+		F5A00D59E34208A8EDA0395E /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				5F66EC425FD40AF5AD6E8896 /* QuestHeaderView.swift */,
+			);
+			name = Header;
+			path = Header;
+			sourceTree = "<group>";
+		};
 		FDC43F071837DF9E43379337 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -3024,7 +3036,7 @@
 				798688112E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */,
 				D24B26041000010001000003 /* DrawingReflectionPresenter.swift in Sources */,
 				790D87F92ED20A0A00D4F61F /* ToolsModel.swift in Sources */,
-				79710EDE2E6D974D007665DB /* QuestProgressLineView.swift in Sources */,
+				79710EDE2E6D974D007665DB /* BuildFile in Sources */,
 				7951AA012E537704006EB0EC /* ToolsViewController.swift in Sources */,
 				790AD2212DF9E43200C33CD1 /* WebViewController.swift in Sources */,
 				790AD2232DF9E43200C33CD1 /* String+Extension.swift in Sources */,
@@ -3091,7 +3103,7 @@
 				790AD2592DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
 				79EE74DB2F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */,
 				79EE74DC2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */,
-				79710ED82E6D5D6A007665DB /* QuestRadarChartView.swift in Sources */,
+				79710ED82E6D5D6A007665DB /* BuildFile in Sources */,
 				79389F612F05760D0016CB7F /* EmotionPlanetView.swift in Sources */,
 				79389F622F05760D0016CB7F /* InnerCosmoRecentView.swift in Sources */,
 				79389F642F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */,
@@ -3415,6 +3427,7 @@
 				582A991426547E366511A666 /* QuestRadarOverlayView.swift in Sources */,
 				670572EE22CF3E39E5AEC703 /* StateOfChangeIndicatorView.swift in Sources */,
 				F1ACA4F178ACAB39D873888F /* EightDimensionsCardView.swift in Sources */,
+				E7CC059444BAA269071A4780 /* QuestHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

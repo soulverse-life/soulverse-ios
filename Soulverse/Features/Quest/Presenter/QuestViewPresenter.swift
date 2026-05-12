@@ -8,7 +8,6 @@ import FirebaseFirestore
 
 protocol QuestViewPresenterDelegate: AnyObject {
     func didUpdate(viewModel: QuestViewModel)
-    func didUpdateSection(at index: IndexSet)
     func didRequestPresentMoodCheckIn()
 }
 
@@ -18,7 +17,6 @@ protocol QuestViewPresenterType: AnyObject {
     func start()
     func stop()
     func didTapDailyCheckInCTA()
-    func numberOfSectionsOnTableView() -> Int
 }
 
 final class QuestViewPresenter: QuestViewPresenterType {
@@ -134,14 +132,5 @@ final class QuestViewPresenter: QuestViewPresenterType {
 
     func didTapDailyCheckInCTA() {
         delegate?.didRequestPresentMoodCheckIn()
-    }
-
-    func numberOfSectionsOnTableView() -> Int {
-        // Sections in this plan:
-        //   0 — ProgressSection         (hidden when distinctCheckInDays >= 21)
-        //   1 — EightDimensionsCard     (host only, locked-state in this plan)
-        //   2 — HabitCheckerSection     (host placeholder; Plan 3 fills)
-        //   3 — SurveySection           (hidden when distinctCheckInDays < 7)
-        return 4
     }
 }
