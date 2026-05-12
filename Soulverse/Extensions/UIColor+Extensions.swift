@@ -158,6 +158,16 @@ extension UIColor {
         ThemeManager.shared.currentTheme.progressBarInactive
     }
 
+    /// Placeholder planet color (neutral, no check-in data) - adapts to current theme
+    static var themePlanetPlaceholder: UIColor {
+        ThemeManager.shared.currentTheme.planetPlaceholder
+    }
+
+    /// Completed planet color (near-white) - adapts to current theme
+    static var themePlanetCompleted: UIColor {
+        ThemeManager.shared.currentTheme.planetCompleted
+    }
+
     // MARK: - Legacy Theme Colors (Deprecated - use theme-aware colors above)
 
     @available(*, deprecated, message: "Use themePrimary instead")

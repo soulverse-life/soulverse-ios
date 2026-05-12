@@ -9,7 +9,8 @@
 //       Quest stage (and, in future, other subsystems — habits, surveys, etc.)
 //
 //  Separated from QuestProgressSectionView because the tagline + dialog are
-//  page-level identity, not part of the day-progress rail.
+//  page-level identity, not part of the day-progress rail. The dialog's
+//  config assembly lives in QuestHeaderMessageBuilder.
 //
 
 import UIKit
@@ -18,10 +19,12 @@ import SnapKit
 final class QuestHeaderView: UIView {
 
     private enum Layout {
-        static let containerInset: CGFloat = ViewComponentConstants.horizontalPadding
-        static let subtitleToDialogSpacing: CGFloat = 16
-        static let subtitleFontSize: CGFloat = 16
-        static let dialogHeight: CGFloat = 54
+        static let containerInset: CGFloat = 64
+        static let subtitleToDialogSpacing: CGFloat = 32
+        static let subtitleFontSize: CGFloat = 17
+        static let dialogDefaultHeight: CGFloat = 54
+        static let dialogFontSize: CGFloat = 14
+        static let petImageName: String = "basic_first_level"
     }
 
     private let subtitleLabel: UILabel = {
@@ -50,59 +53,27 @@ final class QuestHeaderView: UIView {
         stack.spacing = Layout.subtitleToDialogSpacing
         addSubview(stack)
         stack.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(Layout.containerInset)
+            make.horizontalEdges.equalToSuperview().inset(Layout.containerInset)
+            make.verticalEdges.equalToSuperview()
         }
         petDialog.snp.makeConstraints { make in
-            make.height.greaterThanOrEqualTo(Layout.dialogHeight)
+            make.height.greaterThanOrEqualTo(Layout.dialogDefaultHeight)
         }
     }
 
     func configure(viewModel: QuestViewModel) {
-        let markdownKey = QuestHeaderMessageBuilder.markdownKey(for: viewModel.stage)
-        let formatString = NSLocalizedString(markdownKey, comment: "Quest EmoPet stage message")
-        let rendered = QuestHeaderMessageBuilder.render(
-            formatString: formatString,
-            distinctCheckInDays: viewModel.state.distinctCheckInDays
-        )
+        let text = QuestHeaderMessageBuilder.text(for: viewModel)
         let attributed = EmoPetChatMarkdown.attributed(
-            from: rendered,
-            baseFont: .projectFont(ofSize: 14, weight: .regular),
-            boldFont: .projectFont(ofSize: 14, weight: .bold),
+            from: text,
+            baseFont: .projectFont(ofSize: Layout.dialogFontSize, weight: .regular),
+            boldFont: .projectFont(ofSize: Layout.dialogFontSize, weight: .bold),
             color: .themeTextPrimary
         )
         petDialog.update(config: EmoPetChatConfig(
-            image: UIImage(named: "EMOPet/basic_first_level"),
-            message: rendered,
+            image: UIImage(named: Layout.petImageName),
+            message: attributed.string,
             attributedMessage: attributed,
             alignment: .imageTrailing
         ))
-    }
-}
-
-/// Maps QuestStage to the EmoPet dialog's localization key and substitutes
-/// the dynamic "N times remaining" parameter into the format string.
-///
-/// The message-building logic lives at the call site rather than inside
-/// `EmoPetChatView` so the dialog stays a pure presentation component.
-enum QuestHeaderMessageBuilder {
-
-    static func markdownKey(for stage: QuestStage) -> String {
-        switch stage {
-        case .stage1:    return "quest_progress_emo_stage_1_format"
-        case .stage2:    return "quest_progress_emo_stage_2_format"
-        case .stage3:    return "quest_progress_emo_stage_3_format"
-        case .completed: return "quest_progress_emo_completed"
-        }
-    }
-
-    static func render(formatString: String, distinctCheckInDays days: Int) -> String {
-        let remaining: Int
-        switch QuestStage.from(distinctCheckInDays: days) {
-        case .stage1:    remaining = max(0, 7 - days)
-        case .stage2:    remaining = max(0, 14 - days)
-        case .stage3:    remaining = max(0, 21 - days)
-        case .completed: remaining = 0
-        }
-        return String(format: formatString, remaining)
     }
 }

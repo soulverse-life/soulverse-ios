@@ -195,3 +195,16 @@ extension UniverseTheme {
         UIColor(red: 217.0/255.0, green: 217.0/255.0, blue: 217.0/255.0, alpha: 1.0)
     }
 }
+
+// MARK: - Planet Visualization
+extension UniverseTheme {
+    var planetPlaceholder: UIColor {
+        // #B0B0B0 — the same neutral InnerCosmo has used for empty-state planets.
+        UIColor(red: 176.0/255.0, green: 176.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+    }
+
+    var planetCompleted: UIColor {
+        // #F5F5F5 — off-white so the radial gradient still renders highlight → edge shading.
+        UIColor(red: 245.0/255.0, green: 245.0/255.0, blue: 245.0/255.0, alpha: 1.0)
+    }
+}

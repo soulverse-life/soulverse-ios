@@ -134,8 +134,7 @@ class QuestViewController: ViewController {
             make.width.equalTo(scrollView)
         }
         contentStack.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Layout.topSpacing)
-            make.left.right.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
 
         // Arranged sections, in display order.

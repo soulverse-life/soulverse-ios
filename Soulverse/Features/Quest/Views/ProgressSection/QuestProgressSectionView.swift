@@ -15,7 +15,7 @@ import SnapKit
 final class QuestProgressSectionView: UIView {
 
     private enum Layout {
-        static let containerInset: CGFloat = ViewComponentConstants.horizontalPadding
+        static let containerInset: CGFloat = 64
     }
 
     private let dotsView = QuestProgressDotsView()
@@ -31,9 +31,7 @@ final class QuestProgressSectionView: UIView {
         addSubview(dotsView)
         dotsView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.left.greaterThanOrEqualToSuperview().offset(Layout.containerInset)
-            make.right.lessThanOrEqualToSuperview().offset(-Layout.containerInset)
+            make.horizontalEdges.equalToSuperview().inset(Layout.containerInset)
         }
     }
 

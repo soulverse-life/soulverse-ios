@@ -2,9 +2,11 @@
 //  QuestProgressDotsView.swift
 //  Soulverse
 //
-//  Renders a 7-dot row representing the current stage's days. Completed
-//  days are filled; the current day is highlighted with a slightly larger
-//  active dot; remaining days are dim.
+//  Renders a 7-dot row representing the current stage's days. Each dot is an
+//  EmotionPlanetView (the same component InnerCosmo uses) at 20pt diameter,
+//  with no emotion label. Two-color states:
+//    - completed → near-white planet
+//    - not yet completed → InnerCosmo's placeholder gray (#B0B0B0)
 //
 //  Per the design (~/Desktop/quest_1.png), we never render all 21 planets
 //  at once — the stage being viewed always occupies the full row.
@@ -17,9 +19,12 @@ final class QuestProgressDotsView: UIView {
 
     private enum Layout {
         static let dotsPerStage: Int = 7
-        static let dotSize: CGFloat = 24
-        static let activeDotSize: CGFloat = 30
-        static let dotSpacing: CGFloat = 14
+        static let planetPointSize: CGFloat = 20
+        /// `EmotionPlanetView` sizes itself via `data.sizeMultiplier * 36`
+        /// (its internal baseSize). Reverse-engineer the multiplier so the
+        /// rendered planet is exactly `planetPointSize` pt in diameter.
+        static let planetSizeMultiplier: CGFloat = planetPointSize / 36.0
+        static let dotSpacing: CGFloat = 8
     }
 
     private let stack: UIStackView = {
@@ -30,9 +35,6 @@ final class QuestProgressDotsView: UIView {
         s.spacing = Layout.dotSpacing
         return s
     }()
-
-    private var dotViews: [UIImageView] = []
-    private(set) var dotCount: Int = Layout.dotsPerStage
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,48 +49,38 @@ final class QuestProgressDotsView: UIView {
             make.center.equalToSuperview()
             make.top.bottom.equalToSuperview()
         }
-
-        for _ in 0..<Layout.dotsPerStage {
-            let dot = UIImageView()
-            dot.contentMode = .scaleAspectFit
-            dot.image = UIImage(named: "EMOPet/basic_first_level")
-            dot.snp.makeConstraints { make in
-                make.size.equalTo(Layout.dotSize)
-            }
-            stack.addArrangedSubview(dot)
-            dotViews.append(dot)
-        }
     }
 
-    /// Map the (1-indexed) absolute current dot to the (1..7) dot position
-    /// within the active stage, then style each dot.
+    /// Rebuild the 7-dot row coloured by completion state. Called whenever
+    /// the view model's `currentDot` / `stage` changes.
     func configure(currentDot: Int, stage: QuestStage) {
         let stageRange = stage.dotRange
-        // Map absolute dot → position within stage (1...7)
         let relativeCurrent: Int = {
             guard stageRange.contains(currentDot) else {
-                // Before the stage started → 0; after → 7 (all complete)
                 return currentDot < stageRange.lowerBound ? 0 : Layout.dotsPerStage
             }
             return currentDot - stageRange.lowerBound + 1
         }()
 
-        for (idx, dot) in dotViews.enumerated() {
-            let position = idx + 1
-            let isCurrent = position == relativeCurrent
-            let isCompleted = position < relativeCurrent
+        stack.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
-            dot.snp.updateConstraints { make in
-                make.size.equalTo(isCurrent ? Layout.activeDotSize : Layout.dotSize)
-            }
+        for i in 0..<Layout.dotsPerStage {
+            let position = i + 1
+            let isCompleted = position <= relativeCurrent
+            let color: UIColor = isCompleted ? .themePlanetCompleted : .themePlanetPlaceholder
 
-            if isCurrent {
-                dot.alpha = 1.0
-            } else if isCompleted {
-                dot.alpha = 0.85
-            } else {
-                dot.alpha = 0.4
+            let data = EmotionPlanetData(
+                emotion: "",
+                color: color,
+                sizeMultiplier: Layout.planetSizeMultiplier
+            )
+            let planet = EmotionPlanetView(data: data)
+            let size = planet.calculateSize()
+            planet.snp.makeConstraints { make in
+                make.width.equalTo(size.width)
+                make.height.equalTo(size.height)
             }
+            stack.addArrangedSubview(planet)
         }
     }
 }
