@@ -17,23 +17,10 @@ class QuestViewController: ViewController {
     // MARK: - Navigation
 
     private lazy var navigationView: SoulverseNavigationView = {
-        let bellIcon = UIImage(systemName: "bell")
-        let personIcon = UIImage(systemName: "person")
-
-        let notificationItem = SoulverseNavigationItem.button(
-            image: bellIcon,
-            identifier: "notification"
-        ) { [weak self] in self?.notificationTapped() }
-
-        let profileItem = SoulverseNavigationItem.button(
-            image: personIcon,
-            identifier: "profile"
-        ) { [weak self] in self?.profileTapped() }
-
         let config = SoulverseNavigationConfig(
             title: NSLocalizedString("quest", comment: ""),
             showBackButton: false,
-            rightItems: [notificationItem, profileItem]
+            rightItems: []
         )
         return SoulverseNavigationView(config: config)
     }()
@@ -226,12 +213,6 @@ class QuestViewController: ViewController {
         present(alert, animated: true)
     }
 
-    private func notificationTapped() {
-        print("[Quest] Notification button tapped")
-    }
-    private func profileTapped() {
-        print("[Quest] Profile button tapped")
-    }
 }
 
 // MARK: - Presenter delegate

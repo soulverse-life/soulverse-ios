@@ -138,9 +138,11 @@ final class EightDimensionsCardView: UIView {
                 format: NSLocalizedString("quest_eight_dim_current_stage_format", comment: ""),
                 focus.localizedTitle
             )
-            // Active stage from SoC indicator (mirror), fallback to 1.
-            let activeStage = model.stateOfChangeIndicator?.activeStage ?? 1
-            stageDotsView.configure(activeStage: activeStage)
+            // Active stage from SoC indicator (mirror). Fall back to 0
+            // (no stages reached → all dots at 30%) when SoC hasn't been
+            // submitted yet, matching the radar's currentFocusNoSoC dot row.
+            let activeStage = model.stateOfChangeIndicator?.activeStage ?? 0
+            stageDotsView.configure(activeStage: activeStage, color: focus.mainColor)
             currentStageLabel.isHidden = false
             stageDotsView.isHidden = false
         } else {
@@ -162,10 +164,13 @@ final class EightDimensionsCardView: UIView {
 final class QuestEightDimStageIndicator: UIView {
 
     private enum Layout {
-        static let dotSize: CGFloat = 8
+        static let dotSize: CGFloat = 12
         static let columnSpacing: CGFloat = 4
         static let labelTopSpacing: CGFloat = 4
         static let labelFontSize: CGFloat = 11
+        /// Alpha applied to the focus dim's color for stages that have NOT
+        /// been reached yet. Reached stages render at full opacity.
+        static let unreachedDotAlpha: CGFloat = 0.30
     }
 
     private var columns: [UIStackView] = []
@@ -211,12 +216,16 @@ final class QuestEightDimStageIndicator: UIView {
     }
     required init?(coder: NSCoder) { fatalError() }
 
-    func configure(activeStage: Int) {
+    /// Configure the indicator. The `color` parameter is the focus
+    /// dimension's `Topic.mainColor`. Stages 1…activeStage render at full
+    /// opacity; later stages at `Layout.unreachedDotAlpha`.
+    func configure(activeStage: Int, color: UIColor) {
         for (i, dot) in dots.enumerated() {
             let stage = i + 1
-            dot.backgroundColor = (stage == activeStage)
-                ? .themeButtonPrimaryBackground
-                : .themeButtonDisabledBackground
+            let isReached = stage <= activeStage
+            dot.backgroundColor = isReached
+                ? color
+                : color.withAlphaComponent(Layout.unreachedDotAlpha)
         }
     }
 }

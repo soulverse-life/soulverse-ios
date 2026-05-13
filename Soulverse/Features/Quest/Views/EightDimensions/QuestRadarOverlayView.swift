@@ -34,17 +34,12 @@ final class QuestRadarOverlayView: UIView {
         static let labelToLockSpacing: CGFloat = 2
         static let labelFontSize: CGFloat = 12
         /// Alpha applied to white when filling the octagon's interior.
-        static let octagonFillAlpha: CGFloat = 0.8
-        /// Alpha applied to the focus dim's color for the non-active dots
-        /// in the per-axis dot row.
-        static let inactiveDotAlpha: CGFloat = 0.35
+        static let octagonFillAlpha: CGFloat = 0.2
+        /// Alpha applied to the focus dim's color for stages that have NOT
+        /// been reached yet. Reached stages render at full opacity.
+        static let unreachedDotAlpha: CGFloat = 0.30
     }
 
-    /// Render order — clockwise from the top vertex — matching the
-    /// ~/Desktop/8-dimension.png design. NOT the same as `Topic.allCases`
-    /// (which sorts spiritual before occupational/environment); the radar
-    /// uses a visual-layout order while the data array stays in
-    /// canonical-enum order.
     private static let radarOrder: [Topic] = [
         .physical,      // 0 — top
         .emotional,     // 1 — top-right
@@ -235,23 +230,20 @@ final class QuestRadarOverlayView: UIView {
                 x: center.x + cos(angle) * radius * frac,
                 y: center.y + sin(angle) * radius * frac
             )
-            let isActive = (i == activeStage)
+            // Stages 1…activeStage are "reached" → full opacity.
+            // Stages > activeStage have not been reached yet → 30% opacity.
+            // Both are filled with the same dimension color so the row reads
+            // as one chromatic gradient.
+            let isReached = i <= activeStage
             let rect = CGRect(
                 x: pos.x - Layout.dotRadius,
                 y: pos.y - Layout.dotRadius,
                 width: Layout.dotRadius * 2,
                 height: Layout.dotRadius * 2
             )
-            if isActive {
-                color.setFill()
-                ctx.fillEllipse(in: rect)
-            } else {
-                // Use the same dimension color at lower alpha so the row
-                // reads cohesively against the white octagon fill.
-                color.withAlphaComponent(Layout.inactiveDotAlpha).setStroke()
-                ctx.setLineWidth(1)
-                ctx.strokeEllipse(in: rect)
-            }
+            let fillColor = isReached ? color : color.withAlphaComponent(Layout.unreachedDotAlpha)
+            fillColor.setFill()
+            ctx.fillEllipse(in: rect)
         }
     }
 }
