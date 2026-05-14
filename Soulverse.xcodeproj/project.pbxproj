@@ -10,8 +10,10 @@
 		00D4EFCE0FFB3ED52205CCE5 /* JournalServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E20AAA3AF4B7A41DF30E6B /* JournalServiceMock.swift */; };
 		00FBCE53E3FB150F40186DE5 /* MoodEntriesDataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */; };
 		01AFEAE51929AC8297AD205B /* EmotionalBundleMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE76100ED69CDC5A76DE798 /* EmotionalBundleMainViewController.swift */; };
+		02058AF8C1A469258DA6F0E8 /* HabitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F2319A6B037EAD96645FBA /* HabitData.swift */; };
 		03BF3892B476AB6AD4B17CC6 /* MoodEntriesDataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */; };
 		03F48090BE3E05B2B7366B43 /* SoulverseFormFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EAEF5AEB337CC3DACE9A68 /* SoulverseFormFieldView.swift */; };
+		051A37D7B52FFCC9FEFAFC0A /* HabitTelemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC46BA08E090FFEADE4FDF48 /* HabitTelemetry.swift */; };
 		0924C6D537F42931C325A80D /* CanvasViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA116D179BEAA6D57A12D74 /* CanvasViewPresenterDelegateMock.swift */; };
 		0AEA5D20108485EA3EF5494E /* DrawingGallerySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70D0337BCECFA7C98A0482 /* DrawingGallerySectionHeaderView.swift */; };
 		0E000A0001000000000000A1 /* JournalEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E000A0001000000000000B1 /* JournalEditorViewController.swift */; };
@@ -31,14 +33,12 @@
 		1C064D30E462FF14A1DC4BDC /* CrisisResourceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42762D57CBBA0A87B1D5C733 /* CrisisResourceCardView.swift */; };
 		1C2E0E31B00B3123E9EB4873 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4255CBD4D96764E2AA6D4FB0 /* ProfileViewModel.swift */; };
 		1EE00F4E2DFB0E88F2E07C99 /* EmotionalBundleServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE130905112E9999824DBAA2 /* EmotionalBundleServiceMock.swift */; };
-		23666EA481B0C1A8BA317696 /* HabitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6E67B0799EB42985630D6 /* HabitData.swift */; };
 		2381B827DE55C82C4DB4D4A3 /* DetailPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D97B78D62A26C91686591BB /* DetailPlanetView.swift */; };
 		23D0DEBE9588086A94A36477 /* RedFlagsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348D94EA8312D4C9A8E6837 /* RedFlagsSectionViewModel.swift */; };
 		244A5F23289862BDB386843F /* ProfileViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */; };
 		27427F547F5406EEC24899AC /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
 		280A04AAC641DB794DD696B7 /* DrawingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6A03F5EE59C7A4854CAF0 /* DrawingServiceProtocol.swift */; };
 		2925BEEEA16E7A2F81023FA4 /* MoodCheckInServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545EED434F6369FD9BF5FB8A /* MoodCheckInServiceTests.swift */; };
-		2971E16E27671D28902967C1 /* HabitDateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68FB07008EDED8A33C2946E /* HabitDateKey.swift */; };
 		2BE58344E050379BFB428D93 /* DrawingReplayModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2F83B1C4052FF05B9B061D /* DrawingReplayModalViewController.swift */; };
 		2C66302E39B2097233438B44 /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
 		2CCBEC17866E20A84A4C5B5F /* MoodCheckInServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4342554B5B0F59BAA4F80 /* MoodCheckInServiceMock.swift */; };
@@ -58,6 +58,7 @@
 		3EEC60F5808E55A5BDB9D81F /* DrawingCanvasPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */; };
 		419A37032825EC7BC46F4857 /* ProfileViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FDA00077B2E5E075CB1131 /* ProfileViewPresenterTests.swift */; };
 		423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
+		42E4354BE23BC1FF153D1117 /* CustomHabitDeletionConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB6A1231C7FB53E9816AA /* CustomHabitDeletionConfirmation.swift */; };
 		44372F0CF57371B1CFEDDD22 /* ProfessionalSupportSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A48E84E65B0EB1046B5AB8A /* ProfessionalSupportSectionViewModelTests.swift */; };
 		44C3423F24CAD63B0FD3BE09 /* Pods_Base_Soulverse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */; };
 		4619BA04AAE13058073C1D82 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CADED06D1EF601E2CC1277 /* SurveyViewController.swift */; };
@@ -82,7 +83,9 @@
 		64AF4AE865D91E895E4BDC1C /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
 		658B57687FB0CB589B2E15A4 /* DrawingCanvasPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833DFE885D5514ECFD5960A /* DrawingCanvasPresenterDelegateMock.swift */; };
 		670572EE22CF3E39E5AEC703 /* StateOfChangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682222EE3E842BC31BB07917 /* StateOfChangeIndicatorView.swift */; };
+		670BFA69B112D0A4D1721761 /* HabitCheckerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C00DEF8DF1DA2990ADD47F /* HabitCheckerViewModel.swift */; };
 		670D00D46B4991F2B995108E /* SurveyResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB8EBC88E1D452433AB815 /* SurveyResultViewController.swift */; };
+		686AF72480C287FBF291C951 /* HabitDateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5B3B99E454C9F2CEB02670 /* HabitDateKey.swift */; };
 		6917E00E90C130BA55BD2B9A /* ToolsViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A89532F54342452F4E920 /* ToolsViewPresenterDelegateMock.swift */; };
 		6993B5E165367A59C9591329 /* QuestHeaderMessageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287AFCD2E9773373A04B7E6 /* QuestHeaderMessageBuilder.swift */; };
 		6A07DF149382FA4CD96CE7F8 /* EightDimSurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9985ECA92204EF92DD6B325F /* EightDimSurveyDefinition.swift */; };
@@ -90,7 +93,6 @@
 		6B9D4AE88A3ADA775F9F4B6A /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
 		6DDD15AC54B126858F4C955A /* SurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18BFE437205D857853085D /* SurveyDefinition.swift */; };
 		6FC3F15D3FCC758F391229D6 /* CheckInDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178718BD3777BBF33A1E4037 /* CheckInDetailViewModel.swift */; };
-		7161096E3C272B5EACA82BC9 /* CustomHabitFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD987D99948ACB3446E74D68 /* CustomHabitFormViewModel.swift */; };
 		729E62DDA6618548CBB22DE4 /* SurveySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BB786D34C328D239C3BFF /* SurveySectionView.swift */; };
 		7386C88FE02C4A98CDC65395 /* QuestStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF61D471C9754C3495410815 /* QuestStateModel.swift */; };
 		74953AA13D7A3470144DF53F /* InsightViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D323DAF3E30DD98A2DDE6F /* InsightViewPresenterDelegateMock.swift */; };
@@ -426,9 +428,10 @@
 		7B8515DA6D49FBA7FB4B73F6 /* QuestNotificationHourTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27275458EC8CE2240070A491 /* QuestNotificationHourTests.swift */; };
 		7BB198E2D8DE3EDEF35DCDC8 /* InnerCosmoViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44C2E1B8167E15D1A17DB8 /* InnerCosmoViewPresenterTests.swift */; };
 		7C0507DE2BC98D3E7A7BD619 /* SatisfactionSurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA07F6545C75B921B88C8FC7 /* SatisfactionSurveyDefinition.swift */; };
+		7D2AC9D34CE6D83375A99035 /* AddCustomHabitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48C41BCF39B40DC81884136 /* AddCustomHabitButton.swift */; };
 		7D54880ED3482D5B8E7B101A /* StaySafeSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557EAAE097EC0EB8B2C9994B /* StaySafeSectionViewModel.swift */; };
 		83B406F26FBBD050AAB70357 /* DrawingReplayPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D57DE6A82816385F47A87 /* DrawingReplayPresenterTests.swift */; };
-		844C6497E2BD379B8151FCAC /* HabitCheckerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CFCF4E6309377E6CD407E /* HabitCheckerSection.swift */; };
+		84B84C5C642335944F1D9520 /* HabitCheckerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025ACADDF937EA9D4D119FD0 /* HabitCheckerSection.swift */; };
 		84C584B3B496CFED3DBBEDA1 /* EmotionalBundleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67594929C616A41B994759EB /* EmotionalBundleCoordinator.swift */; };
 		84C584B3B496CFED3DBBEDB3 /* EmotionalBundleMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67594929C616A41B994759EA /* EmotionalBundleMainPresenter.swift */; };
 		85C6646F9F43CB4B180F0091 /* SupportMeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE410EEDFCB6E5B7389899 /* SupportMeSectionViewController.swift */; };
@@ -437,11 +440,11 @@
 		89054E3902CF31DC4A50A47A /* ProfileViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */; };
 		8B2E194AF28FCEAA5D91C18C /* DrawingGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206EA9BF532D3A837AAC558 /* DrawingGalleryCell.swift */; };
 		8BD78081AC98B33905E98E1E /* FirestoreQuestServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7944F86CC003ED2E9C1444E8 /* FirestoreQuestServiceTests.swift */; };
-		8CAC3F6AE0262A3A41EC59B2 /* CustomHabitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EE504AAB9D4D24A8360731 /* CustomHabitCard.swift */; };
 		8F50DC32E6FA9D90B6A71AE6 /* CheckInDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAB13B6BE60834F09C4F60A /* CheckInDetailPresenter.swift */; };
 		9398C11F3FE373D542A298F1 /* MoodCheckInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */; };
 		94741F0202385687C383000A /* RecentResultCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C762BE35696F9E56BFB0A9 /* RecentResultCardListView.swift */; };
 		94D160518894DE1AA49B9CFA /* FirestoreSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBCBDFE64D2D1ECA4EFA0D /* FirestoreSchema.swift */; };
+		98B53CA2054B1B2456C7411E /* CustomHabitFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE5F760779E8726E8B3834C /* CustomHabitFormViewModel.swift */; };
 		99D7A073D137428E8D5EB65B /* EmotionalBundleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D2ACF027F80CD265BD4CA /* EmotionalBundleModel.swift */; };
 		9A5F6071A756E85D2358C622 /* ProfessionalSupportSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */; };
 		9CF4FABB93B22A5501410AC9 /* EmotionalBundleMainPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30F39713DA6AD85B3971009 /* EmotionalBundleMainPresenterTests.swift */; };
@@ -459,7 +462,6 @@
 		A4B5C6D7E8F9A0B1C2D3E4F7 /* HabitActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
 		A55E94296F5E8A6F806B4CC6 /* FirestoreDrawingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */; };
-		A569320976D0E87B58E0E234 /* HabitTelemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA797599B2D96DABE13EE73 /* HabitTelemetry.swift */; };
 		A77917A68943640D3F9C24D4 /* InnerCosmoPeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB9147A86FBF42436C1031E /* InnerCosmoPeriodTests.swift */; };
 		A80802510587A1B535753FE1 /* EmotionalBundleServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F086EFB7A0C114933FE0F5D /* EmotionalBundleServiceProtocol.swift */; };
 		A848471F529A30BB4065C1A9 /* EvaluationOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F89A9D358017D65133095 /* EvaluationOptionTests.swift */; };
@@ -474,19 +476,16 @@
 		B2A3C4D5E6F7A8B9C0D1E2F3 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
 		B2A3C4D5E6F7A8B9C0D1E2F4 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
 		B2F6E0449E68EA3F6D6B8FB9 /* ToolsViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E171DE35597BA70C8B122CD8 /* ToolsViewPresenterTests.swift */; };
-		B38740819593D1CB3F88AB41 /* CustomHabitDeletionConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76668532D387E41A5AF5E935 /* CustomHabitDeletionConfirmation.swift */; };
 		B3F4AD1CE7A2D4B674D29EAF /* JournalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E4F3C98DBB3D6E06CF3DF /* JournalModel.swift */; };
 		B4684A5181281B705F0F08BE /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
 		B4E8CAB694343C5B86954CE7 /* FirestoreSchemaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E4D78EAA08D9BD40D689C /* FirestoreSchemaTests.swift */; };
 		B687959D9AD055A99B195148 /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
-		B9C2CE8F0AB6DCF3F9232188 /* DefaultHabitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB44C85AB44B53C2C4A3C35 /* DefaultHabitCard.swift */; };
 		BCCF4852163421323A310717 /* MoodEntriesDataAssemblerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4883D32CE380C31648AE6 /* MoodEntriesDataAssemblerMock.swift */; };
 		BE7CD9A80860FCBB70D7DDE7 /* SupportMeSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0774B104E6B7E8550A2C9ED /* SupportMeSectionViewModelTests.swift */; };
 		BF43656595DC1CAEEC0F6BC2 /* LockedCardHintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892063B3E7FDA02E24605BC0 /* LockedCardHintTests.swift */; };
 		BFC00E7084C2C3B433CDCB5F /* DetailDrawingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A7FB0D1FCDD8CC81DECBB /* DetailDrawingSection.swift */; };
 		C0DFE64282D5F1868C0544F4 /* DrawingsPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A95C383DB61DE6370611AFF /* DrawingsPromptTests.swift */; };
 		C177ED8CA35EB3841C34BD3E /* CrisisResourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE368A37AF142928705DD2 /* CrisisResourceModel.swift */; };
-		C1C9919E535DB2A128887DB8 /* AddCustomHabitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F6BC1FDFD257CDB75D5D0A /* AddCustomHabitButton.swift */; };
 		C3B4A5D6E7F8A9B0C1D2E3F5 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
 		C3B4A5D6E7F8A9B0C1D2E3F6 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
 		C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
@@ -496,9 +495,11 @@
 		C607F743B51CA4C1DE23440E /* QuestTimezoneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245B803B3140A3F7D9CD61C /* QuestTimezoneCalculator.swift */; };
 		C84B64553755C52006E77CB0 /* CrashlyticsClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */; };
 		C9329A8334A5248AFA4C882E /* QuestStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B755C43C7BCDF8299509D6F1 /* QuestStage.swift */; };
+		C93701A20B659F744842203B /* HabitIncrementFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C270FB4515B023D510FE4796 /* HabitIncrementFeedback.swift */; };
 		CC05CB7C69046F0012AC8D46 /* ImportanceSurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DF47FA179B19C6AC02C909 /* ImportanceSurveyDefinition.swift */; };
 		CD272848378CB5C9FB794ADA /* ErrorReporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */; };
 		CE5207EFA048D6AC3A7978BE /* OnboardingUserDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60703B3AA29AF4CC1A654848 /* OnboardingUserDataTests.swift */; };
+		D106460F9BB8425EE8AB2354 /* CustomHabitFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215D93EA6AE5951F08BE6B37 /* CustomHabitFormViewController.swift */; };
 		D14096F47439C0A9D91C7B28 /* Constants+CheckInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */; };
 		D18DEC6D7FD91EB16DC1B9D7 /* QuestProgressDotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC4C49FF2CA899AB8798153 /* QuestProgressDotsView.swift */; };
 		D24B26041000010001000002 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
@@ -507,7 +508,6 @@
 		D24B26041000010002000002 /* DrawingReflectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010002000001 /* DrawingReflectionViewModel.swift */; };
 		D24B26041000010002000003 /* DrawingReflectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010002000001 /* DrawingReflectionViewModel.swift */; };
 		D250CF083B3F0918DA0E2ED1 /* CheckInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BE258FB1BB920041AA1B57 /* CheckInDetailViewController.swift */; };
-		D37276EE34A95E59EBA59B5F /* CustomHabitFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0DD9CFB201C766B1C4EFC5 /* CustomHabitFormViewController.swift */; };
 		D45ECEE25B2D86CBF6C11B49 /* MoodEntryCardCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */; };
 		D4C5B6A7E8F9A0B1C2D3E4F6 /* InsightGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */; };
 		D4C5B6A7E8F9A0B1C2D3E4F7 /* InsightGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */; };
@@ -515,20 +515,20 @@
 		D54590E011F0616291933B80 /* RecordedEmotion+MoodScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */; };
 		D5E6F7A8B9C0D1E2F3A4B5C6 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
 		D7381A08AA552B1289C0C814 /* QuestViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEFAD9F0BEF567C9A881463 /* QuestViewModelTests.swift */; };
-		D81359C80ACB408F2A92A322 /* HabitCheckerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903B17D7571E26896463671 /* HabitCheckerViewModel.swift */; };
 		D99A21CCC605492A90ACCFDA /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E82F16483EBA0D0699E631 /* TestHelpers.swift */; };
 		D9F6D2D60270F6AB9ECB99CE /* InnerCosmoViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6975331B3B4B8D90409C867C /* InnerCosmoViewPresenterDelegateMock.swift */; };
 		DA5B7EAE3A96109C935B5C2B /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
 		DA65ED4FA21F10A77F596D7A /* WeeklyMoodScoreViewModel+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */; };
 		DBC902260371F8E6C4B86730 /* QuestServiceMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460ED3BDF4D48FF1E4573CC /* QuestServiceMockTests.swift */; };
 		DCB91A2E330B638CE50FEE94 /* CrisisResources.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AC2BF2A188F135E291E4EE8 /* CrisisResources.json */; };
+		DEC24C6A51817A794C487F9B /* CustomHabitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4989202A72386AA265224CC /* CustomHabitCard.swift */; };
 		DF12EBFF3AB9445233E99868 /* FirestoreEmotionalBundleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B68E594EF24B553645BDE5 /* FirestoreEmotionalBundleService.swift */; };
 		E2B7F1D5A8C4036459E0B186 /* SoulverseToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */; };
 		E2DEEB2BE29159796EBC4495 /* DrawingServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F022BFD84C7AB6E0A5520B /* DrawingServiceMock.swift */; };
-		E3B269B019E69327AF216D75 /* FirestoreHabitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B280020C45EA2E157E44B /* FirestoreHabitService.swift */; };
 		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
 		E4CAAEAFC6F0AFF09FD4A9D7 /* RecordedEmotion+MoodScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */; };
 		E54A7F04A3201883F4A2DA5D /* DrawingGalleryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1409E46492A9298B17FDE1D /* DrawingGalleryPresenterTests.swift */; };
+		E643F4B47100862C8E19C6F2 /* FirestoreHabitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB314B52F1AB6A1866C049C /* FirestoreHabitService.swift */; };
 		E6BB48BEC7E8D6744978A8B5 /* TopicDistributionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0D4A98EBE3D4825FA7F02B /* TopicDistributionViewModel.swift */; };
 		E78AEE7E4CFEF3446A70A7CD /* RedFlagsSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C55544C0570D9D226D8E8B /* RedFlagsSectionViewController.swift */; };
 		E7A45C4229B60B271755C103 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */; };
@@ -542,6 +542,7 @@
 		F3AB32AEA30ED6FB62FD45D9 /* DrawingCanvasPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD04250F40AD48441C462A5 /* DrawingCanvasPresenterTests.swift */; };
 		F3C8E2D6B1A4047568F1C297 /* SoulverseToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */; };
 		F49ACAA09DFA8FD161EBFD90 /* PendingSurveyDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEE218E567C03CEC3216328 /* PendingSurveyDeckView.swift */; };
+		F52C6DEA41AAAEAF6D8E1617 /* DefaultHabitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302F83F8B8CF0DE5173CE332 /* DefaultHabitCard.swift */; };
 		F54D4E9200EE03150C13D9DC /* PendingSurveyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD035236D1E4EE1B5F848A /* PendingSurveyCardView.swift */; };
 		F7E1CA046D941D59C3CEFECC /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
 		FDD7F704D70889440A7C0DF6 /* DrawingReplayPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30DBF3AA04EC4F8C683EA7F /* DrawingReplayPresenterDelegateMock.swift */; };
@@ -590,6 +591,7 @@
 
 /* Begin PBXFileReference section */
 		014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMoodScoreViewModel.swift; sourceTree = "<group>"; };
+		025ACADDF937EA9D4D119FD0 /* HabitCheckerSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitCheckerSection.swift; sourceTree = "<group>"; };
 		02BE258FB1BB920041AA1B57 /* CheckInDetailViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckInDetailViewController.swift; sourceTree = "<group>"; };
 		039B005BCF2FF3EB7E3F7DDE /* MoodCheckInServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceMock.swift; sourceTree = "<group>"; };
 		05CE368A37AF142928705DD2 /* CrisisResourceModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CrisisResourceModel.swift; sourceTree = "<group>"; };
@@ -614,7 +616,7 @@
 		186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_SoulverseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		188639DCE2F57C59575BA8E2 /* ProfileViewPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenter.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenter.swift; sourceTree = SOURCE_ROOT; };
 		1A48E84E65B0EB1046B5AB8A /* ProfessionalSupportSectionViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfessionalSupportSectionViewModelTests.swift; sourceTree = "<group>"; };
-		20F6BC1FDFD257CDB75D5D0A /* AddCustomHabitButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddCustomHabitButton.swift; sourceTree = "<group>"; };
+		215D93EA6AE5951F08BE6B37 /* CustomHabitFormViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomHabitFormViewController.swift; sourceTree = "<group>"; };
 		218012824D64D4ED75251E3C /* Pods-Base-SoulverseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.release.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		24FBCBDFE64D2D1ECA4EFA0D /* FirestoreSchema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreSchema.swift; sourceTree = "<group>"; };
 		2575FCF8292C633DF8FF8577 /* DetailReflectionSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetailReflectionSection.swift; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 		2D0F6891306A7CF5655B2CA9 /* DrawingGalleryViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryViewModel.swift; sourceTree = "<group>"; };
 		2D97B78D62A26C91686591BB /* DetailPlanetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetailPlanetView.swift; sourceTree = "<group>"; };
 		2F968EB81037659FA48E9E96 /* DrawingServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingServiceTests.swift; sourceTree = "<group>"; };
+		302F83F8B8CF0DE5173CE332 /* DefaultHabitCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultHabitCard.swift; sourceTree = "<group>"; };
 		3245B803B3140A3F7D9CD61C /* QuestTimezoneCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestTimezoneCalculator.swift; sourceTree = "<group>"; };
 		33CD035236D1E4EE1B5F848A /* PendingSurveyCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PendingSurveyCardView.swift; sourceTree = "<group>"; };
 		33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntryCardCellViewModelTests.swift; sourceTree = "<group>"; };
@@ -681,7 +684,6 @@
 		715B7B1090574611BFDFC632 /* TopicDistributionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionView.swift; sourceTree = "<group>"; };
 		747376777B5866EF992CA14C /* InsightViewPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InsightViewPresenterTests.swift; sourceTree = "<group>"; };
 		761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordedEmotion+MoodScore.swift"; sourceTree = "<group>"; };
-		76668532D387E41A5AF5E935 /* CustomHabitDeletionConfirmation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomHabitDeletionConfirmation.swift; sourceTree = "<group>"; };
 		790AD1692DF9E43200C33CD1 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		790AD16A2DF9E43200C33CD1 /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		790AD16B2DF9E43200C33CD1 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -852,7 +854,6 @@
 		7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptViewController.swift; sourceTree = "<group>"; };
 		7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPromptPresenterTests.swift; sourceTree = "<group>"; };
-		7CB44C85AB44B53C2C4A3C35 /* DefaultHabitCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultHabitCard.swift; sourceTree = "<group>"; };
 		7D44F927D93BEB0DA5699F4F /* MoodEntriesDataAssemblerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerTests.swift; sourceTree = "<group>"; };
 		7DE2BEFD6E0D6D3E52A39936 /* SupportMeSectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SupportMeSectionViewModel.swift; sourceTree = "<group>"; };
 		7E3FFFE75EF917FAAD893D3E /* ProfileViewPresenterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewPresenterType.swift; path = Soulverse/Features/Profile/Presenter/ProfileViewPresenterType.swift; sourceTree = SOURCE_ROOT; };
@@ -860,13 +861,15 @@
 		86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreDrawingService.swift; sourceTree = "<group>"; };
 		892063B3E7FDA02E24605BC0 /* LockedCardHintTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LockedCardHintTests.swift; sourceTree = "<group>"; };
 		8AE6A1610F27FD47B57135DD /* DrawingGalleryViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryViewModelTests.swift; sourceTree = "<group>"; };
+		8B5B3B99E454C9F2CEB02670 /* HabitDateKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitDateKey.swift; sourceTree = "<group>"; };
+		8DE5F760779E8726E8B3834C /* CustomHabitFormViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomHabitFormViewModel.swift; sourceTree = "<group>"; };
 		8DEFAD9F0BEF567C9A881463 /* QuestViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestViewModelTests.swift; sourceTree = "<group>"; };
 		8EF47DEEDD827DCE9D8B2233 /* DimensionAxisState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DimensionAxisState.swift; sourceTree = "<group>"; };
-		8F0DD9CFB201C766B1C4EFC5 /* CustomHabitFormViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomHabitFormViewController.swift; sourceTree = "<group>"; };
 		90781A662B73BED5786934DE /* SoulverseActionModal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SoulverseActionModal.swift; sourceTree = "<group>"; };
 		90C762BE35696F9E56BFB0A9 /* RecentResultCardListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecentResultCardListView.swift; sourceTree = "<group>"; };
 		911D4CD1621A6E627C39B025 /* ProfessionalSupportSectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfessionalSupportSectionViewModel.swift; sourceTree = "<group>"; };
 		91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileInfoRow.swift; path = Soulverse/Features/Profile/Views/ProfileInfoRow.swift; sourceTree = SOURCE_ROOT; };
+		93C00DEF8DF1DA2990ADD47F /* HabitCheckerViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitCheckerViewModel.swift; sourceTree = "<group>"; };
 		93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInModel.swift; sourceTree = "<group>"; };
 		94A9B20A12DC4A86E20CFDF0 /* FeelCalmSectionViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeelCalmSectionViewModelTests.swift; sourceTree = "<group>"; };
 		95E9BE5C9E829C8D55487C0D /* QuestProgressSectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestProgressSectionView.swift; sourceTree = "<group>"; };
@@ -886,21 +889,24 @@
 		A87D35E8E7AD990440D588A0 /* DrawingGalleryViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryViewController.swift; sourceTree = "<group>"; };
 		A8C59E22D0E948D8EE0F606C /* MoodCheckInServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceProtocol.swift; sourceTree = "<group>"; };
 		A8FA67C204F2A591ECD30F1F /* ToolsViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewModelTests.swift; sourceTree = "<group>"; };
-		A903B17D7571E26896463671 /* HabitCheckerViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitCheckerViewModel.swift; sourceTree = "<group>"; };
 		AAB814AF8E37728828F8DFC7 /* FirestoreDeviceTokenServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreDeviceTokenServiceTests.swift; sourceTree = "<group>"; };
 		ABA97A0D5537477FC8E3374B /* RecordedEmotionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecordedEmotionTests.swift; sourceTree = "<group>"; };
 		ABBDAADA414C05475799488F /* FirestoreQuestService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreQuestService.swift; sourceTree = "<group>"; };
+		AC46BA08E090FFEADE4FDF48 /* HabitTelemetry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitTelemetry.swift; sourceTree = "<group>"; };
+		ACB314B52F1AB6A1866C049C /* FirestoreHabitService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreHabitService.swift; sourceTree = "<group>"; };
 		ACD8D9DC4265FF367E93D223 /* MoodEntriesDataAssemblerMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerMock.swift; sourceTree = "<group>"; };
+		ADAEB6A1231C7FB53E9816AA /* CustomHabitDeletionConfirmation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomHabitDeletionConfirmation.swift; sourceTree = "<group>"; };
 		ADC3EE1CA7C43DC2B8F401BE /* SurveyContent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveyContent.swift; sourceTree = "<group>"; };
 		ADE76100ED69CDC5A76DE798 /* EmotionalBundleMainViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainViewController.swift; sourceTree = "<group>"; };
-		AE6B280020C45EA2E157E44B /* FirestoreHabitService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreHabitService.swift; sourceTree = "<group>"; };
 		B13356FF749A1E34851D44C3 /* ProfileViewPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityViewModel.swift; sourceTree = "<group>"; };
 		B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSummaryView.swift; sourceTree = "<group>"; };
 		B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityView.swift; sourceTree = "<group>"; };
 		B3036E6E3BB6CCBD2255D816 /* SurveySectionComposer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveySectionComposer.swift; sourceTree = "<group>"; };
+		B48C41BCF39B40DC81884136 /* AddCustomHabitButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddCustomHabitButton.swift; sourceTree = "<group>"; };
 		B7278578F137612349A77E22 /* EmotionTypeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionTypeTests.swift; sourceTree = "<group>"; };
 		B755C43C7BCDF8299509D6F1 /* QuestStage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStage.swift; sourceTree = "<group>"; };
+		B9F2319A6B037EAD96645FBA /* HabitData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitData.swift; sourceTree = "<group>"; };
 		BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodEntriesDataAssemblerFetchTests.swift; sourceTree = "<group>"; };
 		BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CrashlyticsClientMock.swift; sourceTree = "<group>"; };
 		BC0D4A98EBE3D4825FA7F02B /* TopicDistributionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopicDistributionViewModel.swift; sourceTree = "<group>"; };
@@ -911,9 +917,11 @@
 		C1409E46492A9298B17FDE1D /* DrawingGalleryPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterTests.swift; sourceTree = "<group>"; };
 		C206EA9BF532D3A837AAC558 /* DrawingGalleryCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryCell.swift; sourceTree = "<group>"; };
 		C21EC7DEE673CBFD5C6827BC /* Pods-Base-Soulverse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.release.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.release.xcconfig"; sourceTree = "<group>"; };
+		C270FB4515B023D510FE4796 /* HabitIncrementFeedback.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitIncrementFeedback.swift; sourceTree = "<group>"; };
 		C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Soulverse_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGridCardViewModel.swift; sourceTree = "<group>"; };
 		C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FirestoreMoodCheckInService.swift; sourceTree = "<group>"; };
+		C4989202A72386AA265224CC /* CustomHabitCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomHabitCard.swift; sourceTree = "<group>"; };
 		C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Constants+CheckInDetail.swift"; sourceTree = "<group>"; };
 		C7F022BFD84C7AB6E0A5520B /* DrawingServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingServiceMock.swift; sourceTree = "<group>"; };
 		CA07F6545C75B921B88C8FC7 /* SatisfactionSurveyDefinition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SatisfactionSurveyDefinition.swift; sourceTree = "<group>"; };
@@ -921,7 +929,6 @@
 		CDD04250F40AD48441C462A5 /* DrawingCanvasPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingCanvasPresenterTests.swift; sourceTree = "<group>"; };
 		CDD732A67B3784224BA518E7 /* Pods-Base-Soulverse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Soulverse.debug.xcconfig"; path = "Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse.debug.xcconfig"; sourceTree = "<group>"; };
 		CE18BFE437205D857853085D /* SurveyDefinition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveyDefinition.swift; sourceTree = "<group>"; };
-		CFA797599B2D96DABE13EE73 /* HabitTelemetry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitTelemetry.swift; sourceTree = "<group>"; };
 		D0774B104E6B7E8550A2C9ED /* SupportMeSectionViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SupportMeSectionViewModelTests.swift; sourceTree = "<group>"; };
 		D1ED2EC86B92F4A6EC7DE6EA /* ErrorReporting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ErrorReporting.swift; sourceTree = "<group>"; };
 		D24B26041000010001000001 /* DrawingReflectionPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReflectionPresenter.swift; sourceTree = "<group>"; };
@@ -930,7 +937,6 @@
 		D2989C56F65CF8938DCC65AE /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Soulverse/Features/Profile/Views/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulverseToast.swift; sourceTree = "<group>"; };
 		D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGridCardView.swift; sourceTree = "<group>"; };
-		D6B6E67B0799EB42985630D6 /* HabitData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitData.swift; sourceTree = "<group>"; };
 		DB459D420DC18CFD45DE5322 /* EightDimensionsCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EightDimensionsCardView.swift; sourceTree = "<group>"; };
 		DCDBD33BA61C721E6FB149BC /* Pods-Base-SoulverseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-SoulverseUITests.debug.xcconfig"; path = "Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DCEBCA322784CD8D7F94DE23 /* EmotionalBundleMainViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainViewModelTests.swift; sourceTree = "<group>"; };
@@ -940,9 +946,6 @@
 		E0409B121CB8806C94932214 /* Pods-SoulverseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulverseTests.debug.xcconfig"; path = "Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E171DE35597BA70C8B122CD8 /* ToolsViewPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenterTests.swift; sourceTree = "<group>"; };
 		E30F39713DA6AD85B3971009 /* EmotionalBundleMainPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainPresenterTests.swift; sourceTree = "<group>"; };
-		E31CFCF4E6309377E6CD407E /* HabitCheckerSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitCheckerSection.swift; sourceTree = "<group>"; };
-		E5EE504AAB9D4D24A8360731 /* CustomHabitCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomHabitCard.swift; sourceTree = "<group>"; };
-		E68FB07008EDED8A33C2946E /* HabitDateKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitDateKey.swift; sourceTree = "<group>"; };
 		E838841F277AF9F80002C053 /* Soulverse Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Soulverse Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E88C24282797C90100AA72E0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		E88C242A2797C91200AA72E0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -969,7 +972,6 @@
 		F83D2ACF027F80CD265BD4CA /* EmotionalBundleModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleModel.swift; sourceTree = "<group>"; };
 		F86C99EBD0D7244FE8D52E4F /* CheckInDetailPresenterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckInDetailPresenterType.swift; sourceTree = "<group>"; };
 		FBC35483047BC6A09E9021BB /* RecentResultCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecentResultCardView.swift; sourceTree = "<group>"; };
-		FD987D99948ACB3446E74D68 /* CustomHabitFormViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomHabitFormViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1308,6 +1310,20 @@
 				41A570739EAD0EFF9A3C23B2 /* MoodCheckInService */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		55D7CF4B0415E13A5C9F144A /* HabitChecker */ = {
+			isa = PBXGroup;
+			children = (
+				8DE5F760779E8726E8B3834C /* CustomHabitFormViewModel.swift */,
+				ACB314B52F1AB6A1866C049C /* FirestoreHabitService.swift */,
+				93C00DEF8DF1DA2990ADD47F /* HabitCheckerViewModel.swift */,
+				B9F2319A6B037EAD96645FBA /* HabitData.swift */,
+				8B5B3B99E454C9F2CEB02670 /* HabitDateKey.swift */,
+				AC46BA08E090FFEADE4FDF48 /* HabitTelemetry.swift */,
+			);
+			name = HabitChecker;
+			path = HabitChecker;
 			sourceTree = "<group>";
 		};
 		567E73E8ACC679D33F2964EA /* Components */ = {
@@ -1971,6 +1987,7 @@
 				8EF47DEEDD827DCE9D8B2233 /* DimensionAxisState.swift */,
 				B3036E6E3BB6CCBD2255D816 /* SurveySectionComposer.swift */,
 				C0A09A8F71DC3281358297D3 /* EightDimensionsRenderModelBuilder.swift */,
+				55D7CF4B0415E13A5C9F144A /* HabitChecker */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1984,6 +2001,7 @@
 				E8F10449CD069C6C76A2F17E /* SurveySection */,
 				911067AF83B4EF9FA329701C /* EightDimensions */,
 				F5A00D59E34208A8EDA0395E /* Header */,
+				822A4A963B807B8C80EE8A07 /* HabitChecker */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1994,7 +2012,6 @@
 				798688022E6C24EE00EB3B38 /* Presenter */,
 				798688042E6C24EE00EB3B38 /* ViewModels */,
 				798688062E6C24EE00EB3B38 /* Views */,
-				7CE17210223AD8EBC099FE94 /* Habits */,
 				B3356C80A319E7073646151D /* Surveys */,
 			);
 			path = Quest;
@@ -2207,26 +2224,6 @@
 			path = DrawingPrompt;
 			sourceTree = "<group>";
 		};
-		7CE17210223AD8EBC099FE94 /* Habits */ = {
-			isa = PBXGroup;
-			children = (
-				D6B6E67B0799EB42985630D6 /* HabitData.swift */,
-				E68FB07008EDED8A33C2946E /* HabitDateKey.swift */,
-				CFA797599B2D96DABE13EE73 /* HabitTelemetry.swift */,
-				AE6B280020C45EA2E157E44B /* FirestoreHabitService.swift */,
-				FD987D99948ACB3446E74D68 /* CustomHabitFormViewModel.swift */,
-				A903B17D7571E26896463671 /* HabitCheckerViewModel.swift */,
-				7CB44C85AB44B53C2C4A3C35 /* DefaultHabitCard.swift */,
-				E5EE504AAB9D4D24A8360731 /* CustomHabitCard.swift */,
-				20F6BC1FDFD257CDB75D5D0A /* AddCustomHabitButton.swift */,
-				8F0DD9CFB201C766B1C4EFC5 /* CustomHabitFormViewController.swift */,
-				76668532D387E41A5AF5E935 /* CustomHabitDeletionConfirmation.swift */,
-				E31CFCF4E6309377E6CD407E /* HabitCheckerSection.swift */,
-			);
-			name = Habits;
-			path = Habits;
-			sourceTree = "<group>";
-		};
 		7E1ED07F200552EA2D02CE0C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2240,6 +2237,21 @@
 			);
 			name = Views;
 			path = Views;
+			sourceTree = "<group>";
+		};
+		822A4A963B807B8C80EE8A07 /* HabitChecker */ = {
+			isa = PBXGroup;
+			children = (
+				B48C41BCF39B40DC81884136 /* AddCustomHabitButton.swift */,
+				C4989202A72386AA265224CC /* CustomHabitCard.swift */,
+				ADAEB6A1231C7FB53E9816AA /* CustomHabitDeletionConfirmation.swift */,
+				215D93EA6AE5951F08BE6B37 /* CustomHabitFormViewController.swift */,
+				302F83F8B8CF0DE5173CE332 /* DefaultHabitCard.swift */,
+				025ACADDF937EA9D4D119FD0 /* HabitCheckerSection.swift */,
+				C270FB4515B023D510FE4796 /* HabitIncrementFeedback.swift */,
+			);
+			name = HabitChecker;
+			path = HabitChecker;
 			sourceTree = "<group>";
 		};
 		8B885CAC90F0C57D72ADB2AA /* Quest */ = {
@@ -3397,18 +3409,6 @@
 				75CB5CEE916948455565C671 /* QuestProgressSectionView.swift in Sources */,
 				C47D335B0791DA4AC4C98D82 /* QuestLockedCardView.swift in Sources */,
 				AAD7FE3D33B1610DA4D1093B /* FirestoreDeviceTokenService.swift in Sources */,
-				23666EA481B0C1A8BA317696 /* HabitData.swift in Sources */,
-				2971E16E27671D28902967C1 /* HabitDateKey.swift in Sources */,
-				A569320976D0E87B58E0E234 /* HabitTelemetry.swift in Sources */,
-				E3B269B019E69327AF216D75 /* FirestoreHabitService.swift in Sources */,
-				7161096E3C272B5EACA82BC9 /* CustomHabitFormViewModel.swift in Sources */,
-				D81359C80ACB408F2A92A322 /* HabitCheckerViewModel.swift in Sources */,
-				B9C2CE8F0AB6DCF3F9232188 /* DefaultHabitCard.swift in Sources */,
-				8CAC3F6AE0262A3A41EC59B2 /* CustomHabitCard.swift in Sources */,
-				C1C9919E535DB2A128887DB8 /* AddCustomHabitButton.swift in Sources */,
-				D37276EE34A95E59EBA59B5F /* CustomHabitFormViewController.swift in Sources */,
-				B38740819593D1CB3F88AB41 /* CustomHabitDeletionConfirmation.swift in Sources */,
-				844C6497E2BD379B8151FCAC /* HabitCheckerSection.swift in Sources */,
 				50D75E8440ADED437FA7A431 /* SurveyContent.swift in Sources */,
 				6DDD15AC54B126858F4C955A /* SurveyDefinition.swift in Sources */,
 				CC05CB7C69046F0012AC8D46 /* ImportanceSurveyDefinition.swift in Sources */,
@@ -3432,6 +3432,19 @@
 				F1ACA4F178ACAB39D873888F /* EightDimensionsCardView.swift in Sources */,
 				E7CC059444BAA269071A4780 /* QuestHeaderView.swift in Sources */,
 				6993B5E165367A59C9591329 /* QuestHeaderMessageBuilder.swift in Sources */,
+				7D2AC9D34CE6D83375A99035 /* AddCustomHabitButton.swift in Sources */,
+				DEC24C6A51817A794C487F9B /* CustomHabitCard.swift in Sources */,
+				42E4354BE23BC1FF153D1117 /* CustomHabitDeletionConfirmation.swift in Sources */,
+				D106460F9BB8425EE8AB2354 /* CustomHabitFormViewController.swift in Sources */,
+				F52C6DEA41AAAEAF6D8E1617 /* DefaultHabitCard.swift in Sources */,
+				84B84C5C642335944F1D9520 /* HabitCheckerSection.swift in Sources */,
+				98B53CA2054B1B2456C7411E /* CustomHabitFormViewModel.swift in Sources */,
+				E643F4B47100862C8E19C6F2 /* FirestoreHabitService.swift in Sources */,
+				670BFA69B112D0A4D1721761 /* HabitCheckerViewModel.swift in Sources */,
+				02058AF8C1A469258DA6F0E8 /* HabitData.swift in Sources */,
+				686AF72480C287FBF291C951 /* HabitDateKey.swift in Sources */,
+				051A37D7B52FFCC9FEFAFC0A /* HabitTelemetry.swift in Sources */,
+				C93701A20B659F744842203B /* HabitIncrementFeedback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

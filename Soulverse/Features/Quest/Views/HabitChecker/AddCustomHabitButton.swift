@@ -30,24 +30,25 @@ final class AddCustomHabitButton: UIControl {
     required init?(coder: NSCoder) { fatalError() }
 
     func configure(_ state: AddCustomHabitButtonState) {
+        // Same title in every state — only the lock icon's visibility +
+        // the button's enabled/disabled chrome change between locked and
+        // available. (`daysRemaining` is no longer surfaced in the button
+        // copy; the lock icon alone signals the locked state.)
+        titleLabel.text = NSLocalizedString("quest_habit_add_custom_available", comment: "")
+
         switch state {
-        case .locked(let daysRemaining):
+        case .locked:
             isHidden = false
             isEnabled = false
             backgroundColor = .themeButtonDisabledBackground
             lockIcon.isHidden = false
             titleLabel.textColor = .themeTextSecondary
-            titleLabel.text = String(
-                format: NSLocalizedString("quest_habit_add_custom_locked_format", comment: ""),
-                daysRemaining
-            )
         case .available:
             isHidden = false
             isEnabled = true
             backgroundColor = .themeButtonPrimaryBackground
             lockIcon.isHidden = true
             titleLabel.textColor = .themeButtonPrimaryText
-            titleLabel.text = NSLocalizedString("quest_habit_add_custom_available", comment: "")
         case .hidden:
             isHidden = true
         }

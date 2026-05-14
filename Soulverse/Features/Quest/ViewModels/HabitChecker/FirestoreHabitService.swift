@@ -66,18 +66,54 @@ final class FirestoreHabitService {
 
     // MARK: - Writes
 
-    /// Atomically increment a habit's daily total. Records into the map at the
-    /// device's current local date.
+    /// Atomically increment a habit's daily total. Optimistically bumps the
+    /// local `stateSubject` first so the UI updates within the same run-loop
+    /// pass as the user's tap, then forwards to the store.
+    ///
+    /// For minute-based habits, the cumulative daily total is capped at
+    /// elapsed minutes since midnight — a user can't claim 600 minutes of
+    /// exercise at 8 AM. Other units pass through unchanged.
+    ///
+    /// Returns `true` if the increment was applied (in full or clamped to a
+    /// positive value), `false` if the cap rejected it entirely. Callers use
+    /// this to pick between success- and rejection-style UI feedback.
+    @discardableResult
     func logIncrement(
         habitId: String,
         amount: Int,
         at date: Date = Date(),
         in timeZone: TimeZone = .current,
         telemetry: HabitTelemetry? = nil
-    ) {
+    ) -> Bool {
         let dateKey = HabitDateKey.dateKey(for: date, in: timeZone)
-        store.incrementDaily(date: dateKey, habitId: habitId, amount: amount)
+        let currentTotal = stateSubject.value.daily[dateKey]?[habitId] ?? 0
+
+        // Cap minute-based habits at elapsed minutes since midnight.
+        let unit = DefaultHabitId(rawValue: habitId)?.unit
+            ?? stateSubject.value.customHabits[habitId]?.unit
+            ?? ""
+        let effectiveAmount: Int
+        if unit.lowercased() == "min" {
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = timeZone
+            let comps = calendar.dateComponents([.hour, .minute], from: date)
+            let elapsed = (comps.hour ?? 0) * 60 + (comps.minute ?? 0)
+            effectiveAmount = min(amount, max(0, elapsed - currentTotal))
+        } else {
+            effectiveAmount = amount
+        }
+        guard effectiveAmount > 0 else { return false }
+
+        // Optimistic local bump — UI sees the new total immediately.
+        var current = stateSubject.value
+        var day = current.daily[dateKey] ?? [:]
+        day[habitId] = (day[habitId] ?? 0) + effectiveAmount
+        current.daily[dateKey] = day
+        stateSubject.send(current)
+
+        store.incrementDaily(date: dateKey, habitId: habitId, amount: effectiveAmount)
         telemetry?.observe(writeAt: date, in: timeZone)
+        return true
     }
 
     @discardableResult
@@ -106,7 +142,10 @@ final class FirestoreHabitStore: HabitStore {
     }
 
     func observe(_ onUpdate: @escaping (HabitState) -> Void) -> () -> Void {
-        let listener = docRef.addSnapshotListener { snapshot, _ in
+        let listener = docRef.addSnapshotListener { snapshot, error in
+            // Don't overwrite the local optimistic state with empty data
+            // when the listener errors (permission denied, network blip).
+            if error != nil { return }
             let data = snapshot?.data() ?? [:]
             let daily = (data["daily"] as? [String: [String: Int]]) ?? [:]
             let rawCustom = (data["customHabits"] as? [String: [String: Any]]) ?? [:]
@@ -130,9 +169,14 @@ final class FirestoreHabitStore: HabitStore {
     }
 
     func incrementDaily(date: String, habitId: String, amount: Int) {
-        // FieldValue.increment on nested field path is atomic.
-        let path = "daily.\(date).\(habitId)"
-        docRef.setData([path: FieldValue.increment(Int64(amount))], merge: true) { error in
+        // setData(merge: true) treats dotted keys LITERALLY (creates a flat
+        // field named "daily.2026-05-14.exercise" at the root). Pass a nested
+        // dictionary so the dots become real map levels — FieldValue.increment
+        // applies atomically at the leaf either way.
+        let nested: [String: Any] = [
+            "daily": [date: [habitId: FieldValue.increment(Int64(amount))]]
+        ]
+        docRef.setData(nested, merge: true) { error in
             if let error = error {
                 assertionFailure("FirestoreHabitStore.incrementDaily failed: \(error)")
             }
@@ -148,11 +192,13 @@ final class FirestoreHabitStore: HabitStore {
             "createdAt":  Timestamp(date: habit.createdAt),
             "deletedAt":  habit.deletedAt.map(Timestamp.init(date:)) as Any
         ]
-        let path = "customHabits.\(habit.id)"
-        docRef.setData([path: payload], merge: true)
+        // Nested for setData(merge: true) — see incrementDaily for the why.
+        docRef.setData(["customHabits": [habit.id: payload]], merge: true)
     }
 
     func softDeleteCustomHabit(id: String, deletedAt: Date) {
+        // updateData() DOES interpret dotted keys as nested paths (the rule
+        // is opposite to setData), so this stays as-is.
         let path = "customHabits.\(id).deletedAt"
         docRef.updateData([path: Timestamp(date: deletedAt)])
     }
