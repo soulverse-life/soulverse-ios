@@ -77,10 +77,6 @@ protocol Theme: Identifiable where ID == String {
     /// Currently used by InnerCosmo placeholder planets and Quest progress
     /// dots in their not-yet-completed state.
     var planetPlaceholder: UIColor { get }
-    /// Near-white planet used to mark a completed slot (e.g., a completed
-    /// Quest progress day). Off-white so EmotionPlanetView's radial gradient
-    /// still renders subtle highlight → edge shading.
-    var planetCompleted: UIColor { get }
 }
 
 /// Gradient direction for background

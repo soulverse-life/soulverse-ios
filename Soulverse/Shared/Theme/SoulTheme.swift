@@ -200,8 +200,4 @@ extension SoulTheme {
     var planetPlaceholder: UIColor {
         UIColor(red: 176.0/255.0, green: 176.0/255.0, blue: 176.0/255.0, alpha: 1.0)
     }
-
-    var planetCompleted: UIColor {
-        UIColor(red: 245.0/255.0, green: 245.0/255.0, blue: 245.0/255.0, alpha: 1.0)
-    }
 }

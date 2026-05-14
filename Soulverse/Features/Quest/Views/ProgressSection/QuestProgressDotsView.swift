@@ -5,7 +5,7 @@
 //  Renders a 7-dot row representing the current stage's days. Each dot is an
 //  EmotionPlanetView (the same component InnerCosmo uses) at 20pt diameter,
 //  with no emotion label. Two-color states:
-//    - completed → near-white planet
+//    - completed → themePrimary (brand color)
 //    - not yet completed → InnerCosmo's placeholder gray (#B0B0B0)
 //
 //  Per the design (~/Desktop/quest_1.png), we never render all 21 planets
@@ -67,7 +67,7 @@ final class QuestProgressDotsView: UIView {
         for i in 0..<Layout.dotsPerStage {
             let position = i + 1
             let isCompleted = position <= relativeCurrent
-            let color: UIColor = isCompleted ? .themePlanetCompleted : .themePlanetPlaceholder
+            let color: UIColor = isCompleted ? .themePrimary : .themePlanetPlaceholder
 
             let data = EmotionPlanetData(
                 emotion: "",
