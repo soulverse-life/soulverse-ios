@@ -15,16 +15,17 @@ export function deriveNotificationHour(timezoneOffsetMinutes: number): number {
   return ((9 - offsetHours) % 24 + 24) % 24;
 }
 
-export async function initializeQuestState(
-  uid: string,
-  db: Firestore
-): Promise<void> {
-  const ref = db.doc(`users/${uid}/quest_state/state`);
-  const exists = (await ref.get()).exists;
-  if (exists) return;   // idempotent: do not overwrite
-
+/**
+ * The canonical "first-write" shape of a `users/{uid}/quest_state/state`
+ * document. Used by `onUserCreated` (initial seed) and by the self-heal
+ * paths in `onMoodCheckInCreated` and `onSurveySubmissionCreated` — those
+ * triggers can encounter a missing doc for users whose accounts predate
+ * this CF, or who somehow skipped `onUserCreated` (Firestore does not
+ * auto-create parent docs from subcollection writes).
+ */
+export function defaultQuestState(): Partial<QuestState> {
   const defaultOffset = 0;
-  const initialState: Partial<QuestState> = {
+  return {
     distinctCheckInDays: 0,
     lastDistinctDayKey: null,
     questCompletedAt: null,
@@ -45,8 +46,17 @@ export async function initializeQuestState(
     notificationHour: deriveNotificationHour(defaultOffset),
     timezoneOffsetMinutes: defaultOffset
   };
+}
 
-  await ref.set(initialState);
+export async function initializeQuestState(
+  uid: string,
+  db: Firestore
+): Promise<void> {
+  const ref = db.doc(`users/${uid}/quest_state/state`);
+  const exists = (await ref.get()).exists;
+  if (exists) return;   // idempotent: do not overwrite
+
+  await ref.set(defaultQuestState());
 }
 
 export const onUserCreated = onDocumentCreated(
