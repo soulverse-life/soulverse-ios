@@ -45,8 +45,7 @@ abstract_target 'Base' do
   pod 'AlignedCollectionViewFlowLayout'
 
   target 'Soulverse'
-  target 'Soulverse Dev'
-  
+
   target 'SoulverseTests' do
     inherit! :search_paths
     # Pods for testing
