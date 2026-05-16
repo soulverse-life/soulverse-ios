@@ -2,6 +2,7 @@
 //  AppDelegate.swift
 //
 import FirebaseCore
+import FirebaseMessaging
 import IQKeyboardManagerSwift
 import IQKeyboardToolbar
 import IQKeyboardToolbarManager
@@ -24,11 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.beginReceivingRemoteControlEvents()
 
         UNUserNotificationCenter.current().delegate = self
-
-        //UIApplication.shared.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self
+        UIApplication.shared.registerForRemoteNotifications()
 
         setDefaultToastAppearance()
-        checkNotificationPermission()
 
         // Enable IQKeyboardManager
         IQKeyboardManager.shared.isEnabled = true
@@ -37,6 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Enable toolbar with chevron down button
         IQKeyboardToolbarManager.shared.isEnabled = true
         IQKeyboardToolbarManager.shared.toolbarConfiguration.doneBarButtonConfiguration = IQBarButtonItemConfiguration(systemItem: .done)
+
+        // Quest: write current device timezone + notificationHour to quest_state
+        // (the only client-writable fields per Plan 1 Security Rules).
+        if let uid = User.shared.userId {
+            FirestoreQuestService.shared.writeCurrentTimezone(uid: uid)
+            // Retry any FCM token write that was queued offline last session.
+            FirestoreDeviceTokenService.flushPendingWrites(uid: uid)
+        }
 
         return true
     }
@@ -93,17 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    
-    private func checkNotificationPermission() {
-
-        let center = UNUserNotificationCenter.current()
-        center.getNotificationSettings { settings in
-            if settings.authorizationStatus == .denied {
-                // Todo: Handle the user not enable the notification
-            }
-        }
-    }
-    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -119,16 +116,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-            
+
 #if DEBUG
         let deviceTokenString = deviceToken.reduce("") {
             $0 + String(format: "%02x", $1)
         }
-        print("deviceToken", deviceTokenString)
+        print("[FCM] APNs deviceToken:", deviceTokenString)
 #endif
-        
+
+        // Forward the APNs token to FirebaseMessaging so it can mint an FCM
+        // token tied to this APNs registration.
+        Messaging.messaging().apnsToken = deviceToken
     }
 
+}
+
+// MARK: - MessagingDelegate
+
+extension AppDelegate: MessagingDelegate {
+
+    /// Fires whenever FCM has a new registration token (post-APNs handshake,
+    /// app restore, token refresh, etc.). Persists the token to Firestore.
+    func messaging(
+        _ messaging: Messaging,
+        didReceiveRegistrationToken fcmToken: String?
+    ) {
+#if DEBUG
+        print("==================== FCM TOKEN ====================")
+        print(fcmToken ?? "<nil>")
+        print("===================================================")
+#endif
+
+        guard
+            let token = fcmToken,
+            let uid = User.shared.userId,
+            let deviceId = UIDevice.current.identifierForVendor?.uuidString
+        else {
+            print("[FCM] Skipping token write — missing token, uid, or vendor id")
+            return
+        }
+
+        let appVersion = Bundle.main
+            .object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0.0.0"
+
+        FirestoreDeviceTokenService.writeToken(
+            uid: uid,
+            deviceId: deviceId,
+            token: token,
+            appVersion: appVersion
+        )
+    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -144,10 +181,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     // show the notification while app is in foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        if #available(iOS 14.0, *) {
+        let userInfo = notification.request.content.userInfo
+        let isQuestPush = userInfo["notificationKey"] is String
+
+        if isQuestPush {
+            // Quest pushes also play a sound so the user notices them.
+            completionHandler([.banner, .sound])
+        } else if #available(iOS 14.0, *) {
             completionHandler([.banner])
         } else {
-            // Fallback on earlier versions
+            completionHandler([])
         }
     }
 }

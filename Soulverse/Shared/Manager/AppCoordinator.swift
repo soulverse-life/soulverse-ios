@@ -14,8 +14,9 @@ enum RoutingDestination: String {
     case Profile = "profile"
     case MembershipPurchase = "purchase"
     case ExternalLink = "external_link"
+    case Quest = "quest"
     case None
-    
+
     var hasData: Bool {
         switch self {
         case .TOC, .AudioPlayer, .SummaryText, .ExternalLink:
@@ -52,9 +53,18 @@ enum SurveyType {
 class AppCoordinator {
 
     static func inAppRouting(_ params: [String: Any]?) {
-        
-        guard let params = params,
-              let currentVC = UIViewController.getLastPresentedViewController() else { return }
+        guard let params = params else { return }
+
+        // Quest pushes from Cloud Functions carry `notificationKey`.
+        // Treat any present value as a Quest tab deep-link.
+        if let notificationKey = params["notificationKey"] as? String {
+            print("[FCM] Routing Quest notification: \(notificationKey)")
+            routeToQuestTab()
+            return
+        }
+
+        guard let currentVC = UIViewController.getLastPresentedViewController() else { return }
+        _ = currentVC // legacy paths below may consume it
 
         if let payload = params["payload"] as? String {
             let dest = RoutingDestination(rawValue: payload) ?? .None
@@ -68,6 +78,22 @@ class AppCoordinator {
                     }
                 }
             }
+        }
+    }
+
+    /// Selects the Quest tab on the root tab bar controller.
+    /// Called by `inAppRouting` when an FCM payload contains `notificationKey`.
+    private static func routeToQuestTab() {
+        DispatchQueue.main.async {
+            guard
+                let scene = UIApplication.shared.connectedScenes
+                    .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+                let window = scene.windows.first(where: { $0.isKeyWindow }),
+                let tabBar = window.rootViewController as? UITabBarController
+            else { return }
+
+            // Quest tab is index 4 per MainViewController layout.
+            tabBar.selectedIndex = 4
         }
     }
     

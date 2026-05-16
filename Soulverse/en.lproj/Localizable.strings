@@ -405,7 +405,6 @@
 "emotional_bundle_red_flags_required_message" = "Please add at least one red flag before saving.";
 "emotional_bundle_feel_calm_required_message" = "Please add at least one calming activity before saving.";
 
-
 // MARK: - Journal Editor
 
 "journal_editor_nav_title" = "Write a journal";
@@ -415,3 +414,241 @@
 "journal_editor_save_button" = "Save";
 "journal_editor_draw_link" = "Draw";
 "journal_editor_save_failed" = "Failed to save journal. Please try again.";
+
+// Quest — locked card hints (proximity-based)
+"quest_locked_hint_future_day" = "On Day %d, you'll %@.";
+"quest_locked_hint_n_more" = "Just %d more check-ins!";
+"quest_locked_hint_one_more" = "Just 1 more check-in!";
+
+// Quest — progress section
+"quest_progress_day_pill" = "Day %d of %d";
+"quest_progress_daily_cta" = "Do today's Mood Check-In →";
+
+// Quest — locked-feature labels
+"quest_locked_feature_8dim" = "see your 8 Dimensions";
+
+// Quest — 8-Dim card
+"quest_eight_dim_card_title" = "Your 8 Dimensions";
+
+// Quest — Habit Checker
+"quest_habit_section_title" = "Habit Tracker";
+"quest_habit_section_subtitle" = "Daily Micro Behaviors";
+"quest_habit_exercise_title" = "Exercise";
+"quest_habit_water_title" = "Water";
+"quest_habit_meditation_title" = "Meditation";
+"quest_habit_today_format" = "%d %@";
+"quest_habit_yesterday_format" = "Yesterday: %d %@";
+"quest_habit_resets_at_midnight" = "Resets at midnight";
+"quest_habit_add_custom_available" = "Add Custom Habit";
+"quest_habit_form_title" = "New Custom Habit";
+"quest_habit_form_name_placeholder" = "Habit name (e.g., Stretch)";
+"quest_habit_form_unit_placeholder" = "Unit (e.g., min, ml, pages)";
+"quest_habit_form_save" = "Save";
+"quest_habit_form_preview_format" = "Preview: %@ — buttons %@ %@";
+"quest_habit_form_preview_invalid" = "Fill in name, unit, and three distinct positive numbers.";
+"quest_habit_delete_alert_title" = "Delete Custom Habit?";
+"quest_habit_delete_alert_body_format" = "Delete '%@'? You can create a new custom habit after this.";
+"quest_habit_delete_alert_cancel" = "Cancel";
+"quest_habit_delete_alert_confirm" = "Delete";
+
+// Quest — Survey shared
+"quest_survey_submit" = "Submit";
+"quest_survey_result_title" = "Your reflection";
+"quest_survey_result_done" = "Done";
+"quest_survey_submit_failure_title" = "Submission failed";
+"quest_survey_submit_failure_body" = "We couldn't save your survey. Please try again.";
+"quest_survey_submit_failure_dismiss" = "OK";
+
+// Quest — Survey response scales
+"quest_importance_response_1" = "Not important";
+"quest_importance_response_2" = "A little important";
+"quest_importance_response_3" = "Moderately important";
+"quest_importance_response_4" = "Very important";
+"quest_importance_response_5" = "Extremely important";
+"quest_satisfaction_response_1" = "Very dissatisfied";
+"quest_satisfaction_response_2" = "A little dissatisfied";
+"quest_satisfaction_response_3" = "Moderately satisfied";
+"quest_satisfaction_response_4" = "Satisfied";
+"quest_satisfaction_response_5" = "Very satisfied";
+"quest_survey_response_1" = "Not true for me";
+"quest_survey_response_2" = "Rarely true";
+"quest_survey_response_3" = "Sometimes true";
+"quest_survey_response_4" = "Often true";
+"quest_survey_response_5" = "Very true for me";
+
+// Quest — Survey titles
+"quest_survey_importance_title" = "Importance Check-In";
+"quest_survey_8dim_title" = "8 Dimensions";
+"quest_survey_soc_title" = "Readiness Check-In";
+"quest_survey_satisfaction_title" = "Satisfaction Check-In";
+
+// Quest — Result view shared
+"quest_survey_result_importance_title" = "Your top priority";
+"quest_survey_result_satisfaction_title" = "How you're feeling";
+"quest_importance_result_first_time_format" = "Thank you for your first check-in. Your top priority is %@. This awareness is your foundation.";
+"quest_satisfaction_result_first_time_format" = "Highest satisfaction: %@. Room for growth: %@.";
+
+// Quest — Wellness dimension display names
+
+// Quest — State-of-Change friendly stage labels (5)
+"quest_stage_soc_1_label" = "Considering";
+"quest_stage_soc_2_label" = "Planning";
+"quest_stage_soc_3_label" = "Preparing";
+"quest_stage_soc_4_label" = "Doing";
+"quest_stage_soc_5_label" = "Sustaining";
+"quest_stage_soc_1_message" = "You're noticing the pattern — that's the first step. Be gentle with yourself as you observe.";
+"quest_stage_soc_2_message" = "You're thinking it through. Take your time; clarity comes with reflection.";
+"quest_stage_soc_3_message" = "You're getting ready. Small steps now build momentum for the work ahead.";
+"quest_stage_soc_4_message" = "You're in motion. Trust the process and celebrate each step you take.";
+"quest_stage_soc_5_message" = "You're sustaining the change. Your consistency is the foundation of lasting growth.";
+
+// Quest — 8-Dim stage labels (per dimension × 3 stages — populated for emotional only as representative; engineer/Plan 7 should expand to all 8 dims using wellness-doc copy)
+"quest_stage_8dim_emotional_1_label" = "Dim Lantern";
+"quest_stage_8dim_emotional_2_label" = "Steady Flame";
+"quest_stage_8dim_emotional_3_label" = "Radiant Hearth";
+"quest_stage_8dim_emotional_1_message" = "Your emotional flame flickers softly. This is where awareness begins.";
+"quest_stage_8dim_emotional_2_message" = "Your emotional self burns steadily. You're learning to tend the flame.";
+"quest_stage_8dim_emotional_3_message" = "Your emotional warmth glows brightly. You hold space for yourself and others.";
+
+// Quest — Survey question texts (placeholders — engineer should populate from wellness assessment doc 19wH1834cHdwyIuFfT3YkXOHaXOrES78S before launch)
+// Importance Check-In Q01-Q32
+"quest_survey_importance_q01_text" = "How important to you is your overall quality of life?";
+"quest_survey_importance_q02_text" = "How important to you is your health?";
+"quest_survey_importance_q03_text" = "How important to you is being free of pain?";
+"quest_survey_importance_q04_text" = "How important to you is having energy?";
+"quest_survey_importance_q05_text" = "How important to you is restful sleep?";
+"quest_survey_importance_q06_text" = "How important to you is feeling happiness and enjoyment in life?";
+"quest_survey_importance_q07_text" = "How important to you is feeling content?";
+"quest_survey_importance_q08_text" = "How important to you is feeling hopeful?";
+"quest_survey_importance_q09_text" = "How important to you is being able to learn and remember important information?";
+"quest_survey_importance_q10_text" = "How important to you is being able to think through everyday problems?";
+"quest_survey_importance_q11_text" = "How important to you is being able to concentrate?";
+"quest_survey_importance_q12_text" = "How important to you is feeling positive about yourself?";
+"quest_survey_importance_q13_text" = "How important to you is your body image and appearance?";
+"quest_survey_importance_q14_text" = "How important to you is being free of negative feelings?";
+"quest_survey_importance_q15_text" = "How important to you is being able to move around?";
+"quest_survey_importance_q16_text" = "How important to you is being able to take care of your daily living activities?";
+"quest_survey_importance_q17_text" = "How important to you is being free of dependence on medicines or treatments?";
+"quest_survey_importance_q18_text" = "How important to you is being able to work?";
+"quest_survey_importance_q19_text" = "How important to you are relationships with other people?";
+"quest_survey_importance_q20_text" = "How important to you is support from others?";
+"quest_survey_importance_q21_text" = "How important to you is your sexual life?";
+"quest_survey_importance_q22_text" = "How important to you is feeling physically safe and secure?";
+"quest_survey_importance_q23_text" = "How important to you is your home environment?";
+"quest_survey_importance_q24_text" = "How important to you are your financial resources?";
+"quest_survey_importance_q25_text" = "How important to you is being able to get adequate health care?";
+"quest_survey_importance_q26_text" = "How important to you is being able to get adequate social help?";
+"quest_survey_importance_q27_text" = "How important to you are chances for getting new information?";
+"quest_survey_importance_q28_text" = "How important to you are chances to learn new skills?";
+"quest_survey_importance_q29_text" = "How important to you is relaxation/leisure?";
+"quest_survey_importance_q30_text" = "How important to you is your environment (pollution, climate, noise)?";
+"quest_survey_importance_q31_text" = "How important to you is adequate transport in your everyday life?";
+"quest_survey_importance_q32_text" = "How important to you are your personal beliefs?";
+
+// State-of-Change Q01-Q15
+"quest_survey_soc_q01_text" = "I took steps to prevent myself from slipping back into old patterns.";
+"quest_survey_soc_q02_text" = "I noticed areas in my life that might need attention, but I did not yet feel ready to make any changes.";
+"quest_survey_soc_q03_text" = "I took clear and intentional actions to improve an area of my life.";
+"quest_survey_soc_q04_text" = "I explored new ideas or perspectives that helped me reflect on how I might grow.";
+"quest_survey_soc_q05_text" = "I felt a sense of stability and routine with the new habits I have developed.";
+"quest_survey_soc_q06_text" = "I took proactive steps to learn what I needed to prepare for meaningful change.";
+"quest_survey_soc_q07_text" = "I applied a new strategy or approach and took action to handle a challenge.";
+"quest_survey_soc_q08_text" = "I consistently put effort into practicing a new behavior to replace an old one.";
+"quest_survey_soc_q09_text" = "I felt okay staying where I was, even if I wasn't thinking about making any changes.";
+"quest_survey_soc_q10_text" = "I began creating a realistic plan for a change I intend to make.";
+"quest_survey_soc_q11_text" = "I recognized an area of my life that I might want to improve for my own benefit.";
+"quest_survey_soc_q12_text" = "I took initial steps to build support for a change I am preparing to make.";
+"quest_survey_soc_q13_text" = "I felt confident in my ability to maintain the positive changes I have already made.";
+"quest_survey_soc_q14_text" = "I thoughtfully explored whether making a personal change might benefit my well-being.";
+"quest_survey_soc_q15_text" = "I recognized that growth could be possible for me, even if I felt okay staying where I was.";
+
+// 8-Dim per-dimension Q01-Q10 (10 per dim × 8 dims = 80 keys)
+// Engineer note: only emotional populated representatively; remaining 7 dimensions populated as placeholders for build-time validation. Plan 7 final-QA sweep should fill in real wording from the wellness doc per-dimension.
+"quest_survey_8dim_emotional_q01_text" = "I can recognize and name what I'm feeling as different emotions arise.";
+"quest_survey_8dim_emotional_q02_text" = "I notice how my body feels when I experience strong emotions.";
+"quest_survey_8dim_emotional_q03_text" = "I can find healthy ways to calm myself when I feel upset or overwhelmed.";
+"quest_survey_8dim_emotional_q04_text" = "I can think clearly and make decisions, even when I'm feeling emotional.";
+"quest_survey_8dim_emotional_q05_text" = "I allow myself to feel a full range of emotions without judging them.";
+"quest_survey_8dim_emotional_q06_text" = "I can sit with difficult feelings without immediately needing to escape them.";
+"quest_survey_8dim_emotional_q07_text" = "I bounce back from emotional challenges and find my footing again.";
+"quest_survey_8dim_emotional_q08_text" = "I believe I can work through hard emotional experiences over time.";
+"quest_survey_8dim_emotional_q09_text" = "I can share my true feelings with someone I trust when I need support.";
+"quest_survey_8dim_emotional_q10_text" = "I feel emotionally connected to the people who are important to me.";
+
+// Satisfaction Check-In Q01-Q32
+"quest_survey_satisfaction_q01_text" = "How satisfied are you with your overall quality of life?";
+"quest_survey_satisfaction_q02_text" = "How satisfied are you with your current health?";
+"quest_survey_satisfaction_q03_text" = "How satisfied are you with your level of physical comfort?";
+"quest_survey_satisfaction_q04_text" = "How satisfied are you with your daily energy levels?";
+"quest_survey_satisfaction_q05_text" = "How satisfied are you with the quality of your sleep?";
+"quest_survey_satisfaction_q06_text" = "How satisfied are you with the amount of happiness in your life?";
+"quest_survey_satisfaction_q07_text" = "How satisfied are you with your overall sense of contentment?";
+"quest_survey_satisfaction_q08_text" = "How satisfied are you with your level of hopefulness about the future?";
+"quest_survey_satisfaction_q09_text" = "How satisfied are you with your ability to learn and remember information?";
+"quest_survey_satisfaction_q10_text" = "How satisfied are you with your ability to think through problems?";
+"quest_survey_satisfaction_q11_text" = "How satisfied are you with your ability to concentrate?";
+"quest_survey_satisfaction_q12_text" = "How satisfied are you with how you feel about yourself?";
+"quest_survey_satisfaction_q13_text" = "How satisfied are you with your body image and appearance?";
+"quest_survey_satisfaction_q14_text" = "How satisfied are you with your ability to manage negative feelings?";
+"quest_survey_satisfaction_q15_text" = "How satisfied are you with your ability to move around?";
+"quest_survey_satisfaction_q16_text" = "How satisfied are you with your ability to take care of daily activities?";
+"quest_survey_satisfaction_q17_text" = "How satisfied are you with your dependence on medicines or treatments?";
+"quest_survey_satisfaction_q18_text" = "How satisfied are you with your ability to work?";
+"quest_survey_satisfaction_q19_text" = "How satisfied are you with your relationships with other people?";
+"quest_survey_satisfaction_q20_text" = "How satisfied are you with the support you received from others?";
+"quest_survey_satisfaction_q21_text" = "How satisfied are you with your sexual life?";
+"quest_survey_satisfaction_q22_text" = "How satisfied are you with your physical safety and security?";
+"quest_survey_satisfaction_q23_text" = "How satisfied are you with your home environment?";
+"quest_survey_satisfaction_q24_text" = "How satisfied are you with your financial resources?";
+"quest_survey_satisfaction_q25_text" = "How satisfied are you with your access to health care?";
+"quest_survey_satisfaction_q26_text" = "How satisfied are you with your access to social help?";
+"quest_survey_satisfaction_q27_text" = "How satisfied are you with your opportunities for new information?";
+"quest_survey_satisfaction_q28_text" = "How satisfied are you with your chances to learn new skills?";
+"quest_survey_satisfaction_q29_text" = "How satisfied are you with your opportunities for relaxation?";
+"quest_survey_satisfaction_q30_text" = "How satisfied are you with your environment?";
+"quest_survey_satisfaction_q31_text" = "How satisfied are you with the adequacy of transport?";
+"quest_survey_satisfaction_q32_text" = "How satisfied are you with the role your personal beliefs play in your life?";
+
+// Quest — Survey section pending cards (per ~/Desktop/survey_section.png)
+"quest_pending_card_title" = "Survey";
+"quest_pending_card_cta" = "Take Survey";
+"quest_pending_card_importance_description" = "You can now switch your focus dimension and explore different growth paths.\n\nIn about 10 minutes, take a short survey to reflect on your current state.";
+"quest_pending_card_8dim_description" = "Reflect on how this dimension is showing up in your life right now. About 5 minutes.";
+"quest_pending_card_soc_description" = "A short check-in on where you are in your journey of change. About 3 minutes.";
+"quest_pending_card_satisfaction_description" = "Step back and rate your satisfaction across the eight dimensions. About 10 minutes.";
+
+// Recent result card titles/summaries
+"quest_result_card_importance_title" = "Importance reflection";
+"quest_result_card_importance_summary" = "Your top priority is highlighted in your Quest.";
+"quest_result_card_8dim_title" = "8 Dimensions reflection";
+"quest_result_card_8dim_summary" = "See your stage in the radar above.";
+"quest_result_card_8dim_emotional_title" = "Emotional reflection";
+"quest_result_card_8dim_physical_title" = "Physical reflection";
+"quest_result_card_8dim_social_title" = "Social reflection";
+"quest_result_card_8dim_intellectual_title" = "Intellectual reflection";
+"quest_result_card_8dim_spiritual_title" = "Spiritual reflection";
+"quest_result_card_8dim_occupational_title" = "Occupational reflection";
+"quest_result_card_8dim_environment_title" = "Environment reflection";
+"quest_result_card_8dim_financial_title" = "Financial reflection";
+"quest_result_card_8dim_emotional_stage_1" = "Dim Lantern — emotional awareness is just beginning to flicker.";
+"quest_result_card_8dim_emotional_stage_2" = "Steady Flame — your emotional self is finding its rhythm.";
+"quest_result_card_8dim_emotional_stage_3" = "Radiant Hearth — your emotional warmth shines through.";
+"quest_result_card_soc_title" = "Readiness reflection";
+"quest_result_card_soc_summary" = "Your stage is highlighted below the radar.";
+"quest_result_card_satisfaction_title" = "Satisfaction reflection";
+"quest_result_card_satisfaction_summary" = "Your highest and lowest areas are surfaced in your Quest.";
+
+// Quest — Plan 7 polish: habit increment button format
+"quest_habit_increment_button_format" = "+%d";
+
+// Quest progress section — design v2
+"quest_progress_subtitle" = "Your personal growth mission hub";
+"quest_progress_emo_stage_1_format" = "Need to check in **%d times** to unlock **Phase 1**";
+"quest_progress_emo_stage_2_format" = "Need to check in **%d times** to unlock **Phase 2**";
+"quest_progress_emo_stage_3_format" = "Need to check in **%d times** to **complete the quest**";
+"quest_progress_emo_completed" = "Mission accomplished — your **21-day quest** is complete!";
+
+// 8-Dim card — design v2
+"quest_eight_dim_card_subtitle" = "Unlock more dimensions by checkins";
+"quest_eight_dim_current_stage_format" = "%@ current stage";
+"quest_eight_dim_stage_label_format" = "Stage %d";

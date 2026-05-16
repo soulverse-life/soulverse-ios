@@ -194,3 +194,10 @@ extension SoulTheme {
         UIColor(red: 217.0/255.0, green: 217.0/255.0, blue: 217.0/255.0, alpha: 1.0)
     }
 }
+
+// MARK: - Planet Visualization
+extension SoulTheme {
+    var planetPlaceholder: UIColor {
+        UIColor(red: 176.0/255.0, green: 176.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+    }
+}

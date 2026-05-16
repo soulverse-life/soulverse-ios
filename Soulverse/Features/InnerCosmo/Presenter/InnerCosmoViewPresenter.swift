@@ -337,7 +337,6 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
     /// Convert mood check-in cards to emotion planet data for the daily view.
     /// Always returns exactly `totalPlanetCount` items, padded with grey placeholders.
     private static let totalPlanetCount = 7
-    private static let placeholderColorHex = "#B0B0B0"
 
     private static func convertToEmotionPlanets(_ cards: [MoodEntryCard]) -> [EmotionPlanetData] {
         let checkInCards = cards.filter { $0.checkIn != nil }
@@ -356,7 +355,7 @@ class InnerCosmoViewPresenter: InnerCosmoViewPresenterType {
         while planets.count < totalPlanetCount {
             planets.append(EmotionPlanetData(
                 emotion: "",
-                colorHex: placeholderColorHex,
+                color: .themePlanetPlaceholder,
                 sizeMultiplier: CGFloat.random(in: 0.7...1.1)
             ))
         }

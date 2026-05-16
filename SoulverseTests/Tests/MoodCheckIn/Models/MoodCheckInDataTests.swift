@@ -129,9 +129,9 @@ final class MoodCheckInDataTests: XCTestCase {
 
     // MARK: - colorIntensity Default
 
-    func test_MoodCheckInData_colorIntensity_defaultIs0point5() {
+    func test_MoodCheckInData_colorIntensity_defaultMatchesLevel2() {
         let data = MoodCheckInData()
-        XCTAssertEqual(data.colorIntensity, 0.5, accuracy: 0.001)
+        XCTAssertEqual(data.colorIntensity, ColorIntensityConstants.alpha(forLevel: 2), accuracy: 0.001)
     }
 }
 

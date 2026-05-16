@@ -137,6 +137,13 @@ struct DeviceConstants {
     }
 }
 
+/// Developer / QA flags. LOCAL ONLY — these must remain `false` on any
+/// branch that ships to TestFlight or production. Flip to `true` to preview
+/// UI surfaces against synthetic fixtures (see e.g. `QuestMockData.swift`).
+struct DevConstants {
+    static let usingMockData: Bool = false
+}
+
 struct Notification {
     static let UserIdentityChange = "UserIdentityChange"
     static let MoodCheckInCreated = "MoodCheckInCreated"
@@ -156,7 +163,7 @@ struct InAppURLScheme {
 struct TimeConstant {
     static let day = 86400.0
     static let hour = 3600.0
-    static let miniute = 60.0
+    static let minute = 60.0
 }
 
 struct AnimationConstant {

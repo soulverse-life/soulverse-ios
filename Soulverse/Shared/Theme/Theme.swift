@@ -71,6 +71,12 @@ protocol Theme: Identifiable where ID == String {
     // Progress Bar
     var progressBarActive: UIColor { get }
     var progressBarInactive: UIColor { get }
+
+    // Planet visualization (EmotionPlanetView callers)
+    /// Neutral planet used when there's no check-in / data behind the slot.
+    /// Currently used by InnerCosmo placeholder planets and Quest progress
+    /// dots in their not-yet-completed state.
+    var planetPlaceholder: UIColor { get }
 }
 
 /// Gradient direction for background

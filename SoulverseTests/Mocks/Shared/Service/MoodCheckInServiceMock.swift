@@ -15,6 +15,15 @@ final class MoodCheckInServiceMock: MoodCheckInServiceProtocol {
 
     var submitResult: Result<String, Error> = .success("mock-checkin-id")
     var fetchLatestResult: Result<[MoodCheckInModel], Error> = .success([])
+    /// Convenience: when set, fetchLatestCheckIns returns `[stubLatestCheckIn]`.
+    /// Used by Quest presenter tests for the "did the user check in today?" flag.
+    var stubLatestCheckIn: MoodCheckInModel? {
+        didSet {
+            if let stub = stubLatestCheckIn {
+                fetchLatestResult = .success([stub])
+            }
+        }
+    }
     var fetchLatestBeforeResult: Result<[MoodCheckInModel], Error> = .success([])
     var fetchByDateResult: Result<[MoodCheckInModel], Error> = .success([])
     var deleteResult: Result<Void, Error> = .success(())

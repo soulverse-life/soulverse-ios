@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 protocol OnboardingCoordinatorDelegate: AnyObject {
     func onboardingCoordinatorDidComplete(_ coordinator: OnboardingCoordinator, userData: OnboardingUserData)
@@ -175,7 +176,30 @@ final class OnboardingCoordinator {
     }
 
     private func handleOnboardingCompletion() {
+        // Per spec §12 (Phase 5 revision): request notification permission at
+        // registration completion, using the system iOS dialog directly. No
+        // soft pre-prompt. Idempotent — system no-ops on subsequent calls.
+        requestNotificationPermissionAfterRegistration()
         delegate?.onboardingCoordinatorDidComplete(self, userData: userData)
+    }
+
+    // MARK: - Notifications
+
+    private func requestNotificationPermissionAfterRegistration() {
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: [.alert, .badge, .sound]
+        ) { granted, error in
+            if let error = error {
+                print("[FCM] requestAuthorization error: \(error.localizedDescription)")
+            }
+            guard granted else {
+                print("[FCM] User denied notification permission")
+                return
+            }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
     }
 }
 

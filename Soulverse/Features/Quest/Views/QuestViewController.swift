@@ -3,206 +3,296 @@
 //
 
 import UIKit
+import SnapKit
 
 class QuestViewController: ViewController {
-    
+
+    private enum Layout {
+        static let topSpacing: CGFloat = 16
+        static let stackSpacing: CGFloat = 24
+        static let cardSidePadding: CGFloat = ViewComponentConstants.horizontalPadding
+    }
+
+    // MARK: - Navigation
+
     private lazy var navigationView: SoulverseNavigationView = {
-        let bellIcon = UIImage(systemName: "bell")
-        let personIcon = UIImage(systemName: "person")
-
-        let notificationItem = SoulverseNavigationItem.button(
-            image: bellIcon,
-            identifier: "notification"
-        ) { [weak self] in
-            self?.notificationTapped()
-        }
-
-        let profileItem = SoulverseNavigationItem.button(
-            image: personIcon,
-            identifier: "profile"
-        ) { [weak self] in
-            self?.profileTapped()
-        }
-
         let config = SoulverseNavigationConfig(
             title: NSLocalizedString("quest", comment: ""),
             showBackButton: false,
-            rightItems: [notificationItem, profileItem]
+            rightItems: []
         )
+        return SoulverseNavigationView(config: config)
+    }()
 
-        let view = SoulverseNavigationView(config: config)
-        return view
+    // MARK: - Scroll container
+
+    private lazy var scrollView: UIScrollView = {
+        let v = UIScrollView()
+        v.backgroundColor = .clear
+        v.showsVerticalScrollIndicator = false
+        v.alwaysBounceVertical = true
+        return v
     }()
-    
-    private lazy var tableView: UITableView = { [weak self] in
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.backgroundColor = .clear
-        table.backgroundView = nil  // Remove default background to show gradient
-        table.separatorStyle = .none
-        table.delegate = self
-        table.dataSource = self
-        table.refreshControl = UIRefreshControl()
-        table.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
-        return table
+
+    private lazy var contentView: UIView = {
+        let v = UIView()
+        v.backgroundColor = .clear
+        return v
     }()
-    private let presenter = QuestViewPresenter()
+
+    private lazy var contentStack: UIStackView = {
+        let s = UIStackView()
+        s.axis = .vertical
+        s.alignment = .fill
+        s.spacing = Layout.stackSpacing
+        return s
+    }()
+
+    // MARK: - Sections
+
+    private lazy var headerView = QuestHeaderView()
+    private lazy var progressSection = QuestProgressSectionView()
+    private lazy var eightDimensionsCard = EightDimensionsCardView()
+    private lazy var pendingSurveyCard: PendingSurveyCardView = {
+        let card = PendingSurveyCardView()
+        card.delegate = self
+        return card
+    }()
+    private lazy var recentResultListView: RecentResultCardListView = {
+        let v = RecentResultCardListView()
+        v.onSelect = { [weak self] result in self?.presentRecentResult(result) }
+        return v
+    }()
+
+    private let presenter: QuestViewPresenterType = QuestViewPresenter()
+
+    private lazy var habitService: FirestoreHabitService? = {
+        guard let uid = User.shared.userId else { return nil }
+        return FirestoreHabitService(uid: uid)
+    }()
+
+    private lazy var habitCheckerSection: HabitCheckerSection? = {
+        guard let service = habitService else { return nil }
+        let section = HabitCheckerSection(service: service)
+        section.onAddTap = { [weak self] in self?.presentCustomHabitForm() }
+        section.onDeleteTap = { [weak self] habit in self?.confirmDelete(habit: habit) }
+        return section
+    }()
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupPresenter()
+        presenter.delegate = self
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        // Load data when view appears
-        presenter.fetchData()
+        presenter.start()
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        presenter.stop()
     }
-    func setupView() {
-        // Hide default navigation bar
+
+    // MARK: - Setup
+
+    private func setupView() {
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
+
         view.addSubview(navigationView)
-        view.addSubview(tableView)
-        
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(contentStack)
+
         navigationView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalToSuperview()
         }
-        
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(navigationView.snp.bottom).offset(24)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(navigationView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
-        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(scrollView)
+        }
+        contentStack.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        // Arranged sections, in display order.
+        contentStack.addArrangedSubview(headerView)
+        contentStack.addArrangedSubview(progressSection)
+        contentStack.addArrangedSubview(eightDimensionsCardWrapper())
+        if let habit = habitCheckerSection {
+            contentStack.addArrangedSubview(wrapped(habit, sidePadded: true))
+        }
+        contentStack.addArrangedSubview(wrapped(pendingSurveyCard, sidePadded: true))
+        contentStack.addArrangedSubview(wrapped(recentResultListView, sidePadded: true))
+
         self.extendedLayoutIncludesOpaqueBars = true
     }
-    func setupPresenter() {
-        presenter.delegate = self
-    }
-    @objc func pullToRefresh() {
-        presenter.fetchData(isUpdate: true)
-    }
-}
 
-extension QuestViewController: UITableViewDataSource, UITableViewDelegate {
-    private func getSectionHeaderView(title: String, bottomPadding: CGFloat = 10) -> UIView {
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        let headerView = UIView()
-        headerView.addSubview(titleLabel)
-        titleLabel.numberOfLines = 0
-        titleLabel.text = title
-        titleLabel.lineBreakMode = .byWordWrapping
-        titleLabel.font = UIFont.projectFont(ofSize: 16, weight: .bold)
-        titleLabel.textColor = .themeTextPrimary
-        titleLabel.sizeToFit()
-        titleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().inset(bottomPadding)
+    /// 8-Dim card needs horizontal padding inside the stack.
+    private func eightDimensionsCardWrapper() -> UIView {
+        return wrapped(eightDimensionsCard, sidePadded: true)
+    }
+
+    /// Wrap a view in a container that side-pads it; lets us keep the
+    /// arranged subview full-width (header, dots) while padding cards.
+    private func wrapped(_ inner: UIView, sidePadded: Bool) -> UIView {
+        let container = UIView()
+        container.addSubview(inner)
+        let inset: CGFloat = sidePadded ? Layout.cardSidePadding : 0
+        inner.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview()
+            make.horizontalEdges.equalToSuperview().inset(inset)
         }
-        return headerView
+        return container
     }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        presenter.numberOfSectionsOnTableView()
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = .clear
-        cell.contentView.backgroundColor = .clear
-        cell.selectionStyle = .none
 
-        // Remove any existing subviews to prevent overlap
-        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
-        
-        if indexPath.section == 0 {
-            // Radar Chart Section
-            if let radarData = presenter.loadedModel.radarChartData {
-                let radarChartView = QuestRadarChartView()
-                radarChartView.configure(with: radarData)
-                
-                cell.contentView.addSubview(radarChartView)
-                radarChartView.snp.makeConstraints { make in
-                    make.edges.equalToSuperview()
-                    make.height.equalTo(400) // Fixed height for radar chart
+    // MARK: - Modal flows
+
+    private func presentCustomHabitForm() {
+        guard let service = habitService else { return }
+        let formVC = CustomHabitFormViewController()
+        formVC.onSave = { [weak self] name, unit, increments in
+            service.createCustomHabit(name: name, unit: unit, increments: increments)
+            self?.dismiss(animated: true)
+        }
+        formVC.onCancel = { [weak self] in self?.dismiss(animated: true) }
+        let nav = UINavigationController(rootViewController: formVC)
+        present(nav, animated: true)
+    }
+
+    private func confirmDelete(habit: CustomHabit) {
+        guard let service = habitService else { return }
+        let alert = CustomHabitDeletionConfirmation.make(habitName: habit.name) {
+            service.softDeleteCustomHabit(id: habit.id)
+        }
+        present(alert, animated: true)
+    }
+
+    private func presentSurvey(for type: QuestSurveyType, focus: Topic?) {
+        let definition = SurveyDefinition.definition(for: type, dimension: focus)
+        let surveyVC = SurveyViewController(definition: definition)
+        surveyVC.onCancel = { [weak self] in self?.dismiss(animated: true) }
+        surveyVC.onSubmit = { [weak self] responses, result in
+            guard let self = self, let uid = User.shared.userId else { return }
+            FirestoreSurveyService.submit(
+                uid: uid,
+                kind: type,
+                responses: responses,
+                result: result,
+                appVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0",
+                submittedFromQuestDay: self.presenter.loadedModel.state.distinctCheckInDays
+            ) { [weak self] writeResult in
+                guard let self = self else { return }
+                if case .failure = writeResult {
+                    self.presentSurveySubmitFailureAlert()
+                    return
+                }
+                self.dismiss(animated: true) {
+                    let resultVC = SurveyResultViewController(result: result)
+                    resultVC.onDone = { [weak self] in self?.dismiss(animated: true) }
+                    let nav = UINavigationController(rootViewController: resultVC)
+                    self.present(nav, animated: true)
                 }
             }
-        } else if indexPath.section == 1 {
-            // Progress Line Section
-            let progressLineView = QuestProgressLineView()
-            
-            if let lineData = presenter.loadedModel.lineChartData {
-                progressLineView.configure(with: lineData)
-            }
-            // If no data, it will show placeholder state (just line, no dots)
-            
-            cell.contentView.addSubview(progressLineView)
-            progressLineView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-                make.height.equalTo(100)
-            }
         }
-        
-        return cell
+        let nav = UINavigationController(rootViewController: surveyVC)
+        present(nav, animated: true)
     }
+
+    private func presentSurveySubmitFailureAlert() {
+        let topPresented = presentedViewController ?? self
+        let alert = UIAlertController(
+            title: NSLocalizedString("quest_survey_submit_failure_title", comment: ""),
+            message: NSLocalizedString("quest_survey_submit_failure_body", comment: ""),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(
+            title: NSLocalizedString("quest_survey_submit_failure_dismiss", comment: ""),
+            style: .default
+        ))
+        topPresented.present(alert, animated: true)
+    }
+
+    private func presentRecentResult(_ result: RecentResultCardModel) {
+        let alert = UIAlertController(
+            title: NSLocalizedString(result.titleKey, comment: ""),
+            message: NSLocalizedString(result.summaryKey, comment: ""),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: NSLocalizedString("quest_survey_result_done", comment: ""), style: .default))
+        present(alert, animated: true)
+    }
+
 }
+
+// MARK: - Presenter delegate
+
 extension QuestViewController: QuestViewPresenterDelegate {
+
     func didUpdate(viewModel: QuestViewModel) {
         DispatchQueue.main.async { [weak self] in
-            guard let weakSelf = self else { return }
+            guard let self = self else { return }
             if viewModel.isLoading {
-                weakSelf.showLoadingView(below: weakSelf.navigationView)
+                self.showLoadingView(below: self.navigationView)
             } else {
-                weakSelf.hideLoadingView()
+                self.hideLoadingView()
             }
-
-            // End refresh control
-            if weakSelf.tableView.refreshControl?.isRefreshing == true {
-                weakSelf.tableView.refreshControl?.endRefreshing()
-            }
-            
-            // Reload table data
-            weakSelf.tableView.reloadData()
+            self.applyViewModel(viewModel)
         }
     }
-    func didUpdateSection(at index: IndexSet) {
-        DispatchQueue.main.async { [weak self] in
-            guard let weakSelf = self else { return }
-            weakSelf.tableView.reloadSections(index, with: .automatic)
+
+    func didRequestPresentMoodCheckIn() {
+        AppCoordinator.presentMoodCheckIn(from: self)
+    }
+
+    private func applyViewModel(_ viewModel: QuestViewModel) {
+        headerView.configure(viewModel: viewModel)
+        progressSection.configure(viewModel: viewModel)
+        let dimensionsModel = DevConstants.usingMockData
+            ? EightDimensionsRenderModel.mockPhysicalStage2
+            : viewModel.eightDimensions
+        eightDimensionsCard.configure(
+            model: dimensionsModel,
+            lockedHint: viewModel.eightDimensionsLockedHint
+        )
+        habitCheckerSection?.update(distinctCheckInDays: viewModel.state.distinctCheckInDays)
+
+        let surveyModel = DevConstants.usingMockData
+            ? SurveySectionModel.mockEngagedUser
+            : viewModel.surveySection
+        applySurveySection(surveyModel)
+    }
+
+    private func applySurveySection(_ model: SurveySectionModel) {
+        switch model {
+        case .hidden:
+            pendingSurveyCard.isHidden = true
+            recentResultListView.isHidden = true
+        case let .composed(pending, results):
+            if let pending = pending {
+                pendingSurveyCard.isHidden = false
+                pendingSurveyCard.configure(model: pending)
+            } else {
+                pendingSurveyCard.isHidden = true
+            }
+            recentResultListView.configure(results: results)
         }
     }
 }
-extension QuestViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-} 
 
-// MARK: - Navigation Actions
-extension QuestViewController {
-    
-    private func notificationTapped() {
-        print("[Quest] Notification button tapped")
-        // TODO: Navigate to notifications screen
-    }
+// MARK: - PendingSurveyCardViewDelegate
 
-    private func profileTapped() {
-        print("[Quest] Profile button tapped")
-        // TODO: Navigate to profile screen
+extension QuestViewController: PendingSurveyCardViewDelegate {
+    func pendingSurveyCard(_ card: PendingSurveyCardView, didTapTakeSurveyFor surveyType: QuestSurveyType) {
+        presentSurvey(for: surveyType, focus: presenter.loadedModel.state.focusDimension)
     }
 }

@@ -119,9 +119,28 @@ class InnerCosmoViewController: ViewController {
         recentView.startAnimations()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        requestNotificationPermissionIfNeeded()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         recentView.stopAnimations()
+    }
+
+    // MARK: - Notifications
+
+    private func requestNotificationPermissionIfNeeded() {
+        DispatchQueue.main.async {
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { settings in
+            guard settings.authorizationStatus == .notDetermined else { return }
+            center.requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
+        }
     }
 
     // MARK: - Setup
