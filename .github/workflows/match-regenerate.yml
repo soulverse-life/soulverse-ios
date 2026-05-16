@@ -1,0 +1,62 @@
+name: Regenerate Match Profile
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'Match certificate type to regenerate'
+        required: true
+        default: 'appstore'
+        type: choice
+        options:
+          - appstore
+          - development
+          - adhoc
+
+concurrency:
+  group: match-regenerate
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: macos-26
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Set up App Store Connect API Key
+        run: |
+          mkdir -p fastlane/keys
+          echo "${{ secrets.APP_STORE_CONNECT_API_KEY }}" | base64 --decode > fastlane/keys/AuthKey_${{ secrets.API_KEY_ID }}.p8
+
+      - name: Create temporary keychain
+        run: |
+          security create-keychain -p "" temp.keychain
+          security default-keychain -s temp.keychain
+          security unlock-keychain -p "" temp.keychain
+          security set-keychain-settings temp.keychain
+
+      - name: Regenerate Match profile (force)
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_KEYCHAIN_NAME: temp.keychain
+          MATCH_KEYCHAIN_PASSWORD: ""
+          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.API_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.API_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_KEY_FILEPATH: fastlane/keys/AuthKey_${{ secrets.API_KEY_ID }}.p8
+        run: bundle exec fastlane match ${{ inputs.type }} --force
+
+      - name: Clean up keychain and API Key
+        if: always()
+        run: |
+          security delete-keychain temp.keychain || true
+          rm -f fastlane/keys/AuthKey_${{ secrets.API_KEY_ID }}.p8
