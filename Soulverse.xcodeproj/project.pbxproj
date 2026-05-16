@@ -23,8 +23,6 @@
 		0E9E5F5550F10342BE4D579A /* MoodEntriesDataAssemblerFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */; };
 		1068DC503C449FA2F1E94253 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		1135B47B75C583A6E7DE7F32 /* TopicDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B7B1090574611BFDFC632 /* TopicDistributionView.swift */; };
-		9F8E7D6C5B4A39281706F5E4 /* QuestSurveyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F6071829304A5B6C7D8E9 /* QuestSurveyType.swift */; };
-		A1B2C3D4E5F6071829304A5B /* AppBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4039281706F5E4D3C2B1A /* AppBundle.swift */; };
 		14EF44422EB79065BBC8D829 /* LockedCardHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB6FE0EEE88FEEB784461AE /* LockedCardHint.swift */; };
 		150DCE169FB153B3A688F1E4 /* QuestStateModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319EAD36EAC7E739D025A84 /* QuestStateModelTests.swift */; };
 		16763768A15E67CD8952721D /* CheckInDetailPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C99EBD0D7244FE8D52E4F /* CheckInDetailPresenterType.swift */; };
@@ -283,6 +281,8 @@
 		99D7A073D137428E8D5EB65B /* EmotionalBundleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D2ACF027F80CD265BD4CA /* EmotionalBundleModel.swift */; };
 		9A5F6071A756E85D2358C622 /* ProfessionalSupportSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */; };
 		9CF4FABB93B22A5501410AC9 /* EmotionalBundleMainPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30F39713DA6AD85B3971009 /* EmotionalBundleMainPresenterTests.swift */; };
+		9F8E7D6C5B4A39281706F5E4 /* QuestSurveyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F6071829304A5B6C7D8E9 /* QuestSurveyType.swift */; };
+		A1B2C3D4E5F6071829304A5B /* AppBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4039281706F5E4D3C2B1A /* AppBundle.swift */; };
 		A1B2C3D4E5F6A7B8C9D0E1F4 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */; };
 		A2642779529DA52C41E8446B /* MoodCheckInServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59E22D0E948D8EE0F606C /* MoodCheckInServiceProtocol.swift */; };
 		A2B3C4D5E6F7A8B9C0D1E2F5 /* TimeRangeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */; };
@@ -458,6 +458,7 @@
 		44B4FD47CBD19494846367A6 /* QuestServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceProtocol.swift; sourceTree = "<group>"; };
 		45CADED06D1EF601E2CC1277 /* SurveyViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		48E73787F4BF8E8C1D7A3403 /* QuestStageTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStageTests.swift; sourceTree = "<group>"; };
+		4E5F6071829304A5B6C7D8E9 /* QuestSurveyType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestSurveyType.swift; sourceTree = "<group>"; };
 		4F086EFB7A0C114933FE0F5D /* EmotionalBundleServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleServiceProtocol.swift; sourceTree = "<group>"; };
 		52FC116D149D9314A21F06C5 /* QuestServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceMock.swift; sourceTree = "<group>"; };
 		5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterDelegateMock.swift; sourceTree = "<group>"; };
@@ -716,9 +717,8 @@
 		B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityViewModel.swift; sourceTree = "<group>"; };
 		B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSummaryView.swift; sourceTree = "<group>"; };
 		B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityView.swift; sourceTree = "<group>"; };
-		4E5F6071829304A5B6C7D8E9 /* QuestSurveyType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestSurveyType.swift; sourceTree = "<group>"; };
-		B5A4039281706F5E4D3C2B1A /* AppBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppBundle.swift; sourceTree = "<group>"; };
 		B48C41BCF39B40DC81884136 /* AddCustomHabitButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddCustomHabitButton.swift; sourceTree = "<group>"; };
+		B5A4039281706F5E4D3C2B1A /* AppBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppBundle.swift; sourceTree = "<group>"; };
 		B7278578F137612349A77E22 /* EmotionTypeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionTypeTests.swift; sourceTree = "<group>"; };
 		B755C43C7BCDF8299509D6F1 /* QuestStage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStage.swift; sourceTree = "<group>"; };
 		B9F2319A6B037EAD96645FBA /* HabitData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HabitData.swift; sourceTree = "<group>"; };
@@ -2628,13 +2628,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-SoulverseUITests/Pods-Base-SoulverseUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2649,13 +2645,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2670,13 +2662,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse/Pods-Base-Soulverse-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
