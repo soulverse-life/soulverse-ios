@@ -2,12 +2,8 @@
 //  QuestSurveyType.swift
 //  Soulverse
 //
-//  Onboarding Quest survey types. Renamed from `SurveyType` to avoid
-//  collision with `AppCoordinator.SurveyType` (UI-feedback survey enum).
-//
-//  Localization keys for the Survey section's card copy live as
-//  computed properties on the type itself — keeps presentation knowledge
-//  attached to the entity it describes.
+//  Named with the `Quest` prefix to avoid collision with
+//  `AppCoordinator.SurveyType` (UI-feedback survey enum).
 //
 
 import Foundation
@@ -21,8 +17,6 @@ enum QuestSurveyType: String, Codable, CaseIterable {
 
 extension QuestSurveyType {
 
-    /// Description body for the pending survey card. Title ("Survey") and
-    /// CTA ("Take Survey") are universal and rendered by the view directly.
     var pendingDescriptionKey: String {
         switch self {
         case .importanceCheckIn:   return "quest_pending_card_importance_description"
@@ -32,9 +26,6 @@ extension QuestSurveyType {
         }
     }
 
-    /// Title for a recent-result card. The 8-Dim variant interpolates the
-    /// submission's dimension into the key; falls back to a generic key when
-    /// the dimension is missing.
     func resultTitleKey(dimension: Topic?) -> String {
         switch self {
         case .importanceCheckIn:   return "quest_result_card_importance_title"
@@ -48,9 +39,6 @@ extension QuestSurveyType {
         }
     }
 
-    /// Summary line for a recent-result card. 8-Dim interpolates dimension +
-    /// stage; SoC interpolates stage into the shared `quest_stage_soc_*_label`
-    /// keys. Generic fallbacks when those parts are missing.
     func resultSummaryKey(dimension: Topic?, stage: Int?) -> String {
         switch self {
         case .importanceCheckIn:   return "quest_result_card_importance_summary"

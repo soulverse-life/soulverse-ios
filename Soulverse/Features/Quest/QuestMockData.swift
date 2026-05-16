@@ -16,7 +16,7 @@ import Foundation
 extension EightDimensionsRenderModel {
     /// Focus dimension = Physical, State-of-Change stage = 2. Other seven
     /// dimensions render as never-assessed (lock icons at the vertices).
-    static var mockPhysicalStage2: EightDimensionsRenderModel {
+    static let mockPhysicalStage2: EightDimensionsRenderModel = {
         var axes: [DimensionAxisState] = Array(repeating: .neverAssessed, count: Topic.allCases.count)
         if let physicalIndex = Topic.allCases.firstIndex(of: .physical) {
             axes[physicalIndex] = .currentFocusWithSoC(stage: 2)
@@ -30,23 +30,22 @@ extension EightDimensionsRenderModel {
             ),
             isCardLocked: false
         )
-    }
+    }()
 }
 
 extension SurveySectionModel {
     /// User past day 7 with one pending Importance survey and one
-    /// recently-submitted State-of-Change result.
-    static var mockEngagedUser: SurveySectionModel {
+    /// recently-submitted State-of-Change result. Dates are frozen at
+    /// module-load time — fine for preview, not realistic time math.
+    static let mockEngagedUser: SurveySectionModel = {
         let now = Date()
         let day: TimeInterval = 86_400
 
-        let pending: [PendingSurveyCardModel] = [
-            PendingSurveyCardModel(
-                surveyType: .importanceCheckIn,
-                eligibleSince: now.addingTimeInterval(-3 * day),
-                descriptionKey: "quest_pending_card_importance_description"
-            )
-        ]
+        let pending = PendingSurveyCardModel(
+            surveyType: .importanceCheckIn,
+            eligibleSince: now.addingTimeInterval(-3 * day),
+            descriptionKey: "quest_pending_card_importance_description"
+        )
 
         let results: [RecentResultCardModel] = [
             RecentResultCardModel(
@@ -59,5 +58,5 @@ extension SurveySectionModel {
         ]
 
         return .composed(pending: pending, results: results)
-    }
+    }()
 }

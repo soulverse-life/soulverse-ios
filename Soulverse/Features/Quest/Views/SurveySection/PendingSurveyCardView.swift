@@ -2,19 +2,13 @@
 //  PendingSurveyCardView.swift
 //  Soulverse
 //
-//  A single pending-survey card. Renders:
-//    - title ("Survey", universal)
-//    - description (per-survey-type, multi-line)
-//    - full-width "Take Survey" CTA (via SoulverseButton.primary, which
-//      layers UIGlassEffect over the themed background on iOS 26+)
-//
-//  Per ~/Desktop/survey_section.png. Each pending survey gets its own
-//  self-contained glass card; the parent SurveySectionView stacks them
-//  vertically.
-//
 
 import UIKit
 import SnapKit
+
+protocol PendingSurveyCardViewDelegate: AnyObject {
+    func pendingSurveyCard(_ card: PendingSurveyCardView, didTapTakeSurveyFor surveyType: QuestSurveyType)
+}
 
 final class PendingSurveyCardView: UIView {
 
@@ -34,7 +28,8 @@ final class PendingSurveyCardView: UIView {
         delegate: self
     )
 
-    var onTap: (() -> Void)?
+    weak var delegate: PendingSurveyCardViewDelegate?
+    private var surveyType: QuestSurveyType?
 
     init() {
         super.init(frame: .zero)
@@ -77,6 +72,7 @@ final class PendingSurveyCardView: UIView {
     }
 
     func configure(model: PendingSurveyCardModel) {
+        surveyType = model.surveyType
         descriptionLabel.text = NSLocalizedString(model.descriptionKey, comment: "")
     }
 }
@@ -85,6 +81,7 @@ final class PendingSurveyCardView: UIView {
 
 extension PendingSurveyCardView: SoulverseButtonDelegate {
     func clickSoulverseButton(_ button: SoulverseButton) {
-        onTap?()
+        guard let surveyType = surveyType else { return }
+        delegate?.pendingSurveyCard(self, didTapTakeSurveyFor: surveyType)
     }
 }

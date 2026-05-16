@@ -55,11 +55,11 @@ final class QuestViewModelTests: XCTestCase {
     }
 
     func test_QuestViewModel_belowDay7_surveySectionHidden() {
-        XCTAssertFalse(model(distinctCheckInDays: 6).surveySectionVisible)
+        XCTAssertEqual(model(distinctCheckInDays: 6).surveySection, .hidden)
     }
 
     func test_QuestViewModel_atDay7_surveySectionVisible() {
-        XCTAssertTrue(model(distinctCheckInDays: 7).surveySectionVisible)
+        XCTAssertNotEqual(model(distinctCheckInDays: 7).surveySection, .hidden)
     }
 
     func test_QuestViewModel_day1_eightDimHint_usesFutureDayCopy() {

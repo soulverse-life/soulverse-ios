@@ -9,11 +9,9 @@ class QuestViewController: ViewController {
 
     private enum Layout {
         static let topSpacing: CGFloat = 16
-        static let stackSpacing: CGFloat = 16
+        static let stackSpacing: CGFloat = 24
         static let cardSidePadding: CGFloat = ViewComponentConstants.horizontalPadding
-        static let cardVerticalPadding: CGFloat = 12
     }
-
 
     // MARK: - Navigation
 
@@ -55,13 +53,14 @@ class QuestViewController: ViewController {
     private lazy var headerView = QuestHeaderView()
     private lazy var progressSection = QuestProgressSectionView()
     private lazy var eightDimensionsCard = EightDimensionsCardView()
-    private lazy var surveySection: SurveySectionView = {
-        let v = SurveySectionView()
-        v.onTapPendingCard = { [weak self] type in
-            guard let self = self else { return }
-            self.presentSurvey(for: type, focus: self.presenter.loadedModel.state.focusDimension)
-        }
-        v.onTapRecentResult = { [weak self] result in self?.presentRecentResult(result) }
+    private lazy var pendingSurveyCard: PendingSurveyCardView = {
+        let card = PendingSurveyCardView()
+        card.delegate = self
+        return card
+    }()
+    private lazy var recentResultListView: RecentResultCardListView = {
+        let v = RecentResultCardListView()
+        v.onSelect = { [weak self] result in self?.presentRecentResult(result) }
         return v
     }()
 
@@ -132,7 +131,8 @@ class QuestViewController: ViewController {
         if let habit = habitCheckerSection {
             contentStack.addArrangedSubview(wrapped(habit, sidePadded: true))
         }
-        contentStack.addArrangedSubview(surveySection)
+        contentStack.addArrangedSubview(wrapped(pendingSurveyCard, sidePadded: true))
+        contentStack.addArrangedSubview(wrapped(recentResultListView, sidePadded: true))
 
         self.extendedLayoutIncludesOpaqueBars = true
     }
@@ -149,10 +149,8 @@ class QuestViewController: ViewController {
         container.addSubview(inner)
         let inset: CGFloat = sidePadded ? Layout.cardSidePadding : 0
         inner.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Layout.cardVerticalPadding)
-            make.bottom.equalToSuperview().inset(Layout.cardVerticalPadding)
-            make.left.equalToSuperview().offset(inset)
-            make.right.equalToSuperview().offset(-inset)
+            make.verticalEdges.equalToSuperview()
+            make.horizontalEdges.equalToSuperview().inset(inset)
         }
         return container
     }
@@ -248,12 +246,33 @@ extension QuestViewController: QuestViewPresenterDelegate {
         )
         habitCheckerSection?.update(distinctCheckInDays: viewModel.state.distinctCheckInDays)
 
-        // Survey section is hidden pre-day-7 (via SurveySectionModel.hidden)
-        // or whenever the composer returns .hidden. SurveySectionView.configure
-        // already toggles its own isHidden flag based on the model.
         let surveyModel = DevConstants.usingMockData
             ? SurveySectionModel.mockEngagedUser
             : viewModel.surveySection
-        surveySection.configure(model: surveyModel)
+        applySurveySection(surveyModel)
+    }
+
+    private func applySurveySection(_ model: SurveySectionModel) {
+        switch model {
+        case .hidden:
+            pendingSurveyCard.isHidden = true
+            recentResultListView.isHidden = true
+        case let .composed(pending, results):
+            if let pending = pending {
+                pendingSurveyCard.isHidden = false
+                pendingSurveyCard.configure(model: pending)
+            } else {
+                pendingSurveyCard.isHidden = true
+            }
+            recentResultListView.configure(results: results)
+        }
+    }
+}
+
+// MARK: - PendingSurveyCardViewDelegate
+
+extension QuestViewController: PendingSurveyCardViewDelegate {
+    func pendingSurveyCard(_ card: PendingSurveyCardView, didTapTakeSurveyFor surveyType: QuestSurveyType) {
+        presentSurvey(for: surveyType, focus: presenter.loadedModel.state.focusDimension)
     }
 }

@@ -11,6 +11,7 @@ import SnapKit
 final class RecentResultCardListView: UIView {
 
     private let stack = UIStackView()
+    private var lastRenderedResults: [RecentResultCardModel]?
     var onSelect: ((RecentResultCardModel) -> Void)?
 
     init() {
@@ -26,6 +27,9 @@ final class RecentResultCardListView: UIView {
     required init?(coder: NSCoder) { fatalError() }
 
     func configure(results: [RecentResultCardModel]) {
+        guard results != lastRenderedResults else { return }
+        lastRenderedResults = results
+
         stack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for result in results {
             let card = RecentResultCardView()

@@ -35,9 +35,6 @@ struct QuestViewModel {
     var customHabitLockedHint: String
     var customHabitSlotVisible: Bool
 
-    // Derived: Survey section visibility (consumed by Plan 4)
-    var surveySectionVisible: Bool
-
     // Derived: Plan 5 — Survey section composed state + 8-Dim render model
     var surveySection: SurveySectionModel
     var eightDimensions: EightDimensionsRenderModel
@@ -105,7 +102,7 @@ struct QuestViewModel {
         let surveySection: SurveySectionModel = {
             guard days >= surveySectionUnlockDay else { return .hidden }
 
-            let pending: [PendingSurveyCardModel] = state.pendingSurveys
+            let pending: PendingSurveyCardModel? = state.pendingSurveys
                 .compactMap { type -> PendingSurveyCardModel? in
                     guard let since = state.surveyEligibleSinceMap[type.rawValue] else { return nil }
                     return PendingSurveyCardModel(
@@ -114,7 +111,7 @@ struct QuestViewModel {
                         descriptionKey: type.pendingDescriptionKey
                     )
                 }
-                .sorted { $0.eligibleSince < $1.eligibleSince }
+                .min { $0.eligibleSince < $1.eligibleSince }
 
             let results: [RecentResultCardModel] = recentSubmissions
                 .sorted { $0.submittedAt > $1.submittedAt }
@@ -149,7 +146,6 @@ struct QuestViewModel {
             customHabitLocked: customHabitLocked,
             customHabitLockedHint: customHabitHint,
             customHabitSlotVisible: customHabitSlotVisible,
-            surveySectionVisible: days >= surveySectionUnlockDay,
             surveySection: surveySection,
             eightDimensions: eightDimensions
         )

@@ -89,7 +89,6 @@
 		6B9D4AE88A3ADA775F9F4B6A /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
 		6DDD15AC54B126858F4C955A /* SurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE18BFE437205D857853085D /* SurveyDefinition.swift */; };
 		6FC3F15D3FCC758F391229D6 /* CheckInDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178718BD3777BBF33A1E4037 /* CheckInDetailViewModel.swift */; };
-		729E62DDA6618548CBB22DE4 /* SurveySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BB786D34C328D239C3BFF /* SurveySectionView.swift */; };
 		7386C88FE02C4A98CDC65395 /* QuestStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF61D471C9754C3495410815 /* QuestStateModel.swift */; };
 		74953AA13D7A3470144DF53F /* InsightViewPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D323DAF3E30DD98A2DDE6F /* InsightViewPresenterDelegateMock.swift */; };
 		75CB5CEE916948455565C671 /* QuestProgressSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9BE5C9E829C8D55487C0D /* QuestProgressSectionView.swift */; };
@@ -458,7 +457,6 @@
 		44B4FD47CBD19494846367A6 /* QuestServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceProtocol.swift; sourceTree = "<group>"; };
 		45CADED06D1EF601E2CC1277 /* SurveyViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		48E73787F4BF8E8C1D7A3403 /* QuestStageTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStageTests.swift; sourceTree = "<group>"; };
-		4E5BB786D34C328D239C3BFF /* SurveySectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SurveySectionView.swift; sourceTree = "<group>"; };
 		4F086EFB7A0C114933FE0F5D /* EmotionalBundleServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleServiceProtocol.swift; sourceTree = "<group>"; };
 		52FC116D149D9314A21F06C5 /* QuestServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestServiceMock.swift; sourceTree = "<group>"; };
 		5300EF4DA3FDBEE7ED614F41 /* DrawingGalleryPresenterDelegateMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingGalleryPresenterDelegateMock.swift; sourceTree = "<group>"; };
@@ -2352,7 +2350,6 @@
 				33CD035236D1E4EE1B5F848A /* PendingSurveyCardView.swift */,
 				FBC35483047BC6A09E9021BB /* RecentResultCardView.swift */,
 				90C762BE35696F9E56BFB0A9 /* RecentResultCardListView.swift */,
-				4E5BB786D34C328D239C3BFF /* SurveySectionView.swift */,
 			);
 			path = SurveySection;
 			sourceTree = "<group>";
@@ -2941,7 +2938,6 @@
 				F54D4E9200EE03150C13D9DC /* PendingSurveyCardView.swift in Sources */,
 				AFF76F298711C642D48996FC /* RecentResultCardView.swift in Sources */,
 				94741F0202385687C383000A /* RecentResultCardListView.swift in Sources */,
-				729E62DDA6618548CBB22DE4 /* SurveySectionView.swift in Sources */,
 				582A991426547E366511A666 /* QuestRadarOverlayView.swift in Sources */,
 				670572EE22CF3E39E5AEC703 /* StateOfChangeIndicatorView.swift in Sources */,
 				F1ACA4F178ACAB39D873888F /* EightDimensionsCardView.swift in Sources */,

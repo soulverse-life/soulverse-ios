@@ -141,7 +141,7 @@ struct DeviceConstants {
 /// branch that ships to TestFlight or production. Flip to `true` to preview
 /// UI surfaces against synthetic fixtures (see e.g. `QuestMockData.swift`).
 struct DevConstants {
-    static let usingMockData: Bool = true
+    static let usingMockData: Bool = false
 }
 
 struct Notification {
