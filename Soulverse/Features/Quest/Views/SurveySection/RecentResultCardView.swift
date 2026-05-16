@@ -12,7 +12,6 @@ final class RecentResultCardView: UIView {
 
     private enum Layout {
         static let padding: CGFloat = 14
-        static let cornerRadius: CGFloat = 12
         static let titleFontSize: CGFloat = 15
         static let summaryFontSize: CGFloat = 13
         static let dateFontSize: CGFloat = 11
@@ -33,7 +32,7 @@ final class RecentResultCardView: UIView {
 
     private func setupView() {
         backgroundColor = .themeCardBackground
-        layer.cornerRadius = Layout.cornerRadius
+        layer.cornerRadius = QuestLayout.cardCornerRadius
         layer.masksToBounds = true
 
         titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .regular)

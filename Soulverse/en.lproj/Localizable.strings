@@ -607,28 +607,13 @@
 "quest_survey_satisfaction_q31_text" = "How satisfied are you with the adequacy of transport?";
 "quest_survey_satisfaction_q32_text" = "How satisfied are you with the role your personal beliefs play in your life?";
 
-// Quest — Plan 5 Survey section + 8-Dim card
-"quest_survey_section_title" = "Reflections";
-"quest_survey_section_no_results" = "Your reflections will show up here once you complete a check-in.";
-"quest_pending_deck_more_badge" = "+%d more";
-
-// Pending card titles/bodies
-"quest_pending_card_importance_title" = "Importance Check-In";
-"quest_pending_card_importance_body" = "Take a moment to mark what matters most to you right now.";
-"quest_pending_card_8dim_title" = "8 Dimensions";
-"quest_pending_card_8dim_body" = "Reflect on how this dimension is showing up in your life.";
-"quest_pending_card_8dim_emotional_title" = "Emotional Check-In";
-"quest_pending_card_8dim_physical_title" = "Physical Check-In";
-"quest_pending_card_8dim_social_title" = "Social Check-In";
-"quest_pending_card_8dim_intellectual_title" = "Intellectual Check-In";
-"quest_pending_card_8dim_spiritual_title" = "Spiritual Check-In";
-"quest_pending_card_8dim_occupational_title" = "Occupational Check-In";
-"quest_pending_card_8dim_environment_title" = "Environment Check-In";
-"quest_pending_card_8dim_financial_title" = "Financial Check-In";
-"quest_pending_card_soc_title" = "Readiness Check-In";
-"quest_pending_card_soc_body" = "Where are you on your journey of change?";
-"quest_pending_card_satisfaction_title" = "Satisfaction Check-In";
-"quest_pending_card_satisfaction_body" = "How satisfied are you across the dimensions of your life?";
+// Quest — Survey section pending cards (per ~/Desktop/survey_section.png)
+"quest_pending_card_title" = "Survey";
+"quest_pending_card_cta" = "Take Survey";
+"quest_pending_card_importance_description" = "You can now switch your focus dimension and explore different growth paths.\n\nIn about 10 minutes, take a short survey to reflect on your current state.";
+"quest_pending_card_8dim_description" = "Reflect on how this dimension is showing up in your life right now. About 5 minutes.";
+"quest_pending_card_soc_description" = "A short check-in on where you are in your journey of change. About 3 minutes.";
+"quest_pending_card_satisfaction_description" = "Step back and rate your satisfaction across the eight dimensions. About 10 minutes.";
 
 // Recent result card titles/summaries
 "quest_result_card_importance_title" = "Importance reflection";

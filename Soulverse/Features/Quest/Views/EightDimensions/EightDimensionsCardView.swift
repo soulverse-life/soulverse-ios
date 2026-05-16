@@ -19,9 +19,6 @@ import SnapKit
 final class EightDimensionsCardView: UIView {
 
     private enum Layout {
-        static let cornerRadius: CGFloat = 12
-        static let verticalInset: CGFloat = 24
-        static let horizontalInset: CGFloat = 22
         static let titleToSubtitle: CGFloat = 4
         static let subtitleToRadar: CGFloat = 28
         static let radarHeight: CGFloat = 240
@@ -30,8 +27,6 @@ final class EightDimensionsCardView: UIView {
         static let stageIndicatorHeight: CGFloat = 44
         static let centerLockSize: CGFloat = 80
         static let bottomStackSpacing: CGFloat = 16
-        static let titleFontSize: CGFloat = 20
-        static let subtitleFontSize: CGFloat = 16
         static let currentStageFontSize: CGFloat = 16
     }
 
@@ -55,15 +50,15 @@ final class EightDimensionsCardView: UIView {
     required init?(coder: NSCoder) { fatalError() }
 
     private func setupView() {
-        layer.cornerRadius = Layout.cornerRadius
+        layer.cornerRadius = QuestLayout.cardCornerRadius
         clipsToBounds = true
 
         titleLabel.text = NSLocalizedString("quest_eight_dim_card_title", comment: "")
-        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .bold)
+        titleLabel.font = .projectFont(ofSize: QuestLayout.cardTitleFontSize, weight: .bold)
         titleLabel.textColor = .themeTextPrimary
 
         subtitleLabel.text = NSLocalizedString("quest_eight_dim_card_subtitle", comment: "")
-        subtitleLabel.font = .projectFont(ofSize: Layout.subtitleFontSize, weight: .regular)
+        subtitleLabel.font = .projectFont(ofSize: QuestLayout.cardSubtitleFontSize, weight: .regular)
         subtitleLabel.textColor = .themeTextSecondary
 
         currentStageLabel.font = .projectFont(ofSize: Layout.currentStageFontSize, weight: .regular)
@@ -94,8 +89,8 @@ final class EightDimensionsCardView: UIView {
         cardContent.addSubview(centerLockImageView)
 
         mainStack.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(Layout.verticalInset)
-            make.horizontalEdges.equalToSuperview().inset(Layout.horizontalInset)
+            make.verticalEdges.equalToSuperview().inset(QuestLayout.cardVerticalInset)
+            make.horizontalEdges.equalToSuperview().inset(QuestLayout.cardHorizontalInset)
         }
         radarOverlay.snp.makeConstraints { make in
             make.height.equalTo(Layout.radarHeight)
@@ -118,7 +113,7 @@ final class EightDimensionsCardView: UIView {
             to: self,
             visualEffectView: visualEffectView,
             contentView: cardContent,
-            cornerRadius: Layout.cornerRadius
+            cornerRadius: QuestLayout.cardCornerRadius
         )
         
         cardContent.snp.makeConstraints { make in

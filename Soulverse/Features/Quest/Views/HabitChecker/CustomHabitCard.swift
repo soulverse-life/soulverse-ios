@@ -19,7 +19,7 @@ protocol CustomHabitCardDelegate: AnyObject {
 
 final class CustomHabitCard: UIView {
     private enum Layout {
-        static let cardCornerRadius: CGFloat = 16
+        static let cornerRadius: CGFloat = 16
         static let outerInset: CGFloat = 14
         static let stackSpacing: CGFloat = 20
         static let titleRowSpacing: CGFloat = 8
@@ -79,7 +79,7 @@ final class CustomHabitCard: UIView {
     }
 
     private func setupView() {
-        layer.cornerRadius = Layout.cardCornerRadius
+        layer.cornerRadius = Layout.cornerRadius
         clipsToBounds = true
         backgroundColor = UIColor.white.withAlphaComponent(Layout.cardBackgroundAlpha)
 

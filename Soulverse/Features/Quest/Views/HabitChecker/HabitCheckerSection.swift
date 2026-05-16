@@ -14,13 +14,9 @@ import Combine
 
 final class HabitCheckerSection: UIView {
     private enum Layout {
-        static let cornerRadius: CGFloat = 12
-        static let containerPadding: CGFloat = 26
         static let headerSpacing: CGFloat = 4
         static let headerToRowsSpacing: CGFloat = 16
         static let rowSpacing: CGFloat = 12
-        static let titleFontSize: CGFloat = 20
-        static let subtitleFontSize: CGFloat = 14
     }
 
     private let visualEffectView = UIVisualEffectView(effect: nil)
@@ -60,15 +56,15 @@ final class HabitCheckerSection: UIView {
     }
 
     private func setupView() {
-        layer.cornerRadius = Layout.cornerRadius
+        layer.cornerRadius = QuestLayout.cardCornerRadius
         clipsToBounds = true
 
         titleLabel.text = NSLocalizedString("quest_habit_section_title", comment: "")
-        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .bold)
+        titleLabel.font = .projectFont(ofSize: QuestLayout.cardTitleFontSize, weight: .bold)
         titleLabel.textColor = .themeTextPrimary
 
         subtitleLabel.text = NSLocalizedString("quest_habit_section_subtitle", comment: "")
-        subtitleLabel.font = .projectFont(ofSize: Layout.subtitleFontSize, weight: .regular)
+        subtitleLabel.font = .projectFont(ofSize: QuestLayout.cardSubtitleFontSize, weight: .regular)
         subtitleLabel.textColor = .themeTextSecondary
 
         let headerStack = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
@@ -92,14 +88,15 @@ final class HabitCheckerSection: UIView {
 
         cardContent.addSubview(outer)
         outer.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(Layout.containerPadding)
+            make.verticalEdges.equalToSuperview().inset(QuestLayout.cardVerticalInset)
+            make.horizontalEdges.equalToSuperview().inset(QuestLayout.cardHorizontalInset)
         }
 
         ViewComponentConstants.applyGlassCardEffect(
             to: self,
             visualEffectView: visualEffectView,
             contentView: cardContent,
-            cornerRadius: Layout.cornerRadius
+            cornerRadius: QuestLayout.cardCornerRadius
         )
         cardContent.snp.makeConstraints { make in
             make.edges.equalToSuperview()

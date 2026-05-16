@@ -2,9 +2,12 @@
 //  SurveySectionView.swift
 //  Soulverse
 //
-//  Container for the Quest tab Survey section. Hidden when distinctCheckInDays
-//  < 7. Composes a section header, a PendingSurveyDeckView, and a
-//  RecentResultCardListView.
+//  Container for the Quest tab Survey section. Hidden when
+//  distinctCheckInDays < 7. Renders a plain vertical stack of:
+//    - one PendingSurveyCardView per pending survey (each a self-contained
+//      glass card with title + description + CTA)
+//    - one RecentResultCardView per recent submission, via
+//      RecentResultCardListView (already an independent-blocks layout)
 //
 
 import UIKit
@@ -15,15 +18,12 @@ final class SurveySectionView: UIView {
     private enum Layout {
         static let outerInset: CGFloat = 16
         static let sectionSpacing: CGFloat = 16
-        static let deckHeight: CGFloat = 132
-        static let titleFontSize: CGFloat = 20
-        static let emptyResultsFontSize: CGFloat = 13
     }
 
-    private let titleLabel = UILabel()
-    private let deckView = PendingSurveyDeckView()
+    private let pendingStack = UIStackView()
     private let resultListView = RecentResultCardListView()
-    private let emptyResultsLabel = UILabel()
+
+    private var pendingCardModelByCard: [PendingSurveyCardView: PendingSurveyCardModel] = [:]
 
     var onTapPendingCard: ((QuestSurveyType) -> Void)?
     var onTapRecentResult: ((RecentResultCardModel) -> Void)?
@@ -36,28 +36,18 @@ final class SurveySectionView: UIView {
 
     private func setupView() {
         backgroundColor = .clear
-        titleLabel.text = NSLocalizedString("quest_survey_section_title", comment: "")
-        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .regular)
-        titleLabel.textColor = .themeTextPrimary
 
-        emptyResultsLabel.text = NSLocalizedString("quest_survey_section_no_results", comment: "")
-        emptyResultsLabel.font = .projectFont(ofSize: Layout.emptyResultsFontSize, weight: .regular)
-        emptyResultsLabel.textColor = .themeTextSecondary
-        emptyResultsLabel.textAlignment = .center
-        emptyResultsLabel.numberOfLines = 0
+        pendingStack.axis = .vertical
+        pendingStack.spacing = Layout.sectionSpacing
 
-        let stack = UIStackView(arrangedSubviews: [titleLabel, deckView, resultListView, emptyResultsLabel])
-        stack.axis = .vertical
-        stack.spacing = Layout.sectionSpacing
-        addSubview(stack)
-        stack.snp.makeConstraints { make in
+        let outer = UIStackView(arrangedSubviews: [pendingStack, resultListView])
+        outer.axis = .vertical
+        outer.spacing = Layout.sectionSpacing
+        addSubview(outer)
+        outer.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(Layout.outerInset)
         }
-        deckView.snp.makeConstraints { make in
-            make.height.equalTo(Layout.deckHeight)
-        }
 
-        deckView.onTapFrontCard = { [weak self] type in self?.onTapPendingCard?(type) }
         resultListView.onSelect = { [weak self] r in self?.onTapRecentResult?(r) }
     }
 
@@ -65,16 +55,27 @@ final class SurveySectionView: UIView {
         switch model {
         case .hidden:
             isHidden = true
-        case let .composed(deck, results):
+        case let .composed(pending, results):
             isHidden = false
-            if deck.isEmpty {
-                deckView.isHidden = true
-            } else {
-                deckView.isHidden = false
-                deckView.configure(deck: deck)
-            }
+            rebuildPending(pending)
             resultListView.configure(results: results)
-            emptyResultsLabel.isHidden = !(deck.isEmpty && results.isEmpty)
         }
+    }
+
+    private func rebuildPending(_ pending: [PendingSurveyCardModel]) {
+        pendingStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        pendingCardModelByCard.removeAll()
+        for model in pending {
+            let card = PendingSurveyCardView()
+            card.configure(model: model)
+            pendingCardModelByCard[card] = model
+            card.onTap = { [weak self, weak card] in
+                guard let self = self, let card = card,
+                      let m = self.pendingCardModelByCard[card] else { return }
+                self.onTapPendingCard?(m.surveyType)
+            }
+            pendingStack.addArrangedSubview(card)
+        }
+        pendingStack.isHidden = pending.isEmpty
     }
 }

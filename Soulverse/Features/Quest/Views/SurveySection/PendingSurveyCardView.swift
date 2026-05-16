@@ -2,8 +2,15 @@
 //  PendingSurveyCardView.swift
 //  Soulverse
 //
-//  Single deck card. Used both as the front (tappable) and as a stacked
-//  background slice (non-interactive, slightly inset).
+//  A single pending-survey card. Renders:
+//    - title ("Survey", universal)
+//    - description (per-survey-type, multi-line)
+//    - full-width "Take Survey" CTA (via SoulverseButton.primary, which
+//      layers UIGlassEffect over the themed background on iOS 26+)
+//
+//  Per ~/Desktop/survey_section.png. Each pending survey gets its own
+//  self-contained glass card; the parent SurveySectionView stacks them
+//  vertically.
 //
 
 import UIKit
@@ -12,16 +19,20 @@ import SnapKit
 final class PendingSurveyCardView: UIView {
 
     private enum Layout {
-        static let cornerRadius: CGFloat = 16
-        static let padding: CGFloat = 16
-        static let titleSpacing: CGFloat = 6
-        static let titleFontSize: CGFloat = 17
-        static let bodyFontSize: CGFloat = 13
+        static let titleBottomMargin: CGFloat = 4
+        static let descriptionBottomMargin: CGFloat = 20
     }
 
+    private let visualEffectView = UIVisualEffectView(effect: nil)
+    private let cardContent = UIView()
+
     private let titleLabel = UILabel()
-    private let bodyLabel = UILabel()
-    private let chevronImageView = UIImageView()
+    private let descriptionLabel = UILabel()
+    private lazy var ctaButton: SoulverseButton = SoulverseButton(
+        title: NSLocalizedString("quest_pending_card_cta", comment: ""),
+        style: .primary,
+        delegate: self
+    )
 
     var onTap: (() -> Void)?
 
@@ -32,56 +43,48 @@ final class PendingSurveyCardView: UIView {
     required init?(coder: NSCoder) { fatalError() }
 
     private func setupView() {
-        backgroundColor = .themeCardBackground
-        layer.cornerRadius = Layout.cornerRadius
-        layer.masksToBounds = true
-
-        titleLabel.font = .projectFont(ofSize: Layout.titleFontSize, weight: .semibold)
+        titleLabel.text = NSLocalizedString("quest_pending_card_title", comment: "")
+        titleLabel.font = .projectFont(ofSize: QuestLayout.cardTitleFontSize, weight: .bold)
         titleLabel.textColor = .themeTextPrimary
-        titleLabel.numberOfLines = 0
 
-        bodyLabel.font = .projectFont(ofSize: Layout.bodyFontSize, weight: .regular)
-        bodyLabel.textColor = .themeTextSecondary
-        bodyLabel.numberOfLines = 0
+        descriptionLabel.font = .projectFont(ofSize: QuestLayout.cardSubtitleFontSize, weight: .regular)
+        descriptionLabel.textColor = .themeTextSecondary
+        descriptionLabel.numberOfLines = 0
 
-        chevronImageView.image = UIImage(systemName: "chevron.right")
-        chevronImageView.tintColor = .themeTextSecondary
-        chevronImageView.contentMode = .scaleAspectFit
+        let stack = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel, ctaButton])
+        stack.axis = .vertical
+        stack.spacing = Layout.titleBottomMargin
+        stack.setCustomSpacing(Layout.descriptionBottomMargin, after: descriptionLabel)
 
-        addSubview(titleLabel)
-        addSubview(bodyLabel)
-        addSubview(chevronImageView)
-
-        chevronImageView.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(Layout.padding)
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(20)
+        cardContent.addSubview(stack)
+        stack.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(QuestLayout.cardVerticalInset)
+            make.horizontalEdges.equalToSuperview().inset(QuestLayout.cardHorizontalInset)
         }
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Layout.padding)
-            make.left.equalToSuperview().offset(Layout.padding)
-            make.right.equalTo(chevronImageView.snp.left).offset(-8)
-        }
-        bodyLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(Layout.titleSpacing)
-            make.left.equalTo(titleLabel)
-            make.right.equalTo(titleLabel)
-            make.bottom.equalToSuperview().inset(Layout.padding)
+        ctaButton.snp.makeConstraints { make in
+            make.height.equalTo(ViewComponentConstants.actionButtonHeight)
         }
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        addGestureRecognizer(tap)
+        ViewComponentConstants.applyGlassCardEffect(
+            to: self,
+            visualEffectView: visualEffectView,
+            contentView: cardContent,
+            cornerRadius: QuestLayout.cardCornerRadius
+        )
+        cardContent.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 
-    @objc private func handleTap() { onTap?() }
+    func configure(model: PendingSurveyCardModel) {
+        descriptionLabel.text = NSLocalizedString(model.descriptionKey, comment: "")
+    }
+}
 
-    func configure(title: String, body: String, isInteractive: Bool) {
-        titleLabel.text = title
-        bodyLabel.text = body
-        chevronImageView.isHidden = !isInteractive
-        isUserInteractionEnabled = isInteractive
-        if !isInteractive {
-            alpha = 0.6
-        }
+// MARK: - SoulverseButtonDelegate
+
+extension PendingSurveyCardView: SoulverseButtonDelegate {
+    func clickSoulverseButton(_ button: SoulverseButton) {
+        onTap?()
     }
 }

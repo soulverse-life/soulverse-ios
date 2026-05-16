@@ -8,22 +8,14 @@
 
 import Foundation
 
-/// Single card in the PendingSurveyDeck.
+/// One pending survey. The view renders this as a card with a fixed
+/// title ("Survey") + per-survey-type description + fixed "Take Survey" CTA.
 struct PendingSurveyCardModel: Equatable {
     let surveyType: QuestSurveyType
     let eligibleSince: Date
-    let titleKey: String
-    let bodyKey: String
-}
-
-/// Deck-of-cards container; first card is "front".
-struct PendingSurveyDeckModel: Equatable {
-    let cards: [PendingSurveyCardModel]   // sorted oldest-eligibleSince first
-
-    var frontCard: PendingSurveyCardModel? { cards.first }
-    var stackedBehindCount: Int { max(0, cards.count - 1) }
-    var moreBadgeCount: Int { cards.count >= 3 ? cards.count - 2 : 0 }
-    var isEmpty: Bool { cards.isEmpty }
+    /// Localization key for the description body. Varies per survey type
+    /// (the title and CTA are universal and rendered by the view directly).
+    let descriptionKey: String
 }
 
 /// One submission summarized for display in the recent-results list.
@@ -38,5 +30,5 @@ struct RecentResultCardModel: Equatable {
 /// The Survey section's full composed state.
 enum SurveySectionModel: Equatable {
     case hidden                     // distinctCheckInDays < 7
-    case composed(deck: PendingSurveyDeckModel, results: [RecentResultCardModel])
+    case composed(pending: [PendingSurveyCardModel], results: [RecentResultCardModel])
 }
