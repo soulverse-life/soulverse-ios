@@ -102,9 +102,38 @@ struct QuestViewModel {
 
         let customHabitSlotVisible = !customHabitExists
 
-        let surveySection = SurveySectionComposer.compose(
-            state: state, recentSubmissions: recentSubmissions
-        )
+        let surveySection: SurveySectionModel = {
+            guard days >= surveySectionUnlockDay else { return .hidden }
+
+            let pending: [PendingSurveyCardModel] = state.pendingSurveys
+                .compactMap { type -> PendingSurveyCardModel? in
+                    guard let since = state.surveyEligibleSinceMap[type.rawValue] else { return nil }
+                    return PendingSurveyCardModel(
+                        surveyType: type,
+                        eligibleSince: since,
+                        descriptionKey: type.pendingDescriptionKey
+                    )
+                }
+                .sorted { $0.eligibleSince < $1.eligibleSince }
+
+            let results: [RecentResultCardModel] = recentSubmissions
+                .sorted { $0.submittedAt > $1.submittedAt }
+                .prefix(5)
+                .map { sub in
+                    RecentResultCardModel(
+                        surveyType: sub.surveyType,
+                        submissionId: sub.submissionId,
+                        submittedAt: sub.submittedAt,
+                        titleKey: sub.surveyType.resultTitleKey(dimension: sub.dimension),
+                        summaryKey: sub.surveyType.resultSummaryKey(
+                            dimension: sub.dimension, stage: sub.stage
+                        )
+                    )
+                }
+
+            return .composed(pending: pending, results: results)
+        }()
+
         let eightDimensions = EightDimensionsRenderModelBuilder.build(state: state)
 
         return QuestViewModel(

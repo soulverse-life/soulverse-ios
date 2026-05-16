@@ -2,8 +2,9 @@
 //  SurveySectionModel.swift
 //  Soulverse
 //
-//  ViewModel types for the Quest tab Survey section. Composed by
-//  `SurveySectionComposer` from `QuestStateModel` + recent submissions.
+//  ViewModel types for the Quest tab Survey section. Composed inline by
+//  `QuestViewModel.from` from `QuestStateModel` + recent submissions, with
+//  per-survey-type localization keys sourced from `QuestSurveyType`.
 //
 
 import Foundation

@@ -14,6 +14,7 @@ class QuestViewController: ViewController {
         static let cardVerticalPadding: CGFloat = 12
     }
 
+
     // MARK: - Navigation
 
     private lazy var navigationView: SoulverseNavigationView = {
@@ -238,8 +239,11 @@ extension QuestViewController: QuestViewPresenterDelegate {
     private func applyViewModel(_ viewModel: QuestViewModel) {
         headerView.configure(viewModel: viewModel)
         progressSection.configure(viewModel: viewModel)
+        let dimensionsModel = DevConstants.usingMockData
+            ? EightDimensionsRenderModel.mockPhysicalStage2
+            : viewModel.eightDimensions
         eightDimensionsCard.configure(
-            model: viewModel.eightDimensions,
+            model: dimensionsModel,
             lockedHint: viewModel.eightDimensionsLockedHint
         )
         habitCheckerSection?.update(distinctCheckInDays: viewModel.state.distinctCheckInDays)
@@ -247,6 +251,9 @@ extension QuestViewController: QuestViewPresenterDelegate {
         // Survey section is hidden pre-day-7 (via SurveySectionModel.hidden)
         // or whenever the composer returns .hidden. SurveySectionView.configure
         // already toggles its own isHidden flag based on the model.
-        surveySection.configure(model: viewModel.surveySection)
+        let surveyModel = DevConstants.usingMockData
+            ? SurveySectionModel.mockEngagedUser
+            : viewModel.surveySection
+        surveySection.configure(model: surveyModel)
     }
 }

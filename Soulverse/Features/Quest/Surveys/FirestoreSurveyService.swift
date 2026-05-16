@@ -9,6 +9,18 @@
 import Foundation
 import FirebaseFirestore
 
+/// One observed survey submission (mirror of a Firestore doc) produced by
+/// `observeRecentSubmissions`. Used downstream by `QuestViewModel.from` to
+/// build the recent-result cards.
+struct RecentSurveySubmission: Equatable {
+    let submissionId: String
+    let surveyType: QuestSurveyType
+    let submittedAt: Date
+    let dimension: Topic?    // 8-Dim only
+    let stage: Int?          // 8-Dim or SoC
+    let stageKey: String?
+}
+
 enum FirestoreSurveyService {
 
     private static var db: Firestore { Firestore.firestore() }

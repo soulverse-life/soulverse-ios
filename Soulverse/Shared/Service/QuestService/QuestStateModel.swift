@@ -11,15 +11,6 @@
 import Foundation
 import FirebaseFirestore
 
-/// Onboarding Quest survey types. Renamed from `SurveyType` to avoid collision
-/// with `AppCoordinator.SurveyType` (UI-feedback survey enum).
-enum QuestSurveyType: String, Codable, CaseIterable {
-    case importanceCheckIn = "importance_check_in"
-    case eightDim = "8dim"
-    case stateOfChange = "state_of_change"
-    case satisfactionCheckIn = "satisfaction_check_in"
-}
-
 struct QuestStateModel {
 
     // Day counter & quest progression

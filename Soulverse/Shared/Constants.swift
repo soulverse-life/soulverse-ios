@@ -137,6 +137,13 @@ struct DeviceConstants {
     }
 }
 
+/// Developer / QA flags. LOCAL ONLY — these must remain `false` on any
+/// branch that ships to TestFlight or production. Flip to `true` to preview
+/// UI surfaces against synthetic fixtures (see e.g. `QuestMockData.swift`).
+struct DevConstants {
+    static let usingMockData: Bool = true
+}
+
 struct Notification {
     static let UserIdentityChange = "UserIdentityChange"
     static let MoodCheckInCreated = "MoodCheckInCreated"
