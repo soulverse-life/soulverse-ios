@@ -19,16 +19,17 @@ import SnapKit
 final class EightDimensionsCardView: UIView {
 
     private enum Layout {
-        static let cornerRadius: CGFloat = 16
-        static let outerInset: CGFloat = 16
+        static let cornerRadius: CGFloat = 12
+        static let verticalInset: CGFloat = 24
+        static let horizontalInset: CGFloat = 22
         static let titleToSubtitle: CGFloat = 4
-        static let subtitleToRadar: CGFloat = 12
+        static let subtitleToRadar: CGFloat = 28
         static let radarHeight: CGFloat = 240
-        static let radarToBottom: CGFloat = 16
+        static let radarToBottom: CGFloat = 30
         static let bottomLabelHeight: CGFloat = 18
         static let stageIndicatorHeight: CGFloat = 44
         static let centerLockSize: CGFloat = 80
-        static let bottomStackSpacing: CGFloat = 8
+        static let bottomStackSpacing: CGFloat = 16
         static let titleFontSize: CGFloat = 20
         static let subtitleFontSize: CGFloat = 16
         static let currentStageFontSize: CGFloat = 16
@@ -93,7 +94,8 @@ final class EightDimensionsCardView: UIView {
         cardContent.addSubview(centerLockImageView)
 
         mainStack.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(Layout.outerInset)
+            make.verticalEdges.equalToSuperview().inset(Layout.verticalInset)
+            make.horizontalEdges.equalToSuperview().inset(Layout.horizontalInset)
         }
         radarOverlay.snp.makeConstraints { make in
             make.height.equalTo(Layout.radarHeight)
@@ -118,6 +120,7 @@ final class EightDimensionsCardView: UIView {
             contentView: cardContent,
             cornerRadius: Layout.cornerRadius
         )
+        
         cardContent.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
