@@ -3,7 +3,7 @@
 //  Soulverse
 //
 //  Framework-agnostic view model derived from QuestStateModel +
-//  client-only signals (didCheckInToday, customHabitExists). All fields are
+//  client-only signals (didCheckInToday). All fields are
 //  pure functions of inputs; no side effects.
 //
 
@@ -30,11 +30,6 @@ struct QuestViewModel {
     var eightDimensionsLocked: Bool
     var eightDimensionsLockedHint: String
 
-    // Derived: Custom habit slot
-    var customHabitLocked: Bool
-    var customHabitLockedHint: String
-    var customHabitSlotVisible: Bool
-
     // Derived: Plan 5 — Survey section composed state + 8-Dim render model
     var surveySection: SurveySectionModel
     var eightDimensions: EightDimensionsRenderModel
@@ -42,7 +37,6 @@ struct QuestViewModel {
     // MARK: - Stable unlock thresholds
 
     static let eightDimensionsUnlockDay = 7
-    static let customHabitUnlockDay = 14
     static let questCompleteDay = 21
     static let surveySectionUnlockDay = 7
 
@@ -52,7 +46,6 @@ struct QuestViewModel {
         return QuestViewModel.from(
             state: .initial(),
             didCheckInToday: false,
-            customHabitExists: false,
             isLoading: true
         )
     }
@@ -62,7 +55,6 @@ struct QuestViewModel {
     static func from(
         state: QuestStateModel,
         didCheckInToday: Bool,
-        customHabitExists: Bool,
         recentSubmissions: [RecentSurveySubmission] = [],
         isLoading: Bool = false
     ) -> QuestViewModel {
@@ -73,6 +65,7 @@ struct QuestViewModel {
 
         let pillFormat = NSLocalizedString(
             "quest_progress_day_pill",
+            bundle: AppBundle.main,
             comment: "Day-N pill text on Quest progress section, e.g. 'Day 5 of 21'"
         )
         let pillText = String(format: pillFormat, days, questCompleteDay)
@@ -83,21 +76,10 @@ struct QuestViewModel {
             unlockDay: eightDimensionsUnlockDay,
             featureName: NSLocalizedString(
                 "quest_locked_feature_8dim",
+                bundle: AppBundle.main,
                 comment: "Verb-phrase: '… see your 8 Dimensions.'"
             )
         )
-
-        let customHabitLocked = days < customHabitUnlockDay
-        let customHabitHint = LockedCardHint.copy(
-            currentDay: days,
-            unlockDay: customHabitUnlockDay,
-            featureName: NSLocalizedString(
-                "quest_locked_feature_custom_habit",
-                comment: "Verb-phrase: '… add your own habit.'"
-            )
-        )
-
-        let customHabitSlotVisible = !customHabitExists
 
         let surveySection: SurveySectionModel = {
             guard days >= surveySectionUnlockDay else { return .hidden }
@@ -143,9 +125,6 @@ struct QuestViewModel {
             dailyCheckInCTAVisible: progressVisible && !didCheckInToday,
             eightDimensionsLocked: eightDimLocked,
             eightDimensionsLockedHint: eightDimHint,
-            customHabitLocked: customHabitLocked,
-            customHabitLockedHint: customHabitHint,
-            customHabitSlotVisible: customHabitSlotVisible,
             surveySection: surveySection,
             eightDimensions: eightDimensions
         )

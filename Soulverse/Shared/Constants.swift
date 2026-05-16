@@ -163,7 +163,7 @@ struct InAppURLScheme {
 struct TimeConstant {
     static let day = 86400.0
     static let hour = 3600.0
-    static let miniute = 60.0
+    static let minute = 60.0
 }
 
 struct AnimationConstant {

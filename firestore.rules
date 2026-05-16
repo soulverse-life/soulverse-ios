@@ -51,7 +51,9 @@ service cloud.firestore {
       // Client may only set timezoneOffsetMinutes and notificationHour at app launch.
       match /quest_state/{document=**} {
         allow read: if request.auth.uid == uid;
-        allow create: if request.auth.uid == uid;
+        allow create: if request.auth.uid == uid
+                      && request.resource.data.keys()
+                            .hasOnly(['timezoneOffsetMinutes', 'notificationHour']);
         allow update: if request.auth.uid == uid
                       && request.resource.data.diff(resource.data).affectedKeys()
                             .hasOnly(['timezoneOffsetMinutes', 'notificationHour']);

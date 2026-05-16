@@ -12,6 +12,8 @@ enum QuestTimezoneCalculator {
 
     /// Returns the UTC hour (0..23) corresponding to `localHour` in a timezone
     /// whose offset (in minutes east of UTC) is `timezoneOffsetMinutes`.
+    /// Note: integer division truncates sub-hour offsets (UTC+5:30 etc.);
+    /// fixing this needs sub-hour cron granularity server-side.
     static func notificationHour(forLocalHour localHour: Int, timezoneOffsetMinutes offset: Int) -> Int {
         let offsetHours = offset / 60
         let utcHour = (localHour - offsetHours) % 24

@@ -39,7 +39,8 @@ enum EightDimensionsRenderModelBuilder {
                     axes.append(.currentFocusNoSoC)
                 }
             } else if dim == lastEightDim {
-                // Previously focused (post-v1.1 multi-cycle).
+                // FIXME(v1.1): uses current focus dim's SoC stage; needs
+                // per-dimension stage tracking once multi-cycle ships.
                 axes.append(.previouslyFocused(stage: socStage ?? 1))
             } else {
                 axes.append(.neverAssessed)

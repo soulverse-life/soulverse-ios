@@ -57,13 +57,19 @@ final class DrawingPromptPresenterTests: XCTestCase {
         XCTAssertEqual(delegateMock.updatedViewModel?.prompt?.category, .single(.joy))
     }
 
-    func test_DrawingPromptPresenter_loadPrompt_combinedDyadEmotion_picksMixedCategory() {
-        // .optimism is a combined dyad (joy + anticipation) — see RecordedEmotion.sourceEmotions.
+    func test_DrawingPromptPresenter_loadPrompt_combinedDyadEmotion_picksOneOfSourceEmotions() {
+        // .optimism is a combined dyad (joy + anticipation). The presenter
+        // draws from the source-emotion pools, so the picked category must
+        // be either .single(.joy) or .single(.anticipation).
         let presenter = makePresenter(recordedEmotion: .optimism)
 
         presenter.loadPrompt()
 
-        XCTAssertEqual(delegateMock.updatedViewModel?.prompt?.category, .mixed)
+        let picked = delegateMock.updatedViewModel?.prompt?.category
+        XCTAssertTrue(
+            picked == .single(.joy) || picked == .single(.anticipation),
+            "Expected source-emotion category for .optimism, got \(String(describing: picked))"
+        )
     }
 
     func test_DrawingPromptPresenter_loadPrompt_intensityVariant_picksPrimaryEmotionPool() {

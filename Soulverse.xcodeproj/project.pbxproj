@@ -24,6 +24,7 @@
 		1068DC503C449FA2F1E94253 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		1135B47B75C583A6E7DE7F32 /* TopicDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715B7B1090574611BFDFC632 /* TopicDistributionView.swift */; };
 		9F8E7D6C5B4A39281706F5E4 /* QuestSurveyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5F6071829304A5B6C7D8E9 /* QuestSurveyType.swift */; };
+		A1B2C3D4E5F6071829304A5B /* AppBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A4039281706F5E4D3C2B1A /* AppBundle.swift */; };
 		14EF44422EB79065BBC8D829 /* LockedCardHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB6FE0EEE88FEEB784461AE /* LockedCardHint.swift */; };
 		150DCE169FB153B3A688F1E4 /* QuestStateModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319EAD36EAC7E739D025A84 /* QuestStateModelTests.swift */; };
 		16763768A15E67CD8952721D /* CheckInDetailPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C99EBD0D7244FE8D52E4F /* CheckInDetailPresenterType.swift */; };
@@ -716,6 +717,7 @@
 		B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSummaryView.swift; sourceTree = "<group>"; };
 		B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinActivityView.swift; sourceTree = "<group>"; };
 		4E5F6071829304A5B6C7D8E9 /* QuestSurveyType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestSurveyType.swift; sourceTree = "<group>"; };
+		B5A4039281706F5E4D3C2B1A /* AppBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppBundle.swift; sourceTree = "<group>"; };
 		B48C41BCF39B40DC81884136 /* AddCustomHabitButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddCustomHabitButton.swift; sourceTree = "<group>"; };
 		B7278578F137612349A77E22 /* EmotionTypeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionTypeTests.swift; sourceTree = "<group>"; };
 		B755C43C7BCDF8299509D6F1 /* QuestStage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QuestStage.swift; sourceTree = "<group>"; };
@@ -1425,6 +1427,7 @@
 				790AD1F92DF9E43200C33CD1 /* Service */,
 				790AD2032DF9E43200C33CD1 /* ViewComponent */,
 				790AD2072DF9E43200C33CD1 /* Constants.swift */,
+				B5A4039281706F5E4D3C2B1A /* AppBundle.swift */,
 				790AD2042DF9E43200C33CD1 /* Utility.swift */,
 			);
 			path = Shared;
@@ -2707,6 +2710,7 @@
 				79EE74E52F30AF100082EECF /* InnerCosmoAllPeriodView.swift in Sources */,
 				79EE74C02F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */,
 				790AD2C62DF9E43200C33CD1 /* Constants.swift in Sources */,
+				A1B2C3D4E5F6071829304A5B /* AppBundle.swift in Sources */,
 				79D576842EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */,
 				790AD2C82DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
 				79EE74CF2F308DA40082EECF /* RecordedEmotion.swift in Sources */,

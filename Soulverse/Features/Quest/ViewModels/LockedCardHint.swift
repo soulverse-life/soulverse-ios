@@ -23,6 +23,7 @@ enum LockedCardHint {
         if remaining >= 3 {
             let format = NSLocalizedString(
                 "quest_locked_hint_future_day",
+                bundle: AppBundle.main,
                 comment: "Locked-card hint when unlock is more than 2 days away"
             )
             return String(format: format, unlockDay, featureName)
@@ -31,12 +32,14 @@ enum LockedCardHint {
         if remaining == 1 {
             return NSLocalizedString(
                 "quest_locked_hint_one_more",
+                bundle: AppBundle.main,
                 comment: "Locked-card hint when only 1 day remains"
             )
         }
 
         let format = NSLocalizedString(
             "quest_locked_hint_n_more",
+            bundle: AppBundle.main,
             comment: "Locked-card hint when 2 days remain"
         )
         return String(format: format, remaining)

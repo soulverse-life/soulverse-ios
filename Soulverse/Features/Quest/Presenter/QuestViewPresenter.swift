@@ -44,9 +44,21 @@ final class QuestViewPresenter: QuestViewPresenterType {
         self.questService = questService
         self.moodCheckInService = moodCheckInService
         self.userIdProvider = userIdProvider
+
+        // Registered once for lifetime — start()/stop() pair with view
+        // appearance and cannot double-register here.
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleMoodCheckInCreated),
+            name: NSNotification.Name(rawValue: Notification.MoodCheckInCreated),
+            object: nil
+        )
     }
 
-    deinit { stop() }
+    deinit {
+        stop()
+        NotificationCenter.default.removeObserver(self)
+    }
 
     // MARK: -
 
@@ -68,13 +80,6 @@ final class QuestViewPresenter: QuestViewPresenterType {
         }
 
         refreshTodayCheckInFlag(uid: uid)
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(handleMoodCheckInCreated),
-            name: NSNotification.Name(rawValue: Notification.MoodCheckInCreated),
-            object: nil
-        )
     }
 
     func stop() {
@@ -82,7 +87,6 @@ final class QuestViewPresenter: QuestViewPresenterType {
         listenerToken = nil
         surveyListener?.remove()
         surveyListener = nil
-        NotificationCenter.default.removeObserver(self)
     }
 
     @objc private func handleMoodCheckInCreated() {
@@ -117,7 +121,6 @@ final class QuestViewPresenter: QuestViewPresenterType {
         loadedModel = QuestViewModel.from(
             state: state,
             didCheckInToday: didCheckInToday,
-            customHabitExists: false,    // Plan 3 fills this in
             recentSubmissions: lastRecentSubmissions,
             isLoading: isLoading
         )

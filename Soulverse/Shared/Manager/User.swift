@@ -36,19 +36,19 @@ public enum NotificationAskGapTime: Int, Comparable {
             return 0
         case .SevenDays:
             #if Dev
-            return 1 * TimeConstant.miniute
+            return 1 * TimeConstant.minute
             #else
             return 7 * TimeConstant.day
             #endif
         case .FourteenDays:
             #if Dev
-            return 2 * TimeConstant.miniute
+            return 2 * TimeConstant.minute
             #else
             return 14 * TimeConstant.day
             #endif
         case .ThirtyDays:
             #if Dev
-            return 4 * TimeConstant.miniute
+            return 4 * TimeConstant.minute
             #else
             return 30 * TimeConstant.day
             #endif

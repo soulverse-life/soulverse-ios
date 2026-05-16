@@ -51,6 +51,10 @@ enum FirestoreCollection {
 
     /// Stable single-doc id under quest_state. Plan 1 writes this same id.
     static let questStateDocId = "state"
+
+    /// Subcollection for FCM device tokens under a user.
+    /// Path: `users/{uid}/devices/{deviceId}`
+    static let devices = "devices"
 }
 
 // MARK: - Firebase Storage Paths

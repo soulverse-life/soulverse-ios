@@ -426,7 +426,6 @@
 
 // Quest — locked-feature labels
 "quest_locked_feature_8dim" = "see your 8 Dimensions";
-"quest_locked_feature_custom_habit" = "add your own habit";
 
 // Quest — 8-Dim card
 "quest_eight_dim_card_title" = "Your 8 Dimensions";
@@ -456,6 +455,9 @@
 "quest_survey_submit" = "Submit";
 "quest_survey_result_title" = "Your reflection";
 "quest_survey_result_done" = "Done";
+"quest_survey_submit_failure_title" = "Submission failed";
+"quest_survey_submit_failure_body" = "We couldn't save your survey. Please try again.";
+"quest_survey_submit_failure_dismiss" = "OK";
 
 // Quest — Survey response scales
 "quest_importance_response_1" = "Not important";

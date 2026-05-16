@@ -100,10 +100,15 @@ final class QuestRadarOverlayView: UIView {
         }
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    private func centerAndRadius() -> (CGPoint, CGFloat) {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = min(bounds.width, bounds.height) / 2 - Layout.radiusInset
+        return (center, radius)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let (center, radius) = centerAndRadius()
 
         for (renderIndex, dim) in Self.radarOrder.enumerated() {
             let angle = angleForVertex(renderIndex: renderIndex)
@@ -156,8 +161,7 @@ final class QuestRadarOverlayView: UIView {
     override func draw(_ rect: CGRect) {
         guard let ctx = UIGraphicsGetCurrentContext(),
               let model = renderModel else { return }
-        let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        let radius = min(bounds.width, bounds.height) / 2 - Layout.radiusInset
+        let (center, radius) = centerAndRadius()
 
         drawOctagonGrid(in: ctx, center: center, radius: radius)
 

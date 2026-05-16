@@ -64,7 +64,7 @@ class QuestViewController: ViewController {
         return v
     }()
 
-    private let presenter = QuestViewPresenter()
+    private let presenter: QuestViewPresenterType = QuestViewPresenter()
 
     private lazy var habitService: FirestoreHabitService? = {
         guard let uid = User.shared.userId else { return nil }
@@ -190,16 +190,36 @@ class QuestViewController: ViewController {
                 result: result,
                 appVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0",
                 submittedFromQuestDay: self.presenter.loadedModel.state.distinctCheckInDays
-            ) { _ in }
-            self.dismiss(animated: true) {
-                let resultVC = SurveyResultViewController(result: result)
-                resultVC.onDone = { [weak self] in self?.dismiss(animated: true) }
-                let nav = UINavigationController(rootViewController: resultVC)
-                self.present(nav, animated: true)
+            ) { [weak self] writeResult in
+                guard let self = self else { return }
+                if case .failure = writeResult {
+                    self.presentSurveySubmitFailureAlert()
+                    return
+                }
+                self.dismiss(animated: true) {
+                    let resultVC = SurveyResultViewController(result: result)
+                    resultVC.onDone = { [weak self] in self?.dismiss(animated: true) }
+                    let nav = UINavigationController(rootViewController: resultVC)
+                    self.present(nav, animated: true)
+                }
             }
         }
         let nav = UINavigationController(rootViewController: surveyVC)
         present(nav, animated: true)
+    }
+
+    private func presentSurveySubmitFailureAlert() {
+        let topPresented = presentedViewController ?? self
+        let alert = UIAlertController(
+            title: NSLocalizedString("quest_survey_submit_failure_title", comment: ""),
+            message: NSLocalizedString("quest_survey_submit_failure_body", comment: ""),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(
+            title: NSLocalizedString("quest_survey_submit_failure_dismiss", comment: ""),
+            style: .default
+        ))
+        topPresented.present(alert, animated: true)
     }
 
     private func presentRecentResult(_ result: RecentResultCardModel) {

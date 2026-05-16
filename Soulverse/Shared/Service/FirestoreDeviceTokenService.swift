@@ -36,8 +36,8 @@ enum FirestoreDeviceTokenService {
             "lastSeenAt": FieldValue.serverTimestamp()
         ]
 
-        db.collection("users").document(uid)
-            .collection("devices").document(deviceId)
+        db.collection(FirestoreCollection.users).document(uid)
+            .collection(FirestoreCollection.devices).document(deviceId)
             .setData(payload, merge: true) { error in
                 if let error = error {
                     print("[FCM] Token write failed, queuing for retry: \(error.localizedDescription)")
