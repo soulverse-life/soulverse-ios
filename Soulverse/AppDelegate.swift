@@ -26,18 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self
-
-        // If permission was previously granted, register at launch so the APNs
-        // token comes back. registerForRemoteNotifications is idempotent.
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            guard settings.authorizationStatus == .authorized else { return }
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
-            }
-        }
+        UIApplication.shared.registerForRemoteNotifications()
 
         setDefaultToastAppearance()
-        checkNotificationPermission()
 
         // Enable IQKeyboardManager
         IQKeyboardManager.shared.isEnabled = true
@@ -110,17 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    
-    private func checkNotificationPermission() {
-
-        let center = UNUserNotificationCenter.current()
-        center.getNotificationSettings { settings in
-            if settings.authorizationStatus == .denied {
-                // Todo: Handle the user not enable the notification
-            }
-        }
-    }
-    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -161,6 +141,12 @@ extension AppDelegate: MessagingDelegate {
         _ messaging: Messaging,
         didReceiveRegistrationToken fcmToken: String?
     ) {
+#if DEBUG
+        print("==================== FCM TOKEN ====================")
+        print(fcmToken ?? "<nil>")
+        print("===================================================")
+#endif
+
         guard
             let token = fcmToken,
             let uid = User.shared.userId,

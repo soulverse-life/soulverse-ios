@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00D4EFCE0FFB3ED52205CCE5 /* JournalServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E20AAA3AF4B7A41DF30E6B /* JournalServiceMock.swift */; };
-		00FBCE53E3FB150F40186DE5 /* MoodEntriesDataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */; };
 		01AFEAE51929AC8297AD205B /* EmotionalBundleMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE76100ED69CDC5A76DE798 /* EmotionalBundleMainViewController.swift */; };
 		02058AF8C1A469258DA6F0E8 /* HabitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F2319A6B037EAD96645FBA /* HabitData.swift */; };
 		03BF3892B476AB6AD4B17CC6 /* MoodEntriesDataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10480DBCFD56D6BF742CA5FA /* MoodEntriesDataAssembler.swift */; };
@@ -20,7 +19,6 @@
 		0E000A0002000000000000A1 /* JournalEmotionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E000A0002000000000000B1 /* JournalEmotionHeaderView.swift */; };
 		0E000A0003000000000000A1 /* JournalEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E000A0003000000000000B1 /* JournalEditorViewModel.swift */; };
 		0E375C48E26FC465DCF1178D /* EmotionalBundleMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A458615FF4DBD7CB06D6654 /* EmotionalBundleMainViewModel.swift */; };
-		0E4B0D04D56B8906AAFFF331 /* MoodCheckInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3FD3A6AA30F1EC4C5708B /* MoodCheckInModel.swift */; };
 		0E92E5946EDDFF19405FD264 /* QuestServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B4FD47CBD19494846367A6 /* QuestServiceProtocol.swift */; };
 		0E9E5F5550F10342BE4D579A /* MoodEntriesDataAssemblerFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2DEBB1B1719A4CD5E8E009 /* MoodEntriesDataAssemblerFetchTests.swift */; };
 		1068DC503C449FA2F1E94253 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
@@ -40,7 +38,6 @@
 		280A04AAC641DB794DD696B7 /* DrawingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6A03F5EE59C7A4854CAF0 /* DrawingServiceProtocol.swift */; };
 		2925BEEEA16E7A2F81023FA4 /* MoodCheckInServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545EED434F6369FD9BF5FB8A /* MoodCheckInServiceTests.swift */; };
 		2BE58344E050379BFB428D93 /* DrawingReplayModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2F83B1C4052FF05B9B061D /* DrawingReplayModalViewController.swift */; };
-		2C66302E39B2097233438B44 /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAC4D1D31EA24F75295BF90 /* FirestoreUserService.swift */; };
 		2CCBEC17866E20A84A4C5B5F /* MoodCheckInServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4342554B5B0F59BAA4F80 /* MoodCheckInServiceMock.swift */; };
 		2DD9A04D95121B93E0C3F374 /* DrawingGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0F6891306A7CF5655B2CA9 /* DrawingGalleryViewModel.swift */; };
 		2F58A765E45D0A433E30504F /* QuestServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC116D149D9314A21F06C5 /* QuestServiceMock.swift */; };
@@ -57,7 +54,6 @@
 		3E613F5B554654A630D26EC3 /* FeelCalmSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B20A12DC4A86E20CFDF0 /* FeelCalmSectionViewModelTests.swift */; };
 		3EEC60F5808E55A5BDB9D81F /* DrawingCanvasPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67143C50A41E655893B1A636 /* DrawingCanvasPresenter.swift */; };
 		419A37032825EC7BC46F4857 /* ProfileViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FDA00077B2E5E075CB1131 /* ProfileViewPresenterTests.swift */; };
-		423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE60F310C8AB64668217ECB /* DrawingModel.swift */; };
 		42E4354BE23BC1FF153D1117 /* CustomHabitDeletionConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB6A1231C7FB53E9816AA /* CustomHabitDeletionConfirmation.swift */; };
 		44372F0CF57371B1CFEDDD22 /* ProfessionalSupportSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A48E84E65B0EB1046B5AB8A /* ProfessionalSupportSectionViewModelTests.swift */; };
 		44C3423F24CAD63B0FD3BE09 /* Pods_Base_Soulverse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45ADDD158A91C61BD0F9BEB /* Pods_Base_Soulverse.framework */; };
@@ -77,7 +73,6 @@
 		5C8C99E6FB798AD860DB8DD6 /* DimensionAxisState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF47DEEDD827DCE9D8B2233 /* DimensionAxisState.swift */; };
 		5FB242B1781C5956CDC31A78 /* ErrorReportingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3936C4C4200D3E36282A /* ErrorReportingTests.swift */; };
 		6009E3A97AD857D0070766C9 /* MoodCheckInDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A840760ABEE725B08771D /* MoodCheckInDataTests.swift */; };
-		6026E6F1B6136CA370157840 /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
 		635B4C73143CCB4B84261FD0 /* StateOfChangeSurveyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303767E85FD3EBF3A055AFC /* StateOfChangeSurveyDefinition.swift */; };
 		637799F14CA363C9E956E518 /* DetailReflectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2575FCF8292C633DF8FF8577 /* DetailReflectionSection.swift */; };
 		64AF4AE865D91E895E4BDC1C /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
@@ -100,60 +95,6 @@
 		7621C92B3C88BB51568944AA /* ProfileInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E293D76456B3810C11CCBA /* ProfileInfoRow.swift */; };
 		77566AE5CB53A5A234F557E9 /* RedFlagsSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD522D21982055E427119340 /* RedFlagsSectionViewModelTests.swift */; };
 		78F55E5288873495F0501DAF /* Pods_SoulverseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0E508914B2811A74ADC912 /* Pods_SoulverseTests.framework */; };
-		790AD2122DF9E43200C33CD1 /* CoreTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E32DF9E43200C33CD1 /* CoreTracker.swift */; };
-		790AD2132DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1972DF9E43200C33CD1 /* NotificationPresenterType.swift */; };
-		790AD2152DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1992DF9E43200C33CD1 /* NotificationItemCellViewModel.swift */; };
-		790AD2162DF9E43200C33CD1 /* ErrorEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1DD2DF9E43200C33CD1 /* ErrorEvent.swift */; };
-		790AD2182DF9E43200C33CD1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD2072DF9E43200C33CD1 /* Constants.swift */; };
-		790AD21A2DF9E43200C33CD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD2062DF9E43200C33CD1 /* AppDelegate.swift */; };
-		790AD21D2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1FF2DF9E43200C33CD1 /* SummitSeparator.swift */; };
-		790AD21F2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1762DF9E43200C33CD1 /* UIViewController+Extensions.swift */; };
-		790AD2202DF9E43200C33CD1 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16D2DF9E43200C33CD1 /* UIButton+Extensions.swift */; };
-		790AD2212DF9E43200C33CD1 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD2022DF9E43200C33CD1 /* WebViewController.swift */; };
-		790AD2232DF9E43200C33CD1 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16B2DF9E43200C33CD1 /* String+Extension.swift */; };
-		790AD2242DF9E43200C33CD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD2102DF9E43200C33CD1 /* SceneDelegate.swift */; };
-		790AD2252DF9E43200C33CD1 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1692DF9E43200C33CD1 /* Array+Extensions.swift */; };
-		790AD2262DF9E43200C33CD1 /* TrackingEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1DE2DF9E43200C33CD1 /* TrackingEventType.swift */; };
-		790AD22A2DF9E43200C33CD1 /* NotificationEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19C2DF9E43200C33CD1 /* NotificationEmptyView.swift */; };
-		790AD22D2DF9E43200C33CD1 /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16C2DF9E43200C33CD1 /* TimeInterval+Extensions.swift */; };
-		790AD22E2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16E2DF9E43200C33CD1 /* UIColor+Extensions.swift */; };
-		790AD22F2DF9E43200C33CD1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1ED2DF9E43200C33CD1 /* AuthService.swift */; };
-		790AD2302DF9E43200C33CD1 /* FirebaseTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E02DF9E43200C33CD1 /* FirebaseTrackingService.swift */; };
-		790AD2312DF9E43200C33CD1 /* ContentListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F52DF9E43200C33CD1 /* ContentListResponse.swift */; };
-		790AD2372DF9E43200C33CD1 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19E2DF9E43200C33CD1 /* NotificationViewController.swift */; };
-		790AD2382DF9E43200C33CD1 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1702DF9E43200C33CD1 /* UIImage+Extensions.swift */; };
-		790AD23A2DF9E43200C33CD1 /* NotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1962DF9E43200C33CD1 /* NotificationPresenter.swift */; };
-		790AD23B2DF9E43200C33CD1 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F32DF9E43200C33CD1 /* NotificationService.swift */; };
-		790AD23C2DF9E43200C33CD1 /* NotificationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E92DF9E43200C33CD1 /* NotificationAPIService.swift */; };
-		790AD23E2DF9E43200C33CD1 /* UserAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1EA2DF9E43200C33CD1 /* UserAPIService.swift */; };
-		790AD23F2DF9E43200C33CD1 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD2042DF9E43200C33CD1 /* Utility.swift */; };
-		790AD2412DF9E43200C33CD1 /* SummitSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD2002DF9E43200C33CD1 /* SummitSlider.swift */; };
-		790AD2432DF9E43200C33CD1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F72DF9E43200C33CD1 /* UserService.swift */; };
-		790AD2442DF9E43200C33CD1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1932DF9E43200C33CD1 /* MainViewController.swift */; };
-		790AD2452DF9E43200C33CD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD2012DF9E43200C33CD1 /* ViewController.swift */; };
-		790AD2492DF9E43200C33CD1 /* TrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E42DF9E43200C33CD1 /* TrackingService.swift */; };
-		790AD24A2DF9E43200C33CD1 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1742DF9E43200C33CD1 /* UITextField+Extensions.swift */; };
-		790AD24E2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1DC2DF9E43200C33CD1 /* BugTrackingEvent.swift */; };
-		790AD24F2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1EC2DF9E43200C33CD1 /* AppleUserAuthService.swift */; };
-		790AD2502DF9E43200C33CD1 /* UISwitch+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1712DF9E43200C33CD1 /* UISwitch+Extensions.swift */; };
-		790AD2522DF9E43200C33CD1 /* TrackingServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E12DF9E43200C33CD1 /* TrackingServiceType.swift */; };
-		790AD2532DF9E43200C33CD1 /* UITabBarController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1722DF9E43200C33CD1 /* UITabBarController+Extensions.swift */; };
-		790AD2542DF9E43200C33CD1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E72DF9E43200C33CD1 /* User.swift */; };
-		790AD2552DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F12DF9E43200C33CD1 /* NotificationItemModel.swift */; };
-		790AD2592DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD16A2DF9E43200C33CD1 /* Codable+Extensions.swift */; };
-		790AD25B2DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1732DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift */; };
-		790AD25C2DF9E43200C33CD1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F62DF9E43200C33CD1 /* UserModel.swift */; };
-		790AD25E2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1F22DF9E43200C33CD1 /* NotificationItemsResponse.swift */; };
-		790AD2602DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19A2DF9E43200C33CD1 /* NotificationViewModel.swift */; };
-		790AD2612DF9E43200C33CD1 /* SummitAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1FB2DF9E43200C33CD1 /* SummitAlertView.swift */; };
-		790AD2632DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD19D2DF9E43200C33CD1 /* NotificationItemTableViewCell.swift */; };
-		790AD2662DF9E43200C33CD1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1E62DF9E43200C33CD1 /* AppCoordinator.swift */; };
-		790AD26B2DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD1752DF9E43200C33CD1 /* UIView+Extensions.swift */; };
-		790AD2732DF9E43200C33CD1 /* NotificationResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 790AD1B42DF9E43200C33CD1 /* NotificationResponse.json */; };
-		790AD2742DF9E43200C33CD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 790AD20E2DF9E43200C33CD1 /* Main.storyboard */; };
-		790AD27E2DF9E43200C33CD1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 790AD20D2DF9E43200C33CD1 /* Localizable.strings */; };
-		790AD2922DF9E43200C33CD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 790AD1D92DF9E43200C33CD1 /* Assets.xcassets */; };
-		790AD2942DF9E43200C33CD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 790AD20A2DF9E43200C33CD1 /* LaunchScreen.storyboard */; };
 		790AD29D2DF9E43200C33CD1 /* NotificationResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 790AD1B42DF9E43200C33CD1 /* NotificationResponse.json */; };
 		790AD29E2DF9E43200C33CD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 790AD20E2DF9E43200C33CD1 /* Main.storyboard */; };
 		790AD2A82DF9E43200C33CD1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 790AD20D2DF9E43200C33CD1 /* Localizable.strings */; };
@@ -215,32 +156,19 @@
 		790AD3422DF9E48E00C33CD1 /* TrackingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3362DF9E48E00C33CD1 /* TrackingServiceTests.swift */; };
 		790AD3472DF9E4C200C33CD1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 790AD3442DF9E4C200C33CD1 /* Info.plist */; };
 		790AD3482DF9E4C200C33CD1 /* KonoSummitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AD3452DF9E4C200C33CD1 /* KonoSummitUITests.swift */; };
-		790D87D22ECF668700D4F61F /* SpiralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D02ECF668700D4F61F /* SpiralView.swift */; };
-		790D87D32ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87CF2ECF668700D4F61F /* SpiralBreathingViewController.swift */; };
 		790D87D42ECF668700D4F61F /* SpiralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D02ECF668700D4F61F /* SpiralView.swift */; };
 		790D87D52ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87CF2ECF668700D4F61F /* SpiralBreathingViewController.swift */; };
 		790D87D72ED1729200D4F61F /* SpiralConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D62ED1729200D4F61F /* SpiralConfig.swift */; };
-		790D87D82ED1729200D4F61F /* SpiralConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87D62ED1729200D4F61F /* SpiralConfig.swift */; };
-		790D87EB2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E92ED2017F00D4F61F /* ToolsHeaderView.swift */; };
-		790D87EC2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E82ED2017F00D4F61F /* ToolsCollectionViewCell.swift */; };
-		790D87ED2ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87EA2ED2017F00D4F61F /* ToolsSectionHeaderView.swift */; };
 		790D87EE2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E92ED2017F00D4F61F /* ToolsHeaderView.swift */; };
 		790D87EF2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87E82ED2017F00D4F61F /* ToolsCollectionViewCell.swift */; };
 		790D87F02ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87EA2ED2017F00D4F61F /* ToolsSectionHeaderView.swift */; };
-		790D87F22ED201B200D4F61F /* ToolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F12ED201B200D4F61F /* ToolsViewModel.swift */; };
 		790D87F32ED201B200D4F61F /* ToolsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F12ED201B200D4F61F /* ToolsViewModel.swift */; };
-		790D87F52ED209F800D4F61F /* ToolsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F42ED209F800D4F61F /* ToolsCellViewModel.swift */; };
 		790D87F62ED209F800D4F61F /* ToolsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F42ED209F800D4F61F /* ToolsCellViewModel.swift */; };
-		790D87F92ED20A0A00D4F61F /* ToolsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F72ED20A0A00D4F61F /* ToolsModel.swift */; };
 		790D87FA2ED20A0A00D4F61F /* ToolsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790D87F72ED20A0A00D4F61F /* ToolsModel.swift */; };
-		7922EC502E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
 		7922EC512E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC4F2E8D84820086B7CA /* UINavigationController+Extensions.swift */; };
-		7922EC532E8D86EF0086B7CA /* DrawingReflectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingReflectionViewController.swift */; };
 		7922EC542E8D86EF0086B7CA /* DrawingReflectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922EC522E8D86EF0086B7CA /* DrawingReflectionViewController.swift */; };
 		7922ECAC2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */; };
-		7922ECAD2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7922ECAA2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf */; };
 		7922ECAF2E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */; };
-		7922ECB02E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECAE2E98ABEA0086B7CA /* UIFont+Extensions.swift */; };
 		7922ECC42E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECB12E993B8D0086B7CA /* OnboardingCoordinator.swift */; };
 		7922ECC52E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBF2E993B8D0086B7CA /* OnboardingNamingViewController.swift */; };
 		7922ECC62E993B8D0086B7CA /* OnboardingUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBB2E993B8D0086B7CA /* OnboardingUserData.swift */; };
@@ -248,50 +176,23 @@
 		7922ECCC2E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECC12E993B8D0086B7CA /* OnboardingTopicViewController.swift */; };
 		7922ECCE2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBE2E993B8D0086B7CA /* OnboardingGenderViewController.swift */; };
 		7922ECCF2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBD2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift */; };
-		7922ECD12E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECB12E993B8D0086B7CA /* OnboardingCoordinator.swift */; };
-		7922ECD22E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBF2E993B8D0086B7CA /* OnboardingNamingViewController.swift */; };
-		7922ECD32E993B8D0086B7CA /* OnboardingUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBB2E993B8D0086B7CA /* OnboardingUserData.swift */; };
-		7922ECD72E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECC02E993B8D0086B7CA /* OnboardingSignInViewController.swift */; };
-		7922ECD92E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECC12E993B8D0086B7CA /* OnboardingTopicViewController.swift */; };
-		7922ECDB2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBE2E993B8D0086B7CA /* OnboardingGenderViewController.swift */; };
-		7922ECDC2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECBD2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift */; };
-		7922ECE22E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */; };
 		7922ECE32E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */; };
-		79389F582EFFBEF60016CB7F /* TopicCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F572EFFBEF60016CB7F /* TopicCardView.swift */; };
 		79389F592EFFBEF60016CB7F /* TopicCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F572EFFBEF60016CB7F /* TopicCardView.swift */; };
-		79389F612F05760D0016CB7F /* EmotionPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */; };
-		79389F622F05760D0016CB7F /* InnerCosmoRecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5C2F05760D0016CB7F /* InnerCosmoRecentView.swift */; };
-		79389F642F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */; };
-		79389F662F05760D0016CB7F /* CentralPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */; };
 		79389F672F05760D0016CB7F /* EmotionPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */; };
 		79389F682F05760D0016CB7F /* InnerCosmoRecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5C2F05760D0016CB7F /* InnerCosmoRecentView.swift */; };
 		79389F6A2F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5D2F05760D0016CB7F /* InnerCosmoHeaderView.swift */; };
 		79389F6C2F05760D0016CB7F /* CentralPlanetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */; };
-		79389F6E2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */; };
 		79389F6F2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79389F6D2F0576280016CB7F /* InnerCosmoEmotionData.swift */; };
-		7947DF402F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */; };
 		7947DF412F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 7947DF3F2F52BE52005ABA49 /* stage1_bounce_lottie.json */; };
-		794B59F32E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
 		794B59F42E9EA3E1006CF069 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F22E9EA3E1006CF069 /* ThemeManager.swift */; };
 		794B59FA2E9EA436006CF069 /* UniverseTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F82E9EA436006CF069 /* UniverseTheme.swift */; };
 		794B59FB2E9EA436006CF069 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F52E9EA436006CF069 /* GradientView.swift */; };
 		794B59FC2E9EA436006CF069 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F72E9EA436006CF069 /* Theme.swift */; };
 		794B59FD2E9EA436006CF069 /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F62E9EA436006CF069 /* SoulTheme.swift */; };
-		794B59FE2E9EA436006CF069 /* UniverseTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F82E9EA436006CF069 /* UniverseTheme.swift */; };
-		794B59FF2E9EA436006CF069 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F52E9EA436006CF069 /* GradientView.swift */; };
-		794B5A002E9EA436006CF069 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F72E9EA436006CF069 /* Theme.swift */; };
-		794B5A012E9EA436006CF069 /* SoulTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B59F62E9EA436006CF069 /* SoulTheme.swift */; };
 		794B5A032EA38B45006CF069 /* SoulverseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A022EA38B45006CF069 /* SoulverseTextField.swift */; };
-		794B5A042EA38B45006CF069 /* SoulverseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A022EA38B45006CF069 /* SoulverseTextField.swift */; };
 		794B5A082EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */; };
 		794B5A092EA38B65006CF069 /* SoulverseTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */; };
-		794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A062EA38B65006CF069 /* SoulverseProgressBar.swift */; };
-		794B5A0C2EA38B65006CF069 /* SoulverseTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A072EA38B65006CF069 /* SoulverseTagsView.swift */; };
-		794B5A0F2EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */; };
 		794B5A102EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B5A0E2EA38BA3006CF069 /* OnboardingLandingViewController.swift */; };
-		7951A9B92E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
-		7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
-		7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
 		7951A9BC2E532C85006EB0EC /* SoulverseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B62E532C85006EB0EC /* SoulverseButton.swift */; };
 		7951A9BD2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B82E532C85006EB0EC /* SoulverseTabBar.swift */; };
 		7951A9BE2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9B72E532C85006EB0EC /* SoulverseNavigationView.swift */; };
@@ -299,46 +200,18 @@
 		7951A9CA2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */; };
 		7951A9CB2E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */; };
 		7951A9CC2E5376B5006EB0EC /* InnerCosmoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C52E5376B5006EB0EC /* InnerCosmoViewController.swift */; };
-		7951A9CE2E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C02E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift */; };
-		7951A9CF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9BF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift */; };
-		7951A9D02E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C32E5376B5006EB0EC /* InnerCosmoViewModel.swift */; };
-		7951A9D12E5376B5006EB0EC /* InnerCosmoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9C52E5376B5006EB0EC /* InnerCosmoViewController.swift */; };
-		7951AA002E537704006EB0EC /* ToolsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */; };
-		7951AA012E537704006EB0EC /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FD2E537704006EB0EC /* ToolsViewController.swift */; };
 		7951AA032E537704006EB0EC /* ToolsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9F92E537704006EB0EC /* ToolsViewPresenter.swift */; };
 		7951AA042E537704006EB0EC /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A9FD2E537704006EB0EC /* ToolsViewController.swift */; };
-		79710ED82E6D5D6A007665DB /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		79710EDE2E6D974D007665DB /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		798687EE2E6C248E00EB3B38 /* InsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E92E6C248E00EB3B38 /* InsightViewModel.swift */; };
 		798687EF2E6C248E00EB3B38 /* InsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687EB2E6C248E00EB3B38 /* InsightViewController.swift */; };
 		798687F02E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E72E6C248E00EB3B38 /* InsightViewPresenter.swift */; };
-		798687F12E6C248E00EB3B38 /* InsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E92E6C248E00EB3B38 /* InsightViewModel.swift */; };
-		798687F22E6C248E00EB3B38 /* InsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687EB2E6C248E00EB3B38 /* InsightViewController.swift */; };
-		798687F32E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798687E72E6C248E00EB3B38 /* InsightViewPresenter.swift */; };
 		798688082E6C24EE00EB3B38 /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798688052E6C24EE00EB3B38 /* QuestViewController.swift */; };
 		798688092E6C24EE00EB3B38 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798688032E6C24EE00EB3B38 /* QuestViewModel.swift */; };
 		7986880A2E6C24EE00EB3B38 /* QuestViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798688012E6C24EE00EB3B38 /* QuestViewPresenter.swift */; };
-		7986880B2E6C24EE00EB3B38 /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798688052E6C24EE00EB3B38 /* QuestViewController.swift */; };
-		7986880C2E6C24EE00EB3B38 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798688032E6C24EE00EB3B38 /* QuestViewModel.swift */; };
-		7986880D2E6C24EE00EB3B38 /* QuestViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798688012E6C24EE00EB3B38 /* QuestViewPresenter.swift */; };
 		798688102E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7986880F2E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift */; };
-		798688112E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7986880F2E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift */; };
 		79B24C752DFC7B2A001220B6 /* CanvasViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B24C6E2DFC7B2A001220B6 /* CanvasViewPresenter.swift */; };
 		79B24C762DFC7B2A001220B6 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B24C702DFC7B2A001220B6 /* CanvasViewModel.swift */; };
 		79B24C772DFC7B2A001220B6 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B24C722DFC7B2A001220B6 /* CanvasViewController.swift */; };
-		79B24C782DFC7B2A001220B6 /* CanvasViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B24C6E2DFC7B2A001220B6 /* CanvasViewPresenter.swift */; };
-		79B24C792DFC7B2A001220B6 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B24C702DFC7B2A001220B6 /* CanvasViewModel.swift */; };
-		79B24C7A2DFC7B2A001220B6 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B24C722DFC7B2A001220B6 /* CanvasViewController.swift */; };
-		79B6AAB32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */; };
-		79B6AAB42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA42EACCA5D00A8B079 /* MoodCheckInData.swift */; };
-		79B6AAB62EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAB2EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift */; };
-		79B6AAB72EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAF2EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift */; };
-		79B6AAB92EACCA5D00A8B079 /* MoodCheckInActingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAA2EACCA5D00A8B079 /* MoodCheckInActingViewController.swift */; };
-		79B6AABC2EACCA5D00A8B079 /* MoodCheckInNamingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAD2EACCA5D00A8B079 /* MoodCheckInNamingViewController.swift */; };
-		79B6AABD2EACCA5D00A8B079 /* EmotionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA12EACCA5D00A8B079 /* EmotionType.swift */; };
-		79B6AABE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA72EACCA5D00A8B079 /* MoodCheckInCoordinator.swift */; };
-		79B6AABF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAE2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift */; };
-		79B6AAC22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAC2EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift */; };
 		79B6AAC32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA22EACCA5D00A8B079 /* EvaluationOption.swift */; };
 		79B6AAC42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA42EACCA5D00A8B079 /* MoodCheckInData.swift */; };
 		79B6AAC62EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAB2EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift */; };
@@ -349,79 +222,40 @@
 		79B6AACE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAA72EACCA5D00A8B079 /* MoodCheckInCoordinator.swift */; };
 		79B6AACF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAE2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift */; };
 		79B6AAD22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAAC2EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift */; };
-		79B6AAD72EACCABA00A8B079 /* RadioOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAD52EACCABA00A8B079 /* RadioOptionView.swift */; };
-		79B6AAD82EACCABA00A8B079 /* ColorGradientSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAD32EACCABA00A8B079 /* ColorGradientSliderView.swift */; };
-		79B6AAD92EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAD42EACCABA00A8B079 /* IntensityCircleSelectorView.swift */; };
 		79B6AADA2EACCABA00A8B079 /* RadioOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAD52EACCABA00A8B079 /* RadioOptionView.swift */; };
 		79B6AADB2EACCABA00A8B079 /* ColorGradientSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAD32EACCABA00A8B079 /* ColorGradientSliderView.swift */; };
 		79B6AADC2EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAD42EACCABA00A8B079 /* IntensityCircleSelectorView.swift */; };
-		79B6AADE2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AADD2EACCAEC00A8B079 /* MoodCheckInAPIService.swift */; };
 		79B6AADF2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AADD2EACCAEC00A8B079 /* MoodCheckInAPIService.swift */; };
-		79B6AAE32EB5B7AA00A8B079 /* IntensitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */; };
-		79B6AAE42EB5B7AA00A8B079 /* EmotionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */; };
-		79B6AAE52EB5B7AA00A8B079 /* ColorSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */; };
 		79B6AAE62EB5B7AA00A8B079 /* IntensitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE22EB5B7AA00A8B079 /* IntensitySelectionView.swift */; };
 		79B6AAE72EB5B7AA00A8B079 /* EmotionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE12EB5B7AA00A8B079 /* EmotionSelectionView.swift */; };
 		79B6AAE82EB5B7AA00A8B079 /* ColorSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6AAE02EB5B7AA00A8B079 /* ColorSummaryView.swift */; };
-		79BB25162DF9E2C600ED3CBE /* OpenCC in Frameworks */ = {isa = PBXBuildFile; productRef = E8388395277AF9F80002C053 /* OpenCC */; };
-		79BB25172DF9E2C600ED3CBE /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = E8388397277AF9F80002C053 /* SwiftMessages */; };
-		79BB25182DF9E2C600ED3CBE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E8388399277AF9F80002C053 /* Realm */; };
-		79BB25192DF9E2C600ED3CBE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E838839B277AF9F80002C053 /* RealmSwift */; };
-		79BB251A2DF9E2C600ED3CBE /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = E838839C277AF9F80002C053 /* DeviceKit */; };
-		79D576832EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */; };
 		79D576842EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D576822EFE3ECE00D6DA43 /* SoulverseTagCell.swift */; };
-		79DD63382EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */; };
 		79DD63392EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD63362EDA8F7B008A5F8D /* HeroTransitionID.swift */; };
 		79DD633B2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */; };
-		79DD633C2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633A2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift */; };
-		79DD63402EDB2FAF008A5F8D /* drawings_prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DD633D2EDB2FAF008A5F8D /* drawings_prompts.json */; };
-		79DD63412EDB2FAF008A5F8D /* DrawingsPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* DrawingsPromptModel.swift */; };
 		79DD63422EDB2FAF008A5F8D /* DrawingsPromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD633E2EDB2FAF008A5F8D /* DrawingsPromptModel.swift */; };
 		79DD63432EDB2FAF008A5F8D /* drawings_prompts.json in Resources */ = {isa = PBXBuildFile; fileRef = 79DD633D2EDB2FAF008A5F8D /* drawings_prompts.json */; };
 		79EE74BC2F2BB0660082EECF /* AffirmationQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */; };
-		79EE74BD2F2BB0660082EECF /* AffirmationQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 79EE74BB2F2BB0650082EECF /* AffirmationQuotes.json */; };
-		79EE74BF2F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */; };
 		79EE74C02F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74BE2F2BB0940082EECF /* AffirmationBubbleView.swift */; };
 		79EE74C22F2BB09F0082EECF /* AffirmationQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */; };
-		79EE74C32F2BB09F0082EECF /* AffirmationQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C12F2BB09F0082EECF /* AffirmationQuote.swift */; };
-		79EE74C62F2BB1AB0082EECF /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C42F2BB1AB0082EECF /* Topic.swift */; };
 		79EE74C72F2BB1AB0082EECF /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C42F2BB1AB0082EECF /* Topic.swift */; };
 		79EE74C92F2BB6C80082EECF /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C82F2BB6C80082EECF /* SpeechService.swift */; };
-		79EE74CA2F2BB6C80082EECF /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74C82F2BB6C80082EECF /* SpeechService.swift */; };
 		79EE74CC2F2E4F220082EECF /* Constants+MoodCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CB2F2E4F220082EECF /* Constants+MoodCheckIn.swift */; };
-		79EE74CD2F2E4F220082EECF /* Constants+MoodCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CB2F2E4F220082EECF /* Constants+MoodCheckIn.swift */; };
 		79EE74CF2F308DA40082EECF /* RecordedEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CE2F308DA40082EECF /* RecordedEmotion.swift */; };
-		79EE74D02F308DA40082EECF /* RecordedEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74CE2F308DA40082EECF /* RecordedEmotion.swift */; };
-		79EE74D12F2BE1000082EECF /* SoulverseTopicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D02F2BE1000082EECF /* SoulverseTopicList.swift */; };
 		79EE74D22F2BE1000082EECF /* SoulverseTopicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D02F2BE1000082EECF /* SoulverseTopicList.swift */; };
-		79EE74D22F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D12F30AE3F0082EECF /* Constants+InnerCosmo.swift */; };
 		79EE74D32F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D12F30AE3F0082EECF /* Constants+InnerCosmo.swift */; };
 		79EE74D52F30AE790082EECF /* MoodEntryCardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D42F30AE790082EECF /* MoodEntryCardCellViewModel.swift */; };
-		79EE74D62F30AE790082EECF /* MoodEntryCardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D42F30AE790082EECF /* MoodEntryCardCellViewModel.swift */; };
 		79EE74D92F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */; };
 		79EE74DA2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */; };
-		79EE74DB2F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D82F30AEA60082EECF /* MoodEntryCardCell.swift */; };
-		79EE74DC2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74D72F30AEA60082EECF /* MoodEntriesSection.swift */; };
-		79EE74E12F30AF000082EECF /* CalendarMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74E02F30AF000082EECF /* CalendarMonthViewModel.swift */; };
 		79EE74E22F30AF000082EECF /* CalendarMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74E02F30AF000082EECF /* CalendarMonthViewModel.swift */; };
-		79EE74E42F30AF100082EECF /* InnerCosmoAllPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74E32F30AF100082EECF /* InnerCosmoAllPeriodView.swift */; };
 		79EE74E52F30AF100082EECF /* InnerCosmoAllPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EE74E32F30AF100082EECF /* InnerCosmoAllPeriodView.swift */; };
 		79F138052F379BF90034D325 /* ActionTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F138042F379BF90034D325 /* ActionTagView.swift */; };
-		79F138062F379BF90034D325 /* ActionTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F138042F379BF90034D325 /* ActionTagView.swift */; };
 		79F1380B2F3875E10034D325 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79F1380A2F3875E10034D325 /* GoogleService-Info.plist */; };
-		79F1380C2F3875E10034D325 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79F1380A2F3875E10034D325 /* GoogleService-Info.plist */; };
-		79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		79POSTHOG22DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79POSTHOG02DF9E43200C33CD1 /* PosthogTrackingService.swift */; };
 		7A84B99D8EA2DE2A1C1F3DD6 /* EightDimensionsRenderModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A09A8F71DC3281358297D3 /* EightDimensionsRenderModelBuilder.swift */; };
-		7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
 		7AE10C0001000000000000A3 /* EmoPetChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10C0001000000000000A1 /* EmoPetChatView.swift */; };
-		7AE10CFF01000000000000A2 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
 		7AE10CFF01000000000000A3 /* DrawingPromptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000A1 /* DrawingPromptViewModel.swift */; };
-		7AE10CFF01000000000000B2 /* DrawingPromptPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */; };
 		7AE10CFF01000000000000B3 /* DrawingPromptPresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000B1 /* DrawingPromptPresenterType.swift */; };
-		7AE10CFF01000000000000C2 /* DrawingPromptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */; };
 		7AE10CFF01000000000000C3 /* DrawingPromptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000C1 /* DrawingPromptPresenter.swift */; };
-		7AE10CFF01000000000000D2 /* DrawingPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */; };
 		7AE10CFF01000000000000D3 /* DrawingPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF01000000000000D1 /* DrawingPromptViewController.swift */; };
 		7AE10CFF02000000000000A2 /* DrawingPromptPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000A1 /* DrawingPromptPresenterDelegateMock.swift */; };
 		7AE10CFF02000000000000B2 /* DrawingPromptPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE10CFF02000000000000B1 /* DrawingPromptPresenterTests.swift */; };
@@ -448,49 +282,35 @@
 		99D7A073D137428E8D5EB65B /* EmotionalBundleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D2ACF027F80CD265BD4CA /* EmotionalBundleModel.swift */; };
 		9A5F6071A756E85D2358C622 /* ProfessionalSupportSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */; };
 		9CF4FABB93B22A5501410AC9 /* EmotionalBundleMainPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30F39713DA6AD85B3971009 /* EmotionalBundleMainPresenterTests.swift */; };
-		9EBA99FEED0F4ADBBCA79ACC /* FirestoreSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBCBDFE64D2D1ECA4EFA0D /* FirestoreSchema.swift */; };
-		A1B2C3D4E5F6A7B8C9D0E1F3 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */; };
 		A1B2C3D4E5F6A7B8C9D0E1F4 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* TimeRange.swift */; };
 		A2642779529DA52C41E8446B /* MoodCheckInServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C59E22D0E948D8EE0F606C /* MoodCheckInServiceProtocol.swift */; };
-		A2B3C4D5E6F7A8B9C0D1E2F4 /* TimeRangeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */; };
 		A2B3C4D5E6F7A8B9C0D1E2F5 /* TimeRangeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3C4D5E6F7A8B9C0D1E2F3 /* TimeRangeToggleView.swift */; };
 		A33E74EF9D5C7A9F3EA08C01 /* QuestStageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E73787F4BF8E8C1D7A3403 /* QuestStageTests.swift */; };
 		A3428F453B2E78C47D54B7E8 /* ToolsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA67C204F2A591ECD30F1F /* ToolsViewModelTests.swift */; };
-		A3B4C5D6E7F8A9B0C1D2E3F5 /* HabitActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */; };
 		A3B4C5D6E7F8A9B0C1D2E3F6 /* HabitActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4C5D6E7F8A9B0C1D2E3F4 /* HabitActivityViewModel.swift */; };
-		A4B5C6D7E8F9A0B1C2D3E4F6 /* HabitActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */; };
 		A4B5C6D7E8F9A0B1C2D3E4F7 /* HabitActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B5C6D7E8F9A0B1C2D3E4F5 /* HabitActivityView.swift */; };
 		A5056CEA7307827DDADCFFF1 /* Pods_Base_SoulverseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E13BD15D86507E0496B38 /* Pods_Base_SoulverseUITests.framework */; };
-		A55E94296F5E8A6F806B4CC6 /* FirestoreDrawingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1C277F253C61E7A1E25D2 /* FirestoreDrawingService.swift */; };
 		A77917A68943640D3F9C24D4 /* InnerCosmoPeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB9147A86FBF42436C1031E /* InnerCosmoPeriodTests.swift */; };
 		A80802510587A1B535753FE1 /* EmotionalBundleServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F086EFB7A0C114933FE0F5D /* EmotionalBundleServiceProtocol.swift */; };
 		A848471F529A30BB4065C1A9 /* EvaluationOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F89A9D358017D65133095 /* EvaluationOptionTests.swift */; };
-		A88F46F2FE6B761AC9159FDA /* WeeklyMoodScoreViewModel+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF30BABCCE3E123A41AE4DE5 /* WeeklyMoodScoreViewModel+MockData.swift */; };
 		AAB8686144E132BDBD175A2A /* WeeklyMoodScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3716E466B4C9C23A45454A32 /* WeeklyMoodScoreView.swift */; };
 		AAD7FE3D33B1610DA4D1093B /* FirestoreDeviceTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A1F174548B2DDBE153C93E /* FirestoreDeviceTokenService.swift */; };
 		AB5790658142702E96058E0B /* StaySafeSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4217F49B101E056F9679585A /* StaySafeSectionViewModelTests.swift */; };
 		AE8238450575EE11F60CD300 /* StaySafeSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9789F843142D96E67C70804C /* StaySafeSectionViewController.swift */; };
 		AFF76F298711C642D48996FC /* RecentResultCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC35483047BC6A09E9021BB /* RecentResultCardView.swift */; };
-		B1A2C3D4E5F6A7B8C9D0E1F2 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
 		B1A2C3D4E5F6A7B8C9D0E1F3 /* CheckinActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F6A7B8C9D0E1F1 /* CheckinActivityViewModel.swift */; };
-		B2A3C4D5E6F7A8B9C0D1E2F3 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
 		B2A3C4D5E6F7A8B9C0D1E2F4 /* CheckinActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A3C4D5E6F7A8B9C0D1E2F2 /* CheckinActivityView.swift */; };
 		B2F6E0449E68EA3F6D6B8FB9 /* ToolsViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E171DE35597BA70C8B122CD8 /* ToolsViewPresenterTests.swift */; };
 		B3F4AD1CE7A2D4B674D29EAF /* JournalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E4F3C98DBB3D6E06CF3DF /* JournalModel.swift */; };
-		B4684A5181281B705F0F08BE /* WeeklyMoodScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A6B85AD0D9EC7356D461B /* WeeklyMoodScoreViewModel.swift */; };
 		B4E8CAB694343C5B86954CE7 /* FirestoreSchemaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E4D78EAA08D9BD40D689C /* FirestoreSchemaTests.swift */; };
-		B687959D9AD055A99B195148 /* FirestoreMoodCheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC5F1B91560B5CBD5C4CBA /* FirestoreMoodCheckInService.swift */; };
 		BCCF4852163421323A310717 /* MoodEntriesDataAssemblerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4883D32CE380C31648AE6 /* MoodEntriesDataAssemblerMock.swift */; };
 		BE7CD9A80860FCBB70D7DDE7 /* SupportMeSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0774B104E6B7E8550A2C9ED /* SupportMeSectionViewModelTests.swift */; };
 		BF43656595DC1CAEEC0F6BC2 /* LockedCardHintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892063B3E7FDA02E24605BC0 /* LockedCardHintTests.swift */; };
 		BFC00E7084C2C3B433CDCB5F /* DetailDrawingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A7FB0D1FCDD8CC81DECBB /* DetailDrawingSection.swift */; };
 		C0DFE64282D5F1868C0544F4 /* DrawingsPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A95C383DB61DE6370611AFF /* DrawingsPromptTests.swift */; };
 		C177ED8CA35EB3841C34BD3E /* CrisisResourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE368A37AF142928705DD2 /* CrisisResourceModel.swift */; };
-		C3B4A5D6E7F8A9B0C1D2E3F5 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
 		C3B4A5D6E7F8A9B0C1D2E3F6 /* InsightGridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4A5D6E7F8A9B0C1D2E3F4 /* InsightGridCardViewModel.swift */; };
-		C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
 		C47D335B0791DA4AC4C98D82 /* QuestLockedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0AFB2E02332DEA4A25A66D /* QuestLockedCardView.swift */; };
-		C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379460502EA73A2BE1295F9D /* FirebaseStorageService.swift */; };
 		C50444AEB16419D17E67C9D0 /* SurveySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431274603BD62C7259A676C /* SurveySectionModel.swift */; };
 		C607F743B51CA4C1DE23440E /* QuestTimezoneCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245B803B3140A3F7D9CD61C /* QuestTimezoneCalculator.swift */; };
 		C84B64553755C52006E77CB0 /* CrashlyticsClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F82348DB317339F3F64F2 /* CrashlyticsClientMock.swift */; };
@@ -503,16 +323,12 @@
 		D14096F47439C0A9D91C7B28 /* Constants+CheckInDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C624E824560B8C7B0FAB170C /* Constants+CheckInDetail.swift */; };
 		D18DEC6D7FD91EB16DC1B9D7 /* QuestProgressDotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC4C49FF2CA899AB8798153 /* QuestProgressDotsView.swift */; };
 		D24B26041000010001000002 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
-		D24B26041000010001000003 /* DrawingReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000001 /* DrawingReflectionPresenter.swift */; };
 		D24B26041000010001000005 /* DrawingReflectionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010001000004 /* DrawingReflectionPresenterTests.swift */; };
 		D24B26041000010002000002 /* DrawingReflectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010002000001 /* DrawingReflectionViewModel.swift */; };
-		D24B26041000010002000003 /* DrawingReflectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B26041000010002000001 /* DrawingReflectionViewModel.swift */; };
 		D250CF083B3F0918DA0E2ED1 /* CheckInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BE258FB1BB920041AA1B57 /* CheckInDetailViewController.swift */; };
 		D45ECEE25B2D86CBF6C11B49 /* MoodEntryCardCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5E26D95352B5C69AD10D7 /* MoodEntryCardCellViewModelTests.swift */; };
-		D4C5B6A7E8F9A0B1C2D3E4F6 /* InsightGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */; };
 		D4C5B6A7E8F9A0B1C2D3E4F7 /* InsightGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5B6A7E8F9A0B1C2D3E4F5 /* InsightGridCardView.swift */; };
 		D4E39A5B4F2D0B96563AF670 /* FeelCalmSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27163359DE3FFC4DF026F748 /* FeelCalmSectionViewController.swift */; };
-		D54590E011F0616291933B80 /* RecordedEmotion+MoodScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */; };
 		D5E6F7A8B9C0D1E2F3A4B5C6 /* InsightSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A6B7C8D9E0F1A2 /* InsightSummaryView.swift */; };
 		D7381A08AA552B1289C0C814 /* QuestViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEFAD9F0BEF567C9A881463 /* QuestViewModelTests.swift */; };
 		D99A21CCC605492A90ACCFDA /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E82F16483EBA0D0699E631 /* TestHelpers.swift */; };
@@ -523,9 +339,7 @@
 		DCB91A2E330B638CE50FEE94 /* CrisisResources.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AC2BF2A188F135E291E4EE8 /* CrisisResources.json */; };
 		DEC24C6A51817A794C487F9B /* CustomHabitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4989202A72386AA265224CC /* CustomHabitCard.swift */; };
 		DF12EBFF3AB9445233E99868 /* FirestoreEmotionalBundleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B68E594EF24B553645BDE5 /* FirestoreEmotionalBundleService.swift */; };
-		E2B7F1D5A8C4036459E0B186 /* SoulverseToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5C8E1B96F30247B5C8093 /* SoulverseToast.swift */; };
 		E2DEEB2BE29159796EBC4495 /* DrawingServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F022BFD84C7AB6E0A5520B /* DrawingServiceMock.swift */; };
-		E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34A78FD8F81AD420DE63DF1 /* Pods_Base_Soulverse_Dev.framework */; };
 		E4CAAEAFC6F0AFF09FD4A9D7 /* RecordedEmotion+MoodScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C83E52158D2ACD2239AF0 /* RecordedEmotion+MoodScore.swift */; };
 		E54A7F04A3201883F4A2DA5D /* DrawingGalleryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1409E46492A9298B17FDE1D /* DrawingGalleryPresenterTests.swift */; };
 		E643F4B47100862C8E19C6F2 /* FirestoreHabitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB314B52F1AB6A1866C049C /* FirestoreHabitService.swift */; };
@@ -544,7 +358,6 @@
 		F49ACAA09DFA8FD161EBFD90 /* PendingSurveyDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEE218E567C03CEC3216328 /* PendingSurveyDeckView.swift */; };
 		F52C6DEA41AAAEAF6D8E1617 /* DefaultHabitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302F83F8B8CF0DE5173CE332 /* DefaultHabitCard.swift */; };
 		F54D4E9200EE03150C13D9DC /* PendingSurveyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD035236D1E4EE1B5F848A /* PendingSurveyCardView.swift */; };
-		F7E1CA046D941D59C3CEFECC /* DevAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE97E086DB0244FA9A8BB1F /* DevAuthService.swift */; };
 		FDD7F704D70889440A7C0DF6 /* DrawingReplayPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30DBF3AA04EC4F8C683EA7F /* DrawingReplayPresenterDelegateMock.swift */; };
 		FEAEF3464658DBB02F096ED0 /* DrawingGalleryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE6A1610F27FD47B57135DD /* DrawingGalleryViewModelTests.swift */; };
 /* End PBXBuildFile section */
@@ -595,7 +408,7 @@
 		02BE258FB1BB920041AA1B57 /* CheckInDetailViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckInDetailViewController.swift; sourceTree = "<group>"; };
 		039B005BCF2FF3EB7E3F7DDE /* MoodCheckInServiceMock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodCheckInServiceMock.swift; sourceTree = "<group>"; };
 		05CE368A37AF142928705DD2 /* CrisisResourceModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CrisisResourceModel.swift; sourceTree = "<group>"; };
-		0AC2BF2A188F135E291E4EE8 /* CrisisResources.json */ = {isa = PBXFileReference; includeInIndex = 1; path = CrisisResources.json; sourceTree = "<group>"; };
+		0AC2BF2A188F135E291E4EE8 /* CrisisResources.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = CrisisResources.json; sourceTree = "<group>"; };
 		0AE0AE8D83427C1DF0E30948 /* DrawingReplayPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DrawingReplayPresenter.swift; sourceTree = "<group>"; };
 		0D7EF684720D96D0B88C701D /* Pods-SoulverseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulverseTests.release.xcconfig"; path = "Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests.release.xcconfig"; sourceTree = "<group>"; };
 		0E000A0001000000000000B1 /* JournalEditorViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JournalEditorViewController.swift; sourceTree = "<group>"; };
@@ -770,7 +583,6 @@
 		7922ECC02E993B8D0086B7CA /* OnboardingSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSignInViewController.swift; sourceTree = "<group>"; };
 		7922ECC12E993B8D0086B7CA /* OnboardingTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopicViewController.swift; sourceTree = "<group>"; };
 		7922ECE12E9A498A0086B7CA /* GoogleUserAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleUserAuthService.swift; sourceTree = "<group>"; };
-		7922ECE42E9A4E010086B7CA /* SoulverseRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SoulverseRelease.entitlements; sourceTree = "<group>"; };
 		79389F572EFFBEF60016CB7F /* TopicCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCardView.swift; sourceTree = "<group>"; };
 		79389F5A2F05760D0016CB7F /* CentralPlanetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralPlanetView.swift; sourceTree = "<group>"; };
 		79389F5B2F05760D0016CB7F /* EmotionPlanetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionPlanetView.swift; sourceTree = "<group>"; };
@@ -946,7 +758,6 @@
 		E0409B121CB8806C94932214 /* Pods-SoulverseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulverseTests.debug.xcconfig"; path = "Target Support Files/Pods-SoulverseTests/Pods-SoulverseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E171DE35597BA70C8B122CD8 /* ToolsViewPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolsViewPresenterTests.swift; sourceTree = "<group>"; };
 		E30F39713DA6AD85B3971009 /* EmotionalBundleMainPresenterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmotionalBundleMainPresenterTests.swift; sourceTree = "<group>"; };
-		E838841F277AF9F80002C053 /* Soulverse Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Soulverse Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E88C24282797C90100AA72E0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		E88C242A2797C91200AA72E0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E88C242C2797C91C00AA72E0 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -975,19 +786,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E83883FF277AF9F80002C053 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79BB251A2DF9E2C600ED3CBE /* DeviceKit in Frameworks */,
-				79BB25192DF9E2C600ED3CBE /* RealmSwift in Frameworks */,
-				79BB25182DF9E2C600ED3CBE /* Realm in Frameworks */,
-				79BB25172DF9E2C600ED3CBE /* SwiftMessages in Frameworks */,
-				79BB25162DF9E2C600ED3CBE /* OpenCC in Frameworks */,
-				E3C63AA6D2ACB1BE14972D1C /* Pods_Base_Soulverse_Dev.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E8A4C87826BA41130082B4F7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1176,7 +974,6 @@
 			children = (
 				11B68E594EF24B553645BDE5 /* FirestoreEmotionalBundleService.swift */,
 			);
-			name = EmotionalBundleService;
 			path = EmotionalBundleService;
 			sourceTree = "<group>";
 		};
@@ -1192,7 +989,6 @@
 				8DEFAD9F0BEF567C9A881463 /* QuestViewModelTests.swift */,
 				AAB814AF8E37728828F8DFC7 /* FirestoreDeviceTokenServiceTests.swift */,
 			);
-			name = Quest;
 			path = Quest;
 			sourceTree = "<group>";
 		};
@@ -1225,7 +1021,6 @@
 				67594929C616A41B994759EB /* EmotionalBundleCoordinator.swift */,
 				67594929C616A41B994759EA /* EmotionalBundleMainPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -1270,7 +1065,6 @@
 				DCEBCA322784CD8D7F94DE23 /* EmotionalBundleMainViewModelTests.swift */,
 				E30F39713DA6AD85B3971009 /* EmotionalBundleMainPresenterTests.swift */,
 			);
-			name = EmotionalBundle;
 			path = EmotionalBundle;
 			sourceTree = "<group>";
 		};
@@ -1299,7 +1093,6 @@
 			children = (
 				7A0AFB2E02332DEA4A25A66D /* QuestLockedCardView.swift */,
 			);
-			name = LockedCard;
 			path = LockedCard;
 			sourceTree = "<group>";
 		};
@@ -1322,7 +1115,6 @@
 				8B5B3B99E454C9F2CEB02670 /* HabitDateKey.swift */,
 				AC46BA08E090FFEADE4FDF48 /* HabitTelemetry.swift */,
 			);
-			name = HabitChecker;
 			path = HabitChecker;
 			sourceTree = "<group>";
 		};
@@ -1369,7 +1161,6 @@
 				ABBDAADA414C05475799488F /* FirestoreQuestService.swift */,
 				3245B803B3140A3F7D9CD61C /* QuestTimezoneCalculator.swift */,
 			);
-			name = QuestService;
 			path = QuestService;
 			sourceTree = "<group>";
 		};
@@ -1642,7 +1433,6 @@
 			isa = PBXGroup;
 			children = (
 				79F1380A2F3875E10034D325 /* GoogleService-Info.plist */,
-				7922ECE42E9A4E010086B7CA /* SoulverseRelease.entitlements */,
 				790AD2082DF9E43200C33CD1 /* Info.plist */,
 				790AD2062DF9E43200C33CD1 /* AppDelegate.swift */,
 				7986880E2E6C251F00EB3B38 /* Features */,
@@ -2235,7 +2025,6 @@
 				17B780D25ADE734605259C40 /* ProfessionalSupportSectionViewController.swift */,
 				A654863331F32A11FDCE3421 /* Components */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -2250,7 +2039,6 @@
 				025ACADDF937EA9D4D119FD0 /* HabitCheckerSection.swift */,
 				C270FB4515B023D510FE4796 /* HabitIncrementFeedback.swift */,
 			);
-			name = HabitChecker;
 			path = HabitChecker;
 			sourceTree = "<group>";
 		};
@@ -2284,7 +2072,6 @@
 				682222EE3E842BC31BB07917 /* StateOfChangeIndicatorView.swift */,
 				DB459D420DC18CFD45DE5322 /* EightDimensionsCardView.swift */,
 			);
-			name = EightDimensions;
 			path = EightDimensions;
 			sourceTree = "<group>";
 		};
@@ -2294,7 +2081,6 @@
 				F83D2ACF027F80CD265BD4CA /* EmotionalBundleModel.swift */,
 				05CE368A37AF142928705DD2 /* CrisisResourceModel.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -2308,7 +2094,6 @@
 				557EAAE097EC0EB8B2C9994B /* StaySafeSectionViewModel.swift */,
 				911D4CD1621A6E627C39B025 /* ProfessionalSupportSectionViewModel.swift */,
 			);
-			name = ViewModels;
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
@@ -2339,7 +2124,6 @@
 				3ECBA3C42EA99354A86E7B29 /* Presenter */,
 				7E1ED07F200552EA2D02CE0C /* Views */,
 			);
-			name = EmotionalBundle;
 			path = EmotionalBundle;
 			sourceTree = "<group>";
 		};
@@ -2358,7 +2142,6 @@
 				39C6F9856E4AC47CE6B05355 /* BundleSectionCardView.swift */,
 				42762D57CBBA0A87B1D5C733 /* CrisisResourceCardView.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -2395,7 +2178,6 @@
 				EFC4C49FF2CA899AB8798153 /* QuestProgressDotsView.swift */,
 				95E9BE5C9E829C8D55487C0D /* QuestProgressSectionView.swift */,
 			);
-			name = ProgressSection;
 			path = ProgressSection;
 			sourceTree = "<group>";
 		};
@@ -2428,7 +2210,6 @@
 				45CADED06D1EF601E2CC1277 /* SurveyViewController.swift */,
 				62AB8EBC88E1D452433AB815 /* SurveyResultViewController.swift */,
 			);
-			name = Surveys;
 			path = Surveys;
 			sourceTree = "<group>";
 		};
@@ -2557,7 +2338,6 @@
 				E8A4C87B26BA41130082B4F7 /* Soulverse.app */,
 				E8A4C89126BA41150082B4F7 /* SoulverseTests.xctest */,
 				E8A4C89C26BA41150082B4F7 /* SoulverseUITests.xctest */,
-				E838841F277AF9F80002C053 /* Soulverse Dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2571,7 +2351,6 @@
 				90C762BE35696F9E56BFB0A9 /* RecentResultCardListView.swift */,
 				4E5BB786D34C328D239C3BFF /* SurveySectionView.swift */,
 			);
-			name = SurveySection;
 			path = SurveySection;
 			sourceTree = "<group>";
 		};
@@ -2592,7 +2371,6 @@
 				5F66EC425FD40AF5AD6E8896 /* QuestHeaderView.swift */,
 				8287AFCD2E9773373A04B7E6 /* QuestHeaderMessageBuilder.swift */,
 			);
-			name = Header;
 			path = Header;
 			sourceTree = "<group>";
 		};
@@ -2607,32 +2385,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E8388394277AF9F80002C053 /* Soulverse Dev */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E838841C277AF9F80002C053 /* Build configuration list for PBXNativeTarget "Soulverse Dev" */;
-			buildPhases = (
-				73A1BD5A0B78E7213CCC98C0 /* [CP] Check Pods Manifest.lock */,
-				E838839F277AF9F80002C053 /* Sources */,
-				E83883FF277AF9F80002C053 /* Frameworks */,
-				E8388406277AF9F80002C053 /* Resources */,
-				0F96309EBE73A3C6DE00F324 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Soulverse Dev";
-			packageProductDependencies = (
-				E8388395277AF9F80002C053 /* OpenCC */,
-				E8388397277AF9F80002C053 /* SwiftMessages */,
-				E8388399277AF9F80002C053 /* Realm */,
-				E838839B277AF9F80002C053 /* RealmSwift */,
-				E838839C277AF9F80002C053 /* DeviceKit */,
-			);
-			productName = KonoSummit;
-			productReference = E838841F277AF9F80002C053 /* Soulverse Dev.app */;
-			productType = "com.apple.product-type.application";
-		};
 		E8A4C87A26BA41130082B4F7 /* Soulverse */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8A4C8A526BA41150082B4F7 /* Build configuration list for PBXNativeTarget "Soulverse" */;
@@ -2734,29 +2486,11 @@
 				E8A4C87A26BA41130082B4F7 /* Soulverse */,
 				E8A4C89026BA41150082B4F7 /* SoulverseTests */,
 				E8A4C89B26BA41150082B4F7 /* SoulverseUITests */,
-				E8388394277AF9F80002C053 /* Soulverse Dev */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E8388406277AF9F80002C053 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79DD63402EDB2FAF008A5F8D /* drawings_prompts.json in Resources */,
-				7947DF402F52BE52005ABA49 /* stage1_bounce_lottie.json in Resources */,
-				790AD2732DF9E43200C33CD1 /* NotificationResponse.json in Resources */,
-				79F1380C2F3875E10034D325 /* GoogleService-Info.plist in Resources */,
-				790AD2742DF9E43200C33CD1 /* Main.storyboard in Resources */,
-				7922ECAD2E98ABDD0086B7CA /* NotoSansTC-VariableFont_wght.ttf in Resources */,
-				790AD27E2DF9E43200C33CD1 /* Localizable.strings in Resources */,
-				790AD2922DF9E43200C33CD1 /* Assets.xcassets in Resources */,
-				790AD2942DF9E43200C33CD1 /* LaunchScreen.storyboard in Resources */,
-				79EE74BD2F2BB0660082EECF /* AffirmationQuotes.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E8A4C87926BA41130082B4F7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2793,27 +2527,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0F96309EBE73A3C6DE00F324 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Base-Soulverse Dev/Pods-Base-Soulverse Dev-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		202722682A196B1A0B3C31C2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2874,28 +2587,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Base-SoulverseUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73A1BD5A0B78E7213CCC98C0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Base-Soulverse Dev-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2992,184 +2683,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E838839F277AF9F80002C053 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				790AD2122DF9E43200C33CD1 /* CoreTracker.swift in Sources */,
-				79EE74C62F2BB1AB0082EECF /* Topic.swift in Sources */,
-				79EE74C32F2BB09F0082EECF /* AffirmationQuote.swift in Sources */,
-				790AD2132DF9E43200C33CD1 /* NotificationPresenterType.swift in Sources */,
-				79389F582EFFBEF60016CB7F /* TopicCardView.swift in Sources */,
-				790AD2152DF9E43200C33CD1 /* NotificationItemCellViewModel.swift in Sources */,
-				7922EC502E8D848F0086B7CA /* UINavigationController+Extensions.swift in Sources */,
-				7951A9CE2E5376B5006EB0EC /* InnerCosmoViewPresenterType.swift in Sources */,
-				7951A9CF2E5376B5006EB0EC /* InnerCosmoViewPresenter.swift in Sources */,
-				7951A9D02E5376B5006EB0EC /* InnerCosmoViewModel.swift in Sources */,
-				7951A9D12E5376B5006EB0EC /* InnerCosmoViewController.swift in Sources */,
-				790AD2162DF9E43200C33CD1 /* ErrorEvent.swift in Sources */,
-				790D87EB2ED2017F00D4F61F /* ToolsHeaderView.swift in Sources */,
-				790D87EC2ED2017F00D4F61F /* ToolsCollectionViewCell.swift in Sources */,
-				790D87ED2ED2017F00D4F61F /* ToolsSectionHeaderView.swift in Sources */,
-				79EE74D22F30AE3F0082EECF /* Constants+InnerCosmo.swift in Sources */,
-				79EE74E12F30AF000082EECF /* CalendarMonthViewModel.swift in Sources */,
-				79EE74E42F30AF100082EECF /* InnerCosmoAllPeriodView.swift in Sources */,
-				79EE74BF2F2BB0940082EECF /* AffirmationBubbleView.swift in Sources */,
-				790AD2182DF9E43200C33CD1 /* Constants.swift in Sources */,
-				79D576832EFE3ECE00D6DA43 /* SoulverseTagCell.swift in Sources */,
-				790AD21A2DF9E43200C33CD1 /* AppDelegate.swift in Sources */,
-				79EE74D02F308DA40082EECF /* RecordedEmotion.swift in Sources */,
-				D54590E011F0616291933B80 /* RecordedEmotion+MoodScore.swift in Sources */,
-				79B6AAD72EACCABA00A8B079 /* RadioOptionView.swift in Sources */,
-				79B6AAD82EACCABA00A8B079 /* ColorGradientSliderView.swift in Sources */,
-				79B6AAD92EACCABA00A8B079 /* IntensityCircleSelectorView.swift in Sources */,
-				798687F12E6C248E00EB3B38 /* InsightViewModel.swift in Sources */,
-				798687F22E6C248E00EB3B38 /* InsightViewController.swift in Sources */,
-				79DD63412EDB2FAF008A5F8D /* DrawingsPromptModel.swift in Sources */,
-				798687F32E6C248E00EB3B38 /* InsightViewPresenter.swift in Sources */,
-				B4684A5181281B705F0F08BE /* WeeklyMoodScoreViewModel.swift in Sources */,
-				A88F46F2FE6B761AC9159FDA /* WeeklyMoodScoreViewModel+MockData.swift in Sources */,
-				6026E6F1B6136CA370157840 /* WeeklyMoodScoreView.swift in Sources */,
-				A1B2C3D4E5F6A7B8C9D0E1F3 /* TimeRange.swift in Sources */,
-				A2B3C4D5E6F7A8B9C0D1E2F4 /* TimeRangeToggleView.swift in Sources */,
-				A3B4C5D6E7F8A9B0C1D2E3F5 /* HabitActivityViewModel.swift in Sources */,
-				A4B5C6D7E8F9A0B1C2D3E4F6 /* HabitActivityView.swift in Sources */,
-				C3D4E5F6A7B8C9D0E1F2A3B4 /* InsightSummaryView.swift in Sources */,
-				B1A2C3D4E5F6A7B8C9D0E1F2 /* CheckinActivityViewModel.swift in Sources */,
-				B2A3C4D5E6F7A8B9C0D1E2F3 /* CheckinActivityView.swift in Sources */,
-				C3B4A5D6E7F8A9B0C1D2E3F5 /* InsightGridCardViewModel.swift in Sources */,
-				D4C5B6A7E8F9A0B1C2D3E4F6 /* InsightGridCardView.swift in Sources */,
-				790AD21D2DF9E43200C33CD1 /* SummitSeparator.swift in Sources */,
-				790AD21F2DF9E43200C33CD1 /* UIViewController+Extensions.swift in Sources */,
-				794B59FE2E9EA436006CF069 /* UniverseTheme.swift in Sources */,
-				79EE74CA2F2BB6C80082EECF /* SpeechService.swift in Sources */,
-				794B59FF2E9EA436006CF069 /* GradientView.swift in Sources */,
-				794B5A002E9EA436006CF069 /* Theme.swift in Sources */,
-				794B5A012E9EA436006CF069 /* SoulTheme.swift in Sources */,
-				790AD2202DF9E43200C33CD1 /* UIButton+Extensions.swift in Sources */,
-				7951AA002E537704006EB0EC /* ToolsViewPresenter.swift in Sources */,
-				798688112E6C3BAA00EB3B38 /* DrawingCanvasViewController.swift in Sources */,
-				D24B26041000010001000003 /* DrawingReflectionPresenter.swift in Sources */,
-				790D87F92ED20A0A00D4F61F /* ToolsModel.swift in Sources */,
-				79710EDE2E6D974D007665DB /* BuildFile in Sources */,
-				7951AA012E537704006EB0EC /* ToolsViewController.swift in Sources */,
-				790AD2212DF9E43200C33CD1 /* WebViewController.swift in Sources */,
-				790AD2232DF9E43200C33CD1 /* String+Extension.swift in Sources */,
-				790AD2242DF9E43200C33CD1 /* SceneDelegate.swift in Sources */,
-				790AD2252DF9E43200C33CD1 /* Array+Extensions.swift in Sources */,
-				794B59F32E9EA3E1006CF069 /* ThemeManager.swift in Sources */,
-				790AD2262DF9E43200C33CD1 /* TrackingEventType.swift in Sources */,
-				790AD22A2DF9E43200C33CD1 /* NotificationEmptyView.swift in Sources */,
-				790AD22D2DF9E43200C33CD1 /* TimeInterval+Extensions.swift in Sources */,
-				790AD22E2DF9E43200C33CD1 /* UIColor+Extensions.swift in Sources */,
-				790AD22F2DF9E43200C33CD1 /* AuthService.swift in Sources */,
-				790AD2302DF9E43200C33CD1 /* FirebaseTrackingService.swift in Sources */,
-				79POSTHOG12DF9E43200C33CD1 /* PosthogTrackingService.swift in Sources */,
-				790AD2312DF9E43200C33CD1 /* ContentListResponse.swift in Sources */,
-				790AD2372DF9E43200C33CD1 /* NotificationViewController.swift in Sources */,
-				790AD2382DF9E43200C33CD1 /* UIImage+Extensions.swift in Sources */,
-				790AD23A2DF9E43200C33CD1 /* NotificationPresenter.swift in Sources */,
-				790AD23B2DF9E43200C33CD1 /* NotificationService.swift in Sources */,
-				790AD23C2DF9E43200C33CD1 /* NotificationAPIService.swift in Sources */,
-				790AD23E2DF9E43200C33CD1 /* UserAPIService.swift in Sources */,
-				790AD23F2DF9E43200C33CD1 /* Utility.swift in Sources */,
-				790D87D82ED1729200D4F61F /* SpiralConfig.swift in Sources */,
-				790AD2412DF9E43200C33CD1 /* SummitSlider.swift in Sources */,
-				79B24C782DFC7B2A001220B6 /* CanvasViewPresenter.swift in Sources */,
-				79B24C792DFC7B2A001220B6 /* CanvasViewModel.swift in Sources */,
-				D24B26041000010002000003 /* DrawingReflectionViewModel.swift in Sources */,
-				79B24C7A2DFC7B2A001220B6 /* CanvasViewController.swift in Sources */,
-				790AD2432DF9E43200C33CD1 /* UserService.swift in Sources */,
-				2C66302E39B2097233438B44 /* FirestoreUserService.swift in Sources */,
-				790AD2442DF9E43200C33CD1 /* MainViewController.swift in Sources */,
-				79389F6E2F0576280016CB7F /* InnerCosmoEmotionData.swift in Sources */,
-				790AD2452DF9E43200C33CD1 /* ViewController.swift in Sources */,
-				790AD2492DF9E43200C33CD1 /* TrackingService.swift in Sources */,
-				790AD24A2DF9E43200C33CD1 /* UITextField+Extensions.swift in Sources */,
-				7951A9B92E532C85006EB0EC /* SoulverseButton.swift in Sources */,
-				7986880B2E6C24EE00EB3B38 /* QuestViewController.swift in Sources */,
-				7986880C2E6C24EE00EB3B38 /* QuestViewModel.swift in Sources */,
-				7986880D2E6C24EE00EB3B38 /* QuestViewPresenter.swift in Sources */,
-				7951A9BA2E532C85006EB0EC /* SoulverseTabBar.swift in Sources */,
-				79DD633C2EDA8FA1008A5F8D /* HeroTransitionID+Tools.swift in Sources */,
-				7951A9BB2E532C85006EB0EC /* SoulverseNavigationView.swift in Sources */,
-				7AE10C0001000000000000A2 /* EmoPetChatView.swift in Sources */,
-				7AE10CFF01000000000000A2 /* DrawingPromptViewModel.swift in Sources */,
-				7AE10CFF01000000000000B2 /* DrawingPromptPresenterType.swift in Sources */,
-				7AE10CFF01000000000000C2 /* DrawingPromptPresenter.swift in Sources */,
-				7AE10CFF01000000000000D2 /* DrawingPromptViewController.swift in Sources */,
-				790D87D22ECF668700D4F61F /* SpiralView.swift in Sources */,
-				790D87D32ECF668700D4F61F /* SpiralBreathingViewController.swift in Sources */,
-				794B5A0B2EA38B65006CF069 /* SoulverseProgressBar.swift in Sources */,
-				794B5A0C2EA38B65006CF069 /* SoulverseTagsView.swift in Sources */,
-				79F138062F379BF90034D325 /* ActionTagView.swift in Sources */,
-				790AD24E2DF9E43200C33CD1 /* BugTrackingEvent.swift in Sources */,
-				790AD24F2DF9E43200C33CD1 /* AppleUserAuthService.swift in Sources */,
-				790AD2502DF9E43200C33CD1 /* UISwitch+Extensions.swift in Sources */,
-				79B6AAE32EB5B7AA00A8B079 /* IntensitySelectionView.swift in Sources */,
-				79B6AAE42EB5B7AA00A8B079 /* EmotionSelectionView.swift in Sources */,
-				79B6AAE52EB5B7AA00A8B079 /* ColorSummaryView.swift in Sources */,
-				790AD2522DF9E43200C33CD1 /* TrackingServiceType.swift in Sources */,
-				790AD2532DF9E43200C33CD1 /* UITabBarController+Extensions.swift in Sources */,
-				790AD2542DF9E43200C33CD1 /* User.swift in Sources */,
-				7922EC532E8D86EF0086B7CA /* DrawingReflectionViewController.swift in Sources */,
-				790AD2552DF9E43200C33CD1 /* NotificationItemModel.swift in Sources */,
-				790D87F22ED201B200D4F61F /* ToolsViewModel.swift in Sources */,
-				790AD2592DF9E43200C33CD1 /* Codable+Extensions.swift in Sources */,
-				79EE74DB2F30AEA60082EECF /* MoodEntryCardCell.swift in Sources */,
-				79EE74DC2F30AEA60082EECF /* MoodEntriesSection.swift in Sources */,
-				79710ED82E6D5D6A007665DB /* BuildFile in Sources */,
-				79389F612F05760D0016CB7F /* EmotionPlanetView.swift in Sources */,
-				79389F622F05760D0016CB7F /* InnerCosmoRecentView.swift in Sources */,
-				79389F642F05760D0016CB7F /* InnerCosmoHeaderView.swift in Sources */,
-				79389F662F05760D0016CB7F /* CentralPlanetView.swift in Sources */,
-				790AD25B2DF9E43200C33CD1 /* UITapGestureRecognizer+Extensions.swift in Sources */,
-				790AD25C2DF9E43200C33CD1 /* UserModel.swift in Sources */,
-				790AD25E2DF9E43200C33CD1 /* NotificationItemsResponse.swift in Sources */,
-				790AD2602DF9E43200C33CD1 /* NotificationViewModel.swift in Sources */,
-				794B5A0F2EA38BA3006CF069 /* OnboardingLandingViewController.swift in Sources */,
-				790AD2612DF9E43200C33CD1 /* SummitAlertView.swift in Sources */,
-				E2B7F1D5A8C4036459E0B186 /* SoulverseToast.swift in Sources */,
-				79B6AADE2EACCAEC00A8B079 /* MoodCheckInAPIService.swift in Sources */,
-				790AD2632DF9E43200C33CD1 /* NotificationItemTableViewCell.swift in Sources */,
-				790AD2662DF9E43200C33CD1 /* AppCoordinator.swift in Sources */,
-				7922ECE22E9A498A0086B7CA /* GoogleUserAuthService.swift in Sources */,
-				7922ECB02E98ABEA0086B7CA /* UIFont+Extensions.swift in Sources */,
-				7922ECD12E993B8D0086B7CA /* OnboardingCoordinator.swift in Sources */,
-				7922ECD22E993B8D0086B7CA /* OnboardingNamingViewController.swift in Sources */,
-				7922ECD32E993B8D0086B7CA /* OnboardingUserData.swift in Sources */,
-				79EE74CD2F2E4F220082EECF /* Constants+MoodCheckIn.swift in Sources */,
-				7922ECD72E993B8D0086B7CA /* OnboardingSignInViewController.swift in Sources */,
-				79B6AAB32EACCA5D00A8B079 /* EvaluationOption.swift in Sources */,
-				79B6AAB42EACCA5D00A8B079 /* MoodCheckInData.swift in Sources */,
-				790D87F52ED209F800D4F61F /* ToolsCellViewModel.swift in Sources */,
-				79B6AAB62EACCA5D00A8B079 /* MoodCheckInAttributingViewController.swift in Sources */,
-				79B6AAB72EACCA5D00A8B079 /* MoodCheckInSensingViewController.swift in Sources */,
-				79B6AAB92EACCA5D00A8B079 /* MoodCheckInActingViewController.swift in Sources */,
-				79B6AABC2EACCA5D00A8B079 /* MoodCheckInNamingViewController.swift in Sources */,
-				79B6AABD2EACCA5D00A8B079 /* EmotionType.swift in Sources */,
-				79B6AABE2EACCA5D00A8B079 /* MoodCheckInCoordinator.swift in Sources */,
-				79EE74D62F30AE790082EECF /* MoodEntryCardCellViewModel.swift in Sources */,
-				79B6AABF2EACCA5D00A8B079 /* MoodCheckInPetViewController.swift in Sources */,
-				79EE74D12F2BE1000082EECF /* SoulverseTopicList.swift in Sources */,
-				79B6AAC22EACCA5D00A8B079 /* MoodCheckInEvaluatingViewController.swift in Sources */,
-				7922ECD92E993B8D0086B7CA /* OnboardingTopicViewController.swift in Sources */,
-				7922ECDB2E993B8D0086B7CA /* OnboardingGenderViewController.swift in Sources */,
-				7922ECDC2E993B8D0086B7CA /* OnboardingBirthdayViewController.swift in Sources */,
-				794B5A042EA38B45006CF069 /* SoulverseTextField.swift in Sources */,
-				79DD63382EDA8F7B008A5F8D /* HeroTransitionID.swift in Sources */,
-				790AD26B2DF9E43200C33CD1 /* UIView+Extensions.swift in Sources */,
-				F7E1CA046D941D59C3CEFECC /* DevAuthService.swift in Sources */,
-				0E4B0D04D56B8906AAFFF331 /* MoodCheckInModel.swift in Sources */,
-				423A6CA11B020AA8C2AD0E21 /* DrawingModel.swift in Sources */,
-				C4E0D4609941659D568A1D7D /* FirebaseStorageService.swift in Sources */,
-				B687959D9AD055A99B195148 /* FirestoreMoodCheckInService.swift in Sources */,
-				A55E94296F5E8A6F806B4CC6 /* FirestoreDrawingService.swift in Sources */,
-				9EBA99FEED0F4ADBBCA79ACC /* FirestoreSchema.swift in Sources */,
-				00FBCE53E3FB150F40186DE5 /* MoodEntriesDataAssembler.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E8A4C87726BA41130082B4F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3565,57 +3078,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E838841D277AF9F80002C053 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F792F4928C055E97CAA8A86F /* Pods-Base-Soulverse Dev.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Soulveerse/Soulverse.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 554URW8XRV;
-				INFOPLIST_FILE = "Soulverse Dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 0.1;
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DDev";
-				PRODUCT_BUNDLE_IDENTIFIER = com.soulverse.bigbangTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E838841E277AF9F80002C053 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F57870E8C853DEBE590F1CB3 /* Pods-Base-Soulverse Dev.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Soulveerse/Soulverse.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
-				DEVELOPMENT_TEAM = 554URW8XRV;
-				INFOPLIST_FILE = "Soulverse Dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 0.1;
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DDev";
-				PRODUCT_BUNDLE_IDENTIFIER = com.soulverse.bigbangTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		E8A4C8A326BA41150082B4F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3809,7 +3271,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Soulverse/SoulverseRelease.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Soulverse/Soulverse.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
@@ -4035,15 +3497,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E838841C277AF9F80002C053 /* Build configuration list for PBXNativeTarget "Soulverse Dev" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E838841D277AF9F80002C053 /* Debug */,
-				E838841E277AF9F80002C053 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E8A4C87626BA41130082B4F7 /* Build configuration list for PBXProject "Soulverse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -4081,69 +3534,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E8388396277AF9F80002C053 /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ddddxxx/SwiftyOpenCC.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		E8388398277AF9F80002C053 /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		E838839A277AF9F80002C053 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-cocoa.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		E838839D277AF9F80002C053 /* XCRemoteSwiftPackageReference "DeviceKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devicekit/DeviceKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E8388395277AF9F80002C053 /* OpenCC */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E8388396277AF9F80002C053 /* XCRemoteSwiftPackageReference "SwiftyOpenCC" */;
-			productName = OpenCC;
-		};
-		E8388397277AF9F80002C053 /* SwiftMessages */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E8388398277AF9F80002C053 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
-			productName = SwiftMessages;
-		};
-		E8388399277AF9F80002C053 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E838839A277AF9F80002C053 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = Realm;
-		};
-		E838839B277AF9F80002C053 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E838839A277AF9F80002C053 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = RealmSwift;
-		};
-		E838839C277AF9F80002C053 /* DeviceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E838839D277AF9F80002C053 /* XCRemoteSwiftPackageReference "DeviceKit" */;
-			productName = DeviceKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E8A4C87326BA41130082B4F7 /* Project object */;
 }
